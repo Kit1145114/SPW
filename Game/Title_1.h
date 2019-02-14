@@ -1,5 +1,6 @@
 #pragma once
 #include"Game.h"
+#include"Title_2.h"
 #include "tkEngine/character/tkCharacterController.h"
 
 class Game;
@@ -12,6 +13,7 @@ public:
 	bool Start();
 	void Update();
 
+	int m_timer = 0;
 	prefab::CSpriteRender* m_spriteRender = nullptr;
 };
 

@@ -1763,6 +1763,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GamenDraw.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -1785,12 +1786,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Preview_Low|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Title_1.cpp" />
+    <ClCompile Include="Title_2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GamenDraw.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Title_1.h" />
+    <ClInclude Include="Title_2.h" />
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
@@ -1801,6 +1805,9 @@
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\Title1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\Title_A.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

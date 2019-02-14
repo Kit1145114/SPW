@@ -21,9 +21,10 @@ bool Title_1::Start()
 
 void Title_1::Update()
 {
-	if (Pad(0).IsPress(enButtonA) == true)
+	m_timer++;
+	if (m_timer == 180)
 	{
 		DeleteGO(this);
-		NewGO<Game>(0,"Game");
+		NewGO<Title_2>(0,"Title_2");
 	}
 }
