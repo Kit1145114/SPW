@@ -33,6 +33,7 @@
     <ClInclude Include="Title_1.h" />
     <ClInclude Include="Title_2.h" />
     <ClInclude Include="GamenDraw.h" />
+    <ClInclude Include="field.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -54,10 +55,6 @@
     <ImageContentTask Include="Assets\sprite\Title1.jpg">
       <Filter>Resource Files</Filter>
     </ImageContentTask>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\sprite\Title_A.png">
-      <Filter>Assets\sprite</Filter>
-    </Image>
+    <ImageContentTask Include="Assets\sprite\Title_A.png" />
   </ItemGroup>
 </Project>
