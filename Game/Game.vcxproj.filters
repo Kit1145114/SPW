@@ -19,6 +19,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="field.cpp" />
     <ClCompile Include="Title_1.cpp" />
     <ClCompile Include="Title_2.cpp" />
     <ClCompile Include="GamenDraw.cpp" />
@@ -40,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\unityChan.fbx">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\Space_field.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
   </ItemGroup>
