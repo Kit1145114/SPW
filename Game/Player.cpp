@@ -14,25 +14,22 @@ Player::~Player()
 
 bool Player::Start()
 {
+	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
+	m_skinModelRender->Init(L"modelData/unityChan.cmo");
 	m_CharaCon.Init(30.0f, 100.0f, m_position);
 	return true;
 }
 
 void Player::Update()
 {
-
+	Move();
 }
 
 void Player::Move()
 {
-	//if (Pad(0).IsPress(enButtonX) == true) {
-	//	m_moveSpeed.x = Pad(0).GetLStickXF()* +2.5f;
-	//	m_moveSpeed.z = Pad(0).GetLStickYF()* +2.5f;
-	//	m_position = m_CharaCon.Execute(5.0f, m_moveSpeed);
-	//}
-	//else if (Pad(0).IsPress(enButtonX) == false) {
-	//	m_moveSpeed.x = Pad(0).GetLStickXF()* +1.5f;
-	//	m_moveSpeed.z = Pad(0).GetLStickYF()* +1.5f;
-	//	m_position = m_CharaCon.Execute(5.0f, m_moveSpeed);
-	//}
+
+	m_position.x += Pad(0).GetLStickXF() * 5.0f;
+	m_position.z += Pad(0).GetLStickYF() * 5.0f;
+
+	m_skinModelRender->SetPosition(m_position);
 }

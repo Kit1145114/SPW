@@ -23,8 +23,7 @@ bool Game::Start()
 	MainCamera().SetFar(10000.0f);
 	MainCamera().SetPosition({ 00.0f, 70.0f, 200.0f });
 	MainCamera().Update();
-	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-	m_skinModelRender->Init(L"modelData/unityChan.cmo");
+	m_player = NewGO<Player>(0, "Player");
 	m_field = NewGO<field>(0);
 	m_camera = NewGO<Camera>(0);
 	return true;

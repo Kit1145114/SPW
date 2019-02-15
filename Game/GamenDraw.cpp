@@ -15,7 +15,10 @@ GamenDraw::~GamenDraw()
 
 void GamenDraw::Update()
 {
-
+	if (Pad(0).IsPress(enButtonA) == true)
+	{
+		DeleteGO(this);
+	}
 }
 void GamenDraw::PostRender(CRenderContext& rc) {
 	wchar_t text[256];
