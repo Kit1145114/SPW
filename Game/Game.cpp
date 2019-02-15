@@ -10,6 +10,10 @@ Game::Game()
 
 Game::~Game()
 {
+	//DeleteGO();
+	DeleteGO(m_field);
+	DeleteGO(m_camera);
+
 }
 bool Game::Start()
 {
@@ -22,6 +26,7 @@ bool Game::Start()
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/unityChan.cmo");
 	m_field = NewGO<field>(0);
+	m_camera = NewGO<Camera>(0);
 	return true;
 }
 

@@ -1762,6 +1762,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="field.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GamenDraw.cpp" />
@@ -1790,6 +1791,7 @@
     <ClCompile Include="Title_2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="field.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GamenDraw.h" />
