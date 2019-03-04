@@ -28,6 +28,8 @@ public:
 	field* m_field = nullptr;
 	GamenTimer* m_G_Timer = nullptr;
 	Enemy* m_enemy = nullptr;
+	int GameMode = 0;
+
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };
 
