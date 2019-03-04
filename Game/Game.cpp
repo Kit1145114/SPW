@@ -14,7 +14,7 @@ Game::~Game()
 	DeleteGO(m_field);
 	DeleteGO(m_camera);
 	DeleteGO(m_enemy);
-	//DeleteGO(m_G_Timer);
+	DeleteGO(m_G_Timer);
 }
 bool Game::Start()
 {
@@ -28,7 +28,7 @@ bool Game::Start()
 	m_field = NewGO<field>(0);
 	m_camera = NewGO<Camera>(0);
 	m_enemy = NewGO<Enemy>(0);
-	//m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
+	m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
 	return true;
 }
 
