@@ -34,8 +34,12 @@ bool Game::Start()
 
 void Game::Update()
 {
-	if (Pad(0).IsPress(enButtonB))
+	if (GameMode == 0) {
+
+	}
+	else if (GameMode == 1)
 	{
+		GameMode = 0;
 		NewGO<Title_2>(0, "TItle_2");
 		DeleteGO(this);
 	}

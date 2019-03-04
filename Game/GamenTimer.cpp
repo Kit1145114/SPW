@@ -13,13 +13,16 @@ GamenTimer::~GamenTimer()
 
 void GamenTimer::Update()
 {
-	
+	if (T == 0)
+	{
+		m_game = FindGO<Game>("Game");
+		m_game->GameMode = 1;
+	}
 }
 
 void GamenTimer::PostRender(CRenderContext& rc)
 {
-	Game* m_game = FindGO<Game>("Game");
-
+	
 	m_timer++;
 	if (m_timer == 60)
 	{
