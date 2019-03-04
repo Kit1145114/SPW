@@ -9,6 +9,7 @@ Bullet::Bullet()
 
 Bullet::~Bullet()
 {
+	DeleteGO(m_skinModelRender);
 }
 
 bool Bullet::Start()

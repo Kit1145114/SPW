@@ -29,7 +29,7 @@ void GamenTimer::PostRender(CRenderContext& rc)
 
 	wchar_t text[256];
 	int sec = (int)m_timer % 60;
-	swprintf_s(text, L"TIME\n%d", T);
+	swprintf_s(text, L"TIME%d", T);
 	m_font.Begin(rc);
 
 	m_font.Draw(
@@ -39,4 +39,5 @@ void GamenTimer::PostRender(CRenderContext& rc)
 		0.0f,
 		1.5f
 	);
+	m_font.End(rc);
 }
