@@ -9,6 +9,7 @@ Player::Player()
 
 Player::~Player()
 {
+	DeleteGO(m_skinModelRender);
 }
 
 
@@ -46,7 +47,7 @@ void Player::PBullet()
 		if (Pad(0).IsPress(enButtonA)) {
 			Bullet* bullet = NewGO<Bullet>(0, "PlayerBullet");
 			bullet->m_position = m_position;
-			bullet->m_position.y = 100.0f;
+			bullet->m_position.y = 75.0f;
 			bullet->m_moveSpeed.z = 10.0f;
 			m_Short--;
 		}
