@@ -12,7 +12,7 @@ Camera::~Camera()
 }
 bool Camera::Start() {
 
-	m_CameraPos.Set(0.0f, 50.0f, 300.0f);
+	
 	m_player = FindGO<Player>("Player");
 
 	//カメラのニアクリップ
@@ -29,17 +29,13 @@ void Camera::TOP() {
 	//float y = Pad(0).GetRStickYF();
 
 	MainCamera().GetForward();
-
-
-
-
 }
 void Camera::Update() {
 
 	TOP();
 	//メインカメラに注視点と視点を設定する。
 	MainCamera().SetTarget(target);
-	MainCamera().SetPosition(pos);
+	MainCamera().SetPosition(m_CameraPos);
 	//カメラの更新。
 	MainCamera().Update();
 
