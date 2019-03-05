@@ -14,7 +14,7 @@ public:
 	CVector2 m_position = CVector2::Zero;
 
 	int m_timer = 0;
-	int T = 5;
+	int T = 60;
 	Game* m_game = nullptr;
 };
 
