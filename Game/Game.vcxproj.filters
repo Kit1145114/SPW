@@ -28,6 +28,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="GamenTimer.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Planet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -44,6 +45,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="GamenTimer.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Planet.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -63,6 +65,7 @@
     <MeshContentTask Include="Assets\modelData\Enemy.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\planet_aomura.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">

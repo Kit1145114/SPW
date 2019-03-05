@@ -1770,6 +1770,7 @@
     <ClCompile Include="GamenDraw.cpp" />
     <ClCompile Include="GamenTimer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -1802,6 +1803,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GamenDraw.h" />
     <ClInclude Include="GamenTimer.h" />
+    <ClInclude Include="Planet.h" />
     <ClInclude Include="Player.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -1812,6 +1814,7 @@
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\Bulet.FBX" />
     <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet_aomura.FBX" />
     <MeshContentTask Include="Assets\modelData\Space_field.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
   </ItemGroup>
