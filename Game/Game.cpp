@@ -28,7 +28,7 @@ bool Game::Start()
 	m_player = NewGO<Player>(0, "Player");
 	m_field = NewGO<field>(0);
 	m_camera = NewGO<Camera>(0);
-	//m_enemy = NewGO<Enemy>(0);
+	m_enemy = NewGO<Enemy>(0);
 	m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
 	m_planet = NewGO<Planet>(0);
 	return true;

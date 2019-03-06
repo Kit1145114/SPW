@@ -17,7 +17,7 @@ bool Player::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Senkan.cmo");
-	m_CharaCon.Init(250.0f, 100.0f, m_position);
+	m_CharaCon.Init(100.0f, 100.0f, m_position);
 	return true;
 }
 
