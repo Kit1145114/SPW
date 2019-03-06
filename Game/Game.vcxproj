@@ -1812,6 +1812,7 @@
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\Bulet.FBX" />
     <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
+    <MeshContentTask Include="Assets\modelData\Senkan.FBX" />
     <MeshContentTask Include="Assets\modelData\Space_field.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
   </ItemGroup>
