@@ -30,7 +30,8 @@ bool Game::Start()
 	m_camera = NewGO<Camera>(0);
 	m_enemy = NewGO<Enemy>(0);
 	m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
-	m_planet = NewGO<Planet>(0);
+	//m_planet = NewGO<Planet>(0);
+	//Planet::Generate();
 	return true;
 }
 
