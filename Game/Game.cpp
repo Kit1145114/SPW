@@ -36,6 +36,8 @@ bool Game::Start()
 
 void Game::Update()
 {
+	//“–‚½‚è”»’è•\Ž¦
+	dbg::SetDrawPhysicsCollisionEnable();
 	if (GameMode == 0) {
 
 	}
