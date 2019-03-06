@@ -11,13 +11,13 @@ Camera::~Camera()
 {
 }
 bool Camera::Start() {
-
-	
+	//プレイヤーの検索
 	m_player = FindGO<Player>("Player");
 
 	//カメラのニアクリップ
 	MainCamera().SetNear(1.0f);
 	MainCamera().SetFar(10000.0f);
+
 	return true;
 }
 void Camera::TOP() {
@@ -34,7 +34,7 @@ void Camera::TOP() {
 	MainCamera().SetUp(CVector3::AxisZ);
 }
 void Camera::Move() {
-
+	//ズーム＆アウト
 	if (st_kyori>200.0) {
 		//奥
 		if (Pad(0).GetRStickYF() > 0.0) {

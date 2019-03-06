@@ -1814,6 +1814,15 @@
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\Bulet.FBX" />
     <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet01.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet02.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet03.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet05.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet06.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet07.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet08.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet0fire.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet11.FBX" />
     <MeshContentTask Include="Assets\modelData\planet_aomura.FBX" />
     <MeshContentTask Include="Assets\modelData\Senkan.FBX" />
     <MeshContentTask Include="Assets\modelData\Space_field.FBX" />
@@ -1827,6 +1836,9 @@
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\Title_A.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\modelData\fire12.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
