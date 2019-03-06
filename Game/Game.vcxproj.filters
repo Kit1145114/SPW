@@ -69,6 +69,15 @@
     <MeshContentTask Include="Assets\modelData\Senkan.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\planet01.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet02.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet03.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet05.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet06.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet07.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet08.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet11.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet0fire.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
@@ -78,5 +87,10 @@
       <Filter>Resource Files</Filter>
     </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\Title_A.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\modelData\fire12.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
