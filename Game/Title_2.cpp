@@ -17,12 +17,12 @@ bool Title_2::Start()
 {
 	m_spriteRender = NewGO<prefab::CSpriteRender>(0);
 	m_spriteRender->Init(L"sprite/Title_A.dds", 1280.0f, 720.0f);
+	m_Draw = NewGO<GamenDraw>(0, "GamenDraw");
 	return true;
 }
 
 void Title_2::Update()
 {
-	m_Draw = NewGO<GamenDraw>(0, "GamenDraw");
 	if (Pad(0).IsPress(enButtonA) == true)
 	{
 		DeleteGO(this);

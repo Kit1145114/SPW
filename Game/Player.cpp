@@ -43,11 +43,17 @@ void Player::PBullet()
 		m_Short++;
 		m_timer = 0;
 	}
+	if (m_Short < 15)
+	{
+		m_Short = 15;
+	}
 	if (m_Short > 0) {
 		if (Pad(0).IsPress(enButtonA)) {
 			Bullet* bullet = NewGO<Bullet>(0, "PlayerBullet");
 			bullet->m_position = m_position;
 			bullet->m_position.y = 75.0f;
+			bullet->m_position.x -= 10.0f;
+			bullet->m_position.z += 75.0f;
 			bullet->m_moveSpeed.z = 10.0f;
 			m_Short--;
 		}
