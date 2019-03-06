@@ -16,6 +16,7 @@ bool field::Start() {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Space_field.cmo");
 	m_skinModelRender->SetShadowReceiverFlag(true);
+	m_skinModelRender->SetScale(scale);
 	//静的物理オブジェクトを初期化する。
 	m_phyStaticObject.CreateMesh(
 		pos,

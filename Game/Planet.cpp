@@ -23,6 +23,6 @@ void Planet::Move() {
 
 }
 void Planet::Update() {
-
+	p_skinModelRender->SetPosition(p_position);
 
 }

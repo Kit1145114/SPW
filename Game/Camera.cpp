@@ -41,7 +41,7 @@ void Camera::Move() {
 			st_kyori -= 10.0f;
 		}
 	}
-	if (st_kyori<800.0) {
+	if (st_kyori<8000.0) {
 		//Žè‘O
 		if (Pad(0).GetRStickYF() < 0.0) {
 			st_kyori += 10.0f;
