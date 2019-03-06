@@ -22,4 +22,6 @@ bool Enemy::Start()
 
 void Enemy::Update()
 {
+	m_position.z += 100.0f;
+	m_skinModelRender->SetPosition(m_position);
 }
