@@ -60,4 +60,10 @@ void Player::PBullet()
 
 void Player::Pevolution()
 {
+	//if (Pad(0).IsPress(enButtonB))
+	//{
+	//	NewGO<Player_RType2>(0, "Player_RType2");
+	//	DeleteGO(this);
+	//	m_game->m_player = nullptr;
+	//}
 }
