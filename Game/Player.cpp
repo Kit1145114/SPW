@@ -23,8 +23,9 @@ bool Player::Start()
 
 void Player::Update()
 {
-	Move();
-	PBullet();
+	Move();			//プレイヤーの操作
+	PBullet();		//プレイヤーの射撃操作
+	Pevolution();	//プレイヤーの形態
 }
 
 void Player::Move()
@@ -45,13 +46,18 @@ void Player::PBullet()
 	}
 	if (m_Short > 0) {
 		if (Pad(0).IsPress(enButtonA)) {
-			Bullet* bullet = NewGO<Bullet>(0, "PlayerBullet");
-			bullet->m_position = m_position;
-			bullet->m_position.y = 75.0f;
-			bullet->m_position.x -= 10.0f;
-			bullet->m_position.z += 75.0f;
-			bullet->m_moveSpeed.z = 10.0f;
+			m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+			m_bullet->m_position = m_position;
+			m_bullet->m_position.y = 75.0f;
+			m_bullet->m_position.x -= 10.0f;
+			m_bullet->m_position.z += 75.0f;
+			m_bullet->m_moveSpeed.z = 10.0f;
+			
 			m_Short--;
 		}
 	}
+}
+
+void Player::Pevolution()
+{
 }

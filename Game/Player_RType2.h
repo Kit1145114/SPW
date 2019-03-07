@@ -1,31 +1,22 @@
 #pragma once
 #include"Bullet.h"
-#include"Player_RType2.h"
-#include"Game.h"
-#include "tkEngine/graphics/effect/tkEffect.h"
-#include "tkEngine/physics/tkPhysicsGhostObject.h"
-#include "tkEngine/character/tkCharacterController.h"
+#include"Player.h"
 
 class Bullet;
-class Player_RType2;
-class Game;
+class Player;
 
-class Player: public IGameObject
+class Player_RType2:public IGameObject
 {
 public:
-	Player();
-	~Player();
-
+	Player_RType2();
+	~Player_RType2();
 	bool Start();
+
 	void Update();
 	void Move();
 	void PBullet();
-	void Pevolution();
-
-	Player_RType2* m_player_Rtype2 = nullptr;
+	Player* m_player = nullptr;
 	Bullet* m_bullet = nullptr;
-	Game* m_game = nullptr;
-
 	CCharacterController m_CharaCon;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;

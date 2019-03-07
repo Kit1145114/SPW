@@ -29,6 +29,7 @@
     <ClCompile Include="GamenTimer.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Planet.cpp" />
+    <ClCompile Include="Player_RType2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -46,6 +47,7 @@
     <ClInclude Include="GamenTimer.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Planet.h" />
+    <ClInclude Include="Player_RType2.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -78,6 +80,9 @@
     <MeshContentTask Include="Assets\modelData\planet08.FBX" />
     <MeshContentTask Include="Assets\modelData\planet11.FBX" />
     <MeshContentTask Include="Assets\modelData\planet0fire.FBX" />
+    <MeshContentTask Include="Assets\modelData\SenkanType2.FBX">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">

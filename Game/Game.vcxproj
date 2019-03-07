@@ -1772,6 +1772,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Player_RType2.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_Middle|Win32'">Create</PrecompiledHeader>
@@ -1805,6 +1806,7 @@
     <ClInclude Include="GamenTimer.h" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Player_RType2.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Title_1.h" />
@@ -1825,6 +1827,7 @@
     <MeshContentTask Include="Assets\modelData\planet11.FBX" />
     <MeshContentTask Include="Assets\modelData\planet_aomura.FBX" />
     <MeshContentTask Include="Assets\modelData\Senkan.FBX" />
+    <MeshContentTask Include="Assets\modelData\SenkanType2.FBX" />
     <MeshContentTask Include="Assets\modelData\Space_field.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
   </ItemGroup>

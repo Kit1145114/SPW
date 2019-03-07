@@ -13,7 +13,7 @@ Camera::~Camera()
 bool Camera::Start() {
 	//プレイヤーの検索
 	m_player = FindGO<Player>("Player");
-
+	m_game = FindGO<Game>("Game");
 	//カメラのニアクリップ
 	MainCamera().SetNear(1.0f);
 	MainCamera().SetFar(10000.0f);
@@ -49,7 +49,6 @@ void Camera::Move() {
 	}
 }
 void Camera::Update() {
-
 	TOP();
 	Move();
 	//メインカメラに注視点と視点を設定する。
@@ -57,6 +56,5 @@ void Camera::Update() {
 	MainCamera().SetPosition(m_CameraPos);
 	//カメラの更新。
 	MainCamera().Update();
-
 }
 

@@ -2,6 +2,7 @@
 #include"field.h"
 #include"Camera.h"
 #include"Player.h"
+#include"Player_RType2.h"
 #include"GamenTimer.h"
 #include"Enemy.h"
 #include"Title_2.h"
@@ -17,6 +18,7 @@ class GamenTimer;
 class Enemy;
 class Title_2;
 class Planet;
+class Player_RType2;
 class Game : public IGameObject
 {
 public:
@@ -31,6 +33,7 @@ public:
 	GamenTimer* m_G_Timer = nullptr;
 	Enemy* m_enemy = nullptr;
 	Planet* m_planet = nullptr;
+	Player_RType2* m_player_Rtype2 = nullptr;
 	int GameMode = 0;
 
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。

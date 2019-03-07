@@ -10,9 +10,16 @@ Game::Game()
 
 Game::~Game()
 {
-	DeleteGO(m_player);
+	if (m_player != nullptr) {
+		DeleteGO(m_player);
+	}
 	DeleteGO(m_field);
-	DeleteGO(m_camera);
+	if (m_camera != nullptr) {
+		DeleteGO(m_camera);
+	}
+	if (m_player_Rtype2 != nullptr) {
+		DeleteGO(m_player_Rtype2);
+	}
 	DeleteGO(m_enemy);
 	DeleteGO(m_G_Timer);
 	DeleteGO(m_planet);
@@ -20,11 +27,6 @@ Game::~Game()
 bool Game::Start()
 {
 	//ÉJÉÅÉâÇê›íËÅB
-	/*MainCamera().SetTarget({ 0.0f, 70.0f, 0.0f });*/
-	//MainCamera().SetNear(10.0f);
-	//MainCamera().SetFar(10000.0f);
-	//MainCamera().SetPosition({ 00.0f, 70.0f, 200.0f });
-	//MainCamera().Update();
 	m_player = NewGO<Player>(0, "Player");
 	m_field = NewGO<field>(0);
 	m_camera = NewGO<Camera>(0);
@@ -37,6 +39,18 @@ bool Game::Start()
 
 void Game::Update()
 {
+	if (Pad(0).IsPress(enButtonB)&&m_player != nullptr)
+	{
+		NewGO<Player_RType2>(0,"Player_RType2");
+		DeleteGO(m_player);
+		DeleteGO(m_camera);
+		m_player = nullptr;
+		m_camera = nullptr;
+	}
+	if (m_player == nullptr)
+	{
+		m_player_Rtype2 = FindGO<Player_RType2>("Player_RType2");
+	}
 	//ìñÇΩÇËîªíËï\é¶
 	dbg::SetDrawPhysicsCollisionEnable();
 	if (GameMode == 0) {
