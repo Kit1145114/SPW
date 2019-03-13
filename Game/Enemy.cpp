@@ -4,6 +4,7 @@
 
 Enemy::Enemy()
 {
+	m_position.z = 300.0f;
 }
 
 
@@ -17,11 +18,24 @@ bool Enemy::Start()
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Enemy.cmo");
 	m_CharaCon.Init(100.0f, 15.0f, m_position);
+	m_player = FindGO<Player>("Player");
 	return true;
 }
 
 void Enemy::Update()
 {
-	m_position.y = 100.0f;
 	m_skinModelRender->SetPosition(m_position);
+}
+
+void Enemy::Hantei()
+{
+	//if (m_player->ShortCount == 1)
+	//{
+	//	m_bullet = FindGO<Bullet>("PlayerBullet");
+	//	CVector3 diff = m_bullet->m_position - m_position;
+	//	if (diff.Length() < 4000.0f)
+	//	{
+	//		DeleteGO(this);
+	//	}
+	//}
 }

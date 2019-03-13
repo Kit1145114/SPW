@@ -34,6 +34,7 @@ public:
 	Enemy* m_enemy = nullptr;
 	Planet* m_planet = nullptr;
 	Player_RType2* m_player_Rtype2 = nullptr;
+	
 	int GameMode = 0;
 
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。

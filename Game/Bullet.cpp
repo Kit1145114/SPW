@@ -22,8 +22,8 @@ bool Bullet::Start()
 void Bullet::Update()
 {
 	m_position += m_moveSpeed;
-
 	m_skinModelRender->SetPosition(m_position);
+
 	m_timer++;
 	if (m_timer == 100)
 	{

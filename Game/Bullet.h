@@ -10,6 +10,7 @@ public:
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;
+private:
 	int m_timer = 0;
 };
 

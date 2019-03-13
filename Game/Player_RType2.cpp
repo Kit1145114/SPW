@@ -16,7 +16,7 @@ bool Player_RType2::Start()
 {
 		m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
-		m_CharaCon.Init(100.0f, 100.0f, m_position);
+		m_CharaCon.Init(100.0f, 80.0f, m_position);
 	return true;
 }
 
@@ -66,5 +66,15 @@ void Player_RType2::PBullet()
 			m_bullet->m_moveSpeed.z = 10.0f;
 			m_Short--;
 		}
+	}
+}
+
+void Player_RType2::PHantei()
+{
+	m_enemy = FindGO<Enemy>("Enemy");
+	CVector3 diff = m_enemy->m_position - m_position;
+	if (diff.Length() < 250.0f) {
+		m_game = FindGO<Game>("Game");
+		m_game->GameMode = 1;
 	}
 }

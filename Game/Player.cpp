@@ -26,8 +26,9 @@ void Player::Update()
 	Move();			//プレイヤーの操作
 	PBullet();		//プレイヤーの射撃操作
 	Pevolution();	//プレイヤーの形態
+	Hantei();
 }
-
+//プレイヤーの操作
 void Player::Move()
 {
 	m_moveSpeed.x = Pad(0).GetLStickXF()* + 2.5f;
@@ -35,7 +36,7 @@ void Player::Move()
 	m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed,14.0f);
 	m_skinModelRender->SetPosition(m_position);
 }
-
+//プレイヤーの球
 void Player::PBullet()
 {
 	m_timer++;
@@ -54,10 +55,11 @@ void Player::PBullet()
 			m_bullet->m_moveSpeed.z = 10.0f;
 			
 			m_Short--;
+			ShortCount = 1;
 		}
 	}
 }
-
+//プレイヤーの進化用
 void Player::Pevolution()
 {
 	//if (Pad(0).IsPress(enButtonB))
@@ -66,4 +68,14 @@ void Player::Pevolution()
 	//	DeleteGO(this);
 	//	m_game->m_player = nullptr;
 	//}
+}
+//プレイヤーの死亡判定
+void Player::Hantei()
+{
+	m_enemy = FindGO<Enemy>("Enemy");	
+	CVector3 diff = m_enemy->m_position - m_position;
+	if (diff.Length() < 250.0f) {
+		m_game = FindGO<Game>("Game");
+		m_game->GameMode = 1;
+	}
 }

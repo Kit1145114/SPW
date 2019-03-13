@@ -10,6 +10,7 @@ Camera::Camera()
 Camera::~Camera()
 {
 }
+
 bool Camera::Start() {
 	//ƒvƒŒƒCƒ„[‚ÌŒŸõ
 	m_player = FindGO<Player>("Player");
