@@ -1821,12 +1821,15 @@
     <MeshContentTask Include="Assets\modelData\planet01.FBX" />
     <MeshContentTask Include="Assets\modelData\planet02.FBX" />
     <MeshContentTask Include="Assets\modelData\planet03.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet04.FBX" />
     <MeshContentTask Include="Assets\modelData\planet05.FBX" />
     <MeshContentTask Include="Assets\modelData\planet06.FBX" />
     <MeshContentTask Include="Assets\modelData\planet07.FBX" />
     <MeshContentTask Include="Assets\modelData\planet08.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet09.FBX" />
     <MeshContentTask Include="Assets\modelData\planet0fire.FBX" />
     <MeshContentTask Include="Assets\modelData\planet11.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet_10.FBX" />
     <MeshContentTask Include="Assets\modelData\planet_aomura.FBX" />
     <MeshContentTask Include="Assets\modelData\Senkan.FBX" />
     <MeshContentTask Include="Assets\modelData\SenkanType2.FBX" />

@@ -25,6 +25,7 @@ Game::~Game()
 	}
 	DeleteGO(m_G_Timer);
 	DeleteGO(m_planet);
+	Planet::Generate();
 }
 bool Game::Start()
 {
@@ -35,7 +36,7 @@ bool Game::Start()
 	m_enemy = NewGO<Enemy>(0,"Enemy");
 	m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
 	//m_planet = NewGO<Planet>(0);
-	//Planet::Generate();
+	Planet::Generate();
 	return true;
 }
 
