@@ -68,6 +68,8 @@ void Player::Pevolution()
 	//	DeleteGO(this);
 	//	m_game->m_player = nullptr;
 	//}
+
+	memory_position = m_position;
 }
 //ƒvƒŒƒCƒ„[‚Ì€–S”»’è
 void Player::Hantei()
