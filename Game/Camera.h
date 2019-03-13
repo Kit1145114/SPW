@@ -16,7 +16,7 @@ public:
 	void Move();
 	Player* m_player = nullptr;
 	Game* m_game = nullptr;
-	float st_kyori = 500.0f;
+	float st_kyori = 2000.0f;
 	CVector3 m_CameraPos = { 0.0f,0.0f,0.0f, };
 	//‹“_‚ğŒvZ‚·‚éB
 	CVector3 pos = CVector3::Zero;

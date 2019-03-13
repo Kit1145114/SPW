@@ -83,6 +83,9 @@
     <MeshContentTask Include="Assets\modelData\SenkanType2.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\planet04.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet_10.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet09.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
