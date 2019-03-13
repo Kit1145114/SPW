@@ -78,3 +78,11 @@ void Player_RType2::PHantei()
 		m_game->GameMode = 1;
 	}
 }
+
+void Player_RType2::Rotation()
+{
+	float Rot = atan2(m_moveSpeed.x, m_moveSpeed.z);
+	CQuaternion qRot;
+	qRot.SetRotation(CVector3::AxisY, Rot);
+	m_skinModelRender->SetRotation(qRot);
+}

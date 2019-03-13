@@ -23,6 +23,7 @@ public:
 	void PBullet();
 	void Pevolution();
 	void Hantei();
+	void Rotation();
 
 	Player_RType2* m_player_Rtype2 = nullptr;
 	Bullet* m_bullet = nullptr;

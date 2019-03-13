@@ -27,6 +27,7 @@ void Player::Update()
 	PBullet();		//プレイヤーの射撃操作
 	Pevolution();	//プレイヤーの形態
 	Hantei();
+	Rotation();
 }
 //プレイヤーの操作
 void Player::Move()
@@ -46,7 +47,7 @@ void Player::PBullet()
 		m_timer = 0;
 	}
 	if (m_Short > 0) {
-		if (Pad(0).IsPress(enButtonA)) {
+		if (Pad(0).IsPress(enButtonRB1)) {
 			m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 			m_bullet->m_position = m_position;
 			m_bullet->m_position.y = 75.0f;
@@ -62,13 +63,13 @@ void Player::PBullet()
 //プレイヤーの進化用
 void Player::Pevolution()
 {
-	//if (Pad(0).IsPress(enButtonB))
-	//{
-	//	NewGO<Player_RType2>(0, "Player_RType2");
-	//	DeleteGO(this);
-	//	m_game->m_player = nullptr;
-	//}
-
+	if (Pad(0).IsTrigger(enButtonB))
+	{
+		NewGO<Player_RType2>(0, "Player_RType2");
+		//DeleteGO(this);
+		//memory_position = m_position;
+		//m_game->m_player = nullptr;
+	}
 	memory_position = m_position;
 }
 //プレイヤーの死亡判定
@@ -80,4 +81,12 @@ void Player::Hantei()
 		m_game = FindGO<Game>("Game");
 		m_game->GameMode = 1;
 	}
+}
+
+void Player::Rotation()
+{
+	float Rot = atan2(m_moveSpeed.x, m_moveSpeed.z);
+	CQuaternion qRot;
+	qRot.SetRotation(CVector3::AxisY, Rot);
+	m_skinModelRender->SetRotation(qRot);
 }
