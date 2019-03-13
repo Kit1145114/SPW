@@ -46,14 +46,14 @@ bool Game::Start()
 
 void Game::Update()
 {
-	if (Pad(0).IsPress(enButtonB)&&m_player != nullptr)
-	{
-		NewGO<Player_RType2>(0,"Player_RType2");
-		DeleteGO(m_player);
-		DeleteGO(m_camera);
-		m_player = nullptr;
-		m_camera = nullptr;
-	}
+	//if (Pad(0).IsPress(enButtonB)&&m_player != nullptr)
+	//{
+	//	NewGO<Player_RType2>(0,"Player_RType2");
+	//	DeleteGO(m_player);
+	//	DeleteGO(m_camera);
+	//	m_player = nullptr;
+	//	m_camera = nullptr;
+	//}
 	if (m_player == nullptr)
 	{
 		m_player_Rtype2 = FindGO<Player_RType2>("Player_RType2");

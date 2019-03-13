@@ -19,6 +19,7 @@ public:
 	void Move();
 	void PBullet();
 	void PHantei();
+	void Rotation();
 	Player* m_player = nullptr;
 	Bullet* m_bullet = nullptr;
 	Game* m_game = nullptr;
