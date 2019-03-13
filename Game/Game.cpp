@@ -25,7 +25,11 @@ Game::~Game()
 	}
 	DeleteGO(m_G_Timer);
 	DeleteGO(m_planet);
-	Planet::Generate();
+	QueryGOs<Planet>("planet", [&](Planet* obj)->bool
+	{
+		DeleteGO(obj);
+		return true;
+	});
 }
 bool Game::Start()
 {
