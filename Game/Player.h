@@ -40,6 +40,7 @@ public:
 
 	int m_timer = 0;
 	int m_Short = 0;
+	int Ver = 0;
 	int ShortCount = 0;
 	int m_mode = 0;
 };

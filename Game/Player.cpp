@@ -10,6 +10,9 @@ Player::Player()
 Player::~Player()
 {
 	DeleteGO(m_skinModelRender);
+	if (m_player_Rtype2 != nullptr) {
+		DeleteGO(m_player_Rtype2);
+	}
 }
 
 
@@ -63,9 +66,11 @@ void Player::PBullet()
 //プレイヤーの進化用
 void Player::Pevolution()
 {
-	if (Pad(0).IsTrigger(enButtonB))
+	if (Pad(0).IsTrigger(enButtonB) && Ver == 0)
 	{
-		NewGO<Player_RType2>(0, "Player_RType2");
+		m_player_Rtype2 = NewGO<Player_RType2>(0, "Player_RType2");
+		Ver = 1;
+		m_player_Rtype2->m_position = memory_position;
 		//DeleteGO(this);
 		//memory_position = m_position;
 		//m_game->m_player = nullptr;

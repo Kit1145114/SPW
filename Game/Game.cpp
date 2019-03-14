@@ -13,16 +13,13 @@ Game::~Game()
 	if (m_player != nullptr) {
 		DeleteGO(m_player);
 	}
-	DeleteGO(m_field);
 	if (m_camera != nullptr) {
 		DeleteGO(m_camera);
-	}
-	if (m_player_Rtype2 != nullptr) {
-		DeleteGO(m_player_Rtype2);
 	}
 	if (m_enemy != nullptr) {
 		DeleteGO(m_enemy);
 	}
+	DeleteGO(m_field);
 	DeleteGO(m_G_Timer);
 	DeleteGO(m_planet);
 	QueryGOs<Planet>("planet", [&](Planet* obj)->bool
@@ -54,10 +51,6 @@ void Game::Update()
 	//	m_player = nullptr;
 	//	m_camera = nullptr;
 	//}
-	if (m_player == nullptr)
-	{
-		m_player_Rtype2 = FindGO<Player_RType2>("Player_RType2");
-	}
 	//“–‚½‚è”»’è•\Ž¦
 	dbg::SetDrawPhysicsCollisionEnable();
 	if (GameMode == 0) {
