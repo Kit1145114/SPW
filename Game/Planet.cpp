@@ -60,7 +60,8 @@ void Planet::Generate() {
 			P_skinModelRender->Init(L"modelData/planet11.cmo");
 			break;
 		}
-		Planet* m_planet = NewGO<Planet>(0, "planet");
+		Planet* m_planet= NewGO<Planet>(0, "planet");
+		
 		
 		//ランダムなポジション作り
 		float vx = Random().GetRandDouble();
@@ -80,7 +81,7 @@ void Planet::Generate() {
 		hako.z *= PosLimitz;
 
 		m_planet->p_position = hako;
-
+		
 		m_planet->init(m_planet->p_position, P_skinModelRender);
 
 	}
@@ -113,8 +114,13 @@ void Planet::Death()
 	if (Pad(0).IsPress(enButtonSelect)) {
 		DeleteGO(this);
 	}
+	
+		////2点間の距離を計算する
+		//CVector3 diff = memory_planet->p_position - p_position;
+		////距離が2000以下になったら
+		//if (diff.Length() < r ) {
 
-
+		//}
 
 }
 void Planet::Update() {
