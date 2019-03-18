@@ -17,7 +17,11 @@ Game::~Game()
 		DeleteGO(m_camera);
 	}
 	if (m_enemy != nullptr) {
+
 		DeleteGO(m_enemy);
+	}
+	if (m_player_Rtype2 != nullptr) {
+		DeleteGO(m_player_Rtype2);
 	}
 	DeleteGO(m_field);
 	DeleteGO(m_G_Timer);
@@ -36,13 +40,14 @@ bool Game::Start()
 	m_camera = NewGO<Camera>(0);
 	m_enemy = NewGO<Enemy>(0,"Enemy");
 	m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
-	//m_planet = NewGO<Planet>(0);
 	Planet::Generate();
 	return true;
 }
 
 void Game::Update()
 {
+	P_Ver();
+	S_Pu();
 	//if (Pad(0).IsPress(enButtonB)&&m_player != nullptr)
 	//{
 	//	NewGO<Player_RType2>(0,"Player_RType2");
@@ -53,6 +58,8 @@ void Game::Update()
 	//}
 	//“–‚½‚è”»’è•\Ž¦
 	dbg::SetDrawPhysicsCollisionEnable();
+
+
 	if (GameMode == 0) {
 
 	}
@@ -61,5 +68,27 @@ void Game::Update()
 		GameMode = 0;
 		NewGO<Title_2>(0, "TItle_2");
 		DeleteGO(this);
+	}
+}
+
+void Game::P_Ver()
+{
+	if (Pver == 1 && m_player_Rtype2 == nullptr)
+	{
+		//m_player = FindGO<Player>("Player");
+		m_player_Rtype2 = NewGO<Player_RType2>(0, "Player_RType2");
+		m_player_Rtype2->m_position = m_player->memory_position;
+	}
+	else if (Pver == 2)
+	{
+
+	}
+}
+
+void Game::S_Pu()
+{
+	if (m_enemy == nullptr&& m_star == nullptr)
+	{
+		m_star = NewGO<Star>(0,"Star");
 	}
 }

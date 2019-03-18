@@ -1774,7 +1774,6 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player_RType2.cpp" />
     <ClCompile Include="Star.cpp" />
-    <ClCompile Include="Star01.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_Middle|Win32'">Create</PrecompiledHeader>
@@ -1811,7 +1810,6 @@
     <ClInclude Include="Player_RType2.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="Star.h" />
-    <ClInclude Include="Star01.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Title_1.h" />
     <ClInclude Include="Title_2.h" />

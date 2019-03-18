@@ -15,12 +15,13 @@ Player::~Player()
 	}
 }
 
-
 bool Player::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Senkan.cmo");
 	m_CharaCon.Init(100.0f, 100.0f, m_position);
+	m_game = FindGO<Game>("Game");
+	m_enemy = FindGO<Enemy>("Enemy");
 	return true;
 }
 
@@ -44,13 +45,12 @@ void Player::Move()
 void Player::PBullet()
 {
 	m_timer++;
-
 	if ( m_timer > 30) {
 		m_Short++;
 		m_timer = 0;
 	}
 	if (m_Short > 0) {
-		if (Pad(0).IsPress(enButtonRB1)) {
+		if (Pad(0).IsPress(/*enButtonRB1*/enButtonA) == true) {
 			m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 			m_bullet->m_position = m_position;
 			m_bullet->m_position.y = 75.0f;
@@ -60,6 +60,14 @@ void Player::PBullet()
 			
 			m_Short--;
 			ShortCount = 1;
+		}
+		else if (Pad(0).IsPress(enButtonA) == false) {
+			p_timer++;
+			if (p_timer == 99)
+			{
+				ShortCount = 0;
+				p_timer = 0;
+			}
 		}
 	}
 }
@@ -71,16 +79,13 @@ void Player::Pevolution()
 		m_player_Rtype2 = NewGO<Player_RType2>(0, "Player_RType2");
 		Ver = 1;
 		m_player_Rtype2->m_position = memory_position;
-		//DeleteGO(this);
-		//memory_position = m_position;
-		//m_game->m_player = nullptr;
+		m_game->Pver = 1;
 	}
 	memory_position = m_position;
 }
 //ÉvÉåÉCÉÑÅ[ÇÃéÄñSîªíË
 void Player::Hantei()
-{
-	m_enemy = FindGO<Enemy>("Enemy");	
+{	
 	CVector3 diff = m_enemy->m_position - m_position;
 	if (diff.Length() < 250.0f) {
 		m_game = FindGO<Game>("Game");
@@ -95,3 +100,4 @@ void Player::Rotation()
 	qRot.SetRotation(CVector3::AxisY, Rot);
 	m_skinModelRender->SetRotation(qRot);
 }
+

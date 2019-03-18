@@ -31,7 +31,6 @@
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player_RType2.cpp" />
     <ClCompile Include="Star.cpp" />
-    <ClCompile Include="Star01.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -51,7 +50,6 @@
     <ClInclude Include="Planet.h" />
     <ClInclude Include="Player_RType2.h" />
     <ClInclude Include="Star.h" />
-    <ClInclude Include="Star01.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
