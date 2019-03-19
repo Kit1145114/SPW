@@ -22,6 +22,23 @@ class Planet;
 class Player_RType2;
 class Star;
 
+enum Planetnumber {
+	Planetnumber_00,
+	Planetnumber_01,
+	Planetnumber_02,
+	Planetnumber_03,
+	Planetnumber_04,
+	Planetnumber_05,
+	Planetnumber_06,
+	Planetnumber_07,
+	Planetnumber_08,
+	Planetnumber_09,
+	Planetnumber_10,
+	Planetnumber_11,
+	Planetnumber_12,
+	Planetnumber_Num
+};
+
 class Game : public IGameObject
 {
 public:
@@ -38,7 +55,7 @@ public:
 	GamenTimer* m_G_Timer = nullptr;
 	Enemy* m_enemy = nullptr;
 	Planet* m_planet = nullptr;
-	Planet* memoryPP[11];
+	Planet* memoryPP[Planetnumber_Num];
 	Player_RType2* m_player_Rtype2 = nullptr;
 	Star* m_star = nullptr;
 	int GameMode = 0;

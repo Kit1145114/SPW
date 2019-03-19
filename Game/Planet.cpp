@@ -2,6 +2,8 @@
 #include "Planet.h"
 #include "Game.h"
 #include <string>
+
+
 Planet::Planet()
 {
 }
@@ -12,60 +14,65 @@ Planet::~Planet()
 	DeleteGO(p_skinModelRender0);
 }
 bool Planet::Start() {
-	
+	m_game = FindGO<Game>("Game");
+	m_player = FindGO<Player>("Game");
 	return true;
 }
 
 void Planet::Generate() {
 	Game* m_game = nullptr;
 	m_game = FindGO<Game>("Game");
-	//惑星のモデリング指定
-	for (int i = 0;i < 11;i++) {
+	
+	//惑星のモデリング指定。
+	for (int i = 0,w = Planetnumber_00;i < Planetnumber_Num;i++,w++) {
+
 		prefab::CSkinModelRender* P_skinModelRender;
 		P_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-		switch (i) {
-		case 0:
+
+		switch (w) {
+		case Planetnumber_00:
 			P_skinModelRender->Init(L"modelData/planet0fire.cmo");
 			break;
-		case 1:
+		case Planetnumber_01:
 			P_skinModelRender->Init(L"modelData/planet01.cmo");
 			break;
-		case 2:
+		case Planetnumber_02:
 			P_skinModelRender->Init(L"modelData/planet02.cmo");
 			break;
-		case 3:
+		case Planetnumber_03:
 			P_skinModelRender->Init(L"modelData/planet03.cmo");
 			break;
-		case 4:
+		case Planetnumber_04:
 			P_skinModelRender->Init(L"modelData/planet04.cmo");
 			break;
-		case 5:
+		case Planetnumber_05:
 			P_skinModelRender->Init(L"modelData/planet05.cmo");
 			break;
-		case 6:
+		case Planetnumber_06:
 			P_skinModelRender->Init(L"modelData/planet06.cmo");
 			break;
-		case 7:
+		case Planetnumber_07:
 			P_skinModelRender->Init(L"modelData/planet07.cmo");
 			break;
-		case 8:
+		case Planetnumber_08:
 			P_skinModelRender->Init(L"modelData/planet08.cmo");
 			break;
-		case 9:
+		case Planetnumber_09:
 			P_skinModelRender->Init(L"modelData/planet09.cmo");
 			break;
-		case 10:
+		case Planetnumber_10:
 			P_skinModelRender->Init(L"modelData/planet_10.cmo");
 			break;
-		case 11:
+		case Planetnumber_11:
 			P_skinModelRender->Init(L"modelData/planet11.cmo");
 			break;
+		default:w = Planetnumber_00;
 		}
 		Planet* m_planet= NewGO<Planet>(0, "planet");
 		
 		m_game->memoryPP[i] = m_planet;
 
-		//ランダムなポジション作り
+		//ランダムなポジション作り。
 		float vx = Random().GetRandDouble();
 		float vz = Random().GetRandDouble();
 		CVector3 hako;
@@ -76,7 +83,7 @@ void Planet::Generate() {
 		if (Random().GetRandDouble() <= 0.5f)
 			hako.z *= -1;
 
-		//ランダム生成する場所の制限
+		//ランダム生成する場所の制限。
 		float PosLimitx = 20000.0f;
 		float PosLimitz = 10000.0f;
 		hako.x *= PosLimitx;
@@ -90,16 +97,16 @@ void Planet::Generate() {
 }
 void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender)
 {
-	//星の生成
-	//星のポジション
+	//星の生成。
+	//星のポジション。
 	p_position = position;
 	
-	//惑星の大きさランダム
+	//惑星の大きさランダム。
 	float v = 50 * Random().GetRandDouble();
 	scale.x *= v;
 	scale.z *= v;
 	r *= v;
-	////当たり判定調整
+	////当たり判定調整。
 	//CVector3 pa_position = position;
 	//pa_position.y -= 300.0f;
 
@@ -112,11 +119,11 @@ void Planet::Move() {
 
 }
 void Planet::Death(){
-	m_game = FindGO<Game>("Game");
+	
 	if (Pad(0).IsPress(enButtonSelect)) {
 		DeleteGO(this);
 	}
-	for (int i = 0;i < 11;i++) {
+	for (int i = 0;i < Planetnumber_Num;i++) {
 		//もし比較する惑星が自分でなければ。
 		if (m_game->memoryPP[i] != this) {
 			//2点間の距離を計算する。
