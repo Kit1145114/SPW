@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Planet.h"
-
-
+#include "Game.h"
+#include <string>
 Planet::Planet()
 {
 }
@@ -12,12 +12,13 @@ Planet::~Planet()
 	DeleteGO(p_skinModelRender0);
 }
 bool Planet::Start() {
-
+	
 	return true;
 }
 
 void Planet::Generate() {
-
+	Game* m_game = nullptr;
+	m_game = FindGO<Game>("Game");
 	//惑星のモデリング指定
 	for (int i = 0;i < 11;i++) {
 		prefab::CSkinModelRender* P_skinModelRender;
@@ -62,7 +63,8 @@ void Planet::Generate() {
 		}
 		Planet* m_planet= NewGO<Planet>(0, "planet");
 		
-		
+		m_game->memoryPP[i] = m_planet;
+
 		//ランダムなポジション作り
 		float vx = Random().GetRandDouble();
 		float vz = Random().GetRandDouble();
@@ -109,19 +111,25 @@ void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender)
 void Planet::Move() {
 
 }
-void Planet::Death()
-{
+void Planet::Death(){
+	m_game = FindGO<Game>("Game");
 	if (Pad(0).IsPress(enButtonSelect)) {
 		DeleteGO(this);
 	}
-	
-		////2点間の距離を計算する
-		//CVector3 diff = memory_planet->p_position - p_position;
-		////距離が2000以下になったら
-		//if (diff.Length() < r ) {
-
-		//}
-
+	for (int i = 0;i < 11;i++) {
+		//もし比較する惑星が自分でなければ。
+		if (m_game->memoryPP[i] != this) {
+			//2点間の距離を計算する。
+			CVector3 diff = m_game->memoryPP[i]->p_position - p_position;
+			//距離が半径以下なら。
+			if (diff.Length() < r) {
+				DeleteGO(this);
+			}
+			else if (m_game->memoryPP[i]->r+r > diff.Length()) {
+				DeleteGO(this);
+			}
+		}
+	}
 }
 void Planet::Update() {
 	
