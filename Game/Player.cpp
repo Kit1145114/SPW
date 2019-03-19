@@ -52,18 +52,16 @@ void Player::PBullet()
 	if (m_Short > 0) {
 		if (Pad(0).IsPress(/*enButtonRB1*/enButtonA) == true) {
 			m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-			m_bullet->m_position = m_position;
-			m_bullet->m_position.y = 75.0f;
-			m_bullet->m_position.x -= 10.0f;
-			m_bullet->m_position.z += 75.0f;
-			m_bullet->m_moveSpeed.z = 10.0f;
+			m_bullet->SetPosition(m_position);
+			m_bullet->SetMoveSpeed(10.0f);
 			
 			m_Short--;
 			ShortCount = 1;
+			p_timer = 0;
 		}
 		else if (Pad(0).IsPress(enButtonA) == false) {
 			p_timer++;
-			if (p_timer == 99)
+			if (p_timer == 90)
 			{
 				ShortCount = 0;
 				p_timer = 0;
@@ -76,23 +74,24 @@ void Player::Pevolution()
 {
 	if (Pad(0).IsTrigger(enButtonB) && Ver == 0)
 	{
-		m_player_Rtype2 = NewGO<Player_RType2>(0, "Player_RType2");
 		Ver = 1;
-		m_player_Rtype2->m_position = memory_position;
 		m_game->Pver = 1;
+		//m_game->m_player = nullptr;
+		//DeleteGO(this);
 	}
 	memory_position = m_position;
 }
 //プレイヤーの死亡判定
 void Player::Hantei()
 {	
-	CVector3 diff = m_enemy->m_position - m_position;
-	if (diff.Length() < 250.0f) {
-		m_game = FindGO<Game>("Game");
-		m_game->GameMode = 1;
+	if (m_game->m_enemy != nullptr) {
+		CVector3 diff = m_enemy->GetPosition() - m_position;
+		if (diff.Length() < 250.0f) {
+			m_game->GameMode = 1;
+		}
 	}
 }
-
+//プレイヤーの回転処理。
 void Player::Rotation()
 {
 	float Rot = atan2(m_moveSpeed.x, m_moveSpeed.z);

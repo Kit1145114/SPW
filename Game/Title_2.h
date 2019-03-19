@@ -14,7 +14,7 @@ public:
 
 	bool Start();
 	void Update();
-
+private:
 	GamenDraw* m_Draw = nullptr;
 	prefab::CSpriteRender* m_spriteRender = nullptr;
 };

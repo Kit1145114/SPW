@@ -23,6 +23,10 @@ Game::~Game()
 	if (m_player_Rtype2 != nullptr) {
 		DeleteGO(m_player_Rtype2);
 	}
+	if (m_star != nullptr) {
+		DeleteGO(m_star);
+	}
+	DeleteGO(s_bar);
 	DeleteGO(m_field);
 	DeleteGO(m_G_Timer);
 	DeleteGO(m_planet);
@@ -40,6 +44,7 @@ bool Game::Start()
 	m_camera = NewGO<Camera>(0);
 	m_enemy = NewGO<Enemy>(0,"Enemy");
 	m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
+	s_bar = NewGO<Sinka_Bar>(0, "Sinka_Bar");
 	Planet::Generate();
 	return true;
 }
@@ -48,14 +53,6 @@ void Game::Update()
 {
 	P_Ver();
 	S_Pu();
-	//if (Pad(0).IsPress(enButtonB)&&m_player != nullptr)
-	//{
-	//	NewGO<Player_RType2>(0,"Player_RType2");
-	//	DeleteGO(m_player);
-	//	DeleteGO(m_camera);
-	//	m_player = nullptr;
-	//	m_camera = nullptr;
-	//}
 	//“–‚½‚è”»’è•\Ž¦
 	dbg::SetDrawPhysicsCollisionEnable();
 
@@ -66,7 +63,7 @@ void Game::Update()
 	else if (GameMode == 1)
 	{
 		GameMode = 0;
-		NewGO<Title_2>(0, "TItle_2");
+		NewGO<Title_2>(0, "Title_2");
 		DeleteGO(this);
 	}
 }
@@ -75,9 +72,8 @@ void Game::P_Ver()
 {
 	if (Pver == 1 && m_player_Rtype2 == nullptr)
 	{
-		//m_player = FindGO<Player>("Player");
 		m_player_Rtype2 = NewGO<Player_RType2>(0, "Player_RType2");
-		m_player_Rtype2->m_position = m_player->memory_position;
+		m_player_Rtype2->GetPosition() = m_player->memory_position;
 	}
 	else if (Pver == 2)
 	{
@@ -87,8 +83,33 @@ void Game::P_Ver()
 
 void Game::S_Pu()
 {
-	if (m_enemy == nullptr&& m_star == nullptr)
+	if (m_enemy == nullptr&& m_star == nullptr && starget == 0)
 	{
-		m_star = NewGO<Star>(0,"Star");
+		m_star = NewGO<Star>(0, "Star");
 	}
+	if (starget == 1)
+	{
+		//m_star = NewGO<Star>(0, "Star");
+	}
+	/*if (m_enemy == nullptr&& m_star == nullptr)
+	{
+		float S;
+		S = Random().GetRandDouble;
+		if (Random().GetRandDouble < 0.3f) {
+			m_star = NewGO<Star>(0, "Star");
+			m_star->m_position = m_enemy->m_position;
+			m_star->m_position.x += 100;
+		}
+		else if (Random().GetRandDouble >= 0.3f && Random().GetRandDouble<0.7f)
+		{
+			m_star = NewGO<Star>(0, "Star");
+			m_star = NewGO<Star>(0, "Star");
+		}
+		else if (Random().GetRandDouble >= 0.7f)
+		{
+			m_star = NewGO<Star>(0, "Star");
+			m_star = NewGO<Star>(0, "Star");
+			m_star = NewGO<Star>(0, "Star");
+		}
+	}*/
 }

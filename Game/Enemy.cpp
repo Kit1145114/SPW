@@ -28,13 +28,13 @@ void Enemy::Update()
 	m_skinModelRender->SetPosition(m_position);
 	Hantei();
 }
-
+//エネミーの死亡判定。
 void Enemy::Hantei()
 {
 	if (m_player->ShortCount >= 1)
 	{
 		m_bullet = FindGO<Bullet>("PlayerBullet");
-		CVector3 diff = m_bullet->m_position - m_position;
+		CVector3 diff = m_bullet->GetPosition() - m_position;
 		if (diff.Length() < 200.0f)
 		{
 			m_game->m_enemy = nullptr;
