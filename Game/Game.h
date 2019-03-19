@@ -40,6 +40,7 @@ public:
 	GamenTimer* m_G_Timer = nullptr;
 	Enemy* m_enemy = nullptr;
 	Planet* m_planet = nullptr;
+	Planet* memoryPP[11];
 	Player_RType2* m_player_Rtype2 = nullptr;
 	Star* m_star = nullptr;
 	Sinka_Bar*s_bar = nullptr;
