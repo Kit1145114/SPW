@@ -24,6 +24,8 @@ void Player_RType2::Update()
 {
 	Move();			//プレイヤーの操作
 	PBullet();		//プレイヤーの射撃操作	//プレイヤーの形態
+	//PHantei();
+	Rotation();
 }
 
 void Player_RType2::Move()

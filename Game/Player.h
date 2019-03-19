@@ -11,6 +11,7 @@ class Bullet;
 class Player_RType2;
 class Game;
 class Enemy;
+
 class Player: public IGameObject
 {
 public:
@@ -39,7 +40,9 @@ public:
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 
 	int m_timer = 0;
+	int p_timer = 0;
 	int m_Short = 0;
+	int Ver = 0;
 	int ShortCount = 0;
 	int m_mode = 0;
 };

@@ -7,6 +7,7 @@
 #include"Enemy.h"
 #include"Title_2.h"
 #include"Planet.h"
+#include"Star.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
@@ -19,6 +20,8 @@ class Enemy;
 class Title_2;
 class Planet;
 class Player_RType2;
+class Star;
+
 class Game : public IGameObject
 {
 public:
@@ -26,6 +29,8 @@ public:
 	~Game();
 	bool Start();
 	void Update();
+	void P_Ver();
+	void S_Pu();
 
 	Player* m_player = nullptr;
 	Camera* m_camera = nullptr;
@@ -35,9 +40,9 @@ public:
 	Planet* m_planet = nullptr;
 	Planet* memoryPP[11];
 	Player_RType2* m_player_Rtype2 = nullptr;
-	
+	Star* m_star = nullptr;
 	int GameMode = 0;
-
+	int Pver = 0;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };
 
