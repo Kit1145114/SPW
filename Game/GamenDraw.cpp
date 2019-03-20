@@ -20,6 +20,7 @@ void GamenDraw::Update()
 		DeleteGO(this);
 	}
 }
+//âÊñ Ç…ï`é ÅB
 void GamenDraw::PostRender(CRenderContext& rc) {
 	wchar_t text[2506];
 

@@ -53,7 +53,8 @@ void Player::PBullet()
 		if (Pad(0).IsPress(enButtonRB1/*enButtonA*/) == true) {
 			m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 			m_bullet->SetPosition(m_position);
-			m_bullet->SetMoveSpeed(10.0f);
+
+			m_bullet->SetMoveSpeedZ(10.0f);
 			m_Short--;
 			ShortCount = true;
 			p_timer = 0;
@@ -70,15 +71,15 @@ void Player::PBullet()
 }
 //プレイヤーの進化用
 void Player::Pevolution()
+
 {
 	if (Pad(0).IsTrigger(enButtonB) && Ver == 0)
 	{
 		Ver = 1;
 		m_game->Pver = 1;
 		//m_game->m_player = nullptr;
-		//DeleteGO(this);
+		//Death();
 	}
-	memory_position = m_position;
 }
 //プレイヤーの死亡判定
 void Player::Hantei()
@@ -98,7 +99,7 @@ void Player::Rotation()
 	qRot.SetRotation(CVector3::AxisY, Rot);
 	m_skinModelRender->SetRotation(qRot);
 }
-
+//プレイヤーの死亡処理。（今はまだ未使用）
 void Player::Death()
 {
 	DeleteGO(this);

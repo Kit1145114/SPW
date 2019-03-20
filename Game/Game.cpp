@@ -73,7 +73,7 @@ void Game::P_Ver()
 	if (Pver == 1 && m_player_Rtype2 == nullptr)
 	{
 		m_player_Rtype2 = NewGO<Player_RType2>(0, "Player_RType2");
-		m_player_Rtype2->m_position = m_player->memory_position;
+		m_player_Rtype2->m_position = m_player->memoryPosition();
 	}
 	else if (Pver == 2)
 	{

@@ -23,7 +23,7 @@ public:
 	{
 		return m_moveSpeed;
 	}
-	void SetMoveSpeed(float a)
+	void SetMoveSpeedZ(float a)
 	{
 		m_moveSpeed.z = a;
 	}

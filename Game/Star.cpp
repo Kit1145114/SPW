@@ -16,10 +16,10 @@ bool Star::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/star.cmo");
-	m_CharaCon.Init(100.0f, 30.0f, m_position);
+	m_CharaCon.Init(80.0f, 30.0f, m_position);
 	m_player = FindGO<Player>("Player");
 	m_game = FindGO<Game>("Game");
-	m_scale = { 5.0f, 5.0, 5.0f };
+	m_scale = { 3.0f, 3.0, 3.0f };
 	m_skinModelRender->SetScale(m_scale);
 	return true;
 }

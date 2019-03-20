@@ -13,24 +13,24 @@ GamenTimer::~GamenTimer()
 
 void GamenTimer::Update()
 {
-	if (T == 0)
+	if (MaxTimer == 0)
 	{
 		m_game = FindGO<Game>("Game");
 		m_game->GameMode = 1;
 	}
 }
-
+//‰æ–Ê‚É•`ŽÊ
 void GamenTimer::PostRender(CRenderContext& rc)
 {
 	m_timer++;
 	if (m_timer == 60)
 	{
-		T--;
+		MaxTimer--;
 		m_timer = 0;
 	}
 
 	wchar_t text[256];	int sec = (int)m_timer % 60;
-	swprintf_s(text, L"TIME%d", T);
+	swprintf_s(text, L"TIME%d", MaxTimer);
 	m_font.Begin(rc);
 
 	m_font.Draw(

@@ -23,10 +23,10 @@ bool Camera::Start() {
 }
 void Camera::TOP() {
 
-	m_CameraPos = m_player->memory_position;
+	m_CameraPos = m_player->memoryPosition();
 	m_CameraPos.y += st_kyori;
 	
-	target = m_player->memory_position - m_CameraPos;
+	target = m_player->memoryPosition() - m_CameraPos;
 
 	//パッドの入力を使ってカメラを回す
 	//float x = Pad(0).GetRStickXF();
@@ -53,7 +53,7 @@ void Camera::Update() {
 	TOP();
 	Move();
 	//メインカメラに注視点と視点を設定する。
-	MainCamera().SetTarget(m_player->memory_position);
+	MainCamera().SetTarget(m_player->memoryPosition());
 	MainCamera().SetPosition(m_CameraPos);
 	//カメラの更新。
 	MainCamera().Update();

@@ -31,7 +31,7 @@ void Player_RType2::Update()
 	//PHantei();
 	Rotation();
 }
-
+//プレイヤーの操作
 void Player_RType2::Move()
 {
 	m_moveSpeed.x = Pad(0).GetLStickXF()* +2.5f;
@@ -39,7 +39,7 @@ void Player_RType2::Move()
 	m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 14.0f);
 	m_skinModelRender->SetPosition(m_position);
 }
-
+//プレイヤーの球
 void Player_RType2::PBullet()
 {
 	m_timer++;
@@ -55,20 +55,20 @@ void Player_RType2::PBullet()
 			//一つ目
 			m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet");
 			m_bullet->SetPosition(m_position);
-			m_bullet->SetMoveSpeed(10.0f);
+			m_bullet->SetMoveSpeedZ(10.0f);
 			
 			//二つ目
 			m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet");
 			CVector3 pos = m_position;
 			pos.x += 50.0f;
 			m_bullet->SetPosition(pos);
-			m_bullet->SetMoveSpeed(10.0f);
+			m_bullet->SetMoveSpeedZ(10.0f);
 			
 			//三つ目
 			m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet");
 			pos.x -= 100.0f;
 			m_bullet->SetPosition(pos);
-			m_bullet->SetMoveSpeed(10.0f);
+			m_bullet->SetMoveSpeedZ(10.0f);
 			m_Short--;
 			p_timer = 0;
 		}
@@ -82,7 +82,7 @@ void Player_RType2::PBullet()
 		}
 	}
 }
-
+//プレイヤーの当たり判定
 void Player_RType2::PHantei()
 {
 	CVector3 diff = m_enemy->GetPosition() - m_position;
@@ -91,7 +91,7 @@ void Player_RType2::PHantei()
 		m_game->GameMode = 1;
 	}
 }
-
+//プレイヤーの回転処理
 void Player_RType2::Rotation()
 {
 	float Rot = atan2(m_moveSpeed.x, m_moveSpeed.z);

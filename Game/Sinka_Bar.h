@@ -1,7 +1,9 @@
 #pragma once
 #include"Game.h"
-
+#include"Player.h"
 class Game;
+class Player;
+
 class Sinka_Bar : public IGameObject
 {
 public:
@@ -9,10 +11,10 @@ public:
 	~Sinka_Bar();
 	bool Start();
 	void Update();
-	//void PostRender(CRenderContext& renderContext) override;
 
 private:
 	Game * m_game = nullptr;
+	Player* m_player = nullptr;
 	prefab::CSpriteRender* sinka_bar = nullptr;
 	prefab::CSpriteRender* sinka_gezi = nullptr;
 	CVector3 m_position = CVector3::Zero;
