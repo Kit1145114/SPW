@@ -90,6 +90,9 @@
     <MeshContentTask Include="Assets\modelData\planet04.FBX" />
     <MeshContentTask Include="Assets\modelData\planet_10.FBX" />
     <MeshContentTask Include="Assets\modelData\planet09.FBX" />
+    <MeshContentTask Include="Assets\modelData\star.FBX">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
@@ -99,13 +102,13 @@
       <Filter>Resource Files</Filter>
     </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\Title_A.png" />
+    <ImageContentTask Include="Assets\sprite\Midori.jpg">
+      <Filter>Resource Files</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Sinka_Bar.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\sprite\Sinka_Bar.png" />
-    <Image Include="Assets\sprite\Midori.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

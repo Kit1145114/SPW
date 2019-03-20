@@ -1836,6 +1836,7 @@
     <MeshContentTask Include="Assets\modelData\Senkan.FBX" />
     <MeshContentTask Include="Assets\modelData\SenkanType2.FBX" />
     <MeshContentTask Include="Assets\modelData\Space_field.FBX" />
+    <MeshContentTask Include="Assets\modelData\star.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
   </ItemGroup>
   <ItemGroup>
