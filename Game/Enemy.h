@@ -1,10 +1,12 @@
 #pragma once
 #include"Player.h"
 #include"Bullet.h"
+#include"Player_RType2.h"
 #include"Game.h"
 class Player;
 class Bullet;
 class Game;
+class Player_RType2;
 
 class Enemy : public IGameObject
 {
@@ -15,6 +17,8 @@ public:
 	bool Start();
 	void Update();
 	void Hantei();
+	void Death();
+
 	CVector3 GetPosition()
 	{
 		return m_position;
@@ -39,6 +43,7 @@ private:
 	CQuaternion m_rotation = CQuaternion::Identity;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 	Player* m_player = nullptr;
+	Player_RType2* m_playerR2 = nullptr;
 	Bullet* m_bullet = nullptr;
 	Game* m_game = nullptr;
 };

@@ -37,6 +37,7 @@ public:
 		m_moveSpeed = plmov2;
 	}
 	CVector3 m_position = CVector3::Zero;
+	bool ShortCount = false;
 private:
 	Player* m_player = nullptr;
 	Bullet* m_bullet = nullptr;
@@ -50,5 +51,6 @@ private:
 	int m_timer = 0;
 	int m_Short = 0;
 	int m_mode = 0;
+	int p_timer = 0;
 };
 

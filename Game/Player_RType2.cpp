@@ -70,6 +70,15 @@ void Player_RType2::PBullet()
 			m_bullet->SetPosition(pos);
 			m_bullet->SetMoveSpeed(10.0f);
 			m_Short--;
+			p_timer = 0;
+		}
+	}
+	else if (Pad(0).IsPress(enButtonRB1/*enButtonA*/) == false) {
+		p_timer++;
+		if (p_timer == 80)
+		{
+			ShortCount = false;
+			p_timer = 0;
 		}
 	}
 }

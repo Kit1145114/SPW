@@ -25,6 +25,7 @@ public:
 	void Pevolution();
 	void Hantei();
 	void Rotation();
+	void Death();
 	CVector3 GetPosition() {
 		return m_position;
 	}

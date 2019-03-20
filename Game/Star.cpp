@@ -15,16 +15,19 @@ Star::~Star()
 bool Star::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-	m_skinModelRender->Init(L"modelData/Bulet.cmo");
-	m_CharaCon.Init(30.0f, 100.0f, m_position);
+	m_skinModelRender->Init(L"modelData/star.cmo");
+	m_CharaCon.Init(100.0f, 30.0f, m_position);
 	m_player = FindGO<Player>("Player");
 	m_game = FindGO<Game>("Game");
+	m_scale = { 5.0f, 5.0, 5.0f };
+	m_skinModelRender->SetScale(m_scale);
 	return true;
 }
 
 void Star::Update()
 {
 	Hantei();
+	Rotation();
 	m_timer++;
 	if (m_timer == 300)
 	{
@@ -39,12 +42,12 @@ void Star::Hantei()
 	if (m_game->m_player != nullptr)
 	{
 		CVector3 diff = m_player->GetPosition() - m_position;
-		if (diff.Length() < 150.0f)
+		if (diff.Length() < 250.0f)
 		{
 			m_player->Ver = 1;
 			m_game->Pver = 1;
 			m_game->m_star = nullptr;
-			DeleteGO(this);
+			Death();
 		}
 	}
 	else if (m_game->m_player == nullptr)
@@ -56,4 +59,17 @@ void Star::Hantei()
 void Star::Push()
 {
 
+}
+
+void Star::Rotation()
+{
+	angle += 3.0f;
+	m_rotation.SetRotationDeg(CVector3::AxisY, angle);
+	m_rotation.SetRotationDeg(CVector3::AxisZ, angle);
+	m_skinModelRender->SetRotation(m_rotation);
+}
+
+void Star::Death()
+{
+	DeleteGO(this);
 }

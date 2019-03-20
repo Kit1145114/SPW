@@ -17,7 +17,7 @@ bool Sinka_Bar::Start()
 {
 	sinka_bar = NewGO<prefab::CSpriteRender>(0);
 	sinka_bar->Init(L"sprite/Sinka_Bar.dds", 200.0f, 35.0f);
-	m_position.y = -100.0f;
+	m_position.y = -300.0f;
 	sinka_bar->SetPosition(m_position);
 	m_game = FindGO<Game>("Game");
 	//texture.CreateFromDDSTextureFromFile(L"sprite / Midori.dds");

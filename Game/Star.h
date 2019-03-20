@@ -16,6 +16,8 @@ public:
 	void Update();
 	void Hantei();
 	void Push();
+	void Rotation();
+	void Death();
 
 private:
 	Enemy* m_enemy = nullptr;				//エネミーclassのポインタ＾＾
@@ -23,10 +25,11 @@ private:
 	Player* m_player = nullptr;  
 	CVector3 m_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;
-	CVector3 m_scale = CVector3::Zero;
+	CVector3 m_scale = { 1.0f,1.0f,1.0f };
 	CQuaternion m_rotation = CQuaternion::Identity;
 	CCharacterController m_CharaCon;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 	int m_timer = 0;
+	float angle = 0.0f;
 };
 

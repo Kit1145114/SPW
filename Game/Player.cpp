@@ -54,14 +54,13 @@ void Player::PBullet()
 			m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 			m_bullet->SetPosition(m_position);
 			m_bullet->SetMoveSpeed(10.0f);
-			
 			m_Short--;
 			ShortCount = true;
 			p_timer = 0;
 		}
-		else if (Pad(0).IsPress(enButtonA) == false) {
+		else if (Pad(0).IsPress(enButtonRB1/*enButtonA*/) == false) {
 			p_timer++;
-			if (p_timer == 90)
+			if (p_timer == 75)
 			{
 				ShortCount = false;
 				p_timer = 0;
@@ -100,3 +99,7 @@ void Player::Rotation()
 	m_skinModelRender->SetRotation(qRot);
 }
 
+void Player::Death()
+{
+	DeleteGO(this);
+}

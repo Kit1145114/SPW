@@ -49,19 +49,19 @@ public:
 	void Update();
 	void P_Ver();
 	void S_Pu();
-
+	int GameMode = 0;
+	int Pver = 0;
+	Planet* memoryPP[Planetnumber_Num];
 	Player* m_player = nullptr;
+	Enemy* m_enemy = nullptr;
+	Star* m_star = nullptr;
+private:
 	Camera* m_camera = nullptr;
 	field* m_field = nullptr;
 	GamenTimer* m_G_Timer = nullptr;
-	Enemy* m_enemy = nullptr;
 	Planet* m_planet = nullptr;
-	Planet* memoryPP[Planetnumber_Num];
 	Player_RType2* m_player_Rtype2 = nullptr;
-	Star* m_star = nullptr;
 	Sinka_Bar*s_bar = nullptr;
-	int GameMode = 0;
-	int Pver = 0;
 	int starget = 0;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };

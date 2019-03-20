@@ -31,14 +31,32 @@ void Enemy::Update()
 //エネミーの死亡判定。
 void Enemy::Hantei()
 {
-	if (m_player->ShortCount >= true)
+	if (m_player->ShortCount == true)
 	{
 		m_bullet = FindGO<Bullet>("PlayerBullet");
 		CVector3 diff = m_bullet->GetPosition() - m_position;
-		if (diff.Length() < 200.0f)
+		if (diff.Length() < 150.0f)
 		{
 			m_game->m_enemy = nullptr;
-			DeleteGO(this);
+			Death();
 		}
 	}
+	//if (m_game->m_player_Rtype2 != nullptr) {
+		//m_playerR2 = FindGO<Player_RType2>("Player_Rtype2");
+		//if (m_playerR2->ShortCount == true)
+		//{
+		//	m_bullet = FindGO<Bullet>("Player_RType2Bullet");
+		//	CVector3 pr2 = m_bullet->GetPosition() - m_position;
+		//	if (pr2.Length() < 150.0f)
+		//	{
+		//		m_game->m_enemy = nullptr;
+		//		DeleteGO(this);
+		//	}
+		//}
+	//}
+}
+
+void Enemy::Death()
+{
+	DeleteGO(this);
 }
