@@ -73,7 +73,7 @@ void Game::P_Ver()
 	if (Pver == 1 && m_player_Rtype2 == nullptr)
 	{
 		m_player_Rtype2 = NewGO<Player_RType2>(0, "Player_RType2");
-		m_player_Rtype2->GetPosition() = m_player->memory_position;
+		m_player_Rtype2->m_position = m_player->memory_position;
 	}
 	else if (Pver == 2)
 	{
@@ -86,10 +86,11 @@ void Game::S_Pu()
 	if (m_enemy == nullptr&& m_star == nullptr && starget == 0)
 	{
 		m_star = NewGO<Star>(0, "Star");
+		starget = 1;
 	}
 	if (starget == 1)
 	{
-		//m_star = NewGO<Star>(0, "Star");
+
 	}
 	/*if (m_enemy == nullptr&& m_star == nullptr)
 	{

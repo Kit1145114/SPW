@@ -51,7 +51,7 @@ void Player_RType2::PBullet()
 	//‹…‚ªˆê”­ˆÈã
 	if (m_Short > 0) {
 		//ABUTTON‚ª‰Ÿ‚³‚ê‚½‚Æ‚«
-		if (Pad(0).IsPress(enButtonA)) {
+		if (Pad(0).IsPress(enButtonRB1/*enButtonA*/)) {
 			//ˆê‚Â–Ú
 			m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet");
 			m_bullet->SetPosition(m_position);

@@ -31,7 +31,7 @@ void Enemy::Update()
 //エネミーの死亡判定。
 void Enemy::Hantei()
 {
-	if (m_player->ShortCount >= 1)
+	if (m_player->ShortCount >= true)
 	{
 		m_bullet = FindGO<Bullet>("PlayerBullet");
 		CVector3 diff = m_bullet->GetPosition() - m_position;

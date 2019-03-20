@@ -46,7 +46,7 @@ public:
 	//	return memory_position;
 	//}
 	int Ver = 0;
-	int ShortCount = 0;
+	bool ShortCount = false;
 	CVector3 memory_position = CVector3::Zero;
 
 private:

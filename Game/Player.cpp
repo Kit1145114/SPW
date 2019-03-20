@@ -50,20 +50,20 @@ void Player::PBullet()
 		m_timer = 0;
 	}
 	if (m_Short > 0) {
-		if (Pad(0).IsPress(/*enButtonRB1*/enButtonA) == true) {
+		if (Pad(0).IsPress(enButtonRB1/*enButtonA*/) == true) {
 			m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 			m_bullet->SetPosition(m_position);
 			m_bullet->SetMoveSpeed(10.0f);
 			
 			m_Short--;
-			ShortCount = 1;
+			ShortCount = true;
 			p_timer = 0;
 		}
 		else if (Pad(0).IsPress(enButtonA) == false) {
 			p_timer++;
 			if (p_timer == 90)
 			{
-				ShortCount = 0;
+				ShortCount = false;
 				p_timer = 0;
 			}
 		}
