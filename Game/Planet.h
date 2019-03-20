@@ -13,6 +13,7 @@ public:
 	void Update();
 	void Move();
 	void Death();
+	void explosion();
 	static void Generate();
 	void init(CVector3 position, prefab::CSkinModelRender* skinModelRender);
 
@@ -27,7 +28,7 @@ private:
 	Game* m_game = nullptr;
 	Player* m_player = nullptr;
 	Planet* hoge = nullptr;
-	float r = { 30.0f };
+	float radius = { 30.0f };//	òfêØÇÃîºåa
 	
 };
 

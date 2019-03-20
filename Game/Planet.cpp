@@ -16,6 +16,7 @@ Planet::~Planet()
 bool Planet::Start() {
 	m_game = FindGO<Game>("Game");
 	m_player = FindGO<Player>("Player");
+
 	return true;
 }
 
@@ -23,12 +24,12 @@ void Planet::Generate() {
 	Game* m_game = nullptr;
 	m_game = FindGO<Game>("Game");
 	
-	//惑星のモデリング指定。
+	//Planetnumber_Num分の作成
 	for (int i = 0,w = Planetnumber_00;i < Planetnumber_Num;i++,w++) {
-
 		prefab::CSkinModelRender* P_skinModelRender;
 		P_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-
+	
+		//惑星のモデリング指定。
 		switch (w) {
 		case Planetnumber_00:
 			P_skinModelRender->Init(L"modelData/planet0fire.cmo");
@@ -68,11 +69,10 @@ void Planet::Generate() {
 			break;
 		default:w = Planetnumber_00;
 		}
-		Planet* m_planet= NewGO<Planet>(0, "planet");
-		
+		Planet* m_planet = NewGO<Planet>(0, "planet");
 		m_game->memoryPP[i] = m_planet;
 
-		//ランダムなポジション作り。
+		//ランダムポップ。
 		float vx = Random().GetRandDouble();
 		float vz = Random().GetRandDouble();
 		CVector3 hako;
@@ -95,9 +95,9 @@ void Planet::Generate() {
 
 	}
 }
+//星の生成。
 void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender)
 {
-	//星の生成。
 	//星のポジション。
 	p_position = position;
 	
@@ -105,7 +105,7 @@ void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender)
 	float v = 50 * Random().GetRandDouble();
 	scale.x *= v;
 	scale.z *= v;
-	r *= v;
+	radius *= v;
 	////当たり判定調整。
 	//CVector3 pa_position = position;
 	//pa_position.y -= 300.0f;
@@ -118,26 +118,43 @@ void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender)
 void Planet::Move() {
 
 }
+//ドカーン（爆発）。
+void Planet::explosion()
+{
+	DeleteGO(this);
+}
+//惑星死判定。
 void Planet::Death(){
 	
 	if (Pad(0).IsPress(enButtonSelect)) {
 		DeleteGO(this);
 	}
+	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
+	CVector3 p_kyori = m_player->memory_position - p_position;
+	if (p_kyori.Length()<radius) {
+		m_player->Hantei();
+	}
+
+
+
+
+	//惑星同士の距離判定。
 	for (int i = 0;i < Planetnumber_Num;i++) {
 		//もし比較する惑星が自分でなければ。
 		if (m_game->memoryPP[i] != this) {
 			//2点間の距離を計算する。
 			CVector3 diff = m_game->memoryPP[i]->p_position - p_position;
 			//距離が半径以下なら。
-			if (diff.Length() < r) {
-				DeleteGO(this);
+			if (diff.Length() < radius) {
+				explosion();
 			}
-			else if (m_game->memoryPP[i]->r+r > diff.Length()) {
-				DeleteGO(this);
+			else if (m_game->memoryPP[i]->radius + radius > diff.Length()) {
+				explosion();
 			}
 		}
 	}
 }
+
 void Planet::Update() {
 	
 	Move();
