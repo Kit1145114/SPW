@@ -35,7 +35,6 @@ enum Planetnumber {
 	Planetnumber_09,
 	Planetnumber_10,
 	Planetnumber_11,
-	Planetnumber_12,
 	Planetnumber_Num
 };
 

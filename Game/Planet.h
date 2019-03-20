@@ -2,6 +2,8 @@
 #include"Game.h"
 class Game;
 class Player;
+
+
 class Planet : public IGameObject
 {
 public:

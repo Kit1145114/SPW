@@ -15,7 +15,7 @@ Planet::~Planet()
 }
 bool Planet::Start() {
 	m_game = FindGO<Game>("Game");
-	m_player = FindGO<Player>("Game");
+	m_player = FindGO<Player>("Player");
 	return true;
 }
 
