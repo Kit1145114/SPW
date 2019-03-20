@@ -14,6 +14,7 @@ public:
 	void Update();
 	void TOP();
 	void Move();
+private:
 	Player* m_player = nullptr;
 	Game* m_game = nullptr;
 	float st_kyori = 2000.0f;
