@@ -55,8 +55,8 @@ void Game::Update()
 	S_Pu();
 	//当たり判定表示
 	dbg::SetDrawPhysicsCollisionEnable();
-
-
+	//プレイヤーのポジ確保
+	memory_position = m_player->GetPosition();
 	if (GameMode == 0) {
 
 	}
@@ -73,7 +73,7 @@ void Game::P_Ver()
 	if (Pver == 1 && m_player_Rtype2 == nullptr)
 	{
 		m_player_Rtype2 = NewGO<Player_RType2>(0, "Player_RType2");
-		m_player_Rtype2->m_position = m_player->memoryPosition();
+		m_player_Rtype2->m_position = GetPosition();
 	}
 	else if (Pver == 2)
 	{

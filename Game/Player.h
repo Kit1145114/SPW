@@ -42,11 +42,7 @@ public:
 		m_moveSpeed.z = a;
 	}
 
-	CVector3 memoryPosition()
-	{
-		memory_position = m_position;
-		return memory_position;
-	}
+	
 	int StarCount = 0;
 	int Ver = 0;
 	bool ShortCount = false;
@@ -61,7 +57,7 @@ private:
 	CVector3 m_moveSpeed = CVector3::Zero;
 	CQuaternion m_rotation = CQuaternion::Identity;
 	CVector3 b_position = CVector3::Zero;
-	CVector3 memory_position = CVector3::Zero;
+	
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 
 	int m_timer = 0;

@@ -49,6 +49,9 @@ public:
 	void Update();
 	void P_Ver();
 	void S_Pu();
+	CVector3 GetPosition() {
+		return memory_position;
+	}
 	int GameMode = 0;
 	int Pver = 0;
 	Planet* memoryPP[Planetnumber_Num];
@@ -62,6 +65,7 @@ private:
 	Planet* m_planet = nullptr;
 	Player_RType2* m_player_Rtype2 = nullptr;
 	Sinka_Bar*s_bar = nullptr;
+	CVector3 memory_position = CVector3::Zero;
 	int starget = 0;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };

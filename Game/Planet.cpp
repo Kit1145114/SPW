@@ -129,12 +129,11 @@ void Planet::Death(){
 	if (Pad(0).IsPress(enButtonSelect)) {
 		DeleteGO(this);
 	}
-	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
-	CVector3 p_kyori = m_player->memory_position - p_position;
-	if (p_kyori.Length()<radius) {
-		m_player->Hantei();
-	}
-
+	////おっす！おら惑星！！プレイヤー破壊すっぞ！！。
+	//CVector3 p_kyori = m_game->GetPosition() - p_position;
+	//if (p_kyori.Length() < radius) {
+	//	m_player->Death();
+	//}
 
 
 
