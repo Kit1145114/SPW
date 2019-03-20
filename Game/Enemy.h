@@ -15,7 +15,24 @@ public:
 	bool Start();
 	void Update();
 	void Hantei();
+	CVector3 GetPosition()
+	{
+		return m_position;
+	}
+	void SetPosition(CVector3 enpos)
+	{
+		m_position = enpos;
+	}
+	CVector3 GetMovePosition()
+	{
+		return m_moveSpeed;
+	}
+	void GetPosition(CVector3 enmov)
+	{
+		m_moveSpeed = enmov;
+	}
 
+private:
 	CCharacterController m_CharaCon;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;

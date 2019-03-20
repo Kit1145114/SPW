@@ -14,9 +14,13 @@ Player_RType2::~Player_RType2()
 
 bool Player_RType2::Start()
 {
-		m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
-		m_CharaCon.Init(100.0f, 80.0f, m_position);
+	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
+	m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
+	m_CharaCon.Init(100.0f, 80.0f, m_position);
+	m_game = FindGO<Game>("Game");
+	if (m_game->m_enemy != nullptr){
+		m_enemy = FindGO<Enemy>("Enemy");
+}
 	return true;
 }
 
@@ -44,28 +48,27 @@ void Player_RType2::PBullet()
 		m_Short++;
 		m_timer = 0;
 	}
+	//‹…‚ªˆê”­ˆÈã
 	if (m_Short > 0) {
-		if (Pad(0).IsPress(enButtonA)) {
+		//ABUTTON‚ª‰Ÿ‚³‚ê‚½‚Æ‚«
+		if (Pad(0).IsPress(enButtonRB1/*enButtonA*/)) {
+			//ˆê‚Â–Ú
 			m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet");
-			m_bullet->m_position = m_position;
-			m_bullet->m_position.y = 75.0f;
-			m_bullet->m_position.x -= 10.0f;
-			m_bullet->m_position.z += 75.0f;
-			m_bullet->m_moveSpeed.z = 10.0f;
-
-			m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet2");
-			m_bullet->m_position = m_position;
-			m_bullet->m_position.y = 75.0f;
-			m_bullet->m_position.x += 40.0f;
-			m_bullet->m_position.z += 75.0f;
-			m_bullet->m_moveSpeed.z = 10.0f;
-
-			m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet3");
-			m_bullet->m_position = m_position;
-			m_bullet->m_position.y = 75.0f;
-			m_bullet->m_position.x -= 60.0f;
-			m_bullet->m_position.z += 75.0f;
-			m_bullet->m_moveSpeed.z = 10.0f;
+			m_bullet->SetPosition(m_position);
+			m_bullet->SetMoveSpeed(10.0f);
+			
+			//“ñ‚Â–Ú
+			m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet");
+			CVector3 pos = m_position;
+			pos.x += 50.0f;
+			m_bullet->SetPosition(pos);
+			m_bullet->SetMoveSpeed(10.0f);
+			
+			//ŽO‚Â–Ú
+			m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet");
+			pos.x -= 100.0f;
+			m_bullet->SetPosition(pos);
+			m_bullet->SetMoveSpeed(10.0f);
 			m_Short--;
 		}
 	}
@@ -73,8 +76,7 @@ void Player_RType2::PBullet()
 
 void Player_RType2::PHantei()
 {
-	m_enemy = FindGO<Enemy>("Enemy");
-	CVector3 diff = m_enemy->m_position - m_position;
+	CVector3 diff = m_enemy->GetPosition() - m_position;
 	if (diff.Length() < 250.0f) {
 		m_game = FindGO<Game>("Game");
 		m_game->GameMode = 1;

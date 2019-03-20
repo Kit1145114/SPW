@@ -25,25 +25,47 @@ public:
 	void Pevolution();
 	void Hantei();
 	void Rotation();
+	CVector3 GetPosition() {
+		return m_position;
+	}
+	void SetPosition(CVector3 plpos)
+	{
+		m_position = plpos;
+	}
+	CVector3 GetMoveSpeed()
+	{
+		return m_moveSpeed;
+	}
+	void SetMoveSpeed(float a)
+	{
+		m_moveSpeed.z = a;
+	}
 
+	//CVector3 memoryPosition()
+	//{
+	//	return memory_position;
+	//}
+	int Ver = 0;
+	bool ShortCount = false;
+	CVector3 memory_position = CVector3::Zero;
+
+private:
 	Player_RType2* m_player_Rtype2 = nullptr;
 	Bullet* m_bullet = nullptr;
 	Game* m_game = nullptr;
 	Enemy* m_enemy = nullptr;
-
 	CCharacterController m_CharaCon;
 	CVector3 m_position = CVector3::Zero;
-	CVector3 memory_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;
 	CQuaternion m_rotation = CQuaternion::Identity;
-
+	CVector3 b_position = CVector3::Zero;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 
 	int m_timer = 0;
 	int p_timer = 0;
 	int m_Short = 0;
-	int Ver = 0;
-	int ShortCount = 0;
+	/*int Ver = 0;
+	int ShortCount = 0;*/
 	int m_mode = 0;
 };
 

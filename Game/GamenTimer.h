@@ -10,11 +10,12 @@ public:
 
 	void Update();
 	void PostRender(CRenderContext& rc) override;
-	CFont m_font;
-	CVector2 m_position = CVector2::Zero;
 
+private:
+	CFont m_font;
+	Game* m_game = nullptr;
+	CVector2 m_position = CVector2::Zero;
 	int m_timer = 0;
 	int T = 30;
-	Game* m_game = nullptr;
 };
 

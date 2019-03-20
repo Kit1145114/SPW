@@ -11,6 +11,8 @@ public:
 
 	void Update();
 	void PostRender(CRenderContext& rc) override;
+
+private:
 	CFont m_font;
 	CVector2 m_position = CVector2::Zero;
 	Game* m_game = nullptr;

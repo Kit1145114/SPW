@@ -31,6 +31,7 @@
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player_RType2.cpp" />
     <ClCompile Include="Star.cpp" />
+    <ClCompile Include="Sinka_Bar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -50,6 +51,7 @@
     <ClInclude Include="Planet.h" />
     <ClInclude Include="Player_RType2.h" />
     <ClInclude Include="Star.h" />
+    <ClInclude Include="Sinka_Bar.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -100,6 +102,10 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\sprite\Sinka_Bar.png" />
+    <Image Include="Assets\sprite\Midori.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

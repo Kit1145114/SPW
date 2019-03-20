@@ -8,6 +8,7 @@
 #include"Title_2.h"
 #include"Planet.h"
 #include"Star.h"
+#include"Sinka_Bar.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
@@ -21,6 +22,7 @@ class Title_2;
 class Planet;
 class Player_RType2;
 class Star;
+class Sinka_Bar;
 
 enum Planetnumber {
 	Planetnumber_00,
@@ -57,8 +59,10 @@ public:
 	Planet* memoryPP[Planetnumber_Num];
 	Player_RType2* m_player_Rtype2 = nullptr;
 	Star* m_star = nullptr;
+	Sinka_Bar*s_bar = nullptr;
 	int GameMode = 0;
 	int Pver = 0;
+	int starget = 0;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };
 

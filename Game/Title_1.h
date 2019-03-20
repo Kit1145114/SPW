@@ -13,6 +13,7 @@ public:
 	bool Start();
 	void Update();
 
+private:
 	int m_timer = 0;
 	prefab::CSpriteRender* m_spriteRender = nullptr;
 };

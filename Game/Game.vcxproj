@@ -1773,6 +1773,7 @@
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player_RType2.cpp" />
+    <ClCompile Include="Sinka_Bar.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -1809,6 +1810,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Player_RType2.h" />
     <CLInclude Include="resource.h" />
+    <ClInclude Include="Sinka_Bar.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Title_1.h" />
@@ -1847,6 +1849,8 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <ImageContentTask Include="Assets\sprite\Midori.jpg" />
+    <ImageContentTask Include="Assets\sprite\Sinka_Bar.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
