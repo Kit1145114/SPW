@@ -36,6 +36,7 @@ void Player::Update()
 	Pevolution();	//プレイヤーの形態
 	Hantei();
 	Rotation();
+	Respawn();
 }
 //プレイヤーの操作
 void Player::Move()
@@ -45,6 +46,7 @@ void Player::Move()
 		m_moveSpeed.z = Pad(0).GetLStickYF()* +2.5f;
 		m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 14.0f);
 		m_skinModelRender->SetPosition(m_position);
+		//デバック用の進化
 		//if(Pad(0).IsPress(enButtonB))
 		//{
 		//	Ver = 1;
@@ -54,27 +56,29 @@ void Player::Move()
 //プレイヤーの球(第一形態）
 void Player::PBullet()
 {
-	if (Ver == 0) {
-		m_timer++;
-		p_timer++;
-		if (m_timer > 30) {
-			m_Short++;
-			m_timer = 0;
-		}
-		if (m_Short > 0) {
-			if (Pad(0).IsPress(enButtonRB2/*enButtonA*/) == true) {
-				m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-				m_bullet->SetPosition(m_position);
-				m_bullet->SetMoveSpeedZ(10.0f);
-				m_Short--;
-				ShortCount = true;
-				p_timer = 0;
+	if (DeathCount == false) {
+		if (Ver == 0) {
+			m_timer++;
+			p_timer++;
+			if (m_timer > 30) {
+				m_Short++;
+				m_timer = 0;
 			}
-			else if (Pad(0).IsPress(enButtonRB2/*enButtonA*/) == false) {
-				if (p_timer == 99)
-				{
-					ShortCount = false;
+			if (m_Short > 0) {
+				if (Pad(0).IsPress(enButtonRB2/*enButtonA*/) == true) {
+					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+					m_bullet->SetPosition(m_position);
+					m_bullet->SetMoveSpeedZ(10.0f);
+					m_Short--;
+					ShortCount = true;
 					p_timer = 0;
+				}
+				else if (Pad(0).IsPress(enButtonRB2/*enButtonA*/) == false) {
+					if (p_timer == 99)
+					{
+						ShortCount = false;
+						p_timer = 0;
+					}
 				}
 			}
 		}
@@ -123,4 +127,30 @@ void Player::Death()
 {
 	m_skinModelRender->Init(L"modelData/Star.cmo");
 	DeathCount = true;
+}
+
+void Player::Respawn()
+{
+	if (DeathCount == true)
+	{
+		d_timer++;
+		if (d_timer == 180)
+		{
+			if (Ver == 0) {
+				m_skinModelRender->Init(L"modelData/Senkan.cmo");
+				m_position.z = -500.0f;
+				m_skinModelRender->SetPosition(m_position);
+				d_timer = 0;
+				DeathCount = false;
+			}
+			else if (Ver == 2)
+			{
+				m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
+				m_position.x = 500.0f;
+				d_timer = 0;
+				DeathCount = false;
+				//m_skinModelRender->SetPosition(m_position);
+			}
+		}
+	}
 }

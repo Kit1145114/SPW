@@ -29,6 +29,7 @@ public:
 	void Hantei();
 	void Rotation();
 	void Death();
+	void Respawn();
 	CVector3 GetPosition() {
 		return m_position;
 	}
@@ -60,7 +61,10 @@ public:
 	{
 		return ShortCount;
 	}
-
+	bool GetDeathCount()
+	{
+		return DeathCount;
+	}
 
 private:
 	Player_RType2* m_player_Rtype2 = nullptr;
@@ -79,6 +83,7 @@ private:
 
 	int m_timer = 0;
 	int p_timer = 0;
+	int d_timer = 0;
 	int m_Short = 0;
 	/*int Ver = 0;
 	int ShortCount = 0;*/
