@@ -98,7 +98,7 @@ void Enemy::Death()
 {
 	DeleteGO(this);
 }
-
+//エネミーの挙動。
 void Enemy::Move()
 {
 	CVector3 Kyori = m_player->GetPosition() - m_position;
@@ -107,7 +107,7 @@ void Enemy::Move()
 
 	}
 }
-
+//エネミーの回転処理。
 void Enemy::Rotation()
 {
 	float Rot = atan2(m_moveSpeed.x, m_moveSpeed.z);

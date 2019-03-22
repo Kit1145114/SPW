@@ -122,13 +122,13 @@ void Player::Rotation()
 	qRot.SetRotation(CVector3::AxisY, Rot);
 	m_skinModelRender->SetRotation(qRot);
 }
-//プレイヤーの死亡処理。（今はまだ未使用）
+//プレイヤーの死亡処理。
 void Player::Death()
 {
 	m_skinModelRender->Init(L"modelData/Star.cmo");
 	DeathCount = true;
 }
-
+//プレイヤーのリスポーン処理。
 void Player::Respawn()
 {
 	if (DeathCount == true)
@@ -140,16 +140,18 @@ void Player::Respawn()
 				m_skinModelRender->Init(L"modelData/Senkan.cmo");
 				m_position.z = -500.0f;
 				m_skinModelRender->SetPosition(m_position);
+				m_CharaCon.SetPosition(m_position);
 				d_timer = 0;
 				DeathCount = false;
 			}
 			else if (Ver == 2)
 			{
 				m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
-				m_position.x = 500.0f;
+				m_position.x = -500.0f;
+				m_skinModelRender->SetPosition(m_position);
+				m_CharaCon.SetPosition(m_position);
 				d_timer = 0;
 				DeathCount = false;
-				//m_skinModelRender->SetPosition(m_position);
 			}
 		}
 	}

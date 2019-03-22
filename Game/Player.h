@@ -85,8 +85,6 @@ private:
 	int p_timer = 0;
 	int d_timer = 0;
 	int m_Short = 0;
-	/*int Ver = 0;
-	int ShortCount = 0;*/
 	int m_mode = 0;
 	int Ver = 0;
 	int StarCount = 0;
