@@ -35,17 +35,17 @@ bool Sinka_Bar::Start()
 
 void Sinka_Bar::Update()
 {
-	sinka_gezi->Init(L"sprite/Midori.dds", 193.0f, 25.0f);
-	//if (m_game->Pver == 1 && Gezi == false)
-	//{
-	//	sinka_gezi->Init(L"sprite/Midori.dds", 193.0f, 25.0f);
-	//	sinka_gezi->SetPosition(m_position);
-	//	Gezi = true;
-	//}
-	//else if (m_game->Pver == 2)
-	//{
+	//sinka_gezi->Init(L"sprite/Midori.dds", 193.0f, 0.0f* m_player->StarCount * 12.5f);
+	if (m_player->GetVer() == 2 && Gezi == false)
+	{
+		sinka_gezi->Init(L"sprite/Midori.dds", 193.0f, 25.0f);
+		sinka_gezi->SetPosition(m_position);
+		Gezi = true;
+	}
+	else if (m_player->GetVer() == 1)
+	{
 
-	//}
+	}
 }
 
 //void Sinka_Bar::PostRender(CRenderContext & renderContext)

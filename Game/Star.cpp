@@ -28,6 +28,7 @@ void Star::Update()
 {
 	Hantei();
 	Rotation();
+	Push();
 	m_timer++;
 	if (m_timer == 300)
 	{
@@ -44,8 +45,8 @@ void Star::Hantei()
 		CVector3 diff = m_player->GetPosition() - m_position;
 		if (diff.Length() < 250.0f)
 		{
-			m_player->Ver = 1;
-			m_game->Pver = 1;
+			m_player->SetVer(1);
+			//m_game->Pver = 1;
 			m_game->m_star = nullptr;
 			Death();
 		}
@@ -58,7 +59,7 @@ void Star::Hantei()
 
 void Star::Push()
 {
-
+	m_skinModelRender->SetPosition(m_position);
 }
 
 void Star::Rotation()

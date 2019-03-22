@@ -26,12 +26,13 @@ bool Enemy::Start()
 void Enemy::Update()
 {
 	m_skinModelRender->SetPosition(m_position);
-	Hantei();
+	Pl_Hantei();
+	Pl_RHantei();
 }
 //エネミーの死亡判定。
-void Enemy::Hantei()
+void Enemy::Pl_Hantei()
 {
-	if (m_player->ShortCount == true)
+	if (m_player->GetShortCount() == true)
 	{
 		m_bullet = FindGO<Bullet>("PlayerBullet");
 		CVector3 diff = m_bullet->GetPosition() - m_position;
@@ -56,7 +57,61 @@ void Enemy::Hantei()
 	//}
 }
 
+void Enemy::Pl_RHantei()
+{
+	if (m_player->GetVer() == 2) {
+		S_RType2 = FindGO<Senkan_Rtype_2>("Senkan_RType_2");
+		if (S_RType2->GetShortCount() == true)
+		{
+			m_bullet = FindGO<Bullet>("Player_RType2Bullet1");
+			CVector3 diff2 = m_bullet->GetPosition() - m_position;
+			if (diff2.Length() < 150.0f)
+			{
+				m_game->m_enemy = nullptr;
+				Death();
+			}
+		}
+		if (S_RType2->GetShortCount() == true)
+		{
+			m_bullet = FindGO<Bullet>("Player_RType2Bullet2");
+			CVector3 diff2 = m_bullet->GetPosition() - m_position;
+			if (diff2.Length() < 150.0f)
+			{
+				m_game->m_enemy = nullptr;
+				Death();
+			}
+		}
+		if (S_RType2->GetShortCount() == true)
+		{
+			m_bullet = FindGO<Bullet>("Player_RType2Bullet3");
+			CVector3 diff2 = m_bullet->GetPosition() - m_position;
+			if (diff2.Length() < 150.0f)
+			{
+				m_game->m_enemy = nullptr;
+				Death();
+			}
+		}
+	}
+}
+//エネミーの削除。
 void Enemy::Death()
 {
 	DeleteGO(this);
+}
+
+void Enemy::Move()
+{
+	CVector3 Kyori = m_player->GetPosition() - m_position;
+	if (Kyori.Length() < 200.0f)
+	{
+
+	}
+}
+
+void Enemy::Rotation()
+{
+	float Rot = atan2(m_moveSpeed.x, m_moveSpeed.z);
+	CQuaternion qRot;
+	qRot.SetRotation(CVector3::AxisY, Rot);
+	m_skinModelRender->SetRotation(qRot);
 }
