@@ -87,8 +87,7 @@ void Player_RType2::PHantei()
 {
 	CVector3 diff = m_enemy->GetPosition() - m_position;
 	if (diff.Length() < 250.0f) {
-		m_game = FindGO<Game>("Game");
-		m_game->GameMode = 1;
+
 	}
 }
 //ƒvƒŒƒCƒ„[‚Ì‰ñ“]ˆ—
@@ -98,4 +97,10 @@ void Player_RType2::Rotation()
 	CQuaternion qRot;
 	qRot.SetRotation(CVector3::AxisY, Rot);
 	m_skinModelRender->SetRotation(qRot);
+}
+
+void Player_RType2::Death()
+{
+	m_skinModelRender->Init(L"modelData/Hako.cmo");
+	DeathCount = true;
 }

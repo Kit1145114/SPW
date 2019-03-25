@@ -4,6 +4,7 @@
 #include"Senkan_Rtype_2.h"
 #include"Game.h"
 #include"Enemy.h"
+#include"Drop_Hako.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
@@ -13,6 +14,7 @@ class Player_RType2;
 class Game;
 class Enemy;
 class Senkan_Rtype_2;
+class Drop_Hako;
 
 class Player: public IGameObject
 {
@@ -30,6 +32,7 @@ public:
 	void Rotation();
 	void Death();
 	void Respawn();
+	void HakoHantei();
 	CVector3 GetPosition() {
 		return m_position;
 	}
@@ -66,14 +69,21 @@ public:
 		return DeathCount;
 	}
 
+	CVector3 GetMemoryPosition()
+	{
+		return memory_position;
+	}
+
 private:
 	Player_RType2* m_player_Rtype2 = nullptr;
 	Senkan_Rtype_2* S_Rtype2 = nullptr;
 	Bullet* m_bullet = nullptr;
 	Game* m_game = nullptr;
 	Enemy* m_enemy = nullptr;
+	Drop_Hako* d_hako = nullptr;
 	CCharacterController m_CharaCon;
 	CVector3 m_position = CVector3::Zero;
+	CVector3 memory_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;
 	CVector3 m_scale = { 1.0f,1.0f,1.0f };
 	CQuaternion m_rotation = CQuaternion::Identity;

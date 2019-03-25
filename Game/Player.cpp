@@ -6,7 +6,6 @@ Player::Player()
 {
 }
 
-
 Player::~Player()
 {
 	DeleteGO(m_skinModelRender);
@@ -15,6 +14,10 @@ Player::~Player()
 	}
 	if (S_Rtype2 != nullptr) {
 		DeleteGO(S_Rtype2);
+	}
+	if (d_hako != nullptr)
+	{
+		DeleteGO(d_hako);
 	}
 }
 
@@ -37,6 +40,8 @@ void Player::Update()
 	Hantei();
 	Rotation();
 	Respawn();
+	//HakoHantei();
+	memory_position = m_position;
 }
 //プレイヤーの操作
 void Player::Move()
@@ -114,6 +119,16 @@ void Player::Hantei()
 		}
 	}
 }
+//プレイヤーの箱との判定
+void Player::HakoHantei()
+{
+	CVector3 Kyori = m_position - d_hako->GetPosition();
+	if (Kyori.Length() < 150.0f)
+	{
+		Ver = 1;
+		d_hako->Death();
+	}
+}
 //プレイヤーの回転処理。
 void Player::Rotation()
 {
@@ -125,7 +140,11 @@ void Player::Rotation()
 //プレイヤーの死亡処理。
 void Player::Death()
 {
-	m_skinModelRender->Init(L"modelData/Star.cmo");
+	m_skinModelRender->Init(L"modelData/Hako.cmo");
+	memory_position = m_position;
+	//if (d_hako == nullptr) {
+	//	d_hako = NewGO<Drop_Hako>(0, "Drop_Hako");
+	//}
 	DeathCount = true;
 }
 //プレイヤーのリスポーン処理。

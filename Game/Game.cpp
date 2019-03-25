@@ -26,6 +26,9 @@ Game::~Game()
 	if (m_star != nullptr) {
 		DeleteGO(m_star);
 	}
+	if (d_hako != nullptr) {
+		DeleteGO(this);
+	}
 	DeleteGO(s_bar);
 	DeleteGO(m_field);
 	DeleteGO(m_G_Timer);
@@ -51,14 +54,14 @@ bool Game::Start()
 
 void Game::Update()
 {
-	P_Ver();
-	S_Pu();
-	//当たり判定表示
-	dbg::SetDrawPhysicsCollisionEnable();
-	//プレイヤーのポジ確保
-	memory_position = m_player->GetPosition();
 	if (GameMode == 0) {
-
+		P_Ver();
+		S_Pu();
+		H_Pu();
+		//当たり判定表示
+		dbg::SetDrawPhysicsCollisionEnable();
+		//プレイヤーのポジ確保
+		memory_position = m_player->GetPosition();
 	}
 	else if (GameMode == 1)
 	{
@@ -113,4 +116,13 @@ void Game::S_Pu()
 			m_star = NewGO<Star>(0, "Star");
 		}
 	}*/
+}
+
+void Game::H_Pu()
+{
+	if (m_player->GetDeathCount() == true && d_hako == nullptr)
+	{
+		d_hako = NewGO<Drop_Hako>(0, "Drop_Hako");
+		d_hako->SetSpwanCount(1);
+	}
 }

@@ -16,7 +16,7 @@ void GamenTimer::Update()
 	if (MaxTimer == 0)
 	{
 		m_game = FindGO<Game>("Game");
-		m_game->GameMode = 1;
+		m_game->SetGameMode(1);
 	}
 }
 //‰æ–Ê‚É•`ŽÊ

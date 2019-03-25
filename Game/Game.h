@@ -9,6 +9,7 @@
 #include"Planet.h"
 #include"Star.h"
 #include"Sinka_Bar.h"
+#include"Drop_Hako.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
@@ -23,6 +24,7 @@ class Planet;
 class Player_RType2;
 class Star;
 class Sinka_Bar;
+class Drop_Hako;
 
 enum Planetnumber {
 	Planetnumber_00,
@@ -49,16 +51,23 @@ public:
 	void Update();
 	void P_Ver();
 	void S_Pu();
+	void H_Pu();
+	void SetGameMode(int a)
+	{
+		GameMode = a;
+	}
+
 	CVector3 GetPosition() {
 		return memory_position;
 	}
-	int GameMode = 0;
-	int Pver = 0;
+
 	Planet* memoryPP[Planetnumber_Num];
 	Player* m_player = nullptr;
 	Enemy* m_enemy = nullptr;
 	Star* m_star = nullptr;
+	Drop_Hako* d_hako = nullptr;
 private:
+	//Star * m_star = nullptr;
 	Camera* m_camera = nullptr;
 	field* m_field = nullptr;
 	GamenTimer* m_G_Timer = nullptr;
@@ -66,6 +75,8 @@ private:
 	Player_RType2* m_player_Rtype2 = nullptr;
 	Sinka_Bar*s_bar = nullptr;
 	CVector3 memory_position = CVector3::Zero;
+	int GameMode = 0;
+	int Pver = 0;
 	int starget = 0;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };

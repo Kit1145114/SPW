@@ -1764,6 +1764,7 @@
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Drop_Hako.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="field.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -1802,6 +1803,7 @@
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Drop_Hako.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="field.h" />
     <ClInclude Include="Game.h" />
@@ -1822,6 +1824,7 @@
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\Bulet.FBX" />
     <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
+    <MeshContentTask Include="Assets\modelData\Hako.FBX" />
     <MeshContentTask Include="Assets\modelData\planet01.FBX" />
     <MeshContentTask Include="Assets\modelData\planet02.FBX" />
     <MeshContentTask Include="Assets\modelData\planet03.FBX" />

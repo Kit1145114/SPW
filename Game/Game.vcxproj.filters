@@ -33,6 +33,7 @@
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="Sinka_Bar.cpp" />
     <ClCompile Include="Senkan_Rtype_2.cpp" />
+    <ClCompile Include="Drop_Hako.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -54,6 +55,7 @@
     <ClInclude Include="Star.h" />
     <ClInclude Include="Sinka_Bar.h" />
     <ClInclude Include="Senkan_Rtype_2.h" />
+    <ClInclude Include="Drop_Hako.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -95,6 +97,7 @@
     <MeshContentTask Include="Assets\modelData\star.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\Hako.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
