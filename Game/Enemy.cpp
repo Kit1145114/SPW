@@ -32,67 +32,57 @@ void Enemy::Update()
 //エネミーの死亡判定。
 void Enemy::Pl_Hantei()
 {
-	if (m_player->GetShortCount() == true)
-	{
-		m_bullet = FindGO<Bullet>("PlayerBullet");
-		CVector3 diff = m_bullet->GetPosition() - m_position;
-		if (diff.Length() < 150.0f)
+	if (m_player->GetVer() == 0) {
+		if (m_player->GetShortCount() == true && m_player->GetDeathCount() == false)
 		{
-			m_game->m_enemy = nullptr;
-			Death();
+			m_bullet = FindGO<Bullet>("PlayerBullet");
+			CVector3 diff = m_bullet->GetPosition() - m_position;
+			if (diff.Length() < 150.0f)
+			{
+				m_game->m_enemy = nullptr;
+				Death();
+			}
 		}
 	}
-	//if (m_game->m_player_Rtype2 != nullptr) {
-		//m_playerR2 = FindGO<Player_RType2>("Player_Rtype2");
-		//if (m_playerR2->ShortCount == true)
-		//{
-		//	m_bullet = FindGO<Bullet>("Player_RType2Bullet");
-		//	CVector3 pr2 = m_bullet->GetPosition() - m_position;
-		//	if (pr2.Length() < 150.0f)
-		//	{
-		//		m_game->m_enemy = nullptr;
-		//		DeleteGO(this);
-		//	}
-		//}
-	//}
 }
-
+//エネミーの死亡判定。
 void Enemy::Pl_RHantei()
 {
-	if (m_player->GetVer() == 2) {
+	if (m_player->GetVer() == 1) {
 		S_RType2 = FindGO<Senkan_Rtype_2>("Senkan_RType_2");
-		if (S_RType2->GetShortCount() == true)
-		{
-			m_bullet = FindGO<Bullet>("Player_RType2Bullet1");
-			CVector3 diff2 = m_bullet->GetPosition() - m_position;
-			if (diff2.Length() < 150.0f)
-			{
-				m_game->m_enemy = nullptr;
-				Death();
-			}
-		}
-		if (S_RType2->GetShortCount() == true)
-		{
-			m_bullet = FindGO<Bullet>("Player_RType2Bullet2");
-			CVector3 diff2 = m_bullet->GetPosition() - m_position;
-			if (diff2.Length() < 150.0f)
-			{
-				m_game->m_enemy = nullptr;
-				Death();
-			}
-		}
-		if (S_RType2->GetShortCount() == true)
-		{
-			m_bullet = FindGO<Bullet>("Player_RType2Bullet3");
-			CVector3 diff2 = m_bullet->GetPosition() - m_position;
-			if (diff2.Length() < 150.0f)
-			{
-				m_game->m_enemy = nullptr;
-				Death();
-			}
-		}
+		//if (S_RType2->GetShortCount() == true)
+		//{
+		//	m_bullet = FindGO<Bullet>("Player_RType2Bullet1");
+		//	CVector3 diff2 = m_bullet->GetPosition() - m_position;
+		//	if (diff2.Length() < 150.0f)
+		//	{
+		//		m_game->m_enemy = nullptr;
+		//		Death();
+		//	}
+		//}
+		//if (S_RType2->GetShortCount() == true)
+		//{
+		//	m_bullet = FindGO<Bullet>("Player_RType2Bullet2");
+		//	CVector3 diff3 = m_bullet->GetPosition() - m_position;
+		//	if (diff3.Length() < 150.0f)
+		//	{
+		//		m_game->m_enemy = nullptr;
+		//		Death();
+		//	}
+		//}
+		//if (S_RType2->GetShortCount() == true)
+		//{
+		//	m_bullet = FindGO<Bullet>("Player_RType2Bullet3");
+		//	CVector3 diff4 = m_bullet->GetPosition() - m_position;
+		//	if (diff4.Length() < 150.0f)
+		//	{
+		//		m_game->m_enemy = nullptr;
+		//		Death();
+		//	}
+		//}
 	}
 }
+
 //エネミーの削除。
 void Enemy::Death()
 {

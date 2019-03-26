@@ -1,11 +1,12 @@
 #pragma once
 #include"Game.h"
 #include"GamenDraw.h"
+#include"SansenGamen.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/debug/math/tkVectorRender.h"
 
 class GamenDraw;
-
+class SansenGamen;
 class Title_2 : public IGameObject
 {
 public:

@@ -10,6 +10,7 @@
 #include"Star.h"
 #include"Sinka_Bar.h"
 #include"Drop_Hako.h"
+#include"SansenKazu.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
@@ -25,6 +26,7 @@ class Player_RType2;
 class Star;
 class Sinka_Bar;
 class Drop_Hako;
+class SansenKazu;
 
 enum Planetnumber {
 	Planetnumber_00,
@@ -42,6 +44,8 @@ enum Planetnumber {
 	Planetnumber_Num
 };
 
+const int PlKazu = 4;
+
 class Game : public IGameObject
 {
 public:
@@ -52,17 +56,21 @@ public:
 	void P_Ver();
 	void S_Pu();
 	void H_Pu();
+	void PlayerNum();
 	void SetGameMode(int a)
 	{
 		GameMode = a;
 	}
-
 	CVector3 GetPosition() {
 		return memory_position;
 	}
-
+	int GetPadKazu()
+	{
+		return PadKazu;
+	}
+	
 	Planet* memoryPP[Planetnumber_Num];
-	Player* m_player = nullptr;
+	Player* m_player[PlKazu] = {nullptr};
 	Enemy* m_enemy = nullptr;
 	Star* m_star = nullptr;
 	Drop_Hako* d_hako = nullptr;
@@ -74,10 +82,18 @@ private:
 	Planet* m_planet = nullptr;
 	Player_RType2* m_player_Rtype2 = nullptr;
 	Sinka_Bar*s_bar = nullptr;
+	SansenKazu* s_kazu = nullptr;
 	CVector3 memory_position = CVector3::Zero;
+	
 	int GameMode = 0;
 	int Pver = 0;
 	int starget = 0;
+	int MAXPad = 3;
+	int MINPad = 1;
+	//int PadNum = 0;
+	int NumMin = 0;
+	int PadMaxKazu =0;
+	int PadKazu = 0;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };
 

@@ -42,7 +42,7 @@ void Drop_Hako::Hantei()
 		CVector3 Kyori = m_player->GetPosition() - m_position;
 		if (Kyori.Length() < 150.0f)
 		{
-			m_player->SetVer(1);
+			m_player->SetStarCount(1);
 			Death();
 		}
 	}

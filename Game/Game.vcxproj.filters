@@ -34,6 +34,8 @@
     <ClCompile Include="Sinka_Bar.cpp" />
     <ClCompile Include="Senkan_Rtype_2.cpp" />
     <ClCompile Include="Drop_Hako.cpp" />
+    <ClCompile Include="SansenGamen.cpp" />
+    <ClCompile Include="SansenKazu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -56,6 +58,8 @@
     <ClInclude Include="Sinka_Bar.h" />
     <ClInclude Include="Senkan_Rtype_2.h" />
     <ClInclude Include="Drop_Hako.h" />
+    <ClInclude Include="SansenGamen.h" />
+    <ClInclude Include="SansenKazu.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -116,5 +120,6 @@
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\sprite\Sanka.png" />
   </ItemGroup>
 </Project>

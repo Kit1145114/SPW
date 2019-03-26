@@ -1,7 +1,6 @@
 #pragma once
 #include"Player.h"
 #include"Bullet.h"
-#include"Player_RType2.h"
 #include"Senkan_Rtype_2.h"
 #include"Game.h"
 
@@ -9,7 +8,6 @@ class Senkan_Rtype_2;
 class Player;
 class Bullet;
 class Game;
-class Player_RType2;
 
 class Enemy : public IGameObject
 {
@@ -48,7 +46,6 @@ private:
 	CQuaternion m_rotation = CQuaternion::Identity;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 	Player* m_player = nullptr;
-	Player_RType2* m_playerR2 = nullptr;
 	Senkan_Rtype_2* S_RType2 = nullptr;
 	Bullet* m_bullet = nullptr;
 	Game* m_game = nullptr;

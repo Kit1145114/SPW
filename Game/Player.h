@@ -33,6 +33,7 @@ public:
 	void Death();
 	void Respawn();
 	void HakoHantei();
+	void Houdai();
 	CVector3 GetPosition() {
 		return m_position;
 	}
@@ -56,6 +57,14 @@ public:
 	{
 		return Ver;
 	}
+	void SetStarCount(int a)
+	{
+		StarCount += a;
+	}
+	int GetStarCount()
+	{
+		return StarCount;
+	}
 	void SetShortCount(bool a)
 	{
 		ShortCount = a;
@@ -68,10 +77,13 @@ public:
 	{
 		return DeathCount;
 	}
-
 	CVector3 GetMemoryPosition()
 	{
 		return memory_position;
+	}
+	void  SetPadNum(int num)
+	{
+		PadNum = num;
 	}
 
 private:
@@ -85,6 +97,7 @@ private:
 	CVector3 m_position = CVector3::Zero;
 	CVector3 memory_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;
+	CVector3 b_moveSpeed = CVector3::Zero;
 	CVector3 m_scale = { 1.0f,1.0f,1.0f };
 	CQuaternion m_rotation = CQuaternion::Identity;
 	CVector3 b_position = CVector3::Zero;
@@ -98,6 +111,8 @@ private:
 	int m_mode = 0;
 	int Ver = 0;
 	int StarCount = 0;
+	int PadNum = 0;
+
 	bool DeathCount = false;
 	bool ShortCount = false;
 };

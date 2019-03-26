@@ -9,9 +9,7 @@ Player::Player()
 Player::~Player()
 {
 	DeleteGO(m_skinModelRender);
-	if (m_player_Rtype2 != nullptr) {
-		DeleteGO(m_player_Rtype2);
-	}
+
 	if (S_Rtype2 != nullptr) {
 		DeleteGO(S_Rtype2);
 	}
@@ -47,8 +45,8 @@ void Player::Update()
 void Player::Move()
 {
 	if (DeathCount == false) {
-		m_moveSpeed.x = Pad(0).GetLStickXF()* +2.5f;
-		m_moveSpeed.z = Pad(0).GetLStickYF()* +2.5f;
+		m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +2.5f;
+		m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +2.5f;
 		m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 14.0f);
 		m_skinModelRender->SetPosition(m_position);
 		//デバック用の進化
@@ -61,52 +59,93 @@ void Player::Move()
 //プレイヤーの球(第一形態）
 void Player::PBullet()
 {
-	if (DeathCount == false) {
-		if (Ver == 0) {
-			m_timer++;
-			p_timer++;
-			if (m_timer > 30) {
-				m_Short++;
-				m_timer = 0;
-			}
-			if (m_Short > 0) {
-				if (Pad(0).IsPress(enButtonRB2/*enButtonA*/) == true) {
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetMoveSpeedZ(10.0f);
-					m_Short--;
-					ShortCount = true;
-					p_timer = 0;
+		if (DeathCount == false) {
+			if (Ver == 0) {
+				m_timer++;
+				p_timer++;
+				if (m_timer > 30) {
+					m_Short++;
+					m_timer = 0;
 				}
-				else if (Pad(0).IsPress(enButtonRB2/*enButtonA*/) == false) {
-					if (p_timer == 99)
-					{
-						ShortCount = false;
+				if (m_Short > 0) {
+					if (Pad(PadNum).IsPress(enButtonRB2/*enButtonA*/) == true) {
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetMoveSpeedZ(10.0f);
+						m_Short--;
+						ShortCount = true;
 						p_timer = 0;
+					}
+					else if (Pad(PadNum).IsPress(enButtonRB2/*enButtonA*/) == false) {
+						if (p_timer == 98)
+						{
+							ShortCount = false;
+							p_timer = 0;
+						}
 					}
 				}
 			}
 		}
 	}
-}
 //プレイヤーの球（第二形態）
 void Player::PBullet2()
 {
-	if (Ver == 1)
+	if (Ver == 1 && m_mode == 1)
 	{
-		S_Rtype2 = NewGO<Senkan_Rtype_2>(0,"Senkan_RType_2");
+		ShortCount = false;
+		m_mode = 0;
 	}
+	//m_timer++;
+	//p_timer++;
+	//if (m_timer > 25) {
+	//	m_Short++;
+	//	m_timer = 0;
+	//}
+	////球が一発以上
+	//if (m_Short > 0) {
+	//	//ABUTTONが押されたとき
+	//	if (Pad(0).IsPress(enButtonRB2/*enButtonA*/) == true) {
+	//		//一つ目
+	//		m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet1");
+	//		m_bullet->SetPosition(m_position);
+	//		m_bullet->SetMoveSpeedZ(15.0f);
+
+	//		//二つ目
+	//		m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet2");
+	//		CVector3 pos = m_position;
+	//		pos.x += 50.0f;
+	//		m_bullet->SetPosition(pos);
+	//		m_bullet->SetMoveSpeedZ(15.0f);
+
+	//		//三つ目
+	//		m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet3");
+	//		pos.x -= 100.0f;
+	//		m_bullet->SetPosition(pos);
+	//		m_bullet->SetMoveSpeedZ(15.0f);
+
+	//		m_Short--;
+	//		ShortCount = true;
+	//		p_timer = 0;
+	//	}
+	//}
+	//else if (Pad(0).IsPress(enButtonRB2/*enButtonA*/) == false) {
+	//	if (p_timer == 98)
+	//	{
+	//		ShortCount = false;
+	//		p_timer = 0;
+	//	}
+	//}
 }
 //プレイヤーの進化用
 void Player::Pevolution()
 
 {
-	if (Ver == 1)
+	if (StarCount==1 && S_Rtype2 == nullptr)
 	{
-		Ver = 2;
+		S_Rtype2 = NewGO<Senkan_Rtype_2>(0, "Senkan_RType_2");
 		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
-		//m_player_Rtype2 = NewGO<Player_RType2>(0, "Player_RType2");
-		//m_game->m_player = nullptr;
+		Ver = 1;
+		m_mode = 1;
 	}
 }
 //プレイヤーの死亡判定
@@ -142,9 +181,7 @@ void Player::Death()
 {
 	m_skinModelRender->Init(L"modelData/Hako.cmo");
 	memory_position = m_position;
-	//if (d_hako == nullptr) {
-	//	d_hako = NewGO<Drop_Hako>(0, "Drop_Hako");
-	//}
+	ShortCount = false;
 	DeathCount = true;
 }
 //プレイヤーのリスポーン処理。
@@ -174,4 +211,10 @@ void Player::Respawn()
 			}
 		}
 	}
+}
+//プレイヤーの撃つ方向の設定。
+void Player::Houdai()
+{
+	b_moveSpeed.x = Pad(0).GetLStickXF()* +10.0f;
+	b_moveSpeed.z = Pad(0).GetLStickYF()* +10.0f;
 }

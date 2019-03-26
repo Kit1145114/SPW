@@ -27,5 +27,6 @@ private:
 	int m_Short = 0;
 	int p_timer = 0;
 	bool ShortCount = false;
+	int Maxtimer = 25;
 };
 

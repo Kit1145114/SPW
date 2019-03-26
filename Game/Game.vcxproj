@@ -1774,6 +1774,8 @@
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player_RType2.cpp" />
+    <ClCompile Include="SansenGamen.cpp" />
+    <ClCompile Include="SansenKazu.cpp" />
     <ClCompile Include="Senkan_Rtype_2.cpp" />
     <ClCompile Include="Sinka_Bar.cpp" />
     <ClCompile Include="Star.cpp" />
@@ -1813,6 +1815,8 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Player_RType2.h" />
     <CLInclude Include="resource.h" />
+    <ClInclude Include="SansenGamen.h" />
+    <ClInclude Include="SansenKazu.h" />
     <ClInclude Include="Senkan_Rtype_2.h" />
     <ClInclude Include="Sinka_Bar.h" />
     <ClInclude Include="Star.h" />
@@ -1855,6 +1859,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <ImageContentTask Include="Assets\sprite\Sanka.png" />
     <ImageContentTask Include="Assets\sprite\Midori.jpg" />
     <ImageContentTask Include="Assets\sprite\Sinka_Bar.png" />
   </ItemGroup>

@@ -45,7 +45,7 @@ void Star::Hantei()
 		CVector3 diff = m_player->GetPosition() - m_position;
 		if (diff.Length() < 250.0f)
 		{
-			m_player->SetVer(1);
+			m_player->SetStarCount(1);
 			//m_game->Pver = 1;
 			m_game->m_star = nullptr;
 			Death();

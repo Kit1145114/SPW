@@ -13,7 +13,7 @@ public:
 	{
 		m_position = plpos;
 	}
-	void SetPositionY(float y,float x, float z)
+	void SetPositionY(float y, float x, float z)
 	{
 		m_position.y = y;
 		m_position.x = x;
@@ -26,6 +26,14 @@ public:
 	void SetMoveSpeedZ(float a)
 	{
 		m_moveSpeed.z = a;
+	}
+	void SetMoveSpeedX(float b)
+	{
+		m_moveSpeed.x = b;
+	}
+	void SetMoveSpeed(CVector3 mspos)
+	{
+		m_moveSpeed = mspos;
 	}
 	void Update();
 private:
