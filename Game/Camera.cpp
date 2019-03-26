@@ -15,12 +15,14 @@ bool Camera::Start() {
 	//プレイヤーの検索
 	m_player = FindGO<Player>("Player");
 	m_game = FindGO<Game>("Game");
-	//カメラのニアクリップ
+	s_kazu = FindGO<SansenKazu>("SansenKazu");
+		//カメラのニアクリップ
 	MainCamera().SetNear(1.0f);
 	MainCamera().SetFar(10000.0f);
 
 	return true;
 }
+
 void Camera::TOP() {
 
 	m_CameraPos = m_game->GetPosition();
@@ -34,24 +36,32 @@ void Camera::TOP() {
 
 	MainCamera().SetUp(CVector3::AxisZ);
 }
+
 void Camera::Move() {
 	//ズーム＆アウト
-	if (st_kyori>200.0) {
-		//奥
-		if (Pad(0).GetRStickYF() > 0.0) {
-			st_kyori -= 10.0f;
-		}
-	}
-	if (st_kyori<8000.0) {
-		//手前
-		if (Pad(0).GetRStickYF() < 0.0) {
-			st_kyori += 10.0f;
-		}
+	switch (s_kazu->GetKazu())
+	{
+	case 1:
+		target = m_game->GetPosition() - m_CameraPos;
+		break;
+	case 2:
+		p1_pos = m_player[0].GetPosition();
+		target = p1_pos;
+		p2_pos = m_player[1].GetPosition();
+		target = p2_pos;
+		break;
+	case 3:
+		//target = m_game->GetPosition() - m_CameraPos;
+		break;
+	case 4:
+		//target = m_game->GetPosition() - m_CameraPos;
+		break;
 	}
 }
+
 void Camera::Update() {
 	TOP();
-	Move();
+	//Move();
 	//メインカメラに注視点と視点を設定する。
 	MainCamera().SetTarget(m_game->GetPosition());
 	MainCamera().SetPosition(m_CameraPos);

@@ -57,6 +57,7 @@ public:
 	void S_Pu();
 	void H_Pu();
 	void PlayerNum();
+	void CameraPos();
 	void SetGameMode(int a)
 	{
 		GameMode = a;
@@ -94,6 +95,14 @@ private:
 	int NumMin = 0;
 	int PadMaxKazu =0;
 	int PadKazu = 0;
+	float P_pos = 400.0f;
+	float MaxC_pos = 1700.0f;
+	float MinC_pos = 800.0f;
+	
+	CVector3 Kyori = CVector3::Zero;
+	CVector3 SyokiCamera = CVector3::Zero;
+
+	CVector3 Tyuou = CVector3::Zero;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };
 

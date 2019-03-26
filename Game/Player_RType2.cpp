@@ -55,20 +55,20 @@ void Player_RType2::PBullet()
 			//ˆê‚Â–Ú
 			m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet");
 			m_bullet->SetPosition(m_position);
-			m_bullet->SetMoveSpeedZ(10.0f);
+			m_bullet->SetMoveSpeedZ(10.0f,0.0f);
 			
 			//“ñ‚Â–Ú
 			m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet");
 			CVector3 pos = m_position;
 			pos.x += 50.0f;
 			m_bullet->SetPosition(pos);
-			m_bullet->SetMoveSpeedZ(10.0f);
+			m_bullet->SetMoveSpeedZ(10.0f,0.0f);
 			
 			//ŽO‚Â–Ú
 			m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet");
 			pos.x -= 100.0f;
 			m_bullet->SetPosition(pos);
-			m_bullet->SetMoveSpeedZ(10.0f);
+			m_bullet->SetMoveSpeedZ(10.0f,0.0f);
 			m_Short--;
 			p_timer = 0;
 		}

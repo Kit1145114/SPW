@@ -13,23 +13,19 @@ public:
 	{
 		m_position = plpos;
 	}
-	void SetPositionY(float y, float x, float z)
+	void SetPositionZ(float x ,float z)
 	{
-		m_position.y = y;
-		m_position.x = x;
-		m_position.z = z;
+		m_position.x += x;
+		m_position.z += z;
 	}
 	CVector3 GetMoveSpeed()
 	{
 		return m_moveSpeed;
 	}
-	void SetMoveSpeedZ(float a)
+	void SetMoveSpeedZ(float a, float b)
 	{
-		m_moveSpeed.z = a;
-	}
-	void SetMoveSpeedX(float b)
-	{
-		m_moveSpeed.x = b;
+		m_moveSpeed.x = a;
+		m_moveSpeed.z = b;
 	}
 	void SetMoveSpeed(CVector3 mspos)
 	{

@@ -53,30 +53,40 @@ bool Game::Start()
 	case 1:
 		m_player[0] = NewGO<Player>(0, "Player");
 		m_player[0]->SetPadNum(0);
+		m_player[0]->SetPositionX(P_pos*-3);
 		break;
 	case 2:
 		m_player[0] = NewGO<Player>(0, "Player");
 		m_player[0]->SetPadNum(0);
+		m_player[0]->SetPositionX(P_pos*-3);
 		m_player[1] = NewGO<Player>(0, "Player");
 		m_player[1]->SetPadNum(1);
+		m_player[1]->SetPositionX(P_pos*-1);
 		break;
 	case 3:
 		m_player[0] = NewGO<Player>(0, "Player");
 		m_player[0]->SetPadNum(0);
+		m_player[0]->SetPositionX(P_pos*-3);
 		m_player[1] = NewGO<Player>(0, "Player");
 		m_player[1]->SetPadNum(1);
+		m_player[1]->SetPositionX(P_pos*-1);
 		m_player[2] = NewGO<Player>(0, "Player");
 		m_player[2]->SetPadNum(2);
+		m_player[2]->SetPositionX(P_pos);
 		break;
 	case 4:
 		m_player[0] = NewGO<Player>(0, "Player");
 		m_player[0]->SetPadNum(0);
+		m_player[0]->SetPositionX(P_pos*-3);
 		m_player[1] = NewGO<Player>(0, "Player");
 		m_player[1]->SetPadNum(1);
+		m_player[1]->SetPositionX(P_pos*-1);
 		m_player[2] = NewGO<Player>(0, "Player");
 		m_player[2]->SetPadNum(2);
+		m_player[2]->SetPositionX(P_pos);
 		m_player[3] = NewGO<Player>(0, "Player");
 		m_player[3]->SetPadNum(3);
+		m_player[3]->SetPositionX(P_pos*3);
 	break;
 	}
 
@@ -96,10 +106,25 @@ void Game::Update()
 		S_Pu();
 		H_Pu();
 		PlayerNum();
+		CameraPos();
 		//当たり判定表示
 		dbg::SetDrawPhysicsCollisionEnable();
 		//プレイヤーのポジ確保
-		memory_position = m_player[0]->GetPosition();
+		//switch (PadMaxKazu)
+		//{
+		//case 1:
+		//	memory_position = ;
+		//	break;
+		//case 2:
+		//	memory_position = Kyori;
+		//	break;
+		//case 3:
+		//	memory_position = SyokiCamera;
+		//	break;
+		//case 4:
+		//	memory_position = SyokiCamera;
+		//	break;
+		//}
 	}
 	else if (GameMode == 1)
 	{
@@ -167,5 +192,59 @@ void Game::H_Pu()
 
 void Game::PlayerNum()
 {
+
+}
+
+void Game::CameraPos()
+{
+	switch (PadMaxKazu)
+	{
+	case 1:
+		memory_position = m_player[0]->GetPosition();
+		break;
+	case 2:
+		Tyuou = m_player[0]->GetPosition() / 2 + m_player[1]->GetPosition() / 2;
+		memory_position = Tyuou;
+		Kyori = m_player[0]->GetPosition() - m_player[1]->GetPosition();
+		if (m_camera->GetKyori() > m_camera->MinCameraPos()/*1500*/) {
+			if (Kyori.Length() < MinC_pos)
+				m_camera->SetKyori(-10.0f);
+		}
+		if (m_camera->GetKyori() < m_camera->MaxCameraPos()/*3000*/) {
+			if (Kyori.Length() > MaxC_pos) {
+				m_camera->SetKyori(10.0f);
+			}
+		}
+		break;
+	case 3:
+		Tyuou = m_player[0]->GetPosition() / 2 + m_player[1]->GetPosition() / 2 - m_player[2]->GetPosition()/2;
+		memory_position = Tyuou;
+		Kyori = m_player[0]->GetPosition() - m_player[1]->GetPosition() - m_player[2]->GetPosition();
+		if (m_camera->GetKyori() > m_camera->MinCameraPos()/*1500*/) {
+			if (Kyori.Length() < MinC_pos)
+				m_camera->SetKyori(-10.0f);
+		}
+		if (m_camera->GetKyori() < m_camera->MaxCameraPos()/*3000*/) {
+			if (Kyori.Length() > MaxC_pos) {
+				m_camera->SetKyori(10.0f);
+			}
+		}
+		break;
+	case 4:
+		Tyuou = m_player[0]->GetPosition() / 2 + m_player[1]->GetPosition() / 2 
+			- m_player[2]->GetPosition() - m_player[3]->GetPosition()/2;
+		memory_position = Tyuou;
+		Kyori = m_player[0]->GetPosition() - m_player[1]->GetPosition() -
+			m_player[2]->GetPosition() - m_player[4]->GetPosition();
+		if (m_camera->GetKyori() > m_camera->MinCameraPos()/*1500*/) {
+			if (Kyori.Length() < MinC_pos)
+				m_camera->SetKyori(-10.0f);
+		}
+		if (m_camera->GetKyori() < m_camera->MaxCameraPos()/*3000*/) {
+			if (Kyori.Length() > MaxC_pos) {
+				m_camera->SetKyori(10.0f);
+			}
+		}
+	}
 
 }

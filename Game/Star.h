@@ -18,7 +18,10 @@ public:
 	void Push();
 	void Rotation();
 	void Death();
-
+	CVector3 GetPosition()
+	{
+		return m_position;
+	}
 private:
 	Enemy* m_enemy = nullptr;				//エネミーclassのポインタ＾＾
 	Game* m_game = nullptr;					//ゲームclassのポインタ＾＾
