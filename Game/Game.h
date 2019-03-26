@@ -61,6 +61,14 @@ public:
 	{
 		GameMode = a;
 	}
+	void SetPlanetAgeinCount(int a)
+	{
+		PlanetAgeinCount =+ a;
+	}
+	int GetPlanetAgeinCount()
+	{
+		return PadKazu;
+	}
 	CVector3 GetPosition() {
 		return memory_position;
 	}
@@ -94,6 +102,7 @@ private:
 	int NumMin = 0;
 	int PadMaxKazu =0;
 	int PadKazu = 0;
+	int PlanetAgeinCount = 0;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };
 

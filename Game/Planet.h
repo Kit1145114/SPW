@@ -2,7 +2,7 @@
 #include"Game.h"
 class Game;
 class Player;
-
+class Bullet;
 
 class Planet : public IGameObject
 {
@@ -23,12 +23,13 @@ private:
 	CVector3 scale = { 1.0f,1.0f,1.0f };
 	CVector3 p_moveSpeed = CVector3::Zero;
 	CQuaternion p_rotation = CQuaternion::Identity;
-	
+	CVector3 randomspeed = CVector3::Zero;
 	prefab::CSkinModelRender* p_skinModelRender0 = nullptr;
 	Game* m_game = nullptr;
 	Player* m_player = nullptr;
+	Bullet* m_bullet = nullptr;
 	Planet* hoge = nullptr;
 	float radius = { 30.0f };//	òfêØÇÃîºåa
-	
+	bool movecount = false;
 };
 

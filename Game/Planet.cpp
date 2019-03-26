@@ -3,7 +3,6 @@
 #include "Game.h"
 #include <string>
 
-
 Planet::Planet()
 {
 }
@@ -17,83 +16,88 @@ bool Planet::Start() {
 	m_game = FindGO<Game>("Game");
 	m_player = FindGO<Player>("Player");
 
+	Move();
+
 	return true;
 }
 
 void Planet::Generate() {
+	static
 	Game* m_game = nullptr;
 	m_game = FindGO<Game>("Game");
-	
 	//Planetnumber_Num分の作成
-	for (int i = 0,w = Planetnumber_00;i < Planetnumber_Num;i++,w++) {
-		prefab::CSkinModelRender* P_skinModelRender;
-		P_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-	
-		//惑星のモデリング指定。
-		switch (w) {
-		case Planetnumber_00:
-			P_skinModelRender->Init(L"modelData/planet0fire.cmo");
-			break;
-		case Planetnumber_01:
-			P_skinModelRender->Init(L"modelData/planet01.cmo");
-			break;
-		case Planetnumber_02:
-			P_skinModelRender->Init(L"modelData/planet02.cmo");
-			break;
-		case Planetnumber_03:
-			P_skinModelRender->Init(L"modelData/planet03.cmo");
-			break;
-		case Planetnumber_04:
-			P_skinModelRender->Init(L"modelData/planet04.cmo");
-			break;
-		case Planetnumber_05:
-			P_skinModelRender->Init(L"modelData/planet05.cmo");
-			break;
-		case Planetnumber_06:
-			P_skinModelRender->Init(L"modelData/planet06.cmo");
-			break;
-		case Planetnumber_07:
-			P_skinModelRender->Init(L"modelData/planet07.cmo");
-			break;
-		case Planetnumber_08:
-			P_skinModelRender->Init(L"modelData/planet08.cmo");
-			break;
-		case Planetnumber_09:
-			P_skinModelRender->Init(L"modelData/planet09.cmo");
-			break;
-		case Planetnumber_10:
-			P_skinModelRender->Init(L"modelData/planet_10.cmo");
-			break;
-		case Planetnumber_11:
-			P_skinModelRender->Init(L"modelData/planet11.cmo");
-			break;
-		default:w = Planetnumber_00;
+	for (int i = 0, w = Planetnumber_00;i < Planetnumber_Num;i++, w++) {
+		//常にGetPlanetAgeinCount＝＝11が出現するように
+		//if (m_game->GetPlanetAgeinCount() < Planetnumber_Num) {
+			//m_game->SetPlanetAgeinCount(+1);
+			prefab::CSkinModelRender* P_skinModelRender;
+			P_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
+
+			//惑星のモデリング指定。
+			switch (w) {
+			case Planetnumber_00:
+				P_skinModelRender->Init(L"modelData/planet0fire.cmo");
+				break;
+			case Planetnumber_01:
+				P_skinModelRender->Init(L"modelData/planet01.cmo");
+				break;
+			case Planetnumber_02:
+				P_skinModelRender->Init(L"modelData/planet02.cmo");
+				break;
+			case Planetnumber_03:
+				P_skinModelRender->Init(L"modelData/planet03.cmo");
+				break;
+			case Planetnumber_04:
+				P_skinModelRender->Init(L"modelData/planet04.cmo");
+				break;
+			case Planetnumber_05:
+				P_skinModelRender->Init(L"modelData/planet05.cmo");
+				break;
+			case Planetnumber_06:
+				P_skinModelRender->Init(L"modelData/planet06.cmo");
+				break;
+			case Planetnumber_07:
+				P_skinModelRender->Init(L"modelData/planet07.cmo");
+				break;
+			case Planetnumber_08:
+				P_skinModelRender->Init(L"modelData/planet08.cmo");
+				break;
+			case Planetnumber_09:
+				P_skinModelRender->Init(L"modelData/planet09.cmo");
+				break;
+			case Planetnumber_10:
+				P_skinModelRender->Init(L"modelData/planet_10.cmo");
+				break;
+			case Planetnumber_11:
+				P_skinModelRender->Init(L"modelData/planet11.cmo");
+				break;
+			default:w = Planetnumber_00;
+			}
+			Planet* m_planet = NewGO<Planet>(0, "planet");
+			m_game->memoryPP[i] = m_planet;
+
+			//ランダムポップ。
+			float vx = Random().GetRandDouble();
+			float vz = Random().GetRandDouble();
+			CVector3 hako;
+			hako.x = vx;
+			hako.z = vz;
+			if (Random().GetRandDouble() <= 0.5f)
+				hako.x *= -1;
+			if (Random().GetRandDouble() <= 0.5f)
+				hako.z *= -1;
+
+			//ランダム生成する場所の制限。
+			float PosLimitx = 20000.0f;
+			float PosLimitz = 10000.0f;
+			hako.x *= PosLimitx;
+			hako.z *= PosLimitz;
+
+			m_planet->p_position = hako;
+
+			m_planet->init(m_planet->p_position, P_skinModelRender);
 		}
-		Planet* m_planet = NewGO<Planet>(0, "planet");
-		m_game->memoryPP[i] = m_planet;
-
-		//ランダムポップ。
-		float vx = Random().GetRandDouble();
-		float vz = Random().GetRandDouble();
-		CVector3 hako;
-		hako.x = vx;
-		hako.z = vz;
-		if(Random().GetRandDouble() <= 0.5f)
-			hako.x *= -1;
-		if (Random().GetRandDouble() <= 0.5f)
-			hako.z *= -1;
-
-		//ランダム生成する場所の制限。
-		float PosLimitx = 20000.0f;
-		float PosLimitz = 10000.0f;
-		hako.x *= PosLimitx;
-		hako.z *= PosLimitz;
-
-		m_planet->p_position = hako;
-		
-		m_planet->init(m_planet->p_position, P_skinModelRender);
-
-	}
+	//}
 }
 //星の生成。
 void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender)
@@ -106,36 +110,55 @@ void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender)
 	scale.x *= v;
 	scale.z *= v;
 	radius *= v;
-	////当たり判定調整。
-	//CVector3 pa_position = position;
-	//pa_position.y -= 300.0f;
 
 	p_skinModelRender0 = skinModelRender;
-	//p_CharaCon.Init(1.0f * 30 * scale.x,100.0f, pa_position);
 	p_skinModelRender0->SetScale(scale);
 	p_skinModelRender0->SetPosition(position);
 }
 void Planet::Move() {
-
+	//ランダム移動。
+	
+	if (movecount == false) {
+		
+		randomspeed.x = Random().GetRandDouble() * 100 * GameTime().GetFrameDeltaTime();
+		randomspeed.z = Random().GetRandDouble() * 100 * GameTime().GetFrameDeltaTime();
+		if (Random().GetRandDouble() <= 0.5f)
+			randomspeed.x *= -1;
+		if (Random().GetRandDouble() <= 0.5f)
+			randomspeed.z *= -1;
+		
+		movecount = true;
+	}
+	p_position += randomspeed;
+	p_skinModelRender0->SetPosition(p_position);
 }
-//ドカーン（爆発）。
+//ドカーン（爆発）きたねぇ、花火だぜ、、、。
 void Planet::explosion()
 {
 	DeleteGO(this);
+	//m_game->SetPlanetAgeinCount(-1);
+	//Generate();
 }
-//惑星死判定。
+//惑星死亡判定。
 void Planet::Death(){
 	
 	if (Pad(0).IsPress(enButtonSelect)) {
 		DeleteGO(this);
 	}
-	////おっす！おら惑星！！プレイヤー破壊すっぞ！！。
-	//CVector3 p_kyori = m_game->GetPosition() - p_position;
-	//if (p_kyori.Length() < radius) {
-	//	m_player->Death();
-	//}
-
-
+	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
+	CVector3 p_kyori = m_game->GetPosition() - p_position;
+	if (p_kyori.Length() < radius
+		&& m_player->GetDeathCount()==false) {
+		m_player->Death();
+	}
+	//弾だけは勘弁してくだせぇ。
+	if (m_player->GetShortCount()==true) {
+		m_bullet = FindGO<Bullet>("PlayerBullet");
+		CVector3 b_kyori = m_bullet->GetPosition() - p_position;
+		if (b_kyori.Length() < radius) {
+			explosion();
+		}
+	}
 
 	//惑星同士の距離判定。
 	for (int i = 0;i < Planetnumber_Num;i++) {

@@ -29,9 +29,10 @@ namespace {
 		//アンチ
 		initParam.graphicsConfing.aaConfig.isEnable = false;
 		//Bloom
-		initParam.graphicsConfing.bloomConfig.isEnable = true;
+		initParam.graphicsConfing.bloomConfig.isEnable = false;
 		//tonemap
 		initParam.graphicsConfing.tonemapConfig.isEnable = true;
+		initParam.graphicsConfing.tonemapConfig.luminance = 0.2f;
 		//SSR
 		initParam.graphicsConfing.ssrConfig.isEnable = false;
 		//ディザ
