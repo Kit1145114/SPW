@@ -41,6 +41,7 @@ void Player::Update()
 	//S_Hantei();
 	//HakoHantei();
 	B_Hantei();
+	//P_Hantei();
 	Houdai();
 	memory_position = m_position;
 }
@@ -63,27 +64,31 @@ void Player::Move()
 void Player::PBullet()
 {
 	if (DeathCount == false) {
-			if (Ver == 0) {
-				m_timer++;
-				p_timer++;
-				if (m_timer > 30) {
-					m_Short++;
-					m_timer = 0;
-				}
-				if (m_Short > 0) {
-					if (Pad(PadNum).IsPress(enButtonRB2) == true) {
-						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPosition(m_position);						
-						m_bullet->SetPositionZ(HoukouX, HoukouZ);
+		if (Ver == 0) {
+			m_timer++;  // =GameTime().GetFrameDeltaTime;
+			p_timer++;
+			if (m_timer > 30) {
+				m_Short++;
+				m_timer = 0;
+			}
+			if (m_Short > 0) {
+				if (Pad(PadNum).IsPress(enButtonRB2) == true) {
+					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+					m_game->SetPBInit(true);
+					m_bullet->SetPosition(m_position);
+					m_bullet->SetPositionZ(HoukouX, HoukouZ);
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 					m_Short--;
 					ShortCount = true;
+					MyBullet = false;
 					p_timer = 0;
 				}
 				else if (Pad(PadNum).IsPress(enButtonRB2) == false) {
 					if (p_timer == 98)
 					{
 						ShortCount = false;
+						m_game->SetPBInit(false);
+						MyBullet = true;
 						p_timer = 0;
 					}
 				}
@@ -277,10 +282,33 @@ void Player::B_Hantei()
 {
 	if (DeathCount == false)
 	{
-		if (ShortCount == true) {
+		if (m_game->GetPBInit() == true) {
 			m_bullet = FindGO<Bullet>("PlayerBullet");
-			CVector3 kyori = m_bullet->GetPosition() - m_position;
-			if (kyori.Length() < 150.0f)
+				CVector3 kyori = m_bullet->GetPosition() - m_position;
+				if (kyori.Length() < 150.0f)
+				{
+					Death();
+			}
+		}
+		else if (m_game->GetPBInit() == false)
+		{
+
+		}
+	}
+	else if (DeathCount == true)
+	{
+
+	}
+}
+//プレイヤー同士の当たり判定（※調整中。）
+void Player::P_Hantei()
+{
+	if (DeathCount == false)
+	{
+		if (PadNum > 0)
+		{
+			CVector3 Kyori = m_position - m_position;
+			if (Kyori.Length() < 30.0f)
 			{
 				Death();
 			}

@@ -77,7 +77,14 @@ public:
 	{
 		return PadKazu;
 	}
-	
+	void SetPBInit(bool a)
+	{
+		PBullet_Init = a;
+	}
+	bool GetPBInit()
+	{
+		return PBullet_Init;
+	}
 	Planet* memoryPP[Planetnumber_Num];
 	Player* m_player[PlKazu] = {nullptr};
 	Enemy* m_enemy = nullptr;
@@ -107,7 +114,7 @@ private:
 	float P_pos = 400.0f;
 	float MaxC_pos = 1700.0f;
 	float MinC_pos = 800.0f;
-	
+	bool PBullet_Init = false;
 	CVector3 Kyori = CVector3::Zero;
 	CVector3 SyokiCamera = CVector3::Zero;
 	CVector3 Tyuou = CVector3::Zero;
