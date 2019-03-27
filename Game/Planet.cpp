@@ -21,18 +21,18 @@ bool Planet::Start() {
 	return true;
 }
 
-void Planet::Generate() {
-	static
+void Planet::Generate(int Reload) {
+	
 	Game* m_game = nullptr;
 	m_game = FindGO<Game>("Game");
 	//Planetnumber_Num分の作成
-	for (int i = 0, w = Planetnumber_00;i < Planetnumber_Num;i++, w++) {
+	for (int i = 0, w = Planetnumber_00;i < Reload;i++, w++) {
 		//常にGetPlanetAgeinCount＝＝11が出現するように
 		//if (m_game->GetPlanetAgeinCount() < Planetnumber_Num) {
 			//m_game->SetPlanetAgeinCount(+1);
 			prefab::CSkinModelRender* P_skinModelRender;
 			P_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-
+			
 			//惑星のモデリング指定。
 			switch (w) {
 			case Planetnumber_00:
@@ -75,6 +75,7 @@ void Planet::Generate() {
 			}
 			Planet* m_planet = NewGO<Planet>(0, "planet");
 			m_game->memoryPP[i] = m_planet;
+			m_planet->myPlanetnumber = w;    //自分のPlametナンバー保存
 
 			//ランダムポップ。
 			float vx = Random().GetRandDouble();
@@ -136,20 +137,19 @@ void Planet::Move() {
 void Planet::explosion()
 {
 	DeleteGO(this);
+	Generate(this->myPlanetnumber); //新たな惑星を生成（自分のナンバーの惑星を）
 	//m_game->SetPlanetAgeinCount(-1);
-	//Generate();
 }
 //惑星死亡判定。
 void Planet::Death(){
 	
-	if (Pad(0).IsPress(enButtonSelect)) {
-		DeleteGO(this);
-	}
 	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
-	CVector3 p_kyori = m_game->GetPosition() - p_position;
-	if (p_kyori.Length() < radius
-		&& m_player->GetDeathCount()==false) {
-		m_player->Death();
+	for (int i = 0;i < PlKazu;i++) {
+		CVector3 p_kyori = m_game->GetPosition() - p_position;
+		if (p_kyori.Length() < radius
+			&& m_game->m_player[i]->GetDeathCount() == false) {
+			m_game->m_player[i]->Death();
+		}
 	}
 	//弾だけは勘弁してくだせぇ。
 	if (m_player->GetShortCount()==true) {

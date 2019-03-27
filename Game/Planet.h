@@ -14,7 +14,7 @@ public:
 	void Move();
 	void Death();
 	void explosion();
-	static void Generate();
+	static void Generate(int Reload);
 	void init(CVector3 position, prefab::CSkinModelRender* skinModelRender);
 
 private:
@@ -31,5 +31,6 @@ private:
 	Planet* hoge = nullptr;
 	float radius = { 30.0f };//	惑星の半径
 	bool movecount = false;
+	int myPlanetnumber;    //自分のPlametナンバー保存用
 };
 
