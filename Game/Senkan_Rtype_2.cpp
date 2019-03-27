@@ -32,20 +32,20 @@ void Senkan_Rtype_2::Update()
 			//ˆê‚Â–Ú
 			m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet1");
 			m_bullet->SetPosition(m_player->GetPosition());
-			m_bullet->SetMoveSpeedZ(15.0f);
+			m_bullet->SetMoveSpeedZ(15.0f, 0.0f);
 
 			//“ñ‚Â–Ú
 			m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet2");
 			CVector3 pos = m_player->GetPosition();
 			pos.x += 50.0f;
 			m_bullet->SetPosition(pos);
-			m_bullet->SetMoveSpeedZ(15.0f);
+			m_bullet->SetMoveSpeedZ(15.0f,0.0f);
 
 			//ŽO‚Â–Ú
 			m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet3");
 			pos.x -= 100.0f;
 			m_bullet->SetPosition(pos);
-			m_bullet->SetMoveSpeedZ(15.0f);
+			m_bullet->SetMoveSpeedZ(15.0f,0.0f);
 
 			m_Short--;
 			ShortCount = true;

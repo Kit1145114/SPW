@@ -5,6 +5,7 @@
 #include"Game.h"
 #include"Enemy.h"
 #include"Drop_Hako.h"
+#include"Star.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
@@ -15,6 +16,7 @@ class Game;
 class Enemy;
 class Senkan_Rtype_2;
 class Drop_Hako;
+class Star;
 
 class Player: public IGameObject
 {
@@ -34,12 +36,18 @@ public:
 	void Respawn();
 	void HakoHantei();
 	void Houdai();
+	void S_Hantei();
+	void B_Hantei();
 	CVector3 GetPosition() {
 		return m_position;
 	}
 	void SetPosition(CVector3 plpos)
 	{
 		m_position = plpos;
+	}
+	void SetPositionX(float x)
+	{
+		m_position.x = x;
 	}
 	CVector3 GetMoveSpeed()
 	{
@@ -92,6 +100,7 @@ private:
 	Bullet* m_bullet = nullptr;
 	Game* m_game = nullptr;
 	Enemy* m_enemy = nullptr;
+	Star* m_star = nullptr;
 	Drop_Hako* d_hako = nullptr;
 	CCharacterController m_CharaCon;
 	CVector3 m_position = CVector3::Zero;
@@ -112,6 +121,10 @@ private:
 	int Ver = 0;
 	int StarCount = 0;
 	int PadNum = 0;
+	float HoukouX = 0.0f;
+	float HoukouZ = 0.0f;
+	float SpeedX = 0.0f;
+	float SpeedZ = 0.0f;
 
 	bool DeathCount = false;
 	bool ShortCount = false;
