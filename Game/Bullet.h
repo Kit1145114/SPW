@@ -1,4 +1,7 @@
 #pragma once
+#include"Game.h"
+
+class Game;
 class Bullet : public IGameObject
 {
 public:
@@ -41,6 +44,7 @@ public:
 	}
 	void Update();
 private:
+	Game * m_game = nullptr;
 	int m_timer = 0;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;

@@ -20,8 +20,7 @@ Star::~Star()
 
 bool Star::Start()
 {
-	
-	
+	m_game = FindGO<Game>("Game");
 	return true;
 }
 
@@ -34,7 +33,7 @@ void Star::Update()
 	if (m_timer == 300)
 	{
 		m_game->m_star = nullptr;
-		DeleteGO(this);
+		Death();
 		m_timer = 0;
 	}
 }
@@ -57,11 +56,13 @@ void Star::Hantei()
 
 	//}
 }
+
 void Star::Pop(CVector3 position)
 {
 	m_position = position;
 	m_skinModelRender->SetPosition(m_position);
 };
+
 void Star::Push()
 {
 	m_skinModelRender->SetPosition(m_position);
@@ -77,6 +78,7 @@ void Star::Rotation()
 
 void Star::Death()
 {
+	m_game->SetStarCount(-1);
 	DeleteGO(this);
 }
 

@@ -38,7 +38,7 @@ void Player::Update()
 	Hantei();
 	Rotation();
 	Respawn();
-	//S_Hantei();
+	S_Hantei();
 	//HakoHantei();
 	B_Hantei();
 	//P_Hantei();
@@ -74,21 +74,20 @@ void Player::PBullet()
 			if (m_Short > 0) {
 				if (Pad(PadNum).IsPress(enButtonRB2) == true) {
 					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_game->SetPBInit(true);
+					//m_game->SetPBInit(true);
 					m_bullet->SetPosition(m_position);
 					m_bullet->SetPositionZ(HoukouX, HoukouZ);
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 					m_Short--;
 					ShortCount = true;
-					MyBullet = false;
+					m_game->SetKazu(1);
 					p_timer = 0;
 				}
 				else if (Pad(PadNum).IsPress(enButtonRB2) == false) {
 					if (p_timer == 98)
 					{
 						ShortCount = false;
-						m_game->SetPBInit(false);
-						MyBullet = true;
+						//m_game->SetPBInit(false);
 						p_timer = 0;
 					}
 				}
@@ -193,7 +192,7 @@ void Player::Death()
 	ShortCount = false;
 	DeathCount = true;
 }
-//プレイヤーのリスポーン処理。
+//プレイヤーのリスポーン処理。p0
 void Player::Respawn()
 {
 	if (DeathCount == true)
@@ -265,16 +264,17 @@ void Player::Houdai()
 //未定
 void Player::S_Hantei()
 {
-	if (m_game->m_star != nullptr) {
-		CVector3 diff = m_position - m_star->GetPosition();
+	 if (m_game->GetS_Init() == false)
+	{
+
+	}
+	else if (m_game->GetS_Init() == true) {
+		m_star = FindGO<Star>("Star");
+		CVector3 diff = m_star->GetPosition() - m_position;
 		if (diff.Length() < 250.0f) {
 			StarCount++;
 			m_star->Death();
 		}
-	}
-	else if (m_game->m_star == nullptr)
-	{
-
 	}
 }
 //プレイヤー同士の球の判定
@@ -282,12 +282,14 @@ void Player::B_Hantei()
 {
 	if (DeathCount == false)
 	{
-		if (m_game->GetPBInit() == true) {
-			m_bullet = FindGO<Bullet>("PlayerBullet");
+		if (PadNum > 0) {
+			if (m_game->GetPBInit() == true) {
+				m_bullet = FindGO<Bullet>("PlayerBullet");
 				CVector3 kyori = m_bullet->GetPosition() - m_position;
 				if (kyori.Length() < 150.0f)
 				{
 					Death();
+				}
 			}
 		}
 		else if (m_game->GetPBInit() == false)

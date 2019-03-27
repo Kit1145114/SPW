@@ -16,7 +16,7 @@ private:
 	Game* m_game = nullptr;
 	CVector2 m_position = CVector2::Zero;
 	int m_timer = 0;
-	int MaxTimer = 20;
+	int MaxTimer = 60;
 	int MinTimer = 10;
 };
 

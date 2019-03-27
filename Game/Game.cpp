@@ -19,12 +19,11 @@ Game::~Game()
 		DeleteGO(m_camera);
 	}
 	if (m_enemy != nullptr) {
-
 		DeleteGO(m_enemy);
 	}
-	if (m_player_Rtype2 != nullptr) {
-		DeleteGO(m_player_Rtype2);
-	}
+	//if (m_player_Rtype2 != nullptr) {
+	//	DeleteGO(m_player_Rtype2);
+	//}
 	if (m_star != nullptr) {
 		DeleteGO(m_star);
 	}
@@ -106,8 +105,14 @@ void Game::Update()
 		H_Pu();
 		PlayerNum();
 		CameraPos();
+		Star_Life();
+		Bullet_Life();
 		//当たり判定表示
 		dbg::SetDrawPhysicsCollisionEnable();
+		if (Pad(0).IsPress(enButtonSelect) == true)
+		{
+			GameMode = 1;
+		}
 		//プレイヤーのポジ確保
 		//switch (PadMaxKazu)
 		//{
@@ -148,37 +153,6 @@ void Game::P_Ver()
 //☆の出現。
 void Game::S_Pu()
 {
-	//if (m_enemy == nullptr&& m_star == nullptr && starget == 0)
-	//{
-	//	m_star = NewGO<Star>(0, "Star");
-	//	m_star->Init()
-	//	starget = 1;
-	//}
-	//if (starget == 1)
-	//{
-
-	//}
-	/*if (m_enemy == nullptr&& m_star == nullptr)
-	{
-		float S;
-		S = Random().GetRandDouble;
-		if (Random().GetRandDouble < 0.3f) {
-			m_star = NewGO<Star>(0, "Star");
-			m_star->m_position = m_enemy->m_position;
-			m_star->m_position.x += 100;
-		}
-		else if (Random().GetRandDouble >= 0.3f && Random().GetRandDouble<0.7f)
-		{
-			m_star = NewGO<Star>(0, "Star");
-			m_star = NewGO<Star>(0, "Star");
-		}
-		else if (Random().GetRandDouble >= 0.7f)
-		{
-			m_star = NewGO<Star>(0, "Star");
-			m_star = NewGO<Star>(0, "Star");
-			m_star = NewGO<Star>(0, "Star");
-		}
-	}*/
 }
 //箱の出現。
 void Game::H_Pu()
@@ -247,4 +221,28 @@ void Game::CameraPos()
 		}
 	}
 
+}
+
+void Game::Star_Life()
+{
+	if (StarCount > Star0)
+	{
+		S_Init = true;
+	}
+	else if (StarCount == Star0)
+	{
+		S_Init = false;
+	}
+}
+
+void Game::Bullet_Life()
+{
+	if (PB_Kazu > 0)
+	{
+		PBullet_Init = true;
+	}
+	else if (PB_Kazu == 0)
+	{
+		PBullet_Init = false;
+	}
 }

@@ -45,7 +45,6 @@ enum Planetnumber {
 };
 
 const int PlKazu = 4;
-
 class Game : public IGameObject
 {
 public:
@@ -58,6 +57,8 @@ public:
 	void H_Pu();
 	void PlayerNum();
 	void CameraPos();
+	void Star_Life();
+	void Bullet_Life();
 	void SetGameMode(int a)
 	{
 		GameMode = a;
@@ -72,19 +73,32 @@ public:
 	}
 	CVector3 GetPosition() {
 		return memory_position;
-	}
+	}//パッドの数
 	int GetPadKazu()
 	{
 		return PadKazu;
-	}
+	}//プレイヤーの弾が存在しているか
 	void SetPBInit(bool a)
 	{
 		PBullet_Init = a;
-	}
+	}//玉あるかを返す。
 	bool GetPBInit()
 	{
 		return PBullet_Init;
+	}//弾の数
+	void SetKazu(int a)
+	{
+		PB_Kazu += a;
 	}
+	//スターの数
+	void SetStarCount(int kazu)
+	{
+		StarCount += kazu;
+	}//スターが存在しているか
+	bool GetS_Init()
+	{
+		return S_Init;
+	}//ゲーム内の球
 	Planet* memoryPP[Planetnumber_Num];
 	Player* m_player[PlKazu] = {nullptr};
 	Enemy* m_enemy = nullptr;
@@ -111,10 +125,14 @@ private:
 	int PadMaxKazu =0;
 	int PadKazu = 0;
 	int PlanetAgeinCount = 0;
+	int StarCount  = 0;
+	int Star0 = 0;
 	float P_pos = 400.0f;
 	float MaxC_pos = 1700.0f;
 	float MinC_pos = 800.0f;
+	int PB_Kazu = 0;
 	bool PBullet_Init = false;
+	bool S_Init = false;
 	CVector3 Kyori = CVector3::Zero;
 	CVector3 SyokiCamera = CVector3::Zero;
 	CVector3 Tyuou = CVector3::Zero;

@@ -136,8 +136,9 @@ void Planet::Move() {
 //ドカーン（爆発）きたねぇ、花火だぜ、、、。
 void Planet::explosion()
 {
-	Star* m_star = NewGO<Star>(0, "star");
+	Star* m_star = NewGO<Star>(0, "Star");
 	m_star->Pop(this->p_position);
+	m_game->SetStarCount(1);
 	Generate(1); //新たな惑星を生成（自分のナンバーの惑星を）
 	DeleteGO(this);
 	//m_game->SetPlanetAgeinCount(-1);
@@ -148,21 +149,22 @@ void Planet::Death(){
 	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
 	m_sansenkazu = FindGO<SansenKazu>("SansenKazu");
 	for (int i = 0;i < m_sansenkazu->GetKazu();i++) {
-		CVector3 p_kyori = m_game->GetPosition() - p_position;
+		CVector3 p_kyori = m_player->GetPosition() - p_position;
 		if (p_kyori.Length() < radius
 			&& m_game->m_player[i]->GetDeathCount() == false) {
 			m_game->m_player[i]->Death();
 		}
 	}
 	//弾だけは勘弁してくだせぇ。
-	if (m_player->GetShortCount()==true) {
-		m_bullet = FindGO<Bullet>("PlayerBullet");
-		CVector3 b_kyori = m_bullet->GetPosition() - p_position;
-		if (b_kyori.Length() < radius) {
-			explosion();
+	if (m_player->GetVer() == 0 && m_player->GetDeathCount() == false) {
+		if (m_player->GetShortCount() == true) {
+			m_bullet = FindGO<Bullet>("PlayerBullet");
+			CVector3 b_kyori = m_bullet->GetPosition() - p_position;
+			if (b_kyori.Length() < radius) {
+				explosion();
+			}
 		}
 	}
-
 	//惑星同士の距離判定。
 	for (int i = 0;i < Planetnumber_Num;i++) {
 		//もし比較する惑星が自分でなければ。
