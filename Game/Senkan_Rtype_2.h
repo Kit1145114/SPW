@@ -11,6 +11,7 @@ public:
 	~Senkan_Rtype_2();
 	bool Start();
 	void Update();
+	void Houdai();
 	void SetShortCount(bool a)
 	{
 		ShortCount = a;
@@ -28,5 +29,9 @@ private:
 	int p_timer = 0;
 	bool ShortCount = false;
 	int Maxtimer = 25;
+	float HoukouX = 0.0f;
+	float HoukouZ = 0.0f;
+	float SpeedX = 0.0f;
+	float SpeedZ = 0.0f;
 };
 

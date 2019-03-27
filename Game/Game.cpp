@@ -51,40 +51,40 @@ bool Game::Start()
 	switch (PadMaxKazu)
 	{
 	case 1:
-		m_player[0] = NewGO<Player>(0, "Player1");
+		m_player[0] = NewGO<Player>(0, "Player");
 		m_player[0]->SetPadNum(0);
 		m_player[0]->SetPositionX(P_pos*-3);
 		break;
 	case 2:
-		m_player[0] = NewGO<Player>(0, "Player1");
+		m_player[0] = NewGO<Player>(0, "Player");
 		m_player[0]->SetPadNum(0);
 		m_player[0]->SetPositionX(P_pos*-3);
-		m_player[1] = NewGO<Player>(0, "Player2");
+		m_player[1] = NewGO<Player>(0, "Player1");
 		m_player[1]->SetPadNum(1);
 		m_player[1]->SetPositionX(P_pos*-1);
 		break;
 	case 3:
-		m_player[0] = NewGO<Player>(0, "Player1");
+		m_player[0] = NewGO<Player>(0, "Player");
 		m_player[0]->SetPadNum(0);
 		m_player[0]->SetPositionX(P_pos*-3);
-		m_player[1] = NewGO<Player>(0, "Player2");
+		m_player[1] = NewGO<Player>(0, "Player1");
 		m_player[1]->SetPadNum(1);
 		m_player[1]->SetPositionX(P_pos*-1);
-		m_player[2] = NewGO<Player>(0, "Player3");
+		m_player[2] = NewGO<Player>(0, "Player2");
 		m_player[2]->SetPadNum(2);
 		m_player[2]->SetPositionX(P_pos);
 		break;
 	case 4:
-		m_player[0] = NewGO<Player>(0, "Player1");
+		m_player[0] = NewGO<Player>(0, "Player");
 		m_player[0]->SetPadNum(0);
 		m_player[0]->SetPositionX(P_pos*-3);
-		m_player[1] = NewGO<Player>(0, "Player2");
+		m_player[1] = NewGO<Player>(0, "Player1");
 		m_player[1]->SetPadNum(1);
 		m_player[1]->SetPositionX(P_pos*-1);
-		m_player[2] = NewGO<Player>(0, "Player3");
+		m_player[2] = NewGO<Player>(0, "Player2");
 		m_player[2]->SetPadNum(2);
 		m_player[2]->SetPositionX(P_pos);
-		m_player[3] = NewGO<Player>(0, "Player4");
+		m_player[3] = NewGO<Player>(0, "Player3");
 		m_player[3]->SetPadNum(3);
 		m_player[3]->SetPositionX(P_pos*3);
 	break;
@@ -210,7 +210,7 @@ void Game::CameraPos()
 			if (Kyori.Length() < MinC_pos)
 				m_camera->SetKyori(-10.0f);
 		}
-		if (m_camera->GetKyori() < m_camera->MaxCameraPos()/*3000*/) {
+		if (m_camera->GetKyori() < m_camera->MaxCameraPos()/*4000*/) {
 			if (Kyori.Length() > MaxC_pos) {
 				m_camera->SetKyori(10.0f);
 			}

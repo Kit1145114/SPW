@@ -93,7 +93,10 @@ public:
 	{
 		PadNum = num;
 	}
-
+	int GetPadNum()
+	{
+		return PadNum;
+	}
 private:
 	Player_RType2* m_player_Rtype2 = nullptr;
 	Senkan_Rtype_2* S_Rtype2 = nullptr;

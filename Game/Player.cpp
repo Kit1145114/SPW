@@ -53,7 +53,7 @@ void Player::Move()
 		m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 		m_skinModelRender->SetPosition(m_position);
 		//デバック用の進化
-		//if(Pad(0).IsPress(enButtonB))
+		//if(Pad(1).IsPress(enButtonB))
 		//{
 		//	Ver = 1;
 		//}
@@ -71,21 +71,34 @@ void Player::PBullet()
 				m_timer = 0;
 			}
 			if (m_Short > 0) {
-				if (Pad(PadNum).IsPress(enButtonRB2/*enButtonA*/) == true) {
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetPositionZ(HoukouX, HoukouZ);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
-					m_Short--;
-					ShortCount = true;
-					p_timer = 0;
-				}	
-				else if (Pad(PadNum).IsPress(enButtonRB2/*enButtonA*/) == false) {
-					if (p_timer == 98)
-					{
-						ShortCount = false;
+				//switch (PadNum)
+				//{
+				//case 0:
+				//	if (Pad(PadNum).IsPress(enButtonRB2) == true) {
+				//		m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+				//		m_bullet->SetPosition(m_position);
+				//		m_bullet->SetPositionZ(HoukouX, HoukouZ);
+				//		m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+				//		m_Short--;
+				//		ShortCount = true;
+				//		p_timer = 0;
+				//		break;
+				//	}
+					if (Pad(PadNum).IsPress(enButtonRB2/*enButtonA*/) == true) {
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetPositionZ(HoukouX, HoukouZ);
+						m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+						m_Short--;
+						ShortCount = true;
 						p_timer = 0;
-					}
+				}
+			else if (Pad(PadNum).IsPress(enButtonRB2/*enButtonA*/) == false) {
+				if (p_timer == 98)
+				{
+					ShortCount = false;
+					p_timer = 0;
+				}
 				}
 			}
 		}

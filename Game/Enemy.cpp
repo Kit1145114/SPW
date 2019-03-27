@@ -49,7 +49,7 @@ void Enemy::Pl_Hantei()
 void Enemy::Pl_RHantei()
 {
 	if (m_player->GetVer() == 1) {
-		S_RType2 = FindGO<Senkan_Rtype_2>("Senkan_RType_2");
+		//S_RType2 = FindGO<Senkan_Rtype_2>("Senkan_RType_2");
 		//if (S_RType2->GetShortCount() == true)
 		//{
 		//	m_bullet = FindGO<Bullet>("Player_RType2Bullet1");

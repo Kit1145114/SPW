@@ -42,7 +42,7 @@ private:
 	CVector3 pos = CVector3::Zero;
 	//’‹“_‚ğŒvZ‚·‚é
 	CVector3 target = { 0.0f,0.0f,0.0f };
-	float MaxCamera = 3000.0f;
+	float MaxCamera = 4000.0f;
 	float MinCamera = 1500.0f;
 	CVector3 p1_pos = { 0.0f, 0.0f, 0.0f };
 	CVector3 p2_pos = { 0.0f, 0.0f, 0.0f };
