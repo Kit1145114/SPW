@@ -38,6 +38,7 @@ public:
 	void Houdai();
 	void S_Hantei();
 	void B_Hantei();
+	void P_Hantei();
 	CVector3 GetPosition() {
 		return m_position;
 	}
@@ -116,7 +117,7 @@ private:
 	
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 
-	int m_timer = 0;
+	int m_timer = 0.0f;
 	int p_timer = 0;
 	int d_timer = 0;
 	int m_Short = 0;
@@ -131,5 +132,6 @@ private:
 
 	bool DeathCount = false;
 	bool ShortCount = false;
+	bool MyBullet = true;
 };
 

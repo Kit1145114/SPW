@@ -39,9 +39,9 @@ void Enemy::Pl_Hantei()
 			CVector3 diff = m_bullet->GetPosition() - m_position;
 			if (diff.Length() < 150.0f)
 			{
-				m_star = NewGO<Star>(0, "Star");
-				m_star->Init(m_position);
-				//m_game->m_enemy = nullptr;
+				//m_star = NewGO<Star>(0, "Star");
+				//m_star->Init(m_position);
+				m_game->m_enemy = nullptr;
 				Death();
 			}
 		}

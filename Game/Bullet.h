@@ -31,11 +31,20 @@ public:
 	{
 		m_moveSpeed = mspos;
 	}
+	void SetKill(bool a)
+	{
+		Kill = a;
+	}
+	bool GetKill()
+	{
+		return Kill;
+	}
 	void Update();
 private:
 	int m_timer = 0;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
+	bool Kill = false;
 };
 
