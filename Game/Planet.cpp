@@ -136,10 +136,9 @@ void Planet::Move() {
 //ドカーン（爆発）きたねぇ、花火だぜ、、、。
 void Planet::explosion()
 {
-	
 	Star* m_star = NewGO<Star>(0, "star");
 	m_star->Pop(this->p_position);
-	Generate(this->myPlanetnumber); //新たな惑星を生成（自分のナンバーの惑星を）
+	Generate(1); //新たな惑星を生成（自分のナンバーの惑星を）
 	DeleteGO(this);
 	//m_game->SetPlanetAgeinCount(-1);
 }
