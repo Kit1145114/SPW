@@ -27,7 +27,7 @@ void Enemy::Update()
 {
 	m_skinModelRender->SetPosition(m_position);
 	Pl_Hantei();
-	Pl_RHantei();
+	//Pl_RHantei();
 }
 //エネミーの死亡判定。
 void Enemy::Pl_Hantei()
@@ -39,7 +39,9 @@ void Enemy::Pl_Hantei()
 			CVector3 diff = m_bullet->GetPosition() - m_position;
 			if (diff.Length() < 150.0f)
 			{
-				m_game->m_enemy = nullptr;
+				m_star = NewGO<Star>(0, "Star");
+				m_star->Init(m_position);
+				//m_game->m_enemy = nullptr;
 				Death();
 			}
 		}

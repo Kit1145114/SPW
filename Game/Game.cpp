@@ -7,7 +7,6 @@ Game::Game()
 {
 }
 
-
 Game::~Game()
 {
 	if (m_player != nullptr) {
@@ -149,15 +148,16 @@ void Game::P_Ver()
 //ÅôÇÃèoåªÅB
 void Game::S_Pu()
 {
-	if (m_enemy == nullptr&& m_star == nullptr && starget == 0)
-	{
-		m_star = NewGO<Star>(0, "Star");
-		starget = 1;
-	}
-	if (starget == 1)
-	{
+	//if (m_enemy == nullptr&& m_star == nullptr && starget == 0)
+	//{
+	//	m_star = NewGO<Star>(0, "Star");
+	//	m_star->Init()
+	//	starget = 1;
+	//}
+	//if (starget == 1)
+	//{
 
-	}
+	//}
 	/*if (m_enemy == nullptr&& m_star == nullptr)
 	{
 		float S;
