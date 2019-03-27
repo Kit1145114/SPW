@@ -16,7 +16,7 @@ bool Planet::Start() {
 	m_game = FindGO<Game>("Game");
 	m_player = FindGO<Player>("Player");
 
-	Move();
+	
 
 	return true;
 }
@@ -136,15 +136,19 @@ void Planet::Move() {
 //ドカーン（爆発）きたねぇ、花火だぜ、、、。
 void Planet::explosion()
 {
-	DeleteGO(this);
+	
+	Star* m_star = NewGO<Star>(0, "star");
+	m_star->Pop(this->p_position);
 	Generate(this->myPlanetnumber); //新たな惑星を生成（自分のナンバーの惑星を）
+	DeleteGO(this);
 	//m_game->SetPlanetAgeinCount(-1);
 }
 //惑星死亡判定。
 void Planet::Death(){
 	
 	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
-	for (int i = 0;i < PlKazu;i++) {
+	m_sansenkazu = FindGO<SansenKazu>("SansenKazu");
+	for (int i = 0;i < m_sansenkazu->GetKazu();i++) {
 		CVector3 p_kyori = m_game->GetPosition() - p_position;
 		if (p_kyori.Length() < radius
 			&& m_game->m_player[i]->GetDeathCount() == false) {

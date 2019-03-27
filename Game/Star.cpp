@@ -4,6 +4,12 @@
 
 Star::Star()
 {
+	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
+	m_skinModelRender->Init(L"modelData/star.cmo");
+	m_scale = { 3.0f, 3.0, 3.0f };
+	m_skinModelRender->SetScale(m_scale);
+	m_player = FindGO<Player>("Player");
+	m_game = FindGO<Game>("Game");
 }
 
 
@@ -14,13 +20,8 @@ Star::~Star()
 
 bool Star::Start()
 {
-	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-	m_skinModelRender->Init(L"modelData/star.cmo");
-	//m_CharaCon.Init(80.0f, 30.0f, m_position);
-	m_player = FindGO<Player>("Player");
-	m_game = FindGO<Game>("Game");
-	m_scale = { 3.0f, 3.0, 3.0f };
-	m_skinModelRender->SetScale(m_scale);
+	
+	
 	return true;
 }
 
@@ -56,7 +57,11 @@ void Star::Hantei()
 
 	//}
 }
-
+void Star::Pop(CVector3 position)
+{
+	m_position = position;
+	m_skinModelRender->SetPosition(m_position);
+};
 void Star::Push()
 {
 	m_skinModelRender->SetPosition(m_position);

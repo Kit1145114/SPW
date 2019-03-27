@@ -18,12 +18,7 @@ public:
 	void Push();
 	void Rotation();
 	void Death();
-	void Init(CVector3 position)
-	{
-		m_position = position;
-		m_skinModelRender->SetScale(m_scale);
-		m_skinModelRender->SetPosition(position);
-	};
+	void Pop(CVector3 position);
 	CVector3 GetPosition()
 	{
 		return m_position;

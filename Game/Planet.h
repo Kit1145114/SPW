@@ -3,7 +3,8 @@
 class Game;
 class Player;
 class Bullet;
-
+class Star;
+class SansenKazu;
 class Planet : public IGameObject
 {
 public:
@@ -28,6 +29,7 @@ private:
 	Game* m_game = nullptr;
 	Player* m_player = nullptr;
 	Bullet* m_bullet = nullptr;
+	SansenKazu* m_sansenkazu = nullptr;
 	Planet* hoge = nullptr;
 	float radius = { 30.0f };//	òfêØÇÃîºåa
 	bool movecount = false;
