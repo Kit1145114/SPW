@@ -110,7 +110,6 @@ private:
 	
 	CVector3 Kyori = CVector3::Zero;
 	CVector3 SyokiCamera = CVector3::Zero;
-
 	CVector3 Tyuou = CVector3::Zero;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };
