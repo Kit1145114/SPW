@@ -36,6 +36,7 @@
     <ClCompile Include="Drop_Hako.cpp" />
     <ClCompile Include="SansenGamen.cpp" />
     <ClCompile Include="SansenKazu.cpp" />
+    <ClCompile Include="GameTaiki.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -60,6 +61,7 @@
     <ClInclude Include="Drop_Hako.h" />
     <ClInclude Include="SansenGamen.h" />
     <ClInclude Include="SansenKazu.h" />
+    <ClInclude Include="GameTaiki.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -115,11 +117,11 @@
       <Filter>Resource Files</Filter>
     </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\Sinka_Bar.png" />
+    <ImageContentTask Include="Assets\sprite\Sanka.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\sprite\Sanka.png" />
   </ItemGroup>
 </Project>

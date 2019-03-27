@@ -1770,6 +1770,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GamenDraw.cpp" />
     <ClCompile Include="GamenTimer.cpp" />
+    <ClCompile Include="GameTaiki.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -1811,6 +1812,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GamenDraw.h" />
     <ClInclude Include="GamenTimer.h" />
+    <ClInclude Include="GameTaiki.h" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Player_RType2.h" />

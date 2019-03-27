@@ -133,7 +133,7 @@ void Game::Update()
 		DeleteGO(this);
 	}
 }
-
+//未使用
 void Game::P_Ver()
 {
 	if (Pver == 1 && m_player_Rtype2 == nullptr)
@@ -146,7 +146,7 @@ void Game::P_Ver()
 
 	}
 }
-
+//☆の出現。
 void Game::S_Pu()
 {
 	if (m_enemy == nullptr&& m_star == nullptr && starget == 0)
@@ -180,7 +180,7 @@ void Game::S_Pu()
 		}
 	}*/
 }
-
+//箱の出現。
 void Game::H_Pu()
 {
 	//if (m_player->GetDeathCount() == true && d_hako == nullptr)
@@ -189,12 +189,12 @@ void Game::H_Pu()
 	//	d_hako->SetSpwanCount(1);
 	//}
 }
-
+//プレイヤーの人数
 void Game::PlayerNum()
 {
 
 }
-
+//カメラの動作。
 void Game::CameraPos()
 {
 	switch (PadMaxKazu)
@@ -217,7 +217,7 @@ void Game::CameraPos()
 		}
 		break;
 	case 3:
-		Tyuou = m_player[0]->GetPosition() / 2 + m_player[1]->GetPosition() / 2 - m_player[2]->GetPosition()/2;
+		Tyuou = m_player[0]->GetPosition() / 2 + m_player[1]->GetPosition() / 2 + m_player[2]->GetPosition()/2;
 		memory_position = Tyuou;
 		Kyori = m_player[0]->GetPosition() - m_player[1]->GetPosition() - m_player[2]->GetPosition();
 		if (m_camera->GetKyori() > m_camera->MinCameraPos()/*1500*/) {
@@ -232,7 +232,7 @@ void Game::CameraPos()
 		break;
 	case 4:
 		Tyuou = m_player[0]->GetPosition() / 2 + m_player[1]->GetPosition() / 2 
-			- m_player[2]->GetPosition() - m_player[3]->GetPosition()/2;
+			+ m_player[2]->GetPosition()/2 + m_player[3]->GetPosition()/2;
 		memory_position = Tyuou;
 		Kyori = m_player[0]->GetPosition() - m_player[1]->GetPosition() -
 			m_player[2]->GetPosition() - m_player[4]->GetPosition();

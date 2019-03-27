@@ -103,9 +103,7 @@ private:
 	int NumMin = 0;
 	int PadMaxKazu =0;
 	int PadKazu = 0;
-<<<<<<< HEAD
 	int PlanetAgeinCount = 0;
-=======
 	float P_pos = 400.0f;
 	float MaxC_pos = 1700.0f;
 	float MinC_pos = 800.0f;
@@ -114,7 +112,6 @@ private:
 	CVector3 SyokiCamera = CVector3::Zero;
 
 	CVector3 Tyuou = CVector3::Zero;
->>>>>>> 62e057207591f9c471522a1e104024b99bbb819b
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };
 

@@ -62,35 +62,35 @@ void Player::Move()
 //プレイヤーの球(第一形態）
 void Player::PBullet()
 {
-		if (DeathCount == false) {
-			if (Ver == 0) {
-				m_timer++;
-				p_timer++;
-				if (m_timer > 30) {
-					m_Short++;
-					m_timer = 0;
-				}
-				if (m_Short > 0) {
-					if (Pad(PadNum).IsPress(enButtonRB2/*enButtonA*/) == true) {
-						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPosition(m_position);
-						m_bullet->SetPositionZ(HoukouX,HoukouZ);
-						m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
-						m_Short--;
-						ShortCount = true;
+	if (DeathCount == false) {
+		if (Ver == 0) {
+			m_timer++;
+			p_timer++;
+			if (m_timer > 30) {
+				m_Short++;
+				m_timer = 0;
+			}
+			if (m_Short > 0) {
+				if (Pad(PadNum).IsPress(enButtonRB2/*enButtonA*/) == true) {
+					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+					m_bullet->SetPosition(m_position);
+					m_bullet->SetPositionZ(HoukouX, HoukouZ);
+					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+					m_Short--;
+					ShortCount = true;
+					p_timer = 0;
+				}	
+				else if (Pad(PadNum).IsPress(enButtonRB2/*enButtonA*/) == false) {
+					if (p_timer == 98)
+					{
+						ShortCount = false;
 						p_timer = 0;
-					}
-					else if (Pad(PadNum).IsPress(enButtonRB2/*enButtonA*/) == false) {
-						if (p_timer == 98)
-						{
-							ShortCount = false;
-							p_timer = 0;
-						}
 					}
 				}
 			}
 		}
 	}
+}
 //プレイヤーの球（第二形態）
 void Player::PBullet2()
 {
