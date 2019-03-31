@@ -1,10 +1,12 @@
 #pragma once
 #include"Game.h"
+#include"SansenKazu.h"
 class Game;
 class Player;
 class Bullet;
 class Star;
 class SansenKazu;
+
 class Planet : public IGameObject
 {
 public:
@@ -27,12 +29,14 @@ private:
 	CVector3 randomspeed = CVector3::Zero;
 	prefab::CSkinModelRender* p_skinModelRender0 = nullptr;
 	Game* m_game = nullptr;
-	Player* m_player = nullptr;
+	SansenKazu* s_kazu = nullptr;
+	Player* m_player[4] = { nullptr };
 	Bullet* m_bullet = nullptr;
 	SansenKazu* m_sansenkazu = nullptr;
 	Planet* hoge = nullptr;
 	float radius = { 30.0f };//	惑星の半径
 	bool movecount = false;
 	int myPlanetnumber;    //自分のPlametナンバー保存用
+	int PadMaxKazu = 0;
 };
 

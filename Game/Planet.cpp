@@ -12,12 +12,33 @@ Planet::~Planet()
 {
 	DeleteGO(p_skinModelRender0);
 }
-bool Planet::Start() {
+
+bool Planet::Start() 
+{
 	m_game = FindGO<Game>("Game");
-	m_player = FindGO<Player>("Player");
-
-	
-
+	s_kazu = FindGO<SansenKazu>("SansenKazu");
+	PadMaxKazu = s_kazu->GetKazu();
+	switch (PadMaxKazu)
+	{
+	case 1:
+		m_player[0] = FindGO<Player>("Player");
+		break;
+	case 2:
+		m_player[0] = FindGO<Player>("Player");
+		m_player[1] = FindGO<Player>("Player1");
+		break;
+	case 3:
+		m_player[0] = FindGO<Player>("Player");
+		m_player[1] = FindGO<Player>("Player1");
+		m_player[2] = FindGO<Player>("Player2");
+		break;
+	case 4:
+		m_player[0] = FindGO<Player>("Player");
+		m_player[1] = FindGO<Player>("Player1");
+		m_player[2] = FindGO<Player>("Player2");
+		m_player[3] = FindGO<Player>("Player3");
+		break;
+	}
 	return true;
 }
 
@@ -149,19 +170,21 @@ void Planet::Death(){
 	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
 	m_sansenkazu = FindGO<SansenKazu>("SansenKazu");
 	for (int i = 0;i < m_sansenkazu->GetKazu();i++) {
-		CVector3 p_kyori = m_player->GetPosition() - p_position;
+		CVector3 p_kyori = m_player[i]->GetPosition() - p_position;
 		if (p_kyori.Length() < radius
 			&& m_game->m_player[i]->GetDeathCount() == false) {
 			m_game->m_player[i]->Death();
 		}
 	}
 	//弾だけは勘弁してくだせぇ。
-	if (m_player->GetVer() == 0 && m_player->GetDeathCount() == false) {
-		if (m_player->GetShortCount() == true) {
-			m_bullet = FindGO<Bullet>("PlayerBullet");
-			CVector3 b_kyori = m_bullet->GetPosition() - p_position;
-			if (b_kyori.Length() < radius) {
-				explosion();
+	for (int i = 0; i < m_sansenkazu->GetKazu(); i++) {
+		if (m_player[i]->GetVer() == 0 && m_player[i]->GetDeathCount() == false) {
+			if (m_player[i]->GetShortCount() == true) {
+				m_bullet = FindGO<Bullet>("PlayerBullet");
+				CVector3 b_kyori = m_bullet->GetPosition() - p_position;
+				if (b_kyori.Length() < radius) {
+					explosion();
+				}
 			}
 		}
 	}

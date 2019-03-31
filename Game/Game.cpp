@@ -113,22 +113,6 @@ void Game::Update()
 		{
 			GameMode = 1;
 		}
-		//プレイヤーのポジ確保
-		//switch (PadMaxKazu)
-		//{
-		//case 1:
-		//	memory_position = ;
-		//	break;
-		//case 2:
-		//	memory_position = Kyori;
-		//	break;
-		//case 3:
-		//	memory_position = SyokiCamera;
-		//	break;
-		//case 4:
-		//	memory_position = SyokiCamera;
-		//	break;
-		//}
 	}
 	else if (GameMode == 1)
 	{

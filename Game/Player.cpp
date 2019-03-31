@@ -146,7 +146,6 @@ void Player::PBullet2()
 }
 //プレイヤーの進化用
 void Player::Pevolution()
-
 {
 	if (StarCount==1 && S_Rtype2 == nullptr)
 	{
@@ -264,16 +263,20 @@ void Player::Houdai()
 //未定
 void Player::S_Hantei()
 {
-	 if (m_game->GetS_Init() == false)
+	for (int i = 0; i < PadNum; i++)
 	{
+		m_game->m_player[i];
+		if (m_game->GetS_Init() == false)
+		{
 
-	}
-	else if (m_game->GetS_Init() == true) {
-		m_star = FindGO<Star>("Star");
-		CVector3 diff = m_star->GetPosition() - m_position;
-		if (diff.Length() < 250.0f) {
-			StarCount++;
-			m_star->Death();
+		}
+		else if (m_game->GetS_Init() == true) {
+			m_star = FindGO<Star>("Star");
+			CVector3 diff = m_star->GetPosition() - m_game->m_player[i]->GetPosition();
+			if (diff.Length() < 250.0f) {
+				StarCount++;
+				m_star->Death();
+			}
 		}
 	}
 }
