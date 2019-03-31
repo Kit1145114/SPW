@@ -6,6 +6,11 @@
 #include"Enemy.h"
 #include"Drop_Hako.h"
 #include"Star.h"
+#include"SansenKazu.h"
+#include"Draw_1P.h"
+#include"Draw_2P.h"
+#include"Draw_3P.h"
+#include"Draw_4P.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
@@ -17,6 +22,11 @@ class Enemy;
 class Senkan_Rtype_2;
 class Drop_Hako;
 class Star;
+class SansenKazu;
+class Draw_1P;
+class Draw_2P;
+class Draw_3P;
+class Draw_4P;
 
 class Player: public IGameObject
 {
@@ -99,6 +109,11 @@ public:
 		return PadNum;
 	}
 private:
+	Player * m_player[4] = { nullptr };
+	Draw_1P * Pl1 = nullptr;
+	Draw_2P* Pl2 = nullptr;
+	Draw_3P* Pl3 = nullptr;
+	Draw_4P* Pl4 = nullptr;
 	Player_RType2* m_player_Rtype2 = nullptr;
 	Senkan_Rtype_2* S_Rtype2 = nullptr;
 	Bullet* m_bullet = nullptr;
@@ -106,6 +121,7 @@ private:
 	Enemy* m_enemy = nullptr;
 	Star* m_star = nullptr;
 	Drop_Hako* d_hako = nullptr;
+	SansenKazu* s_kazu = nullptr;
 	CCharacterController m_CharaCon;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 memory_position = CVector3::Zero;
@@ -125,6 +141,7 @@ private:
 	int Ver = 0;
 	int StarCount = 0;
 	int PadNum = 0;
+	int PadMaxKazu = 0;
 	float HoukouX = 0.0f;
 	float HoukouZ = 0.0f;
 	float SpeedX = 0.0f;

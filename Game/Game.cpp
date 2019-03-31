@@ -35,6 +35,10 @@ Game::~Game()
 	DeleteGO(m_G_Timer);
 	DeleteGO(m_planet);
 	DeleteGO(s_kazu);
+	DeleteGO(Pl1);
+	DeleteGO(Pl2);
+	DeleteGO(Pl3);
+	DeleteGO(Pl4);
 	QueryGOs<Planet>("planet", [&](Planet* obj)->bool
 	{
 		DeleteGO(obj);
@@ -52,39 +56,59 @@ bool Game::Start()
 		m_player[0] = NewGO<Player>(0, "Player");
 		m_player[0]->SetPadNum(0);
 		m_player[0]->SetPositionX(P_pos*-3);
+		Pl1 = NewGO<Draw_1P>(0, "1P");
+		Pl1->SetPosition(0.0f, -300.0f);
 		break;
 	case 2:
 		m_player[0] = NewGO<Player>(0, "Player");
 		m_player[0]->SetPadNum(0);
 		m_player[0]->SetPositionX(P_pos*-3);
+		Pl1 = NewGO<Draw_1P>(0, "1P");
+		Pl1->SetPosition(-200.0f, -300.0f);
 		m_player[1] = NewGO<Player>(0, "Player1");
 		m_player[1]->SetPadNum(1);
 		m_player[1]->SetPositionX(P_pos*-1);
+		Pl2 = NewGO<Draw_2P>(0, "2P");
+		Pl2->SetPosition(200.0f, -300.0f);
 		break;
 	case 3:
 		m_player[0] = NewGO<Player>(0, "Player");
 		m_player[0]->SetPadNum(0);
 		m_player[0]->SetPositionX(P_pos*-3);
+		Pl1 = NewGO<Draw_1P>(0, "1P");
+		Pl1->SetPosition(-300.0f, -300.0f);
 		m_player[1] = NewGO<Player>(0, "Player1");
 		m_player[1]->SetPadNum(1);
 		m_player[1]->SetPositionX(P_pos*-1);
+		Pl2 = NewGO<Draw_2P>(0, "2P");
+		Pl2->SetPosition(0.0f, -300.0f);
 		m_player[2] = NewGO<Player>(0, "Player2");
 		m_player[2]->SetPadNum(2);
 		m_player[2]->SetPositionX(P_pos);
+		Pl3 = NewGO<Draw_3P>(0, "3P");
+		Pl3->SetPosition(300.0f, -300.0f);
 		break;
 	case 4:
 		m_player[0] = NewGO<Player>(0, "Player");
 		m_player[0]->SetPadNum(0);
 		m_player[0]->SetPositionX(P_pos*-3);
+		Pl1 = NewGO<Draw_1P>(0, "1P");
+		Pl1->SetPosition(-450.0f, -300.0f);
 		m_player[1] = NewGO<Player>(0, "Player1");
 		m_player[1]->SetPadNum(1);
 		m_player[1]->SetPositionX(P_pos*-1);
+		Pl2 = NewGO<Draw_2P>(0, "1P");
+		Pl2->SetPosition(-150.0f, -300.0f);
 		m_player[2] = NewGO<Player>(0, "Player2");
 		m_player[2]->SetPadNum(2);
 		m_player[2]->SetPositionX(P_pos);
+		Pl3 = NewGO<Draw_3P>(0, "3P");
+		Pl3->SetPosition(150.0f, -300.0f);
 		m_player[3] = NewGO<Player>(0, "Player3");
 		m_player[3]->SetPadNum(3);
 		m_player[3]->SetPositionX(P_pos*3);
+		Pl4 = NewGO<Draw_4P>(0, "4P");
+		Pl4->SetPosition(450.0f, -300.0f);
 	break;
 	}
 
@@ -92,7 +116,7 @@ bool Game::Start()
 	m_camera = NewGO<Camera>(0);
 	m_enemy = NewGO<Enemy>(0,"Enemy");
 	m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
-	s_bar = NewGO<Sinka_Bar>(0, "Sinka_Bar");
+	//s_bar = NewGO<Sinka_Bar>(0, "Sinka_Bar");
 	Planet::Generate(Planetnumber_Num);
 	return true;
 }

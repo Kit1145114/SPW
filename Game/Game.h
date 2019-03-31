@@ -11,6 +11,10 @@
 #include"Sinka_Bar.h"
 #include"Drop_Hako.h"
 #include"SansenKazu.h"
+#include"Draw_1P.h"
+#include"Draw_2P.h"
+#include"Draw_3P.h"
+#include"Draw_4P.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
@@ -27,6 +31,10 @@ class Star;
 class Sinka_Bar;
 class Drop_Hako;
 class SansenKazu;
+class Draw_1P;
+class Draw_2P;
+class Draw_3P;
+class Draw_4P;
 
 enum Planetnumber {
 	Planetnumber_00,
@@ -99,13 +107,53 @@ public:
 	{
 		return S_Init;
 	}//ÉQÅ[ÉÄì‡ÇÃãÖ
+	//bool GetPl1Death()
+	//{
+	//	return PlDeath[0];
+	//}
+	//void SetPl1Death(bool a)
+	//{
+	//	PlDeath[0] = a;
+	//}
+	//bool GetPl2Death()
+	//{
+	//	return PlDeath[1];
+	//}
+	//void SetPl2Death(bool a)
+	//{
+	//	PlDeath[1] = a;
+	//}
+	//bool GetPl3Death()
+	//{
+	//	return PlDeath[2];
+	//}
+	//void SetPl3Death(bool a)
+	//{
+	//	PlDeath[2] = a;
+	//}
+	//bool GetPl4Death()
+	//{
+	//	return PlDeath[3];
+	//}
+	//void SetPl4Death(bool a)
+	//{
+	//	PlDeath[3] = a;
+	//}
+	//void SetDeathPl(int a, bool b)
+	//{
+	//	PlDeath[a] = b;
+	//}
+
 	Planet* memoryPP[Planetnumber_Num];
 	Player* m_player[PlKazu] = {nullptr};
 	Enemy* m_enemy = nullptr;
 	Star* m_star = nullptr;
 	Drop_Hako* d_hako = nullptr;
 private:
-	//Star * m_star = nullptr;
+	Draw_1P* Pl1 = nullptr;
+	Draw_2P* Pl2 = nullptr;
+	Draw_3P* Pl3 = nullptr;
+	Draw_4P* Pl4 = nullptr;
 	Camera* m_camera = nullptr;
 	field* m_field = nullptr;
 	GamenTimer* m_G_Timer = nullptr;
@@ -133,6 +181,7 @@ private:
 	int PB_Kazu = 0;
 	bool PBullet_Init = false;
 	bool S_Init = false;
+	//bool PlDeath[4] = { false };
 	CVector3 Kyori = CVector3::Zero;
 	CVector3 SyokiCamera = CVector3::Zero;
 	CVector3 Tyuou = CVector3::Zero;

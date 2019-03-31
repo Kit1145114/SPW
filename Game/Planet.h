@@ -1,11 +1,20 @@
 #pragma once
 #include"Game.h"
 #include"SansenKazu.h"
+#include"Draw_1P.h"
+#include"Draw_2P.h"
+#include"Draw_3P.h"
+#include"Draw_4P.h"
+
 class Game;
 class Player;
 class Bullet;
 class Star;
 class SansenKazu;
+class Draw_1P;
+class Draw_2P;
+class Draw_3P;
+class Draw_4P;
 
 class Planet : public IGameObject
 {
@@ -34,6 +43,10 @@ private:
 	Bullet* m_bullet = nullptr;
 	SansenKazu* m_sansenkazu = nullptr;
 	Planet* hoge = nullptr;
+	Draw_1P* Pl1 = nullptr;
+	Draw_2P* Pl2 = nullptr;
+	Draw_3P* Pl3 = nullptr;
+	Draw_4P* Pl4 = nullptr;
 	float radius = { 30.0f };//	惑星の半径
 	bool movecount = false;
 	int myPlanetnumber;    //自分のPlametナンバー保存用

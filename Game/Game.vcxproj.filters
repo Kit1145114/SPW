@@ -37,6 +37,10 @@
     <ClCompile Include="SansenGamen.cpp" />
     <ClCompile Include="SansenKazu.cpp" />
     <ClCompile Include="GameTaiki.cpp" />
+    <ClCompile Include="Draw_1P.cpp" />
+    <ClCompile Include="Draw_2P.cpp" />
+    <ClCompile Include="Draw_3P.cpp" />
+    <ClCompile Include="Draw_4P.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -62,6 +66,10 @@
     <ClInclude Include="SansenGamen.h" />
     <ClInclude Include="SansenKazu.h" />
     <ClInclude Include="GameTaiki.h" />
+    <ClInclude Include="Draw_1P.h" />
+    <ClInclude Include="Draw_2P.h" />
+    <ClInclude Include="Draw_3P.h" />
+    <ClInclude Include="Draw_4P.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -123,5 +131,10 @@
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\sprite\4P.png" />
+    <Image Include="Assets\sprite\1P.png" />
+    <Image Include="Assets\sprite\2P.png" />
+    <Image Include="Assets\sprite\3P.png" />
+    <Image Include="Assets\sprite\Gekitui.png" />
   </ItemGroup>
 </Project>

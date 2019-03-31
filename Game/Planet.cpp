@@ -22,21 +22,31 @@ bool Planet::Start()
 	{
 	case 1:
 		m_player[0] = FindGO<Player>("Player");
+		Pl1 = FindGO<Draw_1P>("1P");
 		break;
 	case 2:
 		m_player[0] = FindGO<Player>("Player");
 		m_player[1] = FindGO<Player>("Player1");
+		Pl1 = FindGO<Draw_1P>("1P");
+		Pl2 = FindGO<Draw_2P>("2P");
 		break;
 	case 3:
 		m_player[0] = FindGO<Player>("Player");
 		m_player[1] = FindGO<Player>("Player1");
 		m_player[2] = FindGO<Player>("Player2");
+		Pl1 = FindGO<Draw_1P>("1P");
+		Pl2 = FindGO<Draw_2P>("2P");
+		Pl3 = FindGO<Draw_3P>("3P");
 		break;
 	case 4:
 		m_player[0] = FindGO<Player>("Player");
 		m_player[1] = FindGO<Player>("Player1");
 		m_player[2] = FindGO<Player>("Player2");
 		m_player[3] = FindGO<Player>("Player3");
+		Pl1 = FindGO<Draw_1P>("1P");
+		Pl2 = FindGO<Draw_2P>("2P");
+		Pl3 = FindGO<Draw_3P>("3P");
+		Pl4 = FindGO<Draw_4P>("4P");
 		break;
 	}
 	return true;
@@ -174,6 +184,22 @@ void Planet::Death(){
 		if (p_kyori.Length() < radius
 			&& m_game->m_player[i]->GetDeathCount() == false) {
 			m_game->m_player[i]->Death();
+			if (i == 0)
+			{
+				Pl1->SetDeath(true);
+			}
+			else if (i == 1)
+			{
+				Pl2->SetDeath(true);
+			}
+			else if (i == 2)
+			{
+				Pl3->SetDeath(true);
+			}
+			else if (i == 3)
+			{
+				Pl4->SetDeath(true);
+			}
 		}
 	}
 	//íeÇæÇØÇÕä®ïŸÇµÇƒÇ≠ÇæÇπÇ•ÅB

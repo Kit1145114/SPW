@@ -26,6 +26,54 @@ bool Player::Start()
 	m_CharaCon.Init(100.0f, 100.0f, m_position);
 	m_game = FindGO<Game>("Game");
 	m_enemy = FindGO<Enemy>("Enemy");
+	s_kazu = FindGO<SansenKazu>("SansenKazu");
+	switch (s_kazu->GetKazu())
+	{
+	case 1:
+		Pl1 = FindGO<Draw_1P>("1P");
+		break;
+	case 2:
+		Pl1 = FindGO<Draw_1P>("1P");
+		Pl2 = FindGO<Draw_2P>("2P");
+		break;
+	case 3:
+		Pl1 = FindGO<Draw_1P>("1P");
+		Pl2 = FindGO<Draw_2P>("2P");
+		Pl3 = FindGO<Draw_3P>("3P");
+		break;
+	case 4:
+		Pl1 = FindGO<Draw_1P>("1P");
+		Pl2 = FindGO<Draw_2P>("2P");
+		Pl3 = FindGO<Draw_3P>("3P");
+		Pl4 = FindGO<Draw_4P>("4P");
+		break;
+	}
+	//Pl1 = FindGO<Draw_1P>("1P");
+	//Pl2 = FindGO<Draw_2P>("2P");
+	//Pl3 = FindGO<Draw_3P>("3P");
+	//Pl4 = FindGO<Draw_4P>("4P");
+	PadMaxKazu = s_kazu->GetKazu();
+	switch (PadMaxKazu)
+	{
+	case 1:
+		m_player[0] = FindGO<Player>("Player");
+		break;
+	case 2:
+		m_player[0] = FindGO<Player>("Player");
+		m_player[1] = FindGO<Player>("Player1");
+		break;
+	case 3:
+		m_player[0] = FindGO<Player>("Player");
+		m_player[1] = FindGO<Player>("Player1");
+		m_player[2] = FindGO<Player>("Player2");
+		break;
+	case 4:
+		m_player[0] = FindGO<Player>("Player");
+		m_player[1] = FindGO<Player>("Player1");
+		m_player[2] = FindGO<Player>("Player2");
+		m_player[3] = FindGO<Player>("Player3");
+		break;
+	}
 	return true;
 }
 
@@ -38,7 +86,7 @@ void Player::Update()
 	Hantei();
 	Rotation();
 	Respawn();
-	S_Hantei();
+	//S_Hantei();
 	//HakoHantei();
 	B_Hantei();
 	//P_Hantei();
@@ -158,10 +206,29 @@ void Player::Pevolution()
 //プレイヤーの死亡判定
 void Player::Hantei()
 {	
-	if (m_game->m_enemy != nullptr) {
-		CVector3 diff = m_enemy->GetPosition() - m_position;
-		if (diff.Length() < 250.0f) {
-			Death();
+	for (int i = 0; i < s_kazu->GetKazu(); i++) {
+		if (m_game->m_enemy != nullptr) {
+			CVector3 diff = m_enemy->GetPosition() - m_player[i]->m_position;
+			if (diff.Length() < 250.0f) {
+				m_player[i]->Death();
+				/*m_game->SetDeathPl(i, true)*/;
+				if (i == 0)
+				{
+					Pl1->SetDeath(true);
+				}
+				else if (i == 1)
+				{
+					Pl2->SetDeath(true);
+				}
+				else if (i == 2)
+				{
+					Pl3->SetDeath(true);
+				}
+				else if (i == 3)
+				{
+					Pl4->SetDeath(true);
+				}
+			}
 		}
 	}
 }
@@ -190,6 +257,7 @@ void Player::Death()
 	memory_position = m_position;
 	ShortCount = false;
 	DeathCount = true;
+	//Pl1->SetDeath(true);
 }
 //プレイヤーのリスポーン処理。p0
 void Player::Respawn()
@@ -263,16 +331,14 @@ void Player::Houdai()
 //未定
 void Player::S_Hantei()
 {
-	for (int i = 0; i < PadNum; i++)
-	{
-		m_game->m_player[i];
+	for (int i = 0; i < s_kazu->GetKazu(); i++) {
 		if (m_game->GetS_Init() == false)
 		{
 
 		}
 		else if (m_game->GetS_Init() == true) {
 			m_star = FindGO<Star>("Star");
-			CVector3 diff = m_star->GetPosition() - m_game->m_player[i]->GetPosition();
+			CVector3 diff = m_star->GetPosition() - m_player[i]->GetPosition();
 			if (diff.Length() < 250.0f) {
 				StarCount++;
 				m_star->Death();
@@ -283,26 +349,45 @@ void Player::S_Hantei()
 //プレイヤー同士の球の判定
 void Player::B_Hantei()
 {
-	if (DeathCount == false)
-	{
-		if (PadNum > 0) {
-			if (m_game->GetPBInit() == true) {
-				m_bullet = FindGO<Bullet>("PlayerBullet");
-				CVector3 kyori = m_bullet->GetPosition() - m_position;
-				if (kyori.Length() < 150.0f)
-				{
-					Death();
+	for (int i = 0; i < s_kazu->GetKazu(); i++) {
+		if (DeathCount == false)
+		{
+			if (PadNum > 0) {
+				if (m_game->GetPBInit() == true) {
+					m_bullet = FindGO<Bullet>("PlayerBullet");
+					CVector3 kyori = m_bullet->GetPosition() - m_player[i]->m_position;
+					if (kyori.Length() < 150.0f)
+					{
+						m_player[i]->Death();
+						/*m_game->SetDeathPl(i, true);*/
+						if (i == 0)
+						{
+							Pl1->SetDeath(true);
+						}
+						else if (i == 1)
+						{
+							Pl2->SetDeath(true);
+						}
+						else if (i == 2)
+						{
+							Pl3->SetDeath(true);
+						}
+						else if (i == 3)
+						{
+							Pl4->SetDeath(true);
+						}
+					}
 				}
 			}
+			else if (m_game->GetPBInit() == false)
+			{
+
+			}
 		}
-		else if (m_game->GetPBInit() == false)
+		else if (DeathCount == true)
 		{
 
 		}
-	}
-	else if (DeathCount == true)
-	{
-
 	}
 }
 //プレイヤー同士の当たり判定（※調整中。）
