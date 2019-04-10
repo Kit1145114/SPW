@@ -120,8 +120,8 @@ void Planet::Generate(int Reload) {
 				hako.z *= -1;
 
 			//ƒ‰ƒ“ƒ_ƒ€¶¬‚·‚éêŠ‚Ì§ŒÀB
-			float PosLimitx = 20000.0f;
-			float PosLimitz = 10000.0f;
+			float PosLimitx = 30000.0f;
+			float PosLimitz = 20000.0f;
 			hako.x *= PosLimitx;
 			hako.z *= PosLimitz;
 
