@@ -63,7 +63,7 @@ void Senkan_Rtype_2::Update()
 		}
 	}
 }
-
+//’e‚Ì•ûŒü
 void Senkan_Rtype_2::Houdai()
 {
 	if (Pad(m_player->GetPadNum()).GetRStickXF() == 0.0, Pad(m_player->GetPadNum()).GetRStickYF() == 0.0)

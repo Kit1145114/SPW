@@ -33,8 +33,9 @@ void Star::Update()
 	if (m_timer == 300)
 	{
 		m_game->m_star = nullptr;
-		Death();
+		m_game->SetStarCount(-1);
 		m_timer = 0;
+		Death();
 	}
 }
 //™‚ÌŽæ“¾”»’èB
@@ -78,7 +79,6 @@ void Star::Rotation()
 
 void Star::Death()
 {
-	m_game->SetStarCount(-1);
 	DeleteGO(this);
 }
 

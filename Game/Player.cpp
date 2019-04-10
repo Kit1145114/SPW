@@ -259,7 +259,7 @@ void Player::Death()
 	DeathCount = true;
 	//Pl1->SetDeath(true);
 }
-//プレイヤーのリスポーン処理。p0
+//プレイヤーのリスポーン処理。
 void Player::Respawn()
 {
 	if (DeathCount == true)
@@ -275,7 +275,7 @@ void Player::Respawn()
 				d_timer = 0;
 				DeathCount = false;
 			}
-			else if (Ver == 2)
+			else if (Ver == 1)
 			{
 				m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
 				m_position.x = -500.0f;
@@ -334,13 +334,13 @@ void Player::S_Hantei()
 	for (int i = 0; i < s_kazu->GetKazu(); i++) {
 		if (m_game->GetS_Init() == false)
 		{
-
 		}
 		else if (m_game->GetS_Init() == true) {
 			m_star = FindGO<Star>("Star");
 			CVector3 diff = m_star->GetPosition() - m_player[i]->GetPosition();
 			if (diff.Length() < 250.0f) {
 				StarCount++;
+				m_game->SetStarCount(-1);
 				m_star->Death();
 			}
 		}
