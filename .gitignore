@@ -3,6 +3,7 @@ x64/
 *.cmo
 *.dds
 *.lib
+!/Lib/*
 *.obj
 *.cso
 *.user

@@ -459,7 +459,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CRT_SECURE_NO_WARNINGS;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -468,7 +468,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Effekseer.Debug.lib;EffekseerRendererDX11.Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;photonLib-Win32.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Effekseer.Debug.lib;EffekseerRendererDX11.Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LargeAddressAware>true</LargeAddressAware>
@@ -477,6 +477,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -515,7 +516,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CRT_SECURE_NO_WARNINGS;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -524,7 +525,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Effekseer.Debug.lib;EffekseerRendererDX11.Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;photonLib-Win32.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Effekseer.Debug.lib;EffekseerRendererDX11.Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LargeAddressAware>true</LargeAddressAware>
@@ -533,6 +534,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -571,7 +573,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CRT_SECURE_NO_WARNINGS;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -580,7 +582,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Effekseer.Debug.lib;EffekseerRendererDX11.Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;photonLib-Win32.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Effekseer.Debug.lib;EffekseerRendererDX11.Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LargeAddressAware>true</LargeAddressAware>
@@ -589,6 +591,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -627,7 +630,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;TK_MASTER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -639,7 +642,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Effekseer.Release.lib;EffekseerRendererDX11.Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;photonLib-Win32.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Effekseer.Release.lib;EffekseerRendererDX11.Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LargeAddressAware>true</LargeAddressAware>
@@ -648,6 +651,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -686,7 +690,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;TK_MASTER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -698,7 +702,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Effekseer.Release.lib;EffekseerRendererDX11.Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;photonLib-Win32.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Effekseer.Release.lib;EffekseerRendererDX11.Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LargeAddressAware>true</LargeAddressAware>
@@ -707,6 +711,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -745,7 +750,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;TK_MASTER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -757,7 +762,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Effekseer.Release.lib;EffekseerRendererDX11.Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;photonLib-Win32.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Effekseer.Release.lib;EffekseerRendererDX11.Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LargeAddressAware>true</LargeAddressAware>
@@ -766,6 +771,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -804,7 +810,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -816,7 +822,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Effekseer.Release.lib;EffekseerRendererDX11.Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;photonLib-Win32.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Effekseer.Release.lib;EffekseerRendererDX11.Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LargeAddressAware>true</LargeAddressAware>
@@ -825,6 +831,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -863,7 +870,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -875,7 +882,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Effekseer.Release.lib;EffekseerRendererDX11.Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;photonLib-Win32.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Effekseer.Release.lib;EffekseerRendererDX11.Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LargeAddressAware>true</LargeAddressAware>
@@ -884,6 +891,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -922,7 +930,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;USE_LOW_SPEC_SETTINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -934,7 +942,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Effekseer.Release.lib;EffekseerRendererDX11.Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;photonLib-Win32.lib;dxguid.lib;winmm.lib;comctl32.lib;DirectXTK.lib;tkEngine.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Effekseer.Release.lib;EffekseerRendererDX11.Release.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LargeAddressAware>true</LargeAddressAware>
@@ -943,6 +951,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -980,7 +989,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -988,7 +997,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;dxguid.lib;winmm.lib;comctl32.lib;tkEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;dxguid.lib;winmm.lib;comctl32.lib;tkEngine.lib;%(AdditionalDependencies);photonLib-x64.lib</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LargeAddressAware>true</LargeAddressAware>
@@ -997,6 +1006,7 @@
       <TargetMachine>MachineX64</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -1037,7 +1047,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;USE_MIDDLE_SPEC_SETTINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -1045,7 +1055,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;dxguid.lib;winmm.lib;comctl32.lib;tkEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;dxguid.lib;winmm.lib;comctl32.lib;tkEngine.lib;%(AdditionalDependencies);photonLib-x64.lib</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LargeAddressAware>true</LargeAddressAware>
@@ -1054,6 +1064,7 @@
       <TargetMachine>MachineX64</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -1094,7 +1105,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;USE_LOW_SPEC_SETTINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -1102,7 +1113,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;dxguid.lib;winmm.lib;comctl32.lib;tkEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;xaudio2.lib;xinput.lib;dxguid.lib;winmm.lib;comctl32.lib;tkEngine.lib;%(AdditionalDependencies);photonLib-x64.lib</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LargeAddressAware>true</LargeAddressAware>
@@ -1111,6 +1122,7 @@
       <TargetMachine>MachineX64</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -1380,7 +1392,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;TK_MASTER</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -1389,7 +1401,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>winmm.lib;comctl32.lib;tkEngine.lib</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;comctl32.lib;tkEngine.lib;photonLib-x64.lib</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -1400,6 +1412,7 @@
       <TargetMachine>MachineX64</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -1438,7 +1451,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;TK_MASTER;USE_MIDDLE_SPEC_SETTINGS</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -1447,7 +1460,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>winmm.lib;comctl32.lib;tkEngine.lib</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;comctl32.lib;tkEngine.lib;photonLib-x64.lib</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -1458,6 +1471,7 @@
       <TargetMachine>MachineX64</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -1496,7 +1510,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;TK_MASTER;USE_LOW_SPEC_SETTINGS</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -1505,7 +1519,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>winmm.lib;comctl32.lib;tkEngine.lib</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;comctl32.lib;tkEngine.lib;photonLib-x64.lib</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -1516,6 +1530,7 @@
       <TargetMachine>MachineX64</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -1554,7 +1569,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -1565,7 +1580,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>winmm.lib;comctl32.lib;tkEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;comctl32.lib;tkEngine.lib;%(AdditionalDependencies);photonLib-x64.lib</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -1576,6 +1591,7 @@
       <TargetMachine>MachineX64</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -1614,7 +1630,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;USE_MIDDLE_SPEC_SETTINGS</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -1623,7 +1639,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>winmm.lib;comctl32.lib;tkEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;comctl32.lib;tkEngine.lib;%(AdditionalDependencies);photonLib-x64.lib</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -1634,6 +1650,7 @@
       <TargetMachine>MachineX64</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -1672,7 +1689,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Photon-Inc;..\..\..\DXUT11\Core;..\..\..\DXUT11\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;BT_NO_SIMD_OPERATOR_OVERLOADS;USE_LOW_SPEC_SETTINGS</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -1681,7 +1698,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>winmm.lib;comctl32.lib;tkEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;comctl32.lib;tkEngine.lib;%(AdditionalDependencies);photonLib-x64.lib</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -1692,6 +1709,7 @@
       <TargetMachine>MachineX64</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -1821,6 +1839,147 @@
     <ClInclude Include="GamenDraw.h" />
     <ClInclude Include="GamenTimer.h" />
     <ClInclude Include="GameTaiki.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\ANSIString.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Base.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\BaseCharString.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\BaseListener.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Common.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\CustomType.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\CustomTypeBase.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\CustomTypeFactory.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\defines.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\DeSerializer.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Dictionary.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\DictionaryBase.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\EGTime.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Enums\DebugLevel.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Enums\TypeCode.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Hashtable.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ArrayLengthType.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\CompileTimeAssertTrue.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ConfirmAllowed.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ConfirmAllowedKey.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\CustomTypeCallbackWrapper.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\Data.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\debug_assert.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\DeSerializerImplementation.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ElementAccessor.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\EnableIf.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\EndianCorrectCast.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\EndianCorrectCastImplementation.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\IsDerivedFrom.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\IsPrimitiveType.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\IsSame.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\KeyToObject.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\Lockguard.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\MathHelper.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ObjectToStringConverter.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ObjectToStringConverterBase.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\PrimitiveToStringConverter.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\PrimitiveToStringConverterBase.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\RemoveConst.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\RemovePointer.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SerializerImplementation.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\SharedPointer.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\SharedPointerBase.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\SmartPointerBase.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\SmartPointerInterface.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\UniquePointer.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\UniquePointerBase.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\Spinlock.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\Thread.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ToStringImplementation.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\TypeName.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ValueToObject.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\JString.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\JVector.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\KeyObject.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\LogFormatOptions.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Logger.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Allocate.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\AllocatorInterface.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\DirectAllocator.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\Entry.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\Interface.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\MemoryPool.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\MemoryPoolManager.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\RawStorage.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Object.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\platformLayer.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\platform_definition.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\porting.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Serializer.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\ToString.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\UTF8String.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\ValueObject.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\AuthenticationValues.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Client.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\CustomAuthenticationType.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\DirectMode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\DisconnectCause.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\ErrorCode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\LobbyType.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\MatchmakingMode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\PeerStates.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\RegionSelectionMode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\ServerType.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\FriendInfo.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\AuthenticationValuesSecretSetter.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\EncryptionDataParameters.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\EncryptionMode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\EventCode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\JoinMode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\JoinType.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\OperationCode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\ParameterCode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\Properties\Player.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\Properties\Room.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\MutablePlayerFactory.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\MutableRoomFactory.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PlayerFactory.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PlayerMovementInformant.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PlayerMutableRoomPointerSetter.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PlayerPropertiesCacher.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PlayerPropertiesUpdateInformant.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PuncherClient.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\RoomFactory.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\RoomPropertiesCacher.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Utils.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Listener.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\LobbyStatsRequest.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\LobbyStatsResponse.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\MutablePlayer.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\MutableRoom.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Peer.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Player.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\RaiseEventOptions.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Room.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\RoomOptions.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\WebFlags.h" />
+    <ClInclude Include="Photon-Inc\PEventListener.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\ConnectionProtocol.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\ErrorCode.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\EventCache.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\EventCode.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\EventKey.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\NetworkPort.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\OperationCode.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\ParameterCode.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\PeerState.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\ReceiverGroup.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\StatusCode.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\EventData.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\LitePeer.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\OperationRequest.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\OperationResponse.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\PhotonListener.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\PhotonPeer.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Punchthrough\Puncher.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Punchthrough\PunchListener.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Punchthrough\RelayClient.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\TrafficStats.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\TrafficStatsGameLevel.h" />
+    <ClInclude Include="Photon-Inc\PNetworkLogic.h" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Player_RType2.h" />
