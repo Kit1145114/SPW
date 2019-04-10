@@ -26,6 +26,7 @@ public:
 	void Move();
 	void Death();
 	void explosion();
+	void Timer();
 	static void Generate(int Reload);
 	void init(CVector3 position, prefab::CSkinModelRender* skinModelRender);
 
@@ -51,5 +52,6 @@ private:
 	bool movecount = false;
 	int myPlanetnumber;    //自分のPlametナンバー保存用
 	int PadMaxKazu = 0;
+	int time = 0;   //plametが誕生してからの時間
 };
 

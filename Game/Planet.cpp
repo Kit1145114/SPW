@@ -174,6 +174,10 @@ void Planet::explosion()
 	DeleteGO(this);
 	//m_game->SetPlanetAgeinCount(-1);
 }
+void Planet::Timer()
+{
+	time++;
+}
 //˜f¯€–S”»’èB
 void Planet::Death(){
 	
@@ -184,7 +188,10 @@ void Planet::Death(){
 		if (p_kyori.Length() < radius
 			&& m_game->m_player[i]->GetDeathCount() == false) {
 			m_game->m_player[i]->Death();
-			if (i == 0)
+			if (time == 0) { //‚o‚n‚o‚ÍŠ¨•Ù‚µ‚Ä‚â‚Á‚¼I
+				explosion();
+			}
+			else if (i == 0)
 			{
 				Pl1->SetDeath(true);
 			}
@@ -232,7 +239,7 @@ void Planet::Death(){
 }
 
 void Planet::Update() {
-	
+	Timer();
 	Move();
 	Death();
 }
