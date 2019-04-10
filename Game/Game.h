@@ -177,7 +177,7 @@ private:
 	int Star0 = 0;
 	float P_pos = 400.0f;
 	float MaxC_pos = 1700.0f;
-	float MinC_pos = 800.0f;
+	float MinC_pos = 1600.0f;
 	int PB_Kazu = 0;
 	bool PBullet_Init = false;
 	bool S_Init = false;

@@ -97,7 +97,7 @@ bool Game::Start()
 		m_player[1] = NewGO<Player>(0, "Player1");
 		m_player[1]->SetPadNum(1);
 		m_player[1]->SetPositionX(P_pos*-1);
-		Pl2 = NewGO<Draw_2P>(0, "1P");
+		Pl2 = NewGO<Draw_2P>(0, "2P");
 		Pl2->SetPosition(-150.0f, -300.0f);
 		m_player[2] = NewGO<Player>(0, "Player2");
 		m_player[2]->SetPadNum(2);
@@ -190,11 +190,11 @@ void Game::CameraPos()
 		Kyori = m_player[0]->GetPosition() - m_player[1]->GetPosition();
 		if (m_camera->GetKyori() > m_camera->MinCameraPos()/*1500*/) {
 			if (Kyori.Length() < MinC_pos)
-				m_camera->SetKyori(-10.0f);
+				m_camera->SetKyori(-15.0f);
 		}
 		if (m_camera->GetKyori() < m_camera->MaxCameraPos()/*4000*/) {
 			if (Kyori.Length() > MaxC_pos) {
-				m_camera->SetKyori(10.0f);
+				m_camera->SetKyori(15.0f);
 			}
 		}
 		break;
@@ -204,11 +204,11 @@ void Game::CameraPos()
 		Kyori = m_player[0]->GetPosition() - m_player[1]->GetPosition() - m_player[2]->GetPosition();
 		if (m_camera->GetKyori() > m_camera->MinCameraPos()/*1500*/) {
 			if (Kyori.Length() < MinC_pos)
-				m_camera->SetKyori(-10.0f);
+				m_camera->SetKyori(-15.0f);
 		}
 		if (m_camera->GetKyori() < m_camera->MaxCameraPos()/*3000*/) {
 			if (Kyori.Length() > MaxC_pos) {
-				m_camera->SetKyori(10.0f);
+				m_camera->SetKyori(15.0f);
 			}
 		}
 		break;
@@ -220,11 +220,11 @@ void Game::CameraPos()
 			m_player[2]->GetPosition() - m_player[4]->GetPosition();
 		if (m_camera->GetKyori() > m_camera->MinCameraPos()/*1500*/) {
 			if (Kyori.Length() < MinC_pos)
-				m_camera->SetKyori(-10.0f);
+				m_camera->SetKyori(-15.0f);
 		}
 		if (m_camera->GetKyori() < m_camera->MaxCameraPos()/*3000*/) {
 			if (Kyori.Length() > MaxC_pos) {
-				m_camera->SetKyori(10.0f);
+				m_camera->SetKyori(15.0f);
 			}
 		}
 	}

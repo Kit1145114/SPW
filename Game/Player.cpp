@@ -195,12 +195,14 @@ void Player::PBullet2()
 //プレイヤーの進化用
 void Player::Pevolution()
 {
-	if (StarCount==1 && S_Rtype2 == nullptr)
-	{
-		S_Rtype2 = NewGO<Senkan_Rtype_2>(0, "Senkan_RType_2");
-		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
-		Ver = 1;
-		m_mode = 1;
+	for (int i = 0; i < s_kazu->GetKazu(); i++) {
+		if (m_player[i]->GetStarCount() == 1 && m_player[i]->GetMode() == 0)
+		{
+			//S_Rtype2 = NewGO<Senkan_Rtype_2>(0, "Senkan_RType_2");
+			m_player[i]->m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
+			m_player[i]->SetVer(1);
+			m_mode = 1;
+		}
 	}
 }
 //プレイヤーの死亡判定
@@ -334,6 +336,7 @@ void Player::S_Hantei()
 	for (int i = 0; i < s_kazu->GetKazu(); i++) {
 		if (m_game->GetS_Init() == false)
 		{
+
 		}
 		else if (m_game->GetS_Init() == true) {
 			m_star = FindGO<Star>("Star");
@@ -350,8 +353,8 @@ void Player::S_Hantei()
 void Player::B_Hantei()
 {
 	for (int i = 0; i < s_kazu->GetKazu(); i++) {
-		if (DeathCount == false)
-		{
+		/*if (DeathCount == false)
+		{*/
 			if (PadNum > 0) {
 				if (m_game->GetPBInit() == true) {
 					m_bullet = FindGO<Bullet>("PlayerBullet");
@@ -359,7 +362,6 @@ void Player::B_Hantei()
 					if (kyori.Length() < 150.0f)
 					{
 						m_player[i]->Death();
-						/*m_game->SetDeathPl(i, true);*/
 						if (i == 0)
 						{
 							Pl1->SetDeath(true);
@@ -376,7 +378,7 @@ void Player::B_Hantei()
 						{
 							Pl4->SetDeath(true);
 						}
-					}
+					//}
 				}
 			}
 			else if (m_game->GetPBInit() == false)

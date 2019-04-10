@@ -21,6 +21,7 @@ private:
 	int Kazu = 1;
 	int MaxKazu = 4;
 	int MinKazu = 1;
+	bool GameStart = false;
 	bool Death = false;
 };
 

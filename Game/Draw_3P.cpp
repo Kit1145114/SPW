@@ -35,7 +35,7 @@ void Draw_3P::Update()
 	}
 	else if (/*m_game->GetPl1Death()*/Death == false)
 	{
-		m_spriteRender->Init(L"sprite/2P.dds", 200.0f, 100.0f);
+		m_spriteRender->Init(L"sprite/3P.dds", 200.0f, 100.0f);
 	}
 	m_spriteRender->SetPosition(m_position);
 }

@@ -76,6 +76,10 @@ public:
 	{
 		return Ver;
 	}
+	int GetMode()
+	{
+		return m_mode;
+	}
 	void SetStarCount(int a)
 	{
 		StarCount += a;
