@@ -2,7 +2,6 @@
 #include"field.h"
 #include"Camera.h"
 #include"Player.h"
-#include"Player_RType2.h"
 #include"GamenTimer.h"
 #include"Enemy.h"
 #include"Title_2.h"

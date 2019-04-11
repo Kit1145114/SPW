@@ -33,3 +33,22 @@ void Bullet::Update()
 		m_game->SetKazu(-1);
 	}
 }
+
+int Bullet::GetPB()
+{
+	switch (PB)
+	{
+		case 0:
+			return 0;
+			break;
+		case 1:
+			return 1;
+			break;
+		case 2:
+			return 2;
+			break;
+		case 3:
+			return 3;
+			break;
+	}
+}

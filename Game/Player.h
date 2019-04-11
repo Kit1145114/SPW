@@ -1,6 +1,5 @@
 #pragma once
 #include"Bullet.h"
-#include"Player_RType2.h"
 #include"Senkan_Rtype_2.h"
 #include"Game.h"
 #include"Enemy.h"

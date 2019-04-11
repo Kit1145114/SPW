@@ -1796,7 +1796,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Player_RType2.cpp" />
     <ClCompile Include="SansenGamen.cpp" />
     <ClCompile Include="SansenKazu.cpp" />
     <ClCompile Include="Senkan_Rtype_2.cpp" />
@@ -1982,7 +1981,6 @@
     <ClInclude Include="Photon-Inc\PNetworkLogic.h" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Player_RType2.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="SansenGamen.h" />
     <ClInclude Include="SansenKazu.h" />

@@ -74,7 +74,6 @@
     <ClCompile Include="GamenTimer.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Planet.cpp" />
-    <ClCompile Include="Player_RType2.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="Sinka_Bar.cpp" />
     <ClCompile Include="Senkan_Rtype_2.cpp" />
@@ -103,7 +102,6 @@
     <ClInclude Include="GamenTimer.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Planet.h" />
-    <ClInclude Include="Player_RType2.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="Sinka_Bar.h" />
     <ClInclude Include="Senkan_Rtype_2.h" />

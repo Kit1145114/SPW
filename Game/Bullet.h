@@ -42,10 +42,16 @@ public:
 	{
 		return Kill;
 	}
+	void SetPB(int a)
+	{
+		PB = a;
+	}
 	void Update();
+	int GetPB();
 private:
 	Game * m_game = nullptr;
 	int m_timer = 0;
+	int PB = 0;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
