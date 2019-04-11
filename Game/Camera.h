@@ -46,5 +46,7 @@ private:
 	float MinCamera = 1500.0f;
 	CVector3 p1_pos = { 0.0f, 0.0f, 0.0f };
 	CVector3 p2_pos = { 0.0f, 0.0f, 0.0f };
+	float xup = 0.0f;
+	float xdn = 0.0f;
 };
 

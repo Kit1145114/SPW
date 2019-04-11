@@ -18,7 +18,7 @@ bool Camera::Start() {
 	s_kazu = FindGO<SansenKazu>("SansenKazu");
 		//カメラのニアクリップ
 	MainCamera().SetNear(1.0f);
-	MainCamera().SetFar(10000.0f);
+	MainCamera().SetFar(100000.0f);
 
 	return true;
 }
@@ -30,33 +30,25 @@ void Camera::TOP() {
 	
 	target = m_game->GetPosition() - m_CameraPos;
 
-	//パッドの入力を使ってカメラを回す
-	//float x = Pad(0).GetRStickXF();
-	//float y = Pad(0).GetRStickYF();
-
+	//カメラ
+	if (Pad(0).IsPress(enButtonUp)) {
+		
+		xup += -100.0f;
+		
+	}
+	if (Pad(0).IsPress(enButtonDown)) {
+		
+		xdn += 100.0f;
+		
+	}
+	m_CameraPos.y += xup;
+	m_CameraPos.y += xdn;
 	MainCamera().SetUp(CVector3::AxisZ);
 }
 
 void Camera::Move() {
 	//ズーム＆アウト
-	switch (s_kazu->GetKazu())
-	{
-	case 1:
-		target = m_game->GetPosition() - m_CameraPos;
-		break;
-	case 2:
-		p1_pos = m_player[0].GetPosition();
-		target = p1_pos;
-		p2_pos = m_player[1].GetPosition();
-		target = p2_pos;
-		break;
-	case 3:
-		//target = m_game->GetPosition() - m_CameraPos;
-		break;
-	case 4:
-		//target = m_game->GetPosition() - m_CameraPos;
-		break;
-	}
+
 }
 
 void Camera::Update() {
