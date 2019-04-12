@@ -52,19 +52,18 @@ bool Planet::Start()
 	return true;
 }
 
-void Planet::Generate(int Reload) {
+void Planet::Generate(int Reload, int Planetnum) {
 	
 	Game* m_game = nullptr;
 	m_game = FindGO<Game>("Game");
 	//Planetnumber_Num分の作成
 	for (int i = 0, w = Planetnumber_00;i < Reload;i++, w++) {
-		//常にGetPlanetAgeinCount＝＝11が出現するように
-		//if (m_game->GetPlanetAgeinCount() < Planetnumber_Num) {
-			//m_game->SetPlanetAgeinCount(+1);
 			prefab::CSkinModelRender* P_skinModelRender;
 			P_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 			
 			//惑星のモデリング指定。
+			if(Reload != Planetnumber_Num) //Numは初期リスポーンのため例外。
+			w = Planetnum;          //惑星の指定。
 			switch (w) {
 			case Planetnumber_00:
 				P_skinModelRender->Init(L"modelData/planet0fire.cmo");
@@ -105,8 +104,16 @@ void Planet::Generate(int Reload) {
 			default:w = Planetnumber_00;
 			}
 			Planet* m_planet = NewGO<Planet>(0, "planet");
-			m_game->memoryPP[i] = m_planet;
-			m_planet->myPlanetnumber = w;    //自分のPlametナンバー保存
+			//初期リスポーンの場合。
+			if (Planetnum == Planetnumber_Num) {
+				m_game->memoryPP[i] = m_planet;
+				m_planet->myPlanetnumber = i;    //自分のPlametナンバー保存。
+			}
+			//リポップ。
+			else if (Planetnum != Planetnumber_Num) {
+				m_game->memoryPP[w] = m_planet;
+				m_planet->myPlanetnumber = w;    //自分のPlametナンバー保存。
+			}
 
 			//ランダムポップ。
 			float vx = Random().GetRandDouble();
@@ -170,7 +177,7 @@ void Planet::explosion()
 	Star* m_star = NewGO<Star>(0, "Star");
 	m_star->Pop(this->p_position);
 	m_game->SetStarCount(1);
-	Generate(1); //新たな惑星を生成（自分のナンバーの惑星を）。
+	Generate(1, myPlanetnumber); //新たな惑星を生成（自分のナンバーの惑星を）。
 	DeleteGO(this);
 	//m_game->SetPlanetAgeinCount(-1);
 }
@@ -223,8 +230,8 @@ void Planet::Death() {
 	}
 	//惑星分回す。
 	for (int i = 0;i < Planetnumber_Num;i++) {
-	//ちっ、、、癇に障る野郎だぜ、、追いついたと思ったらすぐ突き放して来やがる(惑星同士の距離判定。
-		//もし比較する惑星が自分でなければ。
+		//ちっ、、、癇に障る野郎だぜ、、追いついたと思ったらすぐ突き放して来やがる(惑星同士の距離判定。
+			//もし比較する惑星が自分でなければ。
 		if (m_game->memoryPP[i] != this) {
 			//2点間の距離を計算する。
 			CVector3 diff = m_game->memoryPP[i]->p_position - p_position;
@@ -236,13 +243,14 @@ void Planet::Death() {
 				explosion();
 			}
 		}
+	}
+		//ほーっほぉほぉほぉお素晴らしい！ホラ、見てご覧なさい！ザーボンさんドドリアさん、エリア外にでて爆発する綺麗な花火ですよぉ。
 
-		//ほーっほぉほぉほぉお素晴らしい！ホラ、見てご覧なさい！ザーボンさんドドリアさん、エリア外にでて爆発する綺麗な花火ですよぉ。0
 		if (p_position.x> 30000.0f || p_position.x< -30000.0f
 			||p_position.z>20000.0f || p_position.z < -20000.0f) {
 			explosion();
 		}
-	}
+	
 }
 
 void Planet::Update() {
