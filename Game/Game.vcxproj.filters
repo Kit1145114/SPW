@@ -85,6 +85,7 @@
     <ClCompile Include="Draw_2P.cpp" />
     <ClCompile Include="Draw_3P.cpp" />
     <ClCompile Include="Draw_4P.cpp" />
+    <ClCompile Include="GameWait.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -536,6 +537,7 @@
     <ClInclude Include="Photon-Inc\Photon-cpp\inc\Punchthrough\RelayClient.h">
       <Filter>PhotonLib\Photon\Punchthrough</Filter>
     </ClInclude>
+    <ClInclude Include="GameWait.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -602,5 +604,6 @@
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\sprite\Icon.png" />
   </ItemGroup>
 </Project>
