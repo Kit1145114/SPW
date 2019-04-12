@@ -147,13 +147,13 @@ void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender)
 	p_skinModelRender0->SetScale(scale);
 	p_skinModelRender0->SetPosition(position);
 }
+//ランダム移動。
 void Planet::Move() {
-	//ランダム移動。
 	
 	if (movecount == false) {
 		
-		randomspeed.x = Random().GetRandDouble() * 100 * GameTime().GetFrameDeltaTime();
-		randomspeed.z = Random().GetRandDouble() * 100 * GameTime().GetFrameDeltaTime();
+		randomspeed.x = Random().GetRandDouble() * 1000 * GameTime().GetFrameDeltaTime();
+		randomspeed.z = Random().GetRandDouble() * 1000 * GameTime().GetFrameDeltaTime();
 		if (Random().GetRandDouble() <= 0.5f)
 			randomspeed.x *= -1;
 		if (Random().GetRandDouble() <= 0.5f)
@@ -170,7 +170,7 @@ void Planet::explosion()
 	Star* m_star = NewGO<Star>(0, "Star");
 	m_star->Pop(this->p_position);
 	m_game->SetStarCount(1);
-	Generate(1); //新たな惑星を生成（自分のナンバーの惑星を）
+	Generate(1); //新たな惑星を生成（自分のナンバーの惑星を）。
 	DeleteGO(this);
 	//m_game->SetPlanetAgeinCount(-1);
 }
@@ -179,8 +179,8 @@ void Planet::Timer()
 	time++;
 }
 //惑星死亡判定。
-void Planet::Death(){
-	
+void Planet::Death() {
+
 	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
 	m_sansenkazu = FindGO<SansenKazu>("SansenKazu");
 	for (int i = 0;i < m_sansenkazu->GetKazu();i++) {
@@ -188,7 +188,7 @@ void Planet::Death(){
 		if (p_kyori.Length() < radius
 			&& m_game->m_player[i]->GetDeathCount() == false) {
 			m_game->m_player[i]->Death();
-			if (time == 0) { //ＰＯＰ時は勘弁してやっぞ！
+			if (time > 2) { //ＰＯＰ時は勘弁してやっぞ！
 				explosion();
 			}
 			else if (i == 0)
@@ -221,8 +221,9 @@ void Planet::Death(){
 			}
 		}
 	}
-	//惑星同士の距離判定。
+	//惑星分回す。
 	for (int i = 0;i < Planetnumber_Num;i++) {
+	//ちっ、、、癇に障る野郎だぜ、、追いついたと思ったらすぐ突き放して来やがる(惑星同士の距離判定。
 		//もし比較する惑星が自分でなければ。
 		if (m_game->memoryPP[i] != this) {
 			//2点間の距離を計算する。
@@ -234,6 +235,12 @@ void Planet::Death(){
 			else if (m_game->memoryPP[i]->radius + radius > diff.Length()) {
 				explosion();
 			}
+		}
+
+		//ほーっほぉほぉほぉお素晴らしい！ホラ、見てご覧なさい！ザーボンさんドドリアさん、エリア外にでて爆発する綺麗な花火ですよぉ。0
+		if (p_position.x> 3000.0f && p_position.x< -30000.0f
+			&&p_position.z>2000.0f && p_position.z < -20000.0f) {
+			explosion();
 		}
 	}
 }
