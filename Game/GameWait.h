@@ -17,6 +17,7 @@ public:
 	void Init(PhotonLib::PNetworkLogic* network = nullptr);
 	bool Start() override;
 	void Update() override;
+	void PostRender(CRenderContext& rc) override;
 
 private:
 	static constexpr wchar_t* appID = L"0a51cad7-3a38-45c2-960d-98cbebf4e701"; //photon接続に使用するappID
@@ -25,10 +26,11 @@ private:
 	PhotonLib::PNetworkLogic* network = nullptr;
 
 	bool inited = false; //Init関数を実行したかどうか。
+	bool disco = false;
 
-	static constexpr int iconArrayNum = 4;
-	prefab::CSpriteRender* icon;
-	CVector4 color = {1,0,0,1};
-	CVector3 pos = {0, 100, 0};
+	unsigned int flame = 0;
+
+	const wchar_t* NetMessage = L"";
+	CFont font;
 };
 
