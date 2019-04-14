@@ -26,11 +26,8 @@ private:
 	PhotonLib::PNetworkLogic* network = nullptr;
 
 	bool inited = false; //InitŠÖ”‚ğÀs‚µ‚½‚©‚Ç‚¤‚©B
-	bool disco = false;
+	bool roomIn = false; //“üº‚Ü‚Å‚ğI‚¦‚½‚©‚Ç‚¤‚©
 
-	unsigned int flame = 0;
-
-	const wchar_t* NetMessage = L"";
 	CFont font;
 };
 

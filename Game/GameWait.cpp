@@ -25,50 +25,54 @@ bool GameWait::Start() {
 		return false;
 	}
 	network->connect();
-	NetMessage = L"Connecting...";
 	return true;
 }
 
 void GameWait::Update() {
-	if (disco) {
-		return;
-	}
 
-	if (network->isError()) {
-		return;
-	}
+	if (!network->isError()) {
 
-	network->Update();
-	flame++;
+		network->Update();
 
-	if (flame == 500) {
-		flame = 500;
-	}
+		if (!roomIn) {//“üŽºˆ—
+			network->joinOrCreateRoom("Room", 4);
+			if (network->isRoomIn()) {
+				roomIn = true;
+			}
+			return;
+		}
 
-	if (network->isError()) {
-		NetMessage = L"Error";
+		if (Pad(0).IsTrigger(enButtonA)) {
+			network->disconnect();
+		}
+
+	}else {
 		network->disconnect();
-		disco = true;
 		return;
-	}
-
-	if (network->isConnecting()) {
-		NetMessage = L"Connect!";
-		network->joinOrCreateRoom("Room", 4);
-	} else {
-		return;
-	}
-
-	if (network->isRoomIn()) {
-		NetMessage = L"Room In!";
 	}
 }
 
 void GameWait::PostRender(CRenderContext & rc) {
 	font.Begin(rc);
-	wchar_t txt[256];
-	swprintf(txt, L"%d", flame);
-	font.Draw(txt, { 0,100 });
-	font.Draw(NetMessage, { 0,0 });
+	const wchar_t* message;
+	switch (network->getState()) {
+	case PNetworkLogic::DISCONNECT:
+		message = L"Disconnected";
+		break;
+	case PNetworkLogic::TRY_CONNECT:
+		message = L"Connecting...";
+		break;
+	case PNetworkLogic::CONNECT:
+		message = L"Connected";
+		break;
+	case PNetworkLogic::TRY_ROOMIN:
+		message = L"Going to room...";
+		break;
+	case PNetworkLogic::ROOMIN:
+		message = L"now in Room";
+		break;
+	}
+
+	font.Draw(message, { 0,0 });
 	font.End(rc);
 }
