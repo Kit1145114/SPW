@@ -86,7 +86,8 @@
     <ClCompile Include="Draw_3P.cpp" />
     <ClCompile Include="Draw_4P.cpp" />
     <ClCompile Include="GameWait.cpp" />
-    <ClCompile Include="NetPad.cpp" />
+    <ClCompile Include="Network\NetPad.cpp" />
+    <ClCompile Include="NetManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -539,7 +540,8 @@
       <Filter>PhotonLib\Photon\Punchthrough</Filter>
     </ClInclude>
     <ClInclude Include="GameWait.h" />
-    <ClInclude Include="NetPad.h" />
+    <ClInclude Include="Network\NetPad.h" />
+    <ClInclude Include="NetManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">

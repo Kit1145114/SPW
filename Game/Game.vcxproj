@@ -1795,7 +1795,8 @@
     <ClCompile Include="GameTaiki.cpp" />
     <ClCompile Include="GameWait.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="NetPad.cpp" />
+    <ClCompile Include="NetManager.cpp" />
+    <ClCompile Include="Network\NetPad.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SansenGamen.cpp" />
@@ -1841,7 +1842,8 @@
     <ClInclude Include="GamenTimer.h" />
     <ClInclude Include="GameTaiki.h" />
     <ClInclude Include="GameWait.h" />
-    <ClInclude Include="NetPad.h" />
+    <ClInclude Include="NetManager.h" />
+    <ClInclude Include="Network\NetPad.h" />
     <ClInclude Include="Photon-Inc\Common-cpp\inc\ANSIString.h" />
     <ClInclude Include="Photon-Inc\Common-cpp\inc\Base.h" />
     <ClInclude Include="Photon-Inc\Common-cpp\inc\BaseCharString.h" />

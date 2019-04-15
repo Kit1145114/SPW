@@ -2,6 +2,7 @@
 namespace PhotonLib {
 	class PNetworkLogic;
 }
+class NetPadManager;
 
 /// <summary>
 /// NewGOした後、Init関数を実行してください。
@@ -11,10 +12,6 @@ public:
 	GameWait();
 	~GameWait();
 
-	/// <summary>
-	/// NewGOした後、次のフレームまでに実行してください
-	/// </summary>
-	void Init(PhotonLib::PNetworkLogic* network = nullptr);
 	bool Start() override;
 	void Update() override;
 	void PostRender(CRenderContext& rc) override;
@@ -25,7 +22,6 @@ private:
 
 	PhotonLib::PNetworkLogic* network = nullptr;
 
-	bool inited = false; //Init関数を実行したかどうか。
 	bool roomIn = false; //入室までを終えたかどうか
 
 	CFont font;

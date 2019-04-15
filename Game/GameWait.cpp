@@ -1,30 +1,27 @@
 #include "stdafx.h"
 #include "GameWait.h"
-#include "PNetworkLogic.h"
+#include "NetPad.h"
+#include "Game.h"
 
 using namespace PhotonLib;
 
-GameWait::GameWait() {}
+GameWait::GameWait() {
+	if (NetPadManager::manager().isInited()) {
+		network = NetPadManager::manager().getNetwork();
+		roomIn = true;
+	} else {
+		network = new PNetworkLogic(appID, version);
+	}
+}
 
 GameWait::~GameWait() {
 	delete network;
 }
 
-void GameWait::Init(PNetworkLogic * network_) {
-	if (network_ != nullptr) {
-		network = network_;
-	} else {
-		network = new PNetworkLogic(appID, version);
-	}
-	inited = true;
-}
-
 bool GameWait::Start() {
-	if (!inited) {
-		//NewGOした後、Init関数を実行してください。
-		return false;
+	if (!roomIn) {
+		network->connect();
 	}
-	network->connect();
 	return true;
 }
 
@@ -42,11 +39,17 @@ void GameWait::Update() {
 			return;
 		}
 
-		if (Pad(0).IsTrigger(enButtonA)) {
-			network->disconnect();
+		//入室完了後の処理
+		if (!NetPadManager::manager().isInited()) {//パッドマネージャーを初期化
+			NetPadManager::manager().Init(network);
 		}
 
-	}else {
+		if (Pad(0).IsTrigger(enButtonA)) {//Aボタンで開始
+			DeleteGO(this);
+			NewGO<Game>(0, "Game");
+		}
+
+	}else {//エラーが出たため切断
 		network->disconnect();
 		return;
 	}
