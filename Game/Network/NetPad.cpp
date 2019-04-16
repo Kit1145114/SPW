@@ -20,31 +20,31 @@ void NetPad::SetFromArray(nByte * array) {
 	for (int bit = 0; bit < enButtonNum; bit++) {
 		m_press[bit] = array[bit / 8] & (1 << bit % 8);
 	}
-	nByte* ap = array + 2;
+	/*nByte* ap = array + 2;
 	std::memcpy(&m_lStickX, ap, 4);
 	ap += 4;			  
 	std::memcpy(&m_lStickY, ap, 4);
 	ap += 4;			  
 	std::memcpy(&m_rStickX, ap, 4);
 	ap += 4;			  
-	std::memcpy(&m_rStickY, ap, 4);
+	std::memcpy(&m_rStickY, ap, 4);*/
 	updated = true;
 }
 
 void NetPad::sendState(PhotonLib::PNetworkLogic & network) {
-	nByte array[18];
+	nByte array[2];
 	for (int bit = 0; bit < enButtonNum; bit++) {
 		array[bit / 8] |= (1 << bit % 8);
 	}
 	
-	nByte* ap = array + 2;
+	/*nByte* ap = array + 2;
 	std::memcpy(ap, &m_lStickX, 4);
 	ap += 4;
 	std::memcpy(ap, &m_lStickY, 4);
 	ap += 4;
 	std::memcpy(ap, &m_rStickX, 4);
 	ap += 4;
-	std::memcpy(ap, &m_rStickY, 4);
+	std::memcpy(ap, &m_rStickY, 4);*/
 
-	network.raiseEvent(true, array, 18, 0, 0);
+	network.raiseEvent(true, array, 2, 0, 0);
 }

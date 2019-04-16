@@ -27,6 +27,7 @@ void NetManager::Init(ExitGames::Common::JString appID, ExitGames::Common::JStri
 	delete network;
 	network = new PNetworkLogic(appID, version);
 	network->connect();
+	network->addEventListener(this);
 }
 
 void NetManager::PreUpdate() {
@@ -47,12 +48,12 @@ void NetManager::PreUpdate() {
 		int localNum = network->getLocalPlayerNum() - 1;
 		pads[localNum].SetFromCPad(Pad(0));
 		pads[localNum].sendState(*network);
+		Common::JVector<LoadBalancing::Player*> players = network->getJoinedRoom().getPlayers();
 		while (true) {
 			network->Update();
-			Common::JVector<LoadBalancing::Player*> players = network->getJoinedRoom().getPlayers();
 			bool allUpdated = true;
 			for (int i = 0; i < players.getSize(); i++) {
-				if (! pads[players[i]->getNumber()-1].isUpdated()) {
+				if (!players[i]->getIsInactive() && !pads[players[i]->getNumber()-1].isUpdated()) {
 					allUpdated = false;
 					break;
 				}
@@ -60,6 +61,7 @@ void NetManager::PreUpdate() {
 			if (allUpdated) {
 				break;
 			}
+			Sleep(10);
 		}
 		for (NetPad& pad : pads) {
 			pad.resetUpdateFlag();
