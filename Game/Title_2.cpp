@@ -27,6 +27,6 @@ void Title_2::Update()
 	{
 		DeleteGO(this);
 		//NewGO<SansenGamen>(0,"SansenGamen");
-		NewGO<GameWait>(0)->Init();
+		NewGO<GameWait>(0);
 	}
 }

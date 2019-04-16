@@ -87,7 +87,7 @@
     <ClCompile Include="Draw_4P.cpp" />
     <ClCompile Include="GameWait.cpp" />
     <ClCompile Include="Network\NetPad.cpp" />
-    <ClCompile Include="NetManager.cpp" />
+    <ClCompile Include="Network\NetManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -541,7 +541,8 @@
     </ClInclude>
     <ClInclude Include="GameWait.h" />
     <ClInclude Include="Network\NetPad.h" />
-    <ClInclude Include="NetManager.h" />
+    <ClInclude Include="Network\NetManager.h" />
+    <ClInclude Include="Network\NPad.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">

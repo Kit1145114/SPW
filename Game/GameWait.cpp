@@ -1,64 +1,33 @@
 #include "stdafx.h"
 #include "GameWait.h"
-#include "NetPad.h"
 #include "Game.h"
+#include "Network\NetPad.h"
+#include "Network\NetManager.h"
 
 using namespace PhotonLib;
 
 GameWait::GameWait() {
-	if (NetPadManager::manager().isInited()) {
-		network = NetPadManager::manager().getNetwork();
-		roomIn = true;
-	} else {
-		network = new PNetworkLogic(appID, version);
+	if (!NetManager::isInited()) {
+		NewGO<NetManager>(0)->Init(appID, version);
 	}
 }
 
 GameWait::~GameWait() {
-	delete network;
-}
-
-bool GameWait::Start() {
-	if (!roomIn) {
-		network->connect();
-	}
-	return true;
 }
 
 void GameWait::Update() {
+	if (!NetManager::getNet()->isRoomIn())return;
 
-	if (!network->isError()) {
-
-		network->Update();
-
-		if (!roomIn) {//入室処理
-			network->joinOrCreateRoom("Room", 4);
-			if (network->isRoomIn()) {
-				roomIn = true;
-			}
-			return;
-		}
-
-		//入室完了後の処理
-		if (!NetPadManager::manager().isInited()) {//パッドマネージャーを初期化
-			NetPadManager::manager().Init(network);
-		}
-
-		if (Pad(0).IsTrigger(enButtonA)) {//Aボタンで開始
-			DeleteGO(this);
-			NewGO<Game>(0, "Game");
-		}
-
-	}else {//エラーが出たため切断
-		network->disconnect();
-		return;
+	if (NetManager::getNet()->getLocalPlayer().getIsMasterClient() && Pad(0).IsTrigger(enButtonA)) {
+		NewGO<Game>(0, "Game");
+		DeleteGO(this);
 	}
 }
 
 void GameWait::PostRender(CRenderContext & rc) {
 	font.Begin(rc);
 	const wchar_t* message;
-	switch (network->getState()) {
+	switch (NetManager::getNet()->getState()) {
 	case PNetworkLogic::DISCONNECT:
 		message = L"Disconnected";
 		break;
@@ -75,7 +44,6 @@ void GameWait::PostRender(CRenderContext & rc) {
 		message = L"now in Room";
 		break;
 	}
-
 	font.Draw(message, { 0,0 });
 	font.End(rc);
 }
