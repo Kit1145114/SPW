@@ -29,8 +29,7 @@ void Bullet::Update()
 	m_timer++;
 	if (m_timer == 100)
 	{
-		DeleteGO(this);
-		m_game->SetKazu(-1);
+		Death();
 	}
 }
 
@@ -51,4 +50,10 @@ int Bullet::GetPB()
 			return 3;
 			break;
 	}
+}
+
+void Bullet::Death()
+{
+	DeleteGO(this);
+	m_game->SetKazu(-1);
 }

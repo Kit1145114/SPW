@@ -47,6 +47,7 @@ public:
 		PB = a;
 	}
 	void Update();
+	void Death();
 	int GetPB();
 private:
 	Game * m_game = nullptr;
