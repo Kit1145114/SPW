@@ -7,11 +7,11 @@ public:
 	NetPad(int playerNum) : playerNum(playerNum) {};
 	~NetPad() {};
 
-	bool IsPress(EnButton button) {
+	bool IsPress(EnButton button) const{
 		return m_press[button];
 	}
 
-	bool IsTrigger(EnButton button) {
+	bool IsTrigger(EnButton button) const{
 		return m_trigger[button];
 	}
 

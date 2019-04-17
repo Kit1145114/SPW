@@ -17,16 +17,38 @@ GameWait::~GameWait() {
 }
 
 void GameWait::Update() {
-	if (!NetManager::getNet()->isRoomIn())return;
-	if (NetManager::getNet()->getLocalPlayer().getIsMasterClient() && Pad(0).IsTrigger(enButtonA)) {
+	PNetworkLogic* network = NetManager::getNet();
+
+	if (!network->isRoomIn())return;
+
+	for (int num : network->getPlayersNum()) {
+		if (NetManager::getPad(num-1).IsTrigger(enButtonA)) {
+			ready[num - 1] = !ready[num - 1];
+		}
+	}
+
+	if (Pad(0).IsTrigger(enButtonB)) {
+		int i = 5;
+	}
+
+	/*bool start = true;
+	Common::JVector<LoadBalancing::Player*> players = NetManager::getNet()->getJoinedRoom().getPlayers();
+	for (int i = 0; i < players.getSize(); i++) {
+		const Common::Object* prop = players[i]->getCustomProperties().getValue(0);
+		if (prop == nullptr || !Common::ValueObject<bool>(prop).getDataCopy()) {
+			start = false;
+		}
+	}*/
+
+	/*if (start) {
 		NewGO<Game>(0, "Game");
 		DeleteGO(this);
-	}
+	}*/
 }
 
 void GameWait::PostRender(CRenderContext & rc) {
 	font.Begin(rc);
-	const wchar_t* message;
+	const wchar_t* message = L"";
 	PNetworkLogic::ConnectState state = NetManager::getNet()->getState();
 	switch(state) {
 	case PNetworkLogic::DISCONNECT:
@@ -51,10 +73,12 @@ void GameWait::PostRender(CRenderContext & rc) {
 			wchar_t str[10];
 			swprintf(str, L"player%d", players[i]->getNumber());
 			font.Draw(str, { 0, height});
+
+			if (ready[players[i]->getNumber() - 1]) {
+				font.Draw(L"ready", { 400, height });
+			}
+
 			height -= 50;
-		}
-		if (NetManager::getNet()->getLocalPlayer().getIsMasterClient()) {
-			font.Draw(L"master", { 0, -300 });
 		}
 	}
 	font.End(rc);

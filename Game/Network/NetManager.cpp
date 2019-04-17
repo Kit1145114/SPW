@@ -48,8 +48,8 @@ void NetManager::PreUpdate() {
 		int localNum = network->getLocalPlayerNum() - 1;
 		pads[localNum].SetFromCPad(Pad(0));
 		pads[localNum].sendState(*network);
-		Common::JVector<LoadBalancing::Player*> players = network->getJoinedRoom().getPlayers();
-		while (true) {
+		//Common::JVector<LoadBalancing::Player*> players = network->getJoinedRoom().getPlayers();
+		/*while (true) {
 			network->Update();
 			bool allUpdated = true;
 			for (int i = 0; i < players.getSize(); i++) {
@@ -65,7 +65,7 @@ void NetManager::PreUpdate() {
 		}
 		for (NetPad& pad : pads) {
 			pad.resetUpdateFlag();
-		}
+		}*/
 		
 
 	} else {//ƒGƒ‰[‚ªo‚½‚½‚ßØ’f
