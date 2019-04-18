@@ -25,7 +25,7 @@ bool Player::Start()
 	m_skinModelRender->Init(L"modelData/Senkan.cmo");
 	m_CharaCon.Init(100.0f, 100.0f, m_position);
 	m_game = FindGO<Game>("Game");
-	m_enemy = FindGO<Enemy>("Enemy");
+	//m_enemy = FindGO<Enemy>("Enemy");
 	s_kazu = FindGO<SansenKazu>("SansenKazu");
 	switch (s_kazu->GetKazu())
 	{
@@ -81,26 +81,37 @@ void Player::Update()
 {
 	Move();			//プレイヤーの操作
 	PBullet();		//プレイヤーの射撃操作
-//	PBullet2();
+	PBullet2();
 	Pevolution();	//プレイヤーの形態
 	Hantei();
 	Rotation();
 	Respawn();
-	//S_Hantei();
+	S_Hantei();
 	//HakoHantei();
 	B_Hantei();
 	//P_Hantei();
 	Houdai();
+	MutekiTimes();
+	HP();
 	memory_position = m_position;
 }
 //プレイヤーの操作
 void Player::Move()
 {
 	if (DeathCount == false) {
-		m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +2.0f;
-		m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +2.0f;
-		m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
-		m_skinModelRender->SetPosition(m_position);
+		if (Muteki == false) {
+			m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +8.0f;
+			m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +8.0f;
+			m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
+			m_skinModelRender->SetPosition(m_position);
+		}
+		else if(Muteki == true)
+		{
+			m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +5.0f;
+			m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +5.0f;
+			m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
+			m_skinModelRender->SetPosition(m_position);
+		}
 		//デバック用の進化
 		//if(Pad(1).IsPress(enButtonB))
 		//{
@@ -129,7 +140,7 @@ void Player::PBullet()
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 					m_Short--;
 					ShortCount = true;
-					m_game->SetKazu(1);
+					m_game->SetKazu(3);
 					p_timer = 0;
 				}
 				else {
@@ -147,88 +158,90 @@ void Player::PBullet()
 //プレイヤーの球（第二形態）
 void Player::PBullet2()
 {
-	if (Ver == 1 && m_mode == 1)
-	{
-		ShortCount = false;
-		m_mode = 0;
-	}
-	//m_timer++;
-	//p_timer++;
-	//if (m_timer > 25) {
-	//	m_Short++;
-	//	m_timer = 0;
-	//}
-	////球が一発以上
-	//if (m_Short > 0) {
-	//	//ABUTTONが押されたとき
-	//	if (Pad(0).IsPress(enButtonRB2/*enButtonA*/) == true) {
-	//		//一つ目
-	//		m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet1");
-	//		m_bullet->SetPosition(m_position);
-	//		m_bullet->SetMoveSpeedZ(15.0f);
+	if(DeathCount == false)
+		if (Ver == 1)
+		{
+			m_timer++;  // =GameTime().GetFrameDeltaTime;
+			p_timer++;
+			if (m_timer > 30) {
+				m_Short++;
+				m_timer = 0;
+			}
+			if (m_Short > 0)
+			{
+				if (Pad(PadNum).IsPress(enButtonRB2) == true) {
+					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+					m_bullet->SetPB(PadNum);
+					m_bullet->SetPosition(m_position);
+					m_bullet->SetPositionZ(HoukouX, HoukouZ);
+					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 
-	//		//二つ目
-	//		m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet2");
-	//		CVector3 pos = m_position;
-	//		pos.x += 50.0f;
-	//		m_bullet->SetPosition(pos);
-	//		m_bullet->SetMoveSpeedZ(15.0f);
+					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+					m_bullet->SetPB(PadNum);
+					m_bullet->SetPositionZ(HoukouX, HoukouZ);
+					m_bullet->SetPositionX(50.0f);
+					m_bullet->SetPosition(m_position);
+					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 
-	//		//三つ目
-	//		m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet3");
-	//		pos.x -= 100.0f;
-	//		m_bullet->SetPosition(pos);
-	//		m_bullet->SetMoveSpeedZ(15.0f);
+					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+					m_bullet->SetPB(PadNum);
+					m_bullet->SetPositionZ(HoukouX, HoukouZ);
+					m_bullet->SetPositionX(-100.0f);
+					m_bullet->SetPosition(m_position);
+					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+					m_Short--;
 
-	//		m_Short--;
-	//		ShortCount = true;
-	//		p_timer = 0;
-	//	}
-	//}
-	//else if (Pad(0).IsPress(enButtonRB2/*enButtonA*/) == false) {
-	//	if (p_timer == 98)
-	//	{
-	//		ShortCount = false;
-	//		p_timer = 0;
-	//	}
-	//}
+					ShortCount = true;
+					m_game->SetKazu(3);
+					p_timer = 0;
+				}
+				else {
+					if (p_timer == 98)
+					{
+						ShortCount = false;
+						p_timer = 0;
+					}
+				}
+			}
+		}
 }
 //プレイヤーの進化用
 void Player::Pevolution()
 {
-	for (int i = 0; i < s_kazu->GetKazu(); i++) {
-		if (m_player[i]->GetStarCount() == 1 && m_player[i]->GetMode() == 0)
-		{
-			//S_Rtype2 = NewGO<Senkan_Rtype_2>(0, "Senkan_RType_2");
-			m_player[i]->m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
-			m_player[i]->SetVer(1);
-			m_mode = 1;
-		}
+	if (StarCount == 1 && m_mode == 0)
+	{
+		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
+		//S_Rtype2 = NewGO<Senkan_Rtype_2>(0,"Senkan_RType_2");
+		Ver = 1;
+		m_Short = 0;
+		m_mode = 1;
 	}
 }
-//プレイヤーの死亡判定
+//プレイヤーのモブ判定
 void Player::Hantei()
-{	
-	for (int i = 0; i < s_kazu->GetKazu(); i++) {
-		if (m_game->m_enemy != nullptr) {
-			CVector3 diff = m_enemy->GetPosition() - m_player[i]->m_position;
-			if (diff.Length() < 250.0f) {
-				m_player[i]->Death();
-				if (i == 0)
-				{
-					Pl1->SetDeath(true);
-				}
-				else if (i == 1)
-				{
-					Pl2->SetDeath(true);
-				}
-				else if (i == 2)
-				{
-					Pl3->SetDeath(true);
-				}
-				else if (i == 3)
-				{
-					Pl4->SetDeath(true);
+{
+	if (Muteki == false) {
+		for (int i = 0; i < s_kazu->GetKazu(); i++) {
+			if (m_game->m_enemy != nullptr) {
+				CVector3 diff = m_enemy->GetPosition() - m_player[i]->m_position;
+				if (diff.Length() < 250.0f) {
+					m_player[i]->Death();
+					if (i == 0)
+					{
+						Pl1->SetDeath(true);
+					}
+					else if (i == 1)
+					{
+						Pl2->SetDeath(true);
+					}
+					else if (i == 2)
+					{
+						Pl3->SetDeath(true);
+					}
+					else if (i == 3)
+					{
+						Pl4->SetDeath(true);
+					}
 				}
 			}
 		}
@@ -259,6 +272,7 @@ void Player::Death()
 	memory_position = m_position;
 	ShortCount = false;
 	DeathCount = true;
+	Alive = false;
 	switch (PadNum)
 	{
 	case 0:
@@ -291,6 +305,8 @@ void Player::Respawn()
 				m_CharaCon.SetPosition(m_position);
 				d_timer = 0;
 				DeathCount = false;
+				Muteki = true;
+				PlHP = MaxHP;
 			}
 			else if (Ver == 1)
 			{
@@ -300,6 +316,8 @@ void Player::Respawn()
 				m_CharaCon.SetPosition(m_position);
 				d_timer = 0;
 				DeathCount = false;
+				Muteki = true;
+				Alive = true;
 			}
 		}
 	}
@@ -307,72 +325,122 @@ void Player::Respawn()
 //プレイヤーの撃つ方向の設定。
 void Player::Houdai()
 {
-	HoukouX = Pad(PadNum).GetRStickXF() * 150.0f;
-	HoukouZ = Pad(PadNum).GetRStickYF() * 150.0f;
-	SpeedX = Pad(PadNum).GetRStickXF() * 15.0f;
-	SpeedZ = Pad(PadNum).GetRStickYF() * 15.0f;
-	if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
+	if (Ver == 0) {
+		HoukouX = Pad(PadNum).GetRStickXF() * 150.0f;
+		HoukouZ = Pad(PadNum).GetRStickYF() * 150.0f;
+		SpeedX = Pad(PadNum).GetRStickXF() * 15.0f;
+		SpeedZ = Pad(PadNum).GetRStickYF() * 15.0f;
+		if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
+		{
+			HoukouX = 0.0f;
+			HoukouZ = 150.0f;
+			SpeedX = 0.0f;
+			SpeedZ = 15.0f;
+		}
+	}
+	else if (Ver == 1)
 	{
-		HoukouX = 0.0f;
-		HoukouZ = 150.0f;
-		SpeedX = 0.0f;
-		SpeedZ = 15.0f;
+		HoukouX = Pad(PadNum).GetRStickXF() * 150.0f;
+		HoukouZ = Pad(PadNum).GetRStickYF() * 150.0f;
+		SpeedX = Pad(PadNum).GetRStickXF() * 100.0f;
+		SpeedZ = Pad(PadNum).GetRStickYF() * 100.0f;
+		if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
+		{
+			HoukouX = 0.0f;
+			HoukouZ = 150.0f;
+			SpeedX = 0.0f;
+			SpeedZ = 15.0f;
+		}
 	}
 }
 //未定
 void Player::S_Hantei()
 {
-	for (int i = 0; i < s_kazu->GetKazu(); i++) {
-		if (m_game->GetS_Init() == false)
-		{
+	if (m_game->GetS_Init() == false)
+	{
 
-		}
-		else if (m_game->GetS_Init() == true) {
-			m_star = FindGO<Star>("Star");
-			CVector3 diff = m_star->GetPosition() - m_player[i]->GetPosition();
-			if (diff.Length() < 250.0f) {
-				m_player[i]->StarCount++;
+	}
+	else if (m_game->GetS_Init() == true) {
+		QueryGOs<Star>("Star", [&](Star* star)->bool{
+			CVector3 Kyori = star->GetPosition() - m_position;
+			if (Kyori.Length() < 250.0f) {
+				StarCount++;
 				m_game->SetStarCount(-1);
-				m_star->Death();
+				star->Death();
 			}
-		}
+			return true;
+		});
 	}
 }
 //プレイヤー同士の球の判定
 void Player::B_Hantei()
 {
 	if (m_game->GetPBInit() == true) {
-		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b) ->bool {
-			CVector3 kyori = b->GetPosition() - m_position;
-			if (b->GetPB() != PadNum && kyori.Length() < 150.0f)
-			{
-				Death();
-			}
-			else if (b->GetPB() == PadNum)
-			{
+		if (Muteki == false) {
+			QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b) ->bool {
+				CVector3 kyori = b->GetPosition() - m_position;
+				if (b->GetPB() != PadNum && kyori.Length() < 150.0f)
+				{
+					b->Death();
+					PlHP -= Damage;
+				}
+				else if (b->GetPB() == PadNum)
+				{
 
-			}
+				}
 				return true;
 			});
 		}
-		else 
-		{
-			
-		}
-}
+		
+	}
+	else
+	{
 
+	}
+}
 //プレイヤー同士の当たり判定（※調整中。）
 void Player::P_Hantei()
 {
 	if (DeathCount == false)
 	{
-		if (PadNum > 0)
-		{
-			CVector3 Kyori = m_position - m_position;
-			if (Kyori.Length() < 30.0f)
+		if (Muteki == false) {
+			if (PadNum > 0)
 			{
-				Death();
+				CVector3 Kyori = m_position - m_position;
+				if (Kyori.Length() < 30.0f)
+				{
+					Death();
+				}
 			}
 		}
+		else if (Muteki == true) {
+
+		}
+	}
+}
+
+void Player::MutekiTimes()
+{
+	if (Muteki == true)
+	{
+		MutekiTime++;
+		if (MutekiTime == 180)
+		{
+			Muteki = false;
+			MutekiTime = 0;
+		}
+	}
+	else
+	{
+
+	}
+}
+
+void Player::HP()
+{
+	if (PlHP <= 0)
+	{
+		PlHP = 0;
+		Death();
 	}
 }

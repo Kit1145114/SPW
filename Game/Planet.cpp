@@ -7,7 +7,6 @@ Planet::Planet()
 {
 }
 
-
 Planet::~Planet()
 {
 	DeleteGO(p_skinModelRender0);
@@ -181,6 +180,7 @@ void Planet::explosion()
 	DeleteGO(this);
 	//m_game->SetPlanetAgeinCount(-1);
 }
+
 void Planet::Timer()
 {
 	time++;
@@ -194,7 +194,7 @@ void Planet::Death() {
 		CVector3 p_kyori = m_player[i]->GetPosition() - p_position;
 		if (p_kyori.Length() < radius
 			&& m_game->m_player[i]->GetDeathCount() == false) {
-			m_game->m_player[i]->Death();
+			m_game->m_player[i]->AddHP(-100);
 			if (time > 2) { //‚o‚n‚o‚ÍŠ¨•Ù‚µ‚Ä‚â‚Á‚¼I
 				explosion();
 			}
@@ -217,16 +217,17 @@ void Planet::Death() {
 		}
 	}
 	//’e‚¾‚¯‚ÍŠ¨•Ù‚µ‚Ä‚­‚¾‚¹‚¥B
-	for (int i = 0; i < m_sansenkazu->GetKazu(); i++) {
-		if (m_player[i]->GetVer() == 0 && m_player[i]->GetDeathCount() == false) {
-			if (m_player[i]->GetShortCount() == true) {
-				m_bullet = FindGO<Bullet>("PlayerBullet");
-				CVector3 b_kyori = m_bullet->GetPosition() - p_position;
-				if (b_kyori.Length() < radius) {
-					explosion();
-				}
+	if (m_game->GetPBInit() == true) {
+		int a = 0;
+		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* bullet)->bool
+		{
+			CVector3 b_kyori = bullet->GetPosition() - p_position;
+			if (b_kyori.Length() < radius) {
+				a++;
+				explosion();
 			}
-		}
+			return true;
+		});
 	}
 	//˜f¯•ª‰ñ‚·B
 	for (int i = 0;i < Planetnumber_Num;i++) {

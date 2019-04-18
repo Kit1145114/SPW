@@ -4,12 +4,14 @@
 #include"Senkan_Rtype_2.h"
 #include"Game.h"
 #include"Star.h"
+#include"SansenKazu.h"
 
 class Senkan_Rtype_2;
 class Player;
 class Bullet;
 class Game;
 class Star;
+class SansenKazu;
 
 class Enemy : public IGameObject
 {
@@ -46,10 +48,12 @@ private:
 	CVector3 m_moveSpeed = CVector3::Zero;
 	CQuaternion m_rotation = CQuaternion::Identity;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
-	Player* m_player = nullptr;
+	Player* m_player[3] = { nullptr };
 	Senkan_Rtype_2* S_RType2 = nullptr;
 	Bullet* m_bullet = nullptr;
 	Game* m_game = nullptr;
 	Star* m_star = nullptr;
+	SansenKazu* s_kazu = nullptr;
+	int PadNum = 0;
 };
 

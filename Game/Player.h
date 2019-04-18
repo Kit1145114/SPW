@@ -48,6 +48,8 @@ public:
 	void S_Hantei();
 	void B_Hantei();
 	void P_Hantei();
+	void MutekiTimes();
+	void HP();
 	CVector3 GetPosition() {
 		return m_position;
 	}
@@ -111,6 +113,10 @@ public:
 	{
 		return PadNum;
 	}
+	void AddHP(int Minasuhp)
+	{
+		PlHP += Minasuhp;
+	}
 private:
 	Player * m_player[4] = { nullptr };
 	Draw_1P * Pl1 = nullptr;
@@ -139,12 +145,17 @@ private:
 	int m_timer = 0.0f;
 	int p_timer = 0;
 	int d_timer = 0;
+	int a_timer = 0;
 	int m_Short = 0;
 	int m_mode = 0;
+	int MutekiTime = 0;
 	int Ver = 0;
 	int StarCount = 0;
 	int PadNum = 0;
 	int PadMaxKazu = 0;
+	int PlHP = 100;
+	int MaxHP = 100;
+	int Damage = 20;
 	float HoukouX = 0.0f;
 	float HoukouZ = 0.0f;
 	float SpeedX = 0.0f;
@@ -153,5 +164,7 @@ private:
 	bool DeathCount = false;
 	bool ShortCount = false;
 	bool MyBullet = true;
+	bool Muteki = false;
+	bool Alive = true;
 };
 

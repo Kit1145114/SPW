@@ -21,9 +21,6 @@ Game::~Game()
 	if (m_enemy != nullptr) {
 		DeleteGO(m_enemy);
 	}
-	//if (m_player_Rtype2 != nullptr) {
-	//	DeleteGO(m_player_Rtype2);
-	//}
 	if (m_star != nullptr) {
 		DeleteGO(m_star);
 	}
@@ -114,7 +111,7 @@ bool Game::Start()
 
 	m_field = NewGO<field>(0);
 	m_camera = NewGO<Camera>(0);
-	m_enemy = NewGO<Enemy>(0,"Enemy");
+	//m_enemy = NewGO<Enemy>(0,"Enemy");
 	m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
 	//s_bar = NewGO<Sinka_Bar>(0, "Sinka_Bar");
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
@@ -148,15 +145,6 @@ void Game::Update()
 //未使用
 void Game::P_Ver()
 {
-	if (Pver == 1 && m_player_Rtype2 == nullptr)
-	{
-		//m_player_Rtype2 = NewGO<Player_RType2>(0, "Player_RType2");
-		//m_player_Rtype2->m_position = GetPosition();
-	}
-	else if (Pver == 2)
-	{
-
-	}
 }
 //☆の出現。
 void Game::S_Pu()
