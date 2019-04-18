@@ -50,6 +50,7 @@ private:
 	Draw_4P* Pl4 = nullptr;
 	float radius = { 30.0f };//	惑星の半径
 	bool movecount = false;
+	bool CountExplosion = false;
 	int myPlanetnumber =0;    //自分のPlametナンバー保存用
 	int PadMaxKazu = 0;
 	int time = 0;   //plametが誕生してからの時間
