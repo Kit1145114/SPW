@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "GameWait.h"
-#include "Game.h"
 #include "Network\NetPad.h"
 #include "Network\NetManager.h"
+#include "Game.h"
+#include "SansenKazu.h"
 
 using namespace PhotonLib;
 using namespace ExitGames;
@@ -22,28 +23,30 @@ void GameWait::Update() {
 	if (!network->isRoomIn())return;
 
 	for (int num : network->getPlayersNum()) {
-		if (NetManager::getPad(num-1).IsTrigger(enButtonA)) {
-			ready[num - 1] = !ready[num - 1];
+		if (NetManager::getPad(num-1).IsPress(enButtonA)) {
+			//TODO ¡‚Í‘Ã‹¦‚·‚é‚ªA’·‰Ÿ‚µ‚¶‚á‚È‚­Ø‚è‘Ö‚¦‚É‚»‚Ì‚¤‚¿’¼‚·
+			//ready[num - 1] = !ready[num - 1];
+			ready[num - 1] = true;
+		} else {
+			ready[num - 1] = false;
 		}
 	}
 
-	if (Pad(0).IsTrigger(enButtonB)) {
-		int i = 5;
-	}
-
-	/*bool start = true;
-	Common::JVector<LoadBalancing::Player*> players = NetManager::getNet()->getJoinedRoom().getPlayers();
-	for (int i = 0; i < players.getSize(); i++) {
-		const Common::Object* prop = players[i]->getCustomProperties().getValue(0);
-		if (prop == nullptr || !Common::ValueObject<bool>(prop).getDataCopy()) {
+	bool start = true;
+	for (int num : network->getPlayersNum()) {
+		if (!ready[num - 1]) {
 			start = false;
+			break;
 		}
-	}*/
+	}
 
-	/*if (start) {
+	if (start) {
+		SansenKazu* sansenkazu = NewGO<SansenKazu>(0, "SansenKazu");
+		sansenkazu->DeathCount(true);
+		sansenkazu->SetKazu(network->getPlayersNum().size());
 		NewGO<Game>(0, "Game");
 		DeleteGO(this);
-	}*/
+	}
 }
 
 void GameWait::PostRender(CRenderContext & rc) {

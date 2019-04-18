@@ -15,6 +15,10 @@ public:
 	{
 		return Kazu;
 	}
+
+	void SetKazu(int kazu_) {
+		Kazu = kazu_;
+	}
 private:
 	CFont m_font;
 	CVector2 m_position = CVector2::Zero;

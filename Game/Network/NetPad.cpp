@@ -17,8 +17,10 @@ void NetPad::SetFromCPad(const CPad & pad) {
 }
 
 void NetPad::SetFromArray(nByte * array) {
-	for (int bit = 0; bit < enButtonNum; bit++) {
-		m_press[bit] = array[bit / 8] & (1 << bit % 8);
+	for (int b = 0; b < enButtonNum; b++) {
+		bool press = array[b / 8] & (1 << b % 8);
+		m_trigger[b] = !m_press[b] && press;
+		m_press[b] = press;
 	}
 	/*nByte* ap = array + 2;
 	std::memcpy(&m_lStickX, ap, 4);
@@ -32,9 +34,11 @@ void NetPad::SetFromArray(nByte * array) {
 }
 
 void NetPad::sendState(PhotonLib::PNetworkLogic & network) {
-	nByte array[2];
-	for (int bit = 0; bit < enButtonNum; bit++) {
-		array[bit / 8] |= (1 << bit % 8);
+	nByte array[2] = {};
+	for (int b = 0; b < enButtonNum; b++) {
+		if (m_press[b]) {
+			array[b / 8] |= (1 << b % 8);
+		}
 	}
 	
 	/*nByte* ap = array + 2;
