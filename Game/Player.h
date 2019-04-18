@@ -124,7 +124,7 @@ private:
 	Draw_3P* Pl3 = nullptr;
 	Draw_4P* Pl4 = nullptr;
 	Player_RType2* m_player_Rtype2 = nullptr;
-	Senkan_Rtype_2* S_Rtype2 = nullptr;
+	//Senkan_Rtype_2* S_Rtype2 = nullptr;
 	Bullet* m_bullet = nullptr;
 	Game* m_game = nullptr;
 	Enemy* m_enemy = nullptr;

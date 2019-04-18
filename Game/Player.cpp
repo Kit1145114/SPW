@@ -10,9 +10,9 @@ Player::~Player()
 {
 	DeleteGO(m_skinModelRender);
 
-	if (S_Rtype2 != nullptr) {
-		DeleteGO(S_Rtype2);
-	}
+	//if (S_Rtype2 != nullptr) {
+	//	DeleteGO(S_Rtype2);
+	//}
 	if (d_hako != nullptr)
 	{
 		DeleteGO(d_hako);
@@ -136,7 +136,7 @@ void Player::PBullet()
 					m_bullet->SetPB(PadNum);
 					//m_game->SetPBInit(true);
 					m_bullet->SetPosition(m_position);
-					m_bullet->SetPositionZ(HoukouX, HoukouZ);
+					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 					m_Short--;
 					ShortCount = true;
@@ -173,19 +173,19 @@ void Player::PBullet2()
 					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 					m_bullet->SetPB(PadNum);
 					m_bullet->SetPosition(m_position);
-					m_bullet->SetPositionZ(HoukouX, HoukouZ);
+					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 
 					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 					m_bullet->SetPB(PadNum);
-					m_bullet->SetPositionZ(HoukouX, HoukouZ);
+					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 					m_bullet->SetPositionX(50.0f);
 					m_bullet->SetPosition(m_position);
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 
 					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 					m_bullet->SetPB(PadNum);
-					m_bullet->SetPositionZ(HoukouX, HoukouZ);
+					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 					m_bullet->SetPositionX(-100.0f);
 					m_bullet->SetPosition(m_position);
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
@@ -208,7 +208,7 @@ void Player::PBullet2()
 //プレイヤーの進化用
 void Player::Pevolution()
 {
-	if (StarCount == 1 && m_mode == 0)
+	if (StarCount == 5 && m_mode == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
 		//S_Rtype2 = NewGO<Senkan_Rtype_2>(0,"Senkan_RType_2");
@@ -300,7 +300,6 @@ void Player::Respawn()
 		{
 			if (Ver == 0) {
 				m_skinModelRender->Init(L"modelData/Senkan.cmo");
-				m_position.z = -500.0f;
 				m_skinModelRender->SetPosition(m_position);
 				m_CharaCon.SetPosition(m_position);
 				d_timer = 0;
@@ -311,7 +310,6 @@ void Player::Respawn()
 			else if (Ver == 1)
 			{
 				m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
-				m_position.x = -500.0f;
 				m_skinModelRender->SetPosition(m_position);
 				m_CharaCon.SetPosition(m_position);
 				d_timer = 0;
@@ -328,8 +326,8 @@ void Player::Houdai()
 	if (Ver == 0) {
 		HoukouX = Pad(PadNum).GetRStickXF() * 150.0f;
 		HoukouZ = Pad(PadNum).GetRStickYF() * 150.0f;
-		SpeedX = Pad(PadNum).GetRStickXF() * 15.0f;
-		SpeedZ = Pad(PadNum).GetRStickYF() * 15.0f;
+		SpeedX = Pad(PadNum).GetRStickXF() * 150.0f;
+		SpeedZ = Pad(PadNum).GetRStickYF() * 150.0f;
 		if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
 		{
 			HoukouX = 0.0f;
@@ -418,7 +416,7 @@ void Player::P_Hantei()
 		}
 	}
 }
-
+//無敵時間の調整。
 void Player::MutekiTimes()
 {
 	if (Muteki == true)
@@ -435,7 +433,7 @@ void Player::MutekiTimes()
 
 	}
 }
-
+//死んだ後のHP調整等。
 void Player::HP()
 {
 	if (PlHP <= 0)

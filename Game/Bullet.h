@@ -1,6 +1,8 @@
 #pragma once
 #include"Game.h"
 
+
+
 class Game;
 class Bullet : public IGameObject
 {
@@ -16,7 +18,7 @@ public:
 	{
 		m_position = plpos;
 	}
-	void SetPositionZ(float x ,float z)
+	void SetPositionXZ(float x ,float z)
 	{
 		m_position.x += x;
 		m_position.z += z;
@@ -25,6 +27,7 @@ public:
 	{
 		m_position.x = x;
 	}
+
 	CVector3 GetMoveSpeed()
 	{
 		return m_moveSpeed;
