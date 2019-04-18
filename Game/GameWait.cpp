@@ -23,30 +23,29 @@ void GameWait::Update() {
 	if (!network->isRoomIn())return;
 
 	for (int num : network->getPlayersNum()) {
-		if (NetManager::getPad(num-1).IsPress(enButtonA)) {
-			//TODO ¡‚Í‘Ã‹¦‚·‚é‚ªA’·‰Ÿ‚µ‚¶‚á‚È‚­Ø‚è‘Ö‚¦‚É‚»‚Ì‚¤‚¿’¼‚·
-			//ready[num - 1] = !ready[num - 1];
-			ready[num - 1] = true;
-		} else {
+		if (NetManager::getPad(num-1).IsTrigger(enButtonA)) {
+			ready[num - 1] = !ready[num - 1];
+			//ready[num - 1] = true;
+		} /*else {
 			ready[num - 1] = false;
-		}
+		}*/
 	}
 
-	bool start = true;
+	/*bool start = true;
 	for (int num : network->getPlayersNum()) {
 		if (!ready[num - 1]) {
 			start = false;
 			break;
 		}
-	}
+	}*/
 
-	if (start) {
+	/*if (start) {
 		SansenKazu* sansenkazu = NewGO<SansenKazu>(0, "SansenKazu");
 		sansenkazu->DeathCount(true);
 		sansenkazu->SetKazu(network->getPlayersNum().size());
 		NewGO<Game>(0, "Game");
 		DeleteGO(this);
-	}
+	}*/
 }
 
 void GameWait::PostRender(CRenderContext & rc) {

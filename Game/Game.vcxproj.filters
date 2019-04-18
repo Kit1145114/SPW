@@ -543,6 +543,7 @@
     <ClInclude Include="Network\NetPad.h" />
     <ClInclude Include="Network\NetManager.h" />
     <ClInclude Include="Network\NPad.h" />
+    <ClInclude Include="Network\PadRingBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">

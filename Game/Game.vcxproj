@@ -1989,6 +1989,7 @@
     <ClInclude Include="Planet.h" />
     <ClInclude Include="Player.h" />
     <CLInclude Include="resource.h" />
+    <ClInclude Include="Network\PadRingBuffer.h" />
     <ClInclude Include="SansenGamen.h" />
     <ClInclude Include="SansenKazu.h" />
     <ClInclude Include="Senkan_Rtype_2.h" />
