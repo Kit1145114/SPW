@@ -18,16 +18,17 @@ bool Enemy::Start()
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Enemy.cmo");
 	m_CharaCon.Init(100.0f, 15.0f, m_position);
-	m_player = FindGO<Player>("Player");
-	m_game = FindGO<Game>("Game");
+	
 	return true;
 }
 
 void Enemy::Update()
 {
-	m_skinModelRender->SetPosition(m_position);
+	m_player = FindGO<Player>("Player");
+	m_game = FindGO<Game>("Game");
 	Pl_Hantei();
-	//Pl_RHantei();
+	Move();
+	m_skinModelRender->SetPosition(m_position);
 }
 //エネミーの死亡判定。
 void Enemy::Pl_Hantei()
@@ -47,44 +48,6 @@ void Enemy::Pl_Hantei()
 		}
 	}
 }
-//エネミーの死亡判定。
-void Enemy::Pl_RHantei()
-{
-	if (m_player->GetVer() == 1) {
-		//S_RType2 = FindGO<Senkan_Rtype_2>("Senkan_RType_2");
-		//if (S_RType2->GetShortCount() == true)
-		//{
-		//	m_bullet = FindGO<Bullet>("Player_RType2Bullet1");
-		//	CVector3 diff2 = m_bullet->GetPosition() - m_position;
-		//	if (diff2.Length() < 150.0f)
-		//	{
-		//		m_game->m_enemy = nullptr;
-		//		Death();
-		//	}
-		//}
-		//if (S_RType2->GetShortCount() == true)
-		//{
-		//	m_bullet = FindGO<Bullet>("Player_RType2Bullet2");
-		//	CVector3 diff3 = m_bullet->GetPosition() - m_position;
-		//	if (diff3.Length() < 150.0f)
-		//	{
-		//		m_game->m_enemy = nullptr;
-		//		Death();
-		//	}
-		//}
-		//if (S_RType2->GetShortCount() == true)
-		//{
-		//	m_bullet = FindGO<Bullet>("Player_RType2Bullet3");
-		//	CVector3 diff4 = m_bullet->GetPosition() - m_position;
-		//	if (diff4.Length() < 150.0f)
-		//	{
-		//		m_game->m_enemy = nullptr;
-		//		Death();
-		//	}
-		//}
-	}
-}
-
 //エネミーの削除。
 void Enemy::Death()
 {
@@ -94,10 +57,11 @@ void Enemy::Death()
 void Enemy::Move()
 {
 	CVector3 Kyori = m_player->GetPosition() - m_position;
-	if (Kyori.Length() < 200.0f)
+	if (Kyori.Length() < 1000.0f)
 	{
-
+		m_moveSpeed += Kyori;
 	}
+	m_position += m_moveSpeed;
 }
 //エネミーの回転処理。
 void Enemy::Rotation()
