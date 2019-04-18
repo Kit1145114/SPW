@@ -27,7 +27,7 @@ public:
 	void Death();
 	void explosion();
 	void Timer();
-	static void Generate(int Reload);
+	static void Generate(int Reload,int Planetnum);
 	void init(CVector3 position, prefab::CSkinModelRender* skinModelRender);
 
 private:
@@ -50,7 +50,7 @@ private:
 	Draw_4P* Pl4 = nullptr;
 	float radius = { 30.0f };//	惑星の半径
 	bool movecount = false;
-	int myPlanetnumber;    //自分のPlametナンバー保存用
+	int myPlanetnumber =0;    //自分のPlametナンバー保存用
 	int PadMaxKazu = 0;
 	int time = 0;   //plametが誕生してからの時間
 };
