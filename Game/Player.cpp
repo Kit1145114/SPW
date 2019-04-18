@@ -140,7 +140,7 @@ void Player::PBullet()
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 					m_Short--;
 					ShortCount = true;
-					m_game->SetKazu(1);
+					m_game->SetKazu(3);
 					p_timer = 0;
 				}
 				else {
@@ -158,50 +158,52 @@ void Player::PBullet()
 //プレイヤーの球（第二形態）
 void Player::PBullet2()
 {
-	//if (Ver == 1 && m_mode == 1)
-	//{
-	//	m_mode = 0;
-	//}
-	//m_timer++;
-	//p_timer++;
-	//if (m_timer > 25) {
-	//	m_Short++;
-	//	m_timer = 0;
-	//}
-	////球が一発以上
-	//if (m_Short > 0) {
-	//	//ABUTTONが押されたとき
-	//	if (Pad(0).IsPress(enButtonRB2/*enButtonA*/) == true) {
-	//		//一つ目
-	//		m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet1");
-	//		m_bullet->SetPosition(m_position);
-	//		m_bullet->SetMoveSpeedZ(15.0f);
+	if(DeathCount == false)
+		if (Ver == 1)
+		{
+			m_timer++;  // =GameTime().GetFrameDeltaTime;
+			p_timer++;
+			if (m_timer > 30) {
+				m_Short++;
+				m_timer = 0;
+			}
+			if (m_Short > 0)
+			{
+				if (Pad(PadNum).IsPress(enButtonRB2) == true) {
+					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+					m_bullet->SetPB(PadNum);
+					m_bullet->SetPosition(m_position);
+					m_bullet->SetPositionZ(HoukouX, HoukouZ);
+					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 
-	//		//二つ目
-	//		m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet2");
-	//		CVector3 pos = m_position;
-	//		pos.x += 50.0f;
-	//		m_bullet->SetPosition(pos);
-	//		m_bullet->SetMoveSpeedZ(15.0f);
+					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+					m_bullet->SetPB(PadNum);
+					m_bullet->SetPositionZ(HoukouX, HoukouZ);
+					m_bullet->SetPositionX(50.0f);
+					m_bullet->SetPosition(m_position);
+					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 
-	//		//三つ目
-	//		m_bullet = NewGO<Bullet>(0, "Player_RType2Bullet3");
-	//		pos.x -= 100.0f;
-	//		m_bullet->SetPosition(pos);
-	//		m_bullet->SetMoveSpeedZ(15.0f);
+					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+					m_bullet->SetPB(PadNum);
+					m_bullet->SetPositionZ(HoukouX, HoukouZ);
+					m_bullet->SetPositionX(-100.0f);
+					m_bullet->SetPosition(m_position);
+					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+					m_Short--;
 
-	//		m_Short--;
-	//		ShortCount = true;
-	//		p_timer = 0;
-	//	}
-	//}
-	//else if (Pad(0).IsPress(enButtonRB2/*enButtonA*/) == false) {
-	//	if (p_timer == 98)
-	//	{
-	//		ShortCount = false;
-	//		p_timer = 0;
-	//	}
-	//}
+					ShortCount = true;
+					m_game->SetKazu(3);
+					p_timer = 0;
+				}
+				else {
+					if (p_timer == 98)
+					{
+						ShortCount = false;
+						p_timer = 0;
+					}
+				}
+			}
+		}
 }
 //プレイヤーの進化用
 void Player::Pevolution()
@@ -209,8 +211,9 @@ void Player::Pevolution()
 	if (StarCount == 1 && m_mode == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
-		S_Rtype2 = NewGO<Senkan_Rtype_2>(0,"Senkan_RType_2");
+		//S_Rtype2 = NewGO<Senkan_Rtype_2>(0,"Senkan_RType_2");
 		Ver = 1;
+		m_Short = 0;
 		m_mode = 1;
 	}
 }
@@ -322,16 +325,32 @@ void Player::Respawn()
 //プレイヤーの撃つ方向の設定。
 void Player::Houdai()
 {
-	HoukouX = Pad(PadNum).GetRStickXF() * 150.0f;
-	HoukouZ = Pad(PadNum).GetRStickYF() * 150.0f;
-	SpeedX = Pad(PadNum).GetRStickXF() * 15.0f;
-	SpeedZ = Pad(PadNum).GetRStickYF() * 15.0f;
-	if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
+	if (Ver == 0) {
+		HoukouX = Pad(PadNum).GetRStickXF() * 150.0f;
+		HoukouZ = Pad(PadNum).GetRStickYF() * 150.0f;
+		SpeedX = Pad(PadNum).GetRStickXF() * 15.0f;
+		SpeedZ = Pad(PadNum).GetRStickYF() * 15.0f;
+		if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
+		{
+			HoukouX = 0.0f;
+			HoukouZ = 150.0f;
+			SpeedX = 0.0f;
+			SpeedZ = 15.0f;
+		}
+	}
+	else if (Ver == 1)
 	{
-		HoukouX = 0.0f;
-		HoukouZ = 150.0f;
-		SpeedX = 0.0f;
-		SpeedZ = 15.0f;
+		HoukouX = Pad(PadNum).GetRStickXF() * 150.0f;
+		HoukouZ = Pad(PadNum).GetRStickYF() * 150.0f;
+		SpeedX = Pad(PadNum).GetRStickXF() * 100.0f;
+		SpeedZ = Pad(PadNum).GetRStickYF() * 100.0f;
+		if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
+		{
+			HoukouX = 0.0f;
+			HoukouZ = 150.0f;
+			SpeedX = 0.0f;
+			SpeedZ = 15.0f;
+		}
 	}
 }
 //未定

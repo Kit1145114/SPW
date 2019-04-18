@@ -21,6 +21,10 @@ public:
 		m_position.x += x;
 		m_position.z += z;
 	}
+	void SetPositionX(float x)
+	{
+		m_position.x = x;
+	}
 	CVector3 GetMoveSpeed()
 	{
 		return m_moveSpeed;
@@ -30,6 +34,7 @@ public:
 		m_moveSpeed.x = a;
 		m_moveSpeed.z = b;
 	}
+
 	void SetMoveSpeed(CVector3 mspos)
 	{
 		m_moveSpeed = mspos;

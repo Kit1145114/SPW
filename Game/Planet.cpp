@@ -217,21 +217,17 @@ void Planet::Death() {
 		}
 	}
 	//íeÇæÇØÇÕä®ïŸÇµÇƒÇ≠ÇæÇπÇ•ÅB
-	for (int i = 0; i < m_sansenkazu->GetKazu(); i++) {
-		//if (m_player[i]->GetVer() == 0 && m_player[i]->GetDeathCount() == false) {
-			if (m_game->GetPBInit() == true) {
-				int a = 0;
-				QueryGOs<Bullet>("PlayerBullet", [&](Bullet* bullet)->bool
-				{
-					CVector3 b_kyori = bullet->GetPosition() - p_position;
-					if (b_kyori.Length() < radius) {
-						a++;
-						explosion();
-					}
-					return true;
-				});
-			//}
-		}
+	if (m_game->GetPBInit() == true) {
+		int a = 0;
+		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* bullet)->bool
+		{
+			CVector3 b_kyori = bullet->GetPosition() - p_position;
+			if (b_kyori.Length() < radius) {
+				a++;
+				explosion();
+			}
+			return true;
+		});
 	}
 	//òfêØï™âÒÇ∑ÅB
 	for (int i = 0;i < Planetnumber_Num;i++) {
