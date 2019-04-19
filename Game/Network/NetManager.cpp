@@ -48,12 +48,24 @@ void NetManager::PreUpdate() {
 		int localNum = network->getLocalPlayerNum() - 1;
 		pads[localNum].SetFromCPad(Pad(0));
 		pads[localNum].sendState(*network);
+		bool next = true;
 		for (int num : network->getPlayersNum()) {
-			if (! pads[num - 1].cacheIsEmpty()) {
+			if (!pads[num - 1].hasNext()) {
+				next = false;
+				break;
+			}
+		}
+		if (next) {
+			for (int num : network->getPlayersNum()) {
 				pads[num - 1].nextFlame();
 			}
 		}
-		
+			
+		if (flameNum == 255) {
+			flameNum = 0;
+		} else {
+			flameNum++;
+		}
 
 	} else {//ƒGƒ‰[‚ªo‚½‚½‚ßØ’f
 		network->disconnect();

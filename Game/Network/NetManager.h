@@ -48,5 +48,7 @@ private:
 
 	PhotonLib::PNetworkLogic* network = nullptr;
 	NetPad pads[CONNECT_PAD_MAX] = {NetPad(0),NetPad(1),NetPad(2),NetPad(3) };
+
+	nByte flameNum = 0;
 };
 

@@ -9,11 +9,11 @@ public:
 	~NetPad() {};
 
 	bool IsPress(EnButton button) const {
-		return buff.getStart()->m_press[button];
+		return buff.getPad()->m_press[button];
 	}
 
 	bool IsTrigger(EnButton button) const {
-		return buff.getStart()->m_trigger[button];
+		return buff.getPad()->m_trigger[button];
 	}
 
 	/*!
@@ -21,41 +21,46 @@ public:
 		*@return	-1.0～1.0の正規化された値を返す。
 		*/
 	float GetLStickXF() const {
-		return buff.getStart()->m_lStickX;
+		return buff.getPad()->m_lStickX;
 	}
 	/*!
 	*@brief	左スティックのY軸の入力量を取得。
 	*@return	-1.0～1.0の正規化された値を返す。
 	*/
 	float GetLStickYF() const {
-		return buff.getStart()->m_lStickY;
+		return buff.getPad()->m_lStickY;
 	}
 	/*!
 	*@brief	右スティックのX軸の入力量を取得。
 	*@return	-1.0～1.0の正規化された値を返す。
 	*/
 	float GetRStickXF() const {
-		return buff.getStart()->m_rStickX;
+		return buff.getPad()->m_rStickX;
 	}
 	/*!
 	*@brief	右スティックのY軸の入力量を取得。
 	*@return	-1.0～1.0の正規化された値を返す。
 	*/
 	float GetRStickYF() const {
-		return buff.getStart()->m_rStickY;
+		return buff.getPad()->m_rStickY;
 	}
 
+	/*nByte GetFlameNum() const {
+		return buff.getPad()->flameNum;
+	}*/
+
 	/***更新用関数***/
-	bool cacheIsEmpty() {
-		return buff.isEmpty();
+
+	bool hasNext() {
+		return buff.hasNext();
 	}
 
 	void nextFlame() {
-		buff.moveStart();
+		buff.nextData();
 	}
 
-	void SetFromCPad(const CPad& pad);
-	void SetFromArray(nByte* array);
+	void SetFromCPad(const CPad& pad/*, nByte flame*/);
+	void SetFromArray(nByte* array/*, nByte flame*/);
 	bool isUpdated() {
 		return updated;
 	}
@@ -63,16 +68,7 @@ public:
 		updated = false;
 	}
 
-	void sendState(PhotonLib::PNetworkLogic& network);
-
-	struct PadData {
-		float m_lStickX = 0.0f;		//!<左スティックのX軸の入力量。
-		float m_lStickY = 0.0f;		//!<左スティックのY軸の入力量。
-		float m_rStickX = 0.0f;		//!<右スティックのX軸の入力量。
-		float m_rStickY = 0.0f;		//!<右スティックのY軸の入力量。
-		bool m_press[enButtonNum] = {};
-		bool m_trigger[enButtonNum] = {};
-	};
+	void sendState(PhotonLib::PNetworkLogic& network/*, nByte flame*/);
 
 private:
 	const int playerNum;

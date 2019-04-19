@@ -1797,6 +1797,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Network\NetManager.cpp" />
     <ClCompile Include="Network\NetPad.cpp" />
+    <ClCompile Include="Network\PadRingBuffer.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SansenGamen.cpp" />

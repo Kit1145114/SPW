@@ -88,6 +88,7 @@
     <ClCompile Include="GameWait.cpp" />
     <ClCompile Include="Network\NetPad.cpp" />
     <ClCompile Include="Network\NetManager.cpp" />
+    <ClCompile Include="Network\PadRingBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
