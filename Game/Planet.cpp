@@ -181,6 +181,11 @@ void Planet::explosion()
 		DeleteGO(this);
 		//m_game->SetPlanetAgeinCount(-1);
 		CountExplosion = true;
+		//エフェクトを作成。
+		effect = NewGO<prefab::CEffect>(0);
+		//エフェクトを再生。
+		effect->Play(L"effect/explosion2.efk");
+		effect->SetPosition(this->p_position);
 	}
 }
 
