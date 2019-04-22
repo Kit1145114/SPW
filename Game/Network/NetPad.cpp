@@ -3,18 +3,18 @@
 #include "PNetworkLogic.h"
 #include <string.h>
 
-void NetPad::SetFromCPad(const CPad & pad/*, nByte flame*/) {
-	buff.pushFromCPad(pad/*, flame*/);
+void NetPad::SetFromCPad(const CPad & pad) {
+	buff.pushFromCPad(pad);
 	updated = true;
 }
 
-void NetPad::SetFromArray(nByte * array/*, nByte flame*/) {
-	buff.pushFromArray(array/*, flame*/);
+void NetPad::SetFromArray(nByte * array) {
+	buff.pushFromArray(array);
 	updated = true;
 }
 
-void NetPad::sendState(PhotonLib::PNetworkLogic & network/*, nByte flame*/) {
-	nByte array[2+16/*+1*/] = {};
+void NetPad::sendState(PhotonLib::PNetworkLogic & network) {
+	nByte array[2+16] = {};
 	for (int b = 0; b < enButtonNum; b++) {
 		if (Pad(0).IsPress((EnButton)b)) {
 			array[b / 8] |= (1 << b % 8);
@@ -30,7 +30,5 @@ void NetPad::sendState(PhotonLib::PNetworkLogic & network/*, nByte flame*/) {
 	fp++;
 	*fp = Pad(0).GetRStickYF();
 
-	/**(nByte*) fp = flame;*/
-
-	network.raiseEvent(true, array, 2+16/*+1*/, 0, 0);
+	network.raiseEvent(true, array, 2+16, 0, 0);
 }

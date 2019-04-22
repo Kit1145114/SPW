@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "PadRingBuffer.h"
 
-bool PadRingBuffer::hasNext() {
-	PadData* local_start = start;
+bool PadRingBuffer::hasNext() const{
+	const PadData* local_start = start;
 	local_start++;
 	if (local_start == arrayEnd) {
 		local_start = buffer;
@@ -22,19 +22,18 @@ void PadRingBuffer::nextData() {
 	if (local_start == arrayEnd) {
 		local_start = buffer;
 	}
-
 	//次のデータがある場合だけ更新する
 	if (local_start != end) {
-		start = local_start;
+		start = local_start; size--;
 	} else {
 		//次のデータがないときは今のデータをトリガだけ消して使いまわす
 		for (int i = 0; i < enButtonNum; i++) {
-			start->m_trigger[enButtonNum] = false;
+			start->setTrigger(i, false);
 		}
 	}
 }
 
-void PadRingBuffer::pushFromCPad(const CPad & pad/*, nByte flameNum*/) {
+void PadRingBuffer::pushFromCPad(const CPad & pad) {
 	if (start == end) {
 		return;
 	}
@@ -48,27 +47,25 @@ void PadRingBuffer::pushFromCPad(const CPad & pad/*, nByte flameNum*/) {
 
 	for (int i = 0; i < enButtonNum; i++) {
 		bool press = pad.IsPress((EnButton)i);
-		end->m_trigger[i] = !before->m_press[i] && press;
-		end->m_press[i] = press;
+		end->setTrigger(i, !before->getPress(i) && press);
+		end->setPress(i, press);
 	}
 	end->m_lStickX = pad.GetLStickXF();
 	end->m_lStickY = pad.GetLStickYF();
 	end->m_rStickX = pad.GetRStickXF();
 	end->m_rStickY = pad.GetRStickYF();
-	/*end->flameNum = flameNum;*/
 
-	end++;
+	end++; size++;
 
 	if (end == arrayEnd) {
 		end = buffer;
 	}
 }
 
-void PadRingBuffer::pushFromArray(nByte * array/*, nByte flameNum*/) {
+void PadRingBuffer::pushFromArray(nByte * array) {
 	if (start == end) {
 		return;
 	}
-
 	const PadData* before;
 	if (end == buffer) {
 		before = arrayEnd - 1;
@@ -78,8 +75,8 @@ void PadRingBuffer::pushFromArray(nByte * array/*, nByte flameNum*/) {
 
 	for (int b = 0; b < enButtonNum; b++) {
 		bool press = array[b / 8] & (1 << b % 8);
-		end->m_trigger[b] = !before->m_press[b] && press;
-		end->m_press[b] = press;
+		end->setTrigger(b, !before->getPress(b) && press);
+		end->setPress(b, press);
 	}
 	float* fp = (float*)(array + 2);
 	end->m_lStickX = *fp;
@@ -91,10 +88,20 @@ void PadRingBuffer::pushFromArray(nByte * array/*, nByte flameNum*/) {
 	end->m_rStickY = *fp;
 	fp++;
 
-	/**(nByte*)fp = flameNum;*/
-
-	end++;
+	end++; size++;
 	if (end == arrayEnd) {
 		end = buffer;
 	}
+}
+
+void PadData::setPress(int button, bool press) {
+	if (press) {
+		buttons |= ( 1 << button);
+	} else {
+		buttons &= ~(1 << button);
+	}
+}
+
+bool PadData::getPress(int button) const{
+	return buttons & (1 << button);
 }

@@ -43,12 +43,13 @@ public:
 		return true;
 	}
 
+	void PostRender(CRenderContext& rc);
+
 private:
 	static NetManager* st_manager;//自分を入れておくスタティック変数
 
 	PhotonLib::PNetworkLogic* network = nullptr;
 	NetPad pads[CONNECT_PAD_MAX] = {NetPad(0),NetPad(1),NetPad(2),NetPad(3) };
-
-	nByte flameNum = 0;
+	CFont font;
 };
 

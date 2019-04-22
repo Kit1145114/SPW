@@ -9,11 +9,11 @@ public:
 	~NetPad() {};
 
 	bool IsPress(EnButton button) const {
-		return buff.getPad()->m_press[button];
+		return buff.getPad()->getPress(button);
 	}
 
 	bool IsTrigger(EnButton button) const {
-		return buff.getPad()->m_trigger[button];
+		return buff.getPad()->getTrigger(button);
 	}
 
 	/*!
@@ -59,8 +59,8 @@ public:
 		buff.nextData();
 	}
 
-	void SetFromCPad(const CPad& pad/*, nByte flame*/);
-	void SetFromArray(nByte* array/*, nByte flame*/);
+	void SetFromCPad(const CPad& pad);
+	void SetFromArray(nByte* array);
 	bool isUpdated() {
 		return updated;
 	}
@@ -68,8 +68,11 @@ public:
 		updated = false;
 	}
 
-	void sendState(PhotonLib::PNetworkLogic& network/*, nByte flame*/);
+	void sendState(PhotonLib::PNetworkLogic& network);
 
+	int sssss() {
+		return buff.size;
+	}
 private:
 	const int playerNum;
 

@@ -37,36 +37,34 @@ void NetManager::PreUpdate() {
 
 	if (!network->isError()) {
 
-		network->Update();
+		while (true) {
 
-		if (!network->isRoomIn()) {//入室処理
-			network->joinOrCreateRoom("Room", 4);
-			return;
-		}
+			network->Update();
 
-		//パッド更新
-		int localNum = network->getLocalPlayerNum() - 1;
-		pads[localNum].SetFromCPad(Pad(0));
-		pads[localNum].sendState(*network);
-		bool next = true;
-		for (int num : network->getPlayersNum()) {
-			if (!pads[num - 1].hasNext()) {
-				next = false;
-				break;
+			if (!network->isRoomIn()) {//入室処理
+				network->joinOrCreateRoom("Room", 4);
+				return;
 			}
-		}
-		if (next) {
+
+			//パッド更新
+			int localNum = network->getLocalPlayerNum() - 1;
+			pads[localNum].SetFromCPad(Pad(0));
+			pads[localNum].sendState(*network);
+			bool next = true;
 			for (int num : network->getPlayersNum()) {
-				pads[num - 1].nextFlame();
+				if (!pads[num - 1].hasNext()) {
+					next = false;
+					break;
+				}
 			}
-		}
-			
-		if (flameNum == 255) {
-			flameNum = 0;
-		} else {
-			flameNum++;
-		}
+			if (next) {
+				for (int num : network->getPlayersNum()) {
+					pads[num - 1].nextFlame();
+				}
+			}
 
+			break;
+		}
 	} else {//エラーが出たため切断
 		network->disconnect();
 		return;
@@ -77,4 +75,16 @@ void NetManager::onPhotonEvent(int playerNr, nByte eventCode, const ExitGames::C
 	using namespace ExitGames::Common;
 	nByte* arrayP = ValueObject<nByte*>(eventContent).getDataCopy();
 	pads[playerNr - 1].SetFromArray(arrayP);
+}
+
+void NetManager::PostRender(CRenderContext & rc) {
+	font.Begin(rc);
+	float height = 300;
+	for (NetPad p : pads) {
+		wchar_t c[10];
+		swprintf(c, L"%d", p.sssss());
+		font.Draw(c, { -300.0f, height });
+		height -= 200;
+	}
+	font.End(rc);
 }
