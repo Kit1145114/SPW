@@ -2035,6 +2035,10 @@
     <ImageContentTask Include="Assets\sprite\Midori.jpg" />
     <ImageContentTask Include="Assets\sprite\Sinka_Bar.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\effect\explosion1.efk" />
+    <None Include="Assets\effect\explosion2.efk" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.targets" />
