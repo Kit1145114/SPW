@@ -5,12 +5,10 @@
 
 void NetPad::SetFromCPad(const CPad & pad) {
 	buff.pushFromCPad(pad);
-	updated = true;
 }
 
 void NetPad::SetFromArray(nByte * array) {
 	buff.pushFromArray(array);
-	updated = true;
 }
 
 void NetPad::sendState(PhotonLib::PNetworkLogic & network) {

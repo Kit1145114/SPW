@@ -38,7 +38,7 @@ public:
 	}
 	int size = 0;
 private:
-	static constexpr int NUM = 60;
+	static constexpr int NUM = 30;
 	PadData buffer[NUM] = {};
 	const PadData* const arrayEnd = buffer+ NUM;
 	PadData* start = buffer;

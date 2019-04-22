@@ -61,24 +61,14 @@ public:
 
 	void SetFromCPad(const CPad& pad);
 	void SetFromArray(nByte* array);
-	bool isUpdated() {
-		return updated;
-	}
-	void resetUpdateFlag() {
-		updated = false;
-	}
 
 	void sendState(PhotonLib::PNetworkLogic& network);
 
-	int sssss() {
+	int sssss() {//デバッグ用
 		return buff.size;
 	}
 private:
 	const int playerNum;
 
 	PadRingBuffer buff;
-
-	unsigned int count=0;
-
-	bool updated = false;
 };

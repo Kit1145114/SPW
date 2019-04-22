@@ -37,32 +37,37 @@ void NetManager::PreUpdate() {
 
 	if (!network->isError()) {
 
+		network->Update();
+
+		if (!network->isRoomIn()) {//入室処理
+			network->joinOrCreateRoom("Room", 4);
+			return;
+		}
+
+		//パッド更新
+		int localNum = network->getLocalPlayerNum() - 1;
+		pads[localNum].SetFromCPad(Pad(0));
+		pads[localNum].sendState(*network);
+
 		while (true) {
 
-			network->Update();
-
-			if (!network->isRoomIn()) {//入室処理
-				network->joinOrCreateRoom("Room", 4);
-				return;
-			}
-
-			//パッド更新
-			int localNum = network->getLocalPlayerNum() - 1;
-			pads[localNum].SetFromCPad(Pad(0));
-			pads[localNum].sendState(*network);
-			bool next = true;
-			for (int num : network->getPlayersNum()) {
-				if (!pads[num - 1].hasNext()) {
-					next = false;
-					break;
+			if (wait == 0) {
+				bool next = true;
+				for (int num : network->getPlayersNum()) {
+					if (!pads[num - 1].hasNext()) {
+						next = false;
+					}
 				}
-			}
-			if (next) {
+				if (next == false) {
+					network->Update();
+					continue;
+				}
 				for (int num : network->getPlayersNum()) {
 					pads[num - 1].nextFlame();
 				}
+			} else {
+				wait--;
 			}
-
 			break;
 		}
 	} else {//エラーが出たため切断
