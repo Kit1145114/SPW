@@ -85,6 +85,8 @@
     <ClCompile Include="Draw_2P.cpp" />
     <ClCompile Include="Draw_3P.cpp" />
     <ClCompile Include="Draw_4P.cpp" />
+    <ClCompile Include="PlayerStar.cpp" />
+    <ClCompile Include="ResultGamen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -536,6 +538,8 @@
     <ClInclude Include="Photon-Inc\Photon-cpp\inc\Punchthrough\RelayClient.h">
       <Filter>PhotonLib\Photon\Punchthrough</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerStar.h" />
+    <ClInclude Include="ResultGamen.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -578,6 +582,7 @@
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\Hako.FBX" />
+    <MeshContentTask Include="Assets\modelData\PlayerStar.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">

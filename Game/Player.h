@@ -5,6 +5,7 @@
 #include"Enemy.h"
 #include"Drop_Hako.h"
 #include"Star.h"
+#include"PlayerStar.h"
 #include"SansenKazu.h"
 #include"Draw_1P.h"
 #include"Draw_2P.h"
@@ -15,12 +16,12 @@
 #include "tkEngine/character/tkCharacterController.h"
 
 class Bullet;
-class Player_RType2;
 class Game;
 class Enemy;
 class Senkan_Rtype_2;
 class Drop_Hako;
 class Star;
+class PlayerStar;
 class SansenKazu;
 class Draw_1P;
 class Draw_2P;
@@ -50,6 +51,8 @@ public:
 	void P_Hantei();
 	void MutekiTimes();
 	void HP();
+	void StarPop();
+	void PlS_Hantei();
 	CVector3 GetPosition() {
 		return m_position;
 	}
@@ -123,12 +126,12 @@ private:
 	Draw_2P* Pl2 = nullptr;
 	Draw_3P* Pl3 = nullptr;
 	Draw_4P* Pl4 = nullptr;
-	Player_RType2* m_player_Rtype2 = nullptr;
 	//Senkan_Rtype_2* S_Rtype2 = nullptr;
 	Bullet* m_bullet = nullptr;
 	Game* m_game = nullptr;
 	Enemy* m_enemy = nullptr;
 	Star* m_star = nullptr;
+	PlayerStar* Plstar = nullptr;
 	Drop_Hako* d_hako = nullptr;
 	SansenKazu* s_kazu = nullptr;
 	CCharacterController m_CharaCon;
@@ -151,6 +154,7 @@ private:
 	int MutekiTime = 0;
 	int Ver = 0;
 	int StarCount = 0;
+	int PopStar = 0;
 	int PadNum = 0;
 	int PadMaxKazu = 0;
 	int PlHP = 100;

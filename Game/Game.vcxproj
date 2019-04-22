@@ -1796,6 +1796,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerStar.cpp" />
+    <ClCompile Include="ResultGamen.cpp" />
     <ClCompile Include="SansenGamen.cpp" />
     <ClCompile Include="SansenKazu.cpp" />
     <ClCompile Include="Senkan_Rtype_2.cpp" />
@@ -1981,7 +1983,9 @@
     <ClInclude Include="Photon-Inc\PNetworkLogic.h" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerStar.h" />
     <CLInclude Include="resource.h" />
+    <ClInclude Include="ResultGamen.h" />
     <ClInclude Include="SansenGamen.h" />
     <ClInclude Include="SansenKazu.h" />
     <ClInclude Include="Senkan_Rtype_2.h" />
@@ -2009,6 +2013,7 @@
     <MeshContentTask Include="Assets\modelData\planet11.FBX" />
     <MeshContentTask Include="Assets\modelData\planet_10.FBX" />
     <MeshContentTask Include="Assets\modelData\planet_aomura.FBX" />
+    <MeshContentTask Include="Assets\modelData\PlayerStar.FBX" />
     <MeshContentTask Include="Assets\modelData\Senkan.FBX" />
     <MeshContentTask Include="Assets\modelData\SenkanType2.FBX" />
     <MeshContentTask Include="Assets\modelData\Space_field.FBX" />

@@ -66,6 +66,7 @@ public:
 	void CameraPos();
 	void Star_Life();
 	void Bullet_Life();
+	void PlStar_Life();
 	void SetGameMode(int a)
 	{
 		GameMode = a;
@@ -105,55 +106,26 @@ public:
 	bool GetS_Init()
 	{
 		return S_Init;
-	}//ÉQÅ[ÉÄì‡ÇÃãÖ
-	//bool GetPl1Death()
-	//{
-	//	return PlDeath[0];
-	//}
-	//void SetPl1Death(bool a)
-	//{
-	//	PlDeath[0] = a;
-	//}
-	//bool GetPl2Death()
-	//{
-	//	return PlDeath[1];
-	//}
-	//void SetPl2Death(bool a)
-	//{
-	//	PlDeath[1] = a;
-	//}
-	//bool GetPl3Death()
-	//{
-	//	return PlDeath[2];
-	//}
-	//void SetPl3Death(bool a)
-	//{
-	//	PlDeath[2] = a;
-	//}
-	//bool GetPl4Death()
-	//{
-	//	return PlDeath[3];
-	//}
-	//void SetPl4Death(bool a)
-	//{
-	//	PlDeath[3] = a;
-	//}
-	//void SetDeathPl(int a, bool b)
-	//{
-	//	PlDeath[a] = b;
-	//}
-
+	}
+	void AddPlStarCount(int kazu)
+	{
+		PlStarCount += kazu;
+	}
+	bool GetPlS_Init()
+	{
+		return PlS_Init;
+	}
 	Planet* memoryPP[Planetnumber_Num];
 	Player* m_player[PlKazu] = {nullptr};
 	Enemy* m_enemy = nullptr;
 	Star* m_star = nullptr;
-	Drop_Hako* d_hako = nullptr;
 private:
 	Draw_1P* Pl1 = nullptr;
 	Draw_2P* Pl2 = nullptr;
 	Draw_3P* Pl3 = nullptr;
 	Draw_4P* Pl4 = nullptr;
 	Camera* m_camera = nullptr;
+	Drop_Hako* d_hako = nullptr;
 	field* m_field = nullptr;
 	GamenTimer* m_G_Timer = nullptr;
 	Planet* m_planet = nullptr;
@@ -173,6 +145,7 @@ private:
 	int PadKazu = 0;
 	int PlanetAgeinCount = 0;
 	int StarCount  = 0;
+	int PlStarCount = 0;
 	int Star0 = 0;
 	float P_pos = 400.0f;
 	float MaxC_pos = 1700.0f;
@@ -180,7 +153,7 @@ private:
 	int PB_Kazu = 0;
 	bool PBullet_Init = false;
 	bool S_Init = false;
-	//bool PlDeath[4] = { false };
+	bool PlS_Init = false;
 	CVector3 Kyori = CVector3::Zero;
 	CVector3 SyokiCamera = CVector3::Zero;
 	CVector3 Tyuou = CVector3::Zero;
