@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include"Title_1.h"
 #include "Game.h"
+#include "Network/NetManager.h"
 
 namespace {
 	/*!
@@ -142,7 +143,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	}
 	//エンジンの終了処理。
 	Engine().Final();
-
+	if (NetManager::isInited()) {
+		NetManager::deleteManager();
+	}
 	return 0;
 }
 

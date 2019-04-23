@@ -25,8 +25,8 @@ public:
 	(int playerNr, nByte eventCode, const ExitGames::Common::Object& eventContent) override;
 
 	/*********スタティック関数*********/
-	static NetManager* manager() {
-		return st_manager;
+	static void deleteManager() {
+		 delete st_manager;
 	}
 
 	static PhotonLib::PNetworkLogic* getNet() {
