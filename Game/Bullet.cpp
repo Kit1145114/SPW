@@ -17,6 +17,8 @@ bool Bullet::Start()
 	m_game = FindGO<Game>("Game");
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Bulet.cmo");
+	m_scale = { 3.0f,3.0f,3.0f };
+	m_skinModelRender->SetScale(m_scale);
 	return true;
 }
 

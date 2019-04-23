@@ -23,7 +23,9 @@ bool Player::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Senkan.cmo");
-	m_CharaCon.Init(100.0f, 100.0f, m_position);
+	m_scale = { 3.0f,3.0f,3.0f };
+	m_skinModelRender->SetScale(m_scale);
+	m_CharaCon.Init(300.0f, 300.0f, m_position);
 	m_game = FindGO<Game>("Game");
 	//m_enemy = FindGO<Enemy>("Enemy");
 	s_kazu = FindGO<SansenKazu>("SansenKazu");
@@ -87,12 +89,14 @@ void Player::Update()
 	Rotation();
 	Respawn();
 	S_Hantei();
+	PlS_Hantei();
 	//HakoHantei();
 	B_Hantei();
 	//P_Hantei();
 	Houdai();
 	MutekiTimes();
 	HP();
+	StarPop();
 	memory_position = m_position;
 }
 //プレイヤーの操作
@@ -107,8 +111,8 @@ void Player::Move()
 		}
 		else if(Muteki == true)
 		{
-			m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +5.0f;
-			m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +5.0f;
+			m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +10.0f;
+			m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +10.0f;
 			m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 			m_skinModelRender->SetPosition(m_position);
 		}
@@ -163,7 +167,7 @@ void Player::PBullet2()
 		{
 			m_timer++;  // =GameTime().GetFrameDeltaTime;
 			p_timer++;
-			if (m_timer > 30) {
+			if (m_timer > 15) {
 				m_Short++;
 				m_timer = 0;
 			}
@@ -304,7 +308,7 @@ void Player::Respawn()
 {
 	if (DeathCount == true)
 	{
-		d_timer++;
+ 		d_timer++;
 		if (d_timer == 180)
 		{
 			if (Ver == 0) {
@@ -314,6 +318,7 @@ void Player::Respawn()
 				d_timer = 0;
 				DeathCount = false;
 				Muteki = true;
+				Alive = true;
 				CountExplosion = false;
 				PlHP = MaxHP;
 			}
@@ -326,6 +331,7 @@ void Player::Respawn()
 				DeathCount = false;
 				Muteki = true;
 				Alive = true;
+				PlHP = MaxHP;
 			}
 		}
 	}
@@ -334,8 +340,8 @@ void Player::Respawn()
 void Player::Houdai()
 {
 	if (Ver == 0) {
-		HoukouX = Pad(PadNum).GetRStickXF() * 150.0f;
-		HoukouZ = Pad(PadNum).GetRStickYF() * 150.0f;
+		HoukouX = Pad(PadNum).GetRStickXF() * 75.0f;
+		HoukouZ = Pad(PadNum).GetRStickYF() * 75.0f;
 		SpeedX = Pad(PadNum).GetRStickXF() * 150.0f;
 		SpeedZ = Pad(PadNum).GetRStickYF() * 150.0f;
 		if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
@@ -361,7 +367,7 @@ void Player::Houdai()
 		}
 	}
 }
-//未定
+//☆の当たり判定。
 void Player::S_Hantei()
 {
 	if (m_game->GetS_Init() == false)
@@ -378,6 +384,29 @@ void Player::S_Hantei()
 			}
 			return true;
 		});
+	}
+}
+//プレイヤーの落とした☆の当たり判定。
+void Player::PlS_Hantei()
+{
+	if (DeathCount == false) {
+		if (m_game->GetPlS_Init() == false)
+		{
+
+		}
+		else if (m_game->GetPlS_Init() == true)
+		{
+			QueryGOs<PlayerStar>("PlayerStar", [&](PlayerStar* plstar)->bool {
+				CVector3 Len = plstar->GetPosition() - m_position;
+				if (Len.Length() < 400.0f)
+				{
+					StarCount += plstar->GetStarCount();
+					m_game->AddPlStarCount(1);
+					plstar->Death();
+				}
+				return true;
+			});
+		}
 	}
 }
 //プレイヤー同士の球の判定
@@ -450,5 +479,25 @@ void Player::HP()
 	{
 		PlHP = 0;
 		Death();
+	}
+}
+
+void Player::StarPop()
+{
+	if (Alive == false && Plstar == nullptr)
+	{
+		if (StarCount > 1) {
+			PopStar = StarCount / 2;
+			StarCount -= PopStar;
+			Plstar = NewGO<PlayerStar>(0, "PlayerStar");
+			Plstar->SetPosition(m_position);
+			Plstar->SetStarCount(PopStar);
+			m_game->AddPlStarCount(1);
+			Alive = true;
+		}
+	}
+	else
+	{
+		PopStar = 0;
 	}
 }

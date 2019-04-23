@@ -28,7 +28,6 @@ void GamenTimer::PostRender(CRenderContext& rc)
 		MaxTimer--;
 		m_timer = 0;
 	}
-
 	wchar_t text[256];	int sec = (int)m_timer % 60;
 	swprintf_s(text, L"TIME%d", MaxTimer);
 	m_font.Begin(rc);
@@ -40,5 +39,6 @@ void GamenTimer::PostRender(CRenderContext& rc)
 		0.0f,
 		1.5f
 	);
+
 	m_font.End(rc);
 }

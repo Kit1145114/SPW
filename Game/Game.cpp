@@ -127,6 +127,7 @@ void Game::Update()
 		PlayerNum();
 		CameraPos();
 		Star_Life();
+		PlStar_Life();
 		Bullet_Life();
 		//“–‚½‚è”»’è•\Ž¦
 		dbg::SetDrawPhysicsCollisionEnable();
@@ -228,6 +229,18 @@ void Game::Star_Life()
 	else if (StarCount == Star0)
 	{
 		S_Init = false;
+	}
+}
+
+void Game::PlStar_Life()
+{
+	if (PlStarCount > 0)
+	{
+		PlS_Init = true;
+	}
+	else if (PlStarCount == 0)
+	{
+		PlS_Init = false;
 	}
 }
 
