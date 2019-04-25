@@ -615,7 +615,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\effect\explosion1.efk" />
     <None Include="Assets\effect\explosion2.efk" />
+    <None Include="Assets\effect\explosion1.efk" />
   </ItemGroup>
 </Project>

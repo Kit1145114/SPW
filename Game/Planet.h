@@ -38,7 +38,7 @@ private:
 	CQuaternion p_rotation = CQuaternion::Identity;
 	CVector3 randomspeed = CVector3::Zero;
 	prefab::CSkinModelRender* p_skinModelRender0 = nullptr;
-	prefab::CEffect* effect;
+	
 	Game* m_game = nullptr;
 	SansenKazu* s_kazu = nullptr;
 	Player* m_player[4] = { nullptr };

@@ -292,7 +292,16 @@ void Player::Death()
 		Pl4->SetDeath(true);
 		break;
 	}
-	//Pl1->SetDeath(true);
+	if (CountExplosion == false) {
+		CountExplosion = true;
+		//エフェクトを作成。
+		prefab::CEffect* effect;
+		effect = NewGO<prefab::CEffect>(0);
+		//エフェクトを再生。
+		effect->Play(L"effect/explosion2.efk");
+		effect->SetPosition(this->m_position);
+	}
+
 }
 //プレイヤーのリスポーン処理。
 void Player::Respawn()
@@ -310,6 +319,7 @@ void Player::Respawn()
 				DeathCount = false;
 				Muteki = true;
 				Alive = true;
+				CountExplosion = false;
 				PlHP = MaxHP;
 			}
 			else if (Ver == 1)

@@ -170,5 +170,6 @@ private:
 	bool MyBullet = true;
 	bool Muteki = false;
 	bool Alive = true;
+	bool CountExplosion = false;
 };
 
