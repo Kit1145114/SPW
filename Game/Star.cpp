@@ -6,7 +6,7 @@ Star::Star()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/star.cmo");
-	m_scale = { 3.0f, 3.0, 3.0f };
+	m_scale = { 8.0f, 8.0, 8.0f };
 	m_skinModelRender->SetScale(m_scale);
 	m_player = FindGO<Player>("Player");
 	m_game = FindGO<Game>("Game");
@@ -20,13 +20,12 @@ Star::~Star()
 
 bool Star::Start()
 {
-	m_game = FindGO<Game>("Game");
+	//m_game = FindGO<Game>("Game");
 	return true;
 }
 
 void Star::Update()
 {
-	Hantei();
 	Rotation();
 	Push();
 	m_timer++;
@@ -37,10 +36,6 @@ void Star::Update()
 		m_timer = 0;
 		Death();
 	}
-}
-//™‚Ìæ“¾”»’èB
-void Star::Hantei()
-{
 }
 
 //™‚ÌoŒ»

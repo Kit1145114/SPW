@@ -31,7 +31,7 @@ Game::~Game()
 	DeleteGO(m_field);
 	DeleteGO(m_G_Timer);
 	DeleteGO(m_planet);
-	DeleteGO(s_kazu);
+	//DeleteGO(s_kazu);
 	DeleteGO(Pl1);
 	DeleteGO(Pl2);
 	DeleteGO(Pl3);
@@ -127,19 +127,21 @@ void Game::Update()
 		PlayerNum();
 		CameraPos();
 		Star_Life();
+		PlStar_Life();
 		Bullet_Life();
 		//当たり判定表示
 		dbg::SetDrawPhysicsCollisionEnable();
 		if (Pad(0).IsPress(enButtonSelect) == true)
 		{
-			GameMode = 1;
+			NewGO<Title_2>(0, "Title2");
+			DeleteGO(this);
 		}
 	}
 	else if (GameMode == 1)
 	{
 		//TODO ネット対戦用に変える必要がある
 		GameMode = 0;
-		NewGO<Title_2>(0, "Title_2");
+		NewGO<ResultGamen>(0, "ResultGamen");
 		DeleteGO(this);
 	}
 }
@@ -206,7 +208,7 @@ void Game::CameraPos()
 			+ m_player[2]->GetPosition()/2 + m_player[3]->GetPosition()/2;
 		memory_position = Tyuou;
 		Kyori = m_player[0]->GetPosition() - m_player[1]->GetPosition() -
-			m_player[2]->GetPosition() - m_player[4]->GetPosition();
+			m_player[2]->GetPosition() - m_player[3]->GetPosition();
 		if (m_camera->GetKyori() > m_camera->MinCameraPos()/*1500*/) {
 			if (Kyori.Length() < MinC_pos)
 				m_camera->SetKyori(-15.0f);
@@ -229,6 +231,18 @@ void Game::Star_Life()
 	else if (StarCount == Star0)
 	{
 		S_Init = false;
+	}
+}
+
+void Game::PlStar_Life()
+{
+	if (PlStarCount > 0)
+	{
+		PlS_Init = true;
+	}
+	else if (PlStarCount == 0)
+	{
+		PlS_Init = false;
 	}
 }
 

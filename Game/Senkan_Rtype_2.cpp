@@ -34,7 +34,7 @@ void Senkan_Rtype_2::Update()
 			//ˆê‚Â–Ú
 			m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 			m_bullet->SetPosition(m_player->GetPosition());
-			m_bullet->SetPositionZ(HoukouX, HoukouZ);
+			m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 			m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 
 			//“ñ‚Â–Ú
@@ -42,14 +42,14 @@ void Senkan_Rtype_2::Update()
 			CVector3 pos = m_player->GetPosition();
 			pos.x += 50.0f;
 			m_bullet->SetPosition(pos);
-			m_bullet->SetPositionZ(HoukouX, HoukouZ);
+			m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 			m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 
 			//ŽO‚Â–Ú
 			m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 			pos.x -= 100.0f;
 			m_bullet->SetPosition(pos);
-			m_bullet->SetPositionZ(HoukouX, HoukouZ);
+			m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 			m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 
 			m_Short--;

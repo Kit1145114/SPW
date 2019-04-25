@@ -38,6 +38,7 @@ private:
 	CQuaternion p_rotation = CQuaternion::Identity;
 	CVector3 randomspeed = CVector3::Zero;
 	prefab::CSkinModelRender* p_skinModelRender0 = nullptr;
+	
 	Game* m_game = nullptr;
 	SansenKazu* s_kazu = nullptr;
 	Player* m_player[4] = { nullptr };
@@ -50,6 +51,7 @@ private:
 	Draw_4P* Pl4 = nullptr;
 	float radius = { 30.0f };//	˜f¯‚Ì”¼Œa
 	bool movecount = false;
+	bool CountExplosion = false;
 	int myPlanetnumber =0;    //©•ª‚ÌPlametƒiƒ“ƒo[•Û‘¶—p
 	int PadMaxKazu = 0;
 	int time = 0;   //plamet‚ª’a¶‚µ‚Ä‚©‚ç‚ÌŠÔ

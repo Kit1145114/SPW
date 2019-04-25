@@ -10,9 +10,9 @@ Player::~Player()
 {
 	DeleteGO(m_skinModelRender);
 
-	if (S_Rtype2 != nullptr) {
-		DeleteGO(S_Rtype2);
-	}
+	//if (S_Rtype2 != nullptr) {
+	//	DeleteGO(S_Rtype2);
+	//}
 	if (d_hako != nullptr)
 	{
 		DeleteGO(d_hako);
@@ -23,7 +23,9 @@ bool Player::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Senkan.cmo");
-	m_CharaCon.Init(100.0f, 100.0f, m_position);
+	m_scale = { 3.0f,3.0f,3.0f };
+	m_skinModelRender->SetScale(m_scale);
+	m_CharaCon.Init(300.0f, 300.0f, m_position);
 	m_game = FindGO<Game>("Game");
 	//m_enemy = FindGO<Enemy>("Enemy");
 	s_kazu = FindGO<SansenKazu>("SansenKazu");
@@ -87,12 +89,14 @@ void Player::Update()
 	Rotation();
 	Respawn();
 	S_Hantei();
+	PlS_Hantei();
 	//HakoHantei();
 	B_Hantei();
 	//P_Hantei();
 	Houdai();
 	MutekiTimes();
 	HP();
+	StarPop();
 	memory_position = m_position;
 }
 //プレイヤーの操作
@@ -107,8 +111,8 @@ void Player::Move()
 		}
 		else if(Muteki == true)
 		{
-			m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +5.0f;
-			m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +5.0f;
+			m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +10.0f;
+			m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +10.0f;
 			m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 			m_skinModelRender->SetPosition(m_position);
 		}
@@ -136,7 +140,7 @@ void Player::PBullet()
 					m_bullet->SetPB(PadNum);
 					//m_game->SetPBInit(true);
 					m_bullet->SetPosition(m_position);
-					m_bullet->SetPositionZ(HoukouX, HoukouZ);
+					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 					m_Short--;
 					ShortCount = true;
@@ -163,7 +167,7 @@ void Player::PBullet2()
 		{
 			m_timer++;  // =GameTime().GetFrameDeltaTime;
 			p_timer++;
-			if (m_timer > 30) {
+			if (m_timer > 15) {
 				m_Short++;
 				m_timer = 0;
 			}
@@ -173,19 +177,19 @@ void Player::PBullet2()
 					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 					m_bullet->SetPB(PadNum);
 					m_bullet->SetPosition(m_position);
-					m_bullet->SetPositionZ(HoukouX, HoukouZ);
+					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 
 					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 					m_bullet->SetPB(PadNum);
-					m_bullet->SetPositionZ(HoukouX, HoukouZ);
+					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 					m_bullet->SetPositionX(50.0f);
 					m_bullet->SetPosition(m_position);
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 
 					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 					m_bullet->SetPB(PadNum);
-					m_bullet->SetPositionZ(HoukouX, HoukouZ);
+					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 					m_bullet->SetPositionX(-100.0f);
 					m_bullet->SetPosition(m_position);
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
@@ -208,7 +212,7 @@ void Player::PBullet2()
 //プレイヤーの進化用
 void Player::Pevolution()
 {
-	if (StarCount == 1 && m_mode == 0)
+	if (StarCount == 5 && m_mode == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
 		//S_Rtype2 = NewGO<Senkan_Rtype_2>(0,"Senkan_RType_2");
@@ -288,36 +292,46 @@ void Player::Death()
 		Pl4->SetDeath(true);
 		break;
 	}
-	//Pl1->SetDeath(true);
+	if (CountExplosion == false) {
+		CountExplosion = true;
+		//エフェクトを作成。
+		prefab::CEffect* effect;
+		effect = NewGO<prefab::CEffect>(0);
+		//エフェクトを再生。
+		effect->Play(L"effect/explosion2.efk");
+		effect->SetPosition(this->m_position);
+	}
+
 }
 //プレイヤーのリスポーン処理。
 void Player::Respawn()
 {
 	if (DeathCount == true)
 	{
-		d_timer++;
+ 		d_timer++;
 		if (d_timer == 180)
 		{
 			if (Ver == 0) {
 				m_skinModelRender->Init(L"modelData/Senkan.cmo");
-				m_position.z = -500.0f;
-				m_skinModelRender->SetPosition(m_position);
-				m_CharaCon.SetPosition(m_position);
-				d_timer = 0;
-				DeathCount = false;
-				Muteki = true;
-				PlHP = MaxHP;
-			}
-			else if (Ver == 1)
-			{
-				m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
-				m_position.x = -500.0f;
 				m_skinModelRender->SetPosition(m_position);
 				m_CharaCon.SetPosition(m_position);
 				d_timer = 0;
 				DeathCount = false;
 				Muteki = true;
 				Alive = true;
+				CountExplosion = false;
+				PlHP = MaxHP;
+			}
+			else if (Ver == 1)
+			{
+				m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
+				m_skinModelRender->SetPosition(m_position);
+				m_CharaCon.SetPosition(m_position);
+				d_timer = 0;
+				DeathCount = false;
+				Muteki = true;
+				Alive = true;
+				PlHP = MaxHP;
 			}
 		}
 	}
@@ -326,11 +340,11 @@ void Player::Respawn()
 void Player::Houdai()
 {
 	if (Ver == 0) {
-		HoukouX = NPad(PadNum).GetRStickXF() * 150.0f;
-		HoukouZ = NPad(PadNum).GetRStickYF() * 150.0f;
-		SpeedX = NPad(PadNum).GetRStickXF() * 15.0f;
-		SpeedZ = NPad(PadNum).GetRStickYF() * 15.0f;
-		if (NPad(PadNum).GetRStickXF() == 0.0 && NPad(PadNum).GetRStickYF() == 0.0)
+		HoukouX = Pad(PadNum).GetRStickXF() * 75.0f;
+		HoukouZ = Pad(PadNum).GetRStickYF() * 75.0f;
+		SpeedX = Pad(PadNum).GetRStickXF() * 150.0f;
+		SpeedZ = Pad(PadNum).GetRStickYF() * 150.0f;
+		if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
 		{
 			HoukouX = 0.0f;
 			HoukouZ = 150.0f;
@@ -353,7 +367,7 @@ void Player::Houdai()
 		}
 	}
 }
-//未定
+//☆の当たり判定。
 void Player::S_Hantei()
 {
 	if (m_game->GetS_Init() == false)
@@ -370,6 +384,29 @@ void Player::S_Hantei()
 			}
 			return true;
 		});
+	}
+}
+//プレイヤーの落とした☆の当たり判定。
+void Player::PlS_Hantei()
+{
+	if (DeathCount == false) {
+		if (m_game->GetPlS_Init() == false)
+		{
+
+		}
+		else if (m_game->GetPlS_Init() == true)
+		{
+			QueryGOs<PlayerStar>("PlayerStar", [&](PlayerStar* plstar)->bool {
+				CVector3 Len = plstar->GetPosition() - m_position;
+				if (Len.Length() < 400.0f)
+				{
+					StarCount += plstar->GetStarCount();
+					m_game->AddPlStarCount(1);
+					plstar->Death();
+				}
+				return true;
+			});
+		}
 	}
 }
 //プレイヤー同士の球の判定
@@ -418,7 +455,7 @@ void Player::P_Hantei()
 		}
 	}
 }
-
+//無敵時間の調整。
 void Player::MutekiTimes()
 {
 	if (Muteki == true)
@@ -435,12 +472,32 @@ void Player::MutekiTimes()
 
 	}
 }
-
+//死んだ後のHP調整等。
 void Player::HP()
 {
 	if (PlHP <= 0)
 	{
 		PlHP = 0;
 		Death();
+	}
+}
+
+void Player::StarPop()
+{
+	if (Alive == false && Plstar == nullptr)
+	{
+		if (StarCount > 1) {
+			PopStar = StarCount / 2;
+			StarCount -= PopStar;
+			Plstar = NewGO<PlayerStar>(0, "PlayerStar");
+			Plstar->SetPosition(m_position);
+			Plstar->SetStarCount(PopStar);
+			m_game->AddPlStarCount(1);
+			Alive = true;
+		}
+	}
+	else
+	{
+		PopStar = 0;
 	}
 }

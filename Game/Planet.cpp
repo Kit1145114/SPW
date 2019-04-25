@@ -173,12 +173,23 @@ void Planet::Move() {
 //ドカーン（爆発）きたねぇ、花火だぜ、、、。
 void Planet::explosion()
 {
-	Star* m_star = NewGO<Star>(0, "Star");
-	m_star->Pop(this->p_position);
-	m_game->SetStarCount(1);
-	Generate(1, myPlanetnumber); //新たな惑星を生成（自分のナンバーの惑星を）。
-	DeleteGO(this);
-	//m_game->SetPlanetAgeinCount(-1);
+	if (this->CountExplosion == false) {
+		CountExplosion = true;
+		Star* m_star = NewGO<Star>(0, "Star");
+		m_star->Pop(this->p_position);
+		m_game->SetStarCount(1);
+		Generate(1, myPlanetnumber); //新たな惑星を生成（自分のナンバーの惑星を）。
+		DeleteGO(this);
+
+		//エフェクトを作成。
+		prefab::CEffect* effect;
+		effect = NewGO<prefab::CEffect>(0);
+		//エフェクトを再生。
+		effect->Play(L"effect/explosion1.efk");
+		//エフェクトに半径/（Ｍａｘと差）をかける
+		effect->SetScale({ radius/200,1.0f,radius/200 });
+		effect->SetPosition(this->p_position);
+	}
 }
 
 void Planet::Timer()
