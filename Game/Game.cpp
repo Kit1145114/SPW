@@ -119,7 +119,7 @@ bool Game::Start()
 
 	m_field = NewGO<field>(0);
 	m_camera = NewGO<Camera>(0);
-	m_enemy = NewGO<Enemy>(0,"Enemy");
+	//m_enemy = NewGO<Enemy>(0,"Enemy");
 	m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
 	//s_bar = NewGO<Sinka_Bar>(0, "Sinka_Bar");
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);

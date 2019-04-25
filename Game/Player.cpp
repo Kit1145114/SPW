@@ -28,7 +28,7 @@ bool Player::Start()
 	m_CharaCon.Init(300.0f, 300.0f, m_position);
 	//m_game = FindGO<Game>("Game");
 	m_game = Game::GetInstance();
-	m_enemy = FindGO<Enemy>("Enemy");
+	//m_enemy = FindGO<Enemy>("Enemy");
 	s_kazu = FindGO<SansenKazu>("SansenKazu");
 	switch (s_kazu->GetKazu())
 	{
