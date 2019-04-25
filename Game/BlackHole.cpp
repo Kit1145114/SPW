@@ -13,10 +13,9 @@ BlackHole::~BlackHole()
 
 bool BlackHole::Start()
 {
-	m_game = FindGO<Game>("Game");
-	m_sansenkazu = FindGO<SansenKazu>("SansenKazu");
-	PadMaxKazu = m_sansenkazu->GetKazu();
-	switch (PadMaxKazu)
+	m_game = Game::GetInstance();
+	//m_game = FindGO<Game>("Game");
+	switch (m_game->GetPadKazu())
 	{
 	case 1:
 		m_player[0] = FindGO<Player>("Player");
@@ -69,12 +68,12 @@ void BlackHole::Move()
 	}
 	
 	//PlametÉTÅ[É`
-	for (int i = 0; i < Planetnumber_Num; i++) {
+	/*for (int i = 0; i < Planetnumber_Num; i++) {
 		CVector3 plamet_kyori =  - m_position;
 		if (plamet_kyori.Length() < radius * 100) {
 			m_player[i]->SetPosition(m_player[i]->GetPosition() + (p_kyori*-1 / 10));
 		}
-	}
+	}*/
 }
 
 void BlackHole::Gravity()
