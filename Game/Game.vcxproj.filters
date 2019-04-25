@@ -588,6 +588,10 @@
     <MeshContentTask Include="Assets\modelData\Bullet4.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet2.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet3.FBX" />
+    <MeshContentTask Include="Assets\sprite\1Player.png" />
+    <MeshContentTask Include="Assets\sprite\2Player.png" />
+    <MeshContentTask Include="Assets\sprite\3Player.png" />
+    <MeshContentTask Include="Assets\sprite\4Player.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
@@ -615,7 +619,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\effect\explosion2.efk" />
     <None Include="Assets\effect\explosion1.efk" />
+    <None Include="Assets\effect\explosion2.efk" />
   </ItemGroup>
 </Project>

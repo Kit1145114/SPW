@@ -59,7 +59,7 @@ bool ResultGamen::Start()
 		r_Draw[0]->SetPlayer(1);
 		PS[0] = m_player[0]->GetStarCount();
 		P1_spriteRender = NewGO<prefab::CSpriteRender>(0);
-		P1_spriteRender->Init(L"sprite/1P.dds", 150.0f, 80.0f);
+		P1_spriteRender->Init(L"sprite/1Player.dds", 300.0f, 125.0f);
 		P1_spriteRender->SetPosition(N1position);
 		break;
 	case 2:
@@ -72,10 +72,10 @@ bool ResultGamen::Start()
 		PS[1] = m_player[1]->GetStarCount();
 		r_Draw[1]->SetPlayer(2);
 		P1_spriteRender = NewGO<prefab::CSpriteRender>(0);
-		P1_spriteRender->Init(L"sprite/1P.dds", 150.0f, 80.0f);
+		P1_spriteRender->Init(L"sprite/1Player.dds", 300.0f, 125.0f);
 		P1_spriteRender->SetPosition(N1position);
 		P2_spriteRender = NewGO<prefab::CSpriteRender>(0);
-		P2_spriteRender->Init(L"sprite/2P.dds", 150.0f, 80.0f);
+		P2_spriteRender->Init(L"sprite/2Player.dds", 300.0f, 125.0f);
 		P2_spriteRender->SetPosition(N2position);
 break;
 	case 3:
@@ -92,13 +92,13 @@ break;
 		r_Draw[2] = NewGO<ResultDraw>(0);
 		r_Draw[2]->SetPlayer(3);
 		P1_spriteRender = NewGO<prefab::CSpriteRender>(0);
-		P1_spriteRender->Init(L"sprite/1P.dds", 150.0f, 80.0f);
+		P1_spriteRender->Init(L"sprite/1Player.dds", 300.0f, 125.0f);
 		P1_spriteRender->SetPosition(N1position);
 		P2_spriteRender = NewGO<prefab::CSpriteRender>(0);
-		P2_spriteRender->Init(L"sprite/2P.dds", 150.0f, 80.0f);
+		P2_spriteRender->Init(L"sprite/2Player.dds", 300.0f, 125.0f);
 		P2_spriteRender->SetPosition(N2position);
 		P3_spriteRender = NewGO<prefab::CSpriteRender>(0);
-		P3_spriteRender->Init(L"sprite/3P.dds", 150.0f, 80.0f);
+		P3_spriteRender->Init(L"sprite/3Player.dds", 300.0f, 125.0f);
 		P3_spriteRender->SetPosition(N3position);
 		break;
 	case 4:
@@ -119,16 +119,16 @@ break;
 		r_Draw[3]->SetPlayer(4);
 		PS[3] = m_player[3]->GetStarCount();
 		P1_spriteRender = NewGO<prefab::CSpriteRender>(0);
-		P1_spriteRender->Init(L"sprite/1P.dds", 150.0f, 80.0f);
+		P1_spriteRender->Init(L"sprite/1Player.dds", 300.0f, 125.0f);
 		P1_spriteRender->SetPosition(N1position);
 		P2_spriteRender = NewGO<prefab::CSpriteRender>(0);
-		P2_spriteRender->Init(L"sprite/2P.dds", 150.0f, 80.0f);
+		P2_spriteRender->Init(L"sprite/2Player.dds", 300.0f, 125.0f);
 		P2_spriteRender->SetPosition(N2position);
 		P3_spriteRender = NewGO<prefab::CSpriteRender>(0);
-		P3_spriteRender->Init(L"sprite/3P.dds", 150.0f, 80.0f);
+		P3_spriteRender->Init(L"sprite/3Player.dds", 300.0f, 125.0f);
 		P3_spriteRender->SetPosition(N3position);
 		P4_spriteRender = NewGO<prefab::CSpriteRender>(0);
-		P4_spriteRender->Init(L"sprite/4P.dds", 150.0f, 80.0f);
+		P4_spriteRender->Init(L"sprite/4Player.dds", 300.0f, 125.0f);
 		P4_spriteRender->SetPosition(N4position);
 		break;
 	}

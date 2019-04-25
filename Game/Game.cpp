@@ -3,12 +3,20 @@
 #include"field.h"
 #include "tkEngine/light/tkDirectionLight.h"
 
+Game* Game::m_instance = nullptr;
+
 Game::Game()
 {
+	if (m_instance != nullptr)
+	{
+		std::abort();
+	}
+	m_instance = this;
 }
 
 Game::~Game()
 {
+	m_instance = nullptr;
 	if (m_player != nullptr) {
 		for (int i = 0; i < PadMaxKazu+1; i++)
 		{
@@ -61,12 +69,12 @@ bool Game::Start()
 		m_player[0]->SetPadNum(0);
 		m_player[0]->SetPositionX(P_pos*-3);
 		Pl1 = NewGO<Draw_1P>(0, "1P");
-		Pl1->SetPosition(-200.0f, -300.0f);
+		Pl1->SetPosition(-150.0f, -300.0f);
 		m_player[1] = NewGO<Player>(0, "Player1");
 		m_player[1]->SetPadNum(1);
 		m_player[1]->SetPositionX(P_pos*-1);
 		Pl2 = NewGO<Draw_2P>(0, "2P");
-		Pl2->SetPosition(200.0f, -300.0f);
+		Pl2->SetPosition(150.0f, -300.0f);
 		break;
 	case 3:
 		m_player[0] = NewGO<Player>(0, "Player");
@@ -105,7 +113,7 @@ bool Game::Start()
 		m_player[3]->SetPadNum(3);
 		m_player[3]->SetPositionX(P_pos*3);
 		Pl4 = NewGO<Draw_4P>(0, "4P");
-		Pl4->SetPosition(450.0f, -300.0f);
+		Pl4->SetPosition(400.0f, -300.0f);
 	break;
 	}
 
@@ -135,6 +143,10 @@ void Game::Update()
 		{
 			NewGO<Title_2>(0, "Title2");
 			DeleteGO(this);
+			if (s_kazu != nullptr)
+			{
+				DeleteGO(s_kazu);
+			}
 		}
 	}
 	else if (GameMode == 1)
@@ -255,4 +267,9 @@ void Game::Bullet_Life()
 	{
 		PBullet_Init = false;
 	}
+}
+
+Game* Game::GetInstance()
+{
+	return m_instance;
 }

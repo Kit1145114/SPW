@@ -2036,6 +2036,10 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <ImageContentTask Include="Assets\sprite\1Player.png" />
+    <ImageContentTask Include="Assets\sprite\2Player.png" />
+    <ImageContentTask Include="Assets\sprite\3Player.png" />
+    <ImageContentTask Include="Assets\sprite\4Player.png" />
     <ImageContentTask Include="Assets\sprite\Reslut.png" />
     <ImageContentTask Include="Assets\sprite\Gekitui.png" />
     <ImageContentTask Include="Assets\sprite\1P.png" />
