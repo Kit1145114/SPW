@@ -14,8 +14,9 @@ Planet::~Planet()
 
 bool Planet::Start() 
 {
-	//NewGO<BlackHole>(0, "BH");
+	NewGO<BlackHole>(0, "BH");
 	m_game = FindGO<Game>("Game");
+
 	switch (m_game->GetPadKazu())
 	{
 	case 1:
@@ -200,32 +201,32 @@ void Planet::Death() {
 
 	//Ç®Ç¡Ç∑ÅIÇ®ÇÁòfêØÅIÅIÉvÉåÉCÉÑÅ[îjâÛÇ∑Ç¡ÇºÅIÅIÅB
 	
-	for (int i = 0;i < m_game->GetPadKazu();i++) {
-		CVector3 p_kyori = m_player[i]->GetPosition() - p_position;
-		if (p_kyori.Length() < radius
-			&& m_game->m_player[i]->GetDeathCount() == false) {
-			m_game->m_player[i]->AddHP(-100);
-			if (time > 2) { //ÇoÇnÇoéûÇÕä®ïŸÇµÇƒÇ‚Ç¡ÇºÅI
-				explosion();
-			}
-			else if (i == 0)
-			{
-				Pl1->SetDeath(true);
-			}
-			else if (i == 1)
-			{
-				Pl2->SetDeath(true);
-			}
-			else if (i == 2)
-			{
-				Pl3->SetDeath(true);
-			}
-			else if (i == 3)
-			{
-				Pl4->SetDeath(true);
-			}
-		}
-	}
+	//for (int i = 0;i < Game::GetInstance()->GetPadKazu()+1;i++) {
+	//	CVector3 p_kyori = m_player[i]->GetPosition() - p_position;
+	//	if (p_kyori.Length() < radius
+	//		&& m_game->m_player[i]->GetDeathCount() == false) {
+	//		m_game->m_player[i]->AddHP(-100);
+	//		if (time > 2) { //ÇoÇnÇoéûÇÕä®ïŸÇµÇƒÇ‚Ç¡ÇºÅI
+	//			explosion();
+	//		}
+	//		else if (i == 0)
+	//		{
+	//			Pl1->SetDeath(true);
+	//		}
+	//		else if (i == 1)
+	//		{
+	//			Pl2->SetDeath(true);
+	//		}
+	//		else if (i == 2)
+	//		{
+	//			Pl3->SetDeath(true);
+	//		}
+	//		else if (i == 3)
+	//		{
+	//			Pl4->SetDeath(true);
+	//		}
+	//	}
+	//}
 	//íeÇæÇØÇÕä®ïŸÇµÇƒÇ≠ÇæÇπÇ•ÅB
 	if (m_game->GetPBInit() == true) {
 		int a = 0;

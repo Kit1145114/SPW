@@ -63,7 +63,7 @@ void BlackHole::Move()
 	for (int i = 0; i < m_game->GetPadKazu(); i++) {
 		CVector3 player_kyori = m_player[i]->GetPosition() - m_position;
 		if (player_kyori.Length() < radius*100) {
-			m_player[i]->SetPosition(m_player[i]->GetPosition() +(player_kyori*-1/10));
+			m_player[i]->SetPosition(m_player[i]->GetPosition() -(player_kyori/10));
 		}
 	}
 	

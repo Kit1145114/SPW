@@ -5,7 +5,7 @@
 #include"Draw_3P.h"
 #include"Draw_4P.h"
 #include"BlackHole.h"
-
+#include"Player.h"
 class Game;
 class Player;
 class Bullet;
@@ -32,7 +32,7 @@ public:
 
 	CVector3 GetPosition() {
 		return p_position;
-	}
+	} 
 	void SetPosition(CVector3 plpos)
 	{
 		p_position = plpos;
