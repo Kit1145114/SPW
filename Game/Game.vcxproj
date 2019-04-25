@@ -1780,6 +1780,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Draw_1P.cpp" />
@@ -1828,6 +1829,7 @@
     <ClCompile Include="Title_2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlackHole.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Draw_1P.h" />
@@ -2053,6 +2055,7 @@
   <ItemGroup>
     <None Include="Assets\effect\explosion1.efk" />
     <None Include="Assets\effect\explosion2.efk" />
+    <None Include="Assets\effect\kari_BH.efk" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

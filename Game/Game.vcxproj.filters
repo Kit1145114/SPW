@@ -88,6 +88,7 @@
     <ClCompile Include="PlayerStar.cpp" />
     <ClCompile Include="ResultGamen.cpp" />
     <ClCompile Include="ResultDraw.cpp" />
+    <ClCompile Include="BlackHole.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -541,7 +542,6 @@
     </ClInclude>
     <ClInclude Include="PlayerStar.h" />
     <ClInclude Include="ResultGamen.h" />
-    <ClInclude Include="ResultDraw.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -621,5 +621,6 @@
   <ItemGroup>
     <None Include="Assets\effect\explosion1.efk" />
     <None Include="Assets\effect\explosion2.efk" />
+    <None Include="Assets\effect\explosion1.efk" />
   </ItemGroup>
 </Project>
