@@ -2,9 +2,7 @@
 #include"Game.h"
 #include"Draw_Player.h"
 #include"BlackHole.h"
-#include"Player.h"
 class Game;
-class Player;
 class Bullet;
 class Star;
 class BlackHole;
@@ -39,7 +37,7 @@ private:
 	CVector3 randomspeed = CVector3::Zero;
 	prefab::CSkinModelRender* p_skinModelRender = nullptr;
 	Game* m_game = nullptr;
-	Player* m_player[4] = { nullptr };
+	
 	Bullet* m_bullet = nullptr;
 	Planet* hoge = nullptr;
 	float radius = { 30.0f };//	äÓñ{òfêØÇÃîºåa
