@@ -5,6 +5,7 @@
 #include"GamenTimer.h"
 #include"Enemy.h"
 #include"Title_2.h"
+#include"ResultGamen.h"
 #include"Planet.h"
 #include"Star.h"
 #include"Sinka_Bar.h"
@@ -24,6 +25,7 @@ class Player;
 class GamenTimer;
 class Enemy;
 class Title_2;
+class ResultGamen;
 class Planet;
 class Player_RType2;
 class Star;

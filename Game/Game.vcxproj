@@ -1797,6 +1797,7 @@
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerStar.cpp" />
+    <ClCompile Include="ResultDraw.cpp" />
     <ClCompile Include="ResultGamen.cpp" />
     <ClCompile Include="SansenGamen.cpp" />
     <ClCompile Include="SansenKazu.cpp" />
@@ -1985,6 +1986,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerStar.h" />
     <CLInclude Include="resource.h" />
+    <ClInclude Include="ResultDraw.h" />
     <ClInclude Include="ResultGamen.h" />
     <ClInclude Include="SansenGamen.h" />
     <ClInclude Include="SansenKazu.h" />
@@ -1998,6 +2000,9 @@
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\Bulet.FBX" />
+    <MeshContentTask Include="Assets\modelData\Bullet2.FBX" />
+    <MeshContentTask Include="Assets\modelData\Bullet3.FBX" />
+    <MeshContentTask Include="Assets\modelData\Bullet4.FBX" />
     <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
     <MeshContentTask Include="Assets\modelData\Hako.FBX" />
     <MeshContentTask Include="Assets\modelData\planet01.FBX" />
@@ -2031,6 +2036,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <ImageContentTask Include="Assets\sprite\Reslut.png" />
     <ImageContentTask Include="Assets\sprite\Gekitui.png" />
     <ImageContentTask Include="Assets\sprite\1P.png" />
     <ImageContentTask Include="Assets\sprite\2P.png" />

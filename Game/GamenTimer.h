@@ -19,7 +19,7 @@ private:
 	Player* m_player = nullptr;
 	CVector2 m_position = CVector2::Zero;
 	int m_timer = 0;
-	int MaxTimer = 60;
+	int MaxTimer = 5;
 	int MinTimer = 10;
 };
 
