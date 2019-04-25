@@ -51,7 +51,7 @@ void SansenKazu::PostRender(CRenderContext& rc) {
 	if (Death == false) {
 		wchar_t text[2506];
 
-		swprintf_s(text, L"ç°%d\n", Kazu);
+		swprintf_s(text, L"Player %d\n", Kazu);
 		m_font.Begin(rc);
 
 		m_font.Draw(
