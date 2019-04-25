@@ -88,7 +88,7 @@ public:
 	}//パッドの数
 	int GetPadKazu()
 	{
-		return PadKazu;
+		return s_kazu->GetKazu();
 	}//プレイヤーの弾が存在しているか
 	void SetPBInit(bool a)
 	{

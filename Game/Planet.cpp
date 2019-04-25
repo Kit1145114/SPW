@@ -15,39 +15,7 @@ Planet::~Planet()
 bool Planet::Start() 
 {
 	NewGO<BlackHole>(0, "BH");
-	m_game = FindGO<Game>("Game");
-
-	switch (m_game->GetPadKazu())
-	{
-	case 1:
-		m_player[0] = FindGO<Player>("Player");
-		Pl1 = FindGO<Draw_1P>("1P");
-		break;
-	case 2:
-		m_player[0] = FindGO<Player>("Player");
-		m_player[1] = FindGO<Player>("Player1");
-		Pl1 = FindGO<Draw_1P>("1P");
-		Pl2 = FindGO<Draw_2P>("2P");
-		break;
-	case 3:
-		m_player[0] = FindGO<Player>("Player");
-		m_player[1] = FindGO<Player>("Player1");
-		m_player[2] = FindGO<Player>("Player2");
-		Pl1 = FindGO<Draw_1P>("1P");
-		Pl2 = FindGO<Draw_2P>("2P");
-		Pl3 = FindGO<Draw_3P>("3P");
-		break;
-	case 4:
-		m_player[0] = FindGO<Player>("Player");
-		m_player[1] = FindGO<Player>("Player1");
-		m_player[2] = FindGO<Player>("Player2");
-		m_player[3] = FindGO<Player>("Player3");
-		Pl1 = FindGO<Draw_1P>("1P");
-		Pl2 = FindGO<Draw_2P>("2P");
-		Pl3 = FindGO<Draw_3P>("3P");
-		Pl4 = FindGO<Draw_4P>("4P");
-		break;
-	}
+	
 	return true;
 }
 
@@ -202,10 +170,10 @@ void Planet::Death() {
 	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
 	
 	//for (int i = 0;i < Game::GetInstance()->GetPadKazu()+1;i++) {
-	//	CVector3 p_kyori = m_player[i]->GetPosition() - p_position;
+	//	CVector3 p_kyori = Game::GetInstance()->m_player[i]->GetPosition() - p_position;
 	//	if (p_kyori.Length() < radius
-	//		&& m_game->m_player[i]->GetDeathCount() == false) {
-	//		m_game->m_player[i]->AddHP(-100);
+	//		&& Game::GetInstance()->m_player[i]->GetDeathCount() == false) {
+	//		Game::GetInstance()->m_player[i]->AddHP(-100);
 	//		if (time > 2) { //ＰＯＰ時は勘弁してやっぞ！
 	//			explosion();
 	//		}
@@ -228,7 +196,7 @@ void Planet::Death() {
 	//	}
 	//}
 	//弾だけは勘弁してくだせぇ。
-	if (m_game->GetPBInit() == true) {
+	if (Game::GetInstance()->GetPBInit() == true) {
 		int a = 0;
 		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* bullet)->bool
 		{
@@ -244,14 +212,14 @@ void Planet::Death() {
 	for (int i = 0;i < Planetnumber_Num;i++) {
 		//ちっ、、、癇に障る野郎だぜ、、追いついたと思ったらすぐ爆破して来やがる(惑星同士の距離判定。
 			//もし比較する惑星が自分でなければ。
-		if (m_game->memoryPP[i] != this) {
+		if (Game::GetInstance()->memoryPP[i] != this) {
 			//2点間の距離を計算する。
-			CVector3 diff = m_game->memoryPP[i]->p_position - p_position;
+			CVector3 diff = Game::GetInstance()->memoryPP[i]->p_position - p_position;
 			//距離が半径以下なら。
 			if (diff.Length() < radius) {
 				explosion();
 			}
-			else if (m_game->memoryPP[i]->radius + radius > diff.Length()) {
+			else if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
 				explosion();
 			}
 		}
