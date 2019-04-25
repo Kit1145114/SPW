@@ -18,10 +18,8 @@ bool Enemy::Start()
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Enemy.cmo");
 	m_CharaCon.Init(100.0f, 15.0f, m_position);
-	m_game = FindGO<Game>("Game");
-	s_kazu = FindGO<SansenKazu>("SansenKazu");
-	PadNum = s_kazu->GetKazu();
-	switch (PadNum)
+	m_game = Game::GetInstance();
+	switch (m_game->GetSansenKazu())
 	{
 	case 1:
 		m_player[0] = FindGO<Player>("Player");
@@ -56,7 +54,7 @@ void Enemy::Update()
 //エネミーの死亡判定。
 void Enemy::Pl_Hantei()
 {
-	for(int i = 0; i < PadNum; i++)
+	for(int i = 0; i < PadKazu; i++)
 	if (m_player[i]->GetVer() == 0) {
 		if (m_game->GetPBInit() == true/*m_player[i]->GetShortCount() == true && m_player[i]->GetDeathCount() == false*/)
 		{

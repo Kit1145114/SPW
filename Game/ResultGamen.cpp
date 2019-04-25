@@ -9,7 +9,6 @@ ResultGamen::ResultGamen()
 
 ResultGamen::~ResultGamen()
 {
-	DeleteGO(s_kazu);
 	DeleteGO(r_spriteRender);
 	if (P1_spriteRender != nullptr)
 	{
@@ -49,9 +48,7 @@ bool ResultGamen::Start()
 {
 	r_spriteRender = NewGO<prefab::CSpriteRender>(0);
 	r_spriteRender->Init(L"sprite/Reslut.dds", 1280.0f, 720.0f);
-	s_kazu = FindGO<SansenKazu>("SansenKazu");
-	PadMaxKazu = s_kazu->GetKazu();
-	switch (PadMaxKazu)
+	switch (PadKazu)
 	{
 	case 1:
 		m_player[0] = FindGO<Player>("Player");
@@ -147,7 +144,7 @@ void ResultGamen::Update()
 
 void ResultGamen::Result()
 {
-	switch (PadMaxKazu)
+	switch (PadKazu)
 	{
 	case 1:
 		r_Draw[0]->SetJuni(1);

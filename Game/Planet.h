@@ -1,19 +1,12 @@
 #pragma once
 #include"Game.h"
-#include"Draw_1P.h"
-#include"Draw_2P.h"
-#include"Draw_3P.h"
-#include"Draw_4P.h"
+#include"Draw_Player.h"
 #include"BlackHole.h"
 #include"Player.h"
 class Game;
 class Player;
 class Bullet;
 class Star;
-class Draw_1P;
-class Draw_2P;
-class Draw_3P;
-class Draw_4P;
 class BlackHole;
 
 class Planet : public IGameObject
@@ -49,10 +42,6 @@ private:
 	Player* m_player[4] = { nullptr };
 	Bullet* m_bullet = nullptr;
 	Planet* hoge = nullptr;
-	Draw_1P* Pl1 = nullptr;
-	Draw_2P* Pl2 = nullptr;
-	Draw_3P* Pl3 = nullptr;
-	Draw_4P* Pl4 = nullptr;
 	float radius = { 30.0f };//	äÓñ{òfêØÇÃîºåa
 	bool movecount = false;
 	bool CountExplosion = false;

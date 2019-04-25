@@ -79,16 +79,12 @@
     <ClCompile Include="Senkan_Rtype_2.cpp" />
     <ClCompile Include="Drop_Hako.cpp" />
     <ClCompile Include="SansenGamen.cpp" />
-    <ClCompile Include="SansenKazu.cpp" />
     <ClCompile Include="GameTaiki.cpp" />
-    <ClCompile Include="Draw_1P.cpp" />
-    <ClCompile Include="Draw_2P.cpp" />
-    <ClCompile Include="Draw_3P.cpp" />
-    <ClCompile Include="Draw_4P.cpp" />
     <ClCompile Include="PlayerStar.cpp" />
     <ClCompile Include="ResultGamen.cpp" />
     <ClCompile Include="ResultDraw.cpp" />
     <ClCompile Include="BlackHole.cpp" />
+    <ClCompile Include="Draw_Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -111,12 +107,7 @@
     <ClInclude Include="Senkan_Rtype_2.h" />
     <ClInclude Include="Drop_Hako.h" />
     <ClInclude Include="SansenGamen.h" />
-    <ClInclude Include="SansenKazu.h" />
     <ClInclude Include="GameTaiki.h" />
-    <ClInclude Include="Draw_1P.h" />
-    <ClInclude Include="Draw_2P.h" />
-    <ClInclude Include="Draw_3P.h" />
-    <ClInclude Include="Draw_4P.h" />
     <ClInclude Include="Photon-Inc\PEventListener.h">
       <Filter>PhotonLib</Filter>
     </ClInclude>
@@ -542,6 +533,9 @@
     </ClInclude>
     <ClInclude Include="PlayerStar.h" />
     <ClInclude Include="ResultGamen.h" />
+    <ClInclude Include="BlackHole.h" />
+    <ClInclude Include="ResultDraw.h" />
+    <ClInclude Include="Draw_Player.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -588,10 +582,6 @@
     <MeshContentTask Include="Assets\modelData\Bullet4.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet2.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet3.FBX" />
-    <MeshContentTask Include="Assets\sprite\1Player.png" />
-    <MeshContentTask Include="Assets\sprite\2Player.png" />
-    <MeshContentTask Include="Assets\sprite\3Player.png" />
-    <MeshContentTask Include="Assets\sprite\4Player.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
@@ -612,6 +602,10 @@
     <ImageContentTask Include="Assets\sprite\3P.png" />
     <ImageContentTask Include="Assets\sprite\4P.png" />
     <ImageContentTask Include="Assets\sprite\Reslut.png" />
+    <ImageContentTask Include="Assets\sprite\1Player.png" />
+    <ImageContentTask Include="Assets\sprite\2Player.png" />
+    <ImageContentTask Include="Assets\sprite\3Player.png" />
+    <ImageContentTask Include="Assets\sprite\4Player.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
@@ -622,5 +616,6 @@
     <None Include="Assets\effect\explosion1.efk" />
     <None Include="Assets\effect\explosion2.efk" />
     <None Include="Assets\effect\explosion1.efk" />
+    <None Include="Assets\effect\kari_BH.efk" />
   </ItemGroup>
 </Project>

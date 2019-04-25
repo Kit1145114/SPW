@@ -1,8 +1,5 @@
 #pragma once
 #include"Game.h"
-#include"SansenKazu.h"
-
-class SansenKazu;
 
 class SansenGamen : public IGameObject
 {
@@ -11,10 +8,15 @@ public:
 	~SansenGamen();
 	bool Start();
 	void Update();
-	
-private:
-	SansenKazu * s_kazu = nullptr;
-	prefab::CSpriteRender* m_spriteRender = nullptr;
+	void PostRender(CRenderContext& rc) override;
 
+private:
+	CFont m_font;
+	prefab::CSpriteRender* m_spriteRender = nullptr;
+	int Kazu = 1;
+	int MaxKazu = 4;
+	int MinKazu = 1;
+	bool GameStart = false;
+	bool Death = false;
 };
 

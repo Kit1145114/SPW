@@ -4,19 +4,17 @@
 
 Player::Player()
 {
+	draw_Pl = NewGO<Draw_Player>(0);
 }
 
 Player::~Player()
 {
 	DeleteGO(m_skinModelRender);
-
-	//if (S_Rtype2 != nullptr) {
-	//	DeleteGO(S_Rtype2);
-	//}
 	if (d_hako != nullptr)
 	{
 		DeleteGO(d_hako);
 	}
+	DeleteGO(draw_Pl);
 }
 
 bool Player::Start()
@@ -26,37 +24,8 @@ bool Player::Start()
 	m_scale = { 3.0f,3.0f,3.0f };
 	m_skinModelRender->SetScale(m_scale);
 	m_CharaCon.Init(300.0f, 300.0f, m_position);
-	//m_game = FindGO<Game>("Game");
 	m_game = Game::GetInstance();
-	//m_enemy = FindGO<Enemy>("Enemy");
-	s_kazu = FindGO<SansenKazu>("SansenKazu");
-	switch (s_kazu->GetKazu())
-	{
-	case 1:
-		Pl1 = FindGO<Draw_1P>("1P");
-		break;
-	case 2:
-		Pl1 = FindGO<Draw_1P>("1P");
-		Pl2 = FindGO<Draw_2P>("2P");
-		break;
-	case 3:
-		Pl1 = FindGO<Draw_1P>("1P");
-		Pl2 = FindGO<Draw_2P>("2P");
-		Pl3 = FindGO<Draw_3P>("3P");
-		break;
-	case 4:
-		Pl1 = FindGO<Draw_1P>("1P");
-		Pl2 = FindGO<Draw_2P>("2P");
-		Pl3 = FindGO<Draw_3P>("3P");
-		Pl4 = FindGO<Draw_4P>("4P");
-		break;
-	}
-	//Pl1 = FindGO<Draw_1P>("1P");
-	//Pl2 = FindGO<Draw_2P>("2P");
-	//Pl3 = FindGO<Draw_3P>("3P");
-	//Pl4 = FindGO<Draw_4P>("4P");
-	PadMaxKazu = s_kazu->GetKazu();
-	switch (PadMaxKazu)
+	switch (m_game->GetSansenKazu())
 	{
 	case 1:
 		m_player[0] = FindGO<Player>("Player");
@@ -86,7 +55,7 @@ void Player::Update()
 	PBullet();		//プレイヤーの射撃操作
 	PBullet2();
 	Pevolution();	//プレイヤーの形態
-	Hantei();
+	//Hantei();
 	Rotation();
 	Respawn();
 	S_Hantei();
@@ -115,7 +84,8 @@ void Player::Move()
 				memorySX = m_moveSpeed.x;
 				memorySZ = m_moveSpeed.z;
 			}
-			else if (m_moveSpeed.x == 0.0f&&m_moveSpeed.z == 0.0f) {
+			else if (Pad(PadNum).GetLStickXF() == 0.0 && Pad(PadNum).GetLStickYF() == 0.0
+					&& Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0) {
 				HoukouX = memoryHX * 10.0f;
 				HoukouZ = memoryHZ * 10.0f;
 				SpeedX = memorySX * 10.0f;
@@ -129,12 +99,6 @@ void Player::Move()
 			m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 			m_skinModelRender->SetPosition(m_position);
 		}
-
-		//デバック用の進化
-		//if(Pad(1).IsPress(enButtonB))
-		//{
-		//	Ver = 1;
-		//}
 	}
 }
 //プレイヤーの球(第一形態）
@@ -238,28 +202,11 @@ void Player::Pevolution()
 void Player::Hantei()
 {
 	if (Muteki == false) {
-		for (int i = 0; i < s_kazu->GetKazu(); i++) {
-			if (Game::GetInstance()->m_enemy != nullptr) {
-				CVector3 diff = m_enemy->GetPosition() - m_player[i]->m_position;
-				if (diff.Length() < 250.0f) {
-					m_player[i]->Death();
-					if (i == 0)
-					{
-						Pl1->SetDeath(true);
-					}
-					else if (i == 1)
-					{
-						Pl2->SetDeath(true);
-					}
-					else if (i == 2)
-					{
-						Pl3->SetDeath(true);
-					}
-					else if (i == 3)
-					{
-						Pl4->SetDeath(true);
-					}
-				}
+		if (Game::GetInstance()->m_enemy != nullptr) {
+			CVector3 diff = m_enemy->GetPosition() - m_position;
+			if (diff.Length() < 250.0f) {
+				Death();
+				draw_Pl->SetDeath(true);
 			}
 		}
 	}
@@ -298,21 +245,7 @@ void Player::Death()
 	ShortCount = false;
 	DeathCount = true;
 	Alive = false;
-	switch (PadNum)
-	{
-	case 0:
-		Pl1->SetDeath(true);
-		break;
-	case 1:
-		Pl2->SetDeath(true);
-		break;
-	case 2:
-		Pl3->SetDeath(true);
-		break;
-	case 3:
-		Pl4->SetDeath(true);
-		break;
-	}
+	draw_Pl->SetDeath(true);
 	if (CountExplosion == false) {
 		CountExplosion = true;
 		//エフェクトを作成。
@@ -520,5 +453,29 @@ void Player::StarPop()
 	else
 	{
 		PopStar = 0;
+	}
+}
+
+void Player::SetPadNum(int num)
+{
+	PadNum = num;
+	switch (PadNum)
+	{
+	case 0:
+		draw_Pl->SetPlayerPicture(L"sprite/1P.dds");
+		draw_Pl->SetPosition(-450.0f, -300.0f);
+		break;
+	case 1:
+		draw_Pl->SetPlayerPicture(L"sprite/2P.dds");
+		draw_Pl->SetPosition(-150.0f, -300.0f);
+		break;
+	case 2:
+		draw_Pl->SetPlayerPicture(L"sprite/3P.dds");
+		draw_Pl->SetPosition(150.0f, -300.0f);
+		break;
+	case 3:
+		draw_Pl->SetPlayerPicture(L"sprite/4P.dds");
+		draw_Pl->SetPosition(450.0f, -300.0f);
+		break;
 	}
 }

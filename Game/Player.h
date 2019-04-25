@@ -6,11 +6,7 @@
 #include"Drop_Hako.h"
 #include"Star.h"
 #include"PlayerStar.h"
-#include"SansenKazu.h"
-#include"Draw_1P.h"
-#include"Draw_2P.h"
-#include"Draw_3P.h"
-#include"Draw_4P.h"
+#include"Draw_Player.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
@@ -23,10 +19,7 @@ class Drop_Hako;
 class Star;
 class PlayerStar;
 class SansenKazu;
-class Draw_1P;
-class Draw_2P;
-class Draw_3P;
-class Draw_4P;
+class Draw_Player;
 
 class Player: public IGameObject
 {
@@ -53,6 +46,7 @@ public:
 	void HP();
 	void StarPop();
 	void PlS_Hantei();
+	void SetPadNum(int num);
 	CVector3 GetPosition() {
 		return m_position;
 	}
@@ -108,10 +102,6 @@ public:
 	{
 		return memory_position;
 	}
-	void  SetPadNum(int num)
-	{
-		PadNum = num;
-	}
 	int GetPadNum()
 	{
 		return PadNum;
@@ -122,11 +112,7 @@ public:
 	}
 private:
 	Player * m_player[4] = { nullptr };
-	Draw_1P * Pl1 = nullptr;
-	Draw_2P* Pl2 = nullptr;
-	Draw_3P* Pl3 = nullptr;
-	Draw_4P* Pl4 = nullptr;
-	//Senkan_Rtype_2* S_Rtype2 = nullptr;
+	Draw_Player * draw_Pl = nullptr;
 	Bullet* m_bullet = nullptr;
 	Game* m_game = nullptr;
 	Enemy* m_enemy = nullptr;

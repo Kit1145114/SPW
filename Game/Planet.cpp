@@ -14,40 +14,8 @@ Planet::~Planet()
 
 bool Planet::Start() 
 {
-	NewGO<BlackHole>(0, "BH");
+	//NewGO<BlackHole>(0, "BH");
 	m_game = FindGO<Game>("Game");
-
-	switch (m_game->GetPadKazu())
-	{
-	case 1:
-		m_player[0] = FindGO<Player>("Player");
-		Pl1 = FindGO<Draw_1P>("1P");
-		break;
-	case 2:
-		m_player[0] = FindGO<Player>("Player");
-		m_player[1] = FindGO<Player>("Player1");
-		Pl1 = FindGO<Draw_1P>("1P");
-		Pl2 = FindGO<Draw_2P>("2P");
-		break;
-	case 3:
-		m_player[0] = FindGO<Player>("Player");
-		m_player[1] = FindGO<Player>("Player1");
-		m_player[2] = FindGO<Player>("Player2");
-		Pl1 = FindGO<Draw_1P>("1P");
-		Pl2 = FindGO<Draw_2P>("2P");
-		Pl3 = FindGO<Draw_3P>("3P");
-		break;
-	case 4:
-		m_player[0] = FindGO<Player>("Player");
-		m_player[1] = FindGO<Player>("Player1");
-		m_player[2] = FindGO<Player>("Player2");
-		m_player[3] = FindGO<Player>("Player3");
-		Pl1 = FindGO<Draw_1P>("1P");
-		Pl2 = FindGO<Draw_2P>("2P");
-		Pl3 = FindGO<Draw_3P>("3P");
-		Pl4 = FindGO<Draw_4P>("4P");
-		break;
-	}
 	return true;
 }
 
@@ -201,32 +169,16 @@ void Planet::Death() {
 
 	//Ç®Ç¡Ç∑ÅIÇ®ÇÁòfêØÅIÅIÉvÉåÉCÉÑÅ[îjâÛÇ∑Ç¡ÇºÅIÅIÅB
 	
-	//for (int i = 0;i < Game::GetInstance()->GetPadKazu()+1;i++) {
-	//	CVector3 p_kyori = m_player[i]->GetPosition() - p_position;
-	//	if (p_kyori.Length() < radius
-	//		&& m_game->m_player[i]->GetDeathCount() == false) {
-	//		m_game->m_player[i]->AddHP(-100);
-	//		if (time > 2) { //ÇoÇnÇoéûÇÕä®ïŸÇµÇƒÇ‚Ç¡ÇºÅI
-	//			explosion();
-	//		}
-	//		else if (i == 0)
-	//		{
-	//			Pl1->SetDeath(true);
-	//		}
-	//		else if (i == 1)
-	//		{
-	//			Pl2->SetDeath(true);
-	//		}
-	//		else if (i == 2)
-	//		{
-	//			Pl3->SetDeath(true);
-	//		}
-	//		else if (i == 3)
-	//		{
-	//			Pl4->SetDeath(true);
-	//		}
-	//	}
-	//}
+	for (int i = 0;i < Game::GetInstance()->GetSansenKazu();i++) {
+		CVector3 p_kyori = Game::GetInstance()->m_player[i]->GetPosition() - p_position;
+		if (p_kyori.Length() < radius
+			&& m_game->m_player[i]->GetDeathCount() == false) {
+			m_game->m_player[i]->AddHP(-100);
+			if (time > 2) { //ÇoÇnÇoéûÇÕä®ïŸÇµÇƒÇ‚Ç¡ÇºÅI
+				explosion();
+			}
+		}
+	}
 	//íeÇæÇØÇÕä®ïŸÇµÇƒÇ≠ÇæÇπÇ•ÅB
 	if (m_game->GetPBInit() == true) {
 		int a = 0;

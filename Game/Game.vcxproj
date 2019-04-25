@@ -1783,10 +1783,7 @@
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Draw_1P.cpp" />
-    <ClCompile Include="Draw_2P.cpp" />
-    <ClCompile Include="Draw_3P.cpp" />
-    <ClCompile Include="Draw_4P.cpp" />
+    <ClCompile Include="Draw_Player.cpp" />
     <ClCompile Include="Drop_Hako.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="field.cpp" />
@@ -1801,7 +1798,6 @@
     <ClCompile Include="ResultDraw.cpp" />
     <ClCompile Include="ResultGamen.cpp" />
     <ClCompile Include="SansenGamen.cpp" />
-    <ClCompile Include="SansenKazu.cpp" />
     <ClCompile Include="Senkan_Rtype_2.cpp" />
     <ClCompile Include="Sinka_Bar.cpp" />
     <ClCompile Include="Star.cpp" />
@@ -1832,10 +1828,7 @@
     <ClInclude Include="BlackHole.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="Draw_1P.h" />
-    <ClInclude Include="Draw_2P.h" />
-    <ClInclude Include="Draw_3P.h" />
-    <ClInclude Include="Draw_4P.h" />
+    <ClInclude Include="Draw_Player.h" />
     <ClInclude Include="Drop_Hako.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="field.h" />
@@ -1991,7 +1984,6 @@
     <ClInclude Include="ResultDraw.h" />
     <ClInclude Include="ResultGamen.h" />
     <ClInclude Include="SansenGamen.h" />
-    <ClInclude Include="SansenKazu.h" />
     <ClInclude Include="Senkan_Rtype_2.h" />
     <ClInclude Include="Sinka_Bar.h" />
     <ClInclude Include="Star.h" />
