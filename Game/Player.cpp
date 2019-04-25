@@ -145,7 +145,7 @@ void Player::PBullet()
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 					m_Short--;
 					ShortCount = true;
-					m_game->SetKazu(3);
+					m_game->SetKazu(1);
 					p_timer = 0;
 				}
 				else {

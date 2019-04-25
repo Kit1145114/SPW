@@ -38,6 +38,7 @@ public:
 	const PadData* getPad() const{
 		return start;
 	}
+	unsigned int size = 0;
 private:
 	static constexpr int NUM = 30;
 	PadData buffer[NUM] = {};

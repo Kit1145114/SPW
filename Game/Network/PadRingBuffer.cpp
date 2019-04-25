@@ -7,6 +7,7 @@ void PadRingBuffer::clearBuffer() {
 	} else {
 		start = end - 1;
 	}
+	size = 0;
 }
 
 bool PadRingBuffer::hasNext() const{
@@ -32,7 +33,7 @@ void PadRingBuffer::nextData() {
 	}
 	//次のデータがある場合だけ更新する
 	if (local_start != end) {
-		start = local_start;
+		start = local_start; size--;
 	} else {
 		//次のデータがないときは今のデータをトリガだけ消して使いまわす
 		for (int i = 0; i < enButtonNum; i++) {
@@ -63,7 +64,7 @@ void PadRingBuffer::pushFromCPad(const CPad & pad) {
 	end->m_rStickX = pad.GetRStickXF();
 	end->m_rStickY = pad.GetRStickYF();
 
-	end++;
+	end++; size++;
 
 	if (end == arrayEnd) {
 		end = buffer;
@@ -96,7 +97,7 @@ void PadRingBuffer::pushFromArray(nByte * array) {
 	end->m_rStickY = *fp;
 	fp++;
 
-	end++;
+	end++; size++;
 	if (end == arrayEnd) {
 		end = buffer;
 	}

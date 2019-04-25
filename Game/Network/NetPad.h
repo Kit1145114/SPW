@@ -67,6 +67,9 @@ public:
 	void SetFromArray(nByte* array);
 
 	void sendState(PhotonLib::PNetworkLogic& network);
+	unsigned int getBuffSize() {
+		return buff.size;
+	}
 private:
 	const int playerNum;
 

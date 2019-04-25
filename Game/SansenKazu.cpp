@@ -18,7 +18,7 @@ bool SansenKazu::Start()
 
 void SansenKazu::Update()
 {
-	if (GameStart == false) {
+	if (Death == false) {
 		if (Pad(0).IsTrigger(enButtonUp))
 		{
 			if (Kazu < MaxKazu)
@@ -41,10 +41,6 @@ void SansenKazu::Update()
 				Kazu = MinKazu;
 			}
 		}
-	}
-	if (Pad(0).IsTrigger(enButtonA))
-	{
-		GameStart = true;
 	}
 }
 void SansenKazu::PostRender(CRenderContext& rc) {

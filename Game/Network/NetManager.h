@@ -71,7 +71,7 @@ public:
 	}
 
 	//デバッグの時使ってた。また使うかもしれなくもない。
-	//void PostRender(CRenderContext& rc);
+	void PostRender(CRenderContext& rc);
 
 private:
 	static NetManager* st_manager;//自分を入れておくスタティック変数

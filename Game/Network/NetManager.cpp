@@ -85,20 +85,23 @@ void NetManager::onPhotonEvent(int playerNr, nByte eventCode, const ExitGames::C
 
 void NetManager::resetPadWait() {
 	int ping = st_manager->network->GetRoundTripTime();
-	st_manager->wait = ping / 2 / (GameTime().GetFrameDeltaTime()*1000);
+	st_manager->wait = ping / (GameTime().GetFrameDeltaTime()*1000);
 	for (NetPad& pad : st_manager->pads) {
 		pad.clearBuffer();
 	}
 }
 
-//void NetManager::PostRender(CRenderContext & rc) {
-//	font.Begin(rc);
-//	float height = 300;
-//	for (NetPad p : pads) {
-//		wchar_t c[10];
-//		swprintf(c, L"%d", p.sssss());
-//		font.Draw(c, { -300.0f, height });
-//		height -= 200;
-//	}
-//	font.End(rc);
-//}
+void NetManager::PostRender(CRenderContext & rc) {
+	font.Begin(rc);
+	float height = 300;
+	for (NetPad p : pads) {
+		wchar_t c[10];
+		swprintf(c, L"%d", p.getBuffSize());
+		font.Draw(c, { -300.0f, height });
+		height -= 200;
+	}
+	wchar_t c[10];
+	swprintf(c, L"%d", NetManager::getNet()->GetRoundTripTime());
+	font.Draw(c, { 300.0f, 0});
+	font.End(rc);
+}

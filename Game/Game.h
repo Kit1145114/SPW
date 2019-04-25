@@ -65,7 +65,6 @@ public:
 	void S_Pu();
 	void H_Pu();
 	void PlayerNum();
-	void CameraPos();
 	void Star_Life();
 	void Bullet_Life();
 	void PlStar_Life();
@@ -83,9 +82,7 @@ public:
 	{
 		return PadKazu;
 	}
-	CVector3 GetPosition() {
-		return memory_position;
-	}//パッドの数
+	//パッドの数
 	int GetPadKazu()
 	{
 		return PadKazu;
@@ -137,7 +134,6 @@ private:
 	Player_RType2* m_player_Rtype2 = nullptr;
 	Sinka_Bar*s_bar = nullptr;
 	SansenKazu* s_kazu = nullptr;
-	CVector3 memory_position = CVector3::Zero;
 	
 	int GameMode = 0;
 	int Pver = 0;

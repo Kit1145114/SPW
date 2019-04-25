@@ -133,7 +133,6 @@ void Game::Update()
 		S_Pu();
 		H_Pu();
 		PlayerNum();
-		CameraPos();
 		Star_Life();
 		PlStar_Life();
 		Bullet_Life();
@@ -177,60 +176,6 @@ void Game::H_Pu()
 //プレイヤーの人数
 void Game::PlayerNum()
 {
-
-}
-//カメラの動作。
-void Game::CameraPos()
-{
-	switch (PadMaxKazu)
-	{
-	case 1:
-		memory_position = m_player[0]->GetPosition();
-		break;
-	case 2:
-		Tyuou = m_player[0]->GetPosition() / 2 + m_player[1]->GetPosition() / 2;
-		memory_position = Tyuou;
-		Kyori = m_player[0]->GetPosition() - m_player[1]->GetPosition();
-		if (m_camera->GetKyori() > m_camera->MinCameraPos()/*1500*/) {
-			if (Kyori.Length() < MinC_pos)
-				m_camera->SetKyori(-15.0f);
-		}
-		if (m_camera->GetKyori() < m_camera->MaxCameraPos()/*4000*/) {
-			if (Kyori.Length() > MaxC_pos) {
-				m_camera->SetKyori(15.0f);
-			}
-		}
-		break;
-	case 3:
-		Tyuou = m_player[0]->GetPosition() / 2 + m_player[1]->GetPosition() / 2 + m_player[2]->GetPosition()/2;
-		memory_position = Tyuou;
-		Kyori = m_player[0]->GetPosition() - m_player[1]->GetPosition() - m_player[2]->GetPosition();
-		if (m_camera->GetKyori() > m_camera->MinCameraPos()/*1500*/) {
-			if (Kyori.Length() < MinC_pos)
-				m_camera->SetKyori(-15.0f);
-		}
-		if (m_camera->GetKyori() < m_camera->MaxCameraPos()/*3000*/) {
-			if (Kyori.Length() > MaxC_pos) {
-				m_camera->SetKyori(15.0f);
-			}
-		}
-		break;
-	case 4:
-		Tyuou = m_player[0]->GetPosition() / 2 + m_player[1]->GetPosition() / 2 
-			+ m_player[2]->GetPosition()/2 + m_player[3]->GetPosition()/2;
-		memory_position = Tyuou;
-		Kyori = m_player[0]->GetPosition() - m_player[1]->GetPosition() -
-			m_player[2]->GetPosition() - m_player[3]->GetPosition();
-		if (m_camera->GetKyori() > m_camera->MinCameraPos()/*1500*/) {
-			if (Kyori.Length() < MinC_pos)
-				m_camera->SetKyori(-15.0f);
-		}
-		if (m_camera->GetKyori() < m_camera->MaxCameraPos()/*3000*/) {
-			if (Kyori.Length() > MaxC_pos) {
-				m_camera->SetKyori(15.0f);
-			}
-		}
-	}
 
 }
 
