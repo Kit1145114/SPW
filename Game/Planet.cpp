@@ -9,14 +9,15 @@ Planet::Planet()
 
 Planet::~Planet()
 {
-	DeleteGO(p_skinModelRender0);
+	DeleteGO(p_skinModelRender);
 }
 
 bool Planet::Start() 
 {
+	//NewGO<BlackHole>(0, "BH");
 	m_game = FindGO<Game>("Game");
-	s_kazu = FindGO<SansenKazu>("SansenKazu");
-	PadMaxKazu = s_kazu->GetKazu();
+	m_sansenkazu = FindGO<SansenKazu>("SansenKazu");
+	PadMaxKazu = m_sansenkazu->GetKazu();
 	switch (PadMaxKazu)
 	{
 	case 1:
@@ -149,9 +150,9 @@ void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender)
 	scale.z *= v;
 	radius *= v;
 
-	p_skinModelRender0 = skinModelRender;
-	p_skinModelRender0->SetScale(scale);
-	p_skinModelRender0->SetPosition(position);
+	p_skinModelRender = skinModelRender;
+	p_skinModelRender->SetScale(scale);
+	p_skinModelRender->SetPosition(position);
 }
 //ランダム移動。
 void Planet::Move() {
@@ -168,7 +169,7 @@ void Planet::Move() {
 		movecount = true;
 	}
 	p_position += randomspeed;
-	p_skinModelRender0->SetPosition(p_position);
+	p_skinModelRender->SetPosition(p_position);
 }
 //ドカーン（爆発）きたねぇ、花火だぜ、、、。
 void Planet::explosion()
@@ -242,7 +243,7 @@ void Planet::Death() {
 	}
 	//惑星分回す。
 	for (int i = 0;i < Planetnumber_Num;i++) {
-		//ちっ、、、癇に障る野郎だぜ、、追いついたと思ったらすぐ突き放して来やがる(惑星同士の距離判定。
+		//ちっ、、、癇に障る野郎だぜ、、追いついたと思ったらすぐ爆破して来やがる(惑星同士の距離判定。
 			//もし比較する惑星が自分でなければ。
 		if (m_game->memoryPP[i] != this) {
 			//2点間の距離を計算する。
