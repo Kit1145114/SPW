@@ -1,6 +1,5 @@
 #pragma once
 #include"Game.h"
-#include"SansenKazu.h"
 #include"Draw_1P.h"
 #include"Draw_2P.h"
 #include"Draw_3P.h"
@@ -11,7 +10,6 @@ class Game;
 class Player;
 class Bullet;
 class Star;
-class SansenKazu;
 class Draw_1P;
 class Draw_2P;
 class Draw_3P;
@@ -50,7 +48,6 @@ private:
 	Game* m_game = nullptr;
 	Player* m_player[4] = { nullptr };
 	Bullet* m_bullet = nullptr;
-	SansenKazu* m_sansenkazu = nullptr;
 	Planet* hoge = nullptr;
 	Draw_1P* Pl1 = nullptr;
 	Draw_2P* Pl2 = nullptr;
@@ -60,7 +57,6 @@ private:
 	bool movecount = false;
 	bool CountExplosion = false;
 	int myPlanetnumber =0;    //自分のPlametナンバー保存用
-	int PadMaxKazu = 0;
 	int time = 0;   //plametが誕生してからの時間
 };
 

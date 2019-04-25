@@ -16,9 +16,7 @@ bool Planet::Start()
 {
 	//NewGO<BlackHole>(0, "BH");
 	m_game = FindGO<Game>("Game");
-	m_sansenkazu = FindGO<SansenKazu>("SansenKazu");
-	PadMaxKazu = m_sansenkazu->GetKazu();
-	switch (PadMaxKazu)
+	switch (m_game->GetPadKazu())
 	{
 	case 1:
 		m_player[0] = FindGO<Player>("Player");
