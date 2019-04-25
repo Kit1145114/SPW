@@ -8,6 +8,7 @@ using namespace PhotonLib;
 using namespace ExitGames;
 
 NetManager::NetManager() {
+	//2重に作られたら古いほうを破棄
 	if (NetManager::st_manager != nullptr) {
 		delete NetManager::st_manager;
 	}
@@ -24,45 +25,45 @@ NetManager::~NetManager() {
 }
 
 void NetManager::Init(ExitGames::Common::JString appID, ExitGames::Common::JString version) {
+	//ネットワークをnewする。
 	delete network;
 	network = new PNetworkLogic(appID, version);
-	network->connect();
 	network->addEventListener(this);
 }
 
 void NetManager::PreUpdate() {
-	if (network->getState() == PNetworkLogic::DISCONNECT) {
+	if (network->getState() == PNetworkLogic::DISCONNECT) {//切断状態では何もしない
 		return;
 	}
 
-	if (!network->isError()) {
+	if (!network->isError()) {//エラーが無い場合
 
 		network->Update();
 
 		if (!network->isRoomIn()) {//入室処理
-			network->joinOrCreateRoom("Room", 4);
+			network->joinOrCreateRoom("Room", 4);//入室まで何度呼んでもいい仕様
 			return;
 		}
 
 		//パッド更新
-		int localNum = network->getLocalPlayerNum() - 1;
-		pads[localNum].SetFromCPad(Pad(0));
-		pads[localNum].sendState(*network);
+		int localNum = network->getLocalPlayerNum() - 1;//photonのナンバーは0でなく1から始まるため1減らす
+		pads[localNum].SetFromCPad(Pad(0));//バッファにパッド情報を記録
+		pads[localNum].sendState(*network);//photonでパッド情報を送信
 
 		while (true) {
-
+			//自分のパッド入力はラグに合わせてwaitが0になるまで遅延させる
 			if (wait == 0) {
 				bool next = true;
-				for (int num : network->getPlayersNum()) {
+				for (int num : network->getPlayersNum()) {//全員のバッファに情報がある場合だけ更新する
 					if (!pads[num - 1].hasNext()) {
 						next = false;
 					}
 				}
-				if (next == false) {
+				if (next == false) {//無い場合フレームを止めて受信を待つ
 					network->Update();
 					continue;
 				}
-				for (int num : network->getPlayersNum()) {
+				for (int num : network->getPlayersNum()) {//パッド情報を更新する
 					pads[num - 1].nextFlame();
 				}
 			} else {
@@ -79,17 +80,17 @@ void NetManager::PreUpdate() {
 void NetManager::onPhotonEvent(int playerNr, nByte eventCode, const ExitGames::Common::Object & eventContent) {
 	using namespace ExitGames::Common;
 	nByte* arrayP = ValueObject<nByte*>(eventContent).getDataCopy();
-	pads[playerNr - 1].SetFromArray(arrayP);
+	pads[playerNr - 1].SetFromArray(arrayP);//受信したパッド情報をバッファに記録
 }
 
-void NetManager::PostRender(CRenderContext & rc) {
-	font.Begin(rc);
-	float height = 300;
-	for (NetPad p : pads) {
-		wchar_t c[10];
-		swprintf(c, L"%d", p.sssss());
-		font.Draw(c, { -300.0f, height });
-		height -= 200;
-	}
-	font.End(rc);
-}
+//void NetManager::PostRender(CRenderContext & rc) {
+//	font.Begin(rc);
+//	float height = 300;
+//	for (NetPad p : pads) {
+//		wchar_t c[10];
+//		swprintf(c, L"%d", p.sssss());
+//		font.Draw(c, { -300.0f, height });
+//		height -= 200;
+//	}
+//	font.End(rc);
+//}

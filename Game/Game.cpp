@@ -137,6 +137,7 @@ void Game::Update()
 	}
 	else if (GameMode == 1)
 	{
+		//TODO ネット対戦用に変える必要がある
 		GameMode = 0;
 		NewGO<Title_2>(0, "Title_2");
 		DeleteGO(this);

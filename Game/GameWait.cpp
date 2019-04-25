@@ -6,7 +6,10 @@
 #include "SansenKazu.h"
 
 using namespace PhotonLib;
-using namespace ExitGames;
+namespace C = ExitGames::Common;
+namespace L = ExitGames::LoadBalancing;
+
+static C::JString readyKey = "r";
 
 GameWait::GameWait() {
 	if (!NetManager::isInited()) {
@@ -17,35 +20,39 @@ GameWait::GameWait() {
 GameWait::~GameWait() {
 }
 
+bool GameWait::Start() {
+	NetManager::getNet()->connect();
+	NetManager::getNet()->getLocalPlayer().addCustomProperty(readyKey, false);
+	return true;
+}
+
 void GameWait::Update() {
 	PNetworkLogic* network = NetManager::getNet();
 
 	if (!network->isRoomIn())return;
 
-	for (int num : network->getPlayersNum()) {
-		if (NetManager::getPad(num-1).IsTrigger(enButtonA)) {
-			ready[num - 1] = !ready[num - 1];
-			//ready[num - 1] = true;
-		} /*else {
-			ready[num - 1] = false;
-		}*/
+	if (Pad(0).IsTrigger(enButtonA)) {
+		read = !read;
+		network->getLocalPlayer().addCustomProperty(readyKey, read);
 	}
 
-	/*bool start = true;
-	for (int num : network->getPlayersNum()) {
-		if (!ready[num - 1]) {
+	bool start = true;
+	C::JVector<L::Player*> players = NetManager::getNet()->getJoinedRoom().getPlayers();
+	for (int i = 0; i < players.getSize(); i++) {
+		bool ready = C::ValueObject<bool>(players[i]->getCustomProperties().getValue(readyKey)).getDataCopy();
+		if (!ready) {
 			start = false;
 			break;
 		}
-	}*/
+	}
 
-	/*if (start) {
+	if (start) {
 		SansenKazu* sansenkazu = NewGO<SansenKazu>(0, "SansenKazu");
 		sansenkazu->DeathCount(true);
 		sansenkazu->SetKazu(network->getPlayersNum().size());
 		NewGO<Game>(0, "Game");
 		DeleteGO(this);
-	}*/
+	}
 }
 
 void GameWait::PostRender(CRenderContext & rc) {
@@ -68,15 +75,20 @@ void GameWait::PostRender(CRenderContext & rc) {
 	}
 	if (state != PNetworkLogic::ROOMIN) {
 		font.Draw(message, { 0,0 });
+		if (NetManager::getNet()->getErrorCode() != 0) {
+			font.Draw(NetManager::getNet()->getErrorMessage().cstr(), { 0, -100 });
+		}
 	} else {
-		Common::JVector<LoadBalancing::Player*> players = NetManager::getNet()->getJoinedRoom().getPlayers();
+		C::JVector<L::Player*> players = NetManager::getNet()->getJoinedRoom().getPlayers();
 		float height = 100.0f;
 		for (int i = 0; i < players.getSize(); i++) {
 			wchar_t str[10];
 			swprintf(str, L"player%d", players[i]->getNumber());
 			font.Draw(str, { 0, height});
 
-			if (ready[players[i]->getNumber() - 1]) {
+			bool ready = C::ValueObject<bool>(players[i]->getCustomProperties().getValue(readyKey)).getDataCopy();
+
+			if (ready) {
 				font.Draw(L"ready", { 400, height });
 			}
 
