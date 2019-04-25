@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Camera.h"
-
+#include "Game.h"
 
 Camera::Camera()
 {
@@ -12,38 +12,31 @@ Camera::~Camera()
 }
 
 bool Camera::Start() {
-	//プレイヤーの検索
-	m_player = FindGO<Player>("Player");
-	m_game = FindGO<Game>("Game");
-	s_kazu = FindGO<SansenKazu>("SansenKazu");
-		//カメラのニアクリップ
+	//カメラのニアクリップ
+	MainCamera().SetUp(CVector3::AxisZ);
 	MainCamera().SetNear(1.0f);
 	MainCamera().SetFar(100000.0f);
+
+	//自分のプレイヤー番号を取得。とりあえず0番。
+	m_player = Game::GetInstance()->m_player[0];
 
 	return true;
 }
 
 void Camera::TOP() {
-
-	m_CameraPos = m_game->GetPosition();
-	m_CameraPos.y += st_kyori;
-	
-	target = m_game->GetPosition() - m_CameraPos;
-
 	//カメラ
 	if (Pad(0).IsPress(enButtonUp)) {
-		
-		xup += -100.0f;
-		
-	}
+		up += -100.0f;
+	}else
 	if (Pad(0).IsPress(enButtonDown)) {
-		
-		xdn += 100.0f;
-		
+		up += 100.0f;
 	}
-	m_CameraPos.y += xup;
-	m_CameraPos.y += xdn;
-	MainCamera().SetUp(CVector3::AxisZ);
+
+	if (up > MaxCamera) {
+		up = MaxCamera;
+	} else if (MinCamera > up) {
+		up = MinCamera;
+	}
 }
 
 void Camera::Move() {
@@ -55,8 +48,10 @@ void Camera::Update() {
 	TOP();
 	//Move();
 	//メインカメラに注視点と視点を設定する。
-	MainCamera().SetTarget(m_game->GetPosition());
-	MainCamera().SetPosition(m_CameraPos);
+	CVector3 pos = m_player->GetPosition();
+	MainCamera().SetTarget(pos);
+	pos.y += up;
+	MainCamera().SetPosition(pos);
 	//カメラの更新。
 	MainCamera().Update();
 }
