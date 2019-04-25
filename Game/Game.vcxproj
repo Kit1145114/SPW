@@ -1780,6 +1780,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Draw_1P.cpp" />
@@ -1832,6 +1833,7 @@
     <ClCompile Include="Title_2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlackHole.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Draw_1P.h" />
@@ -2046,6 +2048,10 @@
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
     <ImageContentTask Include="Assets\sprite\Icon.png" />
+    <ImageContentTask Include="Assets\sprite\1Player.png" />
+    <ImageContentTask Include="Assets\sprite\2Player.png" />
+    <ImageContentTask Include="Assets\sprite\3Player.png" />
+    <ImageContentTask Include="Assets\sprite\4Player.png" />
     <ImageContentTask Include="Assets\sprite\Reslut.png" />
     <ImageContentTask Include="Assets\sprite\Gekitui.png" />
     <ImageContentTask Include="Assets\sprite\1P.png" />
@@ -2059,6 +2065,7 @@
   <ItemGroup>
     <None Include="Assets\effect\explosion1.efk" />
     <None Include="Assets\effect\explosion2.efk" />
+    <None Include="Assets\effect\kari_BH.efk" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

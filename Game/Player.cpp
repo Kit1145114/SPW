@@ -26,7 +26,8 @@ bool Player::Start()
 	m_scale = { 3.0f,3.0f,3.0f };
 	m_skinModelRender->SetScale(m_scale);
 	m_CharaCon.Init(300.0f, 300.0f, m_position);
-	m_game = FindGO<Game>("Game");
+	//m_game = FindGO<Game>("Game");
+	m_game = Game::GetInstance();
 	//m_enemy = FindGO<Enemy>("Enemy");
 	s_kazu = FindGO<SansenKazu>("SansenKazu");
 	switch (s_kazu->GetKazu())
@@ -226,7 +227,7 @@ void Player::Hantei()
 {
 	if (Muteki == false) {
 		for (int i = 0; i < s_kazu->GetKazu(); i++) {
-			if (m_game->m_enemy != nullptr) {
+			if (Game::GetInstance()->m_enemy != nullptr) {
 				CVector3 diff = m_enemy->GetPosition() - m_player[i]->m_position;
 				if (diff.Length() < 250.0f) {
 					m_player[i]->Death();

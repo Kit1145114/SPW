@@ -24,17 +24,17 @@ void ResultDraw::PostRender(CRenderContext& rc)
 {
 	wchar_t text[2506];
 	if (Juni == 1) {
-		swprintf_s(text, L"1ˆÊ\n");
+		swprintf_s(text, L"No.1\n");
 	}
 	else if (Juni == 2)
 	{
-		swprintf_s(text, L"2ˆÊ\n");
+		swprintf_s(text, L"No.2\n");
 	}
 	else if (Juni == 3) {
-		swprintf_s(text, L"3ˆÊ\n");
+		swprintf_s(text, L"No.3\n");
 	}
 	else if (Juni == 4) {
-		swprintf_s(text, L"4ˆÊ\n");
+		swprintf_s(text, L"No.4\n");
 	}
 		m_font.Begin(rc);
 		if (P == 1) {
