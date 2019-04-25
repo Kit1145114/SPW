@@ -199,8 +199,8 @@ void Planet::Timer()
 void Planet::Death() {
 
 	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
-	m_sansenkazu = FindGO<SansenKazu>("SansenKazu");
-	for (int i = 0;i < m_sansenkazu->GetKazu();i++) {
+	
+	for (int i = 0;i < m_game->GetPadKazu();i++) {
 		CVector3 p_kyori = m_player[i]->GetPosition() - p_position;
 		if (p_kyori.Length() < radius
 			&& m_game->m_player[i]->GetDeathCount() == false) {
