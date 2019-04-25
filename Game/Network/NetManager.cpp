@@ -83,6 +83,14 @@ void NetManager::onPhotonEvent(int playerNr, nByte eventCode, const ExitGames::C
 	pads[playerNr - 1].SetFromArray(arrayP);//受信したパッド情報をバッファに記録
 }
 
+void NetManager::resetPadWait() {
+	int ping = st_manager->network->GetRoundTripTime();
+	st_manager->wait = ping / 2 / (GameTime().GetFrameDeltaTime()*1000);
+	for (NetPad& pad : st_manager->pads) {
+		pad.clearBuffer();
+	}
+}
+
 //void NetManager::PostRender(CRenderContext & rc) {
 //	font.Begin(rc);
 //	float height = 300;

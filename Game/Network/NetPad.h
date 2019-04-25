@@ -51,6 +51,10 @@ public:
 
 	/***更新用関数***/
 
+	void clearBuffer() {
+		buff.clearBuffer();
+	}
+
 	bool hasNext() {
 		return buff.hasNext();
 	}
@@ -63,10 +67,6 @@ public:
 	void SetFromArray(nByte* array);
 
 	void sendState(PhotonLib::PNetworkLogic& network);
-
-	int sssss() {//デバッグ用
-		return buff.size;
-	}
 private:
 	const int playerNum;
 

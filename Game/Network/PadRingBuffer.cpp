@@ -1,6 +1,14 @@
 #include "stdafx.h"
 #include "PadRingBuffer.h"
 
+void PadRingBuffer::clearBuffer() {
+	if (end == buffer) {
+		start = const_cast<PadData*>(arrayEnd) - 1;
+	} else {
+		start = end - 1;
+	}
+}
+
 bool PadRingBuffer::hasNext() const{
 	const PadData* local_start = start;
 	local_start++;
@@ -24,7 +32,7 @@ void PadRingBuffer::nextData() {
 	}
 	//次のデータがある場合だけ更新する
 	if (local_start != end) {
-		start = local_start; size--;
+		start = local_start;
 	} else {
 		//次のデータがないときは今のデータをトリガだけ消して使いまわす
 		for (int i = 0; i < enButtonNum; i++) {
@@ -55,7 +63,7 @@ void PadRingBuffer::pushFromCPad(const CPad & pad) {
 	end->m_rStickX = pad.GetRStickXF();
 	end->m_rStickY = pad.GetRStickYF();
 
-	end++; size++;
+	end++;
 
 	if (end == arrayEnd) {
 		end = buffer;
@@ -88,7 +96,7 @@ void PadRingBuffer::pushFromArray(nByte * array) {
 	end->m_rStickY = *fp;
 	fp++;
 
-	end++; size++;
+	end++;
 	if (end == arrayEnd) {
 		end = buffer;
 	}

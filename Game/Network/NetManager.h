@@ -33,6 +33,9 @@ public:
 	(int playerNr, nByte eventCode, const ExitGames::Common::Object& eventContent) override;
 
 	/*********スタティック関数*********/
+
+	static void resetPadWait();
+
 	/// <summary>
 	/// マネージャーを削除。ゲーム終了時以外呼ばない。
 	/// </summary>
@@ -75,7 +78,8 @@ private:
 
 	PhotonLib::PNetworkLogic* network = nullptr;
 	NetPad pads[CONNECT_PAD_MAX] = {NetPad(0),NetPad(1),NetPad(2),NetPad(3) };
+
 	CFont font;
-	int wait = 20;
+	unsigned int wait = 20;
 };
 

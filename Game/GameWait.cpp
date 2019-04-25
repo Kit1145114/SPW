@@ -51,6 +51,7 @@ void GameWait::Update() {
 		sansenkazu->DeathCount(true);
 		sansenkazu->SetKazu(network->getPlayersNum().size());
 		NewGO<Game>(0, "Game");
+		NetManager::resetPadWait();
 		DeleteGO(this);
 	}
 }

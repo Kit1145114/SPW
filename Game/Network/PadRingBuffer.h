@@ -25,6 +25,8 @@ public:
 	PadRingBuffer() :buffer{} {};
 	~PadRingBuffer() {};
 
+	void clearBuffer();
+
 	bool hasNext() const;
 
 	void nextData();
@@ -36,7 +38,6 @@ public:
 	const PadData* getPad() const{
 		return start;
 	}
-	int size = 0;
 private:
 	static constexpr int NUM = 30;
 	PadData buffer[NUM] = {};
