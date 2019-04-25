@@ -111,8 +111,8 @@ void Player::Move()
 		}
 		else if(Muteki == true)
 		{
-			m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +10.0f;
-			m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +10.0f;
+			m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +10.0f;
+			m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +10.0f;
 			m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 			m_skinModelRender->SetPosition(m_position);
 		}
@@ -340,11 +340,11 @@ void Player::Respawn()
 void Player::Houdai()
 {
 	if (Ver == 0) {
-		HoukouX = Pad(PadNum).GetRStickXF() * 75.0f;
-		HoukouZ = Pad(PadNum).GetRStickYF() * 75.0f;
-		SpeedX = Pad(PadNum).GetRStickXF() * 150.0f;
-		SpeedZ = Pad(PadNum).GetRStickYF() * 150.0f;
-		if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
+		HoukouX = NPad(PadNum).GetRStickXF() * 75.0f;
+		HoukouZ = NPad(PadNum).GetRStickYF() * 75.0f;
+		SpeedX = NPad(PadNum).GetRStickXF() * 150.0f;
+		SpeedZ = NPad(PadNum).GetRStickYF() * 150.0f;
+		if (Pad(PadNum).GetRStickXF() == 0.0 && NPad(PadNum).GetRStickYF() == 0.0)
 		{
 			HoukouX = 0.0f;
 			HoukouZ = 150.0f;
