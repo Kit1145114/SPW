@@ -23,7 +23,7 @@ void GamenTimer::Update()
 void GamenTimer::PostRender(CRenderContext& rc)
 {
 	m_timer++;
-	if (m_timer == 300)
+	if (m_timer == 60)
 	{
 		MaxTimer--;
 		m_timer = 0;

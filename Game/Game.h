@@ -5,6 +5,7 @@
 #include"GamenTimer.h"
 #include"Enemy.h"
 #include"Title_2.h"
+#include"ResultGamen.h"
 #include"Planet.h"
 #include"Star.h"
 #include"Sinka_Bar.h"
@@ -24,6 +25,7 @@ class Player;
 class GamenTimer;
 class Enemy;
 class Title_2;
+class ResultGamen;
 class Planet;
 class Player_RType2;
 class Star;
@@ -67,6 +69,8 @@ public:
 	void Star_Life();
 	void Bullet_Life();
 	void PlStar_Life();
+	static Game* GetInstance();
+
 	void SetGameMode(int a)
 	{
 		GameMode = a;
@@ -120,6 +124,7 @@ public:
 	Enemy* m_enemy = nullptr;
 	Star* m_star = nullptr;
 private:
+	static Game* m_instance;
 	Draw_1P* Pl1 = nullptr;
 	Draw_2P* Pl2 = nullptr;
 	Draw_3P* Pl3 = nullptr;
@@ -147,7 +152,7 @@ private:
 	int StarCount  = 0;
 	int PlStarCount = 0;
 	int Star0 = 0;
-	float P_pos = 400.0f;
+	float P_pos = 700.0f;
 	float MaxC_pos = 1700.0f;
 	float MinC_pos = 1600.0f;
 	int PB_Kazu = 0;

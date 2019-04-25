@@ -39,7 +39,7 @@ void Draw_2P::Update()
 			timer = 0;
 		}
 	}
-	else if (/*m_game->GetPl1Death()*/Death == false)
+	else if (Death == false)
 	{
 		m_spriteRender->Init(L"sprite/2P.dds", 200.0f, 100.0f);
 	}

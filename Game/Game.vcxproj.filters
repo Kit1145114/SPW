@@ -87,6 +87,7 @@
     <ClCompile Include="Draw_4P.cpp" />
     <ClCompile Include="PlayerStar.cpp" />
     <ClCompile Include="ResultGamen.cpp" />
+    <ClCompile Include="ResultDraw.cpp" />
     <ClCompile Include="BlackHole.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -541,7 +542,6 @@
     </ClInclude>
     <ClInclude Include="PlayerStar.h" />
     <ClInclude Include="ResultGamen.h" />
-    <ClInclude Include="BlackHole.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -585,6 +585,13 @@
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\Hako.FBX" />
     <MeshContentTask Include="Assets\modelData\PlayerStar.FBX" />
+    <MeshContentTask Include="Assets\modelData\Bullet4.FBX" />
+    <MeshContentTask Include="Assets\modelData\Bullet2.FBX" />
+    <MeshContentTask Include="Assets\modelData\Bullet3.FBX" />
+    <MeshContentTask Include="Assets\sprite\1Player.png" />
+    <MeshContentTask Include="Assets\sprite\2Player.png" />
+    <MeshContentTask Include="Assets\sprite\3Player.png" />
+    <MeshContentTask Include="Assets\sprite\4Player.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
@@ -604,6 +611,7 @@
     <ImageContentTask Include="Assets\sprite\2P.png" />
     <ImageContentTask Include="Assets\sprite\3P.png" />
     <ImageContentTask Include="Assets\sprite\4P.png" />
+    <ImageContentTask Include="Assets\sprite\Reslut.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
@@ -611,8 +619,8 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\effect\explosion1.efk" />
     <None Include="Assets\effect\explosion2.efk" />
     <None Include="Assets\effect\explosion1.efk" />
-    <None Include="Assets\effect\kari_BH.efk" />
   </ItemGroup>
 </Project>
