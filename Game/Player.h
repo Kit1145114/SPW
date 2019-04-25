@@ -162,8 +162,12 @@ private:
 	int Damage = 20;
 	float HoukouX = 0.0f;
 	float HoukouZ = 0.0f;
-	float SpeedX = 0.0f;
+	float memoryHX = 0.0f;
+	float memoryHZ = 0.0f;
+	float SpeedX = 0.0f;	
 	float SpeedZ = 0.0f;
+	float memorySX = 0.0f;
+	float memorySZ = 0.0f;
 
 	bool DeathCount = false;
 	bool ShortCount = false;

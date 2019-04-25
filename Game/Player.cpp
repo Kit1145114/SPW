@@ -105,18 +105,31 @@ void Player::Move()
 {
 	if (DeathCount == false) {
 		if (Muteki == false) {
-			m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +8.0f;
-			m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +8.0f;
-			m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
-			m_skinModelRender->SetPosition(m_position);
+				m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +8.0f;
+				m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +8.0f;
+				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
+				m_skinModelRender->SetPosition(m_position);
+				if (m_moveSpeed.x != 0.0f || m_moveSpeed.z != 0.0f) {
+				memoryHX = m_moveSpeed.x;
+				memoryHZ = m_moveSpeed.z;
+				memorySX = m_moveSpeed.x;
+				memorySZ = m_moveSpeed.z;
+			}
+			else if (m_moveSpeed.x == 0.0f&&m_moveSpeed.z == 0.0f) {
+				HoukouX = memoryHX * 10.0f;
+				HoukouZ = memoryHZ * 10.0f;
+				SpeedX = memorySX * 10.0f;
+				SpeedZ = memorySZ * 10.0f;
+			}
 		}
-		else if(Muteki == true)
+		else if (Muteki == true)
 		{
 			m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +10.0f;
 			m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +10.0f;
 			m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 			m_skinModelRender->SetPosition(m_position);
 		}
+
 		//デバック用の進化
 		//if(Pad(1).IsPress(enButtonB))
 		//{
@@ -139,13 +152,12 @@ void Player::PBullet()
 				if (Pad(PadNum).IsPress(enButtonRB2) == true) {
 					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 					m_bullet->SetPB(PadNum);
-					//m_game->SetPBInit(true);
 					m_bullet->SetPosition(m_position);
 					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 					m_Short--;
 					ShortCount = true;
-					m_game->SetKazu(3);
+					m_game->SetKazu(1);
 					p_timer = 0;
 				}
 				else {
@@ -269,6 +281,14 @@ void Player::Rotation()
 	CQuaternion qRot;
 	qRot.SetRotation(CVector3::AxisY, Rot);
 	m_skinModelRender->SetRotation(qRot);
+	if (m_moveSpeed.x != 0.0f || m_moveSpeed.z != 0.0f)
+	{
+		m_rotation = qRot;
+	}
+	else if (m_moveSpeed.x == 0.0f && m_moveSpeed.z == 0.0f)
+	{
+		m_skinModelRender->SetRotation(m_rotation);
+	}
 }
 //プレイヤーの死亡処理。
 void Player::Death()
@@ -347,10 +367,10 @@ void Player::Houdai()
 		SpeedZ = Pad(PadNum).GetRStickYF() * 150.0f;
 		if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
 		{
-			HoukouX = 0.0f;
-			HoukouZ = 150.0f;
-			SpeedX = 0.0f;
-			SpeedZ = 15.0f;
+			HoukouX = memoryHX;
+			HoukouZ = memoryHZ;
+			SpeedX = memorySX;
+			SpeedZ = memorySZ;
 		}
 	}
 	else if (Ver == 1)
@@ -361,10 +381,10 @@ void Player::Houdai()
 		SpeedZ = Pad(PadNum).GetRStickYF() * 100.0f;
 		if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
 		{
-			HoukouX = 0.0f;
-			HoukouZ = 150.0f;
-			SpeedX = 0.0f;
-			SpeedZ = 15.0f;
+			HoukouX = memoryHX;
+			HoukouZ = memoryHZ;
+			//SpeedX = memorySX;
+			//SpeedZ = memorySZ;
 		}
 	}
 }
