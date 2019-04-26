@@ -31,8 +31,8 @@ private:
 	prefab::CSpriteRender* P3_spriteRender = nullptr;
 	prefab::CSpriteRender* P4_spriteRender = nullptr;
 	CVector3 N1position = { -220.0f,120.0f,0.0f };
-	CVector3 N2position = { 220.0f,120.0f,0.0f };
+	CVector3 N2position = { 230.0f,120.0f,0.0f };
 	CVector3 N3position = { -220.0f,-180.0f,0.0f };
-	CVector3 N4position = { 220.0f,-180.0f,0.0f };
+	CVector3 N4position = { 230.0f,-180.0f,0.0f };
 };
 

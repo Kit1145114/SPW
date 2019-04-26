@@ -74,8 +74,8 @@ void Player::Move()
 {
 	if (DeathCount == false) {
 		if (Muteki == false) {
-				m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +8.0f;
-				m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +8.0f;
+				m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +5.0f;
+				m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +5.0f;
 				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 				m_skinModelRender->SetPosition(m_position);
 				if (m_moveSpeed.x != 0.0f || m_moveSpeed.z != 0.0f) {
@@ -108,9 +108,9 @@ void Player::PBullet()
 		if (Ver == 0) {
 			m_timer++;  // =GameTime().GetFrameDeltaTime;
 			p_timer++;
-			if (m_timer > 30) {
+			if (m_timer > SeiseiVer_1) {
 				m_Short++;
-				m_timer = 0;
+				m_timer = Timer0;
 			}
 			if (m_Short > 0) {
 				if (Pad(PadNum).IsPress(enButtonRB2) == true) {
@@ -122,14 +122,14 @@ void Player::PBullet()
 					m_Short--;
 					ShortCount = true;
 					m_game->SetKazu(1);
-					p_timer = 0;
+					p_timer = Timer0;
 				}
 				else {
 					if (p_timer == 98)
 					{
 						ShortCount = false;
 						//m_game->SetPBInit(false);
-						p_timer = 0;
+						p_timer = Timer0;
 					}
 				}
 			}
@@ -144,9 +144,9 @@ void Player::PBullet2()
 		{
 			m_timer++;  // =GameTime().GetFrameDeltaTime;
 			p_timer++;
-			if (m_timer > 15) {
+			if (m_timer > SeiseiVer_2) {
 				m_Short++;
-				m_timer = 0;
+				m_timer = Timer0;
 			}
 			if (m_Short > 0)
 			{
@@ -174,13 +174,13 @@ void Player::PBullet2()
 
 					ShortCount = true;
 					m_game->SetKazu(3);
-					p_timer = 0;
+					p_timer = Timer0;
 				}
 				else {
 					if (p_timer == 98)
 					{
 						ShortCount = false;
-						p_timer = 0;
+						p_timer = Timer0;
 					}
 				}
 			}
@@ -203,7 +203,7 @@ void Player::Hantei()
 {
 	if (Muteki == false) {
 		if (Game::GetInstance()->m_enemy != nullptr) {
-			CVector3 diff = m_enemy->GetPosition() - m_position;
+			CVector3 diff = Game::GetInstance()->GetPosition() - m_position;
 			if (diff.Length() < 250.0f) {
 				Death();
 				draw_Pl->SetDeath(true);
@@ -296,8 +296,8 @@ void Player::Houdai()
 	if (Ver == 0) {
 		HoukouX = Pad(PadNum).GetRStickXF() * 75.0f;
 		HoukouZ = Pad(PadNum).GetRStickYF() * 75.0f;
-		SpeedX = Pad(PadNum).GetRStickXF() * 150.0f;
-		SpeedZ = Pad(PadNum).GetRStickYF() * 150.0f;
+		SpeedX = Pad(PadNum).GetRStickXF() * 50.0f;
+		SpeedZ = Pad(PadNum).GetRStickYF() * 50.0f;
 		if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
 		{
 			HoukouX = memoryHX;
@@ -344,18 +344,18 @@ void Player::S_Hantei()
 void Player::PlS_Hantei()
 {
 	if (DeathCount == false) {
-		if (m_game->GetPlS_Init() == false)
+		if (Game::GetInstance()->GetPlS_Init() == false)
 		{
-
+			Plstar = nullptr;
 		}
-		else if (m_game->GetPlS_Init() == true)
+		else if (Game::GetInstance()->GetPlS_Init() == true)
 		{
 			QueryGOs<PlayerStar>("PlayerStar", [&](PlayerStar* plstar)->bool {
 				CVector3 Len = plstar->GetPosition() - m_position;
 				if (Len.Length() < 400.0f)
 				{
 					StarCount += plstar->GetStarCount();
-					m_game->AddPlStarCount(1);
+					Game::GetInstance()->AddPlStarCount(-1);
 					plstar->Death();
 				}
 				return true;
@@ -370,7 +370,7 @@ void Player::B_Hantei()
 		if (Muteki == false) {
 			QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b) ->bool {
 				CVector3 kyori = b->GetPosition() - m_position;
-				if (b->GetPB() != PadNum && kyori.Length() < 150.0f)
+				if (b->GetPB() != PadNum && kyori.Length() < BulletHantei)
 				{
 					b->Death();
 					PlHP -= Damage;
@@ -446,7 +446,7 @@ void Player::StarPop()
 			Plstar = NewGO<PlayerStar>(0, "PlayerStar");
 			Plstar->SetPosition(m_position);
 			Plstar->SetStarCount(PopStar);
-			m_game->AddPlStarCount(1);
+			Game::GetInstance()->AddPlStarCount(1);
 			Alive = true;
 		}
 	}

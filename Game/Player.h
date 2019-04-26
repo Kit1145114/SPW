@@ -110,6 +110,10 @@ public:
 	{
 		PlHP += Minasuhp;
 	}
+	void SetPLST(PlayerStar* Plstar)
+	{
+		Plstar = Plstar;
+	}
 private:
 	Player * m_player[4] = { nullptr };
 	Draw_Player * draw_Pl = nullptr;
@@ -131,10 +135,11 @@ private:
 	
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 
-	int m_timer = 0.0f;
+	int m_timer = 0;
 	int p_timer = 0;
 	int d_timer = 0;
 	int a_timer = 0;
+	int Timer0 = 0;
 	int m_Short = 0;
 	int m_mode = 0;
 	int MutekiTime = 0;
@@ -146,6 +151,8 @@ private:
 	int PlHP = 100;
 	int MaxHP = 100;
 	int Damage = 20;
+	int SeiseiVer_1 = 30;
+	int SeiseiVer_2 = 15;
 	float HoukouX = 0.0f;
 	float HoukouZ = 0.0f;
 	float memoryHX = 0.0f;
@@ -154,7 +161,7 @@ private:
 	float SpeedZ = 0.0f;
 	float memorySX = 0.0f;
 	float memorySZ = 0.0f;
-
+	float BulletHantei = 300.0f;
 	bool DeathCount = false;
 	bool ShortCount = false;
 	bool MyBullet = true;

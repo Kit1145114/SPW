@@ -24,23 +24,23 @@ void ResultDraw::PostRender(CRenderContext& rc)
 {
 	wchar_t text[2506];
 	if (Juni == 1) {
-		swprintf_s(text, L"No.1\n");
+		swprintf_s(text, L"no.1\n");
 	}
 	else if (Juni == 2)
 	{
-		swprintf_s(text, L"No.2\n");
+		swprintf_s(text, L"no.2\n");
 	}
 	else if (Juni == 3) {
-		swprintf_s(text, L"No.3\n");
+		swprintf_s(text, L"no.3\n");
 	}
 	else if (Juni == 4) {
-		swprintf_s(text, L"No.4\n");
+		swprintf_s(text, L"no.4\n");
 	}
 		m_font.Begin(rc);
 		if (P == 1) {
 			m_font.Draw(
 				text,
-				{ -240.0f, 220.0f },
+				{ -227.0f, 219.0f },
 				{ 1.0f, 0.0f, 0.0f, 1.0f },
 				0.0f,
 				1.5f
@@ -49,7 +49,7 @@ void ResultDraw::PostRender(CRenderContext& rc)
 		else if (P == 2) {
 			m_font.Draw(
 				text,
-				{ 210.0f, 220.0f },
+				{ 223.0f, 219.0f },
 				{ 0.0f, 0.0f, 1.0f, 1.0f },
 				0.0f,
 				1.5f
@@ -58,8 +58,8 @@ void ResultDraw::PostRender(CRenderContext& rc)
 		else if (P == 3) {
 			m_font.Draw(
 				text,
-				{ -240.0f, -90.0f },
-				{ 0.0f, 1.0f, 0.0f, 1.0f },
+				{ -227.0f, -80.0f },
+				{ 0.1f, 1.0f, 0.0f, 1.0f },
 				0.0f,
 				1.5f
 			);
@@ -67,8 +67,8 @@ void ResultDraw::PostRender(CRenderContext& rc)
 		else if (P == 4) {
 			m_font.Draw(
 				text,
-				{ 210.0f, -90.0f },
-				{ 1.0f, 1.0f, .0f, 1.0f },
+				{ 223.0f, -80.0f },
+				{ 1.0f, 0.7f, 0.0f, 1.0f },
 				0.0f,
 				1.5f
 			);

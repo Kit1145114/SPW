@@ -2026,10 +2026,8 @@
     <ImageContentTask Include="Assets\sprite\Title1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ImageContentTask Include="Assets\sprite\Title_A.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <ImageContentTask Include="Assets\sprite\Title_A.bmp" />
     <ImageContentTask Include="Assets\sprite\1Player.png" />
     <ImageContentTask Include="Assets\sprite\2Player.png" />
     <ImageContentTask Include="Assets\sprite\3Player.png" />

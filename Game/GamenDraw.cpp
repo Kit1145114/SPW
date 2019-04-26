@@ -24,7 +24,7 @@ void GamenDraw::Update()
 void GamenDraw::PostRender(CRenderContext& rc) {
 	wchar_t text[2506];
 
-	swprintf_s(text, L"Å`PLEASE EN BUTTONÅ`\n");
+	swprintf_s(text, L"please en button\n");
 	m_font.Begin(rc);
 
 	m_font.Draw(

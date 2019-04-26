@@ -58,12 +58,12 @@ void SansenGamen::PostRender(CRenderContext& rc) {
 	if (Death == false) {
 		wchar_t text[2506];
 
-		swprintf_s(text, L"Player %d\n", Kazu);
+		swprintf_s(text, L"player %d\n", Kazu);
 		m_font.Begin(rc);
 
 		m_font.Draw(
 			text,
-			{ 0.0f, -200.0f },
+			{ 0.0f, -250.0f },
 			{ 0.0f, 0.0f, 1.0f, 1.0f },
 			0.0f,
 			1.5f
