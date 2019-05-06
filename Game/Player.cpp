@@ -435,7 +435,7 @@ void Player::HP()
 		Death();
 	}
 }
-
+//プレイヤーの持つ☆を落とす。
 void Player::StarPop()
 {
 	if (Alive == false && Plstar == nullptr)

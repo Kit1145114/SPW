@@ -26,6 +26,6 @@ void Title_2::Update()
 	if (Pad(0).IsPress(enButtonA) == true)
 	{
 		DeleteGO(this);
-		NewGO<SansenGamen>(1,"SansenGamen");
+		//NewGO<SansenGamen>(1,"SansenGamen");
 	}
 }

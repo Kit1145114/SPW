@@ -85,6 +85,7 @@
     <ClCompile Include="ResultDraw.cpp" />
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Draw_Player.cpp" />
+    <ClCompile Include="SetumeiGamen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -536,6 +537,7 @@
     <ClInclude Include="BlackHole.h" />
     <ClInclude Include="ResultDraw.h" />
     <ClInclude Include="Draw_Player.h" />
+    <ClInclude Include="SetumeiGamen.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -605,12 +607,18 @@
     <ImageContentTask Include="Assets\sprite\2Player.png" />
     <ImageContentTask Include="Assets\sprite\3Player.png" />
     <ImageContentTask Include="Assets\sprite\4Player.png" />
+    <ImageContentTask Include="Assets\sprite\Title_A.bmp">
+      <Filter>Resource Files</Filter>
+    </ImageContentTask>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\sprite\Title_A.bmp">
+    <Image Include="Assets\sprite\Setumei1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\sprite\Setumei2.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
