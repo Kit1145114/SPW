@@ -57,6 +57,10 @@ public:
 	{
 		m_position = plpos;
 	}
+	void AddPosition(CVector3 plpos)
+	{
+		m_position += plpos;
+	}
 	void SetPositionX(float x)
 	{
 		m_position.x = x;

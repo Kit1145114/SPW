@@ -516,6 +516,7 @@ void Player::P_Hantei()
 	}
 }
 //無敵時間の調整。
+//キングクリムゾンッッッッ！！！
 void Player::MutekiTimes()
 {
 	if (Muteki == true)
@@ -541,6 +542,7 @@ void Player::HP()
 		Death();
 	}
 }
+//他人を負かすっていうのはそんなに難しいことじゃあないんだ
 //プレイヤーの持つ☆を落とす。
 void Player::StarPop()
 {
@@ -563,6 +565,7 @@ void Player::StarPop()
 	}
 }
 //プレイヤーの番号を決める。
+//最も難しいことは
 void Player::SetPadNum(int num)
 {
 	PadNum = num;
@@ -594,3 +597,7 @@ void Player::SetPadNum(int num)
 		break;
 	}
 }
+//いいかい、最も難し事は！
+//自分を乗り越えることさッ！
+//僕は自分の運をこれから乗り越えるッ！
+//露伴ッッッーーーー！！！
