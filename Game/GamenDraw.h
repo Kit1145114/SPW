@@ -16,7 +16,7 @@ private:
 	CFont m_font;
 	CVector2 m_position = CVector2::Zero;
 	Game* m_game = nullptr;
-
+	prefab::CSoundSource * m_push = nullptr;
 	int mode = 0;
 };
 

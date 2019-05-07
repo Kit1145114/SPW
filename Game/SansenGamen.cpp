@@ -16,6 +16,8 @@ bool SansenGamen::Start()
 {
 	m_spriteRender = NewGO<prefab::CSpriteRender>(0);
 	m_spriteRender->Init(L"sprite/Sanka.dds", 1280.0f, 720.0f);
+	m_push = NewGO<prefab::CSoundSource>(0);
+	m_push->Init(L"sound/Kettei.wav");
 	return true;
 }
 
@@ -50,6 +52,7 @@ void SansenGamen::Update()
 	{
 		DeleteGO(this);
 		GameStart = true;
+		m_push->Play(false);
 		NewGO<Game>(0, "Game")->SetSanSenkazu(Kazu);
 	}
 }

@@ -86,6 +86,7 @@
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Draw_Player.cpp" />
     <ClCompile Include="SetumeiGamen.cpp" />
+    <ClCompile Include="Draw_Skazu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -538,6 +539,7 @@
     <ClInclude Include="ResultDraw.h" />
     <ClInclude Include="Draw_Player.h" />
     <ClInclude Include="SetumeiGamen.h" />
+    <ClInclude Include="Draw_Skazu.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -584,6 +586,7 @@
     <MeshContentTask Include="Assets\modelData\Bullet4.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet2.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet3.FBX" />
+    <MeshContentTask Include="Assets\modelData\SenkanType3.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
@@ -610,15 +613,15 @@
     <ImageContentTask Include="Assets\sprite\Title_A.bmp">
       <Filter>Resource Files</Filter>
     </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Setumei1.jpg">
+      <Filter>Resource Files</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Setumei2.jpg">
+      <Filter>Resource Files</Filter>
+    </ImageContentTask>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\sprite\Setumei1.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\sprite\Setumei2.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -628,5 +631,9 @@
     <None Include="Assets\effect\explosion1.efk" />
     <None Include="Assets\effect\kari_BH.efk" />
     <None Include="Assets\effect\BH.efk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\sound\OP.wav" />
+    <Media Include="Assets\sound\Kettei.wav" />
   </ItemGroup>
 </Project>

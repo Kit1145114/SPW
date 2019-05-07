@@ -1784,6 +1784,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Draw_Player.cpp" />
+    <ClCompile Include="Draw_Skazu.cpp" />
     <ClCompile Include="Drop_Hako.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="field.cpp" />
@@ -1830,6 +1831,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Draw_Player.h" />
+    <ClInclude Include="Draw_Skazu.h" />
     <ClInclude Include="Drop_Hako.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="field.h" />
@@ -2017,6 +2019,7 @@
     <MeshContentTask Include="Assets\modelData\PlayerStar.FBX" />
     <MeshContentTask Include="Assets\modelData\Senkan.FBX" />
     <MeshContentTask Include="Assets\modelData\SenkanType2.FBX" />
+    <MeshContentTask Include="Assets\modelData\SenkanType3.FBX" />
     <MeshContentTask Include="Assets\modelData\Space_field.FBX" />
     <MeshContentTask Include="Assets\modelData\star.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
@@ -2051,6 +2054,10 @@
     <None Include="Assets\effect\explosion1.efk" />
     <None Include="Assets\effect\explosion2.efk" />
     <None Include="Assets\effect\kari_BH.efk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\sound\Kettei.wav" />
+    <Media Include="Assets\sound\OP.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

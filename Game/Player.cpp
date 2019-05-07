@@ -5,6 +5,7 @@
 Player::Player()
 {
 	draw_Pl = NewGO<Draw_Player>(0);
+	draw_S = NewGO<Draw_Skazu>(0);
 }
 
 Player::~Player()
@@ -15,6 +16,7 @@ Player::~Player()
 		DeleteGO(d_hako);
 	}
 	DeleteGO(draw_Pl);
+	DeleteGO(draw_S);
 }
 
 bool Player::Start()
@@ -54,6 +56,7 @@ void Player::Update()
 	Move();			//プレイヤーの操作
 	PBullet();		//プレイヤーの射撃操作
 	PBullet2();
+	PBullet3();
 	Pevolution();	//プレイヤーの形態
 	//Hantei();
 	Rotation();
@@ -74,10 +77,25 @@ void Player::Move()
 {
 	if (DeathCount == false) {
 		if (Muteki == false) {
+			if (Ver == 0) {
 				m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +5.0f;
 				m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +5.0f;
 				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 				m_skinModelRender->SetPosition(m_position);
+			}
+			else if (Ver == 1)
+			{
+				m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +7.0f;
+				m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +7.0f;
+				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
+				m_skinModelRender->SetPosition(m_position);
+			}
+			else if (Ver == 2) {
+				m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +10.0f;
+				m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +10.0f;
+				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
+				m_skinModelRender->SetPosition(m_position);
+			}
 				if (m_moveSpeed.x != 0.0f || m_moveSpeed.z != 0.0f) {
 				memoryHX = m_moveSpeed.x;
 				memoryHZ = m_moveSpeed.z;
@@ -88,8 +106,8 @@ void Player::Move()
 					&& Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0) {
 				HoukouX = memoryHX * 10.0f;
 				HoukouZ = memoryHZ * 10.0f;
-				SpeedX = memorySX * 10.0f;
-				SpeedZ = memorySZ * 10.0f;
+				SpeedX = memorySX  * 10.0f;
+				SpeedZ = memorySZ  * 10.0f;
 			}
 		}
 		else if (Muteki == true)
@@ -186,16 +204,77 @@ void Player::PBullet2()
 			}
 		}
 }
+//プレイヤーの球（最終形態）
+void Player::PBullet3()
+{
+	if (DeathCount == false)
+		if (Ver == 2)
+		{
+			m_timer++;  // =GameTime().GetFrameDeltaTime;
+			p_timer++;
+			if (m_timer > SeiseiVer_3) {
+				m_Short++;
+				m_timer = Timer0;
+			}
+			if (m_Short > 0)
+			{
+				if (Pad(PadNum).IsPress(enButtonRB2) == true) {
+					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+					m_bullet->SetPB(PadNum);
+					m_bullet->SetPosition(m_position);
+					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+
+					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+					m_bullet->SetPB(PadNum);
+					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+					m_bullet->SetPositionX(50.0f);
+					m_bullet->SetPosition(m_position);
+					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+
+					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+					m_bullet->SetPB(PadNum);
+					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+					m_bullet->SetPositionX(-100.0f);
+					m_bullet->SetPosition(m_position);
+					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+					m_Short--;
+
+					ShortCount = true;
+					m_game->SetKazu(3);
+					p_timer = Timer0;
+				}
+				else {
+					if (p_timer == 98)
+					{
+						ShortCount = false;
+						p_timer = Timer0;
+					}
+				}
+			}
+		}
+}
 //プレイヤーの進化用
 void Player::Pevolution()
 {
 	if (StarCount == 5 && m_mode == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
+		m_scale = { 5.0f,5.0f,5.0f };
+		m_skinModelRender->SetScale(m_scale);
 		//S_Rtype2 = NewGO<Senkan_Rtype_2>(0,"Senkan_RType_2");
 		Ver = 1;
 		m_Short = 0;
 		m_mode = 1;
+	}
+	if (StarCount == 10 && m_mode == 1)
+	{
+		m_skinModelRender->Init(L"modelData/SenkanType3.cmo");
+		m_scale = { 7.0f,7.0f,7.0f };
+		m_skinModelRender->SetScale(m_scale);
+		Ver = 2;
+		m_Short = 0;
+		m_mode = 2;
 	}
 }
 //プレイヤーのモブ判定
@@ -287,6 +366,17 @@ void Player::Respawn()
 				Alive = true;
 				PlHP = MaxHP;
 			}
+			else if (Ver == 2)
+			{
+				m_skinModelRender->Init(L"modelData/SenkanType3.cmo");
+				m_skinModelRender->SetPosition(m_position);
+				m_CharaCon.SetPosition(m_position);
+				d_timer = 0;
+				DeathCount = false;
+				Muteki = true;
+				Alive = true;
+				PlHP = MaxHP;
+			}
 		}
 	}
 }
@@ -320,6 +410,20 @@ void Player::Houdai()
 			//SpeedZ = memorySZ;
 		}
 	}
+	else if (Ver == 2)
+	{
+		HoukouX = Pad(PadNum).GetRStickXF() * 150.0f;
+		HoukouZ = Pad(PadNum).GetRStickYF() * 150.0f;
+		SpeedX = Pad(PadNum).GetRStickXF() * 200.0f;
+		SpeedZ = Pad(PadNum).GetRStickYF() * 200.0f;
+		if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
+		{
+			HoukouX = memoryHX;
+			HoukouZ = memoryHZ;
+			//SpeedX = memorySX;
+			//SpeedZ = memorySZ;
+		}
+	}
 }
 //☆の当たり判定。
 void Player::S_Hantei()
@@ -333,6 +437,7 @@ void Player::S_Hantei()
 			CVector3 Kyori = star->GetPosition() - m_position;
 			if (Kyori.Length() < 250.0f) {
 				StarCount++;
+				draw_S->AddKazu(1);
 				m_game->SetStarCount(-1);
 				star->Death();
 			}
@@ -355,6 +460,7 @@ void Player::PlS_Hantei()
 				if (Len.Length() < 400.0f)
 				{
 					StarCount += plstar->GetStarCount();
+					draw_S->SetKazu(StarCount);
 					Game::GetInstance()->AddPlStarCount(-1);
 					plstar->Death();
 				}
@@ -443,6 +549,7 @@ void Player::StarPop()
 		if (StarCount > 1) {
 			PopStar = StarCount / 2;
 			StarCount -= PopStar;
+			draw_S->SetKazu(StarCount);
 			Plstar = NewGO<PlayerStar>(0, "PlayerStar");
 			Plstar->SetPosition(m_position);
 			Plstar->SetStarCount(PopStar);
@@ -455,7 +562,7 @@ void Player::StarPop()
 		PopStar = 0;
 	}
 }
-
+//プレイヤーの番号を決める。
 void Player::SetPadNum(int num)
 {
 	PadNum = num;
@@ -464,18 +571,26 @@ void Player::SetPadNum(int num)
 	case 0:
 		draw_Pl->SetPlayerPicture(L"sprite/1P.dds");
 		draw_Pl->SetPosition(-450.0f, -300.0f);
+		draw_S->SetPosition(-450.0f, -220.0f);
+		draw_S->SetColor(1.0f, 0.0f, 0.0f, 1.0f);
 		break;
 	case 1:
 		draw_Pl->SetPlayerPicture(L"sprite/2P.dds");
 		draw_Pl->SetPosition(-150.0f, -300.0f);
+		draw_S->SetPosition(-150.0f, -220.0f);
+		draw_S->SetColor(0.0f, 0.0f, 1.0f, 1.0f);
 		break;
 	case 2:
 		draw_Pl->SetPlayerPicture(L"sprite/3P.dds");
 		draw_Pl->SetPosition(150.0f, -300.0f);
+		draw_S->SetPosition(150.0f, -220.0f);
+		draw_S->SetColor(0.1f, 1.0f, 0.0f, 1.0f);
 		break;
 	case 3:
 		draw_Pl->SetPlayerPicture(L"sprite/4P.dds");
 		draw_Pl->SetPosition(450.0f, -300.0f);
+		draw_S->SetPosition(450.0f, -220.0f);
+		draw_S->SetColor(1.0f, 0.7f, 0.0f, 1.0f);
 		break;
 	}
 }

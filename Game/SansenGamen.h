@@ -13,6 +13,7 @@ public:
 private:
 	CFont m_font;
 	prefab::CSpriteRender* m_spriteRender = nullptr;
+	prefab::CSoundSource* m_push = nullptr;
 	int Kazu = 1;
 	int MaxKazu = 4;
 	int MinKazu = 1;

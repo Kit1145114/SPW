@@ -7,6 +7,7 @@
 #include"Star.h"
 #include"PlayerStar.h"
 #include"Draw_Player.h"
+#include"Draw_Skazu.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
@@ -20,6 +21,7 @@ class Star;
 class PlayerStar;
 class SansenKazu;
 class Draw_Player;
+class Draw_Skazu;
 
 class Player: public IGameObject
 {
@@ -32,6 +34,7 @@ public:
 	void Move();
 	void PBullet();
 	void PBullet2();
+	void PBullet3();
 	void Pevolution();
 	void Hantei();
 	void Rotation();
@@ -117,6 +120,7 @@ public:
 private:
 	Player * m_player[4] = { nullptr };
 	Draw_Player * draw_Pl = nullptr;
+	Draw_Skazu * draw_S = nullptr;
 	Bullet* m_bullet = nullptr;
 	Game* m_game = nullptr;
 	Enemy* m_enemy = nullptr;
@@ -153,6 +157,7 @@ private:
 	int Damage = 20;
 	int SeiseiVer_1 = 30;
 	int SeiseiVer_2 = 15;
+	int SeiseiVer_3 = 5;
 	float HoukouX = 0.0f;
 	float HoukouZ = 0.0f;
 	float memoryHX = 0.0f;
