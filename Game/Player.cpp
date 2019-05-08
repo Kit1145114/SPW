@@ -27,6 +27,7 @@ bool Player::Start()
 	m_skinModelRender->SetScale(m_scale);
 	m_CharaCon.Init(300.0f, 300.0f, m_position);
 	m_game = Game::GetInstance();
+	camera = FindGO<Camera>("Camera");
 	switch (m_game->GetSansenKazu())
 	{
 	case 1:
@@ -262,6 +263,7 @@ void Player::Pevolution()
 		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
 		m_scale = { 5.0f,5.0f,5.0f };
 		m_skinModelRender->SetScale(m_scale);
+		camera->SetPos(7000.0f);
 		//S_Rtype2 = NewGO<Senkan_Rtype_2>(0,"Senkan_RType_2");
 		Ver = 1;
 		m_Short = 0;
@@ -272,6 +274,7 @@ void Player::Pevolution()
 		m_skinModelRender->Init(L"modelData/SenkanType3.cmo");
 		m_scale = { 7.0f,7.0f,7.0f };
 		m_skinModelRender->SetScale(m_scale);
+		camera->SetPos(9000.0f);
 		Ver = 2;
 		m_Short = 0;
 		m_mode = 2;
@@ -515,8 +518,7 @@ void Player::P_Hantei()
 		}
 	}
 }
-//無敵時間の調整。
-//キングクリムゾンッッッッ！！！
+//無敵時間の調整。キングクリムゾンッッッッ！！！
 void Player::MutekiTimes()
 {
 	if (Muteki == true)
@@ -565,7 +567,6 @@ void Player::StarPop()
 	}
 }
 //プレイヤーの番号を決める。
-//最も難しいことは
 void Player::SetPadNum(int num)
 {
 	PadNum = num;
@@ -597,7 +598,3 @@ void Player::SetPadNum(int num)
 		break;
 	}
 }
-//いいかい、最も難し事は！
-//自分を乗り越えることさッ！
-//僕は自分の運をこれから乗り越えるッ！
-//露伴ッッッーーーー！！！

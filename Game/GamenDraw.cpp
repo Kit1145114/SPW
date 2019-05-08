@@ -47,19 +47,19 @@ void GamenDraw::PostRender(CRenderContext& rc) {
 	if (mode == 0) {
 		m_font.Draw(
 			text,
-			{ 0.0f, -75.0f },
+			{ 0.0f, -105.0f },
 			{ 0.0f, 1.0f, 1.0f, 1.0f },
 			0.0f,
-			1.5f
+			1.25f
 		);
 	}
 	else if (mode == 1) {
 		m_font.Draw(
 			text,
-			{ 0.0f, -75.0f },
+			{ 0.0f, -105.0f },
 			{ 0.0f, 0.0f, 1.0f, 1.0f },
 			0.0f,
-			1.5f
+			1.25f
 		);
 	}
 	swprintf_s(text, L"Manual\n");
@@ -69,7 +69,7 @@ void GamenDraw::PostRender(CRenderContext& rc) {
 			{ 0.0f, -200.0f },
 			{ 0.0f, 0.0f, 1.0f, 1.0f },
 			0.0f,
-			1.5f
+			1.25f
 		);
 	}
 	else if (mode == 1) {
@@ -78,7 +78,7 @@ void GamenDraw::PostRender(CRenderContext& rc) {
 			{ 0.0f, -200.0f },
 			{ 0.0f, 1.0f, 1.0f, 1.0f },
 			0.0f,
-			1.5f
+			1.25f
 		);
 	}
 	m_font.End(rc);

@@ -49,5 +49,5 @@ void BlackHole::Gravity()
 
 void BlackHole::Update()
 {
-	Move();
+	//Move();
 }
