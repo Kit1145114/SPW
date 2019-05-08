@@ -14,7 +14,7 @@ Planet::~Planet()
 
 bool Planet::Start() 
 {
-	NewGO<BlackHole>(0, "BH");
+	//NewGO<BlackHole>(0, "BH");
 	m_game = FindGO<Game>("Game");
 	return true;
 }
@@ -202,9 +202,11 @@ void Planet::Death() {
 			//ãóó£Ç™îºåaà»â∫Ç»ÇÁÅB
 			if (diff.Length() < radius) {
 				explosion();
+				BlackHole::Generate(p_position, radius);
 			}
 			else if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
 				explosion();
+				BlackHole::Generate(p_position, radius);
 			}
 		}
 	}
