@@ -1,5 +1,6 @@
 #pragma once
 #include"Bullet.h"
+#include"Camera.h"
 #include"Senkan_Rtype_2.h"
 #include"Game.h"
 #include"Enemy.h"
@@ -13,6 +14,7 @@
 #include "tkEngine/character/tkCharacterController.h"
 
 class Bullet;
+class Camera;
 class Game;
 class Enemy;
 class Senkan_Rtype_2;
@@ -129,6 +131,7 @@ private:
 	Game* m_game = nullptr;
 	Enemy* m_enemy = nullptr;
 	Star* m_star = nullptr;
+	Camera* camera = nullptr;
 	PlayerStar* Plstar = nullptr;
 	Drop_Hako* d_hako = nullptr;
 	SansenKazu* s_kazu = nullptr;
@@ -151,7 +154,7 @@ private:
 	int m_Short = 0;
 	int m_mode = 0;
 	int MutekiTime = 0;
-	int Ver = 0;
+	int Ver = 2;
 	int StarCount = 0;
 	int PopStar = 0;
 	int PadNum = 0;

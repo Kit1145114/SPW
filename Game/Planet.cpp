@@ -14,7 +14,7 @@ Planet::~Planet()
 
 bool Planet::Start() 
 {
-	
+	//NewGO<BlackHole>(0, "BH");
 	m_game = FindGO<Game>("Game");
 	return true;
 }

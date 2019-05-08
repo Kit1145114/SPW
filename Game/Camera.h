@@ -14,6 +14,10 @@ public:
 	{
 		st_kyori += a;
 	}
+	void SetPos(float p)
+	{
+		up = p;
+	}
 	float GetKyori()
 	{
 		return st_kyori;
@@ -32,5 +36,6 @@ private:
 	float MaxCamera = 10000.0f;
 	float MinCamera = 1500.0f;
 	float up = 0.0f;
+	float Syoki = 5000.0f;
 };
 

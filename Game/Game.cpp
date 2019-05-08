@@ -50,8 +50,6 @@ Game::~Game()
 
 bool Game::Start()
 {
-	
-	//s_kazu = FindGO<SansenKazu>("SansenKazu");
 	switch (SansenKazu)
 	{
 	case 1:
@@ -94,7 +92,7 @@ bool Game::Start()
 	break;
 	}
 	m_field = NewGO<field>(0);
-	m_camera = NewGO<Camera>(0);
+	m_camera = NewGO<Camera>(0,"Camera");
 	//m_enemy = NewGO<Enemy>(0,"Enemy");
 	m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
 	//s_bar = NewGO<Sinka_Bar>(0, "Sinka_Bar");

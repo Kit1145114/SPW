@@ -49,6 +49,7 @@ void Camera::Update() {
 	//Move();
 	//メインカメラに注視点と視点を設定する。
 	CVector3 pos = m_player->GetPosition();
+	pos.y = Syoki;
 	MainCamera().SetTarget(pos);
 	pos.y += up;
 	MainCamera().SetPosition(pos);
