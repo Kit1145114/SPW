@@ -50,7 +50,7 @@ Game::~Game()
 
 bool Game::Start()
 {
-	//NewGO<BlackHole>(0, "BlackHole");
+	
 	//s_kazu = FindGO<SansenKazu>("SansenKazu");
 	switch (SansenKazu)
 	{
