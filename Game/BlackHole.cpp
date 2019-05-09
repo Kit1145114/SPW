@@ -46,46 +46,48 @@ void BlackHole::Move()
 {
 	//Playerサーチ。
 	for (int i = 0; i < Game::GetInstance()->GetSansenKazu(); i++) {
-		CVector3 player_kyori = Game::GetInstance()->m_player[i]->GetPosition() - m_position;
-		if (player_kyori.Length() < radius * 1200) {
-			Game::GetInstance()->m_player[i]->SetMoveSpeed((player_kyori / 100)*-1);
-				//Game::GetInstance()->m_player[i]->GetPosition() -(player_kyori/5));
-				
+		//対象との距離を測定。
+		CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - m_position;
+		//対象との距離が一定以下になったら。
+		if (kyori.Length() < radius * Searchment) {
+			//Ｇ中心に遠ければ弱く、近ければ強く。
+			float G = radius * Searchment - kyori.Length();
+			//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
+			Game::GetInstance()->m_player[i]->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
+				//対象との距離が中心に近くなったら。
+				if (kyori.Length() < radius * Searchment/3) {
+					//破壊。
+					Game::GetInstance()->m_player[i]->Death();
+				}
 		}
 	}
-	//QueryGOs<Player>("planet", [&](Player* player) ->bool {
-
-	//	CVector3 player_kyori = player->GetPosition() - m_position;
-	//	if (player_kyori.Length() < radius) {
-	//		player->SetPosition(m_position);
-	//		//Game::GetInstance()->m_player[i]->GetPosition() -(player_kyori/5));
-
-	//	}
-	//	return true;
-	//});
-
 	//Plametサーチ。
 	for (int i = 0; i < Planetnumber_Num; i++) {
-		CVector3 plamet_kyori = Game::GetInstance()->memoryPP[i]->GetPosition() - m_position;
-		if (plamet_kyori.Length() < radius * 1200) {
-			Game::GetInstance()->memoryPP[i]->SetPosition(Game::GetInstance()->memoryPP[i]->GetPosition() + (plamet_kyori*-1 / 10));
+		//対象との距離を測定。
+		CVector3 kyori = Game::GetInstance()->memoryPP[i]->GetPosition() - m_position;
+		//対象との距離が一定以下になったら。
+		if (kyori.Length() < radius * Searchment) {
+			//Ｇ中心に遠ければ弱く、近ければ強く。
+			float G = radius * Searchment - kyori.Length();
+			//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
+			Game::GetInstance()->memoryPP[i]->SetPosition(((kyori*G) / G_limitar)*-1);
+				//対象との距離が中心に近くなったら。
+				if (kyori.Length() < radius * Searchment / 3) {
+					//破壊。
+					Game::GetInstance()->memoryPP[i]->explosion();
+				}
 		}
 	}
-	/*QueryGOs<Planet>("planet", [&](Planet* plnet) ->bool {
-		CVector3 plamet_kyori = plnet->GetPosition() - m_position;
-			if (plamet_kyori.Length() < radius) {
-				plnet->SetPosition(plnet->GetPosition() + (plamet_kyori*-1 / 10));
-			}
-
-			return true;
-	});*/
-
-
 	//Bulletサーチ。
 	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b) ->bool {
+		//対象との距離を測定。
 		CVector3 kyori = b->GetPosition() - m_position;
-		if (kyori.Length() < radius*1800) {
-			b->SetMoveSpeed((kyori / 100)*-1);
+		//対象との距離が一定以下になったら。
+		if (kyori.Length() < radius * Searchment) {
+			//Ｇ中心に遠ければ弱く、近ければ強く。
+			float G = radius * Searchment - kyori.Length();
+			//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
+			b->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
 		}
 		return true;
 	});
@@ -99,7 +101,7 @@ void BlackHole::Gravity()
 void BlackHole::Count()
 {
 	timer++;
-	if (timer >60) {
+	if (timer >360) {
 		Death();
 	}
 }
@@ -112,5 +114,5 @@ void BlackHole::Death()
 void BlackHole::Update()
 {
 	Move();
-	//Count();
+	Count();
 }
