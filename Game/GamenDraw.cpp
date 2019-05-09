@@ -6,6 +6,7 @@ GamenDraw::GamenDraw()
 {
 	m_push = NewGO<prefab::CSoundSource>(0);
 	m_push->Init(L"sound/Kettei.wav");
+	tl2 = FindGO<Title_2>("Title_2");
 }
 
 
@@ -20,25 +21,27 @@ void GamenDraw::Update()
 	if (Pad(0).IsPress(enButtonUp) == true)
 	{
 		mode = 0;
+		tl2->Setmode(mode);
 	}
 	else if (Pad(0).IsPress(enButtonDown) == true)
 	{
 		mode = 1;
+		tl2->Setmode(mode);
 	}
 
 	if (mode == 0 && Pad(0).IsPress(enButtonA) == true){
-		DeleteGO(this);
+		//DeleteGO(this);
 		m_push->Play(false);
 #ifdef UseNetwork
 		NewGO<GameWait>(1);
 #else
-		NewGO<SansenGamen>(1);
+		//NewGO<SansenGamen>(1);
 #endif
 	}
 	if (mode == 1 && Pad(0).IsPress(enButtonA) == true) {
-		DeleteGO(this);
+		//DeleteGO(this);
 		m_push->Play(false);
-		NewGO<SetumeiGamen>(0, "SetumeiGamen");
+		//NewGO<SetumeiGamen>(0, "SetumeiGamen");
 	}
 }
 //âÊñ Ç…ï`é ÅB
@@ -66,7 +69,7 @@ void GamenDraw::PostRender(CRenderContext& rc) {
 			1.25f
 		);
 	}
-	swprintf_s(text, L"Manual\n");
+	swprintf_s(text, L"manual\n");
 	if (mode == 0) {
 		m_font.Draw(
 			text,

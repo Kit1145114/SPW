@@ -15,9 +15,15 @@ public:
 
 	bool Start();
 	void Update();
+
+	void Setmode(int modeV)
+	{
+		mode = modeV;
+	}
 private:
 	GamenDraw* m_Draw = nullptr;
 	prefab::CSpriteRender* m_spriteRender = nullptr;
 	prefab::CSoundSource* m_bgm = nullptr;
+	int mode = 0;
 };
 

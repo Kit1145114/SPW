@@ -602,6 +602,7 @@
     <MeshContentTask Include="Assets\modelData\Ring2P.FBX" />
     <MeshContentTask Include="Assets\modelData\Ring3P.FBX" />
     <MeshContentTask Include="Assets\modelData\Ring1P.FBX" />
+    <MeshContentTask Include="Assets\modelData\Back.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
@@ -635,12 +636,12 @@
     <ImageContentTask Include="Assets\sprite\Setumei2.jpg">
       <Filter>Resource Files</Filter>
     </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\SankaMulti.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\sprite\SankaMulti.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\explosion1.efk" />
