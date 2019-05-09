@@ -1,21 +1,20 @@
 #pragma once
 #include"Bullet.h"
+#include"Camera.h"
 #include"Senkan_Rtype_2.h"
 #include"Game.h"
 #include"Enemy.h"
 #include"Drop_Hako.h"
 #include"Star.h"
 #include"PlayerStar.h"
-#include"SansenKazu.h"
-#include"Draw_1P.h"
-#include"Draw_2P.h"
-#include"Draw_3P.h"
-#include"Draw_4P.h"
+#include"Draw_Player.h"
+#include"Draw_Skazu.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
 
 class Bullet;
+class Camera;
 class Game;
 class Enemy;
 class Senkan_Rtype_2;
@@ -23,10 +22,8 @@ class Drop_Hako;
 class Star;
 class PlayerStar;
 class SansenKazu;
-class Draw_1P;
-class Draw_2P;
-class Draw_3P;
-class Draw_4P;
+class Draw_Player;
+class Draw_Skazu;
 
 class Player: public IGameObject
 {
@@ -39,6 +36,7 @@ public:
 	void Move();
 	void PBullet();
 	void PBullet2();
+	void PBullet3();
 	void Pevolution();
 	void Hantei();
 	void Rotation();
@@ -53,12 +51,17 @@ public:
 	void HP();
 	void StarPop();
 	void PlS_Hantei();
+	void SetPadNum(int num);
 	CVector3 GetPosition() {
 		return m_position;
 	}
 	void SetPosition(CVector3 plpos)
 	{
 		m_position = plpos;
+	}
+	void AddPosition(CVector3 plpos)
+	{
+		m_position += plpos;
 	}
 	void SetPositionX(float x)
 	{
@@ -108,10 +111,6 @@ public:
 	{
 		return memory_position;
 	}
-	void  SetPadNum(int num)
-	{
-		PadNum = num;
-	}
 	int GetPadNum()
 	{
 		return PadNum;
@@ -120,17 +119,19 @@ public:
 	{
 		PlHP += Minasuhp;
 	}
+	void SetPLST(PlayerStar* Plstar)
+	{
+		Plstar = Plstar;
+	}
 private:
 	Player * m_player[4] = { nullptr };
-	Draw_1P * Pl1 = nullptr;
-	Draw_2P* Pl2 = nullptr;
-	Draw_3P* Pl3 = nullptr;
-	Draw_4P* Pl4 = nullptr;
-	//Senkan_Rtype_2* S_Rtype2 = nullptr;
+	Draw_Player * draw_Pl = nullptr;
+	Draw_Skazu * draw_S = nullptr;
 	Bullet* m_bullet = nullptr;
 	Game* m_game = nullptr;
 	Enemy* m_enemy = nullptr;
 	Star* m_star = nullptr;
+	Camera* camera = nullptr;
 	PlayerStar* Plstar = nullptr;
 	Drop_Hako* d_hako = nullptr;
 	SansenKazu* s_kazu = nullptr;
@@ -145,14 +146,15 @@ private:
 	
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 
-	int m_timer = 0.0f;
+	int m_timer = 0;
 	int p_timer = 0;
 	int d_timer = 0;
 	int a_timer = 0;
+	int Timer0 = 0;
 	int m_Short = 0;
 	int m_mode = 0;
 	int MutekiTime = 0;
-	int Ver = 0;
+	int Ver = 0;		//デバックで強制進化させる。
 	int StarCount = 0;
 	int PopStar = 0;
 	int PadNum = 0;
@@ -160,11 +162,18 @@ private:
 	int PlHP = 100;
 	int MaxHP = 100;
 	int Damage = 20;
+	int SeiseiVer_1 = 30;
+	int SeiseiVer_2 = 15;
+	int SeiseiVer_3 = 5;
 	float HoukouX = 0.0f;
 	float HoukouZ = 0.0f;
-	float SpeedX = 0.0f;
+	float memoryHX = 0.0f;
+	float memoryHZ = 0.0f;
+	float SpeedX = 0.0f;	
 	float SpeedZ = 0.0f;
-
+	float memorySX = 0.0f;
+	float memorySZ = 0.0f;
+	float BulletHantei = 300.0f;
 	bool DeathCount = false;
 	bool ShortCount = false;
 	bool MyBullet = true;

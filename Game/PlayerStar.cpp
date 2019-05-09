@@ -48,6 +48,7 @@ void PlayerStar::Rotation()
 void PlayerStar::Death()
 {
 	DeleteGO(this);
+	//m_player->SetPLST(nullptr);
 }
 
 void PlayerStar::Pop(CVector3 position)

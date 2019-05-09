@@ -18,5 +18,6 @@ public:
 private:
 	GamenDraw* m_Draw = nullptr;
 	prefab::CSpriteRender* m_spriteRender = nullptr;
+	prefab::CSoundSource* m_bgm = nullptr;
 };
 

@@ -10,11 +10,7 @@
 #include"Star.h"
 #include"Sinka_Bar.h"
 #include"Drop_Hako.h"
-#include"SansenKazu.h"
-#include"Draw_1P.h"
-#include"Draw_2P.h"
-#include"Draw_3P.h"
-#include"Draw_4P.h"
+#include"Draw_Player.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
@@ -31,11 +27,8 @@ class Player_RType2;
 class Star;
 class Sinka_Bar;
 class Drop_Hako;
-class SansenKazu;
-class Draw_1P;
-class Draw_2P;
-class Draw_3P;
-class Draw_4P;
+class Draw_Player;
+
 
 enum Planetnumber {
 	Planetnumber_00,
@@ -61,9 +54,6 @@ public:
 	~Game();
 	bool Start();
 	void Update();
-	void P_Ver();
-	void S_Pu();
-	void H_Pu();
 	void PlayerNum();
 	void Star_Life();
 	void Bullet_Life();
@@ -78,15 +68,18 @@ public:
 	{
 		PlanetAgeinCount =+ a;
 	}
-	int GetPlanetAgeinCount()
-	{
-		return PadKazu;
+	CVector3 GetPosition() {
+		return memory_position;
 	}
-	//パッドの数
-	int GetPadKazu()
+	void SetSanSenkazu(int kazu)
 	{
-		return PadKazu;
-	}//プレイヤーの弾が存在しているか
+		SansenKazu = kazu;
+	}
+	int GetSansenKazu()
+	{
+		return SansenKazu;
+	}
+	//プレイヤーの弾が存在しているか
 	void SetPBInit(bool a)
 	{
 		PBullet_Init = a;
@@ -122,10 +115,7 @@ public:
 	Star* m_star = nullptr;
 private:
 	static Game* m_instance;
-	Draw_1P* Pl1 = nullptr;
-	Draw_2P* Pl2 = nullptr;
-	Draw_3P* Pl3 = nullptr;
-	Draw_4P* Pl4 = nullptr;
+	Draw_Player* Pl1= nullptr;
 	Camera* m_camera = nullptr;
 	Drop_Hako* d_hako = nullptr;
 	field* m_field = nullptr;
@@ -133,7 +123,7 @@ private:
 	Planet* m_planet = nullptr;
 	Player_RType2* m_player_Rtype2 = nullptr;
 	Sinka_Bar*s_bar = nullptr;
-	SansenKazu* s_kazu = nullptr;
+	CVector3 memory_position = CVector3::Zero;
 	
 	int GameMode = 0;
 	int Pver = 0;
@@ -142,13 +132,12 @@ private:
 	int MINPad = 1;
 	//int PadNum = 0;
 	int NumMin = 0;
-	int PadMaxKazu =0;
-	int PadKazu = 0;
+	int SansenKazu = 0;
 	int PlanetAgeinCount = 0;
 	int StarCount  = 0;
 	int PlStarCount = 0;
 	int Star0 = 0;
-	float P_pos = 700.0f;
+	float P_pos = 1000.0f;
 	float MaxC_pos = 1700.0f;
 	float MinC_pos = 1600.0f;
 	int PB_Kazu = 0;

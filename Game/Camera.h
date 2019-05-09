@@ -14,6 +14,10 @@ public:
 	{
 		st_kyori += a;
 	}
+	void SetPos(float p)
+	{
+		up = p;
+	}
 	float GetKyori()
 	{
 		return st_kyori;

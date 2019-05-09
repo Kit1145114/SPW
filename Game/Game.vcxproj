@@ -1783,10 +1783,8 @@
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Draw_1P.cpp" />
-    <ClCompile Include="Draw_2P.cpp" />
-    <ClCompile Include="Draw_3P.cpp" />
-    <ClCompile Include="Draw_4P.cpp" />
+    <ClCompile Include="Draw_Player.cpp" />
+    <ClCompile Include="Draw_Skazu.cpp" />
     <ClCompile Include="Drop_Hako.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="field.cpp" />
@@ -1805,8 +1803,8 @@
     <ClCompile Include="ResultDraw.cpp" />
     <ClCompile Include="ResultGamen.cpp" />
     <ClCompile Include="SansenGamen.cpp" />
-    <ClCompile Include="SansenKazu.cpp" />
     <ClCompile Include="Senkan_Rtype_2.cpp" />
+    <ClCompile Include="SetumeiGamen.cpp" />
     <ClCompile Include="Sinka_Bar.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -1836,10 +1834,8 @@
     <ClInclude Include="BlackHole.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="Draw_1P.h" />
-    <ClInclude Include="Draw_2P.h" />
-    <ClInclude Include="Draw_3P.h" />
-    <ClInclude Include="Draw_4P.h" />
+    <ClInclude Include="Draw_Player.h" />
+    <ClInclude Include="Draw_Skazu.h" />
     <ClInclude Include="Drop_Hako.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="field.h" />
@@ -2000,8 +1996,8 @@
     <ClInclude Include="ResultGamen.h" />
     <ClInclude Include="Network\PadRingBuffer.h" />
     <ClInclude Include="SansenGamen.h" />
-    <ClInclude Include="SansenKazu.h" />
     <ClInclude Include="Senkan_Rtype_2.h" />
+    <ClInclude Include="SetumeiGamen.h" />
     <ClInclude Include="Sinka_Bar.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="stdafx.h" />
@@ -2032,6 +2028,7 @@
     <MeshContentTask Include="Assets\modelData\PlayerStar.FBX" />
     <MeshContentTask Include="Assets\modelData\Senkan.FBX" />
     <MeshContentTask Include="Assets\modelData\SenkanType2.FBX" />
+    <MeshContentTask Include="Assets\modelData\SenkanType3.FBX" />
     <MeshContentTask Include="Assets\modelData\Space_field.FBX" />
     <MeshContentTask Include="Assets\modelData\star.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
@@ -2043,10 +2040,10 @@
     <ImageContentTask Include="Assets\sprite\Title1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ImageContentTask Include="Assets\sprite\Title_A.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <ImageContentTask Include="Assets\sprite\Setumei1.jpg" />
+    <ImageContentTask Include="Assets\sprite\Setumei2.jpg" />
+    <ImageContentTask Include="Assets\sprite\Title_A.bmp" />
     <ImageContentTask Include="Assets\sprite\Icon.png" />
     <ImageContentTask Include="Assets\sprite\1Player.png" />
     <ImageContentTask Include="Assets\sprite\2Player.png" />
@@ -2063,9 +2060,14 @@
     <ImageContentTask Include="Assets\sprite\Sinka_Bar.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\effect\BH.efk" />
     <None Include="Assets\effect\explosion1.efk" />
     <None Include="Assets\effect\explosion2.efk" />
     <None Include="Assets\effect\kari_BH.efk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\sound\Kettei.wav" />
+    <Media Include="Assets\sound\OP.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

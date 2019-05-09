@@ -4,6 +4,8 @@
 
 GamenDraw::GamenDraw()
 {
+	m_push = NewGO<prefab::CSoundSource>(0);
+	m_push->Init(L"sound/Kettei.wav");
 }
 
 
@@ -15,24 +17,69 @@ GamenDraw::~GamenDraw()
 
 void GamenDraw::Update()
 {
-	if (Pad(0).IsPress(enButtonA) == true)
+	if (Pad(0).IsPress(enButtonUp) == true)
 	{
+		mode = 0;
+	}
+	else if (Pad(0).IsPress(enButtonDown) == true)
+	{
+		mode = 1;
+	}
+
+	if (mode == 0 && Pad(0).IsPress(enButtonA) == true){
 		DeleteGO(this);
+		m_push->Play(false);
+		NewGO<SansenGamen>(1, "SansenGamen");
+	}
+	if (mode == 1 && Pad(0).IsPress(enButtonA) == true) {
+		DeleteGO(this);
+		m_push->Play(false);
+		NewGO<SetumeiGamen>(0, "SetumeiGamen");
 	}
 }
 //âÊñ Ç…ï`é ÅB
 void GamenDraw::PostRender(CRenderContext& rc) {
 	wchar_t text[2506];
 
-	swprintf_s(text, L"Å`PLEASE EN BUTTONÅ`\n");
+	swprintf_s(text, L"game play\n");
 	m_font.Begin(rc);
 
-	m_font.Draw(
-		text,
-		{ 0.0f, -200.0f },
-		{ 0.0f, 0.0f, 1.0f, 1.0f },
-		0.0f,
-		1.5f
-	);
+	if (mode == 0) {
+		m_font.Draw(
+			text,
+			{ 0.0f, -105.0f },
+			{ 0.0f, 1.0f, 1.0f, 1.0f },
+			0.0f,
+			1.25f
+		);
+	}
+	else if (mode == 1) {
+		m_font.Draw(
+			text,
+			{ 0.0f, -105.0f },
+			{ 0.0f, 0.0f, 1.0f, 1.0f },
+			0.0f,
+			1.25f
+		);
+	}
+	swprintf_s(text, L"Manual\n");
+	if (mode == 0) {
+		m_font.Draw(
+			text,
+			{ 0.0f, -200.0f },
+			{ 0.0f, 0.0f, 1.0f, 1.0f },
+			0.0f,
+			1.25f
+		);
+	}
+	else if (mode == 1) {
+		m_font.Draw(
+			text,
+			{ 0.0f, -200.0f },
+			{ 0.0f, 1.0f, 1.0f, 1.0f },
+			0.0f,
+			1.25f
+		);
+	}
 	m_font.End(rc);
 }

@@ -4,14 +4,12 @@
 #include"Senkan_Rtype_2.h"
 #include"Game.h"
 #include"Star.h"
-#include"SansenKazu.h"
 
 class Senkan_Rtype_2;
 class Player;
 class Bullet;
 class Game;
 class Star;
-class SansenKazu;
 
 class Enemy : public IGameObject
 {
@@ -53,7 +51,6 @@ private:
 	Bullet* m_bullet = nullptr;
 	Game* m_game = nullptr;
 	Star* m_star = nullptr;
-	SansenKazu* s_kazu = nullptr;
-	int PadNum = 0;
+	int PadKazu = 0;
 };
 
