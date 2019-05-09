@@ -83,6 +83,10 @@
     <ClCompile Include="PlayerStar.cpp" />
     <ClCompile Include="ResultGamen.cpp" />
     <ClCompile Include="ResultDraw.cpp" />
+    <ClCompile Include="GameWait.cpp" />
+    <ClCompile Include="Network\NetPad.cpp" />
+    <ClCompile Include="Network\NetManager.cpp" />
+    <ClCompile Include="Network\PadRingBuffer.cpp" />
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Draw_Player.cpp" />
     <ClCompile Include="SetumeiGamen.cpp" />
@@ -534,6 +538,11 @@
     <ClInclude Include="Photon-Inc\Photon-cpp\inc\Punchthrough\RelayClient.h">
       <Filter>PhotonLib\Photon\Punchthrough</Filter>
     </ClInclude>
+    <ClInclude Include="GameWait.h" />
+    <ClInclude Include="Network\NetPad.h" />
+    <ClInclude Include="Network\NetManager.h" />
+    <ClInclude Include="Network\NPad.h" />
+    <ClInclude Include="Network\PadRingBuffer.h" />
     <ClInclude Include="PlayerStar.h" />
     <ClInclude Include="ResultGamen.h" />
     <ClInclude Include="BlackHole.h" />
@@ -611,6 +620,7 @@
     <ImageContentTask Include="Assets\sprite\2P.png" />
     <ImageContentTask Include="Assets\sprite\3P.png" />
     <ImageContentTask Include="Assets\sprite\4P.png" />
+    <ImageContentTask Include="Assets\sprite\Icon.png" />
     <ImageContentTask Include="Assets\sprite\Reslut.png" />
     <ImageContentTask Include="Assets\sprite\1Player.png" />
     <ImageContentTask Include="Assets\sprite\2Player.png" />
@@ -630,6 +640,7 @@
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\sprite\SankaMulti.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\explosion1.efk" />

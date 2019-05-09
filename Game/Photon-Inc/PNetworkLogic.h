@@ -2,6 +2,9 @@
 #include <vector>
 #include "LoadBalancing-cpp/inc/Client.h"
 #include "PEventListener.h"
+#include "PJoinListener.h"
+#include "PLeaveListener.h"
+#include <unordered_set>
 
 namespace PhotonLib {
 	class PNetworkLogic : public ExitGames::LoadBalancing::Listener {
@@ -22,13 +25,24 @@ namespace PhotonLib {
 		using Room = ExitGames::LoadBalancing::Room;
 
 	public:
+		//接続状態enum
+		enum ConnectState {
+			DISCONNECT,//切断
+			TRY_CONNECT,//接続試行中
+			CONNECT,//接続完了
+			TRY_ROOMIN,//ルームイン試行中
+			ROOMIN//ルームイン完了
+		};
+
 		/// <summary>
 		/// 初期化。
 		/// </summary>
 		/// <param name="appID">photonのサイトで取得したappID</param>
 		/// <param name="appVersion">バージョン。適当に決めていい。</param>
 		PNetworkLogic(const JString& appID, const JString& appVersion)
-			:mLoadBalancingClient(*this, appID, appVersion, ExitGames::Photon::ConnectionProtocol::DEFAULT, true){};
+			:mLoadBalancingClient(*this, appID, appVersion, ExitGames::Photon::ConnectionProtocol::DEFAULT, true),
+			eventVector(), playersNum() {
+		};
 
 		/// <summary>
 		/// PEventListenerを継承したクラスを登録する
@@ -38,7 +52,29 @@ namespace PhotonLib {
 		/// </remarks>
 		/// <param name="listener"></param>
 		void addEventListener(PEventListener* listener) {
-			listenerVector.push_back(listener);
+			eventVector.push_back(listener);
+		}
+
+		/// <summary>
+		/// PJoinListenerを継承したクラスを登録する
+		/// </summary>
+		/// <remarks>
+		/// 登録したクラスのonLeave関数がプレイヤー退出時呼ばれる。
+		/// </remarks>
+		/// <param name="listener"></param>
+		void addJoinListener(PJoinListener* listener) {
+			joinVector.push_back(listener);
+		}
+
+		/// <summary>
+		/// PLeaveListenerを継承したクラスを登録する
+		/// </summary>
+		/// <remarks>
+		/// 登録したクラスのonLeave関数がプレイヤー退出時呼ばれる。
+		/// </remarks>
+		/// <param name="listener"></param>
+		void addLeaveListener(PLeaveListener* listener) {
+			leaveVector.push_back(listener);
 		}
 
 		/// <summary>
@@ -60,11 +96,11 @@ namespace PhotonLib {
 			mLoadBalancingClient.disconnect();
 		}
 
-		bool getErrorCode() {
+		bool getErrorCode() const {
 			return errorCode;
 		}
 
-		JString getErrorMessage() {
+		JString getErrorMessage() const {
 			return errorMessage;
 		}
 
@@ -73,14 +109,14 @@ namespace PhotonLib {
 		/// </summary>
 		/// <remarks>その参照が取得された部屋を出た後に参照されたインスタンスにアクセスするときの振る舞い、
 		/// および部屋の中にいないでこの関数を呼び出すときの振る舞いは未定義です。コピーへの操作は影響しません。</remarks>
-		MutableRoom getJoinedRoom() {
+		MutableRoom& getJoinedRoom() {
 			return mLoadBalancingClient.getCurrentlyJoinedRoom();
 		}
 
 		/// <summary>
 		/// 自分のプレイヤーの参照を取得。
 		/// </summary>
-		MutablePlayer getLocalPlayer() {
+		MutablePlayer& getLocalPlayer() {
 			return mLoadBalancingClient.getLocalPlayer();
 		}
 
@@ -91,6 +127,10 @@ namespace PhotonLib {
 			return mLoadBalancingClient.getLocalPlayer().getNumber();
 		}
 
+		const std::unordered_set<int>& getPlayersNum() {
+			return playersNum;
+		}
+
 		/// <summary>
 		/// 部屋の一覧を取得。部屋に居ると最新の情報は入手できません。
 		/// </summary>
@@ -99,23 +139,35 @@ namespace PhotonLib {
 		}
 
 		/// <summary>
+		/// 俗にいうping。ミリ秒単位。
+		/// </summary>
+		/// <returns></returns>
+		int GetRoundTripTime() {
+			return mLoadBalancingClient.getRoundTripTime();
+		}
+
+		ConnectState getState() const {
+			return state;
+		}
+
+		/// <summary>
 		/// photon接続状態にあるならtrue。
 		/// </summary>
-		bool isConnecting() {
+		bool isConnecting() const {
 			return state >= CONNECT;
 		}
 
 		/// <summary>
 		/// エラーコードが0以外のときtrue。
 		/// </summary>
-		bool isError() {
+		bool isError() const {
 			return errorCode != 0;
 		}
 
 		/// <summary>
 		/// 部屋に入っていればtrue。
 		/// </summary>
-		bool isRoomIn() {
+		bool isRoomIn() const {
 			return state == ROOMIN;
 		}
 
@@ -173,10 +225,12 @@ namespace PhotonLib {
 		}
 
 		/// <summary>
-		/// 全てのイベントリスナーを登録解除する
+		/// 全てのリスナーを登録解除する
 		/// </summary>
 		void removeAllListener() {
-			listenerVector.clear();
+			eventVector.clear();
+			joinVector.clear();
+			leaveVector.clear();
 		}
 
 		/// <summary>
@@ -185,6 +239,18 @@ namespace PhotonLib {
 		/// <param name="listener">登録解除したいリスナー</param>
 		void removeListener(PEventListener* listener);
 
+		// <summary>
+		/// 入室リスナーを登録解除する。
+		/// </summary>
+		/// <param name="listener">登録解除したいリスナー</param>
+		void removeListener(PJoinListener* listener);
+
+		// <summary>
+		/// 退出リスナーを登録解除する。
+		/// </summary>
+		/// <param name="listener">登録解除したいリスナー</param>
+		void removeListener(PLeaveListener* listener);
+
 		/// <summary>
 		/// ゲームループ内で呼び出し続けてください
 		/// </summary>
@@ -192,22 +258,18 @@ namespace PhotonLib {
 			mLoadBalancingClient.service();
 		}
 
-		//接続状態enum
-		enum ConnectState {
-			DISCONNECT,//切断
-			TRY_CONNECT,//接続試行中
-			CONNECT,//接続完了
-			TRY_ROOMIN,//ルームイン試行中
-			ROOMIN//ルームイン完了
-		};
 	private:
 	/*************メンバ変数(private)**************/
 		ExitGames::LoadBalancing::Client mLoadBalancingClient; //photonへの操作を行うクライアント
 		ExitGames::Common::Logger mLogger; // accessed by EGLOG()
 
-		std::vector<PEventListener*> listenerVector; //イベントリスナー入れ
+		std::vector<PEventListener*> eventVector; //イベントリスナー入れ
+		std::vector<PJoinListener*> joinVector; //入室リスナー入れ
+		std::vector<PLeaveListener*> leaveVector; //退出リスナー入れ
 
-		ConnectState state; //接続状態
+		std::unordered_set<int> playersNum; //ルームにいるプレイヤーの番号
+
+		ConnectState state = DISCONNECT; //接続状態
 		int errorCode = 0; //直前の操作のエラーコード
 		int warningCode = 0;
 		JString errorMessage;
@@ -240,8 +302,8 @@ namespace PhotonLib {
 		}
 
 		//同じ部屋にいる全プレイヤーの特定の操作によって引き起こされるイベント
-		void joinRoomEventAction(int playerNr, const JVector<int>& playernrs, const Player& player) override {};
-		void leaveRoomEventAction(int playerNr, bool isInactive) override {};
+		void joinRoomEventAction(int playerNr, const JVector<int>& playernrs, const Player& player) override;
+		void leaveRoomEventAction(int playerNr, bool isInactive) override;
 
 		void customEventAction(int playerNr, nByte eventCode, const Object& eventContent) override;
 
@@ -272,6 +334,7 @@ namespace PhotonLib {
 
 		void leaveRoomReturn(int errorCode, const JString& errorString) override {
 			stateChange(CONNECT, errorCode, errorString);
+			playersNum.clear();
 		}
 
 		void joinLobbyReturn(void) override {};

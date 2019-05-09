@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include"Title_1.h"
 #include "Game.h"
+#include "Network/NetManager.h"
 
 namespace {
 	/*!
@@ -64,17 +65,16 @@ namespace {
 		//アンチ
 		initParam.graphicsConfing.aaConfig.isEnable = false;
 		//Bloom
-		initParam.graphicsConfing.bloomConfig.isEnable = true;
+		initParam.graphicsConfing.bloomConfig.isEnable = false;
 		//tonemap
 		initParam.graphicsConfing.tonemapConfig.isEnable = true;
-		initParam.graphicsConfing.tonemapConfig.luminance = 0.56f;
-
+		initParam.graphicsConfing.tonemapConfig.luminance = 0.2f;
 		//SSR
 		initParam.graphicsConfing.ssrConfig.isEnable = true;
 		//ディザ
 		initParam.graphicsConfing.ditheringConfig.isEnable = false;
 		//dof
-		initParam.graphicsConfing.dofConfig.isEnable = true;
+		initParam.graphicsConfing.dofConfig.isEnable = false;
 	}
 	/*!
 	*@brief	高スペックPC向けにtkEngineのConfigを設定する。
@@ -99,16 +99,16 @@ namespace {
 		//アンチ
 		initParam.graphicsConfing.aaConfig.isEnable = true;
 		//Bloom
-		initParam.graphicsConfing.bloomConfig.isEnable = true;
+		initParam.graphicsConfing.bloomConfig.isEnable = false;
 		//tonemap
 		initParam.graphicsConfing.tonemapConfig.isEnable = true;
-		initParam.graphicsConfing.tonemapConfig.luminance = 0.56f;
+		initParam.graphicsConfing.tonemapConfig.luminance = 0.2f;
 		//SSR
 		initParam.graphicsConfing.ssrConfig.isEnable = true;
 		//ディザ
 		initParam.graphicsConfing.ditheringConfig.isEnable = true;
 		//dof
-		initParam.graphicsConfing.dofConfig.isEnable = true;
+		initParam.graphicsConfing.dofConfig.isEnable = false;
 	}
 }
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
@@ -143,7 +143,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	}
 	//エンジンの終了処理。
 	Engine().Final();
-
+	if (NetManager::isInited()) {
+		NetManager::deleteManager();
+	}
 	return 0;
 }
 

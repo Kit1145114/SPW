@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
-
+#include "Network/NPad.h"
 
 Player::Player()
 {
@@ -82,21 +82,21 @@ void Player::Move()
 	if (DeathCount == false) {
 		if (Muteki == false) {
 			if (Ver == 0) {
-				m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +5.0f;
-				m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +5.0f;
+				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +5.0f;
+				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +5.0f;
 				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 				m_skinModelRender->SetPosition(m_position);
 			}
 			else if (Ver == 1)
 			{
-				m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +7.0f;
-				m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +7.0f;
+				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +7.0f;
+				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +7.0f;
 				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 				m_skinModelRender->SetPosition(m_position);
 			}
 			else if (Ver == 2) {
-				m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +10.0f;
-				m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +10.0f;
+				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +10.0f;
+				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +10.0f;
 				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 				m_skinModelRender->SetPosition(m_position);
 			}
@@ -106,8 +106,8 @@ void Player::Move()
 				memorySX = m_moveSpeed.x;
 				memorySZ = m_moveSpeed.z;
 			}
-			else if (Pad(PadNum).GetLStickXF() == 0.0 && Pad(PadNum).GetLStickYF() == 0.0
-					&& Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0) {
+			else if (NPad(PadNum).GetLStickXF() == 0.0 && NPad(PadNum).GetLStickYF() == 0.0
+					&& NPad(PadNum).GetRStickXF() == 0.0 && NPad(PadNum).GetRStickYF() == 0.0) {
 				HoukouX = memoryHX * 10.0f;
 				HoukouZ = memoryHZ * 10.0f;
 				SpeedX = memorySX  * 10.0f;
@@ -116,8 +116,8 @@ void Player::Move()
 		}
 		else if (Muteki == true)
 		{
-			m_moveSpeed.x = Pad(PadNum).GetLStickXF()* +10.0f;
-			m_moveSpeed.z = Pad(PadNum).GetLStickYF()* +10.0f;
+			m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +10.0f;
+			m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +10.0f;
 			m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 			m_skinModelRender->SetPosition(m_position);
 		}
@@ -135,7 +135,7 @@ void Player::PBullet()
 				m_timer = Timer0;
 			}
 			if (m_Short > 0) {
-				if (Pad(PadNum).IsPress(enButtonRB2) == true) {
+				if (NPad(PadNum).IsPress(enButtonRB2) == true) {
 					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 					m_bullet->SetPB(PadNum);
 					m_bullet->SetPosition(m_position);
@@ -172,7 +172,7 @@ void Player::PBullet2()
 			}
 			if (m_Short > 0)
 			{
-				if (Pad(PadNum).IsPress(enButtonRB2) == true) {
+				if (NPad(PadNum).IsPress(enButtonRB2) == true) {
 					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 					m_bullet->SetPB(PadNum);
 					m_bullet->SetPosition(m_position);
@@ -222,7 +222,7 @@ void Player::PBullet3()
 			}
 			if (m_Short > 0)
 			{
-				if (Pad(PadNum).IsPress(enButtonRB2) == true) {
+				if (NPad(PadNum).IsPress(enButtonRB2) == true) {
 					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 					m_bullet->SetPB(PadNum);
 					m_bullet->SetPosition(m_position);
@@ -393,11 +393,11 @@ void Player::Respawn()
 void Player::Houdai()
 {
 	if (Ver == 0) {
-		HoukouX = Pad(PadNum).GetRStickXF() * 75.0f;
-		HoukouZ = Pad(PadNum).GetRStickYF() * 75.0f;
-		SpeedX = Pad(PadNum).GetRStickXF() * 50.0f;
-		SpeedZ = Pad(PadNum).GetRStickYF() * 50.0f;
-		if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
+		HoukouX = NPad(PadNum).GetRStickXF() * 75.0f;
+		HoukouZ = NPad(PadNum).GetRStickYF() * 75.0f;
+		SpeedX = NPad(PadNum).GetRStickXF() * 50.0f;
+		SpeedZ = NPad(PadNum).GetRStickYF() * 50.0f;
+		if (NPad(PadNum).GetRStickXF() == 0.0 && NPad(PadNum).GetRStickYF() == 0.0)
 		{
 			HoukouX = memoryHX;
 			HoukouZ = memoryHZ;
@@ -407,11 +407,11 @@ void Player::Houdai()
 	}
 	else if (Ver == 1)
 	{
-		HoukouX = Pad(PadNum).GetRStickXF() * 150.0f;
-		HoukouZ = Pad(PadNum).GetRStickYF() * 150.0f;
-		SpeedX = Pad(PadNum).GetRStickXF() * 100.0f;
-		SpeedZ = Pad(PadNum).GetRStickYF() * 100.0f;
-		if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
+		HoukouX = NPad(PadNum).GetRStickXF() * 150.0f;
+		HoukouZ = NPad(PadNum).GetRStickYF() * 150.0f;
+		SpeedX = NPad(PadNum).GetRStickXF() * 100.0f;
+		SpeedZ = NPad(PadNum).GetRStickYF() * 100.0f;
+		if (NPad(PadNum).GetRStickXF() == 0.0 && NPad(PadNum).GetRStickYF() == 0.0)
 		{
 			HoukouX = memoryHX;
 			HoukouZ = memoryHZ;
@@ -421,11 +421,11 @@ void Player::Houdai()
 	}
 	else if (Ver == 2)
 	{
-		HoukouX = Pad(PadNum).GetRStickXF() * 150.0f;
-		HoukouZ = Pad(PadNum).GetRStickYF() * 150.0f;
-		SpeedX = Pad(PadNum).GetRStickXF() * 200.0f;
-		SpeedZ = Pad(PadNum).GetRStickYF() * 200.0f;
-		if (Pad(PadNum).GetRStickXF() == 0.0 && Pad(PadNum).GetRStickYF() == 0.0)
+		HoukouX = NPad(PadNum).GetRStickXF() * 150.0f;
+		HoukouZ = NPad(PadNum).GetRStickYF() * 150.0f;
+		SpeedX = NPad(PadNum).GetRStickXF() * 200.0f;
+		SpeedZ = NPad(PadNum).GetRStickYF() * 200.0f;
+		if (NPad(PadNum).GetRStickXF() == 0.0 && NPad(PadNum).GetRStickYF() == 0.0)
 		{
 			HoukouX = memoryHX;
 			HoukouZ = memoryHZ;

@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Title_2.h"
 
-
 Title_2::Title_2()
 {
 }
@@ -31,6 +30,6 @@ void Title_2::Update()
 	if (Pad(0).IsPress(enButtonA) == true)
 	{
 		DeleteGO(this);
-		//NewGO<SansenGamen>(1,"SansenGamen");
+		//NewGO<SansenGamen>(0,"SansenGamen");
 	}
 }

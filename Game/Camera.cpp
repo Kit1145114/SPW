@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Camera.h"
 #include "Game.h"
+#include "Network/NetManager.h"
 
 Camera::Camera()
 {
@@ -17,8 +18,14 @@ bool Camera::Start() {
 	MainCamera().SetNear(1.0f);
 	MainCamera().SetFar(100000.0f);
 
-	//自分のプレイヤー番号を取得。とりあえず0番。
-	m_player = Game::GetInstance()->m_player[0];
+	//自分のプレイヤー番号を取得。
+	int myNum
+#ifdef UseNetwork
+		= NetManager::getLocalNum();
+#else
+		= 0;
+#endif
+	m_player = Game::GetInstance()->m_player[myNum];
 
 	return true;
 }
@@ -46,12 +53,38 @@ void Camera::Move() {
 
 void Camera::Update() {
 	TOP();
-	//Move();
 	//メインカメラに注視点と視点を設定する。
+	float cameraUp = 0.0f;
+#ifdef UseNetwork
 	CVector3 pos = m_player->GetPosition();
-	pos.y = Syoki;
+	cameraUp = up;
+#else
+	CVector3 pos;
+	if (Game::GetInstance()->GetSansenKazu() == 1) {
+		pos = m_player->GetPosition();
+		cameraUp = up;
+	} else {
+		int count = 0;
+		for (Player* player : Game::GetInstance()->m_player) {
+			if (player != nullptr) {
+				pos += player->GetPosition();
+				count++;
+			}
+		}
+		pos /= count;
+		for (Player* player : Game::GetInstance()->m_player) {
+			if (player != nullptr) {
+				float f = (pos - player->GetPosition()).Length();
+				if (cameraUp < f) {
+					cameraUp = f;
+				}
+			}
+		}
+		cameraUp *= 1.9f;
+	}
+#endif
 	MainCamera().SetTarget(pos);
-	pos.y += up;
+	pos.y += cameraUp;
 	MainCamera().SetPosition(pos);
 	//カメラの更新。
 	MainCamera().Update();

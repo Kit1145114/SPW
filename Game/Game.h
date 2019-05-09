@@ -55,7 +55,6 @@ public:
 	bool Start();
 	void Update();
 	void PlayerNum();
-	void CameraPos();
 	void Star_Life();
 	void Bullet_Life();
 	void PlStar_Life();

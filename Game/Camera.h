@@ -36,6 +36,5 @@ private:
 	float MaxCamera = 10000.0f;
 	float MinCamera = 1500.0f;
 	float up = 0.0f;
-	float Syoki = 5000.0f;
 };
 
