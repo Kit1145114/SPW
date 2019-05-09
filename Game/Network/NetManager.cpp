@@ -56,7 +56,12 @@ void NetManager::PreUpdate() {
 		}
 
 		//パッド更新
-		int localNum = toPadNumber(network->getLocalPlayerNum());//photonのナンバーは0でなく1から始まるため1減らす
+		int localNum = toPadNumber(network->getLocalPlayerNum());//プレイヤー番号をパッド番号に変える
+
+		if (localNum == -1) {
+			return;
+		}
+
 		pads[localNum].SetFromCPad(Pad(0));//バッファにパッド情報を記録
 		pads[localNum].sendState(*network);//photonでパッド情報を送信
 
@@ -94,8 +99,8 @@ void NetManager::onPhotonEvent(int playerNr, nByte eventCode, const ExitGames::C
 	switch (eventCode) {
 		//パッド情報受け取り
 	case 0: {
-		char pNum = toPadNumber(playerNr);
-		if (pNum == -1) {
+		nByte pNum = toPadNumber(playerNr);
+		if (pNum == NON_PAD) {
 			return;
 		}
 		using namespace ExitGames::Common;
@@ -134,11 +139,11 @@ void NetManager::onJoin(int playerNr) {
 	}
 
 	//マスターかつ自分でない場合だけ情報を教える
-	/*if (!me && master) {
+	if (!me && master) {
 		ExitGames::LoadBalancing::RaiseEventOptions option;
 		option.setTargetPlayers(&playerNr, 1);
 		network->raiseEvent(true, pNumbers, CONNECT_PAD_MAX, 4, option);
-	}*/
+	}
 }
 
 void NetManager::resetPadWait() {
