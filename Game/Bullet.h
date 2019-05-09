@@ -40,7 +40,7 @@ public:
 
 	void SetMoveSpeed(CVector3 mspos)
 	{
-		m_moveSpeed = mspos;
+		m_moveSpeed += mspos;
 	}
 	void SetKill(bool a)
 	{
