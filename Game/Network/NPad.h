@@ -2,8 +2,6 @@
 #include "NetManager.h"
 #include "NetPad.h"
 
-#define UseNetwork
-
 #ifdef UseNetwork
 const inline NetPad& NPad(int num) {
 	return NetManager::getPad(num);

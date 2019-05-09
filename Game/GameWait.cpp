@@ -17,9 +17,12 @@ GameWait::GameWait() {
 }
 
 GameWait::~GameWait() {
+	DeleteGO(m_spriteRender);
 }
 
 bool GameWait::Start() {
+	m_spriteRender = NewGO<prefab::CSpriteRender>(0);
+	m_spriteRender->Init(L"sprite/SankaMulti.dds", 1280.0f, 720.0f);
 	NetManager::getNet()->connect();
 	NetManager::getNet()->getLocalPlayer().addCustomProperty(readyKey, false);
 	return true;
@@ -71,9 +74,9 @@ void GameWait::PostRender(CRenderContext & rc) {
 		break;
 	}
 	if (state != PNetworkLogic::ROOMIN) {
-		font.Draw(message, { 0,0 });
+		font.Draw(message, { 0,0 }, { 0, 0, 0 , 1 });
 		if (NetManager::getNet()->getErrorCode() != 0) {
-			font.Draw(NetManager::getNet()->getErrorMessage().cstr(), { 0, -100 });
+			font.Draw(NetManager::getNet()->getErrorMessage().cstr(), { 0, -100 }, { 0, 0, 0 , 1 });
 		}
 	} else {
 		C::JVector<L::Player*> players = NetManager::getNet()->getJoinedRoom().getPlayers();
@@ -81,12 +84,12 @@ void GameWait::PostRender(CRenderContext & rc) {
 		for (int i = 0; i < players.getSize(); i++) {
 			wchar_t str[10];
 			swprintf(str, L"player%d", players[i]->getNumber());
-			font.Draw(str, { 0, height});
+			font.Draw(str, { 0, height }, {0, 0, 0 , 1});
 
 			bool ready = C::ValueObject<bool>(players[i]->getCustomProperties().getValue(readyKey)).getDataCopy();
 
 			if (ready) {
-				font.Draw(L"ready", { 400, height });
+				font.Draw(L"ready", { 400, height }, { 0, 0, 0 , 1 });
 			}
 
 			height -= 50;
