@@ -19,7 +19,7 @@ bool Camera::Start() {
 	MainCamera().SetFar(100000.0f);
 
 	//自分のプレイヤー番号を取得。photonでは0からでなく1から始まるためマイナス１する。
-	int myNum = NetManager::getNet()->getLocalPlayerNum() - 1;//TODO 変更する
+	int myNum = NetManager::getLocalNum();
 	m_player = Game::GetInstance()->m_player[myNum];
 
 	return true;

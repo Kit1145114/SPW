@@ -55,6 +55,10 @@ public:
 		 delete st_manager;
 	}
 
+	static nByte getLocalNum() {
+		return st_manager->toPadNumber(st_manager->network->getLocalPlayerNum());
+	}
+
 	/// <summary>
 	/// ネットワークを取得
 	/// </summary>

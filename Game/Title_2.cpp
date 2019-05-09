@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Title_2.h"
-#include "GameWait.h"
 
 Title_2::Title_2()
 {
@@ -32,6 +31,5 @@ void Title_2::Update()
 	{
 		DeleteGO(this);
 		//NewGO<SansenGamen>(0,"SansenGamen");
-		NewGO<GameWait>(0);
 	}
 }

@@ -3,7 +3,6 @@
 #include "Network\NetPad.h"
 #include "Network\NetManager.h"
 #include "Game.h"
-#include "SansenKazu.h"
 
 using namespace PhotonLib;
 namespace C = ExitGames::Common;
@@ -47,10 +46,7 @@ void GameWait::Update() {
 	}
 
 	if (start) {
-		SansenKazu* sansenkazu = NewGO<SansenKazu>(0, "SansenKazu");
-		sansenkazu->DeathCount(true);
-		sansenkazu->SetKazu(network->getPlayersNum().size());
-		NewGO<Game>(0, "Game");
+		NewGO<Game>(0, "Game")->SetSanSenkazu(network->getPlayersNum().size());
 		NetManager::resetPadWait();
 		DeleteGO(this);
 	}
