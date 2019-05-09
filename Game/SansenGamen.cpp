@@ -48,7 +48,7 @@ void SansenGamen::Update()
 			}
 		}
 	}
-	if (Pad(0).IsTrigger(enButtonA))
+	if (Pad(0).IsTrigger(enButtonX))
 	{
 		DeleteGO(this);
 		GameStart = true;

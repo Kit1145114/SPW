@@ -46,6 +46,11 @@ Game::~Game()
 		DeleteGO(obj);
 		return true;
 	});
+	QueryGOs<BlackHole>("BlackHole", [&](BlackHole* bh)->bool
+		{
+			DeleteGO(bh);
+			return true;
+		});
 }
 
 bool Game::Start()

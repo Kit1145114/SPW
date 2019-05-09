@@ -91,6 +91,7 @@
     <ClCompile Include="Draw_Player.cpp" />
     <ClCompile Include="SetumeiGamen.cpp" />
     <ClCompile Include="Draw_Skazu.cpp" />
+    <ClCompile Include="RadarRing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -549,6 +550,7 @@
     <ClInclude Include="Draw_Player.h" />
     <ClInclude Include="SetumeiGamen.h" />
     <ClInclude Include="Draw_Skazu.h" />
+    <ClInclude Include="RadarRing.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -596,6 +598,10 @@
     <MeshContentTask Include="Assets\modelData\Bullet2.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet3.FBX" />
     <MeshContentTask Include="Assets\modelData\SenkanType3.FBX" />
+    <MeshContentTask Include="Assets\modelData\Ring4P.FBX" />
+    <MeshContentTask Include="Assets\modelData\Ring2P.FBX" />
+    <MeshContentTask Include="Assets\modelData\Ring3P.FBX" />
+    <MeshContentTask Include="Assets\modelData\Ring1P.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">

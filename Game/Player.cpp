@@ -1,4 +1,3 @@
-
 #include "stdafx.h"
 #include "Player.h"
 #include "Network/NPad.h"
@@ -7,6 +6,7 @@ Player::Player()
 {
 	draw_Pl = NewGO<Draw_Player>(0);
 	draw_S = NewGO<Draw_Skazu>(0);
+	r_ring = NewGO<RadarRing>(0);
 }
 
 Player::~Player()
@@ -18,6 +18,7 @@ Player::~Player()
 	}
 	DeleteGO(draw_Pl);
 	DeleteGO(draw_S);
+	DeleteGO(r_ring);
 }
 
 bool Player::Start()
@@ -73,6 +74,7 @@ void Player::Update()
 	HP();
 	StarPop();
 	memory_position = m_position;
+	r_ring->SetPosition(m_position);
 }
 //プレイヤーの操作
 void Player::Move()
@@ -548,7 +550,6 @@ void Player::HP()
 		Death();
 	}
 }
-//他人を負かすっていうのはそんなに難しいことじゃあないんだ
 //プレイヤーの持つ☆を落とす。
 void Player::StarPop()
 {
@@ -577,24 +578,28 @@ void Player::SetPadNum(int num)
 	switch (PadNum)
 	{
 	case 0:
+		r_ring->SetPlayerRadar(L"modelData/Ring1P.cmo");
 		draw_Pl->SetPlayerPicture(L"sprite/1P.dds");
 		draw_Pl->SetPosition(-450.0f, -300.0f);
 		draw_S->SetPosition(-450.0f, -220.0f);
 		draw_S->SetColor(1.0f, 0.0f, 0.0f, 1.0f);
 		break;
 	case 1:
+		r_ring->SetPlayerRadar(L"modelData/Ring2P.cmo");
 		draw_Pl->SetPlayerPicture(L"sprite/2P.dds");
 		draw_Pl->SetPosition(-150.0f, -300.0f);
 		draw_S->SetPosition(-150.0f, -220.0f);
 		draw_S->SetColor(0.0f, 0.0f, 1.0f, 1.0f);
 		break;
 	case 2:
+		r_ring->SetPlayerRadar(L"modelData/Ring3P.cmo");
 		draw_Pl->SetPlayerPicture(L"sprite/3P.dds");
 		draw_Pl->SetPosition(150.0f, -300.0f);
 		draw_S->SetPosition(150.0f, -220.0f);
 		draw_S->SetColor(0.1f, 1.0f, 0.0f, 1.0f);
 		break;
 	case 3:
+		r_ring->SetPlayerRadar(L"modelData/Ring4P.cmo");
 		draw_Pl->SetPlayerPicture(L"sprite/4P.dds");
 		draw_Pl->SetPosition(450.0f, -300.0f);
 		draw_S->SetPosition(450.0f, -220.0f);

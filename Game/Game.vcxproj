@@ -1800,6 +1800,7 @@
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerStar.cpp" />
+    <ClCompile Include="RadarRing.cpp" />
     <ClCompile Include="ResultDraw.cpp" />
     <ClCompile Include="ResultGamen.cpp" />
     <ClCompile Include="SansenGamen.cpp" />
@@ -1991,6 +1992,7 @@
     <ClInclude Include="Planet.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerStar.h" />
+    <ClInclude Include="RadarRing.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="ResultDraw.h" />
     <ClInclude Include="ResultGamen.h" />
@@ -2026,6 +2028,10 @@
     <MeshContentTask Include="Assets\modelData\planet_10.FBX" />
     <MeshContentTask Include="Assets\modelData\planet_aomura.FBX" />
     <MeshContentTask Include="Assets\modelData\PlayerStar.FBX" />
+    <MeshContentTask Include="Assets\modelData\Ring1P.FBX" />
+    <MeshContentTask Include="Assets\modelData\Ring2P.FBX" />
+    <MeshContentTask Include="Assets\modelData\Ring3P.FBX" />
+    <MeshContentTask Include="Assets\modelData\Ring4P.FBX" />
     <MeshContentTask Include="Assets\modelData\Senkan.FBX" />
     <MeshContentTask Include="Assets\modelData\SenkanType2.FBX" />
     <MeshContentTask Include="Assets\modelData\SenkanType3.FBX" />
