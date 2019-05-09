@@ -47,7 +47,7 @@ void GameWait::Update() {
 
 	if (start) {
 		NewGO<Game>(0, "Game")->SetSanSenkazu(network->getPlayersNum().size());
-		NetManager::resetPadWait();
+		//NetManager::resetPadWait();
 		DeleteGO(this);
 	}
 }
