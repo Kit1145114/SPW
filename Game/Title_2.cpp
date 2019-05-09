@@ -21,6 +21,7 @@ bool Title_2::Start()
 	m_bgm = NewGO<prefab::CSoundSource>(0);
 	m_bgm->Init(L"sound/OP.wav");
 	m_bgm->Play(true);
+	m_bgm->SetVolume(0.1f);
 	m_Draw = NewGO<GamenDraw>(0, "GamenDraw");
 	return true;
 }

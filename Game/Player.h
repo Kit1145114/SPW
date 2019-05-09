@@ -154,7 +154,7 @@ private:
 	int m_Short = 0;
 	int m_mode = 0;
 	int MutekiTime = 0;
-	int Ver = 2;
+	int Ver = 0;		//デバックで強制進化させる。
 	int StarCount = 0;
 	int PopStar = 0;
 	int PadNum = 0;

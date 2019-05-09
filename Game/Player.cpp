@@ -1,3 +1,4 @@
+
 #include "stdafx.h"
 #include "Player.h"
 
@@ -264,6 +265,9 @@ void Player::Pevolution()
 		m_scale = { 5.0f,5.0f,5.0f };
 		m_skinModelRender->SetScale(m_scale);
 		camera->SetPos(7000.0f);
+		prefab::CEffect* effect = NewGO<prefab::CEffect>(0);
+		effect->Play(L"effect/explosion1.efk");
+		effect->SetPosition(m_position);
 		//S_Rtype2 = NewGO<Senkan_Rtype_2>(0,"Senkan_RType_2");
 		Ver = 1;
 		m_Short = 0;
