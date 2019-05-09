@@ -113,7 +113,7 @@ void Game::Update()
 		PlStar_Life();
 		Bullet_Life();
 		//“–‚½‚è”»’è•\Ž¦
-		dbg::SetDrawPhysicsCollisionEnable();
+		//dbg::SetDrawPhysicsCollisionEnable();
 		if (Pad(0).IsPress(enButtonSelect) == true)
 		{
 			NewGO<Title_2>(0, "Title2");

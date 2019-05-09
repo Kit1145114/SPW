@@ -20,9 +20,10 @@ private:
 	prefab::CEffect* effect;
 	Game* m_game = nullptr;
 	Draw_Player* Pl1 = nullptr;
-	//Player* m_player[4] = { nullptr };
 	CVector3 m_position;
 	int timer = 0;
-	float radius = { 1.0f };//	Šî–{˜f¯‚Ì”¼Œa
+	float radius = { 1.0f };       //	Šî–{˜f¯‚Ì”¼Œa
+	float Searchment = { 1800.0f };//	BH‚Ìd—Í”ÍˆÍ‚Ì’²®
+	float G_limitar = { 15000.0f };    //   BH‚Ìd—Íi‚fj’²® 
 };
 
