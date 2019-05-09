@@ -29,6 +29,8 @@ void NetManager::Init(ExitGames::Common::JString appID, ExitGames::Common::JStri
 	delete network;
 	network = new PNetworkLogic(appID, version);
 	network->addEventListener(this);
+	network->addJoinListener(this);
+	network->addLeaveListener(this);
 }
 
 void NetManager::PreUpdate() {
@@ -46,7 +48,7 @@ void NetManager::PreUpdate() {
 		}
 
 		//パッド更新
-		int localNum = network->getLocalPlayerNum() - 1;//photonのナンバーは0でなく1から始まるため1減らす
+		int localNum = toPadNumber(network->getLocalPlayerNum());//photonのナンバーは0でなく1から始まるため1減らす
 		pads[localNum].SetFromCPad(Pad(0));//バッファにパッド情報を記録
 		pads[localNum].sendState(*network);//photonでパッド情報を送信
 
@@ -54,17 +56,20 @@ void NetManager::PreUpdate() {
 			//自分のパッド入力はラグに合わせてwaitが0になるまで遅延させる
 			if (wait == 0) {
 				bool next = true;
-				for (int num : network->getPlayersNum()) {//全員のバッファに情報がある場合だけ更新する
-					if (!pads[num - 1].hasNext()) {
+				for (int num = 0; num < CONNECT_PAD_MAX; num++) {//全員のバッファに情報がある場合だけ更新する
+					if (pNumbers[num] != NON_PAD && !pads[num].hasNext()) {
 						next = false;
+						break;
 					}
 				}
 				if (next == false) {//無い場合フレームを止めて受信を待つ
 					network->Update();
 					continue;
 				}
-				for (int num : network->getPlayersNum()) {//パッド情報を更新する
-					pads[num - 1].nextFlame();
+				for (int num = 0; num < CONNECT_PAD_MAX; num++) {//パッド情報を更新する
+					if (pNumbers[num] != NON_PAD) {
+						pads[num].nextFlame();
+					}
 				}
 			} else {
 				wait--;
@@ -78,9 +83,45 @@ void NetManager::PreUpdate() {
 }
 
 void NetManager::onPhotonEvent(int playerNr, nByte eventCode, const ExitGames::Common::Object & eventContent) {
-	using namespace ExitGames::Common;
-	nByte* arrayP = ValueObject<nByte*>(eventContent).getDataCopy();
-	pads[playerNr - 1].SetFromArray(arrayP);//受信したパッド情報をバッファに記録
+	switch (eventCode) {
+		//パッド情報受け取り
+	case 0: {
+		char pNum = toPadNumber(playerNr);
+		if (pNum == -1) {
+			return;
+		}
+		using namespace ExitGames::Common;
+		nByte* arrayP = ValueObject<nByte*>(eventContent).getDataCopy();
+		pads[pNum].SetFromArray(arrayP);//受信したパッド情報をバッファに記録
+	}
+
+		//プレイヤー番号とパッド番号の紐づけ受け取り
+	case 1: {
+		using namespace ExitGames::Common;
+		nByte* array = ValueObject<nByte*>(eventContent).getDataCopy();
+		for (int i = 0; i < CONNECT_PAD_MAX; i++) {
+			pNumbers[i] = array[i];
+		}
+	}
+	}
+}
+
+void NetManager::onLeave(int playerNr) {
+	pNumbers[toPadNumber(playerNr)] = NON_PAD;
+}
+
+void NetManager::onJoin(int playerNr) {
+	if (network->getLocalPlayer().getIsMasterClient() && playerNr != network->getLocalPlayerNum()) {
+		ExitGames::LoadBalancing::RaiseEventOptions option;
+		option.setTargetPlayers(&playerNr, 1);
+		network->raiseEvent(true, pNumbers, CONNECT_PAD_MAX, 1, option);
+	}
+	for (int i = 0; i < CONNECT_PAD_MAX; i++) {
+		if (pNumbers[i] == NON_PAD) {
+			pNumbers[i] = playerNr;
+			break;
+		}
+	}
 }
 
 void NetManager::resetPadWait() {
@@ -104,4 +145,13 @@ void NetManager::PostRender(CRenderContext & rc) {
 	swprintf(c, L"%d", NetManager::getNet()->GetRoundTripTime());
 	font.Draw(c, { 300.0f, 0});
 	font.End(rc);
+}
+
+char NetManager::toPadNumber(int playerNr) {
+	for (char i = 0; i < CONNECT_PAD_MAX; i++) {
+		if (pNumbers[i] == playerNr) {
+			return i;
+		}
+	}
+	return -1;
 }

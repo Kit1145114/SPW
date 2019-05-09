@@ -7,7 +7,10 @@ namespace PhotonLib {
 	class PNetworkLogic;
 }
 
-class NetManager : public IGameObject, public PhotonLib::PEventListener {
+class NetManager : public IGameObject,
+	public PhotonLib::PEventListener,
+	public PhotonLib::PJoinListener,
+	public PhotonLib::PLeaveListener{
 public:
 	static const int CONNECT_PAD_MAX = 4;		//接続可能なパッドの最大数。
 
@@ -26,11 +29,20 @@ public:
 	/// <summary>
 	/// photon側から呼ばれる関数。自分で呼ばない。
 	/// </summary>
-	/// <param name="playerNr">プレイヤー番号</param>
-	/// <param name="eventCode">イベントコード</param>
-	/// <param name="eventContent">データ</param>
 	void onPhotonEvent
 	(int playerNr, nByte eventCode, const ExitGames::Common::Object& eventContent) override;
+
+	/// <summary>
+	/// photon側から呼ばれる関数。自分で呼ばない。
+	/// </summary>
+	/// <param name="playerNr"></param>
+	void onLeave(int playerNr) override;
+
+	/// <summary>
+	/// photon側から呼ばれる関数。自分で呼ばない。
+	/// </summary>
+	/// <param name="playerNr"></param>
+	void onJoin(int playerNr) override;
 
 	/*********スタティック関数*********/
 
@@ -74,10 +86,15 @@ public:
 	void PostRender(CRenderContext& rc);
 
 private:
+	char toPadNumber(int playerNr);
+
 	static NetManager* st_manager;//自分を入れておくスタティック変数
 
 	PhotonLib::PNetworkLogic* network = nullptr;
 	NetPad pads[CONNECT_PAD_MAX] = {NetPad(0),NetPad(1),NetPad(2),NetPad(3) };
+
+	static constexpr nByte NON_PAD = 255;
+	nByte pNumbers[CONNECT_PAD_MAX] = { NON_PAD, NON_PAD, NON_PAD, NON_PAD };
 
 	CFont font;
 	unsigned int wait = 20;

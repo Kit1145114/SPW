@@ -2,6 +2,7 @@
 #include <vector>
 #include "LoadBalancing-cpp/inc/Client.h"
 #include "PEventListener.h"
+#include "PJoinListener.h"
 #include "PLeaveListener.h"
 #include <unordered_set>
 
@@ -52,6 +53,17 @@ namespace PhotonLib {
 		/// <param name="listener"></param>
 		void addEventListener(PEventListener* listener) {
 			eventVector.push_back(listener);
+		}
+
+		/// <summary>
+		/// PJoinListenerを継承したクラスを登録する
+		/// </summary>
+		/// <remarks>
+		/// 登録したクラスのonLeave関数がプレイヤー退出時呼ばれる。
+		/// </remarks>
+		/// <param name="listener"></param>
+		void addJoinListener(PJoinListener* listener) {
+			joinVector.push_back(listener);
 		}
 
 		/// <summary>
@@ -217,6 +229,7 @@ namespace PhotonLib {
 		/// </summary>
 		void removeAllListener() {
 			eventVector.clear();
+			joinVector.clear();
 			leaveVector.clear();
 		}
 
@@ -225,6 +238,12 @@ namespace PhotonLib {
 		/// </summary>
 		/// <param name="listener">登録解除したいリスナー</param>
 		void removeListener(PEventListener* listener);
+
+		// <summary>
+		/// 入室リスナーを登録解除する。
+		/// </summary>
+		/// <param name="listener">登録解除したいリスナー</param>
+		void removeListener(PJoinListener* listener);
 
 		// <summary>
 		/// 退出リスナーを登録解除する。
@@ -245,6 +264,7 @@ namespace PhotonLib {
 		ExitGames::Common::Logger mLogger; // accessed by EGLOG()
 
 		std::vector<PEventListener*> eventVector; //イベントリスナー入れ
+		std::vector<PJoinListener*> joinVector; //入室リスナー入れ
 		std::vector<PLeaveListener*> leaveVector; //退出リスナー入れ
 
 		std::unordered_set<int> playersNum; //ルームにいるプレイヤーの番号
