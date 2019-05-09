@@ -200,11 +200,11 @@ void Planet::Death() {
 			//2点間の距離を計算する。
 			CVector3 diff = Game::GetInstance()->memoryPP[i]->p_position - p_position;
 			//距離が半径以下なら。
-			if (diff.Length() < radius) {
+		/*	if (diff.Length() < radius) {
 				explosion();
 				BlackHole::Generate(p_position, radius);
 			}
-			else if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
+			else*/ if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
 				explosion();
 				BlackHole::Generate(p_position, radius);
 			}
