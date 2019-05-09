@@ -3,7 +3,7 @@
  */
 #pragma once
 
-#define UseNetwork
+//#define UseNetwork
 
  //photonがWinSock2使ってるみたいで、windows.hより先にincludeしないとエラー出るのでここに書かせてもらいます
 #include <WinSock2.h>
