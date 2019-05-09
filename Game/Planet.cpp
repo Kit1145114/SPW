@@ -14,8 +14,6 @@ Planet::~Planet()
 
 bool Planet::Start() 
 {
-	//NewGO<BlackHole>(0, "BH");
-	m_game = FindGO<Game>("Game");
 	return true;
 }
 
@@ -145,7 +143,7 @@ void Planet::explosion()
 		CountExplosion = true;
 		Star* m_star = NewGO<Star>(0, "Star");
 		m_star->Pop(this->p_position);
-		m_game->SetStarCount(1);
+		Game::GetInstance()->SetStarCount(1);
 		Generate(1, myPlanetnumber); //新たな惑星を生成（自分のナンバーの惑星を）。
 		DeleteGO(this);
 
@@ -172,8 +170,8 @@ void Planet::Death() {
 	for (int i = 0;i < Game::GetInstance()->GetSansenKazu();i++) {
 		CVector3 p_kyori = Game::GetInstance()->m_player[i]->GetPosition() - p_position;
 		if (p_kyori.Length() < radius
-			&& m_game->m_player[i]->GetDeathCount() == false) {
-			m_game->m_player[i]->AddHP(-100);
+			&& Game::GetInstance()->m_player[i]->GetDeathCount() == false) {
+			Game::GetInstance()->m_player[i]->AddHP(-100);
 			if (time > 2) { //ＰＯＰ時は勘弁してやっぞ！
 				explosion();
 			}

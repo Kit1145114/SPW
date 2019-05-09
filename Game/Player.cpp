@@ -530,15 +530,25 @@ void Player::MutekiTimes()
 	if (Muteki == true)
 	{
 		MutekiTime++;
-		if (MutekiTime == 180)
+		
+		if (MutekiTime >= 0)
 		{
+			m_skinModelRender->SetActiveFlag(false);
+		}
+		if (MutekiTime >= 30 && MutekiTime <= 60)
+		{
+			m_skinModelRender->SetActiveFlag(true);
+		}
+		if (MutekiTime >= 61 && MutekiTime <= 120)
+		{
+			m_skinModelRender->SetActiveFlag(false);
+		}
+		if (MutekiTime >= 121 && MutekiTime <= 180)
+		{
+			m_skinModelRender->SetActiveFlag(true);
 			Muteki = false;
 			MutekiTime = 0;
 		}
-	}
-	else
-	{
-
 	}
 }
 //€‚ñ‚¾Œã‚ÌHP’²®“™B

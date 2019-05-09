@@ -15,8 +15,8 @@ BlackHole::~BlackHole()
 bool BlackHole::Start()
 {
 	m_game = Game::GetInstance();
+
 	//エフェクトを作成。
-	
 	effect = NewGO<prefab::CEffect>(0);
 	//エフェクトを再生。
 	effect->Play(L"effect/BH.efk");
@@ -32,33 +32,27 @@ void BlackHole::Generate(CVector3 position, float magnification)
 	BlackHole* bh = NewGO<BlackHole>(0, "BlackHole");
 	bh->m_position = position;
 	bh->radius *= magnification/500;
-	////エフェクトを作成。
-	//prefab::CEffect* effect;
-	//effect = NewGO<prefab::CEffect>(0);
-	////エフェクトを再生。
-	//effect->Play(L"effect/BH.efk");
-	//CVector3 scale = { 10.0f,10.0f,10.0f };
-	//effect->SetScale(scale*magnification);
-	//effect->SetPosition(position);
 }
 
 void BlackHole::Move()
 {
 	//Playerサーチ。
 	for (int i = 0; i < Game::GetInstance()->GetSansenKazu(); i++) {
-		//対象との距離を測定。
-		CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - m_position;
-		//対象との距離が一定以下になったら。
-		if (kyori.Length() < radius * Searchment) {
-			//Ｇ中心に遠ければ弱く、近ければ強く。
-			float G = radius * Searchment - kyori.Length();
-			//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
-			Game::GetInstance()->m_player[i]->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
+		if (Game::GetInstance()->m_player[i]->GetMuteki() == false) {
+			//対象との距離を測定。
+			CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - m_position;
+			//対象との距離が一定以下になったら。
+			if (kyori.Length() < radius * Searchment) {
+				//Ｇ中心に遠ければ弱く、近ければ強く。
+				float G = radius * Searchment - kyori.Length();
+				//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
+				Game::GetInstance()->m_player[i]->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
 				//対象との距離が中心に近くなったら。
-				if (kyori.Length() < radius * Searchment/3) {
+				if (kyori.Length() < radius * Searchment / 3) {
 					//破壊。
 					Game::GetInstance()->m_player[i]->Death();
 				}
+			}
 		}
 	}
 	//Plametサーチ。
@@ -114,5 +108,5 @@ void BlackHole::Death()
 void BlackHole::Update()
 {
 	Move();
-	Count();
+	//Count();
 }

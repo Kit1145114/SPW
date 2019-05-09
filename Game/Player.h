@@ -129,7 +129,9 @@ public:
 	{
 		Plstar = Plstar;
 	}
-
+	bool GetMuteki() {
+		return Muteki;
+	}
 private:
 	Player * m_player[4] = { nullptr };
 	Draw_Player * draw_Pl = nullptr;
