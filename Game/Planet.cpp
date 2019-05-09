@@ -204,7 +204,7 @@ void Planet::Death() {
 			}
 			else*/ if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
 				explosion();
-				BlackHole::Generate(p_position, radius);
+				//BlackHole::Generate(p_position, radius);
 			}
 		}
 	}
