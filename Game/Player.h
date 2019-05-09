@@ -9,6 +9,7 @@
 #include"PlayerStar.h"
 #include"Draw_Player.h"
 #include"Draw_Skazu.h"
+#include"RadarRing.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
@@ -24,6 +25,7 @@ class PlayerStar;
 class SansenKazu;
 class Draw_Player;
 class Draw_Skazu;
+class RadarRing;
 
 class Player: public IGameObject
 {
@@ -127,6 +129,7 @@ private:
 	Player * m_player[4] = { nullptr };
 	Draw_Player * draw_Pl = nullptr;
 	Draw_Skazu * draw_S = nullptr;
+	RadarRing* r_ring = nullptr;
 	Bullet* m_bullet = nullptr;
 	Game* m_game = nullptr;
 	Enemy* m_enemy = nullptr;
