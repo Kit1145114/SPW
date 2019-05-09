@@ -104,16 +104,13 @@ void NetManager::onPhotonEvent(int playerNr, nByte eventCode, const ExitGames::C
 	}
 
 		//プレイヤー番号とパッド番号の紐づけ受け取り
-	case 4: {
+	case 4: if(!padInited){
 		using namespace ExitGames::Common;
 		nByte* array = ValueObject<nByte*>(eventContent).getDataCopy();
 		for (int i = 0; i < CONNECT_PAD_MAX; i++) {
 			pNumbers[i] = array[i];
 		}
 		padInited = true;
-
-		int i = 0;
-
 	}
 	}
 }
@@ -137,11 +134,11 @@ void NetManager::onJoin(int playerNr) {
 	}
 
 	//マスターかつ自分でない場合だけ情報を教える
-	if (!me && master) {
+	/*if (!me && master) {
 		ExitGames::LoadBalancing::RaiseEventOptions option;
 		option.setTargetPlayers(&playerNr, 1);
 		network->raiseEvent(true, pNumbers, CONNECT_PAD_MAX, 4, option);
-	}
+	}*/
 }
 
 void NetManager::resetPadWait() {
