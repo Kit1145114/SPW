@@ -47,6 +47,14 @@ void NetManager::PreUpdate() {
 			return;
 		}
 
+		if (!padInited) {//パッドとプレイヤーの紐づけが贈られるまで待機
+			if (network->getLocalPlayer().getIsMasterClient()) {
+				padInited = true;//マスタークライアントには必要ない
+			} else {
+				return;
+			}
+		}
+
 		//パッド更新
 		int localNum = toPadNumber(network->getLocalPlayerNum());//photonのナンバーは0でなく1から始まるため1減らす
 		pads[localNum].SetFromCPad(Pad(0));//バッファにパッド情報を記録
@@ -102,6 +110,7 @@ void NetManager::onPhotonEvent(int playerNr, nByte eventCode, const ExitGames::C
 		for (int i = 0; i < CONNECT_PAD_MAX; i++) {
 			pNumbers[i] = array[i];
 		}
+		padInited = true;
 	}
 	}
 }
@@ -111,16 +120,24 @@ void NetManager::onLeave(int playerNr) {
 }
 
 void NetManager::onJoin(int playerNr) {
-	if (network->getLocalPlayer().getIsMasterClient() && playerNr != network->getLocalPlayerNum()) {
+	bool master = network->getLocalPlayer().getIsMasterClient();
+	bool me = (playerNr == network->getLocalPlayerNum());
+
+	//自分でない場合、更新する。マスターは自分も更新する
+	if (!me || master){
+		for (int i = 0; i < CONNECT_PAD_MAX; i++) {
+			if (pNumbers[i] == NON_PAD) {
+				pNumbers[i] = playerNr;
+				break;
+			}
+		}
+	}
+
+	//マスターかつ自分でない場合だけ情報を教える
+	if (!me && master) {
 		ExitGames::LoadBalancing::RaiseEventOptions option;
 		option.setTargetPlayers(&playerNr, 1);
 		network->raiseEvent(true, pNumbers, CONNECT_PAD_MAX, 1, option);
-	}
-	for (int i = 0; i < CONNECT_PAD_MAX; i++) {
-		if (pNumbers[i] == NON_PAD) {
-			pNumbers[i] = playerNr;
-			break;
-		}
 	}
 }
 

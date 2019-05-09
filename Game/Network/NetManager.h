@@ -99,6 +99,7 @@ private:
 
 	static constexpr nByte NON_PAD = 255;
 	nByte pNumbers[CONNECT_PAD_MAX] = { NON_PAD, NON_PAD, NON_PAD, NON_PAD };
+	bool padInited = false;
 
 	CFont font;
 	unsigned int wait = 20;
