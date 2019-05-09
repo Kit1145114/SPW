@@ -22,6 +22,6 @@ private:
 	//Player* m_player[4] = { nullptr };
 	CVector3 m_position;
 	int timer = 0;
-	float radius = { 30.0f };//	Šî–{˜f¯‚Ì”¼Œa
+	float radius = { 1.0f };//	Šî–{˜f¯‚Ì”¼Œa
 };
 
