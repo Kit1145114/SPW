@@ -17,6 +17,7 @@ public:
 	void Update();
 	
 private:
+	prefab::CEffect* effect;
 	Game* m_game = nullptr;
 	Draw_Player* Pl1 = nullptr;
 	//Player* m_player[4] = { nullptr };

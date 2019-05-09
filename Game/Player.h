@@ -75,6 +75,10 @@ public:
 	{
 		m_moveSpeed.z = a;
 	}
+	void SetMoveSpeed(CVector3 a) {
+		m_moveSpeed += a;
+		m_CharaCon.SetPosition(m_position += m_moveSpeed);
+	}
 	void SetVer(float a)
 	{
 		Ver = a;

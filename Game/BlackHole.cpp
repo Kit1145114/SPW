@@ -9,13 +9,14 @@ BlackHole::BlackHole()
 
 BlackHole::~BlackHole()
 {
+	DeleteGO(effect);
 }
 
 bool BlackHole::Start()
 {
 	m_game = Game::GetInstance();
 	//エフェクトを作成。
-	prefab::CEffect* effect;
+	
 	effect = NewGO<prefab::CEffect>(0);
 	//エフェクトを再生。
 	effect->Play(L"effect/BH.efk");
@@ -47,7 +48,7 @@ void BlackHole::Move()
 	for (int i = 0; i < Game::GetInstance()->GetSansenKazu(); i++) {
 		CVector3 player_kyori = Game::GetInstance()->m_player[i]->GetPosition() - m_position;
 		if (player_kyori.Length() < radius * 1200) {
-			Game::GetInstance()->m_player[i]->SetPosition(m_position);
+			Game::GetInstance()->m_player[i]->SetMoveSpeed((player_kyori / 100)*-1);
 				//Game::GetInstance()->m_player[i]->GetPosition() -(player_kyori/5));
 				
 		}
@@ -83,8 +84,8 @@ void BlackHole::Move()
 	//Bulletサーチ。
 	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b) ->bool {
 		CVector3 kyori = b->GetPosition() - m_position;
-		if (kyori.Length() < radius*1200) {
-			b->SetMoveSpeed((kyori / 1)*-1);
+		if (kyori.Length() < radius*1800) {
+			b->SetMoveSpeed((kyori / 100)*-1);
 		}
 		return true;
 	});
