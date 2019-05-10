@@ -41,18 +41,21 @@ void BlackHole::Move()
 		if (Game::GetInstance()->m_player[i]->GetMuteki() == false) {
 			//対象との距離を測定。
 			CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - m_position;
+			//対象との距離が超中心に近くなったら。
+			//if (kyori.Length() < radius * Searchment / 6) {
 			//対象との距離が一定以下になったら。
-			if (kyori.Length() < radius * Searchment) {
-				//Ｇ中心に遠ければ弱く、近ければ強く。
-				float G = radius * Searchment - kyori.Length();
-				//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
-				Game::GetInstance()->m_player[i]->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
-				//対象との距離が中心に近くなったら。
-				if (kyori.Length() < radius * Searchment / 3) {
-					//破壊。
-					Game::GetInstance()->m_player[i]->Death();
+				if (radius * Searchment / 6<kyori.Length()&& kyori.Length() < radius * Searchment) {
+					//Ｇ中心に遠ければ弱く、近ければ強く。
+					float G = radius * Searchment - kyori.Length();
+					//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
+					Game::GetInstance()->m_player[i]->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
+					//対象との距離が中心に近くなったら。
+					if (kyori.Length() < radius * Searchment / 3) {
+						//破壊。
+						Game::GetInstance()->m_player[i]->Death();
+					}
 				}
-			}
+			//}
 		}
 	}
 	//Plametサーチ。
@@ -95,7 +98,7 @@ void BlackHole::Gravity()
 void BlackHole::Count()
 {
 	timer++;
-	if (timer >360) {
+	if (timer >720) {
 		Death();
 	}
 }
@@ -108,5 +111,5 @@ void BlackHole::Death()
 void BlackHole::Update()
 {
 	Move();
-	//Count();
+	Count();
 }
