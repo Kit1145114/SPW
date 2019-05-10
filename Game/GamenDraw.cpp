@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "GamenDraw.h"
-#include "GameWait.h"
 
 GamenDraw::GamenDraw()
 {
@@ -32,6 +31,11 @@ void GamenDraw::Update()
 	if (mode == 0 && Pad(0).IsPress(enButtonA) == true){
 		//DeleteGO(this);
 		m_push->Play(false);
+#ifdef UseNetwork
+		NewGO<GameWait>(1);
+#else
+		//NewGO<SansenGamen>(1);
+#endif
 	}
 	if (mode == 1 && Pad(0).IsPress(enButtonA) == true) {
 		//DeleteGO(this);

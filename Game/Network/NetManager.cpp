@@ -68,17 +68,17 @@ void NetManager::PreUpdate() {
 		while (true) {
 			//自分のパッド入力はラグに合わせてwaitが0になるまで遅延させる
 			if (wait == 0) {
-				bool next = true;
-				for (int num = 0; num < CONNECT_PAD_MAX; num++) {//全員のバッファに情報がある場合だけ更新する
-					if (pNumbers[num] != NON_PAD && !pads[num].hasNext()) {
-						next = false;
-						break;
-					}
-				}
-				if (next == false) {//無い場合フレームを止めて受信を待つ
-					network->Update();
-					continue;
-				}
+				//bool next = true;
+				//for (int num = 0; num < CONNECT_PAD_MAX; num++) {//全員のバッファに情報がある場合だけ更新する
+				//	if (pNumbers[num] != NON_PAD && !pads[num].hasNext()) {
+				//		next = false;
+				//		break;
+				//	}
+				//}
+				//if (next == false) {//無い場合フレームを止めて受信を待つ
+				//	network->Update();
+				//	continue;
+				//}
 				for (int num = 0; num < CONNECT_PAD_MAX; num++) {//パッド情報を更新する
 					if (pNumbers[num] != NON_PAD) {
 						pads[num].nextFlame();

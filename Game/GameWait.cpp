@@ -61,16 +61,16 @@ void GameWait::PostRender(CRenderContext & rc) {
 	PNetworkLogic::ConnectState state = NetManager::getNet()->getState();
 	switch(state) {
 	case PNetworkLogic::DISCONNECT:
-		message = L"Disconnected";
+		message = L"disconnected";
 		break;
 	case PNetworkLogic::TRY_CONNECT:
-		message = L"Connecting...";
+		message = L"connecting...";
 		break;
 	case PNetworkLogic::CONNECT:
-		message = L"Connected";
+		message = L"connected";
 		break;
 	case PNetworkLogic::TRY_ROOMIN:
-		message = L"Going to room...";
+		message = L"going to room...";
 		break;
 	}
 	if (state != PNetworkLogic::ROOMIN) {
@@ -84,7 +84,7 @@ void GameWait::PostRender(CRenderContext & rc) {
 		for (int i = 0; i < players.getSize(); i++) {
 			wchar_t str[10];
 			swprintf(str, L"player%d", players[i]->getNumber());
-			font.Draw(str, { 0, height }, {0, 0, 0 , 1});
+			font.Draw(str, { -100, height }, { 0, 0, 0 , 1 }, 0.0f, 1.0f, {0.0f, 0.5f});
 
 			bool ready = C::ValueObject<bool>(players[i]->getCustomProperties().getValue(readyKey)).getDataCopy();
 
