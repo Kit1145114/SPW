@@ -41,8 +41,6 @@ void BlackHole::Move()
 		if (Game::GetInstance()->m_player[i]->GetMuteki() == false) {
 			//対象との距離を測定。
 			CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - m_position;
-			//対象との距離が超中心に近くなったら。
-			//if (kyori.Length() < radius * Searchment / 6) {
 			//対象との距離が一定以下になったら。
 				if (radius * Searchment / 6<kyori.Length()&& kyori.Length() < radius * Searchment) {
 					//Ｇ中心に遠ければ弱く、近ければ強く。
@@ -55,7 +53,6 @@ void BlackHole::Move()
 						Game::GetInstance()->m_player[i]->Death();
 					}
 				}
-			//}
 		}
 	}
 	//Plametサーチ。
