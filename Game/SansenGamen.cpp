@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SansenGamen.h"
-
+#include "StageSelect/StageSelect.h"
 
 SansenGamen::SansenGamen()
 {
@@ -53,7 +53,8 @@ void SansenGamen::Update()
 		DeleteGO(this);
 		GameStart = true;
 		m_push->Play(false);
-		NewGO<Game>(0, "Game")->SetSanSenkazu(Kazu);
+		//NewGO<Game>(0, "Game")->SetSanSenkazu(Kazu);
+		NewGO<StageSelect>(0)->setSansenKazu(Kazu);
 	}
 }
 

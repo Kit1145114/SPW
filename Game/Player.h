@@ -22,7 +22,6 @@ class Senkan_Rtype_2;
 class Drop_Hako;
 class Star;
 class PlayerStar;
-class SansenKazu;
 class Draw_Player;
 class Draw_Skazu;
 class RadarRing;
@@ -144,7 +143,6 @@ private:
 	Camera* camera = nullptr;
 	PlayerStar* Plstar = nullptr;
 	Drop_Hako* d_hako = nullptr;
-	SansenKazu* s_kazu = nullptr;
 	CCharacterController m_CharaCon;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 memory_position = CVector3::Zero;
