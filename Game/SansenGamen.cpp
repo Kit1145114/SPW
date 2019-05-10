@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SansenGamen.h"
-#include "StageSelect/StageSelect.h"
+#include "StageSelect.h"
 
 SansenGamen::SansenGamen()
 {
