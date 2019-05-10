@@ -23,7 +23,7 @@ private:
 	CVector3 m_position;
 	int timer = 0;
 	float radius = { 1.0f };       //	基本惑星の半径
-	float Searchment = { 1800.0f };//	BHの重力範囲の調整
-	float G_limitar = { 15000.0f };    //   BHの重力（Ｇ）調整 
+	float Searchment = { 1500.0f };//	BHの重力範囲の調整
+	float G_limitar = { 10000.0f };    //   BHの重力（Ｇ）調整 
 };
 

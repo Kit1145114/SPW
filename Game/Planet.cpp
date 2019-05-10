@@ -79,18 +79,25 @@ void Planet::Generate(int Reload, int Planetnum) {
 				m_game->memoryPP[w] = m_planet;
 				m_planet->myPlanetnumber = w;    //自分のPlametナンバー保存。
 			}
-
+			CVector3 hako;
+			//for (bool repopflag = false; repopflag == false;) {
 			//ランダムポップ。
 			float vx = Random().GetRandDouble();
 			float vz = Random().GetRandDouble();
-			CVector3 hako;
+			
 			hako.x = vx;
 			hako.z = vz;
 			if (Random().GetRandDouble() <= 0.5f)
 				hako.x *= -1;
 			if (Random().GetRandDouble() <= 0.5f)
 				hako.z *= -1;
+			
+				//CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - m_planet->p_position;
+				//if (kyori.Length() < m_planet->radius) {
+				//	repopflag = true;
 
+			//	}
+		//	}
 			//ランダム生成する場所の制限。
 			float PosLimitx = 30000.0f;
 			float PosLimitz = 20000.0f;
@@ -106,15 +113,17 @@ void Planet::Generate(int Reload, int Planetnum) {
 //星の生成。
 void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender)
 {
-	//星のポジション。
+	//星のポジション保存。
 	p_position = position;
 	
 	//惑星の大きさランダム。
-	float v = 50 * Random().GetRandDouble();
-	scale.x *= v;
-	scale.z *= v;
-	radius *= v;
-
+	
+	float v = 10.0f;//最低限の大きさを予め入れておく。
+		v += 50.0f * Random().GetRandDouble();
+		scale.x *= v;
+		scale.z *= v;
+		radius *= v;
+	
 	p_skinModelRender = skinModelRender;
 	p_skinModelRender->SetScale(scale);
 	p_skinModelRender->SetPosition(position);
@@ -168,8 +177,8 @@ void Planet::Death() {
 	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
 	
 	for (int i = 0;i < Game::GetInstance()->GetSansenKazu();i++) {
-		CVector3 p_kyori = Game::GetInstance()->m_player[i]->GetPosition() - p_position;
-		if (p_kyori.Length() < radius
+		CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - p_position;
+		if (kyori.Length() < radius
 			&& Game::GetInstance()->m_player[i]->GetDeathCount() == false) {
 			Game::GetInstance()->m_player[i]->AddHP(-100);
 			if (time > 2) { //ＰＯＰ時は勘弁してやっぞ！
@@ -204,7 +213,7 @@ void Planet::Death() {
 			}
 			else*/ if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
 				explosion();
-				//BlackHole::Generate(p_position, radius);
+				BlackHole::Generate(p_position, radius);
 			}
 		}
 	}

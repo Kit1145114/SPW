@@ -106,7 +106,7 @@ void NetManager::onPhotonEvent(int playerNr, nByte eventCode, const ExitGames::C
 		using namespace ExitGames::Common;
 		nByte* arrayP = ValueObject<nByte*>(eventContent).getDataCopy();
 		pads[pNum].SetFromArray(arrayP);//受信したパッド情報をバッファに記録
-	}
+	}break;
 
 		//プレイヤー番号とパッド番号の紐づけ受け取り
 	case 4: if(!padInited){
@@ -116,7 +116,7 @@ void NetManager::onPhotonEvent(int playerNr, nByte eventCode, const ExitGames::C
 			pNumbers[i] = array[i];
 		}
 		padInited = true;
-	}
+	}break;
 	}
 }
 
