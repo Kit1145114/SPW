@@ -28,7 +28,8 @@ void Planet::Generate(int Reload, int Planetnum) {
 			
 			//惑星のモデリング指定。
 			if(Reload != Planetnumber_Num) //Numは初期リスポーンのため例外。
-			w = Planetnum;          //惑星の指定。
+				w = Planetnum;          //惑星の指定。
+
 			switch (w) {
 			case Planetnumber_00:
 				P_skinModelRender->Init(L"modelData/planet0fire.cmo");
@@ -79,36 +80,39 @@ void Planet::Generate(int Reload, int Planetnum) {
 				m_game->memoryPP[w] = m_planet;
 				m_planet->myPlanetnumber = w;    //自分のPlametナンバー保存。
 			}
+
 			CVector3 hako;
 			//for (bool repopflag = false; repopflag == false;) {
-			//ランダムポップ。
-			float vx = Random().GetRandDouble();
-			float vz = Random().GetRandDouble();
+				//ランダムポップ。
+				float vx = Random().GetRandDouble();
+				float vz = Random().GetRandDouble();
 			
-			hako.x = vx;
-			hako.z = vz;
-			if (Random().GetRandDouble() <= 0.5f)
-				hako.x *= -1;
-			if (Random().GetRandDouble() <= 0.5f)
-				hako.z *= -1;
-			
-				//CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - m_planet->p_position;
-				//if (kyori.Length() < m_planet->radius) {
-				//	repopflag = true;
+				hako.x = vx;
+				hako.z = vz;
+				if (Random().GetRandDouble() <= 0.5f)
+					hako.x *= -1;
+				if (Random().GetRandDouble() <= 0.5f)
+					hako.z *= -1;
 
-			//	}
-		//	}
-			//ランダム生成する場所の制限。
-			float PosLimitx = 30000.0f;
-			float PosLimitz = 20000.0f;
-			hako.x *= PosLimitx;
-			hako.z *= PosLimitz;
+				//for (int j = 0; j < Planetnumber_00;j++) {
+				//	if (j == m_planet->myPlanetnumber) //自分の時は++で飛ばす。
+				//		j++;
+				//	CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - m_planet->p_position;
+				//	if (kyori.Length() < m_planet->radius) {
+				//			repopflag = true;
+				//	}
+				//}
+				//ランダム生成する場所の制限。
+				float PosLimitx = 30000.0f;
+				float PosLimitz = 20000.0f;
+				hako.x *= PosLimitx;
+				hako.z *= PosLimitz;
 
-			m_planet->p_position = hako;
+				m_planet->p_position = hako;
 
-			m_planet->init(m_planet->p_position, P_skinModelRender);
-		}
-	//}
+				m_planet->init(m_planet->p_position, P_skinModelRender);
+			//}
+	}
 }
 //星の生成。
 void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender)
@@ -199,7 +203,7 @@ void Planet::Death() {
 			return true;
 		});
 	}
-	//惑星分回す。
+	//惑星個数分回す。
 	for (int i = 0;i < Planetnumber_Num;i++) {
 		//ちっ、、、癇に障る野郎だぜ、、追いついたと思ったらすぐ爆破して来やがる(惑星同士の距離判定。
 			//もし比較する惑星が自分でなければ。
