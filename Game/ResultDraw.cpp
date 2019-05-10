@@ -14,7 +14,7 @@ ResultDraw::~ResultDraw()
 
 void ResultDraw::Update()
 {
-	if (Pad(0).IsPress(enButtonSelect) == true)
+	if (Pad(0).IsPress(enButtonStart) == true)
 	{
 		DeleteGO(this);
 	}

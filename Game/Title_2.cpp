@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Title_2.h"
+#include "GameWait.h"
 
 Title_2::Title_2()
 {
@@ -27,9 +28,19 @@ bool Title_2::Start()
 
 void Title_2::Update()
 {
-	if (Pad(0).IsPress(enButtonA) == true)
+	if (mode == 0 && Pad(0).IsTrigger(enButtonA) == true)
 	{
 		DeleteGO(this);
-		//NewGO<SansenGamen>(0,"SansenGamen");
+		//NewGO<SansenGamen>(1,"SansenGamen");
+#ifdef UseNetwork
+		NewGO<GameWait>(1);
+#else
+		NewGO<SansenGamen>(1);
+#endif
+	}
+	else if (mode == 1&& Pad(0).IsTrigger(enButtonA) == true)
+	{
+		DeleteGO(this);
+		NewGO<SetumeiGamen>(0, "SetumeiGamen");
 	}
 }

@@ -2008,6 +2008,7 @@
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
+    <MeshContentTask Include="Assets\modelData\Back.FBX" />
     <MeshContentTask Include="Assets\modelData\Bulet.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet2.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet3.FBX" />

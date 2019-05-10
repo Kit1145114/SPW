@@ -135,7 +135,7 @@ break;
 void ResultGamen::Update()
 {
 	Result();
-	if (Pad(0).IsPress(enButtonSelect) == true)
+	if (Pad(0).IsPress(enButtonStart) == true)
 	{
 		NewGO<Title_2>(0, "Title_2");
 		DeleteGO(this);
