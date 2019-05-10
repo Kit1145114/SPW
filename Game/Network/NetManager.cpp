@@ -117,6 +117,14 @@ void NetManager::onPhotonEvent(int playerNr, nByte eventCode, const ExitGames::C
 		}
 		padInited = true;
 	}break;
+
+		//seed‚ÌXV
+	case 3:{
+		using namespace ExitGames::Common;
+		int64 seed = ValueObject<int64>(eventContent).getDataCopy();
+		Random().Init(seed);
+		initRandSeed = true;
+	}break;
 	}
 }
 

@@ -1787,11 +1787,11 @@
     <ClCompile Include="Draw_Skazu.cpp" />
     <ClCompile Include="Drop_Hako.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Fade.cpp" />
     <ClCompile Include="field.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GamenDraw.cpp" />
     <ClCompile Include="GamenTimer.cpp" />
-    <ClCompile Include="GameTaiki.cpp" />
     <ClCompile Include="GameWait.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Network\NetManager.cpp" />
@@ -1840,11 +1840,11 @@
     <ClInclude Include="Draw_Skazu.h" />
     <ClInclude Include="Drop_Hako.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Fade.h" />
     <ClInclude Include="field.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GamenDraw.h" />
     <ClInclude Include="GamenTimer.h" />
-    <ClInclude Include="GameTaiki.h" />
     <ClInclude Include="GameWait.h" />
     <ClInclude Include="Network\NetManager.h" />
     <ClInclude Include="Network\NetPad.h" />

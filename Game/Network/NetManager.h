@@ -76,6 +76,14 @@ public:
 		return st_manager->pads[num];
 	}
 
+	static bool setWaitRandInit() {
+		return st_manager->initRandSeed = false;
+	}
+
+	static bool isRandInit() {
+		return st_manager->initRandSeed;
+	}
+
 	/// <summary>
 	/// ネットマネージャーがInit済みならtrue
 	/// </summary>
@@ -100,6 +108,8 @@ private:
 	static constexpr nByte NON_PAD = 255;
 	nByte pNumbers[CONNECT_PAD_MAX] = { NON_PAD, NON_PAD, NON_PAD, NON_PAD };
 	bool padInited = false;
+
+	bool initRandSeed = false;
 
 	CFont font;
 	unsigned int wait = 0;
