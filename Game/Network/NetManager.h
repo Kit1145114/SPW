@@ -97,6 +97,7 @@ public:
 	//デバッグの時使ってた。また使うかもしれなくもない。
 	void PostRender(CRenderContext& rc);
 
+	static int64 seed;
 private:
 	char toPadNumber(int playerNr);
 

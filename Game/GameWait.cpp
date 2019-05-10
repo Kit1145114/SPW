@@ -52,7 +52,9 @@ void GameWait::Update() {
 
 	allStart = true;
 	if (network->getLocalPlayer().getIsMasterClient()) {
-		network->raiseEvent(true, (int64)time(NULL), 3);
+		NetManager::seed = (int64)time(NULL);
+		Random().Init(NetManager::seed);
+		network->raiseEvent(true, NetManager::seed, 3);
 	} else if (!NetManager::isRandInit()) {
 		return;
 	}
