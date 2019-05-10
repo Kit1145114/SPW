@@ -102,6 +102,6 @@ private:
 	bool padInited = false;
 
 	CFont font;
-	unsigned int wait = 20;
+	unsigned int wait = 0;
 };
 
