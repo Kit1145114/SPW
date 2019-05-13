@@ -120,7 +120,7 @@ void Game::Update()
 		//dbg::SetDrawPhysicsCollisionEnable();
 		if (Pad(0).IsPress(enButtonSelect) == true)
 		{
-			NewGO<Title_2>(0, "Title2");
+			NewGO<Title_2>(0, "Title_2");
 			DeleteGO(this);
 		}
 	}
