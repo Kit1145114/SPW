@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "BlackHole.h"
-
+#include"Star.h"
 
 BlackHole::BlackHole()
 {
@@ -72,6 +72,16 @@ void BlackHole::Move()
 				}
 		}
 	}
+	//Starサーチ。
+	QueryGOs<Star>("Star", [&](Star* star)->bool {
+		CVector3 Kyori = star->GetPosition() - m_position;
+		if (Kyori.Length() < radius * Searchment) {
+			m_game->SetStarCount(-1);
+			star->Death();
+		} 
+		return true;
+	});
+
 	//Bulletサーチ。
 	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b) ->bool {
 		//対象との距離を測定。
