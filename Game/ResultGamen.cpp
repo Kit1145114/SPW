@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ResultGamen.h"
-
+#include "Fade.h"
 
 ResultGamen::ResultGamen()
 {
@@ -129,6 +129,8 @@ break;
 		P4_spriteRender->SetPosition(N4position);
 		break;
 	}
+
+	Fade::fadeOut();
 	return true;
 }
 
@@ -137,8 +139,10 @@ void ResultGamen::Update()
 	Result();
 	if (Pad(0).IsPress(enButtonStart) == true)
 	{
-		NewGO<Title_2>(0, "Title_2");
-		DeleteGO(this);
+		Fade::fadeIn([&]() {
+			NewGO<Title_2>(0, "Title_2");
+			DeleteGO(this);
+		});
 	}
 }
 

@@ -3,6 +3,7 @@
 #include "Network\NetPad.h"
 #include "Network\NetManager.h"
 #include "Game.h"
+#include "Fade.h"
 
 using namespace PhotonLib;
 namespace C = ExitGames::Common;
@@ -26,6 +27,8 @@ bool GameWait::Start() {
 	NetManager::getNet()->connect();
 	NetManager::getNet()->getLocalPlayer().addCustomProperty(readyKey, false);
 	NetManager::setWaitRandInit();
+
+	Fade::fadeOut();
 	return true;
 }
 
@@ -51,15 +54,24 @@ void GameWait::Update() {
 	}
 
 	allStart = true;
+
+	Fade::fadeIn();
+
 	if (network->getLocalPlayer().getIsMasterClient()) {
-		NetManager::seed = (int64)time(NULL);
-		Random().Init(NetManager::seed);
-		network->raiseEvent(true, NetManager::seed, 3);
+		if (!sendSeed) {
+			NetManager::seed = (int64)time(NULL);
+			Random().Init(NetManager::seed);
+			network->raiseEvent(true, NetManager::seed, 3);
+			sendSeed = true;
+		}
 	} else if (!NetManager::isRandInit()) {
 		return;
 	}
-	NewGO<Game>(0, "Game")->SetSanSenkazu(network->getPlayersNum().size());
-	DeleteGO(this);
+
+	if (Fade::state() == Fade::enIdle) {
+		NewGO<Game>(0, "Game")->SetSanSenkazu(network->getPlayersNum().size());
+		DeleteGO(this);
+	}
 }
 
 void GameWait::PostRender(CRenderContext & rc) {

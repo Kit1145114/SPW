@@ -107,13 +107,22 @@ void Planet::Generate(int Reload, int Planetnum) {
 
 				//ポップ時にプレイヤーとぶつからないように。
 				for (int j = 0; j < Game::GetInstance()->GetSansenKazu(); j++) {
-					if (j == Game::GetInstance()->GetSansenKazu()) //自分の時は++で飛ばす。
-						j++;
-					CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - m_planet->p_position;
-					if (kyori.Length() < m_planet->radius+500.0f) {
-						m_planet->repopflag = true;
+					if (j != Game::GetInstance()->GetSansenKazu()){ //自分でなければ
+						CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - m_planet->p_position;
+						if (kyori.Length() < m_planet->radius + 500.0f) {
+							m_planet->repopflag = true;
+						}
 					}
 				}
+				//ポップ時に惑星とぶつからないように。
+				//for (int j = 0; j < Planetnumber_Num; j++) {
+				//	if (j == m_planet->myPlanetnumber) {//自分でなければ
+				//		CVector3 kyori = Game::GetInstance()->memoryPP[i]->p_position - m_planet->p_position;
+				//		if (kyori.Length() < m_planet->radius + 500.0f) {
+				//			m_planet->repopflag = true;
+				//		}
+				//	}
+				//}
 			}while(m_planet->repopflag == true);
 	}
 }
