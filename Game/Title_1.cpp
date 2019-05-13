@@ -22,7 +22,7 @@ bool Title_1::Start()
 void Title_1::Update()
 {
 	m_timer++;
-	if (m_timer == 60)
+	if (m_timer == Limit)
 	{
 		Fade::fadeIn([&]() {
 			DeleteGO(this);

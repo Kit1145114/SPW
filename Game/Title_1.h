@@ -15,6 +15,7 @@ public:
 
 private:
 	int m_timer = 0;
+	int Limit = 60;
 	prefab::CSpriteRender* m_spriteRender = nullptr;
 };
 

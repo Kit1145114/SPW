@@ -124,7 +124,7 @@ void Game::Update()
 		if (Pad(0).IsPress(enButtonSelect) == true)
 		{
 			Fade::fadeIn([&]() {
-				NewGO<Title_2>(0, "Title2");
+				NewGO<Title_2>(0, "Title_2");
 				DeleteGO(this);
 			});
 		}

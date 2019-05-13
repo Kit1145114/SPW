@@ -34,6 +34,7 @@ private:
 	CCharacterController m_CharaCon;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 	int m_timer = 0;
+	int Limit = 300;
 	float angle = 0.0f;
 };
 
