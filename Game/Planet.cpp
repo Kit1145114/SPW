@@ -82,7 +82,8 @@ void Planet::Generate(int Reload, int Planetnum) {
 			}
 
 			CVector3 hako;
-			//for (bool repopflag = false; repopflag == false;) {
+			do{
+			
 				//ランダムポップ。
 				float vx = Random().GetRandDouble();
 				float vz = Random().GetRandDouble();
@@ -94,14 +95,6 @@ void Planet::Generate(int Reload, int Planetnum) {
 				if (Random().GetRandDouble() <= 0.5f)
 					hako.z *= -1;
 
-				//for (int j = 0; j < Planetnumber_00;j++) {
-				//	if (j == m_planet->myPlanetnumber) //自分の時は++で飛ばす。
-				//		j++;
-				//	CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - m_planet->p_position;
-				//	if (kyori.Length() < m_planet->radius) {
-				//			repopflag = true;
-				//	}
-				//}
 				//ランダム生成する場所の制限。
 				float PosLimitx = 30000.0f;
 				float PosLimitz = 20000.0f;
@@ -109,9 +102,18 @@ void Planet::Generate(int Reload, int Planetnum) {
 				hako.z *= PosLimitz;
 
 				m_planet->p_position = hako;
-
+				
 				m_planet->init(m_planet->p_position, P_skinModelRender);
-			//}
+
+				for (int j = 0; j < Planetnumber_00; j++) {
+					if (j == m_planet->myPlanetnumber) //自分の時は++で飛ばす。
+						j++;
+					CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - m_planet->p_position;
+					if (kyori.Length() < m_planet->radius+500.0f) {
+						m_planet->repopflag = true;
+					}
+				}
+			}while(m_planet->repopflag == true);
 	}
 }
 //星の生成。

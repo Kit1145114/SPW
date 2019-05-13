@@ -20,7 +20,6 @@ bool BlackHole::Start()
 	effect = NewGO<prefab::CEffect>(0);
 	//エフェクトを再生。
 	effect->Play(L"effect/BH.efk");
-	CVector3 scale = { 1.0f,1.0f,1.0f };
 	effect->SetScale(scale*radius);
 	effect->SetPosition(m_position);
 	return true;

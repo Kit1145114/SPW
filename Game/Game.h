@@ -1,4 +1,5 @@
 #pragma once
+#include"BlackHole.h"
 #include"field.h"
 #include"Camera.h"
 #include"Player.h"
@@ -9,12 +10,12 @@
 #include"Planet.h"
 #include"Star.h"
 #include"Sinka_Bar.h"
-#include"Drop_Hako.h"
 #include"Draw_Player.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
 
+class BlackHole;
 class field;
 class Camera;
 class Player;
@@ -26,7 +27,6 @@ class Planet;
 class Player_RType2;
 class Star;
 class Sinka_Bar;
-class Drop_Hako;
 class Draw_Player;
 
 
@@ -54,7 +54,6 @@ public:
 	~Game();
 	bool Start();
 	void Update();
-	void PlayerNum();
 	void Star_Life();
 	void Bullet_Life();
 	void PlStar_Life();
@@ -114,10 +113,10 @@ public:
 	Enemy* m_enemy = nullptr;
 	Star* m_star = nullptr;
 private:
+	BlackHole* bh = nullptr;
 	static Game* m_instance;
 	Draw_Player* Pl1= nullptr;
 	Camera* m_camera = nullptr;
-	Drop_Hako* d_hako = nullptr;
 	field* m_field = nullptr;
 	GamenTimer* m_G_Timer = nullptr;
 	Planet* m_planet = nullptr;
@@ -126,6 +125,7 @@ private:
 	CVector3 memory_position = CVector3::Zero;
 	
 	int GameMode = 0;
+	int Stage = 1;          //二つ目の戦闘場所。
 	int Pver = 0;
 	int starget = 0;
 	int MAXPad = 3;
@@ -147,6 +147,8 @@ private:
 	CVector3 Kyori = CVector3::Zero;
 	CVector3 SyokiCamera = CVector3::Zero;
 	CVector3 Tyuou = CVector3::Zero;
+	//CVector3 BHpos1 = { 0.0f , 0.0f, 5000.0f };
+	//CVector3 BHsca1 = { 1000.0f,0.0f,5.0f };
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };
 

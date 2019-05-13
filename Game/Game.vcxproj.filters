@@ -77,7 +77,6 @@
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="Sinka_Bar.cpp" />
     <ClCompile Include="Senkan_Rtype_2.cpp" />
-    <ClCompile Include="Drop_Hako.cpp" />
     <ClCompile Include="SansenGamen.cpp" />
     <ClCompile Include="PlayerStar.cpp" />
     <ClCompile Include="ResultGamen.cpp" />
@@ -113,7 +112,6 @@
     <ClInclude Include="Star.h" />
     <ClInclude Include="Sinka_Bar.h" />
     <ClInclude Include="Senkan_Rtype_2.h" />
-    <ClInclude Include="Drop_Hako.h" />
     <ClInclude Include="SansenGamen.h" />
     <ClInclude Include="Photon-Inc\PEventListener.h">
       <Filter>PhotonLib</Filter>

@@ -26,7 +26,7 @@ bool Camera::Start() {
 		= 0;
 #endif
 	m_player = Game::GetInstance()->m_player[myNum];
-
+	game = Game::GetInstance();
 	return true;
 }
 
@@ -46,15 +46,43 @@ void Camera::TOP() {
 	}
 }
 
-void Camera::Move() {
+void Camera::Move() 
+{
 	//ズーム＆アウト
+	Saityou = -1;
+	//縦
+	for (Player* player : Game::GetInstance()->m_player)
+	{
+	
+		float Max = fabs(m_player->GetPosition().z - Tyuou.z) + 5000;
+		if (Saityou < Max)
+		{
+			Saityou = Max;
+		}
+	}
+	float tateViewAngle = MainCamera().GetViewAngle() * 0.5f;
 
+	float t = Saityou / max(0.1f, tan(tateViewAngle));
+	//カメラの横の画角を求める。
+	float yokoAngle = atanf(MainCamera().GetAspect() * tan(tateViewAngle));
+
+	Saityou = -1;
+	for (Player* player : Game::GetInstance()->m_player)
+	{
+
+		float Max = fabs(m_player->GetPosition().x - Tyuou.x) + 5000;
+		if (Saityou < Max)
+		{
+			Saityou = Max;
+		}
+	}
+	t = max( t, Saityou / max(0.1f, tan(yokoAngle )) );
+	cameraUp = max(5000.0f, t );
 }
 
 void Camera::Update() {
 	TOP();
 	//メインカメラに注視点と視点を設定する。
-	float cameraUp = 0.0f;
 #ifdef UseNetwork
 	CVector3 pos = m_player->GetPosition();
 	cameraUp = up;
@@ -62,7 +90,7 @@ void Camera::Update() {
 	CVector3 pos;
 	if (Game::GetInstance()->GetSansenKazu() == 1) {
 		pos = m_player->GetPosition();
-		cameraUp = up;
+		//cameraUp = up;
 	} else {
 		int count = 0;
 		for (Player* player : Game::GetInstance()->m_player) {
@@ -72,7 +100,7 @@ void Camera::Update() {
 			}
 		}
 		pos /= count;
-		for (Player* player : Game::GetInstance()->m_player) {
+		/*for (Player* player : Game::GetInstance()->m_player) {
 			if (player != nullptr) {
 				float f = (pos - player->GetPosition()).Length();
 				if (cameraUp < f) {
@@ -80,13 +108,17 @@ void Camera::Update() {
 				}
 			}
 		}
-		cameraUp *= 1.9f;
+		cameraUp *= 1.9f;*/
 	}
 #endif
+
+	Tyuou = pos;
+	Move();
 	MainCamera().SetTarget(pos);
 	pos.y += cameraUp;
 	MainCamera().SetPosition(pos);
 	//カメラの更新。
 	MainCamera().Update();
+	
 }
 

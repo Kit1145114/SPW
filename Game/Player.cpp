@@ -12,10 +12,6 @@ Player::Player()
 Player::~Player()
 {
 	DeleteGO(m_skinModelRender);
-	if (d_hako != nullptr)
-	{
-		DeleteGO(d_hako);
-	}
 	DeleteGO(draw_Pl);
 	DeleteGO(draw_S);
 	DeleteGO(r_ring);
@@ -25,7 +21,7 @@ bool Player::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Senkan.cmo");
-	m_scale = { 3.0f,3.0f,3.0f };
+	m_scale = { 8.0f,8.0f,8.0f };
 	m_skinModelRender->SetScale(m_scale);
 	m_CharaCon.Init(300.0f, 300.0f, m_position);
 	m_game = Game::GetInstance();
@@ -66,9 +62,7 @@ void Player::Update()
 	Respawn();
 	S_Hantei();
 	PlS_Hantei();
-	//HakoHantei();
 	B_Hantei();
-	//P_Hantei();
 	Houdai();
 	MutekiTimes();
 	HP();
@@ -264,7 +258,7 @@ void Player::Pevolution()
 	if (StarCount == 5 && m_mode == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
-		m_scale = { 5.0f,5.0f,5.0f };
+		m_scale = { 9.0f,9.0f,9.0f };
 		m_skinModelRender->SetScale(m_scale);
 		camera->SetPos(7000.0f);
 		prefab::CEffect* effect = NewGO<prefab::CEffect>(0);
@@ -278,7 +272,7 @@ void Player::Pevolution()
 	if (StarCount == 10 && m_mode == 1)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType3.cmo");
-		m_scale = { 7.0f,7.0f,7.0f };
+		m_scale = { 10.0f,10.0f,10.0f };
 		m_skinModelRender->SetScale(m_scale);
 		camera->SetPos(9000.0f);
 		Ver = 2;
@@ -297,16 +291,6 @@ void Player::Hantei()
 				draw_Pl->SetDeath(true);
 			}
 		}
-	}
-}
-//プレイヤーの箱との判定
-void Player::HakoHantei()
-{
-	CVector3 Kyori = m_position - d_hako->GetPosition();
-	if (Kyori.Length() < 150.0f)
-	{
-		Ver = 1;
-		d_hako->Death();
 	}
 }
 //プレイヤーの回転処理。
@@ -444,7 +428,7 @@ void Player::S_Hantei()
 	else if (m_game->GetS_Init() == true) {
 		QueryGOs<Star>("Star", [&](Star* star)->bool{
 			CVector3 Kyori = star->GetPosition() - m_position;
-			if (Kyori.Length() < 250.0f) {
+			if (Kyori.Length() < StarHantei) {
 				StarCount++;
 				draw_S->AddKazu(1);
 				m_game->SetStarCount(-1);
@@ -466,7 +450,7 @@ void Player::PlS_Hantei()
 		{
 			QueryGOs<PlayerStar>("PlayerStar", [&](PlayerStar* plstar)->bool {
 				CVector3 Len = plstar->GetPosition() - m_position;
-				if (Len.Length() < 400.0f)
+				if (Len.Length() < StarHantei)
 				{
 					StarCount += plstar->GetStarCount();
 					draw_S->SetKazu(StarCount);
@@ -502,26 +486,6 @@ void Player::B_Hantei()
 	else
 	{
 
-	}
-}
-//プレイヤー同士の当たり判定（※調整中。）
-void Player::P_Hantei()
-{
-	if (DeathCount == false)
-	{
-		if (Muteki == false) {
-			if (PadNum > 0)
-			{
-				CVector3 Kyori = m_position - m_position;
-				if (Kyori.Length() < 30.0f)
-				{
-					Death();
-				}
-			}
-		}
-		else if (Muteki == true) {
-
-		}
 	}
 }
 //無敵時間の調整。キングクリムゾンッッッッ！！！

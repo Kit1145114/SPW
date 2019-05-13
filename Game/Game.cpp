@@ -33,14 +33,10 @@ Game::~Game()
 	if (m_star != nullptr) {
 		DeleteGO(m_star);
 	}
-	if (d_hako != nullptr) {
-		DeleteGO(this);
-	}
 	DeleteGO(s_bar);
 	DeleteGO(m_field);
 	DeleteGO(m_G_Timer);
 	DeleteGO(m_planet);
-	//DeleteGO(s_kazu);
 	DeleteGO(Pl1);
 	QueryGOs<Planet>("planet", [&](Planet* obj)->bool
 	{
@@ -52,6 +48,11 @@ Game::~Game()
 			DeleteGO(bh);
 			return true;
 		});
+	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* ba)->bool
+	{
+		DeleteGO(ba);
+		return true;
+	});
 }
 
 bool Game::Start()
@@ -99,9 +100,13 @@ bool Game::Start()
 	}
 	m_field = NewGO<field>(0);
 	m_camera = NewGO<Camera>(0,"Camera");
-	//m_enemy = NewGO<Enemy>(0,"Enemy");
 	m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
-	//s_bar = NewGO<Sinka_Bar>(0, "Sinka_Bar");
+	//if (Stage == 1)
+	//{
+		//bh = NewGO<BlackHole>(0, "BlackHole");
+		//bh->SetPosition(BHpos1);
+		//bh->SetScale(BHsca1);
+	//}
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 
 	Fade::fadeOut();
@@ -111,7 +116,6 @@ bool Game::Start()
 void Game::Update()
 {
 	if (GameMode == 0) {
-		PlayerNum();
 		Star_Life();
 		PlStar_Life();
 		Bullet_Life();
@@ -134,11 +138,6 @@ void Game::Update()
 			DeleteGO(this);
 		});
 	}
-}
-//プレイヤーの人数
-void Game::PlayerNum()
-{
-
 }
 
 void Game::Star_Life()
