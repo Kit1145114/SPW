@@ -20,7 +20,7 @@ private:
 	CVector2 m_position = CVector2::Zero;
 	int m_timer = 0;
 	int frame = 60;
-	int MaxTimer = 120;
+	int MaxTimer = 10;
 	int MinTimer = 10;
 };
 

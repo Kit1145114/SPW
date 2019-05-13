@@ -605,6 +605,7 @@
     <MeshContentTask Include="Assets\modelData\Ring3P.FBX" />
     <MeshContentTask Include="Assets\modelData\Ring1P.FBX" />
     <MeshContentTask Include="Assets\modelData\Back.FBX" />
+    <MeshContentTask Include="Assets\modelData\Inseki.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
