@@ -4,7 +4,6 @@
 #include"Senkan_Rtype_2.h"
 #include"Game.h"
 #include"Enemy.h"
-#include"Drop_Hako.h"
 #include"Star.h"
 #include"PlayerStar.h"
 #include"Draw_Player.h"
@@ -19,7 +18,6 @@ class Camera;
 class Game;
 class Enemy;
 class Senkan_Rtype_2;
-class Drop_Hako;
 class Star;
 class PlayerStar;
 class Draw_Player;
@@ -43,11 +41,9 @@ public:
 	void Rotation();
 	void Death();
 	void Respawn();
-	void HakoHantei();
 	void Houdai();
 	void S_Hantei();
 	void B_Hantei();
-	void P_Hantei();
 	void MutekiTimes();
 	void HP();
 	void StarPop();
@@ -142,7 +138,6 @@ private:
 	Star* m_star = nullptr;
 	Camera* camera = nullptr;
 	PlayerStar* Plstar = nullptr;
-	Drop_Hako* d_hako = nullptr;
 	CCharacterController m_CharaCon;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 memory_position = CVector3::Zero;
@@ -182,6 +177,7 @@ private:
 	float memorySX = 0.0f;
 	float memorySZ = 0.0f;
 	float BulletHantei = 300.0f;
+	float StarHantei = 600.0f;
 	bool DeathCount = false;
 	bool ShortCount = false;
 	bool MyBullet = true;

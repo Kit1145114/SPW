@@ -32,7 +32,7 @@ bool Bullet::Start()
 	{
 		m_skinModelRender->Init(L"modelData/Bullet4.cmo");
 	}
-	m_scale = { 3.0f,3.0f,3.0f };
+	m_scale = { 5.0f,5.0f,5.0f };
 	m_skinModelRender->SetScale(m_scale);
 	return true;
 }
@@ -44,7 +44,7 @@ void Bullet::Update()
 	m_skinModelRender->SetPosition(m_position);
 
 	m_timer++;
-	if (m_timer == 100)
+	if (m_timer == Limit)
 	{
 		Death();
 	}

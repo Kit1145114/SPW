@@ -32,14 +32,10 @@ Game::~Game()
 	if (m_star != nullptr) {
 		DeleteGO(m_star);
 	}
-	if (d_hako != nullptr) {
-		DeleteGO(this);
-	}
 	DeleteGO(s_bar);
 	DeleteGO(m_field);
 	DeleteGO(m_G_Timer);
 	DeleteGO(m_planet);
-	//DeleteGO(s_kazu);
 	DeleteGO(Pl1);
 	QueryGOs<Planet>("planet", [&](Planet* obj)->bool
 	{
@@ -117,7 +113,6 @@ bool Game::Start()
 void Game::Update()
 {
 	if (GameMode == 0) {
-		PlayerNum();
 		Star_Life();
 		PlStar_Life();
 		Bullet_Life();
@@ -136,11 +131,6 @@ void Game::Update()
 		NewGO<ResultGamen>(0, "ResultGamen")->SetSansenKazu(SansenKazu);
 		DeleteGO(this);
 	}
-}
-//プレイヤーの人数
-void Game::PlayerNum()
-{
-
 }
 
 void Game::Star_Life()

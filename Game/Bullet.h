@@ -61,6 +61,7 @@ private:
 	Game * m_game = nullptr;
 	int m_timer = 0;
 	int PB = 0;
+	int Limit = 100;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;
 	CVector3 m_scale = { 1.0f,1.0f,1.0f };

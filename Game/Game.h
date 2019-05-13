@@ -10,7 +10,6 @@
 #include"Planet.h"
 #include"Star.h"
 #include"Sinka_Bar.h"
-#include"Drop_Hako.h"
 #include"Draw_Player.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
@@ -28,7 +27,6 @@ class Planet;
 class Player_RType2;
 class Star;
 class Sinka_Bar;
-class Drop_Hako;
 class Draw_Player;
 
 
@@ -56,7 +54,6 @@ public:
 	~Game();
 	bool Start();
 	void Update();
-	void PlayerNum();
 	void Star_Life();
 	void Bullet_Life();
 	void PlStar_Life();
@@ -120,7 +117,6 @@ private:
 	static Game* m_instance;
 	Draw_Player* Pl1= nullptr;
 	Camera* m_camera = nullptr;
-	Drop_Hako* d_hako = nullptr;
 	field* m_field = nullptr;
 	GamenTimer* m_G_Timer = nullptr;
 	Planet* m_planet = nullptr;
