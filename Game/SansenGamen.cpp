@@ -1,60 +1,52 @@
 #include "stdafx.h"
 #include "SansenGamen.h"
 #include "StageSelect.h"
+#include "Fade.h"
 
-SansenGamen::SansenGamen()
-{
+SansenGamen::SansenGamen() {
 }
 
 
-SansenGamen::~SansenGamen()
-{
+SansenGamen::~SansenGamen() {
 	DeleteGO(m_spriteRender);
 }
 
-bool SansenGamen::Start()
-{
+bool SansenGamen::Start() {
 	m_spriteRender = NewGO<prefab::CSpriteRender>(0);
 	m_spriteRender->Init(L"sprite/Sanka.dds", 1280.0f, 720.0f);
 	m_push = NewGO<prefab::CSoundSource>(0);
 	m_push->Init(L"sound/Kettei.wav");
+
+	Fade::fadeOut();
 	return true;
 }
 
 
-void SansenGamen::Update()
-{
+void SansenGamen::Update() {
 	if (GameStart == false) {
-		if (Pad(0).IsTrigger(enButtonUp))
-		{
-			if (Kazu < MaxKazu)
-			{
+		if (Pad(0).IsTrigger(enButtonUp)) {
+			if (Kazu < MaxKazu) {
 				Kazu++;
-			}
-			else if (Kazu > MaxKazu)
-			{
+			} else if (Kazu > MaxKazu) {
 				Kazu = MaxKazu;
 			}
-		}
-		else if (Pad(0).IsTrigger(enButtonDown))
-		{
-			if (Kazu > MinKazu)
-			{
+		} else if (Pad(0).IsTrigger(enButtonDown)) {
+			if (Kazu > MinKazu) {
 				Kazu--;
-			}
-			else if (Kazu < MinKazu)
-			{
+			} else if (Kazu < MinKazu) {
 				Kazu = MinKazu;
 			}
 		}
 	}
-	if (Pad(0).IsTrigger(enButtonX))
-	{
-		DeleteGO(this);
-		GameStart = true;
-		m_push->Play(false);
-		//NewGO<Game>(0, "Game")->SetSanSenkazu(Kazu);
-		NewGO<StageSelect>(0)->setSansenKazu(Kazu);
+	if (Pad(0).IsTrigger(enButtonX)) {
+		int l_kazu = Kazu;
+		Fade::fadeIn([&,l_kazu]() {
+			DeleteGO(this);
+			GameStart = true;
+			m_push->Play(false);
+			//NewGO<Game>(0, "Game")->SetSanSenkazu(Kazu);
+			NewGO<StageSelect>(0)->setSansenKazu(l_kazu);
+		});
 	}
 }
 

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "StageSelect.h"
 #include "Game.h"
+#include "Fade.h"
 
 StageSelect::~StageSelect() {
 }
@@ -39,12 +40,16 @@ bool StageSelect::Start() {
 	iconArray[4].setStageFunc([&]() {
 		//ここにステージ生成コードを書いてください
 	});
+
+	Fade::fadeOut();
 	return true;
 }
 
 void StageSelect::Update() {
 	if (Pad(0).IsTrigger(enButtonA)) {
-		iconArray[selectNumber].goStage();
+		Fade::fadeIn([&]() {
+			iconArray[selectNumber].goStage();
+		});
 		return;
 	}
 	if (Pad(0).IsTrigger(enButtonRight)) {

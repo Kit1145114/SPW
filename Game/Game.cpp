@@ -2,6 +2,7 @@
 #include "Game.h"
 #include"field.h"
 #include "tkEngine/light/tkDirectionLight.h"
+#include "Fade.h"
 
 Game* Game::m_instance = nullptr;
 
@@ -102,6 +103,8 @@ bool Game::Start()
 	m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
 	//s_bar = NewGO<Sinka_Bar>(0, "Sinka_Bar");
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+
+	Fade::fadeOut();
 	return true;
 }
 
@@ -116,16 +119,20 @@ void Game::Update()
 		//dbg::SetDrawPhysicsCollisionEnable();
 		if (Pad(0).IsPress(enButtonSelect) == true)
 		{
-			NewGO<Title_2>(0, "Title2");
-			DeleteGO(this);
+			Fade::fadeIn([&]() {
+				NewGO<Title_2>(0, "Title2");
+				DeleteGO(this);
+			});
 		}
 	}
 	else if (GameMode == 1)
 	{
 		//TODO ネット対戦用に変える必要がある
-		GameMode = 0;
-		NewGO<ResultGamen>(0, "ResultGamen")->SetSansenKazu(SansenKazu);
-		DeleteGO(this);
+		Fade::fadeIn([&]() {
+			GameMode = 0;
+			NewGO<ResultGamen>(0, "ResultGamen")->SetSansenKazu(SansenKazu);
+			DeleteGO(this);
+		});
 	}
 }
 //プレイヤーの人数

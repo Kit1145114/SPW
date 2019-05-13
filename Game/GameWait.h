@@ -22,6 +22,8 @@ private:
 
 	bool allStart = false;
 
+	bool sendSeed = false;
+
 	CFont font;
 };
 
