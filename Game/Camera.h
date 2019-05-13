@@ -1,6 +1,6 @@
 #pragma once
 class Player;
-
+class Game;
 class Camera : public IGameObject
 {
 public:
@@ -32,9 +32,14 @@ public:
 	}
 private:
 	Player* m_player = nullptr;
+	Game* game = nullptr;
+	CVector3 Tyuou = CVector3::Zero;
+	float tyuou = 0;
+	float Saityou = 0.0f;
 	float st_kyori = 2000.0f;
 	float MaxCamera = 10000.0f;
-	float MinCamera = 1500.0f;
+	float MinCamera = 5000.0f;
+	float cameraUp = 0.0f;
 	float up = 0.0f;
 };
 

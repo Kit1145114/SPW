@@ -1,4 +1,5 @@
 #pragma once
+#include"BlackHole.h"
 #include"field.h"
 #include"Camera.h"
 #include"Player.h"
@@ -15,6 +16,7 @@
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
 
+class BlackHole;
 class field;
 class Camera;
 class Player;
@@ -114,6 +116,7 @@ public:
 	Enemy* m_enemy = nullptr;
 	Star* m_star = nullptr;
 private:
+	BlackHole* bh = nullptr;
 	static Game* m_instance;
 	Draw_Player* Pl1= nullptr;
 	Camera* m_camera = nullptr;
@@ -126,6 +129,7 @@ private:
 	CVector3 memory_position = CVector3::Zero;
 	
 	int GameMode = 0;
+	int Stage = 1;          //二つ目の戦闘場所。
 	int Pver = 0;
 	int starget = 0;
 	int MAXPad = 3;
@@ -147,6 +151,8 @@ private:
 	CVector3 Kyori = CVector3::Zero;
 	CVector3 SyokiCamera = CVector3::Zero;
 	CVector3 Tyuou = CVector3::Zero;
+	//CVector3 BHpos1 = { 0.0f , 0.0f, 5000.0f };
+	//CVector3 BHsca1 = { 1000.0f,0.0f,5.0f };
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };
 

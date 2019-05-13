@@ -51,6 +51,11 @@ Game::~Game()
 			DeleteGO(bh);
 			return true;
 		});
+	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* ba)->bool
+	{
+		DeleteGO(ba);
+		return true;
+	});
 }
 
 bool Game::Start()
@@ -98,9 +103,13 @@ bool Game::Start()
 	}
 	m_field = NewGO<field>(0);
 	m_camera = NewGO<Camera>(0,"Camera");
-	//m_enemy = NewGO<Enemy>(0,"Enemy");
 	m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
-	//s_bar = NewGO<Sinka_Bar>(0, "Sinka_Bar");
+	//if (Stage == 1)
+	//{
+		//bh = NewGO<BlackHole>(0, "BlackHole");
+		//bh->SetPosition(BHpos1);
+		//bh->SetScale(BHsca1);
+	//}
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 	return true;
 }

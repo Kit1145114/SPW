@@ -1,8 +1,12 @@
 #pragma once
 //#include "Player.h"
 #include "Planet.h"
+#include"Game.h"
+
+class Game;
 class Player;
 class Planet;
+class Draw_Player;
 class BlackHole : public IGameObject
 {
 public:
@@ -15,12 +19,20 @@ public:
 	void Count();
 	void Death();
 	void Update();
-	
-private:
+	void SetPosition(CVector3 pos)
+	{
+		m_position = pos;
+	}
+	void SetScale(CVector3 sca)
+	{
+		scale = sca;
+	}
+	private:
 	prefab::CEffect* effect;
 	Game* m_game = nullptr;
 	Draw_Player* Pl1 = nullptr;
-	CVector3 m_position;
+	CVector3 m_position = CVector3::Zero;
+	CVector3 scale = { 1.0f,1.0f,1.0f };
 	int timer = 0;
 	float radius = { 1.0f };       //	äÓñ{òfêØÇÃîºåa
 	float Searchment = { 1500.0f };//	BHÇÃèdóÕîÕàÕÇÃí≤êÆ

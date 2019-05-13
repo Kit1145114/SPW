@@ -25,7 +25,7 @@ bool Player::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Senkan.cmo");
-	m_scale = { 3.0f,3.0f,3.0f };
+	m_scale = { 8.0f,8.0f,8.0f };
 	m_skinModelRender->SetScale(m_scale);
 	m_CharaCon.Init(300.0f, 300.0f, m_position);
 	m_game = Game::GetInstance();
