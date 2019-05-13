@@ -646,12 +646,12 @@
     <ImageContentTask Include="Assets\sprite\Selector.png" />
     <ImageContentTask Include="Assets\sprite\Stage1.png" />
     <ImageContentTask Include="Assets\sprite\StageSelect.png" />
+    <ImageContentTask Include="Assets\sprite\Star.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\sprite\Star.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\explosion1.efk" />
@@ -663,5 +663,6 @@
   <ItemGroup>
     <Media Include="Assets\sound\OP.wav" />
     <Media Include="Assets\sound\Kettei.wav" />
+    <Media Include="Assets\sound\kaisen.wav" />
   </ItemGroup>
 </Project>

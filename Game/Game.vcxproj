@@ -2084,6 +2084,7 @@
     <None Include="Assets\effect\kari_BH.efk" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="Assets\sound\kaisen.wav" />
     <Media Include="Assets\sound\Kettei.wav" />
     <Media Include="Assets\sound\OP.wav" />
   </ItemGroup>
