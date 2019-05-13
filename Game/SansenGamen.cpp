@@ -38,7 +38,7 @@ void SansenGamen::Update() {
 			}
 		}
 	}
-	if (Pad(0).IsTrigger(enButtonX)) {
+	if (Pad(0).IsTrigger(enButtonA)) {
 		int l_kazu = Kazu;
 		Fade::fadeIn([&,l_kazu]() {
 			DeleteGO(this);

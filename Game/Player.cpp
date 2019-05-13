@@ -554,28 +554,36 @@ void Player::SetPadNum(int num)
 		r_ring->SetPlayerRadar(L"modelData/Ring1P.cmo");
 		draw_Pl->SetPlayerPicture(L"sprite/1P.dds");
 		draw_Pl->SetPosition(-450.0f, -300.0f);
-		draw_S->SetPosition(-450.0f, -220.0f);
+		draw_S->SetS_kazuPosition(-458.0f, -220.0f);
+		draw_S->SetStar(L"sprite/Star.dds");
+		draw_S->SetS_position(-480.0f, -229.0f);
 		draw_S->SetColor(1.0f, 0.0f, 0.0f, 1.0f);
 		break;
 	case 1:
 		r_ring->SetPlayerRadar(L"modelData/Ring2P.cmo");
 		draw_Pl->SetPlayerPicture(L"sprite/2P.dds");
 		draw_Pl->SetPosition(-150.0f, -300.0f);
-		draw_S->SetPosition(-150.0f, -220.0f);
+		draw_S->SetS_kazuPosition(-158.0f, -220.0f);
+		draw_S->SetStar(L"sprite/Star.dds");
+		draw_S->SetS_position(-180.0f, -229.0f);
 		draw_S->SetColor(0.0f, 0.0f, 1.0f, 1.0f);
 		break;
 	case 2:
 		r_ring->SetPlayerRadar(L"modelData/Ring3P.cmo");
 		draw_Pl->SetPlayerPicture(L"sprite/3P.dds");
 		draw_Pl->SetPosition(150.0f, -300.0f);
-		draw_S->SetPosition(150.0f, -220.0f);
+		draw_S->SetS_kazuPosition(150.0f, -220.0f);
+		draw_S->SetStar(L"sprite/Star.dds");
+		draw_S->SetS_position(150.0f, -229.f);
 		draw_S->SetColor(0.1f, 1.0f, 0.0f, 1.0f);
 		break;
 	case 3:
 		r_ring->SetPlayerRadar(L"modelData/Ring4P.cmo");
 		draw_Pl->SetPlayerPicture(L"sprite/4P.dds");
 		draw_Pl->SetPosition(450.0f, -300.0f);
-		draw_S->SetPosition(450.0f, -220.0f);
+		draw_S->SetS_kazuPosition(458.0f, -220.0f);
+		draw_S->SetStar(L"sprite/Star.dds");
+		draw_S->SetS_position(480.0f, -229.0f);
 		draw_S->SetColor(1.0f, 0.7f, 0.0f, 1.0f);
 		break;
 	}
