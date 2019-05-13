@@ -31,7 +31,7 @@ void Draw_Player::Update()
 		m_spriteRender->Init(L"sprite/Gekitui.dds", 200.0f, 100.0f);
 		timer++;
 		State = true;
-		if (timer == 180)
+		if (timer == Limit)
 		{
 			Death = false;
 			State = false;

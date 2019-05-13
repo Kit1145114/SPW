@@ -1785,7 +1785,6 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Draw_Player.cpp" />
     <ClCompile Include="Draw_Skazu.cpp" />
-    <ClCompile Include="Drop_Hako.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Fade.cpp" />
     <ClCompile Include="field.cpp" />
@@ -1838,7 +1837,6 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Draw_Player.h" />
     <ClInclude Include="Draw_Skazu.h" />
-    <ClInclude Include="Drop_Hako.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Fade.h" />
     <ClInclude Include="field.h" />

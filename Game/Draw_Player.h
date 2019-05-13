@@ -29,6 +29,7 @@ private:
 	CVector3 m_position = CVector3::Zero;
 	CVector3 m_scale = CVector3::Zero;
 	int timer = 0;
+	int Limit = 180;
 	bool Death = false;
 	bool State = false;
 	const wchar_t* draw_P = nullptr;
