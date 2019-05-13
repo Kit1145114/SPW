@@ -1793,6 +1793,7 @@
     <ClCompile Include="GamenTimer.cpp" />
     <ClCompile Include="GameWait.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Meteo.cpp" />
     <ClCompile Include="Network\NetManager.cpp" />
     <ClCompile Include="Network\NetPad.cpp" />
     <ClCompile Include="Network\PadRingBuffer.cpp" />
@@ -1844,6 +1845,7 @@
     <ClInclude Include="GamenDraw.h" />
     <ClInclude Include="GamenTimer.h" />
     <ClInclude Include="GameWait.h" />
+    <ClInclude Include="Meteo.h" />
     <ClInclude Include="Network\NetManager.h" />
     <ClInclude Include="Network\NetPad.h" />
     <ClInclude Include="Network\NPad.h" />

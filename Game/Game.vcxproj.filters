@@ -92,6 +92,7 @@
     <ClCompile Include="RadarRing.cpp" />
     <ClCompile Include="StageSelect.cpp" />
     <ClCompile Include="Fade.cpp" />
+    <ClCompile Include="Meteo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -551,6 +552,7 @@
     <ClInclude Include="RadarRing.h" />
     <ClInclude Include="StageSelect.h" />
     <ClInclude Include="Fade.h" />
+    <ClInclude Include="Meteo.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
