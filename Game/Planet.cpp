@@ -83,7 +83,7 @@ void Planet::Generate(int Reload, int Planetnum) {
 
 			CVector3 hako;
 			do{
-			
+				m_planet->repopflag = false;
 				//ランダムポップ。
 				float vx = Random().GetRandDouble();
 				float vz = Random().GetRandDouble();
@@ -105,8 +105,9 @@ void Planet::Generate(int Reload, int Planetnum) {
 				
 				m_planet->init(m_planet->p_position, P_skinModelRender);
 
-				for (int j = 0; j < Planetnumber_00; j++) {
-					if (j == m_planet->myPlanetnumber) //自分の時は++で飛ばす。
+				//ポップ時にプレイヤーとぶつからないように。
+				for (int j = 0; j < Game::GetInstance()->GetSansenKazu(); j++) {
+					if (j == Game::GetInstance()->GetSansenKazu()) //自分の時は++で飛ばす。
 						j++;
 					CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - m_planet->p_position;
 					if (kyori.Length() < m_planet->radius+500.0f) {
@@ -183,12 +184,15 @@ void Planet::Death() {
 	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
 	
 	for (int i = 0;i < Game::GetInstance()->GetSansenKazu();i++) {
-		CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - p_position;
-		if (kyori.Length() < radius
-			&& Game::GetInstance()->m_player[i]->GetDeathCount() == false) {
-			Game::GetInstance()->m_player[i]->AddHP(-100);
-			if (time > 2) { //ＰＯＰ時は勘弁してやっぞ！
-				explosion();
+		//プレイヤーが無敵なら攻撃をやめる。
+		if (Game::GetInstance()->m_player[i]->GetMuteki() == false) {
+			CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - p_position;
+			if (kyori.Length() < radius
+				&& Game::GetInstance()->m_player[i]->GetDeathCount() == false) {
+				Game::GetInstance()->m_player[i]->AddHP(-100);
+				if (time > 2) { //ＰＯＰ時は勘弁してやっぞ！
+					explosion();
+				}
 			}
 		}
 	}
