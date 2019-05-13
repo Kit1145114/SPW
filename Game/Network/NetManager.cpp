@@ -4,6 +4,8 @@
 
 NetManager* NetManager::st_manager = nullptr;
 
+int64 NetManager::seed = 0;
+
 using namespace PhotonLib;
 using namespace ExitGames;
 
@@ -117,6 +119,15 @@ void NetManager::onPhotonEvent(int playerNr, nByte eventCode, const ExitGames::C
 		}
 		padInited = true;
 	}break;
+
+		//seedÇÃçXêV
+	case 3:{
+		using namespace ExitGames::Common;
+		int64 seed = ValueObject<int64>(eventContent).getDataCopy();
+		Random().Init(seed);
+		NetManager::seed = seed;
+		initRandSeed = true;
+	}break;
 	}
 }
 
@@ -166,6 +177,10 @@ void NetManager::PostRender(CRenderContext & rc) {
 	wchar_t c[10];
 	swprintf(c, L"%d", NetManager::getNet()->GetRoundTripTime());
 	font.Draw(c, { 300.0f, 0});
+
+	wchar_t ccc[30];
+	swprintf(ccc, L"%d", NetManager::seed);
+	font.Draw(ccc, { 300.0f, 200.0f });
 	font.End(rc);
 }
 

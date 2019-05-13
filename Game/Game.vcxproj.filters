@@ -79,7 +79,6 @@
     <ClCompile Include="Senkan_Rtype_2.cpp" />
     <ClCompile Include="Drop_Hako.cpp" />
     <ClCompile Include="SansenGamen.cpp" />
-    <ClCompile Include="GameTaiki.cpp" />
     <ClCompile Include="PlayerStar.cpp" />
     <ClCompile Include="ResultGamen.cpp" />
     <ClCompile Include="ResultDraw.cpp" />
@@ -93,6 +92,7 @@
     <ClCompile Include="Draw_Skazu.cpp" />
     <ClCompile Include="RadarRing.cpp" />
     <ClCompile Include="StageSelect.cpp" />
+    <ClCompile Include="Fade.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -115,7 +115,6 @@
     <ClInclude Include="Senkan_Rtype_2.h" />
     <ClInclude Include="Drop_Hako.h" />
     <ClInclude Include="SansenGamen.h" />
-    <ClInclude Include="GameTaiki.h" />
     <ClInclude Include="Photon-Inc\PEventListener.h">
       <Filter>PhotonLib</Filter>
     </ClInclude>
@@ -553,6 +552,7 @@
     <ClInclude Include="Draw_Skazu.h" />
     <ClInclude Include="RadarRing.h" />
     <ClInclude Include="StageSelect.h" />
+    <ClInclude Include="Fade.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -639,18 +639,18 @@
       <Filter>Resource Files</Filter>
     </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\SankaMulti.png" />
+    <ImageContentTask Include="Assets\sprite\Stage2.png" />
+    <ImageContentTask Include="Assets\sprite\Stage3.png" />
+    <ImageContentTask Include="Assets\sprite\Stage4.png" />
+    <ImageContentTask Include="Assets\sprite\Stage5.png" />
+    <ImageContentTask Include="Assets\sprite\Selector.png" />
+    <ImageContentTask Include="Assets\sprite\Stage1.png" />
+    <ImageContentTask Include="Assets\sprite\StageSelect.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\sprite\Selector.png" />
-    <Image Include="Assets\sprite\StageSelect.png" />
-    <Image Include="Assets\sprite\Stage1.png" />
-    <Image Include="Assets\sprite\Stage2.png" />
-    <Image Include="Assets\sprite\Stage3.png" />
-    <Image Include="Assets\sprite\Stage4.png" />
-    <Image Include="Assets\sprite\Stage5.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\explosion1.efk" />

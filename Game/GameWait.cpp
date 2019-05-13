@@ -25,6 +25,7 @@ bool GameWait::Start() {
 	m_spriteRender->Init(L"sprite/SankaMulti.dds", 1280.0f, 720.0f);
 	NetManager::getNet()->connect();
 	NetManager::getNet()->getLocalPlayer().addCustomProperty(readyKey, false);
+	NetManager::setWaitRandInit();
 	return true;
 }
 
@@ -33,33 +34,39 @@ void GameWait::Update() {
 
 	if (!network->isRoomIn())return;
 
-	if (Pad(0).IsTrigger(enButtonA)) {
-		read = !read;
-		network->getLocalPlayer().addCustomProperty(readyKey, read);
-	}
+	if (!allStart) {
 
-	bool start = true;
-	C::JVector<L::Player*> players = NetManager::getNet()->getJoinedRoom().getPlayers();
-	for (int i = 0; i < players.getSize(); i++) {
-		bool ready = C::ValueObject<bool>(players[i]->getCustomProperties().getValue(readyKey)).getDataCopy();
-		if (!ready) {
-			start = false;
-			break;
+		if (Pad(0).IsTrigger(enButtonA)) {
+			read = !read;
+			network->getLocalPlayer().addCustomProperty(readyKey, read);
+		}
+
+		C::JVector<L::Player*> players = NetManager::getNet()->getJoinedRoom().getPlayers();
+		for (int i = 0; i < players.getSize(); i++) {
+			bool ready = C::ValueObject<bool>(players[i]->getCustomProperties().getValue(readyKey)).getDataCopy();
+			if (!ready) {
+				return;
+			}
 		}
 	}
 
-	if (start) {
-		NewGO<Game>(0, "Game")->SetSanSenkazu(network->getPlayersNum().size());
-		//NetManager::resetPadWait();
-		DeleteGO(this);
+	allStart = true;
+	if (network->getLocalPlayer().getIsMasterClient()) {
+		NetManager::seed = (int64)time(NULL);
+		Random().Init(NetManager::seed);
+		network->raiseEvent(true, NetManager::seed, 3);
+	} else if (!NetManager::isRandInit()) {
+		return;
 	}
+	NewGO<Game>(0, "Game")->SetSanSenkazu(network->getPlayersNum().size());
+	DeleteGO(this);
 }
 
 void GameWait::PostRender(CRenderContext & rc) {
 	font.Begin(rc);
 	const wchar_t* message = L"";
 	PNetworkLogic::ConnectState state = NetManager::getNet()->getState();
-	switch(state) {
+	switch (state) {
 	case PNetworkLogic::DISCONNECT:
 		message = L"disconnected";
 		break;
@@ -84,7 +91,7 @@ void GameWait::PostRender(CRenderContext & rc) {
 		for (int i = 0; i < players.getSize(); i++) {
 			wchar_t str[10];
 			swprintf(str, L"player%d", players[i]->getNumber());
-			font.Draw(str, { -100, height }, { 0, 0, 0 , 1 }, 0.0f, 1.0f, {0.0f, 0.5f});
+			font.Draw(str, { -100, height }, { 0, 0, 0 , 1 }, 0.0f, 1.0f, { 0.0f, 0.5f });
 
 			bool ready = C::ValueObject<bool>(players[i]->getCustomProperties().getValue(readyKey)).getDataCopy();
 

@@ -28,5 +28,5 @@ void NetPad::sendState(PhotonLib::PNetworkLogic & network) {
 	fp++;
 	*fp = Pad(0).GetRStickYF();
 
-	network.raiseEvent(false, array, 2+16, 0, 0);
+	network.raiseEvent(true, array, 2+16, 0, 0);
 }
