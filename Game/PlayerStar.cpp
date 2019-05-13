@@ -59,7 +59,7 @@ void PlayerStar::Pop(CVector3 position)
 
 void PlayerStar::Move()
 {
-	m_position.x += 15.0f;
-	m_position.z += 15.0f;
+	m_position.x += S_move;
+	m_position.z += S_move;
 	m_skinModelRender->SetPosition(m_position);
 }

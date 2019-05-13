@@ -264,12 +264,11 @@ void Player::Pevolution()
 		prefab::CEffect* effect = NewGO<prefab::CEffect>(0);
 		effect->Play(L"effect/explosion1.efk");
 		effect->SetPosition(m_position);
-		//S_Rtype2 = NewGO<Senkan_Rtype_2>(0,"Senkan_RType_2");
 		Ver = 1;
 		m_Short = 0;
 		m_mode = 1;
 	}
-	if (StarCount == 10 && m_mode == 1)
+	if (StarCount == 10 && m_mode == 1|| StarCount == 10 && Ver == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType3.cmo");
 		m_scale = { 10.0f,10.0f,10.0f };
@@ -429,7 +428,7 @@ void Player::S_Hantei()
 		QueryGOs<Star>("Star", [&](Star* star)->bool{
 			CVector3 Kyori = star->GetPosition() - m_position;
 			if (Kyori.Length() < StarHantei) {
-				StarCount++;
+				StarCount ++;
 				draw_S->AddKazu(1);
 				m_game->SetStarCount(-1);
 				star->Death();
