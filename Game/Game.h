@@ -110,6 +110,15 @@ public:
 	{
 		return PlS_Init;
 	}
+
+	void setStage(int _stage) {
+		Stage = _stage;
+	}
+
+private:
+	void CreateStage0();
+	void CreateStage1();
+public:
 	Planet* memoryPP[Planetnumber_Num];
 	Player* m_player[PlKazu] = {nullptr};
 	Enemy* m_enemy = nullptr;
@@ -129,7 +138,7 @@ private:
 	CVector3 memory_position = CVector3::Zero;
 	
 	int GameMode = 0;
-	int Stage = 1;          //二つ目の戦闘場所。
+	int Stage = 0;          //ステージ選択用
 	int Pver = 0;
 	int starget = 0;
 	int MAXPad = 3;
