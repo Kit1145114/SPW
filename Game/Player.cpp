@@ -562,6 +562,10 @@ void Player::SetPadNum(int num)
 		draw_S->SetS_kazuPosition(-458.0f, -220.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
 		draw_S->SetS_position(-480.0f, -229.0f);
+		//’e‚ÌêŠB
+		draw_S->SetBullet(L"sprite/Bullet.dds");
+		draw_S->SetB_kazuPosition(-330.0f, -315.0f);
+		draw_S->SetBulletposition(-328.0f,-275.0f);
 		draw_S->SetColor(1.0f, 0.0f, 0.0f, 1.0f);
 		break;
 	case 1:
