@@ -50,6 +50,7 @@ public:
 	void PlS_Hantei();
 	void SetPadNum(int num);
 	void Sound(int SoundNum);
+	void StarPos();
 	CVector3 GetPosition() {
 		return m_position;
 	}
@@ -151,6 +152,7 @@ private:
 	CVector3 m_moveSpeed = CVector3::Zero;
 	CVector3 b_moveSpeed = CVector3::Zero;
 	CVector3 m_scale = { 1.0f,1.0f,1.0f };
+	CVector3 Tyuou = CVector3::Zero;
 	CQuaternion m_rotation = CQuaternion::Identity;
 	CVector3 b_position = CVector3::Zero;
 	

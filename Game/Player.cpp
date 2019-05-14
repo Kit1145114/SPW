@@ -66,6 +66,7 @@ void Player::Update()
 	Houdai();
 	MutekiTimes();
 	HP();
+	StarPos();
 	StarPop();
 	memory_position = m_position;
 	r_ring->SetPosition(m_position);
@@ -366,8 +367,8 @@ void Player::Respawn()
 		{
 			if (Ver == 0) {
 				m_skinModelRender->Init(L"modelData/Senkan.cmo");
-				m_skinModelRender->SetPosition(Res);
-				m_CharaCon.SetPosition(Res);
+				m_skinModelRender->SetPosition(m_position);
+				m_CharaCon.SetPosition(m_position);
 				d_timer = 0;
 				DeathCount = false;
 				Muteki = true;
@@ -378,8 +379,8 @@ void Player::Respawn()
 			else if (Ver == 1)
 			{
 				m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
-				m_skinModelRender->SetPosition(Res);
-				m_CharaCon.SetPosition(Res);
+				m_skinModelRender->SetPosition(m_position);
+				m_CharaCon.SetPosition(m_position);
 				d_timer = 0;
 				DeathCount = false;
 				Muteki = true;
@@ -389,8 +390,8 @@ void Player::Respawn()
 			else if (Ver == 2)
 			{
 				m_skinModelRender->Init(L"modelData/SenkanType3.cmo");
-				m_skinModelRender->SetPosition(Res);
-				m_CharaCon.SetPosition(Res);
+				m_skinModelRender->SetPosition(m_position);
+				m_CharaCon.SetPosition(m_position);
 				d_timer = 0;
 				DeathCount = false;
 				Muteki = true;
@@ -556,7 +557,7 @@ void Player::StarPop()
 			StarCount -= PopStar;
 			draw_S->SetKazu(StarCount);
 			Plstar = NewGO<PlayerStar>(0, "PlayerStar");
-			Plstar->SetPosition(m_position);
+			Plstar->SetPosition(Tyuou);
 			Plstar->SetStarCount(PopStar);
 			Game::GetInstance()->AddPlStarCount(1);
 			Alive = true;
@@ -645,5 +646,26 @@ void Player::Sound(int SoundNum)
 		SoundSource = NewGO<prefab::CSoundSource>(0);
 		SoundSource->Init(L"sound/power-up1.wav");
 		SoundSource->Play(false);
+	}
+}
+
+void Player::StarPos()
+{
+	switch (m_game->GetSansenKazu())
+	{
+	case 1:
+		Tyuou = m_position;
+		break;
+	case 2:
+		Tyuou = m_player[0]->GetPosition()/2 + m_player[1]->GetPosition()/2;
+		break;
+	case 3:
+		Tyuou = m_player[0]->GetPosition()/2 + m_player[1]->GetPosition()/2
+			- m_player[2]->GetPosition()/2;
+		break;
+	case 4:
+		Tyuou = m_player[0]->GetPosition()/2 + m_player[1]->GetPosition()/2
+			- m_player[2]->GetPosition()/2 + m_player[3]->GetPosition()/2;
+		break;
 	}
 }

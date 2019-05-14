@@ -18,8 +18,29 @@ bool PlayerStar::Start()
 	m_skinModelRender->Init(L"modelData/PlayerStar.cmo");
 	m_scale = { 0.5f,0.5f,0.5f };
 	m_skinModelRender->SetScale(m_scale);
-	m_player = FindGO<Player>("Player");
-	m_game = FindGO<Game>("Game");
+	m_game = Game::GetInstance();
+	SansenKazu = m_game->GetSansenKazu();
+	switch (SansenKazu)
+	{
+	case 1:
+		m_player[0] = FindGO<Player>("Player");
+		break;
+	case 2:
+		m_player[0] = FindGO<Player>("Player");
+		m_player[1] = FindGO<Player>("Player1");
+		break;
+	case 3:
+		m_player[0] = FindGO<Player>("Player");
+		m_player[1] = FindGO<Player>("Player1");
+		m_player[2] = FindGO<Player>("Player2");
+		break;
+	case 4:
+		m_player[0] = FindGO<Player>("Player");
+		m_player[1] = FindGO<Player>("Player1");
+		m_player[2] = FindGO<Player>("Player2");
+		m_player[3] = FindGO<Player>("Player3");
+		break;
+	}
 	return true;
 }
 
