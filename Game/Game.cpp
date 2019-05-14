@@ -39,21 +39,10 @@ Game::~Game()
 	DeleteGO(m_planet);
 	DeleteGO(bgmSoundSource);
 	DeleteGO(Pl1);
-	QueryGOs<Planet>("planet", [&](Planet* obj)->bool
-	{
-		DeleteGO(obj);
-		return true;
-	});
-	QueryGOs<BlackHole>("BlackHole", [&](BlackHole* bh)->bool
-		{
-			DeleteGO(bh);
-			return true;
-		});
-	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* ba)->bool
-	{
-		DeleteGO(ba);
-		return true;
-	});
+	DeleteGOs("planet");//Planetクラス
+	DeleteGOs("BlackHole");//BlackHoleクラス
+	DeleteGOs("PlayerBullet");//Bulletクラス
+	DeleteGOs("Star");//Starクラス
 }
 
 bool Game::Start()
