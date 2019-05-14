@@ -128,6 +128,12 @@ public:
 	bool GetMuteki() {
 		return Muteki;
 	}
+	void SetRespown(float x, float y, float z)
+	{
+		Res.x = x;
+		Res.y = y;
+		Res.z = z;
+	}
 private:
 	Player * m_player[4] = { nullptr };
 	Draw_Player * draw_Pl = nullptr;
@@ -182,7 +188,9 @@ private:
 	float memorySX = 0.0f;
 	float memorySZ = 0.0f;
 	float BulletHantei = 900.0f;
-	float StarHantei = 600.0f;
+	float StarHantei = 900.0f;
+	CVector3 Res = CVector3::Zero;
+
 	bool DeathCount = false;
 	bool ShortCount = false;
 	bool MyBullet = true;
