@@ -181,7 +181,7 @@ private:
 	float SpeedZ = 0.0f;
 	float memorySX = 0.0f;
 	float memorySZ = 0.0f;
-	float BulletHantei = 300.0f;
+	float BulletHantei = 900.0f;
 	float StarHantei = 600.0f;
 	bool DeathCount = false;
 	bool ShortCount = false;

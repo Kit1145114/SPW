@@ -23,7 +23,7 @@ bool Player::Start()
 	m_skinModelRender->Init(L"modelData/Senkan.cmo");
 	m_scale = { 8.0f,8.0f,8.0f };
 	m_skinModelRender->SetScale(m_scale);
-	m_CharaCon.Init(300.0f, 300.0f, m_position);
+	m_CharaCon.Init(800.0f, 300.0f, m_position);
 	m_game = Game::GetInstance();
 	camera = FindGO<Camera>("Camera");
 	switch (m_game->GetSansenKazu())

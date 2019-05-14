@@ -96,6 +96,7 @@ bool Game::Start()
 	bgmSoundSource->Init(L"sound/kaisen.wav");
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(0.1f);
+	//meteo = NewGO<Meteo>(0, "Meteo");
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 	Fade::fadeOut();
 	return true;
