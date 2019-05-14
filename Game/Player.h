@@ -170,6 +170,9 @@ private:
 	int SeiseiVer_1 = 30;
 	int SeiseiVer_2 = 15;
 	int SeiseiVer_3 = 5;
+	int MaxSeiseiVer_1 = 30;
+	int MaxSeiseiVer_2 = 50;
+	int MaxSeiseiVer_3 = 99;
 	float HoukouX = 0.0f;
 	float HoukouZ = 0.0f;
 	float memoryHX = 0.0f;
