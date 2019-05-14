@@ -26,6 +26,8 @@ namespace tkEngine {
 		
 		void CEffect::Play(const wchar_t* filePath)
 		{
+			OutputDebugStringW(filePath);
+			OutputDebugStringW(L"\n");
 			int nameKey = CUtil::MakeHash(filePath);
 			CEffectEngine& ee = GraphicsEngine().GetEffectEngine();
 			m_effect = ee.GetResourceManager().GetResource(nameKey);

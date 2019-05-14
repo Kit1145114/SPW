@@ -165,6 +165,7 @@ namespace tkEngine{
 		}
 		rc.OMSetDepthStencilState(depthStenciil);
 		//レンダリングターゲットを戻す。
+		rc.VSUnsetShaderResource(0);
 		rc.OMSetRenderTargets(numRenderTargetViews, oldRenderTargets);
 		rc.RSSetViewport(0.0f, 0.0f, (float)oldRenderTargets[0]->GetWidth(), (float)oldRenderTargets[0]->GetHeight());
 	}
