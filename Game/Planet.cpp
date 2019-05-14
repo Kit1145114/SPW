@@ -399,7 +399,7 @@ void Planet::Death() {
 	}
 	//ほーっほぉほぉほぉお素晴らしい！ホラ、見てご覧なさい！ザーボンさんドドリアさん、エリア外にでて爆発する綺麗な花火ですよぉ。
 
-	if (p_position.x> 30000.0f || p_position.x< -30000.0f
+	if (p_position.x> 32000.0f || p_position.x< -32000.0f
 			||p_position.z>20000.0f || p_position.z < -20000.0f) {
 			explosion();
 	}

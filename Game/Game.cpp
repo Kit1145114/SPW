@@ -164,6 +164,12 @@ void Game::Bullet_Life()
 	}
 }
 
+void Game::Stage2()
+{
+
+
+}
+
 Game* Game::GetInstance()
 {
 	return m_instance;

@@ -55,8 +55,9 @@ public:
 	bool Start();
 	void Update();
 	void Star_Life();
-	void Bullet_Life();
 	void PlStar_Life();
+	void Bullet_Life();
+	void Stage2();
 	static Game* GetInstance();
 
 	void SetGameMode(int a)
