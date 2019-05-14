@@ -69,6 +69,7 @@ void Player::Update()
 	StarPop();
 	memory_position = m_position;
 	r_ring->SetPosition(m_position);
+	draw_S->SetBulletKazu(m_Short);
 }
 //プレイヤーの操作
 void Player::Move()
@@ -125,8 +126,15 @@ void Player::PBullet()
 			m_timer++;  // =GameTime().GetFrameDeltaTime;
 			p_timer++;
 			if (m_timer > SeiseiVer_1) {
-				m_Short++;
-				m_timer = Timer0;
+				if (m_Short < MaxSeiseiVer_1) {
+					m_Short++;
+					m_timer = Timer0;
+				}
+				else
+				{
+					m_Short = MaxSeiseiVer_1;
+					m_timer = Timer0;
+				}
 			}
 			if (m_Short > 0) {
 				if (NPad(PadNum).IsPress(enButtonRB2) == true) {
@@ -161,8 +169,14 @@ void Player::PBullet2()
 			m_timer++;  // =GameTime().GetFrameDeltaTime;
 			p_timer++;
 			if (m_timer > SeiseiVer_2) {
-				m_Short++;
-				m_timer = Timer0;
+				if (m_Short < MaxSeiseiVer_2) {
+					m_Short++;
+					m_timer = Timer0;
+				}
+				else {
+					m_Short = MaxSeiseiVer_2;
+					m_timer = Timer0;
+				}
 			}
 			if (m_Short > 0)
 			{
@@ -211,8 +225,15 @@ void Player::PBullet3()
 			m_timer++;  // =GameTime().GetFrameDeltaTime;
 			p_timer++;
 			if (m_timer > SeiseiVer_3) {
-				m_Short++;
-				m_timer = Timer0;
+				if (m_Short < MaxSeiseiVer_3) {
+					m_Short++;
+					m_timer = Timer0;
+				}
+				else
+				{
+					m_Short = MaxSeiseiVer_3;
+					m_timer = Timer0;
+				}
 			}
 			if (m_Short > 0)
 			{
@@ -559,8 +580,8 @@ void Player::SetPadNum(int num)
 		draw_S->SetS_position(-480.0f, -229.0f);
 		//弾の場所。
 		draw_S->SetBullet(L"sprite/Bullet.dds");
-		draw_S->SetB_kazuPosition(-330.0f, -315.0f);
-		draw_S->SetBulletposition(-328.0f,-275.0f);
+		draw_S->SetB_kazuPosition(-320.0f, -315.0f);
+		draw_S->SetBulletposition(-315.0f,-275.0f);
 		draw_S->SetColor(1.0f, 0.0f, 0.0f, 1.0f);
 		break;
 	case 1:
@@ -570,6 +591,10 @@ void Player::SetPadNum(int num)
 		draw_S->SetS_kazuPosition(-158.0f, -220.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
 		draw_S->SetS_position(-180.0f, -229.0f);
+
+		draw_S->SetBullet(L"sprite/Bullet.dds");
+		draw_S->SetB_kazuPosition(-20.0f, -315.0f);
+		draw_S->SetBulletposition(-15.0f, -275.0f);
 		draw_S->SetColor(0.0f, 0.0f, 1.0f, 1.0f);
 		break;
 	case 2:
@@ -578,7 +603,11 @@ void Player::SetPadNum(int num)
 		draw_Pl->SetPosition(150.0f, -300.0f);
 		draw_S->SetS_kazuPosition(150.0f, -220.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
-		draw_S->SetS_position(150.0f, -229.f);
+		draw_S->SetS_position(120.0f, -229.f);
+
+		draw_S->SetBullet(L"sprite/Bullet.dds");
+		draw_S->SetB_kazuPosition(280.0f, -315.0f);
+		draw_S->SetBulletposition(285.0f, -275.0f);
 		draw_S->SetColor(0.1f, 1.0f, 0.0f, 1.0f);
 		break;
 	case 3:
@@ -587,7 +616,11 @@ void Player::SetPadNum(int num)
 		draw_Pl->SetPosition(450.0f, -300.0f);
 		draw_S->SetS_kazuPosition(458.0f, -220.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
-		draw_S->SetS_position(480.0f, -229.0f);
+		draw_S->SetS_position(420.0f, -229.0f);
+
+		draw_S->SetBullet(L"sprite/Bullet.dds");
+		draw_S->SetB_kazuPosition(580.0f, -315.0f);
+		draw_S->SetBulletposition(585.0f, -275.0f);
 		draw_S->SetColor(1.0f, 0.7f, 0.0f, 1.0f);
 		break;
 	}

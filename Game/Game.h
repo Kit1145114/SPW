@@ -138,7 +138,7 @@ private:
 	int StarCount  = 0;
 	int PlStarCount = 0;
 	int Star0 = 0;
-	float P_pos = 1000.0f;
+	float P_pos = 1800.0f;
 	float MaxC_pos = 1700.0f;
 	float MinC_pos = 1600.0f;
 	int PB_Kazu = 0;

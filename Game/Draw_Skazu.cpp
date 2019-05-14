@@ -10,6 +10,7 @@ Draw_Skazu::Draw_Skazu()
 Draw_Skazu::~Draw_Skazu()
 {
 	DeleteGO(Star);
+	DeleteGO(Bullet);
 }
 
 bool Draw_Skazu::Start()
@@ -17,7 +18,7 @@ bool Draw_Skazu::Start()
 	Star = NewGO<prefab::CSpriteRender>(0);
 	Star->Init(draw_S, 40.0f, 38.0f);
 	Bullet = NewGO<prefab::CSpriteRender>(0);
-	Bullet->Init(draw_B, 40.0f, 38.0f);
+	Bullet->Init(draw_B, 50.0f, 38.0f);
 	return true;
 }
 

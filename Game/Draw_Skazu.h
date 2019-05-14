@@ -42,9 +42,9 @@ public:
 	{
 		draw_S = star;
 	}
-	void AddBulletKazu(int kazu)
+	void SetBulletKazu(int kazu)
 	{
-		Bullet += kazu;
+		bullet = kazu;
 	}
 	void SetBullet(const wchar_t* star)
 	{
