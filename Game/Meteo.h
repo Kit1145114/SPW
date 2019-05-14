@@ -19,7 +19,7 @@ private:
 	CVector3 m_moveSpeed = CVector3::Zero;
 	CQuaternion m_rotation = CQuaternion::Identity;
 	CVector3 scale = CVector3::Zero;
-
+	int timer = 0;
 	bool repopflag = false;
 };
 

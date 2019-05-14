@@ -50,6 +50,7 @@ public:
 	void PlS_Hantei();
 	void SetPadNum(int num);
 	void Sound(int SoundNum);
+	void StarPos();
 	CVector3 GetPosition() {
 		return m_position;
 	}
@@ -128,6 +129,12 @@ public:
 	bool GetMuteki() {
 		return Muteki;
 	}
+	void SetRespown(float x, float y, float z)
+	{
+		Res.x = x;
+		Res.y = y;
+		Res.z = z;
+	}
 private:
 	Player * m_player[4] = { nullptr };
 	Draw_Player * draw_Pl = nullptr;
@@ -145,6 +152,7 @@ private:
 	CVector3 m_moveSpeed = CVector3::Zero;
 	CVector3 b_moveSpeed = CVector3::Zero;
 	CVector3 m_scale = { 1.0f,1.0f,1.0f };
+	CVector3 Tyuou = CVector3::Zero;
 	CQuaternion m_rotation = CQuaternion::Identity;
 	CVector3 b_position = CVector3::Zero;
 	
@@ -181,8 +189,10 @@ private:
 	float SpeedZ = 0.0f;
 	float memorySX = 0.0f;
 	float memorySZ = 0.0f;
-	float BulletHantei = 300.0f;
-	float StarHantei = 600.0f;
+	float BulletHantei = 900.0f;
+	float StarHantei = 900.0f;
+	CVector3 Res = CVector3::Zero;
+
 	bool DeathCount = false;
 	bool ShortCount = false;
 	bool MyBullet = true;

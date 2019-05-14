@@ -36,10 +36,11 @@ public:
 		return StarCount;
 	}
 private:
-	Player * m_player = nullptr;
+	Player * m_player[3] = { nullptr };
 	Game* m_game = nullptr;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;
+	CVector3 Tyuou = CVector3::Zero;
 	CVector3 m_scale = { 1.0f,1.0f,1.0f };
 	CQuaternion m_rotation = CQuaternion::Identity;
 	CCharacterController m_CharaCon;
@@ -49,6 +50,8 @@ private:
 	int ResetTimer = 0;
 	int StarKazu = 0;
 	int StarCount = 0;
+
+	int SansenKazu = 0;
 	float angle = 0.0f;
 	float S_move = 15.0f;
 };

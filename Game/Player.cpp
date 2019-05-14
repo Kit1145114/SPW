@@ -23,7 +23,7 @@ bool Player::Start()
 	m_skinModelRender->Init(L"modelData/Senkan.cmo");
 	m_scale = { 8.0f,8.0f,8.0f };
 	m_skinModelRender->SetScale(m_scale);
-	m_CharaCon.Init(300.0f, 300.0f, m_position);
+	m_CharaCon.Init(800.0f, 300.0f, m_position);
 	m_game = Game::GetInstance();
 	camera = FindGO<Camera>("Camera");
 	switch (m_game->GetSansenKazu())
@@ -66,6 +66,7 @@ void Player::Update()
 	Houdai();
 	MutekiTimes();
 	HP();
+	StarPos();
 	StarPop();
 	memory_position = m_position;
 	r_ring->SetPosition(m_position);
@@ -142,7 +143,9 @@ void Player::PBullet()
 					m_bullet->SetPB(PadNum);
 					m_bullet->SetPosition(m_position);
 					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+					//プレイヤーの速度の単位をm/frameに変更する。
+					CVector3 moveSpeedFrame = m_moveSpeed * 12.0f;
+					m_bullet->SetMoveSpeedZ(SpeedX + moveSpeedFrame.x, SpeedZ + moveSpeedFrame.z);
 					m_Short--;
 					Sound(1);//効果音
 					ShortCount = true;
@@ -277,7 +280,7 @@ void Player::PBullet3()
 //プレイヤーの進化用
 void Player::Pevolution()
 {
-	if (StarCount == 5 && m_mode == 0)
+	if (StarCount >= 5 && m_mode == 0 && StarCount <= 9 && m_mode == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
 		m_scale = { 9.0f,9.0f,9.0f };
@@ -291,7 +294,7 @@ void Player::Pevolution()
 		m_mode = 1;
 		Sound(2);//効果音
 	}
-	if (StarCount == 10 && m_mode == 1|| StarCount == 10 && Ver == 0)
+	if (StarCount >= 10 && m_mode == 1|| StarCount >= 10 && Ver == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType3.cmo");
 		m_scale = { 10.0f,10.0f,10.0f };
@@ -446,22 +449,17 @@ void Player::Houdai()
 //☆の当たり判定。
 void Player::S_Hantei()
 {
-	if (m_game->GetS_Init() == false)
-	{
 
-	}
-	else if (m_game->GetS_Init() == true) {
-		QueryGOs<Star>("Star", [&](Star* star)->bool{
-			CVector3 Kyori = star->GetPosition() - m_position;
-			if (Kyori.Length() < StarHantei) {
-				StarCount ++;
-				draw_S->AddKazu(1);
-				m_game->SetStarCount(-1);
-				star->Death();
-			}
-			return true;
-		});
-	}
+	QueryGOs<Star>("Star", [&](Star* star)->bool {
+		CVector3 Kyori = star->GetPosition() - m_position;
+		if (Kyori.Length() < StarHantei) {
+			StarCount++;
+			draw_S->AddKazu(1);
+			m_game->SetStarCount(-1);
+			star->Death();
+		}
+		return true;
+	});
 }
 //プレイヤーの落とした☆の当たり判定。
 void Player::PlS_Hantei()
@@ -559,7 +557,7 @@ void Player::StarPop()
 			StarCount -= PopStar;
 			draw_S->SetKazu(StarCount);
 			Plstar = NewGO<PlayerStar>(0, "PlayerStar");
-			Plstar->SetPosition(m_position);
+			Plstar->SetPosition(Tyuou);
 			Plstar->SetStarCount(PopStar);
 			Game::GetInstance()->AddPlStarCount(1);
 			Alive = true;
@@ -648,5 +646,26 @@ void Player::Sound(int SoundNum)
 		SoundSource = NewGO<prefab::CSoundSource>(0);
 		SoundSource->Init(L"sound/power-up1.wav");
 		SoundSource->Play(false);
+	}
+}
+
+void Player::StarPos()
+{
+	switch (m_game->GetSansenKazu())
+	{
+	case 1:
+		Tyuou = m_position;
+		break;
+	case 2:
+		Tyuou = m_player[0]->GetPosition()/2 + m_player[1]->GetPosition()/2;
+		break;
+	case 3:
+		Tyuou = m_player[0]->GetPosition()/2 + m_player[1]->GetPosition()/2
+			- m_player[2]->GetPosition()/2;
+		break;
+	case 4:
+		Tyuou = m_player[0]->GetPosition()/2 + m_player[1]->GetPosition()/2
+			- m_player[2]->GetPosition()/2 + m_player[3]->GetPosition()/2;
+		break;
 	}
 }

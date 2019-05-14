@@ -4,10 +4,11 @@
 #include"Camera.h"
 #include"Player.h"
 #include"GamenTimer.h"
+#include"Meteo.h";
 #include"Enemy.h"
 #include"Title_2.h"
-#include"ResultGamen.h"
-#include"Planet.h"
+#include"ResultGamen.h";
+#include"Planet.h";
 #include"Star.h"
 #include"Sinka_Bar.h"
 #include"Draw_Player.h"
@@ -20,6 +21,7 @@ class field;
 class Camera;
 class Player;
 class GamenTimer;
+class Meteo;
 class Enemy;
 class Title_2;
 class ResultGamen;
@@ -121,6 +123,7 @@ private:
 	field* m_field = nullptr;
 	GamenTimer* m_G_Timer = nullptr;
 	Planet* m_planet = nullptr;
+	Meteo* meteo = nullptr;
 	Player_RType2* m_player_Rtype2 = nullptr;
 	Sinka_Bar*s_bar = nullptr;
 	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。
@@ -142,6 +145,7 @@ private:
 	float P_pos = 1800.0f;
 	float MaxC_pos = 1700.0f;
 	float MinC_pos = 1600.0f;
+
 	int PB_Kazu = 0;
 	bool PBullet_Init = false;
 	bool S_Init = false;
