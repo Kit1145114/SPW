@@ -49,6 +49,7 @@ public:
 	bool Start() override;
 	void Update() override;
 	void PostRender(CRenderContext& rc) override;
+	void Sound(int SoundNum);
 
 private:
 	int sansenKazu = 0;
@@ -62,5 +63,7 @@ private:
 
 	CShaderResourceView selectTexture;
 	CSprite selectSprite;
+
+	prefab::CSoundSource* m_push = nullptr;//BGM用のサウンドソース。
 };
 

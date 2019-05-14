@@ -3,8 +3,8 @@
 
 GamenDraw::GamenDraw()
 {
-	m_push = NewGO<prefab::CSoundSource>(0);
-	m_push->Init(L"sound/Kettei.wav");
+	//m_push = NewGO<prefab::CSoundSource>(0);
+	//m_push->Init(L"sound/tugihe.wav");
 	tl2 = FindGO<Title_2>("Title_2");
 }
 
@@ -19,22 +19,28 @@ void GamenDraw::Update()
 {
 	if (Pad(0).IsPress(enButtonUp) == true)
 	{
+		if (mode == 1) {
+			GemenDrawSound(0);
+		}
 		mode = 0;
 		tl2->Setmode(mode);
 	}
 	else if (Pad(0).IsPress(enButtonDown) == true)
 	{
+		if (mode == 0) {
+			GemenDrawSound(0);
+		}
 		mode = 1;
 		tl2->Setmode(mode);
 	}
 
 	if (mode == 0 && Pad(0).IsPress(enButtonA) == true){
 		//DeleteGO(this);
-		m_push->Play(false);
+		GemenDrawSound(1);
 	}
 	if (mode == 1 && Pad(0).IsPress(enButtonA) == true) {
 		//DeleteGO(this);
-		m_push->Play(false);
+		GemenDrawSound(1);
 		//NewGO<SetumeiGamen>(0, "SetumeiGamen");
 	}
 }
@@ -83,4 +89,18 @@ void GamenDraw::PostRender(CRenderContext& rc) {
 		);
 	}
 	m_font.End(rc);
+}
+
+void GamenDraw::GemenDrawSound(int SoundNum)
+{
+	if (SoundNum == 0) {
+		m_push = NewGO<prefab::CSoundSource>(0);
+		m_push->Init(L"sound/piko.wav");
+		m_push->Play(false);
+	}
+	if(SoundNum ==1){
+		m_push = NewGO<prefab::CSoundSource>(0);
+		m_push->Init(L"sound/tugihe.wav");
+		m_push->Play(false);
+	}
 }

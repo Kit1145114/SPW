@@ -49,8 +49,8 @@ void SetumeiGamen::Kirikae()
 	}
 	if (Pad(0).IsTrigger(enButtonB) == true)
 	{
+		m_push->Play(false);
 		Fade::fadeIn([&]() {
-			m_push->Play(false);
 			NewGO<Title_2>(0, "Title_2");
 			DeleteGO(this);
 		});
