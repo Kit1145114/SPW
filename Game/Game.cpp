@@ -95,7 +95,7 @@ bool Game::Start()
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
 	bgmSoundSource->Init(L"sound/kaisen.wav");
 	bgmSoundSource->Play(true);
-	bgmSoundSource->SetVolume(0.1f);
+	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 	Fade::fadeOut();
 	return true;
