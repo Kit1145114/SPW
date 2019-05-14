@@ -122,6 +122,7 @@ private:
 	Planet* m_planet = nullptr;
 	Player_RType2* m_player_Rtype2 = nullptr;
 	Sinka_Bar*s_bar = nullptr;
+	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。
 	CVector3 memory_position = CVector3::Zero;
 	
 	int GameMode = 0;

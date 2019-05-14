@@ -37,6 +37,7 @@ Game::~Game()
 	DeleteGO(m_field);
 	DeleteGO(m_G_Timer);
 	DeleteGO(m_planet);
+	DeleteGO(bgmSoundSource);
 	DeleteGO(Pl1);
 	DeleteGOs("planet");//Planetクラス
 	DeleteGOs("BlackHole");//BlackHoleクラス
@@ -90,14 +91,12 @@ bool Game::Start()
 	m_field = NewGO<field>(0);
 	m_camera = NewGO<Camera>(0,"Camera");
 	m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
-	//if (Stage == 1)
-	//{
-		//bh = NewGO<BlackHole>(0, "BlackHole");
-		//bh->SetPosition(BHpos1);
-		//bh->SetScale(BHsca1);
-	//}
+	//BGM
+	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
+	bgmSoundSource->Init(L"sound/kaisen.wav");
+	bgmSoundSource->Play(true);
+	bgmSoundSource->SetVolume(0.1f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
-
 	Fade::fadeOut();
 	return true;
 }

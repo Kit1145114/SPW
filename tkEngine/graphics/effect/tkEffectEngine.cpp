@@ -71,7 +71,7 @@ namespace tkEngine {
 			ge.GetMainRenderTarget().GetDepthStencilView()
 		);
 
-		m_renderFlags.resize(1024);
+		m_renderFlags.resize(10 * 1024);
 		//コピー用のシェーダーをロード。
 		m_copyVS.Load("shader/copy.fx", "VSMain", CShader::EnType::VS);
 		m_copyPS.Load("shader/copy.fx", "PSMain", CShader::EnType::PS);

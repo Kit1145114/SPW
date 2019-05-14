@@ -667,5 +667,6 @@
   <ItemGroup>
     <Media Include="Assets\sound\OP.wav" />
     <Media Include="Assets\sound\Kettei.wav" />
+    <Media Include="Assets\sound\kaisen.wav" />
   </ItemGroup>
 </Project>
