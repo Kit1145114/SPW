@@ -49,6 +49,7 @@ public:
 	void StarPop();
 	void PlS_Hantei();
 	void SetPadNum(int num);
+	void Sound(int SoundNum);
 	CVector3 GetPosition() {
 		return m_position;
 	}
@@ -148,7 +149,8 @@ private:
 	CVector3 b_position = CVector3::Zero;
 	
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
-
+	prefab::CSoundSource* SoundSource = nullptr;//BGM用のサウンドソース。
+	
 	int m_timer = 0;
 	int p_timer = 0;
 	int d_timer = 0;

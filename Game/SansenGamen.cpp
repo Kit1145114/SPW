@@ -27,20 +27,35 @@ void SansenGamen::Update() {
 		if (Pad(0).IsTrigger(enButtonUp)) {
 			if (Kazu < MaxKazu) {
 				Kazu++;
+				m_push = NewGO<prefab::CSoundSource>(0);
+				m_push->Init(L"sound/piko.wav");
+				m_push->Play(false);
 			} else if (Kazu > MaxKazu) {
 				Kazu = MaxKazu;
+				m_push = NewGO<prefab::CSoundSource>(0);
+				m_push->Init(L"sound/piko.wav");
+				m_push->Play(false);
 			}
 		} else if (Pad(0).IsTrigger(enButtonDown)) {
 			if (Kazu > MinKazu) {
 				Kazu--;
+				m_push = NewGO<prefab::CSoundSource>(0);
+				m_push->Init(L"sound/piko.wav");
+				m_push->Play(false);
 			} else if (Kazu < MinKazu) {
 				Kazu = MinKazu;
+				m_push = NewGO<prefab::CSoundSource>(0);
+				m_push->Init(L"sound/piko.wav");
+				m_push->Play(false);
 			}
 		}
 	}
 	if (Pad(0).IsTrigger(enButtonA)) {
 		int l_kazu = Kazu;
 		Fade::fadeIn([&,l_kazu]() {
+			m_push = NewGO<prefab::CSoundSource>(0);
+			m_push->Init(L"sound/tugihe.wav");
+			m_push->Play(false);
 			DeleteGO(this);
 			GameStart = true;
 			m_push->Play(false);

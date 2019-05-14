@@ -18,6 +18,7 @@ Planet::Planet()
 Planet::~Planet()
 {
 	DeleteGO(p_skinModelRender);
+	
 }
 
 bool Planet::Start() 
@@ -201,6 +202,12 @@ void Planet::explosion()
 		//エフェクトに半径/（Ｍａｘと差）をかける
 		effect->SetScale({ radius/200,1.0f,radius/200 });
 		effect->SetPosition(this->p_position);
+
+		//効果音（爆発）;
+		SoundSource = NewGO<prefab::CSoundSource>(0);
+		SoundSource->Init(L"sound/bakuhatu.wav");
+		SoundSource->Play(false);                     //ワンショット再生。
+		SoundSource->SetVolume(0.1f);                 //音量調節。
 	}
 }
 

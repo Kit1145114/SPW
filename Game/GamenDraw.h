@@ -14,6 +14,7 @@ public:
 
 	void Update();
 	void PostRender(CRenderContext& rc) override;
+	void GemenDrawSound(int SoundNum);
 
 private:
 	CFont m_font;

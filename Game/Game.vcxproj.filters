@@ -665,5 +665,9 @@
     <Media Include="Assets\sound\OP.wav" />
     <Media Include="Assets\sound\Kettei.wav" />
     <Media Include="Assets\sound\kaisen.wav" />
+    <Media Include="Assets\sound\power-up1.wav" />
+    <Media Include="Assets\sound\tugihe.wav" />
+    <Media Include="Assets\sound\bakuhatu.wav" />
+    <Media Include="Assets\sound\piko.wav" />
   </ItemGroup>
 </Project>

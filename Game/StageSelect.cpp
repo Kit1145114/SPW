@@ -50,19 +50,24 @@ void StageSelect::Update() {
 		Fade::fadeIn([&]() {
 			iconArray[selectNumber].goStage();
 		});
+		Sound(1);
 		return;
 	}
 	if (Pad(0).IsTrigger(enButtonRight)) {
 		selectNumber++;
+		Sound(0);
 	}
 	if (Pad(0).IsTrigger(enButtonLeft)) {
 		selectNumber--;
+		Sound(0);
 	}
 	if (Pad(0).IsTrigger(enButtonUp)) {
 		selectNumber -= 3;
+		Sound(0);
 	}
 	if (Pad(0).IsTrigger(enButtonDown)) {
 		selectNumber += 3;
+		Sound(0);
 	}
 	if (selectNumber < 0) {
 		selectNumber = iconNum + (selectNumber % iconNum);
@@ -79,5 +84,19 @@ void StageSelect::PostRender(CRenderContext & rc) {
 			selectSprite.Draw(rc, MainCamera2D().GetViewMatrix(), MainCamera2D().GetProjectionMatrix());
 		}
 		iconArray[i].draw(rc);
+	}
+}
+//Œø‰Ê‰¹
+void StageSelect::Sound(int SoundNum)
+{
+	if (SoundNum == 0) {
+		m_push = NewGO<prefab::CSoundSource>(0);
+		m_push->Init(L"sound/piko.wav");
+		m_push->Play(false);
+	}
+	if (SoundNum == 1) {
+		m_push = NewGO<prefab::CSoundSource>(0);
+		m_push->Init(L"sound/tugihe.wav");
+		m_push->Play(false);
 	}
 }

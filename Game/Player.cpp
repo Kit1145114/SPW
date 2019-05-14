@@ -136,6 +136,7 @@ void Player::PBullet()
 					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 					m_Short--;
+					Sound(1);//効果音
 					ShortCount = true;
 					m_game->SetKazu(1);
 					p_timer = Timer0;
@@ -187,7 +188,7 @@ void Player::PBullet2()
 					m_bullet->SetPosition(m_position);
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 					m_Short--;
-
+					Sound(1);//効果音
 					ShortCount = true;
 					m_game->SetKazu(3);
 					p_timer = Timer0;
@@ -237,7 +238,7 @@ void Player::PBullet3()
 					m_bullet->SetPosition(m_position);
 					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 					m_Short--;
-
+					Sound(1);//効果音
 					ShortCount = true;
 					m_game->SetKazu(3);
 					p_timer = Timer0;
@@ -267,6 +268,7 @@ void Player::Pevolution()
 		Ver = 1;
 		m_Short = 0;
 		m_mode = 1;
+		Sound(2);//効果音
 	}
 	if (StarCount == 10 && m_mode == 1|| StarCount == 10 && Ver == 0)
 	{
@@ -277,6 +279,7 @@ void Player::Pevolution()
 		Ver = 2;
 		m_Short = 0;
 		m_mode = 2;
+		Sound(2);//効果音
 	}
 }
 //プレイヤーのモブ判定
@@ -325,6 +328,8 @@ void Player::Death()
 		//エフェクトを再生。
 		effect->Play(L"effect/explosion2.efk");
 		effect->SetPosition(this->m_position);
+		//効果音
+		Sound(0);
 	}
 
 }
@@ -586,5 +591,24 @@ void Player::SetPadNum(int num)
 		draw_S->SetS_position(480.0f, -229.0f);
 		draw_S->SetColor(1.0f, 0.7f, 0.0f, 1.0f);
 		break;
+	}
+}
+//効果音
+void Player::Sound(int SoundNum)
+{
+	if (SoundNum == 0) {//爆発
+		SoundSource = NewGO<prefab::CSoundSource>(0);
+		SoundSource->Init(L"sound/bakuhatu.wav");
+		SoundSource->Play(false);
+	}
+	if (SoundNum == 1) {//弾音
+		SoundSource = NewGO<prefab::CSoundSource>(0);
+		SoundSource ->Init(L"sound/Kettei.wav");
+		SoundSource->Play(false);
+	}
+	if (SoundNum == 2) {//進化
+		SoundSource = NewGO<prefab::CSoundSource>(0);
+		SoundSource->Init(L"sound/power-up1.wav");
+		SoundSource->Play(false);
 	}
 }
