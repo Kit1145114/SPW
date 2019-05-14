@@ -648,12 +648,12 @@
     <ImageContentTask Include="Assets\sprite\Stage1.png" />
     <ImageContentTask Include="Assets\sprite\StageSelect.png" />
     <ImageContentTask Include="Assets\sprite\Star.png" />
+    <ImageContentTask Include="Assets\sprite\bullet.jpg">
+      <Filter>Resource Files</Filter>
+    </ImageContentTask>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\sprite\bullet.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -672,5 +672,6 @@
     <Media Include="Assets\sound\tugihe.wav" />
     <Media Include="Assets\sound\bakuhatu.wav" />
     <Media Include="Assets\sound\piko.wav" />
+    <Media Include="Assets\sound\shot1.wav" />
   </ItemGroup>
 </Project>

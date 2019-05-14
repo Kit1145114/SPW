@@ -607,7 +607,7 @@ void Player::Sound(int SoundNum)
 	}
 	if (SoundNum == 1) {//íeâπ
 		SoundSource = NewGO<prefab::CSoundSource>(0);
-		SoundSource ->Init(L"sound/Kettei.wav");
+		SoundSource ->Init(L"sound/shot1.wav");
 		SoundSource->Play(false);
 	}
 	if (SoundNum == 2) {//êiâª
