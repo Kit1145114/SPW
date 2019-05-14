@@ -23,6 +23,10 @@ public:
 	{
 		m_position = position;
 	}
+	void SetScale(CVector3 sca)
+	{
+		m_scale = sca;
+	}
 private:
 	Game* m_game = nullptr;					//ゲームclassのポインタ＾＾
 	Player* m_player = nullptr;  

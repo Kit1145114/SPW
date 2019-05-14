@@ -142,7 +142,9 @@ void Player::PBullet()
 					m_bullet->SetPB(PadNum);
 					m_bullet->SetPosition(m_position);
 					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+					//プレイヤーの速度の単位をm/frameに変更する。
+					CVector3 moveSpeedFrame = m_moveSpeed * 12.0f;
+					m_bullet->SetMoveSpeedZ(SpeedX + moveSpeedFrame.x, SpeedZ + moveSpeedFrame.z);
 					m_Short--;
 					Sound(1);//効果音
 					ShortCount = true;
@@ -277,7 +279,7 @@ void Player::PBullet3()
 //プレイヤーの進化用
 void Player::Pevolution()
 {
-	if (StarCount == 5 && m_mode == 0)
+	if (StarCount >= 5 && m_mode == 0 && StarCount <= 9 && m_mode == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
 		m_scale = { 9.0f,9.0f,9.0f };
@@ -291,7 +293,7 @@ void Player::Pevolution()
 		m_mode = 1;
 		Sound(2);//効果音
 	}
-	if (StarCount == 10 && m_mode == 1|| StarCount == 10 && Ver == 0)
+	if (StarCount >= 10 && m_mode == 1|| StarCount >= 10 && Ver == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType3.cmo");
 		m_scale = { 10.0f,10.0f,10.0f };
@@ -364,8 +366,8 @@ void Player::Respawn()
 		{
 			if (Ver == 0) {
 				m_skinModelRender->Init(L"modelData/Senkan.cmo");
-				m_skinModelRender->SetPosition(m_position);
-				m_CharaCon.SetPosition(m_position);
+				m_skinModelRender->SetPosition(Res);
+				m_CharaCon.SetPosition(Res);
 				d_timer = 0;
 				DeathCount = false;
 				Muteki = true;
@@ -376,8 +378,8 @@ void Player::Respawn()
 			else if (Ver == 1)
 			{
 				m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
-				m_skinModelRender->SetPosition(m_position);
-				m_CharaCon.SetPosition(m_position);
+				m_skinModelRender->SetPosition(Res);
+				m_CharaCon.SetPosition(Res);
 				d_timer = 0;
 				DeathCount = false;
 				Muteki = true;
@@ -387,8 +389,8 @@ void Player::Respawn()
 			else if (Ver == 2)
 			{
 				m_skinModelRender->Init(L"modelData/SenkanType3.cmo");
-				m_skinModelRender->SetPosition(m_position);
-				m_CharaCon.SetPosition(m_position);
+				m_skinModelRender->SetPosition(Res);
+				m_CharaCon.SetPosition(Res);
 				d_timer = 0;
 				DeathCount = false;
 				Muteki = true;
@@ -446,22 +448,17 @@ void Player::Houdai()
 //☆の当たり判定。
 void Player::S_Hantei()
 {
-	if (m_game->GetS_Init() == false)
-	{
 
-	}
-	else if (m_game->GetS_Init() == true) {
-		QueryGOs<Star>("Star", [&](Star* star)->bool{
-			CVector3 Kyori = star->GetPosition() - m_position;
-			if (Kyori.Length() < StarHantei) {
-				StarCount ++;
-				draw_S->AddKazu(1);
-				m_game->SetStarCount(-1);
-				star->Death();
-			}
-			return true;
-		});
-	}
+	QueryGOs<Star>("Star", [&](Star* star)->bool {
+		CVector3 Kyori = star->GetPosition() - m_position;
+		if (Kyori.Length() < StarHantei) {
+			StarCount++;
+			draw_S->AddKazu(1);
+			m_game->SetStarCount(-1);
+			star->Death();
+		}
+		return true;
+	});
 }
 //プレイヤーの落とした☆の当たり判定。
 void Player::PlS_Hantei()
