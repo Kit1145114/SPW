@@ -2089,6 +2089,7 @@
     <Media Include="Assets\sound\bakuhatu.wav" />
     <Media Include="Assets\sound\kaisen.wav" />
     <Media Include="Assets\sound\Kettei.wav" />
+    <Media Include="Assets\sound\kira-nn.wav" />
     <Media Include="Assets\sound\OP.wav" />
     <Media Include="Assets\sound\piko.wav" />
     <Media Include="Assets\sound\power-up1.wav" />

@@ -10,6 +10,11 @@ Star::Star()
 	m_skinModelRender->SetScale(m_scale);
 	m_player = FindGO<Player>("Player");
 	m_game = FindGO<Game>("Game");
+	//効果音（爆発）;
+	SoundSource = NewGO<prefab::CSoundSource>(0);
+	SoundSource->Init(L"sound/kira-nn.wav");
+	SoundSource->Play(false);                     //ワンショット再生。
+	SoundSource->SetVolume(0.1f);                 //音量調節。
 }
 
 
