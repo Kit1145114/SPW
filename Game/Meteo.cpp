@@ -23,11 +23,16 @@ bool Meteo::Start()
 
 void Meteo::Update()
 {
-
+	timer++;
+	if (timer == 1000)
+	{
+		Death();
+	}
 }
 
 void Meteo::Move()
 {
+
 }
 
 void Meteo::Death()
