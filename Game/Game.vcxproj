@@ -1793,6 +1793,7 @@
     <ClCompile Include="GamenTimer.cpp" />
     <ClCompile Include="GameWait.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Meteo.cpp" />
     <ClCompile Include="Network\NetManager.cpp" />
     <ClCompile Include="Network\NetPad.cpp" />
     <ClCompile Include="Network\PadRingBuffer.cpp" />
@@ -1844,6 +1845,7 @@
     <ClInclude Include="GamenDraw.h" />
     <ClInclude Include="GamenTimer.h" />
     <ClInclude Include="GameWait.h" />
+    <ClInclude Include="Meteo.h" />
     <ClInclude Include="Network\NetManager.h" />
     <ClInclude Include="Network\NetPad.h" />
     <ClInclude Include="Network\NPad.h" />
@@ -2015,6 +2017,7 @@
     <MeshContentTask Include="Assets\modelData\Bullet4.FBX" />
     <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
     <MeshContentTask Include="Assets\modelData\Hako.FBX" />
+    <MeshContentTask Include="Assets\modelData\Inseki.FBX" />
     <MeshContentTask Include="Assets\modelData\planet01.FBX" />
     <MeshContentTask Include="Assets\modelData\planet02.FBX" />
     <MeshContentTask Include="Assets\modelData\planet03.FBX" />
@@ -2048,6 +2051,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <ImageContentTask Include="Assets\sprite\Star.png" />
     <ImageContentTask Include="Assets\sprite\Stage2.png" />
     <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\Stage4.png" />

@@ -50,5 +50,6 @@ private:
 	int StarKazu = 0;
 	int StarCount = 0;
 	float angle = 0.0f;
+	float S_move = 15.0f;
 };
 

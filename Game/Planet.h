@@ -43,6 +43,7 @@ private:
 	float radius = { 30.0f };//	基本惑星の半径
 	bool movecount = false;
 	bool CountExplosion = false;
+	bool repopflag = false;    //ポップ時いきなり他と被るのを防ぐのに使うフラグ
 	int myPlanetnumber =0;    //自分のPlametナンバー保存用
 	int time = 0;   //plametが誕生してからの時間
 };

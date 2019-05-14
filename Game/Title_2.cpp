@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Title_2.h"
 #include "GameWait.h"
+#include "Fade.h"
 
 Title_2::Title_2()
 {
@@ -23,6 +24,8 @@ bool Title_2::Start()
 	m_bgm->Play(true);
 	m_bgm->SetVolume(0.1f);
 	m_Draw = NewGO<GamenDraw>(0, "GamenDraw");
+
+	Fade::fadeOut();
 	return true;
 }
 
@@ -30,6 +33,7 @@ void Title_2::Update()
 {
 	if (mode == 0 && Pad(0).IsTrigger(enButtonA) == true)
 	{
+		Fade::fadeIn([&]() {
 		DeleteGO(this);
 		//NewGO<SansenGamen>(1,"SansenGamen");
 #ifdef UseNetwork
@@ -37,10 +41,13 @@ void Title_2::Update()
 #else
 		NewGO<SansenGamen>(1);
 #endif
+		});
 	}
 	else if (mode == 1&& Pad(0).IsTrigger(enButtonA) == true)
 	{
-		DeleteGO(this);
-		NewGO<SetumeiGamen>(0, "SetumeiGamen");
+		Fade::fadeIn([&]() {
+			DeleteGO(this);
+			NewGO<SetumeiGamen>(0, "SetumeiGamen");
+		});
 	}
 }

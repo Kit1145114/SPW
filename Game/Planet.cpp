@@ -82,7 +82,8 @@ void Planet::Generate(int Reload, int Planetnum) {
 			}
 
 			CVector3 hako;
-			//for (bool repopflag = false; repopflag == false;) {
+			do{
+				m_planet->repopflag = false;
 				//ランダムポップ。
 				float vx = Random().GetRandDouble();
 				float vz = Random().GetRandDouble();
@@ -94,14 +95,6 @@ void Planet::Generate(int Reload, int Planetnum) {
 				if (Random().GetRandDouble() <= 0.5f)
 					hako.z *= -1;
 
-				//for (int j = 0; j < Planetnumber_00;j++) {
-				//	if (j == m_planet->myPlanetnumber) //自分の時は++で飛ばす。
-				//		j++;
-				//	CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - m_planet->p_position;
-				//	if (kyori.Length() < m_planet->radius) {
-				//			repopflag = true;
-				//	}
-				//}
 				//ランダム生成する場所の制限。
 				float PosLimitx = 30000.0f;
 				float PosLimitz = 20000.0f;
@@ -109,9 +102,28 @@ void Planet::Generate(int Reload, int Planetnum) {
 				hako.z *= PosLimitz;
 
 				m_planet->p_position = hako;
-
+				
 				m_planet->init(m_planet->p_position, P_skinModelRender);
-			//}
+
+				//ポップ時にプレイヤーとぶつからないように。
+				for (int j = 0; j < Game::GetInstance()->GetSansenKazu(); j++) {
+					if (j != Game::GetInstance()->GetSansenKazu()){ //自分でなければ
+						CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - m_planet->p_position;
+						if (kyori.Length() < m_planet->radius + 500.0f) {
+							m_planet->repopflag = true;
+						}
+					}
+				}
+				//ポップ時に惑星とぶつからないように。
+				//for (int j = 0; j < Planetnumber_Num; j++) {
+				//	if (j == m_planet->myPlanetnumber) {//自分でなければ
+				//		CVector3 kyori = Game::GetInstance()->memoryPP[i]->p_position - m_planet->p_position;
+				//		if (kyori.Length() < m_planet->radius + 500.0f) {
+				//			m_planet->repopflag = true;
+				//		}
+				//	}
+				//}
+			}while(m_planet->repopflag == true);
 	}
 }
 //星の生成。
@@ -181,12 +193,15 @@ void Planet::Death() {
 	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
 	
 	for (int i = 0;i < Game::GetInstance()->GetSansenKazu();i++) {
-		CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - p_position;
-		if (kyori.Length() < radius
-			&& Game::GetInstance()->m_player[i]->GetDeathCount() == false) {
-			Game::GetInstance()->m_player[i]->AddHP(-100);
-			if (time > 2) { //ＰＯＰ時は勘弁してやっぞ！
-				explosion();
+		//プレイヤーが無敵なら攻撃をやめる。
+		if (Game::GetInstance()->m_player[i]->GetMuteki() == false) {
+			CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - p_position;
+			if (kyori.Length() < radius
+				&& Game::GetInstance()->m_player[i]->GetDeathCount() == false) {
+				Game::GetInstance()->m_player[i]->AddHP(-100);
+				if (time > 2) { //ＰＯＰ時は勘弁してやっぞ！
+					explosion();
+				}
 			}
 		}
 	}

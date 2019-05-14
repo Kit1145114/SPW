@@ -18,18 +18,14 @@ Star::~Star()
 	DeleteGO(m_skinModelRender);
 }
 
-bool Star::Start()
-{
-	//m_game = FindGO<Game>("Game");
-	return true;
-}
+
 
 void Star::Update()
 {
 	Rotation();
 	Push();
 	m_timer++;
-	if (m_timer == 300)
+	if (m_timer == Limit)
 	{
 		m_game->m_star = nullptr;
 		m_game->SetStarCount(-1);

@@ -5,6 +5,7 @@
 #include"Title_1.h"
 #include "Game.h"
 #include "Network/NetManager.h"
+#include "Fade.h"
 
 namespace {
 	/*!
@@ -137,6 +138,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
 	//エンジンを初期化。
 	if (Engine().Init(initParam) == true) {
+		Fade::Init();
 		NewGO<Title_1>(0, nullptr);
 		//ゲームループを実行。
 		Engine().RunGameLoop();
@@ -146,6 +148,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	if (NetManager::isInited()) {
 		NetManager::deleteManager();
 	}
+	Fade::Delete();
 	return 0;
 }
 

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Title_1.h"
-
+#include "Fade.h"
 
 Title_1::Title_1()
 {
@@ -22,9 +22,11 @@ bool Title_1::Start()
 void Title_1::Update()
 {
 	m_timer++;
-	if (m_timer == 60)
+	if (m_timer == Limit)
 	{
-		DeleteGO(this);
-		NewGO<Title_2>(0,"Title_2");
+		Fade::fadeIn([&]() {
+			DeleteGO(this);
+			NewGO<Title_2>(0, "Title_2");
+		});
 	}
 }
