@@ -639,6 +639,7 @@ void Player::Sound(int SoundNum)
 		SoundSource = NewGO<prefab::CSoundSource>(0);
 		SoundSource ->Init(L"sound/shot1.wav");
 		SoundSource->Play(false);
+		SoundSource->SetVolume(0.5f);                 //âπó í≤êﬂÅB
 	}
 	if (SoundNum == 2) {//êiâª
 		SoundSource = NewGO<prefab::CSoundSource>(0);

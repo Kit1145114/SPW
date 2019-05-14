@@ -18,9 +18,10 @@ public:
 	void Death();
 	void explosion();
 	void Timer();
-	static void Generate(int Reload,int Planetnum);
+	static bool Generate(int Reload,int Planetnum);
+	static void GenerateAll(int Reload, int Planetnum);
+	void initAll(CVector3 position, prefab::CSkinModelRender* skinModelRender);
 	void init(CVector3 position, prefab::CSkinModelRender* skinModelRender, float scale);
-
 	CVector3 GetPosition() {
 		return p_position;
 	} 
@@ -33,6 +34,7 @@ private:
 	CVector3 p_position = CVector3::Zero;
 	
 	CVector3 p_moveSpeed = CVector3::Zero;
+	CVector3 scale = CVector3::Zero;
 	CQuaternion p_rotation = CQuaternion::Identity;
 	CVector3 randomspeed = CVector3::Zero;
 	prefab::CSkinModelRender* p_skinModelRender = nullptr;
