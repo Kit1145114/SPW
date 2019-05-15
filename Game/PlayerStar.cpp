@@ -47,7 +47,7 @@ bool PlayerStar::Start()
 void PlayerStar::Update()
 {
 	Rotation();
-	Move();
+	//Move();
 	m_timer++;
 	if (m_timer == MaxTimer)
 	{

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "Game.h"
 #include"field.h"
 #include "tkEngine/light/tkDirectionLight.h"
@@ -39,14 +39,19 @@ Game::~Game()
 	DeleteGO(m_planet);
 	DeleteGO(bgmSoundSource);
 	DeleteGO(Pl1);
-	DeleteGOs("planet");//PlanetƒNƒ‰ƒX
-	DeleteGOs("BlackHole");//BlackHoleƒNƒ‰ƒX
-	DeleteGOs("PlayerBullet");//BulletƒNƒ‰ƒX
-	DeleteGOs("Star");//StarƒNƒ‰ƒX
+	DeleteGOs("planet");//Planetã‚¯ãƒ©ã‚¹
+	DeleteGOs("BlackHole");//BlackHoleã‚¯ãƒ©ã‚¹
+	DeleteGOs("PlayerBullet");//Bulletã‚¯ãƒ©ã‚¹
+	DeleteGOs("Star");//Starã‚¯ãƒ©ã‚¹
+	DeleteGO("ãã‚‰");
 }
 
 bool Game::Start()
 {
+	auto sky = NewGO<prefab::CSky>(0, "ãã‚‰");
+	sky->SetScale({ 50000.0f, 50000.0f, 50000.0f });
+	sky->SetEmissionColor({ 0.1484f, 0.1484f, 0.398f });
+	LightManager().SetAmbientLight({10.0f, 10.0f, 10.0f});
 	switch (SansenKazu)
 	{
 	case 1:
@@ -117,7 +122,7 @@ void Game::Update()
 		Star_Life();
 		PlStar_Life();
 		Bullet_Life();
-		//“–‚½‚è”»’è•\¦
+		//å½“ãŸã‚Šåˆ¤å®šè¡¨ç¤º
 		//dbg::SetDrawPhysicsCollisionEnable();
 		if (Pad(0).IsPress(enButtonSelect) == true)
 		{
@@ -129,7 +134,7 @@ void Game::Update()
 	}
 	else if (GameMode == 1)
 	{
-		//TODO ƒlƒbƒg‘Îí—p‚É•Ï‚¦‚é•K—v‚ª‚ ‚é
+		//TODO ãƒãƒƒãƒˆå¯¾æˆ¦ç”¨ã«å¤‰ãˆã‚‹å¿…è¦ãŒã‚ã‚‹
 		Fade::fadeIn([&]() {
 			GameMode = 0;
 			NewGO<ResultGamen>(0, "ResultGamen")->SetSansenKazu(SansenKazu);

@@ -67,7 +67,7 @@ void Player::Update()
 	MutekiTimes();
 	HP();
 	StarPos();
-	StarPop();
+	//StarPop();
 	memory_position = m_position;
 	r_ring->SetPosition(m_position);
 	draw_S->SetBulletKazu(m_Short);
@@ -372,9 +372,23 @@ void Player::Respawn()
 				d_timer = 0;
 				DeathCount = false;
 				Muteki = true;
-				Alive = true;
 				CountExplosion = false;
 				PlHP = MaxHP;
+				if (StarCount > 1 && Alive == false)
+				{
+					PopStar = StarCount / 2;
+					StarCount -= PopStar;
+					draw_S->SetKazu(StarCount);
+					Plstar = NewGO<PlayerStar>(0, "PlayerStar");
+					Plstar->SetPosition(Tyuou);
+					Plstar->SetStarCount(PopStar);
+					Game::GetInstance()->AddPlStarCount(1);
+					Alive = true;
+				}
+				else if(StarCount < 1 && Alive == false)
+				{
+					Alive = true;
+				}
 			}
 			else if (Ver == 1)
 			{
@@ -386,6 +400,21 @@ void Player::Respawn()
 				Muteki = true;
 				Alive = true;
 				PlHP = MaxHP;
+				if (StarCount > 1 && Alive == false)
+				{
+					PopStar = StarCount / 2;
+					StarCount -= PopStar;
+					draw_S->SetKazu(StarCount);
+					Plstar = NewGO<PlayerStar>(0, "PlayerStar");
+					Plstar->SetPosition(Tyuou);
+					Plstar->SetStarCount(PopStar);
+					Game::GetInstance()->AddPlStarCount(1);
+					Alive = true;
+				}
+				else if (StarCount < 1 && Alive == false)
+				{
+					Alive = true;
+				}
 			}
 			else if (Ver == 2)
 			{
@@ -397,6 +426,21 @@ void Player::Respawn()
 				Muteki = true;
 				Alive = true;
 				PlHP = MaxHP;
+				if (StarCount > 1 && Alive == false)
+				{
+					PopStar = StarCount / 2;
+					StarCount -= PopStar;
+					draw_S->SetKazu(StarCount);
+					Plstar = NewGO<PlayerStar>(0, "PlayerStar");
+					Plstar->SetPosition(Tyuou);
+					Plstar->SetStarCount(PopStar);
+					Game::GetInstance()->AddPlStarCount(1);
+					Alive = true;
+				}
+				else if (StarCount < 1 && Alive == false)
+				{
+					Alive = true;
+				}
 			}
 		}
 	}
@@ -648,7 +692,7 @@ void Player::Sound(int SoundNum)
 		SoundSource->Play(false);
 	}
 }
-
+//プレイヤーの中心。
 void Player::StarPos()
 {
 	switch (m_game->GetSansenKazu())
@@ -660,12 +704,12 @@ void Player::StarPos()
 		Tyuou = m_player[0]->GetPosition()/2 + m_player[1]->GetPosition()/2;
 		break;
 	case 3:
-		Tyuou = m_player[0]->GetPosition()/2 + m_player[1]->GetPosition()/2
-			- m_player[2]->GetPosition()/2;
+		Tyuou = m_player[0]->GetPosition()/3 + m_player[1]->GetPosition()/3
+			+ m_player[2]->GetPosition()/3;
 		break;
 	case 4:
-		Tyuou = m_player[0]->GetPosition()/2 + m_player[1]->GetPosition()/2
-			- m_player[2]->GetPosition()/2 + m_player[3]->GetPosition()/2;
+		Tyuou = m_player[0]->GetPosition()/4 + m_player[1]->GetPosition()/4
+			+ m_player[2]->GetPosition()/4 + m_player[3]->GetPosition()/4;
 		break;
 	}
 }
