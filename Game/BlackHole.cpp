@@ -27,10 +27,19 @@ bool BlackHole::Start()
 
 void BlackHole::Generate(CVector3 position, float magnification)
 {
-	//ポジション保存。
 	BlackHole* bh = NewGO<BlackHole>(0, "BlackHole");
+	//保存。
 	bh->m_position = position;
 	bh->radius *= magnification/500;
+}
+
+void BlackHole::Generate2(CVector3 position, float magnification)
+{
+	BlackHole* bh = NewGO<BlackHole>(0, "BlackHole");
+	//保存。
+	bh->m_position = position;
+	bh->radius *= magnification / 500;
+	bh->Countflg = true;  //trueにすることで自然消滅しなくなる。
 }
 
 void BlackHole::Move()
@@ -104,9 +113,11 @@ void BlackHole::Gravity()
 
 void BlackHole::Count()
 {
-	timer++;
-	if (timer >720) {
-		Death();
+	if (Countflg == false) {
+		timer++;
+		if (timer > 720) {
+			Death();
+		}
 	}
 }
 

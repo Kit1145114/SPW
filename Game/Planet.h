@@ -17,11 +17,11 @@ public:
 	void Move();
 	void Death();
 	void explosion();
-	void Timer();
 	static bool Generate(int Reload,int Planetnum);
 	static void GenerateAll(int Reload, int Planetnum);
 	void initAll(CVector3 position, prefab::CSkinModelRender* skinModelRender);
 	void init(CVector3 position, prefab::CSkinModelRender* skinModelRender, float scale);
+
 	CVector3 GetPosition() {
 		return p_position;
 	} 
@@ -32,7 +32,6 @@ public:
 private:
 	CCharacterController p_CharaCon;
 	CVector3 p_position = CVector3::Zero;
-	
 	CVector3 p_moveSpeed = CVector3::Zero;
 	CVector3 scale = { 1.0f,1.0f,1.0f };
 	CQuaternion p_rotation = CQuaternion::Identity;
@@ -42,11 +41,11 @@ private:
 	
 	Bullet* m_bullet = nullptr;
 	Planet* hoge = nullptr;
-	float radius = { 30.0f };//	基本惑星の半径
+	float radius = { 30.0f };  //基本惑星の半径
 	bool movecount = false;
 	bool CountExplosion = false;
 	bool repopflag = false;    //ポップ時いきなり他と被るのを防ぐのに使うフラグ
-	int myPlanetnumber =0;    //自分のPlametナンバー保存用
-	int time = 0;   //plametが誕生してからの時間
+	int myPlanetnumber =0;     //自分のPlametナンバー保存用
+	int time = 0;              //plametが誕生してからの時間
 };
 
