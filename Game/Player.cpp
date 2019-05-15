@@ -135,6 +135,8 @@ void Player::PBullet()
 				m_Short = MaxSeiseiVer_1;
 				m_timer = Timer0;
 			}
+		}
+		if (Ver == 0) {
 			if (DeathCount == false) {
 				if (m_Short > 0) {
 					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
@@ -143,7 +145,6 @@ void Player::PBullet()
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						//プレイヤーの速度の単位をm/frameに変更する。
-						CVector3 moveSpeedFrame = m_moveSpeed * 12.0f;
 						m_bullet->SetMoveSpeedZ(SpeedX + moveSpeedFrame.x, SpeedZ + moveSpeedFrame.z);
 						m_Short--;
 						Sound(1);//効果音
@@ -155,7 +156,6 @@ void Player::PBullet()
 						if (p_timer == 98)
 						{
 							ShortCount = false;
-							//m_game->SetPBInit(false);
 							p_timer = Timer0;
 						}
 					}
@@ -180,6 +180,8 @@ void Player::PBullet2()
 				m_Short = MaxSeiseiVer_2;
 				m_timer = Timer0;
 			}
+		}
+		if(Ver == 1){
 			if (DeathCount == false)
 				if (m_Short > 0)
 				{
@@ -237,6 +239,8 @@ void Player::PBullet3()
 				m_Short = MaxSeiseiVer_3;
 				m_timer = Timer0;
 			}
+		}
+		if(Ver == 2){
 			if (DeathCount == false)
 				if (m_Short > 0)
 				{
