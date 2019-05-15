@@ -135,6 +135,10 @@ public:
 		Res.y = y;
 		Res.z = z;
 	}
+	CVector3 GetmoveSpeedFrame()
+	{
+		return moveSpeedFrame = m_moveSpeed * 15.0f;
+	}
 private:
 	Player * m_player[4] = { nullptr };
 	Draw_Player * draw_Pl = nullptr;
@@ -177,7 +181,7 @@ private:
 	int Damage = 20;
 	int SeiseiVer_1 = 25;
 	int SeiseiVer_2 = 15;
-	int SeiseiVer_3 = 8;
+	int SeiseiVer_3 = 6;
 	int MaxSeiseiVer_1 = 30;
 	int MaxSeiseiVer_2 = 50;
 	int MaxSeiseiVer_3 = 99;

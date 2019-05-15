@@ -145,7 +145,7 @@ void Player::PBullet()
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						//プレイヤーの速度の単位をm/frameに変更する。
-						m_bullet->SetMoveSpeedZ(SpeedX + moveSpeedFrame.x, SpeedZ + moveSpeedFrame.z);
+						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 						m_Short--;
 						Sound(1);//効果音
 						ShortCount = true;
@@ -190,21 +190,21 @@ void Player::PBullet2()
 						m_bullet->SetPB(PadNum);
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-						m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 						m_bullet->SetPB(PadNum);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetPositionX(50.0f);
 						m_bullet->SetPosition(m_position);
-						m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 						m_bullet->SetPB(PadNum);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetPositionX(-100.0f);
 						m_bullet->SetPosition(m_position);
-						m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 						m_Short--;
 						Sound(1);//効果音
 						ShortCount = true;
@@ -249,21 +249,22 @@ void Player::PBullet3()
 						m_bullet->SetPB(PadNum);
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-						m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 						m_bullet->SetPB(PadNum);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetPositionX(50.0f);
 						m_bullet->SetPosition(m_position);
-						m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 						m_bullet->SetPB(PadNum);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetPositionX(-100.0f);
 						m_bullet->SetPosition(m_position);
-						m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
+
 						m_Short--;
 						Sound(1);//効果音
 						ShortCount = true;
@@ -473,8 +474,8 @@ void Player::Houdai()
 		{
 			HoukouX = memoryHX;
 			HoukouZ = memoryHZ;
-			//SpeedX = memorySX;
-			//SpeedZ = memorySZ;
+			SpeedX = memorySX;
+			SpeedZ = memorySZ;
 		}
 	}
 	else if (Ver == 2)
@@ -487,8 +488,8 @@ void Player::Houdai()
 		{
 			HoukouX = memoryHX;
 			HoukouZ = memoryHZ;
-			//SpeedX = memorySX;
-			//SpeedZ = memorySZ;
+			SpeedX = memorySX;
+			SpeedZ = memorySZ;
 		}
 	}
 }
