@@ -555,6 +555,7 @@
     <ClInclude Include="Fade.h" />
     <ClInclude Include="Meteo.h" />
     <ClInclude Include="Stage1\Satellite.h" />
+    <ClInclude Include="Stage1\CVector2.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">

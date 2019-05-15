@@ -2000,6 +2000,7 @@
     <ClInclude Include="ResultGamen.h" />
     <ClInclude Include="Network\PadRingBuffer.h" />
     <ClInclude Include="SansenGamen.h" />
+    <ClInclude Include="Stage1\CVector2.h" />
     <ClInclude Include="Stage1\Satellite.h" />
     <ClInclude Include="Senkan_Rtype_2.h" />
     <ClInclude Include="SetumeiGamen.h" />

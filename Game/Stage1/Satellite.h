@@ -1,6 +1,21 @@
 #pragma once
 #include "..\..\tkEngine\physics\tkPhysicsDynamicObject.h"
 
+class BoxCollider2D{
+public:
+	void Init(const CVector3 & pos, const CVector2& localCenter ,CVector2 size);
+
+	float hitTest(const CVector3& pos, float radius);
+
+	void Rotate(CQuaternion rot);
+	CVector2 vertex[4];
+	CVector2 shaft = {1, 0}; // ‰ñ“]‚·‚é‚Æ‚«‚Ì–_
+private:
+	CVector2 m_pos;
+	
+	CVector2 sideVec[4];
+};
+
 class Satellite : public IGameObject{
 public:
 	Satellite();
@@ -14,10 +29,21 @@ public:
 	};
 
 private:
-	prefab::CSkinModelRender* m_modelRender = nullptr;
-	CPhysicsDynamicObject collider;
+	static const CVector2 colliderSize;
+	static const CVector2 colliderPosition;
 
-	CQuaternion m_rot = CQuaternion::Identity;
-	CVector3 m_pos = CVector3::Zero;
+	prefab::CSkinModelRender* m_modelRender = nullptr;
+
+	BoxCollider2D collider;
+
+	float rotPower = 0.0f;
+	CQuaternion rot = CQuaternion::Identity;
+	CVector3 m_pos = {0,1000,0};
+
+	CVector3 m_move = { 100,0,100 };
+
+
+	prefab::CSkinModelRender* tester[4];
+	prefab::CSkinModelRender* testshaft;
 };
 
