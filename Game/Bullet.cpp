@@ -32,7 +32,7 @@ bool Bullet::Start()
 	{
 		m_skinModelRender->Init(L"modelData/Bullet4.cmo");
 	}
-	m_scale = { 5.0f,5.0f,5.0f };
+	m_scale = { 10.0f,10.0f,10.0f };
 	m_skinModelRender->SetScale(m_scale);
 	return true;
 }

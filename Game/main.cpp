@@ -33,7 +33,7 @@ namespace {
 		//Bloom
 		initParam.graphicsConfing.bloomConfig.isEnable = false;
 		//tonemap
-		initParam.graphicsConfing.tonemapConfig.isEnable = true;
+		initParam.graphicsConfing.tonemapConfig.isEnable = false;
 		initParam.graphicsConfing.tonemapConfig.luminance = 0.2f;
 		//SSR
 		initParam.graphicsConfing.ssrConfig.isEnable = false;
@@ -54,7 +54,7 @@ namespace {
 		initParam.frameBufferHeight = 720;
 		
 		//影の設定。
-		initParam.graphicsConfing.shadowRenderConfig.isEnable = true;
+		initParam.graphicsConfing.shadowRenderConfig.isEnable = false;
 		initParam.graphicsConfing.shadowRenderConfig.shadowMapWidth = 1024;
 		initParam.graphicsConfing.shadowRenderConfig.shadowMapHeight = 1024;
 		initParam.graphicsConfing.shadowRenderConfig.lightHeight = UnitM(20.0f);
@@ -68,10 +68,10 @@ namespace {
 		//Bloom
 		initParam.graphicsConfing.bloomConfig.isEnable = false;
 		//tonemap
-		initParam.graphicsConfing.tonemapConfig.isEnable = true;
+		initParam.graphicsConfing.tonemapConfig.isEnable = false;
 		initParam.graphicsConfing.tonemapConfig.luminance = 0.2f;
 		//SSR
-		initParam.graphicsConfing.ssrConfig.isEnable = true;
+		initParam.graphicsConfing.ssrConfig.isEnable = false;
 		//ディザ
 		initParam.graphicsConfing.ditheringConfig.isEnable = false;
 		//dof
@@ -88,7 +88,7 @@ namespace {
 		initParam.frameBufferWidth = 1920;
 		initParam.frameBufferHeight = 1080;
 		//影の設定。
-		initParam.graphicsConfing.shadowRenderConfig.isEnable = true;
+		initParam.graphicsConfing.shadowRenderConfig.isEnable = false;
 		initParam.graphicsConfing.shadowRenderConfig.shadowMapWidth = 2048;
 		initParam.graphicsConfing.shadowRenderConfig.shadowMapHeight = 2048;
 		initParam.graphicsConfing.shadowRenderConfig.lightHeight = UnitM(10.0f);
@@ -102,12 +102,12 @@ namespace {
 		//Bloom
 		initParam.graphicsConfing.bloomConfig.isEnable = false;
 		//tonemap
-		initParam.graphicsConfing.tonemapConfig.isEnable = true;
+		initParam.graphicsConfing.tonemapConfig.isEnable = false;
 		initParam.graphicsConfing.tonemapConfig.luminance = 0.2f;
 		//SSR
-		initParam.graphicsConfing.ssrConfig.isEnable = true;
+		initParam.graphicsConfing.ssrConfig.isEnable = false;
 		//ディザ
-		initParam.graphicsConfing.ditheringConfig.isEnable = true;
+		initParam.graphicsConfing.ditheringConfig.isEnable = false;
 		//dof
 		initParam.graphicsConfing.dofConfig.isEnable = false;
 	}

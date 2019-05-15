@@ -175,9 +175,9 @@ private:
 	int PlHP = 100;
 	int MaxHP = 100;
 	int Damage = 20;
-	int SeiseiVer_1 = 30;
+	int SeiseiVer_1 = 25;
 	int SeiseiVer_2 = 15;
-	int SeiseiVer_3 = 5;
+	int SeiseiVer_3 = 8;
 	int MaxSeiseiVer_1 = 30;
 	int MaxSeiseiVer_2 = 50;
 	int MaxSeiseiVer_3 = 99;
@@ -189,7 +189,7 @@ private:
 	float SpeedZ = 0.0f;
 	float memorySX = 0.0f;
 	float memorySZ = 0.0f;
-	float BulletHantei = 900.0f;
+	float BulletHantei = 1200.0f;
 	float StarHantei = 900.0f;
 	CVector3 Res = CVector3::Zero;
 
