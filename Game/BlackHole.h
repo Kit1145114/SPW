@@ -13,7 +13,10 @@ public:
 	BlackHole();
 	~BlackHole();
 	bool Start();
-	static void Generate(CVector3 position, float magnification);
+	//時間制限ありの普通のＢＨ
+	static void Generate(CVector3 position, float magnification); 
+	//時間制限なしの固定のＢＨ
+	static void Generate2(CVector3 position, float magnification); 
 	void Move();
 	void Gravity();
 	void Count();
@@ -34,8 +37,9 @@ public:
 	CVector3 m_position = CVector3::Zero;
 	CVector3 scale = { 1.0f,1.0f,1.0f };
 	int timer = 0;
-	float radius = { 1.0f };       //	基本惑星の半径
-	float Searchment = { 1500.0f };//	BHの重力範囲の調整
-	float G_limitar = { 10000.0f };    //   BHの重力（Ｇ）調整 
+	float radius = { 1.0f };       //	基本惑星の半径。
+	float Searchment = { 1500.0f };//	BHの重力範囲の調整。
+	float G_limitar = { 10000.0f };    //   BHの重力（Ｇ）調整。
+	bool Countflg = false;         //自然消滅するかのフラグ。
 };
 

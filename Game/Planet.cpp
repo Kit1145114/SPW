@@ -7,16 +7,17 @@
 class RepopPlanet : public IGameObject {
 	int numpla=0;
 public:
+	void Set(int SetNum) {
+		numpla = SetNum;
+	}
 	void Update()
 	{
 		if (Planet::Generate(1, numpla) == true) {
 			DeleteGO(this);
 		}
 	}
-	void Set(int SetNum) {
-		numpla = SetNum;
-	}
 };
+
 Planet::Planet()
 {
 }
@@ -31,6 +32,7 @@ bool Planet::Start()
 {
 	return true;
 }
+
 void Planet::GenerateAll(int Reload, int Planetnum) {
 
 	Game* m_game = nullptr;
@@ -152,14 +154,12 @@ bool Planet::Generate(int Reload, int Planetnum) {
 			int myplanetnum = 0;
 			if (Reload != Planetnumber_Num) { //Numは初期リスポーンのため例外。
 				w = Planetnum;          //惑星の指定。
-				int myplanetnum = Planetnum;
+				myplanetnum = Planetnum;
 			}
 			else {
 				myplanetnum = i;
 			}
-
 			CVector3 hako;
-			
 			//ランダムポップ。
 			float vx = Random().GetRandDouble();
 			float vz = Random().GetRandDouble();
@@ -182,21 +182,19 @@ bool Planet::Generate(int Reload, int Planetnum) {
 			v += 50.0f * Random().GetRandDouble();
 			float radius = { 30.0f };//	基本惑星の半径
 			radius *= v;
-
 			bool isCreatePlanet = true;//フラグ
 			////ポップ時にプレイヤーとぶつからないように。
 			for (int j = 0; j < Game::GetInstance()->GetSansenKazu(); j++) {
 					CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - hako;
-					if (kyori.Length() < radius + 500.0f) {
+					if (kyori.Length() < radius + 5000.0f) {
 						isCreatePlanet = false;
 					}
-				
 			}
 			//ポップ時に惑星とぶつからないように。
 			//for (int j = 0; j < Planetnumber_Num; j++) {
-			//	if (j == m_planet->myPlanetnumber) {//自分でなければ
+			//	if (j == myplanetnum) {//自分でなければ
 			//		CVector3 kyori = Game::GetInstance()->memoryPP[i]->p_position - hako;
-			//		if (kyori.Length() < m_planet->radius + 500.0f) {
+			//		if (kyori.Length() < radius + 5000.0f) {
 			//			isCreatePlanet = false;
 			//		}
 			//	}
@@ -258,9 +256,10 @@ bool Planet::Generate(int Reload, int Planetnum) {
 					planet->myPlanetnumber = w;    //自分のPlametナンバー保存。
 				}
 				planet->p_position = hako;
-
 				planet->init(planet->p_position, P_skinModelRender,v);
-
+			}
+			else {
+				NewGO<RepopPlanet>(0)->Set(myplanetnum);
 			}
 	}
 	return true;
@@ -325,8 +324,8 @@ void Planet::explosion()
 		float tyousei = 30.0f; //惑星と星のモデルの大きさの差を調整↓。
 		m_star->Pop(this->p_position, this->scale*this->radius/ tyousei);
 		Game::GetInstance()->SetStarCount(1);
-		//Generate(1, myPlanetnumber); //新たな惑星を生成（自分のナンバーの惑星を）。
-		NewGO<RepopPlanet>(0)->Set(myPlanetnumber);
+		Generate(1, myPlanetnumber); //新たな惑星を生成（自分のナンバーの惑星を）。
+		//NewGO<RepopPlanet>(0)->Set(myPlanetnumber);
 		DeleteGO(this);
 
 		//エフェクトを作成。
@@ -344,11 +343,6 @@ void Planet::explosion()
 		SoundSource->Play(false);                     //ワンショット再生。
 		SoundSource->SetVolume(0.1f);                 //音量調節。
 	}
-}
-
-void Planet::Timer()
-{
-	time++;
 }
 //惑星死亡判定。
 void Planet::Death() {
@@ -385,17 +379,14 @@ void Planet::Death() {
 	for (int i = 0;i < Planetnumber_Num;i++) {
 		//ちっ、、、癇に障る野郎だぜ、、追いついたと思ったらすぐ爆破して来やがる(惑星同士の距離判定。
 			//もし比較する惑星が自分でなければ。
-		if (Game::GetInstance()->memoryPP[i] != this) {
-			//2点間の距離を計算する。
+		if (Game::GetInstance()->memoryPP[i] != this
+			&&Game::GetInstance()->memoryPP[i] != nullptr) {
+			//2点間の距離を計算する。.
 			CVector3 diff = Game::GetInstance()->memoryPP[i]->p_position - p_position;
 			//距離が半径以下なら。
-		/*	if (diff.Length() < radius) {
-				explosion();
+		 if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
 				BlackHole::Generate(p_position, radius);
-			}
-			else*/ if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
 				explosion();
-				BlackHole::Generate(p_position, radius);
 			}
 		}
 	}
@@ -410,7 +401,7 @@ void Planet::Death() {
 
 void Planet::Update() {
 	
-	Timer();
+	
 	Move();
 	Death();
 }

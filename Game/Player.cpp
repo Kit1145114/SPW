@@ -685,17 +685,19 @@ void Player::Sound(int SoundNum)
 		SoundSource = NewGO<prefab::CSoundSource>(0);
 		SoundSource->Init(L"sound/bakuhatu.wav");
 		SoundSource->Play(false);                     //ワンショット再生。
+		SoundSource->SetVolume(1.0f);                 //音量調節。
 	}
 	if (SoundNum == 1) {//弾音
 		SoundSource = NewGO<prefab::CSoundSource>(0);
 		SoundSource->Init(L"sound/shot1.wav");
 		SoundSource->Play(false);                     //ワンショット再生。
-		SoundSource->SetVolume(0.5f);                 //音量調節。
+		SoundSource->SetVolume(0.2f);                 //音量調節。
 	}
 	if (SoundNum == 2) {//進化
 		SoundSource = NewGO<prefab::CSoundSource>(0);
 		SoundSource->Init(L"sound/power-up1.wav");
 		SoundSource->Play(false);                     //ワンショット再生。
+		SoundSource->SetVolume(1.0f);                     //音量調節。
 	}
 	if (SoundNum == 3) {//星	
 	SoundSource = NewGO<prefab::CSoundSource>(0);
