@@ -4,6 +4,7 @@
 
 Bullet::Bullet()
 {
+	m_game = Game::GetInstance();
 }
 
 
@@ -14,7 +15,6 @@ Bullet::~Bullet()
 
 bool Bullet::Start()
 {
-	m_game = FindGO<Game>("Game");
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	if (PB == 0)
 	{
@@ -84,6 +84,10 @@ void Bullet::BulletDeath()
 		{
 			b->Death();
 			Death();
+		}
+		else
+		{
+
 		}
 		return true;
 	});
