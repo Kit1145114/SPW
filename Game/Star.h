@@ -14,7 +14,7 @@ public:
 	void Push();
 	void Rotation();
 	void Death();
-	void Pop(CVector3 position);
+	void Pop(CVector3 position, CVector3 scale);
 	CVector3 GetPosition()
 	{
 		return m_position;
@@ -35,7 +35,6 @@ private:
 	CVector3 m_scale = { 1.0f,1.0f,1.0f };
 	CQuaternion m_rotation = CQuaternion::Identity;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
-	prefab::CSoundSource* SoundSource = nullptr;            //BGM用のサウンドソース。
 	int m_timer = 0;
 	int Limit = 300;
 	float angle = 0.0f;
