@@ -321,7 +321,8 @@ void Planet::explosion()
 	if (this->CountExplosion == false) {
 		CountExplosion = true;
 		Star* m_star = NewGO<Star>(0, "Star");
-		m_star->Pop(this->p_position);
+		float tyousei = 30.0f; //惑星と星のモデルの大きさの差を調整↓。
+		m_star->Pop(this->p_position, this->scale*this->radius/ tyousei);
 		Game::GetInstance()->SetStarCount(1);
 		//Generate(1, myPlanetnumber); //新たな惑星を生成（自分のナンバーの惑星を）。
 		NewGO<RepopPlanet>(0)->Set(myPlanetnumber);

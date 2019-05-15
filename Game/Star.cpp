@@ -10,11 +10,6 @@ Star::Star()
 	m_skinModelRender->SetScale(m_scale);
 	m_player = FindGO<Player>("Player");
 	m_game = FindGO<Game>("Game");
-	//効果音;
-	SoundSource = NewGO<prefab::CSoundSource>(0);
-	SoundSource->Init(L"sound/kira-nn.wav");
-	SoundSource->Play(false);                     //ワンショット再生。
-	SoundSource->SetVolume(1.0f);                 //音量調節。
 }
 
 
@@ -40,10 +35,12 @@ void Star::Update()
 }
 
 //☆の出現
-void Star::Pop(CVector3 position)
+void Star::Pop(CVector3 position,CVector3 scale)
 {
 	m_position = position;
+	m_scale = scale;
 	m_skinModelRender->SetPosition(m_position);
+	m_skinModelRender->SetScale(m_scale);
 };
 
 void Star::Push()
@@ -55,7 +52,6 @@ void Star::Rotation()
 {
 	angle += 3.0f;
 	m_rotation.SetRotationDeg(CVector3::AxisY, angle);
-	m_rotation.SetRotationDeg(CVector3::AxisZ, angle);
 	m_skinModelRender->SetRotation(m_rotation);
 }
 

@@ -34,7 +34,7 @@ private:
 	CVector3 p_position = CVector3::Zero;
 	
 	CVector3 p_moveSpeed = CVector3::Zero;
-	CVector3 scale = CVector3::Zero;
+	CVector3 scale = { 1.0f,1.0f,1.0f };
 	CQuaternion p_rotation = CQuaternion::Identity;
 	CVector3 randomspeed = CVector3::Zero;
 	prefab::CSkinModelRender* p_skinModelRender = nullptr;

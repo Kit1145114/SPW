@@ -561,6 +561,7 @@ void Player::StarPop()
 			Plstar->SetStarCount(PopStar);
 			Game::GetInstance()->AddPlStarCount(1);
 			Alive = true;
+			Sound(3);
 		}
 	}
 	else
@@ -634,18 +635,24 @@ void Player::Sound(int SoundNum)
 	if (SoundNum == 0) {//爆発
 		SoundSource = NewGO<prefab::CSoundSource>(0);
 		SoundSource->Init(L"sound/bakuhatu.wav");
-		SoundSource->Play(false);
+		SoundSource->Play(false);                     //ワンショット再生。
 	}
 	if (SoundNum == 1) {//弾音
 		SoundSource = NewGO<prefab::CSoundSource>(0);
-		SoundSource ->Init(L"sound/shot1.wav");
-		SoundSource->Play(false);
+		SoundSource->Init(L"sound/shot1.wav");
+		SoundSource->Play(false);                     //ワンショット再生。
 		SoundSource->SetVolume(0.5f);                 //音量調節。
 	}
 	if (SoundNum == 2) {//進化
 		SoundSource = NewGO<prefab::CSoundSource>(0);
 		SoundSource->Init(L"sound/power-up1.wav");
-		SoundSource->Play(false);
+		SoundSource->Play(false);                     //ワンショット再生。
+	}
+	if (SoundNum == 3) {//星	
+	SoundSource = NewGO<prefab::CSoundSource>(0);
+	SoundSource->Init(L"sound/kira-nn.wav");
+	SoundSource->Play(false);                         //ワンショット再生。
+	SoundSource->SetVolume(1.0f);                     //音量調節。
 	}
 }
 
