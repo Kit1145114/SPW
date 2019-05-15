@@ -27,7 +27,7 @@ bool BlackHole::Start()
 
 void BlackHole::Generate(CVector3 position, float magnification)
 {
-	//ポジションの保存。
+	//ポジション保存。
 	BlackHole* bh = NewGO<BlackHole>(0, "BlackHole");
 	bh->m_position = position;
 	bh->radius *= magnification/500;
