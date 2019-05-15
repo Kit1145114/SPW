@@ -48,6 +48,7 @@ void Bullet::Update()
 	{
 		Death();
 	}
+	BulletDeath();
 }
 
 int Bullet::GetPB()
@@ -73,4 +74,17 @@ void Bullet::Death()
 {
 	DeleteGO(this);
 	m_game->SetKazu(-1);
+}
+
+void Bullet::BulletDeath()
+{
+	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b)->bool{
+		CVector3 kyori = b->GetPosition() - m_position;
+		if (b->GetPB() != PB && kyori.Length() < BulletHantei)
+		{
+			b->Death();
+			Death();
+		}
+		return true;
+	});
 }
