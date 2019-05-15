@@ -67,7 +67,9 @@ void Player::Update()
 	MutekiTimes();
 	HP();
 	StarPos();
-	//StarPop();
+	//
+StarPop();
+	Playerwarp();
 	memory_position = m_position;
 	r_ring->SetPosition(m_position);
 	draw_S->SetBulletKazu(m_Short);
@@ -721,5 +723,33 @@ void Player::StarPos()
 		Tyuou = m_player[0]->GetPosition()/4 + m_player[1]->GetPosition()/4
 			+ m_player[2]->GetPosition()/4 + m_player[3]->GetPosition()/4;
 		break;
+	}
+}
+
+void Player::Playerwarp()
+{
+	if (m_position.x > 35000.0f)
+	{
+		m_position.x = -30000.0f;
+		m_CharaCon.SetPosition(m_position);
+		m_skinModelRender->SetPosition(m_position);
+	}
+	if	(m_position.x < -35000.0f)
+	{
+	m_position.x = 30000.0f;
+	m_CharaCon.SetPosition(m_position);
+	m_skinModelRender->SetPosition(m_position);
+	}
+	if (m_position.z > 19000.0f)
+	{
+		m_position.z = -15000.0f;
+		m_CharaCon.SetPosition(m_position);
+		m_skinModelRender->SetPosition(m_position);
+	}
+	if (m_position.z < -19000.0f)
+	{
+		m_position.z = 15000.0f;
+		m_CharaCon.SetPosition(m_position);
+		m_skinModelRender->SetPosition(m_position);
 	}
 }

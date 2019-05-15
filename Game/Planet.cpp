@@ -140,6 +140,7 @@ void Planet::GenerateAll(int Reload, int Planetnum) {
 		} while (m_planet->repopflag == true);
 	}
 }
+
 bool Planet::Generate(int Reload, int Planetnum) {
 	
 	Game* game = nullptr;

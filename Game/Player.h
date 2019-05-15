@@ -51,6 +51,7 @@ public:
 	void SetPadNum(int num);
 	void Sound(int SoundNum);
 	void StarPos();
+	void Playerwarp();
 	CVector3 GetPosition() {
 		return m_position;
 	}
