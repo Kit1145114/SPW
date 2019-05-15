@@ -122,42 +122,42 @@ void Player::Move()
 //プレイヤーの球(第一形態）
 void Player::PBullet()
 {
-	if (DeathCount == false) {
-		if (Ver == 0) {
-			m_timer++;  // =GameTime().GetFrameDeltaTime;
-			p_timer++;
-			if (m_timer > SeiseiVer_1) {
-				if (m_Short < MaxSeiseiVer_1) {
-					m_Short++;
-					m_timer = Timer0;
-				}
-				else
-				{
-					m_Short = MaxSeiseiVer_1;
-					m_timer = Timer0;
-				}
+	if (Ver == 0) {
+		m_timer++;  // =GameTime().GetFrameDeltaTime;
+		p_timer++;
+		if (m_timer > SeiseiVer_1) {
+			if (m_Short < MaxSeiseiVer_1) {
+				m_Short++;
+				m_timer = Timer0;
 			}
-			if (m_Short > 0) {
-				if (NPad(PadNum).IsPress(enButtonRB2) == true) {
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPB(PadNum);
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					//プレイヤーの速度の単位をm/frameに変更する。
-					CVector3 moveSpeedFrame = m_moveSpeed * 12.0f;
-					m_bullet->SetMoveSpeedZ(SpeedX + moveSpeedFrame.x, SpeedZ + moveSpeedFrame.z);
-					m_Short--;
-					Sound(1);//効果音
-					ShortCount = true;
-					m_game->SetKazu(1);
-					p_timer = Timer0;
-				}
-				else {
-					if (p_timer == 98)
-					{
-						ShortCount = false;
-						//m_game->SetPBInit(false);
+			else
+			{
+				m_Short = MaxSeiseiVer_1;
+				m_timer = Timer0;
+			}
+			if (DeathCount == false) {
+				if (m_Short > 0) {
+					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPB(PadNum);
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						//プレイヤーの速度の単位をm/frameに変更する。
+						CVector3 moveSpeedFrame = m_moveSpeed * 12.0f;
+						m_bullet->SetMoveSpeedZ(SpeedX + moveSpeedFrame.x, SpeedZ + moveSpeedFrame.z);
+						m_Short--;
+						Sound(1);//効果音
+						ShortCount = true;
+						m_game->SetKazu(1);
 						p_timer = Timer0;
+					}
+					else {
+						if (p_timer == 98)
+						{
+							ShortCount = false;
+							//m_game->SetPBInit(false);
+							p_timer = Timer0;
+						}
 					}
 				}
 			}
@@ -167,115 +167,115 @@ void Player::PBullet()
 //プレイヤーの球（第二形態）
 void Player::PBullet2()
 {
-	if(DeathCount == false)
-		if (Ver == 1)
-		{
-			m_timer++;  // =GameTime().GetFrameDeltaTime;
-			p_timer++;
-			if (m_timer > SeiseiVer_2) {
-				if (m_Short < MaxSeiseiVer_2) {
-					m_Short++;
-					m_timer = Timer0;
-				}
-				else {
-					m_Short = MaxSeiseiVer_2;
-					m_timer = Timer0;
-				}
+	if (Ver == 1)
+	{
+		m_timer++;  // =GameTime().GetFrameDeltaTime;
+		p_timer++;
+		if (m_timer > SeiseiVer_2) {
+			if (m_Short < MaxSeiseiVer_2) {
+				m_Short++;
+				m_timer = Timer0;
 			}
-			if (m_Short > 0)
-			{
-				if (NPad(PadNum).IsPress(enButtonRB2) == true) {
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPB(PadNum);
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+			else {
+				m_Short = MaxSeiseiVer_2;
+				m_timer = Timer0;
+			}
+			if (DeathCount == false)
+				if (m_Short > 0)
+				{
+					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPB(PadNum);
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPB(PadNum);
-					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					m_bullet->SetPositionX(50.0f);
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPB(PadNum);
+						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						m_bullet->SetPositionX(50.0f);
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPB(PadNum);
-					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					m_bullet->SetPositionX(-100.0f);
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
-					m_Short--;
-					Sound(1);//効果音
-					ShortCount = true;
-					m_game->SetKazu(3);
-					p_timer = Timer0;
-				}
-				else {
-					if (p_timer == 98)
-					{
-						ShortCount = false;
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPB(PadNum);
+						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						m_bullet->SetPositionX(-100.0f);
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+						m_Short--;
+						Sound(1);//効果音
+						ShortCount = true;
+						m_game->SetKazu(3);
 						p_timer = Timer0;
 					}
+					else {
+						if (p_timer == 98)
+						{
+							ShortCount = false;
+							p_timer = Timer0;
+						}
+					}
 				}
-			}
 		}
+	}
 }
 //プレイヤーの球（最終形態）
 void Player::PBullet3()
 {
-	if (DeathCount == false)
-		if (Ver == 2)
-		{
-			m_timer++;  // =GameTime().GetFrameDeltaTime;
-			p_timer++;
-			if (m_timer > SeiseiVer_3) {
-				if (m_Short < MaxSeiseiVer_3) {
-					m_Short++;
-					m_timer = Timer0;
-				}
-				else
-				{
-					m_Short = MaxSeiseiVer_3;
-					m_timer = Timer0;
-				}
+	if (Ver == 2)
+	{
+		m_timer++;  // =GameTime().GetFrameDeltaTime;
+		p_timer++;
+		if (m_timer > SeiseiVer_3) {
+			if (m_Short < MaxSeiseiVer_3) {
+				m_Short++;
+				m_timer = Timer0;
 			}
-			if (m_Short > 0)
+			else
 			{
-				if (NPad(PadNum).IsPress(enButtonRB2) == true) {
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPB(PadNum);
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+				m_Short = MaxSeiseiVer_3;
+				m_timer = Timer0;
+			}
+			if (DeathCount == false)
+				if (m_Short > 0)
+				{
+					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPB(PadNum);
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPB(PadNum);
-					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					m_bullet->SetPositionX(50.0f);
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPB(PadNum);
+						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						m_bullet->SetPositionX(50.0f);
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
 
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPB(PadNum);
-					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					m_bullet->SetPositionX(-100.0f);
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
-					m_Short--;
-					Sound(1);//効果音
-					ShortCount = true;
-					m_game->SetKazu(3);
-					p_timer = Timer0;
-				}
-				else {
-					if (p_timer == 98)
-					{
-						ShortCount = false;
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPB(PadNum);
+						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						m_bullet->SetPositionX(-100.0f);
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
+						m_Short--;
+						Sound(1);//効果音
+						ShortCount = true;
+						m_game->SetKazu(3);
 						p_timer = Timer0;
 					}
+					else {
+						if (p_timer == 98)
+						{
+							ShortCount = false;
+							p_timer = Timer0;
+						}
+					}
 				}
-			}
 		}
+	}
 }
 //プレイヤーの進化用
 void Player::Pevolution()
@@ -398,7 +398,6 @@ void Player::Respawn()
 				d_timer = 0;
 				DeathCount = false;
 				Muteki = true;
-				Alive = true;
 				PlHP = MaxHP;
 				if (StarCount > 1 && Alive == false)
 				{
@@ -424,7 +423,6 @@ void Player::Respawn()
 				d_timer = 0;
 				DeathCount = false;
 				Muteki = true;
-				Alive = true;
 				PlHP = MaxHP;
 				if (StarCount > 1 && Alive == false)
 				{
