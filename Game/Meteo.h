@@ -12,6 +12,7 @@ public:
 	void Move();
 	void Hantei();
 	void Death();
+	//void InitTime();
 	static bool Generate();
 	void init(CVector3 position, prefab::CSkinModelRender* skinModelRender, float scale);
 private:

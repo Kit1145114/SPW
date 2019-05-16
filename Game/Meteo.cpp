@@ -86,33 +86,80 @@ void Meteo::Hantei()
 	}
 }
 
+//void Meteo::InitTime()
+//{
+//const int Initkazu = 2;
+//for (int i = 0; i < Initkazu; i++) {
+//	Meteo* meteo = NewGO<Meteo>(0, "Meteo");
+//	CVector3 hako;
+//	do {
+//		meteo->repopflag = false;
+//		//ランダムポップ。
+//		float vx = Random().GetRandDouble();
+//		float vz = Random().GetRandDouble();
+//		hako.x = vx;
+//		hako.z = vz;
+//		if (Random().GetRandDouble() <= 0.5f)
+//			hako.x *= -1;
+//		if (Random().GetRandDouble() <= 0.5f)
+//			hako.z *= -1;
+//		//ランダム生成する場所の制限。
+//		float PosLimitx = 30000.0f;
+//		float PosLimitz = 20000.0f;
+//		hako.x *= PosLimitx;
+//		hako.z *= PosLimitz;
+//
+//		meteo->m_position = hako;
+//	} while (meteo->repopflag == true);
+//}
+//return true;
+//}
+
 bool Meteo::Generate()
 {
-	const int Initkazu = 2;
-	for (int i = 0; i < Initkazu; i++) {
-		Meteo* meteo = NewGO<Meteo>(0, "Meteo");
-		CVector3 hako;
-		do {
-			meteo->repopflag = false;
-			//ランダムポップ。
-			float vx = Random().GetRandDouble();
-			float vz = Random().GetRandDouble();
-			hako.x = vx;
-			hako.z = vz;
-			if (Random().GetRandDouble() <= 0.5f)
-				hako.x *= -1;
-			if (Random().GetRandDouble() <= 0.5f)
-				hako.z *= -1;
-			//ランダム生成する場所の制限。
-			float PosLimitx = 30000.0f;
-			float PosLimitz = 20000.0f;
-			hako.x *= PosLimitx;
-			hako.z *= PosLimitz;
+	Game* game = nullptr;
+	game = Game::GetInstance();
 
-			meteo->m_position = hako;
-		} while (meteo->repopflag == true);
+	prefab::CSkinModelRender* m_skinModelRender;
+	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
+	CVector3 hako;
+	//ランダムポップ。
+	float vx = Random().GetRandDouble();
+	float vz = Random().GetRandDouble();
+
+	hako.x = vx;
+	hako.z = vz;
+	if (Random().GetRandDouble() <= 0.5f)
+		hako.x *= -1;
+	if (Random().GetRandDouble() <= 0.5f)
+		hako.z *= -1;
+
+	//ランダム生成する場所の制限。
+	float PosMaxLimitx = 35000.0f;
+	float PosMaxLimitz = 20000.0f;
+	hako.x *= PosMaxLimitx;
+	hako.z *= PosMaxLimitz;
+
+	//惑星の大きさランダム。
+	float v = 10.0f;//最低限の大きさを予め入れておく。
+	v += 50.0f * Random().GetRandDouble();
+	float radius = { 30.0f };//	基本惑星の半径
+	radius *= v;
+	bool isCreatePlanet = true;//フラグ
+
+	for (int j = 0; j < Game::GetInstance()->GetSansenKazu(); j++) {
+		CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - hako;
+		if (kyori.Length() < radius + 5000.0f) {
+			isCreatePlanet = false;
+		}
 	}
-		return true;
+
+	if (isCreatePlanet) {
+		Meteo* meteo = NewGO<Meteo>(0, "Meteo");
+		meteo->m_position = hako;
+		meteo->init(meteo->m_position,m_skinModelRender,v);
+	}
+	return true;
 }
 
 void Meteo::init(CVector3 position, prefab::CSkinModelRender* skinModelRender, float scale)
