@@ -80,8 +80,10 @@ namespace tkEngine{
 	}
 	void CCamera::CalcScreenPositionFromWorldPosition(CVector2& screenPos, const CVector3& worldPos) const
 	{
-		float half_w = (float)GraphicsEngine().GetFrameBufferWidth() * 0.5f;
-		float half_h = (float)GraphicsEngine().GetFrameBufferHeight() * 0.5f;
+		float half_w = GraphicsEngine().Get2DSpaceScreenWidth() * 0.5f;
+		//GraphicsEngine().GetFrameBufferWidth() * 0.5f;
+		float half_h = GraphicsEngine().Get2DSpaceScreenHeight() * 0.5f;
+		//GraphicsEngine().GetFrameBufferHeight() * 0.5f;
 		CVector4 _screenPos;
 		_screenPos.Set(worldPos.x, worldPos.y, worldPos.z, 1.0f);
 		m_viewProjectionMatrix.Apply(_screenPos);
