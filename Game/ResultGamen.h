@@ -14,6 +14,7 @@ public:
 	bool Start();
 	void Update();
 	void Result();
+	void bubble();
 	void SetSansenKazu(int kazu)
 	{
 		PadKazu = kazu;

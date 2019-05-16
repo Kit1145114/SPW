@@ -34,18 +34,23 @@ void SetumeiGamen::Update()
 	case 1:
 		m_spriteRender->Init(L"sprite/Setumei2.dds", 1280.0f, 720.0f);
 		break;
+	case 2:
+		m_spriteRender->Init(L"sprite/Setumei3.dds", 1280.0f, 720.0f);
+		break;
 	}
 }
 
 void SetumeiGamen::Kirikae()
 {
-	if (Pad(0).IsPress(enButtonLeft) == true)
+	if (Pad(0).IsTrigger(enButtonLeft) == true)
 	{
-		mode = 0;
+		if(mode < 3)
+		mode++;
 	}
-	if (Pad(0).IsPress(enButtonRight) == true)
+	if (Pad(0).IsTrigger(enButtonRight) == true)
 	{
-		mode = 1;
+		if(mode > -1)
+		mode--;
 	}
 	if (Pad(0).IsTrigger(enButtonB) == true)
 	{

@@ -69,7 +69,7 @@ void Player::Update()
 	StarPos();
 	//
 StarPop();
-	Playerwarp();
+	//Playerwarp();
 	memory_position = m_position;
 	r_ring->SetPosition(m_position);
 	draw_S->SetBulletKazu(m_Short);

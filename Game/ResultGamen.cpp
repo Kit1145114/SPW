@@ -4,6 +4,7 @@
 
 ResultGamen::ResultGamen()
 {
+	Game* game = Game::GetInstance();
 }
 
 
@@ -136,6 +137,7 @@ break;
 
 void ResultGamen::Update()
 {
+
 	Result();
 	if (Pad(0).IsPress(enButtonStart) == true)
 	{
@@ -148,6 +150,7 @@ void ResultGamen::Update()
 
 void ResultGamen::Result()
 {
+
 	switch (PadKazu)
 	{
 	case 1:
@@ -388,5 +391,34 @@ void ResultGamen::Result()
 			r_Draw[3]->SetJuni(1);
 		}
 		break;
+	}
+}
+
+void ResultGamen::bubble()
+{
+	const int num = 4;
+	int juni[num];
+	for (int i = 0; m_player[i]->GetPadNum() < PadKazu; i++)
+	{
+		if (m_player[i] != nullptr) {
+			juni[i] = m_player[i]->GetPadNum();
+			PS[juni[i]];
+			//juni[i] = PS[i] = m_player[i]->GetStarCount();
+		}
+		else 
+		{
+			juni[i] = -1;
+		}
+	}
+	int koukan;
+	for (int i = 0; i < PadKazu; i++){
+		for (int j = 1; j > i; j++) {
+			if (PS[juni[j]-1] > PS[juni[j]])
+			{
+				koukan = PS[juni[j]-1];
+				PS[juni[j] - 1] = PS[juni[j]];
+				PS[juni[j]] = koukan;
+			}
+		}
 	}
 }

@@ -129,7 +129,7 @@ void Game::CreateStage2() {
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(0.1f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
-	Meteo::Generate();
+	//Meteo::Generate();
 }
 
 bool Game::Start()
