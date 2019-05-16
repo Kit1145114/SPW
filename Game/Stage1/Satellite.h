@@ -50,8 +50,8 @@ private:
 	static const CVector2 colliderSize;
 	static const CVector2 colliderPosition;
 
-	static constexpr float hitRotPower = 360.0f; //ヒット時与える回転力。度/sec。
-	static constexpr float rotDamping = 10.0f; //秒間に失われる回転力。度/sec。
+	static constexpr float hitRotPower = 100.0f; //ヒット時与える回転力。度/sec。
+	static constexpr float rotDamping = 5.0f; //秒間に失われる回転力。度/sec。
 	static constexpr float maxRot = 500.0f; //最大回転力。これ以上にはならない。度/sec。
 
 	prefab::CSkinModelRender* m_modelRender = nullptr;

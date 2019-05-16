@@ -745,6 +745,7 @@
     <ImageContentTask Include="Assets\sprite\Stage5.png">
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">

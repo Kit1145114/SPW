@@ -59,7 +59,7 @@ void Satellite::Update() {
 			}
 		}
 
-		//回転力を加える衝突判定。
+		//プレイヤーとの衝突
 		for (Player* p : Game::GetInstance()->m_player) {
 			if (p != nullptr) {
 				if (!p->GetDeathCount() && !p->GetMuteki()) {
@@ -67,15 +67,21 @@ void Satellite::Update() {
 					if (result.hit == Side) {
 						rotPower += result.rotSign * hitRotPower;
 						p->AddHP(-100);
+					} else if(result.hit == Center){
+						m_move += p->GetMoveSpeed()*5;
+						p->AddHP(-100);
 					}
 				}
 			}
 		}
-
+		//弾との衝突
 		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b)->bool {
 			HitResult result = collider.hitTest(b->GetPosition(), 0.1f);
 			if (result.hit == Side) {
 				rotPower += result.rotSign * hitRotPower;
+				b->Death();
+			} else if(result.hit == Center){
+				m_move += b->GetMoveSpeed()*8;
 				b->Death();
 			}
 			return true;
@@ -188,7 +194,7 @@ HitResult BoxCollider2D::hitTest(const CVector3 & p, float radius) {
 
 	float dot = vec2Dot(shaft, pos - m_pos);
 
-	if (abs(dot) < 1000.0f) {
+	if (abs(dot) < 2000.0f) {
 		result.hit = Center;
 		return result;
 	}
