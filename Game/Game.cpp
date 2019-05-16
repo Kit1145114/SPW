@@ -48,10 +48,6 @@ Game::~Game()
 }
 
 void Game::CreateStage0() {
-	auto sky = NewGO<prefab::CSky>(0, "そら");
-	sky->SetScale({ 50000.0f, 50000.0f, 50000.0f });
-	sky->SetEmissionColor({ 0.1484f, 0.1484f, 0.398f });
-	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f });
 	switch (SansenKazu) {
 	case 4:
 		m_player[3] = NewGO<Player>(0, "Player3");
@@ -98,8 +94,9 @@ void Game::CreateStage1() {
 		m_player[0]->SetPadNum(0);
 		m_player[0]->SetPositionX(P_pos*-3);
 	}
-	NewGO<Satellite>(0);
+	NewGO<Satellite>(0, "Satellite");
 	m_field = NewGO<field>(0);
+	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
 	bgmSoundSource->Init(L"sound/kaisen.wav");
 	bgmSoundSource->Play(true);
@@ -108,7 +105,11 @@ void Game::CreateStage1() {
 
 bool Game::Start()
 {
-	//ステージを生成
+	auto sky = NewGO<prefab::CSky>(0, "そら");
+	sky->SetScale({ 50000.0f, 50000.0f, 50000.0f });
+	sky->SetEmissionColor({ 0.1484f, 0.1484f, 0.398f });
+	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f });
+	//ステージ振り分け。
 	switch (Stage) {
 	case 0:
 		CreateStage0();
@@ -119,8 +120,9 @@ bool Game::Start()
 	default:
 		CreateStage0();
 	}
-	m_camera = NewGO<Camera>(0, "Camera");//カメラ
-	m_G_Timer = NewGO<GamenTimer>(0, "GamenTimer");//タイマー
+	m_camera = NewGO<Camera>(0, "Camera");
+	m_G_Timer = NewGO<GamenTimer>(0, "GamenTimer");
+
 	Fade::fadeOut();
 	return true;
 }
