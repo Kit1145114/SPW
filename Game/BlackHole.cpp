@@ -128,8 +128,9 @@ void BlackHole::Count()
 
 void BlackHole::Death()
 {
-	effect = nullptr;
+	
 	DeleteGO(this);
+	//effect = nullptr;
 }
 
 void BlackHole::Update()
