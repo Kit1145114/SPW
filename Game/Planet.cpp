@@ -34,7 +34,6 @@ bool Planet::Start()
 }
 
 bool Planet::Generate(int Reload, int Planetnum) {
-	
 	Game* game = nullptr;
 	game = FindGO<Game>("Game");
 	//Planetnumber_Num•ª‚Ìì¬

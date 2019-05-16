@@ -58,7 +58,6 @@ public:
 	void Update();
 	void PlStar_Life();
 	void Stage2();
-	void InitTime();
 	static Game* GetInstance();
 
 	void SetGameMode(int a)
@@ -98,6 +97,7 @@ public:
 private:
 	void CreateStage0();
 	void CreateStage1();
+	void CreateStage2();
 public:
 	Planet* memoryPP[Planetnumber_Num] = {};
 	Player* m_player[PlKazu] = {nullptr};
@@ -121,8 +121,6 @@ private:
 
 	int PB_Kazu = 0;
 	int timer = 0;
-	int Maxtimer = 180;
-	int timer0 = 0;
 	bool PlS_Init = false;
 	//CVector3 BHpos1 = { 0.0f , 0.0f, 5000.0f };
 	//CVector3 BHsca1 = { 1000.0f,0.0f,5.0f };
