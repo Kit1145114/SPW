@@ -367,14 +367,14 @@ void Planet::Death() {
 		}
 	}
 	//’e‚¾‚¯‚ÍŠ¨•Ù‚µ‚Ä‚­‚¾‚¹‚¥B
-	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* bullet)->bool{
-		CVector3 b_kyori = bullet->GetPosition() - p_position;
-		if (b_kyori.Length() < radius+200.0f) {	
-			explosion();
-		}
-		return true;
-	});
-	
+		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* bullet)->bool
+		{
+			CVector3 b_kyori = bullet->GetPosition() - p_position;
+			if (b_kyori.Length() < radius) {
+				explosion();
+			}
+			return true;
+		});
 	//˜f¯ŒÂ”•ª‰ñ‚·B
 	for (int i = 0;i < Planetnumber_Num;i++) {
 	//QueryGOs<Planet>("planet", [&](Planet* planet)->bool{

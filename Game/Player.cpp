@@ -507,12 +507,6 @@ void Player::S_Hantei()
 void Player::PlS_Hantei()
 {
 	if (DeathCount == false) {
-		if (Game::GetInstance()->GetPlS_Init() == false)
-		{
-			Plstar = nullptr;
-		}
-		else if (Game::GetInstance()->GetPlS_Init() == true)
-		{
 			QueryGOs<PlayerStar>("PlayerStar", [&](PlayerStar* plstar)->bool {
 				CVector3 Len = plstar->GetPosition() - m_position;
 				if (Len.Length() < StarHantei)
@@ -525,7 +519,6 @@ void Player::PlS_Hantei()
 				return true;
 			});
 		}
-	}
 }
 //ƒvƒŒƒCƒ„[“¯Žm‚Ì‹…‚Ì”»’è
 void Player::B_Hantei()

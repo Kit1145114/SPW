@@ -74,14 +74,8 @@ public:
 		return SansenKazu;
 	}
 	//プレイヤーの弾が存在しているか
-	void SetPBInit(bool a)
-	{
-		PBullet_Init = a;
-	}//玉あるかを返す。
-	bool GetPBInit()
-	{
-		return PBullet_Init;
-	}//弾の数
+
+	 //弾の数
 	void SetKazu(int a)
 	{
 		PB_Kazu += a;
@@ -94,10 +88,6 @@ public:
 	void AddPlStarCount(int kazu)
 	{
 		PlStarCount += kazu;
-	}
-	bool GetPlS_Init()
-	{
-		return PlS_Init;
 	}
 
 	//遊ぶステージを設定する
