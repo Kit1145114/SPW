@@ -95,6 +95,7 @@
     <ClCompile Include="Meteo.cpp" />
     <ClCompile Include="Stage1\Satellite.cpp" />
     <ClCompile Include="Stage1\SatelliteGene.cpp" />
+    <ClCompile Include="BigBlackHole.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -560,6 +561,7 @@
     <ClInclude Include="Sinka_Bar.h">
       <Filter>Assets\sprite</Filter>
     </ClInclude>
+    <ClInclude Include="BigBlackHole.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -661,6 +663,7 @@
     <MeshContentTask Include="Assets\modelData\SenkanType3.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\Satellite.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
@@ -764,5 +767,8 @@
     <Media Include="Assets\sound\bakuhatu.wav" />
     <Media Include="Assets\sound\piko.wav" />
     <Media Include="Assets\sound\shot1.wav" />
+    <Media Include="Assets\sound\bgm.wav" />
+    <Media Include="Assets\sound\coinGet.wav" />
+    <Media Include="Assets\sound\kira-nn.wav" />
   </ItemGroup>
 </Project>

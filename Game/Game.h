@@ -89,12 +89,14 @@ public:
 	{
 		PlStarCount += kazu;
 	}
-
 	//遊ぶステージを設定する
 	void setStage(int _stage) {
 		Stage = _stage;
 	}
-
+	//ブラックホールありかなしか。
+	bool GetBHflag() {
+		return BHflag;
+	}
 private:
 	void CreateStage0();
 	void CreateStage1();
@@ -124,7 +126,8 @@ private:
 	int Maxtimer = 180;
 	int timer0 = 0;
 	bool PlS_Init = false;
-	//CVector3 BHpos1 = { 0.0f , 0.0f, 5000.0f };
+	bool BHflag = false;     //ブラックホールのフラグ、trueだと発生しなくなる。
+   	//CVector3 BHpos1 = { 0.0f , 0.0f, 5000.0f };
 	//CVector3 BHsca1 = { 1000.0f,0.0f,5.0f };
 };
 

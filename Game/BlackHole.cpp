@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "BlackHole.h"
-#include"Star.h"
+#include "Star.h"
 
 BlackHole::BlackHole()
 {
