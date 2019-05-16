@@ -53,7 +53,7 @@ void BlackHole::Move()
 			//対象との距離を測定。
 			CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - m_position;
 			//対象との距離がほぼ中心では吸収をやめる。
-				if (radius * Searchment / 6<kyori.Length()&& kyori.Length() < radius * Searchment) {
+				if (radius * Searchment / 10<kyori.Length()&& kyori.Length() < radius * Searchment) {
 					//Ｇ中心に遠ければ弱く、近ければ強く。
 					float G = radius * Searchment - kyori.Length();
 					//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。

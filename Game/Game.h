@@ -1,5 +1,6 @@
 #pragma once
 #include"BlackHole.h"
+//#include"BigBlackHole.h"
 #include"field.h"
 #include"Camera.h"
 #include"Player.h"
@@ -31,6 +32,7 @@ class Star;
 class Sinka_Bar;
 class Draw_Player;
 class SatelliteGene;
+
 
 enum Planetnumber {
 	Planetnumber_00,
@@ -100,6 +102,9 @@ private:
 	void CreateStage0();
 	void CreateStage1();
 	void CreateStage2();
+	void CreateStage3();
+	void CreateStage4();
+	void CreateStage5();
 public:
 	Planet* memoryPP[Planetnumber_Num] = {};
 	Player* m_player[PlKazu] = {nullptr};
@@ -112,6 +117,7 @@ private:
 	GamenTimer* m_G_Timer = nullptr;
 	Meteo* meteo = nullptr;
 	SatelliteGene* satelliteG = nullptr;
+	//BigBlackHole* BBH = nullptr;
 	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。
 	
 	int GameMode = 0;
