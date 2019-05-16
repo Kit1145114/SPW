@@ -6,6 +6,7 @@
 #include"Player.h"
 #include"GamenTimer.h"
 #include"Meteo.h";
+#include"MeteoGene.h"
 #include"Enemy.h"
 #include"Title_2.h"
 #include"ResultGamen.h";
@@ -32,7 +33,7 @@ class Star;
 class Sinka_Bar;
 class Draw_Player;
 class SatelliteGene;
-
+class MeteoGene;
 
 enum Planetnumber {
 	Planetnumber_00,
@@ -118,6 +119,7 @@ private:
 	Meteo* meteo = nullptr;
 	SatelliteGene* satelliteG = nullptr;
 	//BigBlackHole* BBH = nullptr;
+	MeteoGene* meteogene = nullptr;
 	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。
 	
 	int GameMode = 0;

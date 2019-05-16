@@ -415,10 +415,11 @@ void ResultGamen::bubble()
 		for (int j = 1; j > i; j++) {
 			if (PS[juni[j]-1] > PS[juni[j]])
 			{
-				koukan = PS[juni[j]-1];
-				PS[juni[j] - 1] = PS[juni[j]];
-				PS[juni[j]] = koukan;
+				koukan = juni[j-1];
+				juni[j - 1] = juni[j];
+				juni[j] = koukan;
 			}
 		}
 	}
+	//for(int i = 0; i < )
 }

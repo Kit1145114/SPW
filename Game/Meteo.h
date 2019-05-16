@@ -12,9 +12,10 @@ public:
 	void Move();
 	void Hantei();
 	void Death();
-	//void InitTime();
-	static bool Generate();
-	void init(CVector3 position, prefab::CSkinModelRender* skinModelRender, float scale);
+	void SetPosition(CVector3 pos)
+	{
+		m_position = pos;
+	}
 private:
 	Game* game = nullptr;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
@@ -23,8 +24,8 @@ private:
 	CVector3 randomspeed = CVector3::Zero;
 	CQuaternion m_rotation = CQuaternion::Identity;
 	CVector3 scale = CVector3::Zero;
-	int timer = 0;
 	float hantei = 2500.0f;
+	float Speed = 5000.0f;
 	float PosMaxLimitx = 35000.0f;
 	float PosMaxLimitz = 20000.0f;
 	bool repopflag = false;

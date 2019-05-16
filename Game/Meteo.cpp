@@ -26,7 +26,7 @@ void Meteo::Update()
 {
 	Move();
 	Hantei();
-	timer++;
+	//timer++;
 	//if (timer == 2500)
 	//{
 	//	Death();
@@ -38,8 +38,8 @@ void Meteo::Move()
 
 	if (movecount == false) {
 
-		randomspeed.x = Random().GetRandDouble() * 20000 * GameTime().GetFrameDeltaTime();
-		randomspeed.z = Random().GetRandDouble() * 20000 * GameTime().GetFrameDeltaTime();
+		randomspeed.x = Random().GetRandDouble() * Speed * GameTime().GetFrameDeltaTime();
+		randomspeed.z = Random().GetRandDouble() * Speed * GameTime().GetFrameDeltaTime();
 		if (Random().GetRandDouble() <= 0.5f)
 			randomspeed.x *= -1;
 		if (Random().GetRandDouble() <= 0.5f)
@@ -65,9 +65,8 @@ void Meteo::Hantei()
 			if (kyori.Length() < hantei
 				&& Game::GetInstance()->m_player[i]->GetDeathCount() == false) {
 				Game::GetInstance()->m_player[i]->AddHP(-100);
-				if (timer > 2) { //ＰＯＰ時は勘弁してやっぞ！
+
 					Death();
-				}
 			}
 		}
 	}
@@ -85,32 +84,3 @@ void Meteo::Hantei()
 		Death();
 	}
 }
-
-//void Meteo::InitTime()
-//{
-//const int Initkazu = 2;
-//for (int i = 0; i < Initkazu; i++) {
-//	Meteo* meteo = NewGO<Meteo>(0, "Meteo");
-//	CVector3 hako;
-//	do {
-//		meteo->repopflag = false;
-//		//ランダムポップ。
-//		float vx = Random().GetRandDouble();
-//		float vz = Random().GetRandDouble();
-//		hako.x = vx;
-//		hako.z = vz;
-//		if (Random().GetRandDouble() <= 0.5f)
-//			hako.x *= -1;
-//		if (Random().GetRandDouble() <= 0.5f)
-//			hako.z *= -1;
-//		//ランダム生成する場所の制限。
-//		float PosLimitx = 30000.0f;
-//		float PosLimitz = 20000.0f;
-//		hako.x *= PosLimitx;
-//		hako.z *= PosLimitz;
-//
-//		meteo->m_position = hako;
-//	} while (meteo->repopflag == true);
-//}
-//return true;
-//}

@@ -15,7 +15,7 @@ Draw_Player::~Draw_Player()
 bool Draw_Player::Start()
 {
 	m_spriteRender = NewGO<prefab::CSpriteRender>(0);
-	m_spriteRender->Init(draw_P, 200.0f, 100.0f);
+	m_spriteRender->Init(draw_P, 200.0f, 50.0f);
 	m_spriteRender->SetPosition(m_position);
 	return true;
 }

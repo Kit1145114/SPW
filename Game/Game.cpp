@@ -108,6 +108,8 @@ void Game::CreateStage1() {
 }
 //隕石。
 void Game::CreateStage2() {
+
+	meteogene = NewGO<MeteoGene>(0, "MeteoGene");
 	switch (SansenKazu) {
 	case 4:
 		m_player[3] = NewGO<Player>(0, "Player3");
@@ -133,7 +135,6 @@ void Game::CreateStage2() {
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(0.1f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
-	Meteo::Generate();
 }
 //ビックブラックホール。
 void Game::CreateStage3()
