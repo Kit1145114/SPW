@@ -50,9 +50,13 @@ public:
 	{
 		return Kill;
 	}
-	void SetPB(int a)
+	void SetPBnum(int a)
 	{
 		PB = a;
+	}
+	bool GetPBnum()
+	{
+		return PB;
 	}
 	void Update();
 	void Death();

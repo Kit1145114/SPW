@@ -143,7 +143,7 @@ void Player::PBullet()
 				if (m_Short > 0) {
 					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPB(PadNum);
+						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						//プレイヤーの速度の単位をm/frameに変更する。
@@ -189,20 +189,20 @@ void Player::PBullet2()
 				{
 					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPB(PadNum);
+						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPB(PadNum);
+						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetPositionX(50.0f);
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPB(PadNum);
+						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetPositionX(-100.0f);
 						m_bullet->SetPosition(m_position);
@@ -248,20 +248,20 @@ void Player::PBullet3()
 				{
 					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPB(PadNum);
+						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPB(PadNum);
+						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetPositionX(50.0f);
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPB(PadNum);
+						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetPositionX(-100.0f);
 						m_bullet->SetPosition(m_position);

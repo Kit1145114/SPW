@@ -32,7 +32,7 @@ void Meteo::Update()
 	//	Death();
 	//}
 }
-
+//ìÆÇ≠
 void Meteo::Move()
 {
 
@@ -50,12 +50,12 @@ void Meteo::Move()
 	m_position += randomspeed;
 	m_skinModelRender->SetPosition(m_position);
 }
-
+//éÄÇ 
 void Meteo::Death()
 {
 	DeleteGO(this);
 }
-
+//Ç¢ÇÎÇÒÇ»îªíËÅB
 void Meteo::Hantei()
 {
 	for (int i = 0; i < Game::GetInstance()->GetSansenKazu(); i++) {
@@ -65,8 +65,7 @@ void Meteo::Hantei()
 			if (kyori.Length() < hantei
 				&& Game::GetInstance()->m_player[i]->GetDeathCount() == false) {
 				Game::GetInstance()->m_player[i]->AddHP(-100);
-
-					Death();
+					//Death();
 			}
 		}
 	}
@@ -76,6 +75,14 @@ void Meteo::Hantei()
 		CVector3 b_kyori = bullet->GetPosition() - m_position;
 		if (b_kyori.Length() < hantei) {
 			bullet->Death();
+		}
+		return true;
+	});
+	QueryGOs<Planet>("planet", [&](Planet* planet)->bool
+	{
+		CVector3 p_kyori = planet->GetPosition() - m_position;
+		if (p_kyori.Length() < Plhantei) {
+			planet->explosion();
 		}
 		return true;
 	});
