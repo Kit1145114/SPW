@@ -204,7 +204,7 @@ bool Planet::Generate(int Reload, int Planetnum) {
 			//}
 
 			if (isCreatePlanet) {
-				//プラネットを生成できるなら作成する。
+			//プラネットを生成できるなら作成する。
 
 			//惑星のモデリング指定。
 				
@@ -367,26 +367,22 @@ void Planet::Death() {
 		}
 	}
 	//弾だけは勘弁してくだせぇ。
-	if (Game::GetInstance()->GetPBInit() == true) {
-		int a = 0;
-		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* bullet)->bool
-		{
-			CVector3 b_kyori = bullet->GetPosition() - p_position;
-			if (b_kyori.Length() < radius) {
-				a++;
-				explosion();
-			}
-			return true;
-		});
-	}
+	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* bullet)->bool{
+		CVector3 b_kyori = bullet->GetPosition() - p_position;
+		if (b_kyori.Length() < radius+200.0f) {	
+			explosion();
+		}
+		return true;
+	});
+	
 	//惑星個数分回す。
 	for (int i = 0;i < Planetnumber_Num;i++) {
 	//QueryGOs<Planet>("planet", [&](Planet* planet)->bool{
-		//ちっ、、、癇に障る野郎だぜ、、追いついたと思ったらすぐ爆破して来やがる(惑星同士の距離判定。
-			//もし比較する惑星が自分でなければ。
+		//ちっ、、、癇に障る野郎だぜ、追いついたと思ったらすぐ爆破して来やがる(惑星同士の距離判定。
+		//もし比較する惑星が自分でなければ。
 		if (Game::GetInstance()->memoryPP[i] != this
 			&&Game::GetInstance()->memoryPP[i] != nullptr) {
-			//2点間の距離を計算する。.
+			//2点間の距離を計算する。
 			CVector3 diff = Game::GetInstance()->memoryPP[i]->p_position - p_position;
 			//距離が半径以下なら。
 		 if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
