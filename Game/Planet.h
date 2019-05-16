@@ -18,8 +18,6 @@ public:
 	void Death();
 	void explosion();
 	static bool Generate(int Reload,int Planetnum);
-	static void GenerateAll(int Reload, int Planetnum);
-	void initAll(CVector3 position, prefab::CSkinModelRender* skinModelRender);
 	void init(CVector3 position, prefab::CSkinModelRender* skinModelRender, float scale);
 
 	CVector3 GetPosition() {
