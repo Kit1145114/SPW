@@ -1,7 +1,7 @@
 #pragma once
 #include"Game.h"
 
-
+class Player;
 
 class Game;
 class Bullet : public IGameObject
@@ -54,6 +54,11 @@ public:
 	{
 		PB = a;
 	}
+
+	int GetPB() const {
+		return PB;
+	}
+
 	void Update();
 	void Death();
 	void BulletDeath();

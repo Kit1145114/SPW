@@ -96,6 +96,9 @@
     <ClCompile Include="Stage1\Satellite.cpp" />
     <ClCompile Include="Stage1\SatelliteGene.cpp" />
     <ClCompile Include="BigBlackHole.cpp" />
+    <ClCompile Include="Stage1\Rocket.cpp" />
+    <ClCompile Include="Stage1\BoxCollider2D.cpp" />
+    <ClCompile Include="Stage1\RocketGene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -562,6 +565,9 @@
       <Filter>Assets\sprite</Filter>
     </ClInclude>
     <ClInclude Include="BigBlackHole.h" />
+    <ClInclude Include="Stage1\Rocket.h" />
+    <ClInclude Include="Stage1\BoxCollider2D.h" />
+    <ClInclude Include="Stage1\RocketGene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -664,6 +670,8 @@
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\Satellite.FBX" />
+    <MeshContentTask Include="Assets\modelData\Rocket.FBX" />
+    <MeshContentTask Include="Assets\modelData\ScrapRocket.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">

@@ -31,6 +31,7 @@ class Star;
 class Sinka_Bar;
 class Draw_Player;
 class SatelliteGene;
+class RocketGene;
 
 enum Planetnumber {
 	Planetnumber_00,
@@ -112,6 +113,7 @@ private:
 	GamenTimer* m_G_Timer = nullptr;
 	Meteo* meteo = nullptr;
 	SatelliteGene* satelliteG = nullptr;
+	RocketGene* rocketG = nullptr;
 	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。
 	
 	int GameMode = 0;
