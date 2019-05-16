@@ -24,6 +24,8 @@ private:
 	CVector3 scale = CVector3::Zero;
 	int timer = 0;
 	float hantei = 2500.0f;
+	float PosMaxLimitx = 35000.0f;
+	float PosMaxLimitz = 20000.0f;
 	bool repopflag = false;
 	bool movecount = false;
 };

@@ -458,13 +458,6 @@ void Player::Houdai()
 		HoukouZ = NPad(PadNum).GetRStickYF() * 75.0f;
 		SpeedX = NPad(PadNum).GetRStickXF() * 50.0f;
 		SpeedZ = NPad(PadNum).GetRStickYF() * 50.0f;
-		if (NPad(PadNum).GetRStickXF() == 0.0 && NPad(PadNum).GetRStickYF() == 0.0)
-		{
-			HoukouX = memoryHX;
-			HoukouZ = memoryHZ;
-			SpeedX = memorySX;
-			SpeedZ = memorySZ;
-		}
 	}
 	else if (Ver == 1)
 	{
@@ -537,23 +530,20 @@ void Player::PlS_Hantei()
 //ƒvƒŒƒCƒ„[“¯Žm‚Ì‹…‚Ì”»’è
 void Player::B_Hantei()
 {
-	if (m_game->GetPBInit() == true) {
-		if (Muteki == false) {
-			QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b) ->bool {
-				CVector3 kyori = b->GetPosition() - m_position;
-				if (b->GetPB() != PadNum && kyori.Length() < BulletHantei)
-				{
-					b->Death();
-					PlHP -= Damage;
+	if (Muteki == false) {
+		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b) ->bool {
+		CVector3 kyori = b->GetPosition() - m_position;
+			if (b->GetPB() != PadNum && kyori.Length() < BulletHantei)
+			{
+				b->Death();
+				PlHP -= Damage;
 				}
 				else if (b->GetPB() == PadNum)
-				{
+			{
 
-				}
-				return true;
-			});
-		}
-		
+			}
+			return true;
+		});		
 	}
 	else
 	{

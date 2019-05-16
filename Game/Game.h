@@ -56,9 +56,7 @@ public:
 	~Game();
 	bool Start();
 	void Update();
-	void Star_Life();
 	void PlStar_Life();
-	void Bullet_Life();
 	void Stage2();
 	void InitTime();
 	static Game* GetInstance();
@@ -131,7 +129,7 @@ private:
 	CVector3 memory_position = CVector3::Zero;
 	
 	int GameMode = 0;
-	int Stage = 1;          //二つ目の戦闘場所。
+	int Stage = 0;          //二つ目の戦闘場所。
 	int Pver = 0;
 	int starget = 0;
 	int MAXPad = 3;
@@ -149,7 +147,7 @@ private:
 
 	int PB_Kazu = 0;
 	int timer = 0;
-	int Maxtimer = 3000;
+	int Maxtimer = 180;
 	int timer0 = 0;
 	bool PBullet_Init = false;
 	bool S_Init = false;
@@ -157,8 +155,6 @@ private:
 	CVector3 Kyori = CVector3::Zero;
 	CVector3 SyokiCamera = CVector3::Zero;
 	CVector3 Tyuou = CVector3::Zero;
-	//CVector3 BHpos1 = { 0.0f , 0.0f, 5000.0f };
-	//CVector3 BHsca1 = { 1000.0f,0.0f,5.0f };
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };
 

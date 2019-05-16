@@ -27,10 +27,10 @@ void Meteo::Update()
 	Move();
 	Hantei();
 	timer++;
-	if (timer == 1000)
-	{
-		Death();
-	}
+	//if (timer == 2500)
+	//{
+	//	Death();
+	//}
 }
 
 void Meteo::Move()
@@ -38,8 +38,8 @@ void Meteo::Move()
 
 	if (movecount == false) {
 
-		randomspeed.x = Random().GetRandDouble() * 500 * GameTime().GetFrameDeltaTime();
-		randomspeed.z = Random().GetRandDouble() * 500 * GameTime().GetFrameDeltaTime();
+		randomspeed.x = Random().GetRandDouble() * 20000 * GameTime().GetFrameDeltaTime();
+		randomspeed.z = Random().GetRandDouble() * 20000 * GameTime().GetFrameDeltaTime();
 		if (Random().GetRandDouble() <= 0.5f)
 			randomspeed.x *= -1;
 		if (Random().GetRandDouble() <= 0.5f)
@@ -71,24 +71,24 @@ void Meteo::Hantei()
 			}
 		}
 	}
-	/*//’e‚Ì”»’è
-	if (Game::GetInstance()->GetPBInit() == true) {
-		int a = 0;
-		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* bullet)->bool
-		{
-			CVector3 b_kyori = bullet->GetPosition() - m_position;
-			if (b_kyori.Length() < hantei) {
-				a++;
-				Death();
-			}
-			return true;
-		});
-	}*/
+	//’e‚Ì”»’è
+	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* bullet)->bool
+	{
+		CVector3 b_kyori = bullet->GetPosition() - m_position;
+		if (b_kyori.Length() < hantei) {
+			bullet->Death();
+		}
+		return true;
+	});
+	if (m_position.x > PosMaxLimitx || m_position.x< -PosMaxLimitx
+		|| m_position.z>PosMaxLimitz || m_position.z < -PosMaxLimitz) {
+		Death();
+	}
 }
 
 bool Meteo::Generate()
 {
-	const int Initkazu = 10;
+	const int Initkazu = 2;
 	for (int i = 0; i < Initkazu; i++) {
 		Meteo* meteo = NewGO<Meteo>(0, "Meteo");
 		CVector3 hako;

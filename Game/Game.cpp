@@ -121,9 +121,7 @@ bool Game::Start()
 void Game::Update()
 {
 	if (GameMode == 0) {
-		Star_Life();
 		PlStar_Life();
-		Bullet_Life();
 		InitTime();
 		//当たり判定表示
 		//dbg::SetDrawPhysicsCollisionEnable();
@@ -146,18 +144,6 @@ void Game::Update()
 	}
 }
 
-void Game::Star_Life()
-{
-	if (StarCount > Star0)
-	{
-		S_Init = true;
-	}
-	else if (StarCount == Star0)
-	{
-		S_Init = false;
-	}
-}
-
 void Game::PlStar_Life()
 {
 	if (PlStarCount > 0)
@@ -167,18 +153,6 @@ void Game::PlStar_Life()
 	else if (PlStarCount == 0)
 	{
 		PlS_Init = false;
-	}
-}
-
-void Game::Bullet_Life()
-{
-	if (PB_Kazu > 0)
-	{
-		PBullet_Init = true;
-	}
-	else if (PB_Kazu == 0)
-	{
-		PBullet_Init = false;
 	}
 }
 
