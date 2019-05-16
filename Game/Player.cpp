@@ -66,7 +66,10 @@ void Player::Update()
 	Houdai();
 	MutekiTimes();
 	HP();
-	StarPop();
+	StarPos();
+	//
+StarPop();
+	Playerwarp();
 	memory_position = m_position;
 	r_ring->SetPosition(m_position);
 	draw_S->SetBulletKazu(m_Short);
@@ -121,40 +124,42 @@ void Player::Move()
 //プレイヤーの球(第一形態）
 void Player::PBullet()
 {
-	if (DeathCount == false) {
-		if (Ver == 0) {
-			m_timer++;  // =GameTime().GetFrameDeltaTime;
-			p_timer++;
-			if (m_timer > SeiseiVer_1) {
-				if (m_Short < MaxSeiseiVer_1) {
-					m_Short++;
-					m_timer = Timer0;
-				}
-				else
-				{
-					m_Short = MaxSeiseiVer_1;
-					m_timer = Timer0;
-				}
+	if (Ver == 0) {
+		m_timer++;  // =GameTime().GetFrameDeltaTime;
+		p_timer++;
+		if (m_timer > SeiseiVer_1) {
+			if (m_Short < MaxSeiseiVer_1) {
+				m_Short++;
+				m_timer = Timer0;
 			}
-			if (m_Short > 0) {
-				if (NPad(PadNum).IsPress(enButtonRB2) == true) {
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPB(PadNum);
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
-					m_Short--;
-					Sound(1);//効果音
-					ShortCount = true;
-					m_game->SetKazu(1);
-					p_timer = Timer0;
-				}
-				else {
-					if (p_timer == 98)
-					{
-						ShortCount = false;
-						//m_game->SetPBInit(false);
+			else
+			{
+				m_Short = MaxSeiseiVer_1;
+				m_timer = Timer0;
+			}
+		}
+		if (Ver == 0) {
+			if (DeathCount == false) {
+				if (m_Short > 0) {
+					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPB(PadNum);
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						//プレイヤーの速度の単位をm/frameに変更する。
+						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
+						m_Short--;
+						Sound(1);//効果音
+						ShortCount = true;
+						m_game->SetKazu(1);
 						p_timer = Timer0;
+					}
+					else {
+						if (p_timer == 98)
+						{
+							ShortCount = false;
+							p_timer = Timer0;
+						}
 					}
 				}
 			}
@@ -164,120 +169,125 @@ void Player::PBullet()
 //プレイヤーの球（第二形態）
 void Player::PBullet2()
 {
-	if(DeathCount == false)
-		if (Ver == 1)
-		{
-			m_timer++;  // =GameTime().GetFrameDeltaTime;
-			p_timer++;
-			if (m_timer > SeiseiVer_2) {
-				if (m_Short < MaxSeiseiVer_2) {
-					m_Short++;
-					m_timer = Timer0;
-				}
-				else {
-					m_Short = MaxSeiseiVer_2;
-					m_timer = Timer0;
-				}
+	if (Ver == 1)
+	{
+		m_timer++;  // =GameTime().GetFrameDeltaTime;
+		p_timer++;
+		if (m_timer > SeiseiVer_2) {
+			if (m_Short < MaxSeiseiVer_2) {
+				m_Short++;
+				m_timer = Timer0;
 			}
-			if (m_Short > 0)
-			{
-				if (NPad(PadNum).IsPress(enButtonRB2) == true) {
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPB(PadNum);
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
-
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPB(PadNum);
-					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					m_bullet->SetPositionX(50.0f);
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
-
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPB(PadNum);
-					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					m_bullet->SetPositionX(-100.0f);
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
-					m_Short--;
-					Sound(1);//効果音
-					ShortCount = true;
-					m_game->SetKazu(3);
-					p_timer = Timer0;
-				}
-				else {
-					if (p_timer == 98)
-					{
-						ShortCount = false;
-						p_timer = Timer0;
-					}
-				}
+			else {
+				m_Short = MaxSeiseiVer_2;
+				m_timer = Timer0;
 			}
 		}
+		if(Ver == 1){
+			if (DeathCount == false)
+				if (m_Short > 0)
+				{
+					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPB(PadNum);
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
+
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPB(PadNum);
+						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						m_bullet->SetPositionX(50.0f);
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
+
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPB(PadNum);
+						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						m_bullet->SetPositionX(-100.0f);
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
+						m_Short--;
+						Sound(1);//効果音
+						ShortCount = true;
+						m_game->SetKazu(3);
+						p_timer = Timer0;
+					}
+					else {
+						if (p_timer == 98)
+						{
+							ShortCount = false;
+							p_timer = Timer0;
+						}
+					}
+				}
+		}
+	}
 }
 //プレイヤーの球（最終形態）
 void Player::PBullet3()
 {
-	if (DeathCount == false)
-		if (Ver == 2)
-		{
-			m_timer++;  // =GameTime().GetFrameDeltaTime;
-			p_timer++;
-			if (m_timer > SeiseiVer_3) {
-				if (m_Short < MaxSeiseiVer_3) {
-					m_Short++;
-					m_timer = Timer0;
-				}
-				else
-				{
-					m_Short = MaxSeiseiVer_3;
-					m_timer = Timer0;
-				}
+	if (Ver == 2)
+	{
+		m_timer++;  // =GameTime().GetFrameDeltaTime;
+		p_timer++;
+		if (m_timer > SeiseiVer_3) {
+			if (m_Short < MaxSeiseiVer_3) {
+				m_Short++;
+				m_timer = Timer0;
 			}
-			if (m_Short > 0)
+			else
 			{
-				if (NPad(PadNum).IsPress(enButtonRB2) == true) {
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPB(PadNum);
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
-
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPB(PadNum);
-					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					m_bullet->SetPositionX(50.0f);
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
-
-					m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-					m_bullet->SetPB(PadNum);
-					m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-					m_bullet->SetPositionX(-100.0f);
-					m_bullet->SetPosition(m_position);
-					m_bullet->SetMoveSpeedZ(SpeedX, SpeedZ);
-					m_Short--;
-					Sound(1);//効果音
-					ShortCount = true;
-					m_game->SetKazu(3);
-					p_timer = Timer0;
-				}
-				else {
-					if (p_timer == 98)
-					{
-						ShortCount = false;
-						p_timer = Timer0;
-					}
-				}
+				m_Short = MaxSeiseiVer_3;
+				m_timer = Timer0;
 			}
 		}
+		if(Ver == 2){
+			if (DeathCount == false)
+				if (m_Short > 0)
+				{
+					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPB(PadNum);
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
+
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPB(PadNum);
+						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						m_bullet->SetPositionX(50.0f);
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
+
+						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+						m_bullet->SetPB(PadNum);
+						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						m_bullet->SetPositionX(-100.0f);
+						m_bullet->SetPosition(m_position);
+						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
+
+						m_Short--;
+						Sound(1);//効果音
+						ShortCount = true;
+						m_game->SetKazu(3);
+						p_timer = Timer0;
+					}
+					else {
+						if (p_timer == 98)
+						{
+							ShortCount = false;
+							p_timer = Timer0;
+						}
+					}
+				}
+		}
+	}
 }
 //プレイヤーの進化用
 void Player::Pevolution()
 {
-	if (StarCount == 5 && m_mode == 0)
+	if (StarCount >= 5 && m_mode == 0 && StarCount <= 9 && m_mode == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
 		m_scale = { 9.0f,9.0f,9.0f };
@@ -291,7 +301,7 @@ void Player::Pevolution()
 		m_mode = 1;
 		Sound(2);//効果音
 	}
-	if (StarCount == 10 && m_mode == 1|| StarCount == 10 && Ver == 0)
+	if (StarCount >= 10 && m_mode == 1|| StarCount >= 10 && Ver == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType3.cmo");
 		m_scale = { 10.0f,10.0f,10.0f };
@@ -369,9 +379,23 @@ void Player::Respawn()
 				d_timer = 0;
 				DeathCount = false;
 				Muteki = true;
-				Alive = true;
 				CountExplosion = false;
 				PlHP = MaxHP;
+				if (StarCount > 1 && Alive == false)
+				{
+					PopStar = StarCount / 2;
+					StarCount -= PopStar;
+					draw_S->SetKazu(StarCount);
+					Plstar = NewGO<PlayerStar>(0, "PlayerStar");
+					Plstar->SetPosition(Tyuou);
+					Plstar->SetStarCount(PopStar);
+					Game::GetInstance()->AddPlStarCount(1);
+					Alive = true;
+				}
+				else if(StarCount < 1 && Alive == false)
+				{
+					Alive = true;
+				}
 			}
 			else if (Ver == 1)
 			{
@@ -381,8 +405,22 @@ void Player::Respawn()
 				d_timer = 0;
 				DeathCount = false;
 				Muteki = true;
-				Alive = true;
 				PlHP = MaxHP;
+				if (StarCount > 1 && Alive == false)
+				{
+					PopStar = StarCount / 2;
+					StarCount -= PopStar;
+					draw_S->SetKazu(StarCount);
+					Plstar = NewGO<PlayerStar>(0, "PlayerStar");
+					Plstar->SetPosition(Tyuou);
+					Plstar->SetStarCount(PopStar);
+					Game::GetInstance()->AddPlStarCount(1);
+					Alive = true;
+				}
+				else if (StarCount < 1 && Alive == false)
+				{
+					Alive = true;
+				}
 			}
 			else if (Ver == 2)
 			{
@@ -392,8 +430,22 @@ void Player::Respawn()
 				d_timer = 0;
 				DeathCount = false;
 				Muteki = true;
-				Alive = true;
 				PlHP = MaxHP;
+				if (StarCount > 1 && Alive == false)
+				{
+					PopStar = StarCount / 2;
+					StarCount -= PopStar;
+					draw_S->SetKazu(StarCount);
+					Plstar = NewGO<PlayerStar>(0, "PlayerStar");
+					Plstar->SetPosition(Tyuou);
+					Plstar->SetStarCount(PopStar);
+					Game::GetInstance()->AddPlStarCount(1);
+					Alive = true;
+				}
+				else if (StarCount < 1 && Alive == false)
+				{
+					Alive = true;
+				}
 			}
 		}
 	}
@@ -424,8 +476,8 @@ void Player::Houdai()
 		{
 			HoukouX = memoryHX;
 			HoukouZ = memoryHZ;
-			//SpeedX = memorySX;
-			//SpeedZ = memorySZ;
+			SpeedX = memorySX;
+			SpeedZ = memorySZ;
 		}
 	}
 	else if (Ver == 2)
@@ -438,30 +490,25 @@ void Player::Houdai()
 		{
 			HoukouX = memoryHX;
 			HoukouZ = memoryHZ;
-			//SpeedX = memorySX;
-			//SpeedZ = memorySZ;
+			SpeedX = memorySX;
+			SpeedZ = memorySZ;
 		}
 	}
 }
 //☆の当たり判定。
 void Player::S_Hantei()
 {
-	if (m_game->GetS_Init() == false)
-	{
 
-	}
-	else if (m_game->GetS_Init() == true) {
-		QueryGOs<Star>("Star", [&](Star* star)->bool{
-			CVector3 Kyori = star->GetPosition() - m_position;
-			if (Kyori.Length() < StarHantei) {
-				StarCount ++;
-				draw_S->AddKazu(1);
-				m_game->SetStarCount(-1);
-				star->Death();
-			}
-			return true;
-		});
-	}
+	QueryGOs<Star>("Star", [&](Star* star)->bool {
+		CVector3 Kyori = star->GetPosition() - m_position;
+		if (Kyori.Length() < StarHantei) {
+			StarCount++;
+			draw_S->AddKazu(1);
+			m_game->SetStarCount(-1);
+			star->Death();
+		}
+		return true;
+	});
 }
 //プレイヤーの落とした☆の当たり判定。
 void Player::PlS_Hantei()
@@ -559,10 +606,11 @@ void Player::StarPop()
 			StarCount -= PopStar;
 			draw_S->SetKazu(StarCount);
 			Plstar = NewGO<PlayerStar>(0, "PlayerStar");
-			Plstar->SetPosition(m_position);
+			Plstar->SetPosition(Tyuou);
 			Plstar->SetStarCount(PopStar);
 			Game::GetInstance()->AddPlStarCount(1);
 			Alive = true;
+			Sound(3);
 		}
 	}
 	else
@@ -636,16 +684,74 @@ void Player::Sound(int SoundNum)
 	if (SoundNum == 0) {//爆発
 		SoundSource = NewGO<prefab::CSoundSource>(0);
 		SoundSource->Init(L"sound/bakuhatu.wav");
-		SoundSource->Play(false);
+		SoundSource->Play(false);                     //ワンショット再生。
+		SoundSource->SetVolume(1.0f);                 //音量調節。
 	}
 	if (SoundNum == 1) {//弾音
 		SoundSource = NewGO<prefab::CSoundSource>(0);
-		SoundSource ->Init(L"sound/shot1.wav");
-		SoundSource->Play(false);
+		SoundSource->Init(L"sound/shot1.wav");
+		SoundSource->Play(false);                     //ワンショット再生。
+		SoundSource->SetVolume(0.2f);                 //音量調節。
 	}
 	if (SoundNum == 2) {//進化
 		SoundSource = NewGO<prefab::CSoundSource>(0);
 		SoundSource->Init(L"sound/power-up1.wav");
-		SoundSource->Play(false);
+		SoundSource->Play(false);                     //ワンショット再生。
+		SoundSource->SetVolume(1.0f);                     //音量調節。
+	}
+	if (SoundNum == 3) {//星	
+	SoundSource = NewGO<prefab::CSoundSource>(0);
+	SoundSource->Init(L"sound/kira-nn.wav");
+	SoundSource->Play(false);                         //ワンショット再生。
+	SoundSource->SetVolume(1.0f);                     //音量調節。
+	}
+}
+//プレイヤーの中心。
+void Player::StarPos()
+{
+	switch (m_game->GetSansenKazu())
+	{
+	case 1:
+		Tyuou = m_position;
+		break;
+	case 2:
+		Tyuou = m_player[0]->GetPosition()/2 + m_player[1]->GetPosition()/2;
+		break;
+	case 3:
+		Tyuou = m_player[0]->GetPosition()/3 + m_player[1]->GetPosition()/3
+			+ m_player[2]->GetPosition()/3;
+		break;
+	case 4:
+		Tyuou = m_player[0]->GetPosition()/4 + m_player[1]->GetPosition()/4
+			+ m_player[2]->GetPosition()/4 + m_player[3]->GetPosition()/4;
+		break;
+	}
+}
+
+void Player::Playerwarp()
+{
+	if (m_position.x > 35000.0f)
+	{
+		m_position.x = -30000.0f;
+		m_CharaCon.SetPosition(m_position);
+		m_skinModelRender->SetPosition(m_position);
+	}
+	if	(m_position.x < -35000.0f)
+	{
+	m_position.x = 30000.0f;
+	m_CharaCon.SetPosition(m_position);
+	m_skinModelRender->SetPosition(m_position);
+	}
+	if (m_position.z > 19000.0f)
+	{
+		m_position.z = -15000.0f;
+		m_CharaCon.SetPosition(m_position);
+		m_skinModelRender->SetPosition(m_position);
+	}
+	if (m_position.z < -19000.0f)
+	{
+		m_position.z = 15000.0f;
+		m_CharaCon.SetPosition(m_position);
+		m_skinModelRender->SetPosition(m_position);
 	}
 }

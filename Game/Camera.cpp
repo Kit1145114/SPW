@@ -53,8 +53,10 @@ void Camera::Move()
 	//c
 	for (Player* player : Game::GetInstance()->m_player)
 	{
-	
-		float Max = fabs(m_player->GetPosition().z - Tyuou.z) + 5000;
+		if (player == nullptr) {
+			continue;
+		}
+		float Max = fabs(player->GetPosition().z - Tyuou.z) + 10000;
 		if (Saityou < Max)
 		{
 			Saityou = Max;
@@ -69,8 +71,10 @@ void Camera::Move()
 	Saityou = -1;
 	for (Player* player : Game::GetInstance()->m_player)
 	{
-
-		float Max = fabs(m_player->GetPosition().x - Tyuou.x) + 5000;
+		if (player == nullptr) {
+			continue;
+		}
+		float Max = fabs(player->GetPosition().x - Tyuou.x) + 10000;
 		if (Saityou < Max)
 		{
 			Saityou = Max;

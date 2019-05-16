@@ -50,6 +50,8 @@ public:
 	void PlS_Hantei();
 	void SetPadNum(int num);
 	void Sound(int SoundNum);
+	void StarPos();
+	void Playerwarp();
 	CVector3 GetPosition() {
 		return m_position;
 	}
@@ -128,6 +130,16 @@ public:
 	bool GetMuteki() {
 		return Muteki;
 	}
+	void SetRespown(float x, float y, float z)
+	{
+		Res.x = x;
+		Res.y = y;
+		Res.z = z;
+	}
+	CVector3 GetmoveSpeedFrame()
+	{
+		return moveSpeedFrame = m_moveSpeed * 15.0f;
+	}
 private:
 	Player * m_player[4] = { nullptr };
 	Draw_Player * draw_Pl = nullptr;
@@ -145,9 +157,10 @@ private:
 	CVector3 m_moveSpeed = CVector3::Zero;
 	CVector3 b_moveSpeed = CVector3::Zero;
 	CVector3 m_scale = { 1.0f,1.0f,1.0f };
+	CVector3 Tyuou = CVector3::Zero;
 	CQuaternion m_rotation = CQuaternion::Identity;
 	CVector3 b_position = CVector3::Zero;
-	
+	CVector3 moveSpeedFrame = m_moveSpeed * 12.0f;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 	prefab::CSoundSource* SoundSource = nullptr;//BGM用のサウンドソース。
 	
@@ -167,9 +180,9 @@ private:
 	int PlHP = 100;
 	int MaxHP = 100;
 	int Damage = 20;
-	int SeiseiVer_1 = 30;
+	int SeiseiVer_1 = 25;
 	int SeiseiVer_2 = 15;
-	int SeiseiVer_3 = 5;
+	int SeiseiVer_3 = 6;
 	int MaxSeiseiVer_1 = 30;
 	int MaxSeiseiVer_2 = 50;
 	int MaxSeiseiVer_3 = 99;
@@ -181,8 +194,10 @@ private:
 	float SpeedZ = 0.0f;
 	float memorySX = 0.0f;
 	float memorySZ = 0.0f;
-	float BulletHantei = 900.0f;
-	float StarHantei = 600.0f;
+	float BulletHantei = 1200.0f;
+	float StarHantei = 900.0f;
+	CVector3 Res = CVector3::Zero;
+
 	bool DeathCount = false;
 	bool ShortCount = false;
 	bool MyBullet = true;

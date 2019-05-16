@@ -8,6 +8,7 @@ Star::Star()
 	m_skinModelRender->Init(L"modelData/star.cmo");
 	m_scale = { 8.0f, 8.0, 8.0f };
 	m_skinModelRender->SetScale(m_scale);
+	m_skinModelRender->SetEmissionColor({ 1.25, 1.25, 1.25 }); //物自体を光らせるコード。
 	m_player = FindGO<Player>("Player");
 	m_game = FindGO<Game>("Game");
 }
@@ -35,10 +36,12 @@ void Star::Update()
 }
 
 //☆の出現
-void Star::Pop(CVector3 position)
+void Star::Pop(CVector3 position,CVector3 scale)
 {
 	m_position = position;
+	m_scale = scale;
 	m_skinModelRender->SetPosition(m_position);
+	m_skinModelRender->SetScale(m_scale);
 };
 
 void Star::Push()
@@ -50,7 +53,6 @@ void Star::Rotation()
 {
 	angle += 3.0f;
 	m_rotation.SetRotationDeg(CVector3::AxisY, angle);
-	m_rotation.SetRotationDeg(CVector3::AxisZ, angle);
 	m_skinModelRender->SetRotation(m_rotation);
 }
 

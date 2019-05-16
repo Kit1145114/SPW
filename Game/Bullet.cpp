@@ -4,6 +4,7 @@
 
 Bullet::Bullet()
 {
+	m_game = Game::GetInstance();
 }
 
 
@@ -14,7 +15,6 @@ Bullet::~Bullet()
 
 bool Bullet::Start()
 {
-	m_game = FindGO<Game>("Game");
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	if (PB == 0)
 	{
@@ -32,7 +32,7 @@ bool Bullet::Start()
 	{
 		m_skinModelRender->Init(L"modelData/Bullet4.cmo");
 	}
-	m_scale = { 5.0f,5.0f,5.0f };
+	m_scale = { 10.0f,10.0f,10.0f };
 	m_skinModelRender->SetScale(m_scale);
 	return true;
 }
@@ -48,6 +48,7 @@ void Bullet::Update()
 	{
 		Death();
 	}
+	BulletDeath();
 }
 
 int Bullet::GetPB()
@@ -73,4 +74,21 @@ void Bullet::Death()
 {
 	DeleteGO(this);
 	m_game->SetKazu(-1);
+}
+
+void Bullet::BulletDeath()
+{
+	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b)->bool{
+		CVector3 kyori = b->GetPosition() - m_position;
+		if (b->GetPB() != PB && kyori.Length() < BulletHantei)
+		{
+			b->Death();
+			Death();
+		}
+		else
+		{
+			
+		}
+		return true;
+	});
 }

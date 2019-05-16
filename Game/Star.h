@@ -14,7 +14,7 @@ public:
 	void Push();
 	void Rotation();
 	void Death();
-	void Pop(CVector3 position);
+	void Pop(CVector3 position, CVector3 scale);
 	CVector3 GetPosition()
 	{
 		return m_position;
@@ -22,6 +22,10 @@ public:
 	void SetPosition(CVector3 position)
 	{
 		m_position = position;
+	}
+	void SetScale(CVector3 sca)
+	{
+		m_scale = sca;
 	}
 private:
 	Game* m_game = nullptr;					//ÉQÅ[ÉÄclassÇÃÉ|ÉCÉìÉ^ÅOÅO
