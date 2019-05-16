@@ -1,8 +1,13 @@
 ﻿#include "stdafx.h"
 #include "Game.h"
-#include"field.h"
 #include "tkEngine/light/tkDirectionLight.h"
 #include "Fade.h"
+#include"field.h"
+#include"Player.h"
+#include"MeteoGene.h"
+//#include"Enemy.h"
+#include"ResultGamen.h";
+//#include"Sinka_Bar.h"
 #include "Stage1/SatelliteGene.h"
 
 Game* Game::m_instance = nullptr;
@@ -28,15 +33,16 @@ Game::~Game()
 	if (m_camera != nullptr) {
 		DeleteGO(m_camera);
 	}
-	if (m_enemy != nullptr) {
-		DeleteGO(m_enemy);
-	}
+	//if (m_enemy != nullptr) {
+	//	DeleteGO(m_enemy);
+	//}
 	if (m_star != nullptr) {
 		DeleteGO(m_star);
 	}
 	DeleteGO(m_field);
 	DeleteGO(m_G_Timer);
 	DeleteGO(satelliteG);
+	DeleteGO(meteogene);
 	DeleteGO(bgmSoundSource);
 	DeleteGOs("planet");//Planetクラス
 	DeleteGOs("BlackHole");//BlackHoleクラス

@@ -19,7 +19,7 @@ public:
 
 	bool Start();
 	void Update();
-	void Pl_Hantei();
+	//void Pl_Hantei();
 	void Death();
 	void Move();
 	void Rotation();
