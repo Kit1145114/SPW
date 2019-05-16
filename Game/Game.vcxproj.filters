@@ -751,6 +751,10 @@
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\sprite\tama_green.png" />
+    <Image Include="Assets\sprite\tama_red.png" />
+    <Image Include="Assets\sprite\tama_bule.png" />
+    <Image Include="Assets\sprite\tama_yellow.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\explosion1.efk" />

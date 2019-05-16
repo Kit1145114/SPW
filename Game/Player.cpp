@@ -610,53 +610,53 @@ void Player::SetPadNum(int num)
 	case 0:
 		r_ring->SetPlayerRadar(L"modelData/Ring1P.cmo",PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/1P.dds");
-		draw_Pl->SetPosition(-450.0f, -300.0f);
-		draw_S->SetS_kazuPosition(-458.0f, -220.0f);
+		draw_Pl->SetPosition(-450.0f, -330.0f);
+		draw_S->SetS_kazuPosition(-468.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
-		draw_S->SetS_position(-480.0f, -229.0f);
+		draw_S->SetS_position(-480.0f, -279.0f);
 		//’e‚ÌêŠB
-		draw_S->SetBullet(L"sprite/Bullet.dds");
-		draw_S->SetB_kazuPosition(-320.0f, -315.0f);
-		draw_S->SetBulletposition(-315.0f,-275.0f);
+		draw_S->SetBullet(L"sprite/tama_red.dds");
+		draw_S->SetB_kazuPosition(-370.0f,-325.0f);
+		draw_S->SetBulletposition(-365.0f,-285.0f);
 		draw_S->SetColor(1.0f, 0.0f, 0.0f, 1.0f);
 		break;
 	case 1:
 		r_ring->SetPlayerRadar(L"modelData/Ring2P.cmo", PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/2P.dds");
-		draw_Pl->SetPosition(-150.0f, -300.0f);
-		draw_S->SetS_kazuPosition(-158.0f, -220.0f);
+		draw_Pl->SetPosition(-150.0f, -330.0f);
+		draw_S->SetS_kazuPosition(-168.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
-		draw_S->SetS_position(-180.0f, -229.0f);
+		draw_S->SetS_position(-180.0f, -279.0f);
 
-		draw_S->SetBullet(L"sprite/Bullet.dds");
-		draw_S->SetB_kazuPosition(-20.0f, -315.0f);
-		draw_S->SetBulletposition(-15.0f, -275.0f);
+		draw_S->SetBullet(L"sprite/tama_bule.dds");
+		draw_S->SetB_kazuPosition(-70.0f, -325.0f);
+		draw_S->SetBulletposition(-65.0f, -285.0f);
 		draw_S->SetColor(0.0f, 0.0f, 1.0f, 1.0f);
 		break;
 	case 2:
 		r_ring->SetPlayerRadar(L"modelData/Ring3P.cmo", PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/3P.dds");
-		draw_Pl->SetPosition(150.0f, -300.0f);
-		draw_S->SetS_kazuPosition(150.0f, -220.0f);
+		draw_Pl->SetPosition(150.0f, -330.0f);
+		draw_S->SetS_kazuPosition(135.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
-		draw_S->SetS_position(120.0f, -229.f);
+		draw_S->SetS_position(120.0f, -279.f);
 
-		draw_S->SetBullet(L"sprite/Bullet.dds");
-		draw_S->SetB_kazuPosition(280.0f, -315.0f);
-		draw_S->SetBulletposition(285.0f, -275.0f);
+		draw_S->SetBullet(L"sprite/tama_green.dds");
+		draw_S->SetB_kazuPosition(230.0f, -325.0f);
+		draw_S->SetBulletposition(235.0f, -285.0f);
 		draw_S->SetColor(0.1f, 1.0f, 0.0f, 1.0f);
 		break;
 	case 3:
 		r_ring->SetPlayerRadar(L"modelData/Ring4P.cmo", PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/4P.dds");
-		draw_Pl->SetPosition(450.0f, -300.0f);
-		draw_S->SetS_kazuPosition(458.0f, -220.0f);
+		draw_Pl->SetPosition(450.0f, -330.0f);
+		draw_S->SetS_kazuPosition(428.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
-		draw_S->SetS_position(420.0f, -229.0f);
+		draw_S->SetS_position(420.0f, -279.0f);
 
-		draw_S->SetBullet(L"sprite/Bullet.dds");
-		draw_S->SetB_kazuPosition(580.0f, -315.0f);
-		draw_S->SetBulletposition(585.0f, -275.0f);
+		draw_S->SetBullet(L"sprite/tama_yellow.dds");
+		draw_S->SetB_kazuPosition(530.0f, -325.0f);
+		draw_S->SetBulletposition(535.0f, -285.0f);
 		draw_S->SetColor(1.0f, 0.7f, 0.0f, 1.0f);
 		break;
 	}

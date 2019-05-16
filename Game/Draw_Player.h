@@ -32,6 +32,8 @@ private:
 	int Limit = 180;
 	bool Death = false;
 	bool State = false;
+	float yoko = 100.0f;
+	float tate = 60.0f;
 	const wchar_t* draw_P = nullptr;
 };
 
