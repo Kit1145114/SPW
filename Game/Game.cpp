@@ -43,6 +43,7 @@ Game::~Game()
 	DeleteGOs("BlackHole");//BlackHoleクラス
 	DeleteGOs("PlayerBullet");//Bulletクラス
 	DeleteGOs("Star");//Starクラス
+	DeleteGOs("Meteo");
 	DeleteGO("そら");
 }
 
@@ -113,6 +114,7 @@ bool Game::Start()
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 	Fade::fadeOut();
+	Meteo::Generate();
 	return true;
 }
 
@@ -122,6 +124,7 @@ void Game::Update()
 		Star_Life();
 		PlStar_Life();
 		Bullet_Life();
+		InitTime();
 		//当たり判定表示
 		//dbg::SetDrawPhysicsCollisionEnable();
 		if (Pad(0).IsPress(enButtonSelect) == true)
@@ -176,6 +179,16 @@ void Game::Bullet_Life()
 	else if (PB_Kazu == 0)
 	{
 		PBullet_Init = false;
+	}
+}
+
+void Game::InitTime()
+{
+	timer++;
+	if(timer > Maxtimer)
+	{
+		Meteo::Generate();
+		timer = timer0;
 	}
 }
 
