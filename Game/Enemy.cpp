@@ -56,15 +56,12 @@ void Enemy::Pl_Hantei()
 {
 	for(int i = 0; i < PadKazu; i++)
 	if (m_player[i]->GetVer() == 0) {
-		if (m_game->GetPBInit() == true/*m_player[i]->GetShortCount() == true && m_player[i]->GetDeathCount() == false*/)
+		m_bullet = FindGO<Bullet>("PlayerBullet");
+		CVector3 diff = m_bullet->GetPosition() - m_position;
+		if (diff.Length() < 200.0f)
 		{
-			m_bullet = FindGO<Bullet>("PlayerBullet");
-			CVector3 diff = m_bullet->GetPosition() - m_position;
-			if (diff.Length() < 200.0f)
-			{
-				m_game->m_enemy = nullptr;
-				Death();
-			}
+			m_game->m_enemy = nullptr;
+			Death();
 		}
 	}
 }
