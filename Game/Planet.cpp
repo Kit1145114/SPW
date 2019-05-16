@@ -33,118 +33,7 @@ bool Planet::Start()
 	return true;
 }
 
-void Planet::GenerateAll(int Reload, int Planetnum) {
-
-	Game* m_game = nullptr;
-	m_game = FindGO<Game>("Game");
-	//Planetnumber_Num分の作成
-	for (int i = 0, w = Planetnumber_00; i < Reload; i++, w++) {
-		prefab::CSkinModelRender* P_skinModelRender;
-		P_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-
-		//惑星のモデリング指定。
-		if (Reload != Planetnumber_Num) //Numは初期リスポーンのため例外。
-			w = Planetnum;          //惑星の指定。
-
-		switch (w) {
-		case Planetnumber_00:
-			P_skinModelRender->Init(L"modelData/planet0fire.cmo");
-			break;
-		case Planetnumber_01:
-			P_skinModelRender->Init(L"modelData/planet01.cmo");
-			break;
-		case Planetnumber_02:
-			P_skinModelRender->Init(L"modelData/planet02.cmo");
-			break;
-		case Planetnumber_03:
-			P_skinModelRender->Init(L"modelData/planet03.cmo");
-			break;
-		case Planetnumber_04:
-			P_skinModelRender->Init(L"modelData/planet04.cmo");
-			break;
-		case Planetnumber_05:
-			P_skinModelRender->Init(L"modelData/planet05.cmo");
-			break;
-		case Planetnumber_06:
-			P_skinModelRender->Init(L"modelData/planet06.cmo");
-			break;
-		case Planetnumber_07:
-			P_skinModelRender->Init(L"modelData/planet07.cmo");
-			break;
-		case Planetnumber_08:
-			P_skinModelRender->Init(L"modelData/planet08.cmo");
-			break;
-		case Planetnumber_09:
-			P_skinModelRender->Init(L"modelData/planet09.cmo");
-			break;
-		case Planetnumber_10:
-			P_skinModelRender->Init(L"modelData/planet_10.cmo");
-			break;
-		case Planetnumber_11:
-			P_skinModelRender->Init(L"modelData/planet11.cmo");
-			break;
-		default:w = Planetnumber_00;
-		}
-		Planet* m_planet = NewGO<Planet>(0, "planet");
-		//初期リスポーンの場合。
-		if (Planetnum == Planetnumber_Num) {
-			m_game->memoryPP[i] = m_planet;
-			m_planet->myPlanetnumber = i;    //自分のPlametナンバー保存。
-		}
-		//リポップ。
-		else if (Planetnum != Planetnumber_Num) {
-			m_game->memoryPP[w] = m_planet;
-			m_planet->myPlanetnumber = w;    //自分のPlametナンバー保存。
-		}
-
-		CVector3 hako;
-		do {
-			m_planet->repopflag = false;
-			//ランダムポップ。
-			float vx = Random().GetRandDouble();
-			float vz = Random().GetRandDouble();
-
-			hako.x = vx;
-			hako.z = vz;
-			if (Random().GetRandDouble() <= 0.5f)
-				hako.x *= -1;
-			if (Random().GetRandDouble() <= 0.5f)
-				hako.z *= -1;
-
-			//ランダム生成する場所の制限。
-			float PosLimitx = 30000.0f;
-			float PosLimitz = 20000.0f;
-			hako.x *= PosLimitx;
-			hako.z *= PosLimitz;
-
-			m_planet->p_position = hako;
-
-			m_planet->initAll(m_planet->p_position, P_skinModelRender);
-
-			//ポップ時にプレイヤーとぶつからないように。
-			for (int j = 0; j < Game::GetInstance()->GetSansenKazu(); j++) {
-				if (j != Game::GetInstance()->GetSansenKazu()) { //自分でなければ
-					CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - m_planet->p_position;
-					if (kyori.Length() < m_planet->radius + 500.0f) {
-						m_planet->repopflag = true;
-					}
-				}
-			}
-			//ポップ時に惑星とぶつからないように。
-			//for (int j = 0; j < Planetnumber_Num; j++) {
-			//	if (j == m_planet->myPlanetnumber) {//自分でなければ
-			//		CVector3 kyori = Game::GetInstance()->memoryPP[i]->p_position - m_planet->p_position;
-			//		if (kyori.Length() < m_planet->radius + 500.0f) {
-			//			m_planet->repopflag = true;
-			//		}
-			//	}
-			//}
-		} while (m_planet->repopflag == true);
-	}
-}
-
 bool Planet::Generate(int Reload, int Planetnum) {
-	
 	Game* game = nullptr;
 	game = FindGO<Game>("Game");
 	//Planetnumber_Num分の作成
@@ -268,24 +157,6 @@ bool Planet::Generate(int Reload, int Planetnum) {
 	return true;
 }
 //星の生成。
-void Planet::initAll(CVector3 position, prefab::CSkinModelRender* skinModelRender)
-{
-	//星のポジション保存。
-	p_position = position;
-
-	//惑星の大きさランダム。
-
-	float v = 10.0f;//最低限の大きさを予め入れておく。
-	v += 50.0f * Random().GetRandDouble();
-	scale.x *= v;
-	scale.z *= v;
-	radius *= v;
-
-	p_skinModelRender = skinModelRender;
-	p_skinModelRender->SetScale(scale);
-	p_skinModelRender->SetPosition(position);
-}
-//星の生成。
 void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender,float scale)
 {
 	//星のポジション保存。
@@ -327,9 +198,9 @@ void Planet::explosion()
 		float tyousei = 30.0f; //惑星と星のモデルの大きさの差を調整↓。
 		m_star->Pop(this->p_position, this->scale*this->radius/ tyousei);
 		Game::GetInstance()->SetStarCount(1);
+		Game::GetInstance()->memoryPP[this->myPlanetnumber] = nullptr;
 		Generate(1, myPlanetnumber); //新たな惑星を生成（自分のナンバーの惑星を）。
 		//NewGO<RepopPlanet>(0)->Set(myPlanetnumber);
-		Game::GetInstance()->memoryPP[this->myPlanetnumber] = nullptr ;
 		DeleteGO(this);
 
 		//エフェクトを作成。
@@ -352,7 +223,6 @@ void Planet::explosion()
 void Planet::Death() {
 
 	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
-
 	for (int i = 0;i < Game::GetInstance()->GetSansenKazu();i++) {
 		//プレイヤーが無敵なら攻撃をやめる。
 		if (Game::GetInstance()->m_player[i]->GetMuteki() == false) {
@@ -385,9 +255,11 @@ void Planet::Death() {
 			//2点間の距離を計算する。
 			CVector3 diff = Game::GetInstance()->memoryPP[i]->p_position - p_position;
 			//距離が半径以下なら。
-		 if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
-				BlackHole::Generate(p_position, radius);
+			if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
 				explosion();
+				if (Game::GetInstance()->GetBHflag() == false) {
+					BlackHole::Generate(p_position, radius);
+				}
 			}
 		}
 	}

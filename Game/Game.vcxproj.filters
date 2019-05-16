@@ -95,6 +95,7 @@
     <ClCompile Include="Meteo.cpp" />
     <ClCompile Include="Stage1\Satellite.cpp" />
     <ClCompile Include="Stage1\SatelliteGene.cpp" />
+    <ClCompile Include="BigBlackHole.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -560,6 +561,7 @@
     <ClInclude Include="Sinka_Bar.h">
       <Filter>Assets\sprite</Filter>
     </ClInclude>
+    <ClInclude Include="BigBlackHole.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">

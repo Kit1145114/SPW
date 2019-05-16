@@ -1,7 +1,7 @@
 #pragma once
 //#include "Player.h"
 #include "Planet.h"
-#include"Game.h"
+#include "Game.h"
 
 class Game;
 class Player;
@@ -30,7 +30,7 @@ public:
 	{
 		scale = sca;
 	}
-	private:
+private:
 	prefab::CEffect* effect;
 	Game* m_game = nullptr;
 	Draw_Player* Pl1 = nullptr;

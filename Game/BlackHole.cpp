@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "BlackHole.h"
-#include"Star.h"
+#include "Star.h"
 
 BlackHole::BlackHole()
 {
@@ -128,7 +128,6 @@ void BlackHole::Count()
 
 void BlackHole::Death()
 {
-	
 	DeleteGO(this);
 	//effect = nullptr;
 }
