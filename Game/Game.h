@@ -98,10 +98,6 @@ public:
 	{
 		StarCount += kazu;
 	}//ÉXÉ^Å[Ç™ë∂ç›ÇµÇƒÇ¢ÇÈÇ©
-	bool GetS_Init()
-	{
-		return S_Init;
-	}
 	void AddPlStarCount(int kazu)
 	{
 		PlStarCount += kazu;
@@ -149,8 +145,6 @@ private:
 	int timer = 0;
 	int Maxtimer = 180;
 	int timer0 = 0;
-	bool PBullet_Init = false;
-	bool S_Init = false;
 	bool PlS_Init = false;
 	CVector3 Kyori = CVector3::Zero;
 	CVector3 SyokiCamera = CVector3::Zero;
