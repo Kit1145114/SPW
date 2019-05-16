@@ -25,21 +25,16 @@ bool StageSelect::Start() {
 			pos.y -= 300;
 		}
 	}
-	iconArray[0].setStageFunc([&]() {
-		NewGO<Game>(0, "Game")->SetSanSenkazu(sansenKazu); DeleteGO(this);
+	/*iconArray[0].setStageFunc([&]() {
 	});
 	iconArray[1].setStageFunc([&]() {
-		//ここにステージ生成コードを書いてください
 	});
 	iconArray[2].setStageFunc([&]() {
-		//ここにステージ生成コードを書いてください
 	});
 	iconArray[3].setStageFunc([&]() {
-		//ここにステージ生成コードを書いてください
 	});
 	iconArray[4].setStageFunc([&]() {
-		//ここにステージ生成コードを書いてください
-	});
+	});*/
 
 	Fade::fadeOut();
 	return true;
@@ -48,7 +43,10 @@ bool StageSelect::Start() {
 void StageSelect::Update() {
 	if (Pad(0).IsTrigger(enButtonA)) {
 		Fade::fadeIn([&]() {
-			iconArray[selectNumber].goStage();
+			Game* game = NewGO<Game>(0, "Game");
+			game->SetSanSenkazu(sansenKazu);
+			game->setStage(selectNumber);
+			DeleteGO(this);
 		});
 		Sound(1);
 		return;

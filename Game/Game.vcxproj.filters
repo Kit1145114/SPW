@@ -93,6 +93,8 @@
     <ClCompile Include="StageSelect.cpp" />
     <ClCompile Include="Fade.cpp" />
     <ClCompile Include="Meteo.cpp" />
+    <ClCompile Include="Stage1\Satellite.cpp" />
+    <ClCompile Include="Stage1\SatelliteGene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -552,6 +554,9 @@
     <ClInclude Include="StageSelect.h" />
     <ClInclude Include="Fade.h" />
     <ClInclude Include="Meteo.h" />
+    <ClInclude Include="Stage1\Satellite.h" />
+    <ClInclude Include="Stage1\CVector2.h" />
+    <ClInclude Include="Stage1\SatelliteGene.h" />
     <ClInclude Include="Sinka_Bar.h">
       <Filter>Assets\sprite</Filter>
     </ClInclude>

@@ -37,7 +37,7 @@ public:
 	void PBullet2();
 	void PBullet3();
 	void Pevolution();
-	void Hantei();
+	//void Hantei();
 	void Rotation();
 	void Death();
 	void Respawn();

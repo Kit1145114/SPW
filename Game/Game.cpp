@@ -3,6 +3,7 @@
 #include"field.h"
 #include "tkEngine/light/tkDirectionLight.h"
 #include "Fade.h"
+#include "Stage1/SatelliteGene.h"
 
 Game* Game::m_instance = nullptr;
 
@@ -33,12 +34,10 @@ Game::~Game()
 	if (m_star != nullptr) {
 		DeleteGO(m_star);
 	}
-	DeleteGO(s_bar);
 	DeleteGO(m_field);
 	DeleteGO(m_G_Timer);
-	DeleteGO(m_planet);
+	DeleteGO(satelliteG);
 	DeleteGO(bgmSoundSource);
-	DeleteGO(Pl1);
 	DeleteGOs("planet");//Planetクラス
 	DeleteGOs("BlackHole");//BlackHoleクラス
 	DeleteGOs("PlayerBullet");//Bulletクラス
@@ -47,72 +46,83 @@ Game::~Game()
 	DeleteGO("そら");
 }
 
+void Game::CreateStage0() {
+	switch (SansenKazu) {
+	case 4:
+		m_player[3] = NewGO<Player>(0, "Player3");
+		m_player[3]->SetPadNum(3);
+		m_player[3]->SetPositionX(P_pos * 3);
+	case 3:
+		m_player[2] = NewGO<Player>(0, "Player2");
+		m_player[2]->SetPadNum(2);
+		m_player[2]->SetPositionX(P_pos);
+	case 2:
+		m_player[1] = NewGO<Player>(0, "Player1");
+		m_player[1]->SetPadNum(1);
+		m_player[1]->SetPositionX(P_pos*-1);
+	case 1:
+		m_player[0] = NewGO<Player>(0, "Player");
+		m_player[0]->SetPadNum(0);
+		m_player[0]->SetPositionX(P_pos*-3);
+	}
+	m_field = NewGO<field>(0);
+	//BGM
+	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
+	bgmSoundSource->Init(L"sound/kaisen.wav");
+	bgmSoundSource->Play(true);
+	bgmSoundSource->SetVolume(0.1f);
+	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+}
+
+void Game::CreateStage1() {
+	switch (SansenKazu) {
+	case 4:
+		m_player[3] = NewGO<Player>(0, "Player3");
+		m_player[3]->SetPadNum(3);
+		m_player[3]->SetPositionX(P_pos * 3);
+	case 3:
+		m_player[2] = NewGO<Player>(0, "Player2");
+		m_player[2]->SetPadNum(2);
+		m_player[2]->SetPositionX(P_pos);
+	case 2:
+		m_player[1] = NewGO<Player>(0, "Player1");
+		m_player[1]->SetPadNum(1);
+		m_player[1]->SetPositionX(P_pos*-1);
+	case 1:
+		m_player[0] = NewGO<Player>(0, "Player");
+		m_player[0]->SetPadNum(0);
+		m_player[0]->SetPositionX(P_pos*-3);
+	}
+	NewGO<SatelliteGene>(0, "SatelliteGene");
+	m_field = NewGO<field>(0);
+	//BGM
+	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
+	bgmSoundSource->Init(L"sound/kaisen.wav");
+	bgmSoundSource->Play(true);
+	bgmSoundSource->SetVolume(0.1f);
+	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+}
+
 bool Game::Start()
 {
 	auto sky = NewGO<prefab::CSky>(0, "そら");
 	sky->SetScale({ 50000.0f, 50000.0f, 50000.0f });
 	sky->SetEmissionColor({ 0.1484f, 0.1484f, 0.398f });
-	LightManager().SetAmbientLight({10.0f, 10.0f, 10.0f});
-	switch (SansenKazu)
-	{
+	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f });
+	//ステージ振り分け。
+	switch (Stage) {
+	case 0:
+		CreateStage0();
+		break;
 	case 1:
-		m_player[0] = NewGO<Player>(0, "Player");
-		m_player[0]->SetPadNum(0);
-		m_player[0]->SetPositionX(P_pos*-3);
-		//m_player[0]->SetRespown(P_pos*-3.0f,0.0f,0.0f);
+		CreateStage1();
 		break;
-	case 2:
-		m_player[0] = NewGO<Player>(0, "Player");
-		m_player[0]->SetPadNum(0);
-		m_player[0]->SetPositionX(P_pos*-3);
-		//m_player[0]->SetRespown( P_pos*-3, 0.0f,0.0f);
-		m_player[1] = NewGO<Player>(0, "Player1");
-		m_player[1]->SetPadNum(1);
-		m_player[1]->SetPositionX(P_pos*-1);
-		//m_player[1]->SetRespown( P_pos*-1, 0.0f, 0.0f);
-		break;
-	case 3:
-		m_player[0] = NewGO<Player>(0, "Player");
-		m_player[0]->SetPadNum(0);
-		m_player[0]->SetPositionX(P_pos*-3);
-		//m_player[0]->SetRespown( P_pos*-3, 0.0f, 0.0f);
-		m_player[1] = NewGO<Player>(0, "Player1");
-		m_player[1]->SetPadNum(1);
-		m_player[1]->SetPositionX(P_pos*-1);
-		//m_player[1]->SetRespown(P_pos*-1, 0.0f, 0.0f);
-		m_player[2] = NewGO<Player>(0, "Player2");
-		m_player[2]->SetPadNum(2);
-		m_player[2]->SetPositionX(P_pos);
-		//m_player[2]->SetRespown (P_pos*-1,0.0f, 0.0f);
-		break;
-	case 4:
-		m_player[0] = NewGO<Player>(0, "Player");
-		m_player[0]->SetPadNum(0);
-		m_player[0]->SetPositionX(P_pos*-3);
-		//m_player[0]->SetRespown( P_pos*-3, 0.0f, 0.0f);
-		m_player[1] = NewGO<Player>(0, "Player1");
-		m_player[1]->SetPadNum(1);
-		m_player[1]->SetPositionX(P_pos*-1);
-		//m_player[1]->SetRespown( P_pos*-1, 0.0f, 0.0f);
-		m_player[2] = NewGO<Player>(0, "Player2");
-		m_player[2]->SetPadNum(2);
-		m_player[2]->SetPositionX(P_pos);
-		//m_player[2]->SetRespown( P_pos*1,0.0f, 0.0f);
-		m_player[3] = NewGO<Player>(0, "Player3");
-		m_player[3]->SetPadNum(3);
-		m_player[3]->SetPositionX(P_pos*3);
-		//m_player[3]->SetRespown( P_pos*3,0.0f, 0.0f);
-	break;
+	default:
+		CreateStage0();
 	}
-	m_field = NewGO<field>(0);
-	m_camera = NewGO<Camera>(0,"Camera");
-	m_G_Timer = NewGO<GamenTimer>(0,"GamenTimer");
-	//BGM
-	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
-	bgmSoundSource->Init(L"sound/kaisen.wav");
-	bgmSoundSource->Play(true);
-	bgmSoundSource->SetVolume(1.0f);
-	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+	m_camera = NewGO<Camera>(0, "Camera");
+	m_G_Timer = NewGO<GamenTimer>(0, "GamenTimer");
+
 	Fade::fadeOut();
 	Meteo::Generate();
 	return true;

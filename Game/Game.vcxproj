@@ -1807,6 +1807,8 @@
     <ClCompile Include="Senkan_Rtype_2.cpp" />
     <ClCompile Include="SetumeiGamen.cpp" />
     <ClCompile Include="Sinka_Bar.cpp" />
+    <ClCompile Include="Stage1\Satellite.cpp" />
+    <ClCompile Include="Stage1\SatelliteGene.cpp" />
     <ClCompile Include="StageSelect.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -1999,6 +2001,9 @@
     <ClInclude Include="ResultGamen.h" />
     <ClInclude Include="Network\PadRingBuffer.h" />
     <ClInclude Include="SansenGamen.h" />
+    <ClInclude Include="Stage1\SatelliteGene.h" />
+    <ClInclude Include="Stage1\CVector2.h" />
+    <ClInclude Include="Stage1\Satellite.h" />
     <ClInclude Include="Senkan_Rtype_2.h" />
     <ClInclude Include="SetumeiGamen.h" />
     <ClInclude Include="Sinka_Bar.h" />
@@ -2036,6 +2041,7 @@
     <MeshContentTask Include="Assets\modelData\Ring2P.FBX" />
     <MeshContentTask Include="Assets\modelData\Ring3P.FBX" />
     <MeshContentTask Include="Assets\modelData\Ring4P.FBX" />
+    <MeshContentTask Include="Assets\modelData\Satellite.FBX" />
     <MeshContentTask Include="Assets\modelData\Senkan.FBX" />
     <MeshContentTask Include="Assets\modelData\SenkanType2.FBX" />
     <MeshContentTask Include="Assets\modelData\SenkanType3.FBX" />

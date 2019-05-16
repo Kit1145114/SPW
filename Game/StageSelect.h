@@ -20,16 +20,16 @@ public:
 		return m_pos;
 	}
 
-	void goStage() {
+	/*void goStage() {
 		newStageFunc();
 	}
 
 	void setStageFunc(std::function<void()> func) {
 		newStageFunc = func;
-	}
+	}*/
 
 private:
-	std::function<void()> newStageFunc;
+	/*std::function<void()> newStageFunc;*/
 	CShaderResourceView texture;
 	CSprite sprite;
 	CVector3 m_pos;
