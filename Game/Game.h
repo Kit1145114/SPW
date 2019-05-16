@@ -30,7 +30,7 @@ class Player_RType2;
 class Star;
 class Sinka_Bar;
 class Draw_Player;
-
+class SatelliteGene;
 
 enum Planetnumber {
 	Planetnumber_00,
@@ -65,13 +65,6 @@ public:
 	void SetGameMode(int a)
 	{
 		GameMode = a;
-	}
-	void SetPlanetAgeinCount(int a)
-	{
-		PlanetAgeinCount =+ a;
-	}
-	CVector3 GetPosition() {
-		return memory_position;
 	}
 	void SetSanSenkazu(int kazu)
 	{
@@ -112,6 +105,7 @@ public:
 		return PlS_Init;
 	}
 
+	//遊ぶステージを設定する
 	void setStage(int _stage) {
 		Stage = _stage;
 	}
@@ -125,45 +119,26 @@ public:
 	Enemy* m_enemy = nullptr;
 	Star* m_star = nullptr;
 private:
-	BlackHole* bh = nullptr;
 	static Game* m_instance;
-	Draw_Player* Pl1= nullptr;
 	Camera* m_camera = nullptr;
 	field* m_field = nullptr;
 	GamenTimer* m_G_Timer = nullptr;
-	Planet* m_planet = nullptr;
 	Meteo* meteo = nullptr;
-	Player_RType2* m_player_Rtype2 = nullptr;
-	Sinka_Bar*s_bar = nullptr;
+	SatelliteGene* satelliteG = nullptr;
 	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。
-	CVector3 memory_position = CVector3::Zero;
 	
 	int GameMode = 0;
 	int Stage = 0;          //ステージ選択用
-	int Pver = 0;
-	int starget = 0;
-	int MAXPad = 3;
-	int MINPad = 1;
-	//int PadNum = 0;
-	int NumMin = 0;
 	int SansenKazu = 0;
-	int PlanetAgeinCount = 0;
 	int StarCount  = 0;
 	int PlStarCount = 0;
-	int Star0 = 0;
 	float P_pos = 1800.0f;
-	float MaxC_pos = 1700.0f;
-	float MinC_pos = 1600.0f;
 
 	int PB_Kazu = 0;
 	bool PBullet_Init = false;
 	bool S_Init = false;
 	bool PlS_Init = false;
-	CVector3 Kyori = CVector3::Zero;
-	CVector3 SyokiCamera = CVector3::Zero;
-	CVector3 Tyuou = CVector3::Zero;
 	//CVector3 BHpos1 = { 0.0f , 0.0f, 5000.0f };
 	//CVector3 BHsca1 = { 1000.0f,0.0f,5.0f };
-	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダラー。
 };
 

@@ -314,18 +314,18 @@ void Player::Pevolution()
 	}
 }
 //プレイヤーのモブ判定
-void Player::Hantei()
-{
-	if (Muteki == false) {
-		if (Game::GetInstance()->m_enemy != nullptr) {
-			CVector3 diff = Game::GetInstance()->GetPosition() - m_position;
-			if (diff.Length() < 250.0f) {
-				Death();
-				draw_Pl->SetDeath(true);
-			}
-		}
-	}
-}
+//void Player::Hantei()
+//{
+//	if (Muteki == false) {
+//		if (Game::GetInstance()->m_enemy != nullptr) {
+//			CVector3 diff = Game::GetInstance()->GetPosition() - m_position;
+//			if (diff.Length() < 250.0f) {
+//				Death();
+//				draw_Pl->SetDeath(true);
+//			}
+//		}
+//	}
+//}
 //プレイヤーの回転処理。
 void Player::Rotation()
 {

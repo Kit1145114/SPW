@@ -29,6 +29,10 @@ public:
 	{
 		p_position = plpos;
 	}
+
+	float GetRadius() {
+		return radius;
+	}
 private:
 	CCharacterController p_CharaCon;
 	CVector3 p_position = CVector3::Zero;

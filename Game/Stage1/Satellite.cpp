@@ -16,21 +16,26 @@ Satellite::Satellite() {
 
 Satellite::~Satellite() {
 	DeleteGO(m_modelRender);
+	*arrayP = nullptr;
 }
 
 bool Satellite::Start() {
-	/*for (prefab::CSkinModelRender*&t : tester) {
-		t = NewGO<prefab::CSkinModelRender>(0);
-		t->Init(L"modelData/Bulet.cmo");
-		t->SetScale({ 5,5,5 });
-	}
-	testshaft = NewGO<prefab::CSkinModelRender>(0);
-	testshaft->Init(L"modelData/Bullet2.cmo");
-	testshaft->SetScale({ 5,5,5 });*/
-
+	//モデルとコライダの初期化
 	m_modelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_modelRender->Init(L"modelData/Satellite.cmo");
 	collider.Init(m_pos, colliderPosition ,colliderSize);
+
+	//動きの設定(ランダム)
+	CQuaternion rot;
+	rot.SetRotation(CVector3::AxisY, (float)Random().GetRandDouble() * CMath::PI2);
+	rot.Multiply(m_move);
+
+	//回転の設定(ランダム)
+	rot.SetRotation(CVector3::AxisY, (float)Random().GetRandDouble() * CMath::PI2);
+	m_rot = rot;
+	collider.Rotate(rot);
+	m_modelRender->SetRotation(rot);
+
 	return true;
 }
 
@@ -43,12 +48,12 @@ void Satellite::Update() {
 
 	//衝突判定
 	{
-		//星とぶつかったなら自身を削除。
+		//星とぶつかったなら星を破壊。
 		for (Planet* p : Game::GetInstance()->memoryPP) {
 			if (p != nullptr) {
-				int power = collider.hitTest(p->GetPosition(), 800.0f);
-				if (power != 0) {
-					DeleteGO(this);
+				HitResult result = collider.hitTest(p->GetPosition(), p->GetRadius());
+				if (result.hit != NonHit) {
+					p->explosion();
 					return;
 				}
 			}
@@ -58,9 +63,9 @@ void Satellite::Update() {
 		for (Player* p : Game::GetInstance()->m_player) {
 			if (p != nullptr) {
 				if (!p->GetDeathCount() && !p->GetMuteki()) {
-					int power = collider.hitTest(p->GetPosition(), 800.0f);
-					if (power != 0) {
-						rotPower += power * hitRotPower;
+					HitResult result = collider.hitTest(p->GetPosition(), 800.0f);
+					if (result.hit == Side) {
+						rotPower += result.rotSign * hitRotPower;
 						p->AddHP(-100);
 					}
 				}
@@ -68,9 +73,9 @@ void Satellite::Update() {
 		}
 
 		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b)->bool {
-			int power = collider.hitTest(b->GetPosition(), 0.1f);
-			if (power != 0) {
-				rotPower += power * hitRotPower;
+			HitResult result = collider.hitTest(b->GetPosition(), 0.1f);
+			if (result.hit == Side) {
+				rotPower += result.rotSign * hitRotPower;
 				b->Death();
 			}
 			return true;
@@ -80,12 +85,17 @@ void Satellite::Update() {
 	//もろもろの更新
 	{
 		float delta = GameTime().GetFrameDeltaTime();
-		//回転力をもとに実際に回転させる。コライダとモデルを回転。
+		//回転。最大値以上にはしない。
+		if (rotPower > maxRot) {
+			rotPower = maxRot;
+		} else if (rotPower < -maxRot) {
+			rotPower = -maxRot;
+		}
 		CQuaternion cq;
 		cq.SetRotationDeg(CVector3::AxisY, rotPower*delta);
-		rot.Multiply(cq);
+		m_rot.Multiply(cq);
 		collider.Rotate(cq);
-		m_modelRender->SetRotation(rot);
+		m_modelRender->SetRotation(m_rot);
 
 		//ポジションの更新
 		m_pos += m_move * delta;
@@ -99,19 +109,6 @@ void Satellite::Update() {
 			rotPower = 0;
 		}
 	}
-
-	/*for (int i = 0; i < 4; i++) {
-		CVector3 p(0, 1000, 0);
-		p.x = collider.vertex[i].x;
-		p.z = collider.vertex[i].y;
-		tester[i]->SetPosition(p);
-	}
-	CVector3 p(0, 0, 0);
-	p.x = collider.shaft.x;
-	p.z = collider.shaft.y;
-	p *= 3000;
-	p.y = 2000;
-	testshaft->SetPosition(m_pos+p);*/
 }
 
 void BoxCollider2D::Init(const CVector3 & pos, const CVector2& localCenter, CVector2 size) {
@@ -142,7 +139,7 @@ void BoxCollider2D::Init(const CVector3 & pos, const CVector2& localCenter, CVec
 	}
 }
 
-int BoxCollider2D::hitTest(const CVector3 & p, float radius) {
+HitResult BoxCollider2D::hitTest(const CVector3 & p, float radius) {
 	bool hit = false;
 	bool inSquere = true;//四角形内部にある判定。全ての辺が条件を満たさないといけない。
 
@@ -183,18 +180,30 @@ int BoxCollider2D::hitTest(const CVector3 & p, float radius) {
 
 	if (inSquere) { hit = true; }//内部にいればヒット
 
-	if (!hit) {
-		return 0;
+	HitResult result;
+
+	if (!hit) {//ヒットしていない場合
+		return result;
 	}
 
 	float dot = vec2Dot(shaft, pos - m_pos);
+
+	if (abs(dot) < 1000.0f) {
+		result.hit = Center;
+		return result;
+	}
+
 	float cross = vec2Cross(shaft, pos - m_pos);
 	bool minas = cross*dot < 0;
 
+	result.hit = Side;
+
 	if(minas) {
-		return -1;
+		result.rotSign = -1;
+		return result;
 	} else {
-		return 1;
+		result.rotSign = 1;
+		return result;
 	}
 }
 

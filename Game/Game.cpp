@@ -3,7 +3,7 @@
 #include"field.h"
 #include "tkEngine/light/tkDirectionLight.h"
 #include "Fade.h"
-#include "Stage1/Satellite.h"
+#include "Stage1/SatelliteGene.h"
 
 Game* Game::m_instance = nullptr;
 
@@ -34,16 +34,14 @@ Game::~Game()
 	if (m_star != nullptr) {
 		DeleteGO(m_star);
 	}
-	DeleteGO(s_bar);
 	DeleteGO(m_field);
 	DeleteGO(m_G_Timer);
-	DeleteGO(m_planet);
+	DeleteGO(satelliteG);
 	DeleteGO(bgmSoundSource);
-	DeleteGO(Pl1);
 	DeleteGOs("planet");//Planetクラス
 	DeleteGOs("BlackHole");//BlackHoleクラス
 	DeleteGOs("PlayerBullet");//Bulletクラス
-	DeleteGOs("Star");//Starクラス
+	DeleteGOs("Star");//Starクラ
 	DeleteGO("そら");
 }
 
@@ -94,13 +92,14 @@ void Game::CreateStage1() {
 		m_player[0]->SetPadNum(0);
 		m_player[0]->SetPositionX(P_pos*-3);
 	}
-	NewGO<Satellite>(0, "Satellite");
+	NewGO<SatelliteGene>(0, "SatelliteGene");
 	m_field = NewGO<field>(0);
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
 	bgmSoundSource->Init(L"sound/kaisen.wav");
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(0.1f);
+	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 }
 
 bool Game::Start()
@@ -156,11 +155,11 @@ void Game::Update()
 
 void Game::Star_Life()
 {
-	if (StarCount > Star0)
+	if (StarCount > 0)
 	{
 		S_Init = true;
 	}
-	else if (StarCount == Star0)
+	else if (StarCount == 0)
 	{
 		S_Init = false;
 	}
