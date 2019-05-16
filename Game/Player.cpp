@@ -695,13 +695,13 @@ void Player::Sound(int SoundNum)
 		SoundSource = NewGO<prefab::CSoundSource>(0);
 		SoundSource->Init(L"sound/power-up1.wav");
 		SoundSource->Play(false);                     //ワンショット再生。
-		SoundSource->SetVolume(1.0f);                     //音量調節。
+		SoundSource->SetVolume(1.0f);                 //音量調節。
 	}
 	if (SoundNum == 3) {//星	
-	SoundSource = NewGO<prefab::CSoundSource>(0);
-	SoundSource->Init(L"sound/kira-nn.wav");
-	SoundSource->Play(false);                         //ワンショット再生。
-	SoundSource->SetVolume(1.0f);                     //音量調節。
+		SoundSource = NewGO<prefab::CSoundSource>(0);
+		SoundSource->Init(L"sound/kira-nn.wav");
+		SoundSource->Play(false);                     //ワンショット再生。
+		SoundSource->SetVolume(1.0f);                 //音量調節。
 	}
 }
 //プレイヤーの中心。

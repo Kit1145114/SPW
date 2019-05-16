@@ -111,7 +111,7 @@ public:
 	{
 		return PlS_Init;
 	}
-	Planet* memoryPP[Planetnumber_Num];
+	Planet* memoryPP[Planetnumber_Num] = { };
 	Player* m_player[PlKazu] = {nullptr};
 	Enemy* m_enemy = nullptr;
 	Star* m_star = nullptr;
