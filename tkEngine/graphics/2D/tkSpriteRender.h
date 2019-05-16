@@ -46,6 +46,11 @@ namespace tkEngine {
 			{
 				return m_rotation;
 			}
+
+			void setScale(const CVector3& scale) {
+				m_scale = scale;
+			}
+
 			/*!
 			* @brief	ピボットを設定。
 			*@param[in] pivot		基点。

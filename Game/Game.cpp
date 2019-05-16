@@ -45,25 +45,29 @@ Game::~Game()
 	DeleteGOs("Meteo");
 	DeleteGO("そら");
 }
-//シンプル
+//シンプル。
 void Game::CreateStage0() {
 	switch (SansenKazu) {
 	case 4:
 		m_player[3] = NewGO<Player>(0, "Player3");
 		m_player[3]->SetPadNum(3);
-		m_player[3]->SetPositionX(P_pos * 3);
+		m_player[3]->SetPositionX(P_pos * 10);
+		m_player[3]->SetPositionZ(P_pos *-5);
 	case 3:
 		m_player[2] = NewGO<Player>(0, "Player2");
 		m_player[2]->SetPadNum(2);
-		m_player[2]->SetPositionX(P_pos);
+		m_player[2]->SetPositionX(P_pos *-10);
+		m_player[2]->SetPositionZ(P_pos *-5);
 	case 2:
 		m_player[1] = NewGO<Player>(0, "Player1");
 		m_player[1]->SetPadNum(1);
-		m_player[1]->SetPositionX(P_pos*-1);
+		m_player[1]->SetPositionX(P_pos * 10);
+		m_player[1]->SetPositionZ(P_pos * 5);
 	case 1:
 		m_player[0] = NewGO<Player>(0, "Player");
 		m_player[0]->SetPadNum(0);
-		m_player[0]->SetPositionX(P_pos*-3);
+		m_player[0]->SetPositionX(P_pos *-10);
+		m_player[0]->SetPositionZ(P_pos * 5);
 	}
 	m_field = NewGO<field>(0);
 	//BGM
@@ -73,7 +77,7 @@ void Game::CreateStage0() {
 	bgmSoundSource->SetVolume(0.1f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 }
-//衛星
+//衛星。
 void Game::CreateStage1() {
 	switch (SansenKazu) {
 	case 4:
@@ -93,7 +97,7 @@ void Game::CreateStage1() {
 		m_player[0]->SetPadNum(0);
 		m_player[0]->SetPositionX(P_pos*-3);
 	}
-	NewGO<SatelliteGene>(0, "SatelliteGene");
+	satelliteG = NewGO<SatelliteGene>(0, "SatelliteGene");
 	m_field = NewGO<field>(0);
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
@@ -102,7 +106,7 @@ void Game::CreateStage1() {
 	bgmSoundSource->SetVolume(0.1f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 }
-//隕石
+//隕石。
 void Game::CreateStage2() {
 	switch (SansenKazu) {
 	case 4:
@@ -129,7 +133,45 @@ void Game::CreateStage2() {
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(0.1f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
-	//Meteo::Generate();
+	Meteo::Generate();
+}
+//ビックブラックホール。
+void Game::CreateStage3()
+{
+	switch (SansenKazu) {
+	case 4:
+		m_player[3] = NewGO<Player>(0, "Player3");
+		m_player[3]->SetPadNum(3);
+		m_player[3]->SetPositionX(P_pos * 3);
+	case 3:
+		m_player[2] = NewGO<Player>(0, "Player2");
+		m_player[2]->SetPadNum(2);
+		m_player[2]->SetPositionX(P_pos);
+	case 2:
+		m_player[1] = NewGO<Player>(0, "Player1");
+		m_player[1]->SetPadNum(1);
+		m_player[1]->SetPositionX(P_pos*-1);
+	case 1:
+		m_player[0] = NewGO<Player>(0, "Player");
+		m_player[0]->SetPadNum(0);
+		m_player[0]->SetPositionX(P_pos*-3);
+	}
+	//BBH = NewGO<BigBlackHole>(0, "bigblackhole");
+	m_field = NewGO<field>(0);
+	//BGM
+	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
+	bgmSoundSource->Init(L"sound/kaisen.wav");
+	bgmSoundSource->Play(true);
+	bgmSoundSource->SetVolume(0.1f);
+	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+}
+//ワープ。
+void Game::CreateStage4()
+{
+}
+//太陽系。
+void Game::CreateStage5()
+{
 }
 
 bool Game::Start()
@@ -148,6 +190,9 @@ bool Game::Start()
 		break;
 	case 2:
 		CreateStage2();
+		break;
+	case 3:
+		CreateStage3();
 		break;
 	default:
 		CreateStage0();

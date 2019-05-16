@@ -67,6 +67,10 @@ public:
 	{
 		m_position.x = x;
 	}
+	void SetPositionZ(float z)
+	{
+		m_position.z = z;
+	}
 	CVector3 GetMoveSpeed()
 	{
 		return m_moveSpeed;
@@ -138,7 +142,7 @@ public:
 	}
 	CVector3 GetmoveSpeedFrame()
 	{
-		return moveSpeedFrame = m_moveSpeed * 10.0f;
+		return moveSpeedFrame = m_moveSpeed * 8.0f;
 	}
 private:
 	Player * m_player[4] = { nullptr };

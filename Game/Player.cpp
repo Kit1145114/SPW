@@ -608,7 +608,7 @@ void Player::SetPadNum(int num)
 	switch (PadNum)
 	{
 	case 0:
-		r_ring->SetPlayerRadar(L"modelData/Ring1P.cmo");
+		r_ring->SetPlayerRadar(L"modelData/Ring1P.cmo",PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/1P.dds");
 		draw_Pl->SetPosition(-450.0f, -300.0f);
 		draw_S->SetS_kazuPosition(-458.0f, -220.0f);
@@ -621,7 +621,7 @@ void Player::SetPadNum(int num)
 		draw_S->SetColor(1.0f, 0.0f, 0.0f, 1.0f);
 		break;
 	case 1:
-		r_ring->SetPlayerRadar(L"modelData/Ring2P.cmo");
+		r_ring->SetPlayerRadar(L"modelData/Ring2P.cmo", PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/2P.dds");
 		draw_Pl->SetPosition(-150.0f, -300.0f);
 		draw_S->SetS_kazuPosition(-158.0f, -220.0f);
@@ -634,7 +634,7 @@ void Player::SetPadNum(int num)
 		draw_S->SetColor(0.0f, 0.0f, 1.0f, 1.0f);
 		break;
 	case 2:
-		r_ring->SetPlayerRadar(L"modelData/Ring3P.cmo");
+		r_ring->SetPlayerRadar(L"modelData/Ring3P.cmo", PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/3P.dds");
 		draw_Pl->SetPosition(150.0f, -300.0f);
 		draw_S->SetS_kazuPosition(150.0f, -220.0f);
@@ -647,7 +647,7 @@ void Player::SetPadNum(int num)
 		draw_S->SetColor(0.1f, 1.0f, 0.0f, 1.0f);
 		break;
 	case 3:
-		r_ring->SetPlayerRadar(L"modelData/Ring4P.cmo");
+		r_ring->SetPlayerRadar(L"modelData/Ring4P.cmo", PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/4P.dds");
 		draw_Pl->SetPosition(450.0f, -300.0f);
 		draw_S->SetS_kazuPosition(458.0f, -220.0f);

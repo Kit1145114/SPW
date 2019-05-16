@@ -223,7 +223,6 @@ void Planet::explosion()
 void Planet::Death() {
 
 	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
-
 	for (int i = 0;i < Game::GetInstance()->GetSansenKazu();i++) {
 		//プレイヤーが無敵なら攻撃をやめる。
 		if (Game::GetInstance()->m_player[i]->GetMuteki() == false) {
@@ -256,9 +255,11 @@ void Planet::Death() {
 			//2点間の距離を計算する。
 			CVector3 diff = Game::GetInstance()->memoryPP[i]->p_position - p_position;
 			//距離が半径以下なら。
-		 if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
-				BlackHole::Generate(p_position, radius);
+			if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
 				explosion();
+				if (Game::GetInstance()->GetBHflag() == false) {
+					BlackHole::Generate(p_position, radius);
+				}
 			}
 		}
 	}

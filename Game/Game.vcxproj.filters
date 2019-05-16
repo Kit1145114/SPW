@@ -95,6 +95,7 @@
     <ClCompile Include="Meteo.cpp" />
     <ClCompile Include="Stage1\Satellite.cpp" />
     <ClCompile Include="Stage1\SatelliteGene.cpp" />
+    <ClCompile Include="BigBlackHole.cpp" />
     <ClCompile Include="MeteoGene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -561,6 +562,7 @@
     <ClInclude Include="Sinka_Bar.h">
       <Filter>Assets\sprite</Filter>
     </ClInclude>
+    <ClInclude Include="BigBlackHole.h" />
     <ClInclude Include="MeteoGene.h" />
   </ItemGroup>
   <ItemGroup>
@@ -739,6 +741,7 @@
     <ImageContentTask Include="Assets\sprite\Stage5.png">
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
