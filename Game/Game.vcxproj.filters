@@ -661,6 +661,7 @@
     <MeshContentTask Include="Assets\modelData\SenkanType3.FBX">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\Satellite.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
@@ -742,6 +743,7 @@
     <ImageContentTask Include="Assets\sprite\Stage5.png">
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
@@ -764,5 +766,8 @@
     <Media Include="Assets\sound\bakuhatu.wav" />
     <Media Include="Assets\sound\piko.wav" />
     <Media Include="Assets\sound\shot1.wav" />
+    <Media Include="Assets\sound\bgm.wav" />
+    <Media Include="Assets\sound\coinGet.wav" />
+    <Media Include="Assets\sound\kira-nn.wav" />
   </ItemGroup>
 </Project>
