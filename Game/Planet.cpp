@@ -152,11 +152,11 @@ bool Planet::Generate(int Reload, int Planetnum) {
 			prefab::CSkinModelRender* P_skinModelRender;
 			P_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 			int myplanetnum = 0;
-			if (Reload != Planetnumber_Num) { //Numは初期リスポーンのため例外。
-				w = Planetnum;          //惑星の指定。
+			if (Reload != Planetnumber_Num) { //リスポーンのため例外。
+				w = Planetnum;               //惑星の指定。
 				myplanetnum = Planetnum;
 			}
-			else {
+			else {                           //初期ポップ。
 				myplanetnum = i;
 			}
 			CVector3 hako;
@@ -172,10 +172,10 @@ bool Planet::Generate(int Reload, int Planetnum) {
 				hako.z *= -1;
 
 			//ランダム生成する場所の制限。
-			float PosLimitx = 30000.0f;
-			float PosLimitz = 20000.0f;
-			hako.x *= PosLimitx;
-			hako.z *= PosLimitz;
+			float PosMaxLimitx = 35000.0f;
+			float PosMaxLimitz = 20000.0f;
+			hako.x *= PosMaxLimitx;
+			hako.z *= PosMaxLimitz;
 
 			//惑星の大きさランダム。
 			float v = 10.0f;//最低限の大きさを予め入れておく。
@@ -192,10 +192,13 @@ bool Planet::Generate(int Reload, int Planetnum) {
 			}
 			//ポップ時に惑星とぶつからないように。
 			//for (int j = 0; j < Planetnumber_Num; j++) {
-			//	if (j == myplanetnum) {//自分でなければ
-			//		CVector3 kyori = Game::GetInstance()->memoryPP[i]->p_position - hako;
-			//		if (kyori.Length() < radius + 5000.0f) {
-			//			isCreatePlanet = false;
+			//	if (j != myplanetnum) {       //自分でなければ。
+			//		if (Reload == Planetnumber_Num && j <= myplanetnum //初期ポップの時まだ生成されていない惑星と比較しないように。
+			//			|| Reload != Planetnumber_Num) {               //リポップはＯＫ。
+			//			CVector3 kyori = Game::GetInstance()->memoryPP[j]->p_position - hako;
+			//			if (kyori.Length() < radius + 5000.0f) {
+			//				isCreatePlanet = false;
+			//			}
 			//		}
 			//	}
 			//}
@@ -326,6 +329,7 @@ void Planet::explosion()
 		Game::GetInstance()->SetStarCount(1);
 		Generate(1, myPlanetnumber); //新たな惑星を生成（自分のナンバーの惑星を）。
 		//NewGO<RepopPlanet>(0)->Set(myPlanetnumber);
+		Game::GetInstance()->memoryPP[this->myPlanetnumber] = nullptr ;
 		DeleteGO(this);
 
 		//エフェクトを作成。
@@ -348,7 +352,7 @@ void Planet::explosion()
 void Planet::Death() {
 
 	//おっす！おら惑星！！プレイヤー破壊すっぞ！！。
-	
+
 	for (int i = 0;i < Game::GetInstance()->GetSansenKazu();i++) {
 		//プレイヤーが無敵なら攻撃をやめる。
 		if (Game::GetInstance()->m_player[i]->GetMuteki() == false) {
@@ -377,6 +381,7 @@ void Planet::Death() {
 	}
 	//惑星個数分回す。
 	for (int i = 0;i < Planetnumber_Num;i++) {
+	//QueryGOs<Planet>("planet", [&](Planet* planet)->bool{
 		//ちっ、、、癇に障る野郎だぜ、、追いついたと思ったらすぐ爆破して来やがる(惑星同士の距離判定。
 			//もし比較する惑星が自分でなければ。
 		if (Game::GetInstance()->memoryPP[i] != this
@@ -392,8 +397,8 @@ void Planet::Death() {
 	}
 	//ほーっほぉほぉほぉお素晴らしい！ホラ、見てご覧なさい！ザーボンさんドドリアさん、エリア外にでて爆発する綺麗な花火ですよぉ。
 
-	if (p_position.x> 32000.0f || p_position.x< -32000.0f
-			||p_position.z>20000.0f || p_position.z < -20000.0f) {
+	if (p_position.x> PosMaxLimitx || p_position.x< -PosMaxLimitx
+			||p_position.z>PosMaxLimitz || p_position.z < -PosMaxLimitz) {
 			explosion();
 	}
 	

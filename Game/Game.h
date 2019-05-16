@@ -56,10 +56,9 @@ public:
 	~Game();
 	bool Start();
 	void Update();
-	void Star_Life();
 	void PlStar_Life();
-	void Bullet_Life();
 	void Stage2();
+	void InitTime();
 	static Game* GetInstance();
 
 	void SetGameMode(int a)
@@ -135,6 +134,9 @@ private:
 	float P_pos = 1800.0f;
 
 	int PB_Kazu = 0;
+	int timer = 0;
+	int Maxtimer = 180;
+	int timer0 = 0;
 	bool PBullet_Init = false;
 	bool S_Init = false;
 	bool PlS_Init = false;

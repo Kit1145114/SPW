@@ -458,13 +458,6 @@ void Player::Houdai()
 		HoukouZ = NPad(PadNum).GetRStickYF() * 75.0f;
 		SpeedX = NPad(PadNum).GetRStickXF() * 50.0f;
 		SpeedZ = NPad(PadNum).GetRStickYF() * 50.0f;
-		if (NPad(PadNum).GetRStickXF() == 0.0 && NPad(PadNum).GetRStickYF() == 0.0)
-		{
-			HoukouX = memoryHX;
-			HoukouZ = memoryHZ;
-			SpeedX = memorySX;
-			SpeedZ = memorySZ;
-		}
 	}
 	else if (Ver == 1)
 	{
@@ -537,23 +530,20 @@ void Player::PlS_Hantei()
 //プレイヤー同士の球の判定
 void Player::B_Hantei()
 {
-	if (m_game->GetPBInit() == true) {
-		if (Muteki == false) {
-			QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b) ->bool {
-				CVector3 kyori = b->GetPosition() - m_position;
-				if (b->GetPB() != PadNum && kyori.Length() < BulletHantei)
-				{
-					b->Death();
-					PlHP -= Damage;
+	if (Muteki == false) {
+		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b) ->bool {
+		CVector3 kyori = b->GetPosition() - m_position;
+			if (b->GetPB() != PadNum && kyori.Length() < BulletHantei)
+			{
+				b->Death();
+				PlHP -= Damage;
 				}
 				else if (b->GetPB() == PadNum)
-				{
+			{
 
-				}
-				return true;
-			});
-		}
-		
+			}
+			return true;
+		});		
 	}
 	else
 	{
@@ -697,13 +687,13 @@ void Player::Sound(int SoundNum)
 		SoundSource = NewGO<prefab::CSoundSource>(0);
 		SoundSource->Init(L"sound/power-up1.wav");
 		SoundSource->Play(false);                     //ワンショット再生。
-		SoundSource->SetVolume(1.0f);                     //音量調節。
+		SoundSource->SetVolume(1.0f);                 //音量調節。
 	}
 	if (SoundNum == 3) {//星	
-	SoundSource = NewGO<prefab::CSoundSource>(0);
-	SoundSource->Init(L"sound/kira-nn.wav");
-	SoundSource->Play(false);                         //ワンショット再生。
-	SoundSource->SetVolume(1.0f);                     //音量調節。
+		SoundSource = NewGO<prefab::CSoundSource>(0);
+		SoundSource->Init(L"sound/kira-nn.wav");
+		SoundSource->Play(false);                     //ワンショット再生。
+		SoundSource->SetVolume(1.0f);                 //音量調節。
 	}
 }
 //プレイヤーの中心。

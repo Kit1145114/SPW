@@ -12,7 +12,10 @@ public:
 
 	void Update();
 	void PostRender(CRenderContext& rc) override;
-
+	bool GetTime()
+	{
+		return m_timer;
+	}
 private:
 	CFont m_font;
 	Game* m_game = nullptr;

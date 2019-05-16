@@ -138,7 +138,7 @@ public:
 	}
 	CVector3 GetmoveSpeedFrame()
 	{
-		return moveSpeedFrame = m_moveSpeed * 15.0f;
+		return moveSpeedFrame = m_moveSpeed * 10.0f;
 	}
 private:
 	Player * m_player[4] = { nullptr };

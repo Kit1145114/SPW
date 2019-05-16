@@ -41,7 +41,8 @@ Game::~Game()
 	DeleteGOs("planet");//Planetクラス
 	DeleteGOs("BlackHole");//BlackHoleクラス
 	DeleteGOs("PlayerBullet");//Bulletクラス
-	DeleteGOs("Star");//Starクラ
+	DeleteGOs("Star");//Starクラス
+	DeleteGOs("Meteo");
 	DeleteGO("そら");
 }
 
@@ -123,15 +124,15 @@ bool Game::Start()
 	m_G_Timer = NewGO<GamenTimer>(0, "GamenTimer");
 
 	Fade::fadeOut();
+	Meteo::Generate();
 	return true;
 }
 
 void Game::Update()
 {
 	if (GameMode == 0) {
-		Star_Life();
 		PlStar_Life();
-		Bullet_Life();
+		InitTime();
 		//当たり判定表示
 		//dbg::SetDrawPhysicsCollisionEnable();
 		if (Pad(0).IsPress(enButtonSelect) == true)
@@ -153,18 +154,6 @@ void Game::Update()
 	}
 }
 
-void Game::Star_Life()
-{
-	if (StarCount > 0)
-	{
-		S_Init = true;
-	}
-	else if (StarCount == 0)
-	{
-		S_Init = false;
-	}
-}
-
 void Game::PlStar_Life()
 {
 	if (PlStarCount > 0)
@@ -177,15 +166,13 @@ void Game::PlStar_Life()
 	}
 }
 
-void Game::Bullet_Life()
+void Game::InitTime()
 {
-	if (PB_Kazu > 0)
+	timer++;
+	if(timer > Maxtimer)
 	{
-		PBullet_Init = true;
-	}
-	else if (PB_Kazu == 0)
-	{
-		PBullet_Init = false;
+		Meteo::Generate();
+		timer = timer0;
 	}
 }
 
