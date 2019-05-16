@@ -19,14 +19,14 @@ Satellite::~Satellite() {
 }
 
 bool Satellite::Start() {
-	for (prefab::CSkinModelRender*&t : tester) {
+	/*for (prefab::CSkinModelRender*&t : tester) {
 		t = NewGO<prefab::CSkinModelRender>(0);
 		t->Init(L"modelData/Bulet.cmo");
 		t->SetScale({ 5,5,5 });
 	}
 	testshaft = NewGO<prefab::CSkinModelRender>(0);
 	testshaft->Init(L"modelData/Bullet2.cmo");
-	testshaft->SetScale({ 5,5,5 });
+	testshaft->SetScale({ 5,5,5 });*/
 
 	m_modelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_modelRender->Init(L"modelData/Satellite.cmo");
@@ -35,24 +35,72 @@ bool Satellite::Start() {
 }
 
 void Satellite::Update() {
-	for(Player* p : Game::GetInstance()->m_player) {
-		if (p != nullptr) {
-			rotPower += collider.hitTest(p->GetPosition(), 800.0f);
+	//エリア外判定
+	if (m_pos.x > 30000.0f || m_pos.x< -30000.0f|| m_pos.z>20000.0f || m_pos.z < -20000.0f) {
+		DeleteGO(this);
+		return;
+	}
+
+	//衝突判定
+	{
+		//星とぶつかったなら自身を削除。
+		for (Planet* p : Game::GetInstance()->memoryPP) {
+			if (p != nullptr) {
+				int power = collider.hitTest(p->GetPosition(), 800.0f);
+				if (power != 0) {
+					DeleteGO(this);
+					return;
+				}
+			}
+		}
+
+		//回転力を加える衝突判定。
+		for (Player* p : Game::GetInstance()->m_player) {
+			if (p != nullptr) {
+				if (!p->GetDeathCount() && !p->GetMuteki()) {
+					int power = collider.hitTest(p->GetPosition(), 800.0f);
+					if (power != 0) {
+						rotPower += power * hitRotPower;
+						p->AddHP(-100);
+					}
+				}
+			}
+		}
+
+		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b)->bool {
+			int power = collider.hitTest(b->GetPosition(), 0.1f);
+			if (power != 0) {
+				rotPower += power * hitRotPower;
+				b->Death();
+			}
+			return true;
+		});
+	}
+
+	//もろもろの更新
+	{
+		float delta = GameTime().GetFrameDeltaTime();
+		//回転力をもとに実際に回転させる。コライダとモデルを回転。
+		CQuaternion cq;
+		cq.SetRotationDeg(CVector3::AxisY, rotPower*delta);
+		rot.Multiply(cq);
+		collider.Rotate(cq);
+		m_modelRender->SetRotation(rot);
+
+		//ポジションの更新
+		m_pos += m_move * delta;
+		collider.Move(m_move * delta);
+		m_modelRender->SetPosition(m_pos);
+
+		//回転力を減衰させる。
+		int sign = rotPower > 0 ? 1 : -1;//符号を出して0に近づくように減衰させる。
+		rotPower -= sign * rotDamping;
+		if (rotPower * sign <= 0) {//符号が減衰前と反転したら回転力を0にする。
+			rotPower = 0;
 		}
 	}
-	CQuaternion cq;
-	cq.SetRotationDeg(CVector3::AxisY, rotPower*0.0001f);
-	rot.Multiply(cq);
-	collider.Rotate(cq);
-	m_modelRender->SetRotation(rot);
-	m_modelRender->SetPosition(m_pos);
 
-	rotPower -= 100.0f;
-	if (rotPower < 0) {
-		rotPower = 0.0f;
-	}
-
-	for (int i = 0; i < 4; i++) {
+	/*for (int i = 0; i < 4; i++) {
 		CVector3 p(0, 1000, 0);
 		p.x = collider.vertex[i].x;
 		p.z = collider.vertex[i].y;
@@ -63,7 +111,7 @@ void Satellite::Update() {
 	p.z = collider.shaft.y;
 	p *= 3000;
 	p.y = 2000;
-	testshaft->SetPosition(m_pos+p);
+	testshaft->SetPosition(m_pos+p);*/
 }
 
 void BoxCollider2D::Init(const CVector3 & pos, const CVector2& localCenter, CVector2 size) {
@@ -74,13 +122,13 @@ void BoxCollider2D::Init(const CVector3 & pos, const CVector2& localCenter, CVec
 		vertex[i] = local + size;
 		switch (i) {
 		case 0:
-			size.x *= -1;
-			break;
-		case 1:
 			size.y *= -1;
 			break;
-		case 2:
+		case 1:
 			size.x *= -1;
+			break;
+		case 2:
+			size.y *= -1;
 			break;
 		}
 	}
@@ -94,19 +142,7 @@ void BoxCollider2D::Init(const CVector3 & pos, const CVector2& localCenter, CVec
 	}
 }
 
-float vec2Dot(const CVector2& v1, const CVector2& v2) {
-	return (v1.x * v2.x) + (v1.y * v2.y);
-}
-
-float vec2Cross(const CVector2& v1, const CVector2& v2) {
-	return (v1.x * v2.y) - (v2.x * v1.y);
-}
-
-float vec2Length(const CVector2& v) {
-	return sqrt(v.x*v.x + v.y*v.y);
-}
-
-float BoxCollider2D::hitTest(const CVector3 & p, float radius) {
+int BoxCollider2D::hitTest(const CVector3 & p, float radius) {
 	bool hit = false;
 	bool inSquere = true;//四角形内部にある判定。全ての辺が条件を満たさないといけない。
 
@@ -135,7 +171,7 @@ float BoxCollider2D::hitTest(const CVector3 & p, float radius) {
 			if (vec2Dot(sideVec[i], toPosVec) * vec2Dot(sideVec[i], toPosVec2) > 0) {
 
 				//それでも線分の端を円の半径がとらえたらヒット
-				if (radius <= vec2Length(toPosVec) || radius <= vec2Length(toPosVec2)) {
+				if (radius >= vec2Length(toPosVec) || radius >= vec2Length(toPosVec2)) {
 					hit = true;
 				}
 			} else {
@@ -154,33 +190,34 @@ float BoxCollider2D::hitTest(const CVector3 & p, float radius) {
 	float dot = vec2Dot(shaft, pos - m_pos);
 	float cross = vec2Cross(shaft, pos - m_pos);
 	bool minas = cross*dot < 0;
-	
-	if (dot < 0) {
-		dot *= -1;
-	}
 
 	if(minas) {
-		return -dot;
+		return -1;
 	} else {
-		return dot;
+		return 1;
 	}
 }
 
 void BoxCollider2D::Rotate(CQuaternion rot) {
+	//回転に利用するシャフトを回転させる。こいつは親基準。
 	CVector3 shaft2(0, 0, 0);
 	shaft2.x = shaft.x;
 	shaft2.z = shaft.y;
 	rot.Multiply(shaft2);
 	shaft = { shaft2.x, shaft2.z };
 
+	//頂点の回転。こいつはワールド基準なので一度原点に戻してから回す。
 	for (int i = 0; i < 4; i++) {
 		CVector3 pos(0,0,0);
 		pos.x = vertex[i].x - m_pos.x;
 		pos.z = vertex[i].y - m_pos.y;
 		rot.Multiply(pos);
+		pos.x += m_pos.x;
+		pos.z += m_pos.y;
 		vertex[i] = { pos.x, pos.z };
 	}
 
+	//時計回りのベクトルを算出しておく
 	for (int i = 0; i < 4; i++) {
 		int next = i + 1;
 		if (next == 4) {
@@ -188,5 +225,14 @@ void BoxCollider2D::Rotate(CQuaternion rot) {
 		}
 
 		sideVec[i] = vertex[next] - vertex[i];
+	}
+}
+
+void BoxCollider2D::Move(CVector3 move) {
+	m_pos.x += move.x;
+	m_pos.y += move.z;
+	for (int i = 0; i < 4; i++) {
+		vertex[i].x += move.x;
+		vertex[i].y += move.z;
 	}
 }

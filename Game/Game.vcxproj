@@ -1808,6 +1808,7 @@
     <ClCompile Include="SetumeiGamen.cpp" />
     <ClCompile Include="Sinka_Bar.cpp" />
     <ClCompile Include="Stage1\Satellite.cpp" />
+    <ClCompile Include="Stage1\SatelliteGene.cpp" />
     <ClCompile Include="StageSelect.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -2000,6 +2001,7 @@
     <ClInclude Include="ResultGamen.h" />
     <ClInclude Include="Network\PadRingBuffer.h" />
     <ClInclude Include="SansenGamen.h" />
+    <ClInclude Include="Stage1\SatelliteGene.h" />
     <ClInclude Include="Stage1\CVector2.h" />
     <ClInclude Include="Stage1\Satellite.h" />
     <ClInclude Include="Senkan_Rtype_2.h" />
