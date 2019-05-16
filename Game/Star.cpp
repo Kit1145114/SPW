@@ -8,6 +8,7 @@ Star::Star()
 	m_skinModelRender->Init(L"modelData/star.cmo");
 	m_scale = { 8.0f, 8.0, 8.0f };
 	m_skinModelRender->SetScale(m_scale);
+	m_skinModelRender->SetEmissionColor({ 1.25, 1.25, 1.25 }); //物自体を光らせるコード。
 	m_player = FindGO<Player>("Player");
 	m_game = FindGO<Game>("Game");
 }
