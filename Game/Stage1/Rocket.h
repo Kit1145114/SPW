@@ -12,6 +12,10 @@ public:
 		m_pos = pos;
 	}
 
+	CVector3 getPosition() const {
+		return m_pos;
+	}
+
 	void setArrayPointer(Rocket** p) {
 		arrayP = p;
 	}

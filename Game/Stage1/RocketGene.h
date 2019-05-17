@@ -15,7 +15,7 @@ public:
 	}
 
 private:
-	static constexpr float interval = 5.0f;
+	static constexpr float interval = 2.0f;
 	float timer = 0.0f;
 
 	static constexpr int arrayNum = 5;
