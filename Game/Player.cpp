@@ -587,6 +587,7 @@ void Player::StarPop()
 		Plstar = NewGO<PlayerStar>(0, "PlayerStar");
 		Plstar->Pop(PadNum, LABulletNum);//プレイヤーからプレイヤーへ。
 		m_player[LABulletNum]->SetStarCount(PopStar);
+		Sound(3);
 		Alive = true;
 		LABulletNum = syoki;
 	}
@@ -598,6 +599,7 @@ void Player::StarPop()
 		Plstar = NewGO<PlayerStar>(0, "PlayerStar");
 		Plstar->Pop(PadNum, LABulletNum);//プレイヤーからプレイヤーへ。
 		Alive = true;
+		Sound(3);
 		LABulletNum = syoki;
 	}
 	else if (LABulletNum == 2)//3P
@@ -608,6 +610,7 @@ void Player::StarPop()
 		Plstar = NewGO<PlayerStar>(0, "PlayerStar");
 		Plstar->Pop(PadNum, LABulletNum);//プレイヤーからプレイヤーへ。
 		Alive = true;
+		Sound(3);
 		LABulletNum = syoki;
 	}
 	else if (LABulletNum == 3)//4P
@@ -618,12 +621,14 @@ void Player::StarPop()
 		Plstar = NewGO<PlayerStar>(0, "PlayerStar");
 		Plstar->Pop(PadNum, LABulletNum);//プレイヤーからプレイヤーへ。
 		Alive = true;
+		Sound(3);
 		LABulletNum = syoki;
 	}
 	else//それ以外
 	{
 		PopStar = StarCount / 2;
 		StarCount -= PopStar;
+		Sound(3);
 		LABulletNum = syoki;
 	}
 }

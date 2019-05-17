@@ -36,6 +36,7 @@ private:
 	int Plkazu = 12;
 	float hantei = 2500.0f;
 	float Plhantei = 2500.0f;
+	float Metehantei = 5000.0f;
 	float Speed = 5000.0f;
 	float PosMaxLimitx = 35000.0f;
 	float PosMaxLimitz = 20000.0f;

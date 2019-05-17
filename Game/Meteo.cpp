@@ -87,6 +87,14 @@ void Meteo::Hantei()
 		}
 		return true;
 	});
+	//QueryGOs<Meteo>("Meteo", [&](Meteo* meteo)->bool
+	//{
+	//	CVector3 m_kyori = meteo->GetPosition() - m_position;
+	//	if (m_kyori.Length() > Metehantei) {
+	//		Death();
+	//	}
+	//	return true;
+	//});
 	if (m_position.x > PosMaxLimitx || m_position.x< -PosMaxLimitx
 		|| m_position.z>PosMaxLimitz || m_position.z < -PosMaxLimitz) {
 		Death();
