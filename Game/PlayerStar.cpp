@@ -6,7 +6,7 @@ PlayerStar::PlayerStar()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/PlayerStar.cmo");
-	m_scale = { 1.0f,1.0f,1.0f };
+	m_scale = { 3.0f,3.0f,3.0f };
 	m_skinModelRender->SetScale(m_scale);
 	m_game = Game::GetInstance();
 }
@@ -47,17 +47,11 @@ bool PlayerStar::Start()
 void PlayerStar::Update()
 {
 	Rotation();
-	/*m_timer++;
-	if (m_timer == MaxTimer)
-	{
-		m_game->AddPlStarCount(-1);
-		m_timer = ResetTimer;
-		DeleteGO(this);
-	}*/
-	CVector3 kyori = Getplayerposition - m_position;
-	float minkyori = 10.0f;
+
+	CVector3 kyori = Game::GetInstance()->m_player[Getplayer]->GetPosition() - m_position;
+	float minkyori = 1600.0f;
 	if (kyori.Length() > minkyori) {
-		m_position += kyori / 10;
+		m_position += kyori / 12;
 	}
 	else {
 		Death();
@@ -79,10 +73,11 @@ void PlayerStar::Death()
 	//m_player->SetPLST(nullptr);
 }
 
-void PlayerStar::Pop(CVector3 Despos, CVector3 Getpos)
-{
-	m_position = Despos;
-	Getplayerposition = Getpos;
+//void PlayerStar::Pop(CVector3 Despos, CVector3 Getpos){
+void PlayerStar::Pop(int Death, int Get) {
+	//Deathplayer = Death;
+	Getplayer = Get;
+	m_position = Game::GetInstance()->m_player[Deathplayer = Death]->GetPosition();
 	m_skinModelRender->SetPosition(m_position);
 	//NewGO<PlayerStar>(0, "playerStat");
 }

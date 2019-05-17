@@ -13,13 +13,7 @@ public:
 	void Update();
 	void Rotation();
 	void Death();
-	void Pop(CVector3 Despos, CVector3 Getpos);
-	void DesPlayer(CVector3 position) {
-		Deathplayertposition = position;
-	}
-	void GetPlayer(CVector3 position) {
-		Getplayerposition = position;
-	}
+	void Pop(int desplayer, int Getplayer);
 	void SetPosition(CVector3 position)
 	{
 		m_position = position;
@@ -44,8 +38,7 @@ private:
 	Player * m_player[3] = { nullptr };
 	Game* m_game = nullptr;
 	CVector3 m_position = CVector3::Zero;
-	CVector3 Deathplayertposition = CVector3::Zero;
-	CVector3 Getplayerposition = CVector3::Zero;
+	
 	CVector3 m_moveSpeed = CVector3::Zero;
 	CVector3 Tyuou = CVector3::Zero;
 	CVector3 m_scale = { 1.0f,1.0f,1.0f };
@@ -57,7 +50,8 @@ private:
 	int ResetTimer = 0;
 	int StarKazu = 0;
 	int StarCount = 0;
-
+	int Deathplayer = 0;
+	int Getplayer = 0;
 	int SansenKazu = 0;
 	float angle = 0.0f;
 	float S_move = 15.0f;
