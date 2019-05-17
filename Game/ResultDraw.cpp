@@ -22,7 +22,7 @@ void ResultDraw::Update()
 
 void ResultDraw::PostRender(CRenderContext& rc)
 {
-	wchar_t text[2506];
+	wchar_t text[10];
 	if (Juni == 1) {
 		swprintf_s(text, L"no.1\n");
 	}

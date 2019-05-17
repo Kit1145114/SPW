@@ -130,15 +130,13 @@ break;
 		P4_spriteRender->SetPosition(N4position);
 		break;
 	}
-
+	Result();
 	Fade::fadeOut();
 	return true;
 }
 
 void ResultGamen::Update()
 {
-
-	Result();
 	if (Pad(0).IsPress(enButtonA) == true)
 	{
 		Fade::fadeIn([&]() {
@@ -150,276 +148,22 @@ void ResultGamen::Update()
 
 void ResultGamen::Result()
 {
-
-	switch (PadKazu)
-	{
-	case 1:
-		r_Draw[0]->SetJuni(1);
-		break;
-	case 2:
-		if (PS[0] < PS[1])
-		{
-			r_Draw[0]->SetJuni(2);
-			r_Draw[1]->SetJuni(1);
-		}
-		else if (PS[0] > PS[1])
-		{
-			r_Draw[0]->SetJuni(1);
-			r_Draw[1]->SetJuni(2);
-		}
-		else if (PS[0] == PS[1])
-		{
-			r_Draw[0]->SetJuni(1);
-			r_Draw[1]->SetJuni(1);
-		}
-		break;
-	case 3:
-		if (PS[0] < PS[1]) // 1P< 2P
-		{
-			if(PS[0] < PS[2]) //1P < 3P
-			{
-				r_Draw[0]->SetJuni(3);
-				if (PS[1] > PS[2]) //2P < 3P
-				{
-					r_Draw[1]->SetJuni(2);
-					r_Draw[2]->SetJuni(1);
-				}
-			}
-			else if (PS[0] > PS[2]) //1P > 3P
-			{
-				r_Draw[0]->SetJuni(2);
-				r_Draw[1]->SetJuni(1);
-				r_Draw[2]->SetJuni(3);
-			}
-		}
-
-		if (PS[1] < PS[2]) // 2P < 3P
-		{
-			if (PS[1] < PS[0]) //2P < 1P
-			{
-				r_Draw[1]->SetJuni(3);
-				if (PS[0] > PS[2]) //3P < 1P
-				{
-					r_Draw[0]->SetJuni(1);
-					r_Draw[2]->SetJuni(2);
-				}
-			}
-			else if (PS[0] < PS[1]) //1P < 2P
-			{
-				r_Draw[0]->SetJuni(1);
-				r_Draw[1]->SetJuni(2);
-				r_Draw[2]->SetJuni(3);
-			}
-		}
-
-		if (PS[2] < PS[0]) // 3P < 1P
-		{
-			if (PS[2] < PS[1]) //3P < 2P
-			{
-				r_Draw[2]->SetJuni(3);
-				if (PS[0] > PS[1]) //3P < 2P
-				{
-					r_Draw[0]->SetJuni(2);
-					r_Draw[1]->SetJuni(1);
-				}
-			}
-			else if (PS[2] > PS[1]) //3P > 2P
-			{
-				r_Draw[0]->SetJuni(1);
-				r_Draw[1]->SetJuni(3);
-				r_Draw[2]->SetJuni(2);
-			}
-		}
-
-		else if (PS[0] == PS[1] && PS[1] == PS[2])
-		{
-			r_Draw[0]->SetJuni(1);
-			r_Draw[1]->SetJuni(1);
-			r_Draw[2]->SetJuni(1);
-		}
-		/*for (int i = 2; i < PadMaxKazu; i++) {
-			for (int j = 1; j < i - 1; j++) {
-
-				if (PS[i] > PS[j])
-					PS[j]->rank++;
-				if (PS[i] < PS[j])
-					ps[i]->rank++;
-			}
-		}*/
-		break;
-	case 4:
-		if (PS[0] < PS[1]) // 1P< 2P
-		{
-			if (PS[0] < PS[2]) //1P < 3P
-			{
-				if (PS[0] < PS[3]) //1P < 4P
-				{
-					r_Draw[0]->SetJuni(4); //1P = 4
-					if (PS[2] < PS[3]) //3P < 4P
-					{
-						if (PS[1] < PS[3])//2P < 4P
-						{
-							r_Draw[3]->SetJuni(1); //4P = 1
-							if (PS[1] < PS[2])	//2P < 3P
-							{
-								r_Draw[2]->SetJuni(3); //2P =3
-								r_Draw[3]->SetJuni(2); //3P =2		  
-							}
-							else if (PS[2] < PS[1])//3P < 2P
-							{
-								r_Draw[2]->SetJuni(2); //2P =2
-								r_Draw[3]->SetJuni(3); //3P =3	
-							}
-						}
-						else if (PS[3] < PS[1])//2P > 4P
-						{
-							r_Draw[1]->SetJuni(1);	//2P = 1
-							r_Draw[2]->SetJuni(3);	//3P = 3
-							r_Draw[3]->SetJuni(2);	//4P = 2
-						}
-					}
-				}
-			}
-		}
-
-		if (PS[1] < PS[0]) // 2P< 1P
-		{
-			if (PS[1] < PS[2]) //2P < 3P
-			{
-				if (PS[1] < PS[3]) //2P < 4P
-				{
-					r_Draw[1]->SetJuni(4); //2P = 4
-					if (PS[2] < PS[3]) //3P < 4P
-					{
-						if (PS[0] < PS[3])//1P < 4P
-						{
-							r_Draw[3]->SetJuni(1); //4P = 1
-							if (PS[0] < PS[2])	//1P < 3P
-							{
-								r_Draw[0]->SetJuni(3); //1P =3
-								r_Draw[3]->SetJuni(2); //3P =2		  
-							}
-							else if (PS[2] < PS[0])//3P < 1P
-							{
-								r_Draw[0]->SetJuni(2); //1P =2
-								r_Draw[3]->SetJuni(3); //3P =3	
-							}
-						}
-						else if (PS[0] > PS[3])//1P > 4P
-						{
-							r_Draw[0]->SetJuni(1);	//1P = 1
-							r_Draw[2]->SetJuni(3);	//3P = 3
-							r_Draw[3]->SetJuni(2);	//4P = 2
-						}
-					}
-				}
-			}
-		}
-
-		if (PS[2] < PS[0]) // 3P< 1P
-		{
-			if (PS[2] < PS[1]) //3P < 2P
-			{
-				if (PS[2] < PS[3]) //3P < 4P
-				{
-					r_Draw[2]->SetJuni(4); //3P = 4
-					if (PS[0] < PS[3]) //1P < 4P
-					{
-						if (PS[1] < PS[3])//2P < 4P
-						{
-							r_Draw[3]->SetJuni(1); //4P = 1
-							if (PS[0] < PS[1])	//1P < 2P
-							{
-								r_Draw[0]->SetJuni(3); //1P =3
-								r_Draw[1]->SetJuni(2); //2P =2		  
-							}
-							else if (PS[1] < PS[0])//2P < 1P
-							{
-								r_Draw[0]->SetJuni(2); //1P =2
-								r_Draw[1]->SetJuni(3); //2P =3	
-							}
-						}
-						else if (PS[1] > PS[3])//2P > 4P
-						{
-							r_Draw[0]->SetJuni(3);	//1P = 3
-							r_Draw[1]->SetJuni(1);	//2P = 1
-							r_Draw[3]->SetJuni(2);	//4P = 2
-						}
-					}
-				}
-			}
-		}
-
-		if (PS[3] < PS[0]) // 4P< 1P
-		{
-			if (PS[3] < PS[1]) //4P < 2P
-			{
-				if (PS[3] < PS[2]) //4P < 3P
-				{
-					r_Draw[3]->SetJuni(4); //4P = 4
-					if (PS[1] < PS[2]) //2P < 3P
-					{
-						if (PS[0] < PS[2])//1P < 3P
-						{
-							r_Draw[1]->SetJuni(1); //3P = 1
-							if (PS[0] < PS[1])	//1P < 2P
-							{
-								r_Draw[0]->SetJuni(3); //1P =3
-								r_Draw[1]->SetJuni(2); //2P =2		  
-							}
-							else if (PS[1] < PS[0])//2P < 1P
-							{
-								r_Draw[0]->SetJuni(2); //1P =2
-								r_Draw[1]->SetJuni(3); //2P =3	
-							}
-						}
-						else if (PS[0] > PS[2])//1P > 3P
-						{
-							r_Draw[0]->SetJuni(3);	//1P = 3
-							r_Draw[1]->SetJuni(1);	//2P = 1
-							r_Draw[3]->SetJuni(2);	//4P = 2
-						}
-					}
-				}
-			}
-		}
-		else if (PS[0] == PS[1] && PS[1] == PS[2] && PS[2] == PS[3])
-		{
-			r_Draw[0]->SetJuni(1);
-			r_Draw[1]->SetJuni(1);
-			r_Draw[2]->SetJuni(1);
-			r_Draw[3]->SetJuni(1);
-		}
-		break;
+	int PNums[4];
+	for (int i = 0; i < 4; i++) {
+		PNums[i] = i;
 	}
-}
 
-void ResultGamen::bubble()
-{
-	const int num = 4;
-	int juni[num];
-	for (int i = 0; m_player[i]->GetPadNum() < PadKazu; i++)
-	{
-		if (m_player[i] != nullptr) {
-			juni[i] = m_player[i]->GetPadNum();
-			PS[juni[i]];
-			//juni[i] = PS[i] = m_player[i]->GetStarCount();
-		}
-		else 
-		{
-			juni[i] = -1;
-		}
-	}
-	int koukan;
-	for (int i = 0; i < PadKazu; i++){
-		for (int j = 1; j > i; j++) {
-			if (PS[juni[j]-1] > PS[juni[j]])
-			{
-				koukan = juni[j-1];
-				juni[j - 1] = juni[j];
-				juni[j] = koukan;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 3; j > i; j--) {
+			if (PS[PNums[j-1]] < PS[PNums[j]]) {
+				int n = PNums[j];
+				PNums[j] = PNums[j - 1];
+				PNums[j - 1] = n;
 			}
 		}
 	}
-	//for(int i = 0; i < )
+
+	for (int i = 0; i < PadKazu; i++) {
+		r_Draw[PNums[i]]->SetJuni(i+1);
+	}
 }

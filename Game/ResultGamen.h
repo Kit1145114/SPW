@@ -22,7 +22,7 @@ public:
 private:
 	ResultDraw* r_Draw[4] = { nullptr };
 	Player* m_player[4] = {nullptr};
-	int PS[4] = { 0 };
+	int PS[4] = { -1, -1, -1, -1 };
 	int Max = 3;
 	int m_timer = 0;
 	int PadKazu = 0;
