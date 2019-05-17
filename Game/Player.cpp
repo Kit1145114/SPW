@@ -582,7 +582,7 @@ void Player::StarPop()
 		PopStar = StarCount / 2;
 		StarCount -= PopStar;
 		Plstar = NewGO<PlayerStar>(0, "PlayerStar");
-		Plstar->Pop(m_position, m_player[LABulletNum]->GetPosition());//プレイヤーからプレイヤーへ。
+		Plstar->Pop(PadNum, LABulletNum);//プレイヤーからプレイヤーへ。
 		m_player[LABulletNum]->SetStarCount(PopStar);
 		Alive = true;
 		LABulletNum = syoki;
@@ -593,7 +593,7 @@ void Player::StarPop()
 		StarCount -= PopStar;
 		m_player[LABulletNum]->SetStarCount(PopStar);
 		Plstar = NewGO<PlayerStar>(0, "PlayerStar");
-		Plstar->Pop(m_position, m_player[LABulletNum]->GetPosition());//プレイヤーからプレイヤーへ。
+		Plstar->Pop(PadNum, LABulletNum);//プレイヤーからプレイヤーへ。
 		Alive = true;
 		LABulletNum = syoki;
 	}
@@ -603,7 +603,7 @@ void Player::StarPop()
 		StarCount -= PopStar;
 		m_player[LABulletNum]->SetStarCount(PopStar);
 		Plstar = NewGO<PlayerStar>(0, "PlayerStar");
-		Plstar->Pop(m_position, m_player[LABulletNum]->GetPosition());//プレイヤーからプレイヤーへ。
+		Plstar->Pop(PadNum, LABulletNum);//プレイヤーからプレイヤーへ。
 		Alive = true;
 		LABulletNum = syoki;
 	}
@@ -613,7 +613,7 @@ void Player::StarPop()
 		StarCount -= PopStar;
 		m_player[LABulletNum]->SetStarCount(PopStar);
 		Plstar = NewGO<PlayerStar>(0, "PlayerStar");
-		Plstar->Pop(m_position, m_player[LABulletNum]->GetPosition());//プレイヤーからプレイヤーへ。
+		Plstar->Pop(PadNum, LABulletNum);//プレイヤーからプレイヤーへ。
 		Alive = true;
 		LABulletNum = syoki;
 	}
