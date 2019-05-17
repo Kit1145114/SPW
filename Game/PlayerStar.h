@@ -13,7 +13,7 @@ public:
 	void Update();
 	void Rotation();
 	void Death();
-	void Pop(CVector3 position);
+	void Pop(CVector3 Despos, CVector3 Getpos);
 	void DesPlayer(CVector3 position) {
 		Deathplayertposition = position;
 	}

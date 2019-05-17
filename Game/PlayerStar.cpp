@@ -79,9 +79,10 @@ void PlayerStar::Death()
 	//m_player->SetPLST(nullptr);
 }
 
-void PlayerStar::Pop(CVector3 position)
+void PlayerStar::Pop(CVector3 Despos, CVector3 Getpos)
 {
-	m_position = position;
+	m_position = Despos;
+	Getplayerposition = Getpos;
 	m_skinModelRender->SetPosition(m_position);
 	NewGO<PlayerStar>(0, "playerStat");
 }

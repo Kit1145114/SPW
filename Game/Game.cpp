@@ -171,12 +171,12 @@ void Game::CreateStage3()
 		m_player[0]->SetPadNum(0);
 		m_player[0]->SetPositionX(P_pos*-3);
 	}
-	//BBH = NewGO<BigBlackHole>(0, "bigblackhole");
-	CVector3 position = { 10.0f, 10.0f,  10.0f };
-	float BHsize = { 1000.0f };       //	基本惑星の半径。
-	float Search = { 1000.0f };       //	BHの重力範囲の調整。
-	float Limit  = { 1000.0f };       //   BHの重力（Ｇ）調整。
-	BlackHole::Generate2(position, BHsize, Search, Limit);
+	////BBH = NewGO<BigBlackHole>(0, "bigblackhole");
+	//CVector3 position = { 10.0f, 10.0f,  10.0f };
+	//float BHsize = { 1000.0f };       //	基本惑星の半径。
+	//float Search = { 1000.0f };       //	BHの重力範囲の調整。
+	//float Limit  = { 1000.0f };       //   BHの重力（Ｇ）調整。
+	//BlackHole::Generate2(position, BHsize, Search, Limit);
 	m_field = NewGO<field>(0);
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
