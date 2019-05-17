@@ -509,27 +509,27 @@ void Player::B_Hantei()
 			{
 				PlHP -= Damage;
 				b->Death();
-				if (b->GetPB() == 0)
+				if (b->GetPB() == 0 && DeathCount == false)
 				{
 					LABulletNum = 0;
 				}
-				else if (b->GetPB() == 1)
+				else if (b->GetPB() == 1 && DeathCount == false)
 				{
 					LABulletNum = 1;
 				}
-				else if (b->GetPB() == 2)
+				else if (b->GetPB() == 2 && DeathCount == false)
 				{
 					LABulletNum = 2;
 				}
-				else if (b->GetPB() == 3)
+				else if (b->GetPB() == 3 && DeathCount == false)
 				{
 					LABulletNum = 3;
 				}
 			}
-				else if (b->GetPB() == PadNum)
-			{
+				else if (b->GetPB() == PadNum || DeathCount == true)
+				{
 
-			}
+				}
 			return true;
 		});		
 	}
@@ -619,6 +619,8 @@ void Player::StarPop()
 	}
 	else//‚»‚êˆÈŠO
 	{
+		PopStar = StarCount / 2;
+		StarCount -= PopStar;
 		LABulletNum = syoki;
 	}
 }
