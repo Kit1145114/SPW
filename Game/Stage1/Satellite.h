@@ -43,6 +43,10 @@ private:
 
 	CVector3 m_move = { 0,0,500 };
 
+	float moveStar = 0.0f;
+
 	Satellite** arrayP = nullptr;
+
+	int lastBulletNum = -1;
 };
 

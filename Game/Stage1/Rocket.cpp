@@ -118,6 +118,7 @@ void Rocket::Update() {
 					HitResult result = collider.hitTest(p->GetPosition(), 800.0f);
 					if (result.hit != NonHit) {
 						Explosion();
+						p->SetLABulletNum(ownerNum);
 						p->AddHP(-100);
 						return;
 					}
@@ -130,8 +131,10 @@ void Rocket::Update() {
 			HitResult result = collider.hitTest(b->GetPosition(), 0.1f);
 			if (result.hit != NonHit) {
 				b->Death();
-				if (!awaking) {
+				if (ownerNum != b->GetPB()) {
 					hp--;
+				}
+				if (!awaking) {
 					if (hp == 0) {
 						awaking = true;
 						m_modelRender->Init(L"modelData/Rocket.cmo");
