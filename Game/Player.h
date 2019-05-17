@@ -23,6 +23,7 @@ class PlayerStar;
 class Draw_Player;
 class Draw_Skazu;
 class RadarRing;
+class Sinka_Bar;
 
 class Player: public IGameObject
 {
@@ -159,6 +160,7 @@ private:
 	Star* m_star = nullptr;
 	Camera* camera = nullptr;
 	PlayerStar* Plstar = nullptr;
+	Sinka_Bar* bar = nullptr;
 	CCharacterController m_CharaCon;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 memory_position = CVector3::Zero;

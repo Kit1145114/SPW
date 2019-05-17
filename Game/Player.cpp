@@ -1,12 +1,14 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "Network/NPad.h"
+#include "Sinka_Bar.h"
 
 Player::Player()
 {
 	draw_Pl = NewGO<Draw_Player>(0);
 	draw_S = NewGO<Draw_Skazu>(0);
 	r_ring = NewGO<RadarRing>(0);
+	bar = NewGO<Sinka_Bar>(0);
 }
 
 Player::~Player()
@@ -73,6 +75,7 @@ void Player::Update()
 	r_ring->SetPosition(m_position);
 	draw_S->SetKazu(StarCount);
 	draw_S->SetBulletKazu(m_Short);
+	bar->AddStarCount(StarCount);
 }
 //プレイヤーの操作
 void Player::Move()
@@ -624,7 +627,7 @@ void Player::StarPop()
 		LABulletNum = syoki;
 	}
 }
-//プレイヤーの番号を決める。
+//プレイヤーの番号で、○P、☆の数、球の数の場所を決める。
 void Player::SetPadNum(int num)
 {
 	PadNum = num;
@@ -634,23 +637,28 @@ void Player::SetPadNum(int num)
 		r_ring->SetPlayerRadar(L"modelData/Ring1P.cmo",PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/1P.dds");
 		draw_Pl->SetPosition(-450.0f, -330.0f);
+		//プレイヤーの☆の場所
 		draw_S->SetS_kazuPosition(-468.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
 		draw_S->SetS_position(-480.0f, -279.0f);
-		//弾の場所。
+		//プレイヤーの弾の場所。
 		draw_S->SetBullet(L"sprite/tama_red.dds");
 		draw_S->SetB_kazuPosition(-370.0f,-325.0f);
 		draw_S->SetBulletposition(-365.0f,-285.0f);
 		draw_S->SetColor(1.0f, 0.0f, 0.0f, 1.0f);
+		//プレイヤーの進化ゲージの場所。
+		//bar->SetbarPosition(300.0f, 0.0f);
+		//bar->SetgeziPosition(0.0f, 0.0f);
 		break;
 	case 1:
 		r_ring->SetPlayerRadar(L"modelData/Ring2P.cmo", PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/2P.dds");
 		draw_Pl->SetPosition(-150.0f, -330.0f);
+		//プレイヤーの☆の場所
 		draw_S->SetS_kazuPosition(-168.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
 		draw_S->SetS_position(-180.0f, -279.0f);
-
+		//プレイヤーの弾の場所。
 		draw_S->SetBullet(L"sprite/tama_bule.dds");
 		draw_S->SetB_kazuPosition(-70.0f, -325.0f);
 		draw_S->SetBulletposition(-65.0f, -285.0f);
@@ -660,10 +668,11 @@ void Player::SetPadNum(int num)
 		r_ring->SetPlayerRadar(L"modelData/Ring3P.cmo", PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/3P.dds");
 		draw_Pl->SetPosition(150.0f, -330.0f);
+		//プレイヤーの☆の場所
 		draw_S->SetS_kazuPosition(135.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
 		draw_S->SetS_position(120.0f, -279.f);
-
+		//プレイヤーの弾の場所。
 		draw_S->SetBullet(L"sprite/tama_green.dds");
 		draw_S->SetB_kazuPosition(230.0f, -325.0f);
 		draw_S->SetBulletposition(235.0f, -285.0f);
@@ -673,10 +682,11 @@ void Player::SetPadNum(int num)
 		r_ring->SetPlayerRadar(L"modelData/Ring4P.cmo", PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/4P.dds");
 		draw_Pl->SetPosition(450.0f, -330.0f);
+		//プレイヤーの☆の場所
 		draw_S->SetS_kazuPosition(428.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
 		draw_S->SetS_position(420.0f, -279.0f);
-
+		//プレイヤーの弾の場所。
 		draw_S->SetBullet(L"sprite/tama_yellow.dds");
 		draw_S->SetB_kazuPosition(530.0f, -325.0f);
 		draw_S->SetBulletposition(535.0f, -285.0f);
