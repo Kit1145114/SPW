@@ -17,6 +17,10 @@ public:
 		m_pos = pos;
 	};
 
+	CVector3 getPosition() {
+		return m_pos;
+	}
+
 	const BoxCollider2D* getCollider() const{
 		return &collider;
 	}
