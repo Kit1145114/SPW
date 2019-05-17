@@ -5,6 +5,7 @@
 #include "..\Planet.h"
 #include "..\Game.h"
 #include "CVector2.h"
+#include "..\Star.h"
 
 const CVector2 Satellite::colliderSize = { 15797.811f, 2046.581f };
 const CVector2 Satellite::colliderPosition = { 1868.701f ,112.663f };
@@ -41,7 +42,7 @@ bool Satellite::Start() {
 
 void Satellite::Update() {
 	//エリア外判定
-	if (m_pos.x > 30000.0f || m_pos.x< -30000.0f|| m_pos.z>20000.0f || m_pos.z < -20000.0f) {
+	if (m_pos.x > 35000.0f || m_pos.x< -35000.0f|| m_pos.z>25000.0f || m_pos.z < -25000.0f) {
 		DeleteGO(this);
 		return;
 	}
@@ -68,9 +69,11 @@ void Satellite::Update() {
 					if (result.hit == Side) {
 						rotPower += result.rotSign * hitRotPower;
 						p->AddHP(-100);
+						p->SetLABulletNum(lastBulletNum);
 					} else if(result.hit == Center){
 						m_move += p->GetMoveSpeed()*5;
 						p->AddHP(-100);
+						p->SetLABulletNum(lastBulletNum);
 					}
 				}
 			}
@@ -85,6 +88,7 @@ void Satellite::Update() {
 				b->Death();
 			} else if(result.hit == Center){
 				m_move += b->GetMoveSpeed()*8;
+				lastBulletNum = b->GetPB();
 				b->Death();
 			}
 			return true;
@@ -110,6 +114,11 @@ void Satellite::Update() {
 		m_pos += m_move * delta;
 		collider.Move(m_move * delta);
 		m_modelRender->SetPosition(m_pos);
+		moveStar += m_move.Length() * delta;
+		if (moveStar > 5000.0f) {
+			NewGO<Star>(0, "Star")->Pop(m_pos, {25,25,25});
+			moveStar = 0.0f;
+		}
 
 		//回転力を減衰させる。
 		int sign = rotPower > 0 ? 1 : -1;//符号を出して0に近づくように減衰させる。

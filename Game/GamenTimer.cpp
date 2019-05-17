@@ -34,10 +34,11 @@ void GamenTimer::PostRender(CRenderContext& rc)
 
 	m_font.Draw(
 		text,
-		{ -490.0f, 300.0f },
+		{ -630.0f, 320.0f },
 		{ 0.0f, 1.0f, 1.0f, 1.0f },
 		0.0f,
-		1.5f
+		1.5f,
+		{0.0f, 0.5f}
 	);
 
 	m_font.End(rc);

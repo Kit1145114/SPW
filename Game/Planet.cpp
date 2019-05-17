@@ -207,9 +207,9 @@ void Planet::explosion()
 		prefab::CEffect* effect;
 		effect = NewGO<prefab::CEffect>(0);
 		//エフェクトを再生。
-		effect->Play(L"effect/explosion1.efk");
+		effect->Play(L"effect/BigExplosion.efk");
 		//エフェクトに半径/（Ｍａｘと差）をかける
-		effect->SetScale({ radius/200,1.0f,radius/200 });
+		effect->SetScale( CVector3(radius/200,1.0f,radius/200 ) * 0.1f);
 		effect->SetPosition(this->p_position);
 
 		//効果音（爆発）;

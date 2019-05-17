@@ -39,7 +39,7 @@ bool Rocket::Start() {
 
 void Rocket::Update() {
 	//ƒGƒŠƒAŠO”»’è
-	if (m_pos.x > 30000.0f || m_pos.x< -30000.0f || m_pos.z>20000.0f || m_pos.z < -20000.0f) {
+	if (m_pos.x > 35000.0f || m_pos.x< -35000.0f || m_pos.z>25000.0f || m_pos.z < -25000.0f) {
 		DeleteGO(this);
 		return;
 	}
@@ -54,7 +54,7 @@ void Rocket::Update() {
 				if (result.hit != NonHit) {
 					p->explosion();
 					if (awaking) {
-						hp--;
+						hp -= 2;
 					} else {
 						Explosion();
 						return;
@@ -78,7 +78,7 @@ void Rocket::Update() {
 							effect->SetScale({ 2, 2, 2 });
 							effect->SetPosition(sateArray[i]->getPosition() + CVector3(0, 1000, 0));
 							DeleteGO(sateArray[i]);
-							hp--;
+							hp -= 2;
 						} else {
 							Explosion();
 							return;
@@ -101,7 +101,7 @@ void Rocket::Update() {
 							rocketArray[i]->Explosion();
 						}
 						if (awaking) {
-							hp--;
+							hp -= 2;
 						} else {
 							Explosion();
 							return;
@@ -118,6 +118,7 @@ void Rocket::Update() {
 					HitResult result = collider.hitTest(p->GetPosition(), 800.0f);
 					if (result.hit != NonHit) {
 						Explosion();
+						p->SetLABulletNum(ownerNum);
 						p->AddHP(-100);
 						return;
 					}
@@ -130,8 +131,10 @@ void Rocket::Update() {
 			HitResult result = collider.hitTest(b->GetPosition(), 0.1f);
 			if (result.hit != NonHit) {
 				b->Death();
-				if (!awaking) {
+				if (ownerNum != b->GetPB()) {
 					hp--;
+				}
+				if (!awaking) {
 					if (hp == 0) {
 						awaking = true;
 						m_modelRender->Init(L"modelData/Rocket.cmo");
