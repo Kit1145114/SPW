@@ -14,7 +14,12 @@ public:
 	void Rotation();
 	void Death();
 	void Pop(CVector3 position);
-	void Move();
+	void DesPlayer(CVector3 position) {
+		Deathplayertposition = position;
+	}
+	void GetPlayer(CVector3 position) {
+		Getplayerposition = position;
+	}
 	void SetPosition(CVector3 position)
 	{
 		m_position = position;
@@ -39,6 +44,8 @@ private:
 	Player * m_player[3] = { nullptr };
 	Game* m_game = nullptr;
 	CVector3 m_position = CVector3::Zero;
+	CVector3 Deathplayertposition = CVector3::Zero;
+	CVector3 Getplayerposition = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;
 	CVector3 Tyuou = CVector3::Zero;
 	CVector3 m_scale = { 1.0f,1.0f,1.0f };

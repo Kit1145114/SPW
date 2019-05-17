@@ -13,10 +13,10 @@ public:
 	BlackHole();
 	~BlackHole();
 	bool Start();
-	//ŠÔ§ŒÀ‚ ‚è‚Ì•’Ê‚Ì‚a‚g
+	//ŠÔ§ŒÀ‚ ‚è‚Ì•’Ê‚Ì‚a‚g;
 	static void Generate(CVector3 position, float magnification); 
-	//ŠÔ§ŒÀ‚È‚µ‚ÌŒÅ’è‚Ì‚a‚g
-	static void Generate2(CVector3 position, float magnification); 
+	//ŠÔ§ŒÀ‚È‚µ‚ÌŒÅ’è‚Ì‚a‚g(BBH);
+	static void Generate2(CVector3 position, float magnification, float Search, float Limit);
 	void Move();
 	void Gravity();
 	void Count();
