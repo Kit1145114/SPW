@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "RocketGene.h"
 #include "Rocket.h"
+#include "..\Planet.h"
 #include "..\Game.h"
 
 void RocketGene::OnDestroy() {
@@ -16,7 +17,7 @@ void RocketGene::Update() {
 
 		//ランダムポップ。
 		CVector3 hako;
-		int tryCount = 3;//場所の提案に失敗しても指定回数分試行する
+		int tryCount = 5;//場所の提案に失敗しても指定回数分試行する
 		while (tryCount > 0) {
 			hako.x = Random().GetRandDouble() - 0.5f;
 			hako.z = Random().GetRandDouble() - 0.5f;
@@ -35,6 +36,30 @@ void RocketGene::Update() {
 				if (kyori < needKyori*needKyori) {
 					tryCount--;
 					continue;
+				}
+			}
+
+			//ロケットの上にポップしないように
+			for (Rocket* rocket : rocketArray) {
+				if (rocket != nullptr) {
+					float kyori = (rocket->getPosition() - hako).LengthSq();
+					const float needKyori = 5000.0f;
+					if (kyori < needKyori*needKyori) {
+						tryCount--;
+						continue;
+					}
+				}
+			}
+
+			//星の上にポップしないように
+			for (Planet* p : game->memoryPP) {
+				if (p != nullptr) {
+					float kyori = (p->GetPosition() - hako).LengthSq();
+					const float needKyori = p->GetRadius() + 2500.0f;
+					if (kyori < needKyori*needKyori) {
+						tryCount--;
+						continue;
+					}
 				}
 			}
 			break;
