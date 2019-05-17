@@ -3,7 +3,7 @@
 #include "Rocket.h"
 #include "..\Game.h"
 
-RocketGene::~RocketGene() {
+void RocketGene::OnDestroy() {
 	for (Rocket* satP : RocketArray) {
 		DeleteGO(satP);
 	}

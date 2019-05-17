@@ -3,7 +3,6 @@
 
 class Rocket : public IGameObject{
 public:
-	Rocket();
 	~Rocket();
 
 	bool Start() override;
@@ -25,12 +24,16 @@ private:
 
 	BoxCollider2D collider;
 
-	int needBullet = 10;
+	static constexpr int max_hp = 10;
+	int hp = max_hp;
 	bool awaking = false;
 	int ownerNum = -1;
 
+	static constexpr float controllPower = 4000.0f;
+
 	CVector3 m_pos = {};
 	CVector3 m_move = {400.0f, 0.0f, 0.0f};
+	float radianRot = 0.0f;
 	Rocket** arrayP = nullptr;
 };
 

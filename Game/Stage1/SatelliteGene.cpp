@@ -3,7 +3,7 @@
 #include "Satellite.h"
 #include "..\Game.h"
 
-SatelliteGene::~SatelliteGene() {
+void SatelliteGene::OnDestroy() {
 	for (Satellite* satP : satelliteArray) {
 		DeleteGO(satP);
 	}

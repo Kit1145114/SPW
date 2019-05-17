@@ -4,10 +4,10 @@
 #include "..\Planet.h"
 #include "..\Bullet.h"
 #include "..\Game.h"
+#include "..\\Network\NPad.h"
 
-Rocket::Rocket() {
-}
-
+const CVector2 Rocket::colliderSize = { 4989.508f, 1218.114f };
+const CVector2 Rocket::colliderPosition = { 522.263f, 59.711f };
 
 Rocket::~Rocket() {
 	DeleteGO(m_modelRender);
@@ -16,14 +16,19 @@ Rocket::~Rocket() {
 
 bool Rocket::Start() {
 	m_modelRender = NewGO<prefab::CSkinModelRender>(0);
-	m_modelRender->Init(L"modelData/Rocket.cmo");
+	m_modelRender->Init(L"modelData/ScrapRocket.cmo");
 	m_modelRender->SetPosition(m_pos);
+
+	//コライダ
+	collider.Init(m_pos, colliderPosition, colliderSize);
 
 	//動きの設定(ランダム)
 	CQuaternion rot;
-	rot.SetRotation(CVector3::AxisY, (float)Random().GetRandDouble() * CMath::PI2);
+	radianRot = (float)Random().GetRandDouble() * CMath::PI2;
+	rot.SetRotation(CVector3::AxisY, radianRot);
 	rot.Multiply(m_move);
 
+	collider.Rotate(rot);
 	m_modelRender->SetRotation(rot);
 	return true;
 }
@@ -63,28 +68,58 @@ void Rocket::Update() {
 			}
 		}
 		//弾との衝突
+		bool _return = false;
 		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b)->bool {
 			HitResult result = collider.hitTest(b->GetPosition(), 0.1f);
 			if (result.hit != NonHit) {
-				/*if (!awaking || ) {
-
-				}*/
-				needBullet--;
-				if (needBullet == 0) {
+				b->Death();
+				if (ownerNum != b->GetPB()) {
+					hp--;
+				}
+				if (hp == 0) {
 					if (!awaking) {
 						awaking = true;
+						m_modelRender->Init(L"modelData/Rocket.cmo");
 						ownerNum = b->GetPB();
+						hp = max_hp;
 					} else {
 						DeleteGO(this);
-						return;
+						_return = true;
+						return false;
 					}
 				}
 			}
 			return true;
 		});
+		if (_return) { return; }
 	}
 
 	float delta = GameTime().GetFrameDeltaTime();
+
+	if (ownerNum >= 0) {
+		CVector3 stick = {};
+		stick.x = NPad(ownerNum).GetRStickXF();
+		stick.z = NPad(ownerNum).GetRStickYF();
+
+		if (stick.LengthSq() < 0.2f) {
+			CVector3 normal = m_move;
+			normal.Normalize();
+			m_move += normal * controllPower * delta;
+		} else {
+			m_move += stick * controllPower * delta;
+		}
+	}
+	
 	m_pos += m_move * delta;
 	m_modelRender->SetPosition(m_pos);
+	CQuaternion rot;
+	float radian = atan2f(-m_move.z, m_move.x);
+	rot.SetRotation(CVector3::AxisY, radian);
+	m_modelRender->SetRotation(rot);
+	
+	rot.SetRotation(CVector3::AxisY, radian - radianRot);
+	collider.Rotate(rot);
+	collider.Move(m_move*delta);
+
+	radianRot = radian;
 }

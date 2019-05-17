@@ -4,9 +4,8 @@ class Satellite;
 
 class SatelliteGene : public IGameObject{
 public:
-	~SatelliteGene();
-
-	void Update();
+	void OnDestroy() override;
+	void Update() override;
 
 private:
 	static constexpr float interval = 5.0f;

@@ -64,7 +64,7 @@ void Satellite::Update() {
 			if (p != nullptr) {
 				if (!p->GetDeathCount() && !p->GetMuteki()) {
 					HitResult result = collider.hitTest(p->GetPosition(), 800.0f);
-					if (result.hit != Side) {
+					if (result.hit == Side) {
 						rotPower += result.rotSign * hitRotPower;
 						p->AddHP(-100);
 					} else if(result.hit == Center){

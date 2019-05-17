@@ -3,9 +3,8 @@ class Rocket;
 
 class RocketGene : public IGameObject {
 public:
-	~RocketGene();
-
-	void Update();
+	void OnDestroy() override;
+	void Update() override;
 
 private:
 	static constexpr float interval = 5.0f;
