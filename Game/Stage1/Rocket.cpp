@@ -4,6 +4,9 @@
 #include "..\Planet.h"
 #include "..\Bullet.h"
 #include "..\Game.h"
+#include "SatelliteGene.h"
+#include "RocketGene.h"
+#include "Satellite.h"
 #include "..\\Network\NPad.h"
 
 const CVector2 Rocket::colliderSize = { 4989.508f, 1218.114f };
@@ -43,8 +46,9 @@ void Rocket::Update() {
 
 	//Õ“Ë”»’è
 	{
+		Game* game = Game::GetInstance();
 		//¯‚Æ‚Ô‚Â‚©‚Á‚½‚È‚ç¯‚ð”j‰óB
-		for (Planet* p : Game::GetInstance()->memoryPP) {
+		for (Planet* p : game->memoryPP) {
 			if (p != nullptr) {
 				HitResult result = collider.hitTest(p->GetPosition(), p->GetRadius());
 				if (result.hit != NonHit) {
@@ -55,8 +59,38 @@ void Rocket::Update() {
 			}
 		}
 
+		{//lH‰q¯‚Æ‚ÌÕ“Ë
+			Satellite* const* sateArray = game->getSatelliteGene()->getArray();
+			for (int i = 0; i < SatelliteGene::getArrayNum(); i++) {
+				Satellite* sate = sateArray[i];
+				if (sate != nullptr) {
+					HitResult result = collider.hitTest(sate->getCollider());
+					if (result.hit != NonHit) {
+						DeleteGO(sateArray[i]);
+						DeleteGO(this);
+						return;
+					}
+				}
+			}
+		}
+
+		{//ƒƒPƒbƒg“¯Žm‚ÌÕ“Ë
+			Rocket* const* rocketArray = game->getRocketGene()->getArray();
+			for (int i = 0; i < RocketGene::getArrayNum(); i++) {
+				Rocket* rocket = rocketArray[i];
+				if (rocket != nullptr && rocket != this) {
+					HitResult result = collider.hitTest(rocket->getCollider());
+					if (result.hit != NonHit) {
+						DeleteGO(rocketArray[i]);
+						DeleteGO(this);
+						return;
+					}
+				}
+			}
+		}
+
 		//ƒvƒŒƒCƒ„[‚Æ‚ÌÕ“Ë
-		for (Player* p : Game::GetInstance()->m_player) {
+		for (Player* p : game->m_player) {
 			if (p != nullptr) {
 				if (!p->GetDeathCount() && !p->GetMuteki()) {
 					HitResult result = collider.hitTest(p->GetPosition(), 800.0f);

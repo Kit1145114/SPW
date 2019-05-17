@@ -30,7 +30,7 @@ void BoxCollider2D::Init(const CVector3 & pos, const CVector2& localCenter, CVec
 	}
 }
 
-HitResult BoxCollider2D::hitTest(const CVector3 & p, float radius) {
+HitResult BoxCollider2D::hitTest(const CVector3 & p, float radius) const{
 	bool hit = false;
 	bool inSquere = true;//四角形内部にある判定。全ての辺が条件を満たさないといけない。
 
@@ -85,6 +85,95 @@ HitResult BoxCollider2D::hitTest(const CVector3 & p, float radius) {
 	}
 
 	float cross = vec2Cross(shaft, pos - m_pos);
+	bool minas = cross * dot < 0;
+
+	result.hit = Side;
+
+	if (minas) {
+		result.rotSign = -1;
+		return result;
+	} else {
+		result.rotSign = 1;
+		return result;
+	}
+}
+
+bool isCrossLine(const CVector2& line1p1, const CVector2& line1p2,
+				 const CVector2& line2p1, const CVector2& line2p2) {
+	const CVector2* l1p1 = &line1p1;
+	const CVector2* l1p2 = &line1p2;
+	const CVector2* l2p1 = &line2p1;
+	const CVector2* l2p2 = &line2p2;
+
+	//x1~y2には直線の2点の座標。x,yに線分の2点のうち1点の座標で答えを出し、もう片方の点でも答えを出す。
+	//(x1-x2)*(y - y1) + (y1-y2)*(x1-x) = ？
+	//2つの答えの積がマイナスなら直線と線分は重なっている。
+	//線分と線分が重なっているか調べるため、直線と線分を入れ替えてもう一度同じことをやる。
+
+	bool cross = false;
+
+	for (int i = 0; i < 2; i++) {
+		float ans1 = (l1p1->x - l1p2->x)*(l2p1->y - l1p1->y) + (l1p1->y - l1p2->y)*(l1p1->x - l2p1->x);
+		float ans2 = (l1p1->x - l1p2->x)*(l2p2->y - l1p1->y) + (l1p1->y - l1p2->y)*(l1p1->x - l2p2->x);
+
+		if (ans1*ans2 <= 0) {
+			if (i == 0) {
+				const CVector2* swapP;
+				swapP = l1p1;
+				l1p1 = l2p1;
+				l2p1 = swapP;
+
+				swapP = l1p2;
+				l1p2 = l2p2;
+				l2p2 = swapP;
+			} else {
+				cross = true;
+			}
+		} else {
+			break;
+		}
+	}
+	return cross;
+}
+
+HitResult BoxCollider2D::hitTest(const BoxCollider2D* box) const{
+	bool hit = false;
+	for (int i = 0; i < 4; i++) {
+		int nextI = i + 1;
+		if (nextI == 4) { nextI = 0; }
+
+		const CVector2& iVer1 = vertex[i];
+		const CVector2& iVer2 = vertex[nextI];
+		//(x1-x2)*(y - y1) + (y1-y2)*(x1-x) = ?
+
+		for (int j = 0; j < 4; j++) {
+			int nextJ = j + 1;
+			if (nextJ == 4) { nextJ = 0; }
+
+			const CVector2* targV = box->getVertexArray();
+			if (isCrossLine(iVer1, iVer2, targV[j], targV[nextJ])) {
+				hit = true;
+				goto LOOP_BREAK;
+			}
+		}
+
+	}
+LOOP_BREAK:
+
+	HitResult result;
+
+	if (!hit) {//ヒットしていない場合
+		return result;
+	}
+
+	float dot = vec2Dot(shaft, box->getPos() - m_pos);
+
+	if (abs(dot) < 2000.0f) {
+		result.hit = Center;
+		return result;
+	}
+
+	float cross = vec2Cross(shaft, box->getPos() - m_pos);
 	bool minas = cross * dot < 0;
 
 	result.hit = Side;

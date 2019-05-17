@@ -235,7 +235,6 @@ void Game::Update()
 	}
 	else if (GameMode == 1)
 	{
-		//TODO ネット対戦用に変える必要がある
 		Fade::fadeIn([&]() {
 			GameMode = 0;
 			NewGO<ResultGamen>(0, "ResultGamen")->SetSansenKazu(SansenKazu);
