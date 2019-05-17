@@ -577,38 +577,46 @@ void Player::HP()
 //プレイヤーの持つ☆を落とす。
 void Player::StarPop()
 {
-	if (HitBulletNum == 0) {
+	if (HitBulletNum == 0)//1P
+	{
 		PopStar = StarCount / 2;
 		StarCount -= PopStar;
 		Plstar = NewGO<PlayerStar>(0, "PlayerStar");
-		Plstar->Pop(m_position, m_player[HitBulletNum]->GetPosition());
+		Plstar->Pop(m_position, m_player[HitBulletNum]->GetPosition());//プレイヤーからプレイヤーへ。
 		m_player[HitBulletNum]->SetStarCount(PopStar);
 		Alive = true;
+		HitBulletNum = syoki;
 	}
-	else if (HitBulletNum == 1)
+	else if (HitBulletNum == 1)//2P
 	{
 		PopStar = StarCount / 2;
 		StarCount -= PopStar;
 		m_player[HitBulletNum]->SetStarCount(PopStar);
+		Plstar->Pop(m_position, m_player[HitBulletNum]->GetPosition());//プレイヤーからプレイヤーへ。
 		Alive = true;
+		HitBulletNum = syoki;
 	}
-	else if (HitBulletNum == 2)
+	else if (HitBulletNum == 2)//3P
 	{
 		PopStar = StarCount / 2;
 		StarCount -= PopStar;
 		m_player[HitBulletNum]->SetStarCount(PopStar);
+		Plstar->Pop(m_position, m_player[HitBulletNum]->GetPosition());//プレイヤーからプレイヤーへ。
 		Alive = true;
+		HitBulletNum = syoki;
 	}
-	else if (HitBulletNum == 3)
+	else if (HitBulletNum == 3)//4P
 	{
 		PopStar = StarCount / 2;
 		StarCount -= PopStar;
 		m_player[HitBulletNum]->SetStarCount(PopStar);
+		Plstar->Pop(m_position, m_player[HitBulletNum]->GetPosition());//プレイヤーからプレイヤーへ。
 		Alive = true;
+		HitBulletNum = syoki;
 	}
-	else
+	else//それ以外
 	{
-
+		HitBulletNum = syoki;
 	}
 }
 //プレイヤーの番号を決める。

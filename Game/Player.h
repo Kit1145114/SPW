@@ -191,6 +191,7 @@ private:
 	int MaxSeiseiVer_2 = 50;
 	int MaxSeiseiVer_3 = 99;
 	int HitBulletNum = 5;
+	int syoki = 5;
 	float HoukouX = 0.0f;
 	float HoukouZ = 0.0f;
 	float memoryHX = 0.0f;
