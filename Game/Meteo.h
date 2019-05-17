@@ -17,6 +17,13 @@ public:
 	{
 		m_position = pos;
 	}
+	CVector3 GetPosition()
+	{
+		return m_position;
+	}
+	void SetMoveSpeed(CVector3 speed) {
+		randomspeed = speed;
+	}
 private:
 	Game* game = nullptr;
 	Planet* pla = nullptr;

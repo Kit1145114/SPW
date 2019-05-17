@@ -2,6 +2,7 @@
 //#include "Player.h"
 #include "Planet.h"
 #include "Game.h"
+#include"Meteo.h"
 
 class Game;
 class Player;

@@ -115,6 +115,23 @@ void BlackHole::Move()
 		}
 		return true;
 	});
+	//メテオサーチ。
+	QueryGOs<Meteo>("Meteo", [&](Meteo* m) ->bool {
+		//対象との距離を測定。
+		CVector3 kyori = m->GetPosition() - m_position;
+		//対象との距離が一定以下になったら。
+		if (kyori.Length() < radius * Searchment) {
+			//Ｇ中心に遠ければ弱く、近ければ強く。
+			float G = radius * Searchment - kyori.Length();
+			//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
+			m->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
+			if (kyori.Length() < radius * Searchment / 5) {
+				//破壊。
+				m->Death();
+			}
+		}
+		return true;
+	});
 }
 
 void BlackHole::Gravity()
