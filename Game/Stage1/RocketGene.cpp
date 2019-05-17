@@ -4,7 +4,7 @@
 #include "..\Game.h"
 
 void RocketGene::OnDestroy() {
-	for (Rocket* satP : RocketArray) {
+	for (Rocket* satP : rocketArray) {
 		DeleteGO(satP);
 	}
 }
@@ -42,7 +42,7 @@ void RocketGene::Update() {
 
 		//“K“–‚ÈêŠ‚ªŒ©‚Â‚©‚Á‚Ä‚¢‚éê‡AlH‰q¯‚ð¶¬‚·‚éB
 		if (tryCount > 0) {
-			for (Rocket*& satP : RocketArray) {
+			for (Rocket*& satP : rocketArray) {
 				if (satP == nullptr) {
 					satP = NewGO<Rocket>(0, "Rocket");
 					satP->setPosition(hako);

@@ -16,6 +16,10 @@ public:
 		arrayP = p;
 	}
 
+	const BoxCollider2D* getCollider() {
+		return &collider;
+	}
+
 private:
 	static const CVector2 colliderSize;
 	static const CVector2 colliderPosition;

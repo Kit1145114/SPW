@@ -15,11 +15,21 @@ class BoxCollider2D {
 public:
 	void Init(const CVector3 & pos, const CVector2& localCenter, CVector2 size);
 
-	HitResult hitTest(const CVector3& pos, float radius);
+	HitResult hitTest(const CVector3& pos, float radius) const;
+
+	HitResult hitTest(const BoxCollider2D* box) const;
 
 	void Rotate(CQuaternion rot);
 
 	void Move(CVector3 move);
+
+	const CVector2* getVertexArray() const{
+		return vertex;
+	}
+
+	CVector2 getPos() const{
+		return m_pos;
+	}
 
 private:
 	CVector2 vertex[4];

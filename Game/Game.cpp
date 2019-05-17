@@ -157,26 +157,30 @@ void Game::CreateStage3()
 	case 4:
 		m_player[3] = NewGO<Player>(0, "Player3");
 		m_player[3]->SetPadNum(3);
-		m_player[3]->SetPositionX(P_pos * 3);
+		m_player[3]->SetPositionX(P_pos * 10);
+		m_player[3]->SetPositionZ(P_pos *-5);
 	case 3:
 		m_player[2] = NewGO<Player>(0, "Player2");
 		m_player[2]->SetPadNum(2);
-		m_player[2]->SetPositionX(P_pos);
+		m_player[2]->SetPositionX(P_pos *-10);
+		m_player[2]->SetPositionZ(P_pos *-5);
 	case 2:
 		m_player[1] = NewGO<Player>(0, "Player1");
 		m_player[1]->SetPadNum(1);
-		m_player[1]->SetPositionX(P_pos*-1);
+		m_player[1]->SetPositionX(P_pos * 10);
+		m_player[1]->SetPositionZ(P_pos * 5);
 	case 1:
 		m_player[0] = NewGO<Player>(0, "Player");
 		m_player[0]->SetPadNum(0);
-		m_player[0]->SetPositionX(P_pos*-3);
+		m_player[0]->SetPositionX(P_pos *-10);
+		m_player[0]->SetPositionZ(P_pos * 5);
 	}
-	////BBH = NewGO<BigBlackHole>(0, "bigblackhole");
-	//CVector3 position = { 10.0f, 10.0f,  10.0f };
-	//float BHsize = { 1000.0f };       //	基本惑星の半径。
-	//float Search = { 1000.0f };       //	BHの重力範囲の調整。
-	//float Limit  = { 1000.0f };       //   BHの重力（Ｇ）調整。
-	//BlackHole::Generate2(position, BHsize, Search, Limit);
+	//BBH = NewGO<BigBlackHole>(0, "bigblackhole");
+	CVector3 position = { 10.0f, 10.0f,  10.0f };
+	float BHsize = { 1000.0f };       //	基本惑星の半径。
+	float Search = { 15000.0f };       //	BHの重力範囲の調整。
+	float Limit  = { 50000000.0f };       //   BHの重力（Ｇ）調整。
+	BlackHole::Generate2(position, BHsize, Search, Limit);
 	m_field = NewGO<field>(0);
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
@@ -240,7 +244,6 @@ void Game::Update()
 	}
 	else if (GameMode == 1)
 	{
-		//TODO ネット対戦用に変える必要がある
 		Fade::fadeIn([&]() {
 			GameMode = 0;
 			NewGO<ResultGamen>(0, "ResultGamen")->SetSansenKazu(SansenKazu);

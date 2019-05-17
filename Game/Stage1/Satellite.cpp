@@ -48,8 +48,9 @@ void Satellite::Update() {
 
 	//衝突判定
 	{
+		Game* game = Game::GetInstance();
 		//星とぶつかったなら星を破壊。
-		for (Planet* p : Game::GetInstance()->memoryPP) {
+		for (Planet* p : game->memoryPP) {
 			if (p != nullptr) {
 				HitResult result = collider.hitTest(p->GetPosition(), p->GetRadius());
 				if (result.hit != NonHit) {
@@ -60,7 +61,7 @@ void Satellite::Update() {
 		}
 
 		//プレイヤーとの衝突
-		for (Player* p : Game::GetInstance()->m_player) {
+		for (Player* p : game->m_player) {
 			if (p != nullptr) {
 				if (!p->GetDeathCount() && !p->GetMuteki()) {
 					HitResult result = collider.hitTest(p->GetPosition(), 800.0f);

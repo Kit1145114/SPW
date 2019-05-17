@@ -17,6 +17,10 @@ public:
 		m_pos = pos;
 	};
 
+	const BoxCollider2D* getCollider() const{
+		return &collider;
+	}
+
 private:
 	static const CVector2 colliderSize;
 	static const CVector2 colliderPosition;

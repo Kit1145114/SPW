@@ -87,6 +87,15 @@ public:
 	bool GetBHflag() {
 		return BHflag;
 	}
+
+	SatelliteGene* getSatelliteGene() {
+		return satelliteG;
+	}
+
+	RocketGene* getRocketGene() {
+		return rocketG;
+	}
+
 private:
 	void CreateStage0();
 	void CreateStage1();
