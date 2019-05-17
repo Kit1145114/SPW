@@ -83,21 +83,21 @@ void Player::Move()
 	if (DeathCount == false) {
 		if (Muteki == false) {
 			if (Ver == 0) {
-				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +5.0f;
-				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +5.0f;
+				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +9.5f;
+				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +9.5f;
 				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 				m_skinModelRender->SetPosition(m_position);
 			}
 			else if (Ver == 1)
 			{
-				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +7.0f;
-				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +7.0f;
+				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +8.75f;
+				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +8.75f;
 				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 				m_skinModelRender->SetPosition(m_position);
 			}
 			else if (Ver == 2) {
-				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +10.0f;
-				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +10.0f;
+				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +8.0f;
+				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +8.0f;
 				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 				m_skinModelRender->SetPosition(m_position);
 			}
