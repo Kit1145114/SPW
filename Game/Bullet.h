@@ -50,7 +50,7 @@ public:
 	{
 		return Kill;
 	}
-	void SetPB(int a)
+	void SetPBnum(int a)
 	{
 		PB = a;
 	}

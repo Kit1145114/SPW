@@ -30,7 +30,7 @@ public:
 	{
 		scale = sca;
 	}
-private:
+protected:
 	prefab::CEffect* effect;
 	Game* m_game = nullptr;
 	Draw_Player* Pl1 = nullptr;
@@ -39,7 +39,7 @@ private:
 	int timer = 0;
 	float radius = { 1.0f };       //	基本惑星の半径。
 	float Searchment = { 1500.0f };//	BHの重力範囲の調整。
-	float G_limitar = { 10000.0f };    //   BHの重力（Ｇ）調整。
-	bool Countflg = false;         //自然消滅するかのフラグ。
+	float G_limitar = { 50000.0f };//   BHの重力（Ｇ）調整。
+	bool Countflg = false;         //   自然消滅するかのフラグ。
 };
 

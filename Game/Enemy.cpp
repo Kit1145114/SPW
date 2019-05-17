@@ -47,24 +47,24 @@ void Enemy::Update()
 {
 	m_player[0] = FindGO<Player>("Player");
 	m_game = FindGO<Game>("Game");
-	Pl_Hantei();
+//	Pl_Hantei();
 	Move();
 	m_skinModelRender->SetPosition(m_position);
 }
 //エネミーの死亡判定。
-void Enemy::Pl_Hantei()
-{
-	for(int i = 0; i < PadKazu; i++)
-	if (m_player[i]->GetVer() == 0) {
-		m_bullet = FindGO<Bullet>("PlayerBullet");
-		CVector3 diff = m_bullet->GetPosition() - m_position;
-		if (diff.Length() < 200.0f)
-		{
-			m_game->m_enemy = nullptr;
-			Death();
-		}
-	}
-}
+//void Enemy::Pl_Hantei()
+//{
+//	for(int i = 0; i < PadKazu; i++)
+//	if (m_player[i]->GetVer() == 0) {
+//		m_bullet = FindGO<Bullet>("PlayerBullet");
+//		CVector3 diff = m_bullet->GetPosition() - m_position;
+//		if (diff.Length() < 200.0f)
+//		{
+//			m_game->m_enemy = nullptr;
+//			Death();
+//		}
+//	}
+//}
 
 //エネミーの削除。
 void Enemy::Death()

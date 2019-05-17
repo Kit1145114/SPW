@@ -69,7 +69,7 @@ void Player::Update()
 	StarPos();
 	//
 StarPop();
-	Playerwarp();
+	//Playerwarp();
 	memory_position = m_position;
 	r_ring->SetPosition(m_position);
 	draw_S->SetBulletKazu(m_Short);
@@ -143,7 +143,7 @@ void Player::PBullet()
 				if (m_Short > 0) {
 					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPB(PadNum);
+						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						//プレイヤーの速度の単位をm/frameに変更する。
@@ -189,20 +189,20 @@ void Player::PBullet2()
 				{
 					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPB(PadNum);
+						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPB(PadNum);
+						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetPositionX(50.0f);
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPB(PadNum);
+						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetPositionX(-100.0f);
 						m_bullet->SetPosition(m_position);
@@ -248,20 +248,20 @@ void Player::PBullet3()
 				{
 					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPB(PadNum);
+						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPB(PadNum);
+						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetPositionX(50.0f);
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
-						m_bullet->SetPB(PadNum);
+						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetPositionX(-100.0f);
 						m_bullet->SetPosition(m_position);
@@ -554,15 +554,15 @@ void Player::MutekiTimes()
 		{
 			m_skinModelRender->SetActiveFlag(false);
 		}
-		if (MutekiTime >= 30 && MutekiTime <= 60)
+		if (MutekiTime >= 15 && MutekiTime <= 30)
 		{
 			m_skinModelRender->SetActiveFlag(true);
 		}
-		if (MutekiTime >= 61 && MutekiTime <= 120)
+		if (MutekiTime >= 31 && MutekiTime <= 60)
 		{
 			m_skinModelRender->SetActiveFlag(false);
 		}
-		if (MutekiTime >= 121 && MutekiTime <= 180)
+		if (MutekiTime >= 61 && MutekiTime <= 90)
 		{
 			m_skinModelRender->SetActiveFlag(true);
 			Muteki = false;
@@ -610,53 +610,53 @@ void Player::SetPadNum(int num)
 	case 0:
 		r_ring->SetPlayerRadar(L"modelData/Ring1P.cmo",PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/1P.dds");
-		draw_Pl->SetPosition(-450.0f, -300.0f);
-		draw_S->SetS_kazuPosition(-458.0f, -220.0f);
+		draw_Pl->SetPosition(-450.0f, -330.0f);
+		draw_S->SetS_kazuPosition(-468.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
-		draw_S->SetS_position(-480.0f, -229.0f);
+		draw_S->SetS_position(-480.0f, -279.0f);
 		//弾の場所。
-		draw_S->SetBullet(L"sprite/Bullet.dds");
-		draw_S->SetB_kazuPosition(-320.0f, -315.0f);
-		draw_S->SetBulletposition(-315.0f,-275.0f);
+		draw_S->SetBullet(L"sprite/tama_red.dds");
+		draw_S->SetB_kazuPosition(-370.0f,-325.0f);
+		draw_S->SetBulletposition(-365.0f,-285.0f);
 		draw_S->SetColor(1.0f, 0.0f, 0.0f, 1.0f);
 		break;
 	case 1:
 		r_ring->SetPlayerRadar(L"modelData/Ring2P.cmo", PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/2P.dds");
-		draw_Pl->SetPosition(-150.0f, -300.0f);
-		draw_S->SetS_kazuPosition(-158.0f, -220.0f);
+		draw_Pl->SetPosition(-150.0f, -330.0f);
+		draw_S->SetS_kazuPosition(-168.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
-		draw_S->SetS_position(-180.0f, -229.0f);
+		draw_S->SetS_position(-180.0f, -279.0f);
 
-		draw_S->SetBullet(L"sprite/Bullet.dds");
-		draw_S->SetB_kazuPosition(-20.0f, -315.0f);
-		draw_S->SetBulletposition(-15.0f, -275.0f);
+		draw_S->SetBullet(L"sprite/tama_bule.dds");
+		draw_S->SetB_kazuPosition(-70.0f, -325.0f);
+		draw_S->SetBulletposition(-65.0f, -285.0f);
 		draw_S->SetColor(0.0f, 0.0f, 1.0f, 1.0f);
 		break;
 	case 2:
 		r_ring->SetPlayerRadar(L"modelData/Ring3P.cmo", PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/3P.dds");
-		draw_Pl->SetPosition(150.0f, -300.0f);
-		draw_S->SetS_kazuPosition(150.0f, -220.0f);
+		draw_Pl->SetPosition(150.0f, -330.0f);
+		draw_S->SetS_kazuPosition(135.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
-		draw_S->SetS_position(120.0f, -229.f);
+		draw_S->SetS_position(120.0f, -279.f);
 
-		draw_S->SetBullet(L"sprite/Bullet.dds");
-		draw_S->SetB_kazuPosition(280.0f, -315.0f);
-		draw_S->SetBulletposition(285.0f, -275.0f);
+		draw_S->SetBullet(L"sprite/tama_green.dds");
+		draw_S->SetB_kazuPosition(230.0f, -325.0f);
+		draw_S->SetBulletposition(235.0f, -285.0f);
 		draw_S->SetColor(0.1f, 1.0f, 0.0f, 1.0f);
 		break;
 	case 3:
 		r_ring->SetPlayerRadar(L"modelData/Ring4P.cmo", PadNum);
 		draw_Pl->SetPlayerPicture(L"sprite/4P.dds");
-		draw_Pl->SetPosition(450.0f, -300.0f);
-		draw_S->SetS_kazuPosition(458.0f, -220.0f);
+		draw_Pl->SetPosition(450.0f, -330.0f);
+		draw_S->SetS_kazuPosition(428.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
-		draw_S->SetS_position(420.0f, -229.0f);
+		draw_S->SetS_position(420.0f, -279.0f);
 
-		draw_S->SetBullet(L"sprite/Bullet.dds");
-		draw_S->SetB_kazuPosition(580.0f, -315.0f);
-		draw_S->SetBulletposition(585.0f, -275.0f);
+		draw_S->SetBullet(L"sprite/tama_yellow.dds");
+		draw_S->SetB_kazuPosition(530.0f, -325.0f);
+		draw_S->SetBulletposition(535.0f, -285.0f);
 		draw_S->SetColor(1.0f, 0.7f, 0.0f, 1.0f);
 		break;
 	}

@@ -1795,6 +1795,7 @@
     <ClCompile Include="GameWait.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Meteo.cpp" />
+    <ClCompile Include="MeteoGene.cpp" />
     <ClCompile Include="Network\NetManager.cpp" />
     <ClCompile Include="Network\NetPad.cpp" />
     <ClCompile Include="Network\PadRingBuffer.cpp" />
@@ -1853,6 +1854,7 @@
     <ClInclude Include="GamenTimer.h" />
     <ClInclude Include="GameWait.h" />
     <ClInclude Include="Meteo.h" />
+    <ClInclude Include="MeteoGene.h" />
     <ClInclude Include="Network\NetManager.h" />
     <ClInclude Include="Network\NetPad.h" />
     <ClInclude Include="Network\NPad.h" />
@@ -2067,6 +2069,10 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <ImageContentTask Include="Assets\sprite\tama_bule.png" />
+    <ImageContentTask Include="Assets\sprite\tama_green.png" />
+    <ImageContentTask Include="Assets\sprite\tama_red.png" />
+    <ImageContentTask Include="Assets\sprite\tama_yellow.png" />
     <ImageContentTask Include="Assets\sprite\Arrow.png" />
     <ImageContentTask Include="Assets\sprite\bullet.jpg" />
     <ImageContentTask Include="Assets\sprite\Star.png" />
@@ -2078,8 +2084,6 @@
     <ImageContentTask Include="Assets\sprite\Stage1.png" />
     <ImageContentTask Include="Assets\sprite\StageSelect.png" />
     <ImageContentTask Include="Assets\sprite\SankaMulti.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei1.jpg" />
-    <ImageContentTask Include="Assets\sprite\Setumei2.jpg" />
     <ImageContentTask Include="Assets\sprite\Title_A.bmp" />
     <ImageContentTask Include="Assets\sprite\Icon.png" />
     <ImageContentTask Include="Assets\sprite\1Player.png" />

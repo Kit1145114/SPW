@@ -99,6 +99,7 @@
     <ClCompile Include="Stage1\Rocket.cpp" />
     <ClCompile Include="Stage1\BoxCollider2D.cpp" />
     <ClCompile Include="Stage1\RocketGene.cpp" />
+    <ClCompile Include="MeteoGene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -568,6 +569,7 @@
     <ClInclude Include="Stage1\Rocket.h" />
     <ClInclude Include="Stage1\BoxCollider2D.h" />
     <ClInclude Include="Stage1\RocketGene.h" />
+    <ClInclude Include="MeteoGene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -689,12 +691,6 @@
     <ImageContentTask Include="Assets\sprite\Title_A.bmp">
       <Filter>Resource Files</Filter>
     </ImageContentTask>
-    <ImageContentTask Include="Assets\sprite\Setumei1.jpg">
-      <Filter>Resource Files</Filter>
-    </ImageContentTask>
-    <ImageContentTask Include="Assets\sprite\Setumei2.jpg">
-      <Filter>Resource Files</Filter>
-    </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\StageSelect.png" />
     <ImageContentTask Include="Assets\sprite\bullet.jpg">
       <Filter>Resource Files</Filter>
@@ -759,6 +755,10 @@
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\sprite\tama_green.png" />
+    <Image Include="Assets\sprite\tama_red.png" />
+    <Image Include="Assets\sprite\tama_bule.png" />
+    <Image Include="Assets\sprite\tama_yellow.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\explosion1.efk" />

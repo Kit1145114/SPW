@@ -18,6 +18,7 @@ bool SetumeiGamen::Start()
 	m_spriteRender->Init(L"sprite/Setumei1.dds", 1280.0f, 720.0f);
 	m_push = NewGO<prefab::CSoundSource>(0);
 	m_push->Init(L"sound/Kettei.wav");
+	m_push->SetVolume(0.5f);
 
 	Fade::fadeOut();
 	return true;
@@ -34,18 +35,31 @@ void SetumeiGamen::Update()
 	case 1:
 		m_spriteRender->Init(L"sprite/Setumei2.dds", 1280.0f, 720.0f);
 		break;
+	case 2:
+		m_spriteRender->Init(L"sprite/Setumei3.dds", 1280.0f, 720.0f);
+		break;
 	}
 }
 
 void SetumeiGamen::Kirikae()
 {
-	if (Pad(0).IsPress(enButtonLeft) == true)
+	if (Pad(0).IsTrigger(enButtonLeft) == true)
 	{
-		mode = 0;
+		if(mode < 3)
+		mode--;
+		else if (mode < -1)
+		{
+			mode = 0;
+		}
 	}
-	if (Pad(0).IsPress(enButtonRight) == true)
+	if (Pad(0).IsTrigger(enButtonRight) == true)
 	{
-		mode = 1;
+		if (mode > -1) {
+			mode++;
+		}
+		else if (mode < 3) {
+			mode = 3;
+		}
 	}
 	if (Pad(0).IsTrigger(enButtonB) == true)
 	{
