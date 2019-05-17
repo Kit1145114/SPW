@@ -28,12 +28,18 @@ void MeteoGene::Update()
 		hako.z *= PosLimitz;
 
 		Game* game = Game::GetInstance();
-		float v = 10.0f;//Å’áŒÀ‚Ì‘å‚«‚³‚ğ—\‚ß“ü‚ê‚Ä‚¨‚­B
+		float v = 10.0f;//‘å‚«‚³
 		v += 50.0f * Random().GetRandDouble();
-		float radius = { 30.0f };//	Šî–{˜f¯‚Ì”¼Œa
+		float radius = { 30.0f };//	è¦Î‚Ì”¼Œa
 		radius *= v;
 		bool isCreatePlanet = true;//ƒtƒ‰ƒO
 
+		for (int j = 0; j < Game::GetInstance()->GetSansenKazu(); j++) {
+			CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - hako;
+			if (kyori.Length() < radius + 5000.0f) {
+				isCreatePlanet = false;
+			}
+		}
 		if (isCreatePlanet) {
 			Meteo* meteo = NewGO<Meteo>(0, "Meteo");
 
