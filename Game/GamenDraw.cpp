@@ -97,10 +97,12 @@ void GamenDraw::GemenDrawSound(int SoundNum)
 		m_push = NewGO<prefab::CSoundSource>(0);
 		m_push->Init(L"sound/piko.wav");
 		m_push->Play(false);
+		m_push->SetVolume(0.8f);
 	}
 	if(SoundNum ==1){
 		m_push = NewGO<prefab::CSoundSource>(0);
 		m_push->Init(L"sound/tugihe.wav");
 		m_push->Play(false);
+		m_push->SetVolume(0.5f);
 	}
 }

@@ -1805,6 +1805,9 @@
     <ClCompile Include="RadarRing.cpp" />
     <ClCompile Include="ResultDraw.cpp" />
     <ClCompile Include="ResultGamen.cpp" />
+    <ClCompile Include="Stage1\RocketGene.cpp" />
+    <ClCompile Include="Stage1\BoxCollider2D.cpp" />
+    <ClCompile Include="Stage1\Rocket.cpp" />
     <ClCompile Include="SansenGamen.cpp" />
     <ClCompile Include="Senkan_Rtype_2.cpp" />
     <ClCompile Include="SetumeiGamen.cpp" />
@@ -2004,6 +2007,9 @@
     <ClInclude Include="ResultDraw.h" />
     <ClInclude Include="ResultGamen.h" />
     <ClInclude Include="Network\PadRingBuffer.h" />
+    <ClInclude Include="Stage1\RocketGene.h" />
+    <ClInclude Include="Stage1\BoxCollider2D.h" />
+    <ClInclude Include="Stage1\Rocket.h" />
     <ClInclude Include="SansenGamen.h" />
     <ClInclude Include="Stage1\SatelliteGene.h" />
     <ClInclude Include="Stage1\CVector2.h" />
@@ -2045,7 +2051,9 @@
     <MeshContentTask Include="Assets\modelData\Ring2P.FBX" />
     <MeshContentTask Include="Assets\modelData\Ring3P.FBX" />
     <MeshContentTask Include="Assets\modelData\Ring4P.FBX" />
+    <MeshContentTask Include="Assets\modelData\Rocket.FBX" />
     <MeshContentTask Include="Assets\modelData\Satellite.FBX" />
+    <MeshContentTask Include="Assets\modelData\ScrapRocket.FBX" />
     <MeshContentTask Include="Assets\modelData\Senkan.FBX" />
     <MeshContentTask Include="Assets\modelData\SenkanType2.FBX" />
     <MeshContentTask Include="Assets\modelData\SenkanType3.FBX" />
@@ -2061,6 +2069,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <ImageContentTask Include="Assets\sprite\RocketArrow.png" />
     <ImageContentTask Include="Assets\sprite\tama_bule.png" />
     <ImageContentTask Include="Assets\sprite\tama_green.png" />
     <ImageContentTask Include="Assets\sprite\tama_red.png" />
