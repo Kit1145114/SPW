@@ -4,6 +4,11 @@
 
 PlayerStar::PlayerStar()
 {
+	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
+	m_skinModelRender->Init(L"modelData/PlayerStar.cmo");
+	m_scale = { 1.0f,1.0f,1.0f };
+	m_skinModelRender->SetScale(m_scale);
+	m_game = Game::GetInstance();
 }
 
 
@@ -14,11 +19,6 @@ PlayerStar::~PlayerStar()
 
 bool PlayerStar::Start()
 {
-	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-	m_skinModelRender->Init(L"modelData/PlayerStar.cmo");
-	m_scale = { 5.0f,5.0f,5.0f };
-	m_skinModelRender->SetScale(m_scale);
-	m_game = Game::GetInstance();
 	SansenKazu = m_game->GetSansenKazu();
 	switch (SansenKazu)
 	{
@@ -84,5 +84,5 @@ void PlayerStar::Pop(CVector3 Despos, CVector3 Getpos)
 	m_position = Despos;
 	Getplayerposition = Getpos;
 	m_skinModelRender->SetPosition(m_position);
-	NewGO<PlayerStar>(0, "playerStat");
+	//NewGO<PlayerStar>(0, "playerStat");
 }

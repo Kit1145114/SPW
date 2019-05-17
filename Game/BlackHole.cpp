@@ -64,6 +64,7 @@ void BlackHole::Move()
 					if (kyori.Length() < radius * Searchment / 5) {
 						//”j‰óB
 						Game::GetInstance()->m_player[i]->Death();
+						Game::GetInstance()->m_player[i]->SetLABulletNum(-1);
 					}
 				}
 		}
