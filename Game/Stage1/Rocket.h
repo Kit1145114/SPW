@@ -3,7 +3,7 @@
 
 class Rocket : public IGameObject{
 public:
-	~Rocket();
+	void OnDestroy() override;
 
 	bool Start() override;
 	void Update() override;
@@ -29,11 +29,16 @@ private:
 	bool awaking = false;
 	int ownerNum = -1;
 
-	static constexpr float controllPower = 4000.0f;
+	static constexpr float controllPower = 6000.0f;
 
 	CVector3 m_pos = {};
 	CVector3 m_move = {400.0f, 0.0f, 0.0f};
 	float radianRot = 0.0f;
 	Rocket** arrayP = nullptr;
+
+	prefab::CSpriteRender* arrowSprite = nullptr;
+
+	void InitArrow(int ownerNum);
+	void ArrowUpdate(const CVector3& stick);
 };
 
