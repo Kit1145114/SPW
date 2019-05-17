@@ -76,6 +76,8 @@ void Satellite::Update() {
 			}
 		}
 		//’e‚Æ‚ÌÕ“Ë
+
+
 		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b)->bool {
 			HitResult result = collider.hitTest(b->GetPosition(), 0.1f);
 			if (result.hit == Side) {

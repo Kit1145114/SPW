@@ -23,7 +23,7 @@ bool BigBlackHole::Start()
 	effect->Play(L"effect/BH.efk");
 	effect->SetScale(BBHscale*BBHradius);
 	effect->SetPosition(BBHposition);
-	Generate2(BBHposition, radius);
+	//Generate2(BBHposition, radius);
 	return true;
 }
 

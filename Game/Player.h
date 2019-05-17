@@ -47,7 +47,7 @@ public:
 	void MutekiTimes();
 	void HP();
 	void StarPop();
-	void PlS_Hantei();
+	//void PlS_Hantei();
 	void SetPadNum(int num);
 	void Sound(int SoundNum);
 	void StarPos();
@@ -188,8 +188,9 @@ private:
 	int SeiseiVer_2 = 15;
 	int SeiseiVer_3 = 6;
 	int MaxSeiseiVer_1 = 30;
-	int MaxSeiseiVer_2 = 40;
-	int MaxSeiseiVer_3 = 50;
+	int MaxSeiseiVer_2 = 50;
+	int MaxSeiseiVer_3 = 99;
+	int HitBulletNum = 5;
 	float HoukouX = 0.0f;
 	float HoukouZ = 0.0f;
 	float memoryHX = 0.0f;
