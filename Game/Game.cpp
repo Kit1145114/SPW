@@ -91,19 +91,23 @@ void Game::CreateStage1() {
 	case 4:
 		m_player[3] = NewGO<Player>(0, "Player3");
 		m_player[3]->SetPadNum(3);
-		m_player[3]->SetPositionX(P_pos * 3);
+		m_player[3]->SetPositionX(P_pos * 10);
+		m_player[3]->SetPositionZ(P_pos *-5);
 	case 3:
 		m_player[2] = NewGO<Player>(0, "Player2");
 		m_player[2]->SetPadNum(2);
-		m_player[2]->SetPositionX(P_pos);
+		m_player[2]->SetPositionX(P_pos *-10);
+		m_player[2]->SetPositionZ(P_pos *-5);
 	case 2:
 		m_player[1] = NewGO<Player>(0, "Player1");
 		m_player[1]->SetPadNum(1);
-		m_player[1]->SetPositionX(P_pos*-1);
+		m_player[1]->SetPositionX(P_pos * 10);
+		m_player[1]->SetPositionZ(P_pos * 5);
 	case 1:
 		m_player[0] = NewGO<Player>(0, "Player");
 		m_player[0]->SetPadNum(0);
-		m_player[0]->SetPositionX(P_pos*-3);
+		m_player[0]->SetPositionX(P_pos *-10);
+		m_player[0]->SetPositionZ(P_pos * 5);
 	}
 	satelliteG = NewGO<SatelliteGene>(0, "SatelliteGene");
 	rocketG = NewGO<RocketGene>(0, "RocketGene");
