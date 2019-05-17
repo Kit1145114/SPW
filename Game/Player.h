@@ -191,9 +191,9 @@ private:
 	int SeiseiVer_1 = 25;
 	int SeiseiVer_2 = 15;
 	int SeiseiVer_3 = 6;
-	int MaxSeiseiVer_1 = 50;
-	int MaxSeiseiVer_2 = 40;
-	int MaxSeiseiVer_3 = 30;
+	int MaxSeiseiVer_1 = 60;
+	int MaxSeiseiVer_2 = 50;
+	int MaxSeiseiVer_3 = 40;
 	int LABulletNum = 5;
 	int syoki = 5;
 	float HoukouX = 0.0f;

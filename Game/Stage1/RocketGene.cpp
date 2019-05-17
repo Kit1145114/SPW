@@ -24,8 +24,8 @@ void RocketGene::Update() {
 			hako.z = Random().GetRandDouble() - 0.5f;
 
 			//ƒ‰ƒ“ƒ_ƒ€¶¬‚·‚éêŠ‚Ì§ŒÀB
-			const float PosLimitx = 30000.0f * 2;
-			const float PosLimitz = 20000.0f * 2;
+			const float PosLimitx = 25000.0f * 2;
+			const float PosLimitz = 15000.0f * 2;
 			hako.x *= PosLimitx;
 			hako.z *= PosLimitz;
 

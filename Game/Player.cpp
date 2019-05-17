@@ -353,12 +353,12 @@ void Player::Death()
 	draw_Pl->SetDeath(true);
 	if (CountExplosion == false) {
 		CountExplosion = true;
-		//エフェクトを作成。
-		prefab::CEffect* effect;
-		effect = NewGO<prefab::CEffect>(0);
-		//エフェクトを再生。
-		effect->Play(L"effect/explosion2.efk");
-		effect->SetPosition(this->m_position);
+		////エフェクトを作成。
+		//prefab::CEffect* effect;
+		//effect = NewGO<prefab::CEffect>(0);
+		////エフェクトを再生。
+		//effect->Play(L"effect/explosion2.efk");
+		//effect->SetPosition(this->m_position);
 		//効果音
 		Sound(0);
 	}
