@@ -68,7 +68,6 @@ void Player::Update()
 	HP();
 	StarPos();
 	//
-	StarPop();
 	//Playerwarp();
 	memory_position = m_position;
 	r_ring->SetPosition(m_position);
@@ -382,22 +381,14 @@ void Player::Respawn()
 				Muteki = true;
 				CountExplosion = false;
 				PlHP = MaxHP;
-				/*if (StarCount > 1 && Alive == false)
-				{*/
-					//PopStar = StarCount / 2;
-					//StarCount -= PopStar;
-					//draw_S->SetKazu(StarCount);
-					//Plstar = NewGO<PlayerStar>(0, "PlayerStar");
-					//Plstar->SetPosition(Tyuou);
-					//Plstar->SetStarCount(PopStar);
-					//Game::GetInstance()->AddPlStarCount(1);
-					/*Sound(3);
-					Alive = true;
+				if (StarCount > 1 && Alive == false)
+				{
+					StarPop();
 				}
 				else if(StarCount < 1 && Alive == false)
 				{
 					Alive = true;
-				}*/
+				}
 			}
 			else if (Ver == 1)
 			{
@@ -410,15 +401,7 @@ void Player::Respawn()
 				PlHP = MaxHP;
 				if (StarCount > 1 && Alive == false)
 				{
-					PopStar = StarCount / 2;
-					StarCount -= PopStar;
-					draw_S->SetKazu(StarCount);
-					Plstar = NewGO<PlayerStar>(0, "PlayerStar");
-					Plstar->SetPosition(Tyuou);
-					Plstar->SetStarCount(PopStar);
-					Game::GetInstance()->AddPlStarCount(1);
-					Sound(3);
-					Alive = true;
+					StarPop();
 				}
 				else if (StarCount < 1 && Alive == false)
 				{
@@ -436,15 +419,7 @@ void Player::Respawn()
 				PlHP = MaxHP;
 				if (StarCount > 1 && Alive == false)
 				{
-					PopStar = StarCount / 2;
-					StarCount -= PopStar;
-					draw_S->SetKazu(StarCount);
-					Plstar = NewGO<PlayerStar>(0, "PlayerStar");
-					Plstar->SetPosition(Tyuou);
-					Plstar->SetStarCount(PopStar);
-					Game::GetInstance()->AddPlStarCount(1);
-					Sound(3);
-					Alive = true;
+					StarPop();
 				}
 				else if (StarCount < 1 && Alive == false)
 				{
@@ -602,49 +577,38 @@ void Player::HP()
 //プレイヤーの持つ☆を落とす。
 void Player::StarPop()
 {
-	if (Alive == false
-)
+	if (HitBulletNum == 0) {
+		PopStar = StarCount / 2;
+		StarCount -= PopStar;
+		Plstar = NewGO<PlayerStar>(0, "PlayerStar");
+		Plstar->Pop(m_position, m_player[HitBulletNum]->GetPosition());
+		m_player[HitBulletNum]->SetStarCount(PopStar);
+		Alive = true;
+	}
+	else if (HitBulletNum == 1)
 	{
-		if (HitBulletNum == 0 && Alive == false)
-		{
-			if (StarCount > 1 && Alive == false) {
-				PopStar = StarCount / 2;
-				StarCount -= PopStar;
-				m_player[HitBulletNum]->SetStarCount(PopStar);
-				Alive = true;
-			}
-		}
-		else if (HitBulletNum == 1 && Alive == false)
-		{
-			if (StarCount > 1 && Alive == false) {
-				PopStar = StarCount / 2;
-				StarCount -= PopStar;
-				m_player[HitBulletNum]->SetStarCount(PopStar);
-				Alive = true;
-			}
-		}
-		else if (HitBulletNum == 2 && Alive == false)
-		{
-			if (StarCount > 1 && Alive == false) {
-				PopStar = StarCount / 2;
-				StarCount -= PopStar;
-				m_player[HitBulletNum]->SetStarCount(PopStar);
-				Alive = true;
-			}
-		}
-		else if (HitBulletNum == 3 && Alive == false)
-		{
-			if (StarCount > 1 && Alive == false) {
-				PopStar = StarCount / 2;
-				StarCount -= PopStar;
-				m_player[HitBulletNum]->SetStarCount(PopStar);
-				Alive = true;
-			}
-		}
-		else
-		{
+		PopStar = StarCount / 2;
+		StarCount -= PopStar;
+		m_player[HitBulletNum]->SetStarCount(PopStar);
+		Alive = true;
+	}
+	else if (HitBulletNum == 2)
+	{
+		PopStar = StarCount / 2;
+		StarCount -= PopStar;
+		m_player[HitBulletNum]->SetStarCount(PopStar);
+		Alive = true;
+	}
+	else if (HitBulletNum == 3)
+	{
+		PopStar = StarCount / 2;
+		StarCount -= PopStar;
+		m_player[HitBulletNum]->SetStarCount(PopStar);
+		Alive = true;
+	}
+	else
+	{
 
-		}
 	}
 }
 //プレイヤーの番号を決める。
