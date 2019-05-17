@@ -16,7 +16,7 @@ bool PlayerStar::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/PlayerStar.cmo");
-	m_scale = { 0.5f,0.5f,0.5f };
+	m_scale = { 5.0f,5.0f,5.0f };
 	m_skinModelRender->SetScale(m_scale);
 	m_game = Game::GetInstance();
 	SansenKazu = m_game->GetSansenKazu();
@@ -47,13 +47,20 @@ bool PlayerStar::Start()
 void PlayerStar::Update()
 {
 	Rotation();
-	//Move();
-	m_timer++;
+	/*m_timer++;
 	if (m_timer == MaxTimer)
 	{
 		m_game->AddPlStarCount(-1);
 		m_timer = ResetTimer;
 		DeleteGO(this);
+	}*/
+	CVector3 kyori = Getplayerposition - m_position;
+	float minkyori = 10.0f;
+	if (kyori.Length() > minkyori) {
+		m_position += kyori / 10;
+	}
+	else {
+		Death();
 	}
 	m_skinModelRender->SetPosition(m_position);
 }
@@ -76,11 +83,5 @@ void PlayerStar::Pop(CVector3 position)
 {
 	m_position = position;
 	m_skinModelRender->SetPosition(m_position);
-};
-
-void PlayerStar::Move()
-{
-	m_position.x += S_move;
-	m_position.z += S_move;
-	m_skinModelRender->SetPosition(m_position);
+	NewGO<PlayerStar>(0, "playerStat");
 }

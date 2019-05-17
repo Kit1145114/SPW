@@ -35,12 +35,14 @@ void BlackHole::Generate(CVector3 position, float magnification)
 	bh->radius *= magnification/500;
 }
 
-void BlackHole::Generate2(CVector3 position, float magnification)
+void BlackHole::Generate2(CVector3 position, float magnification, float Search, float Limit)
 {
 	BlackHole* bh = NewGO<BlackHole>(0, "BlackHole");
 	//保存。
 	bh->m_position = position;
 	bh->radius *= magnification / 500;
+	bh->Searchment = Search;//	BHの重力範囲の調整。
+	bh->G_limitar = Limit;//   BHの重力（Ｇ）調整。
 	bh->Countflg = true;  //trueにすることで自然消滅しなくなる。
 }
 
