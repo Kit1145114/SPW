@@ -2,6 +2,7 @@
 #include "StageSelect.h"
 #include "Game.h"
 #include "Fade.h"
+#include "SansenGamen.h"
 
 StageSelect::~StageSelect() {
 }
@@ -41,14 +42,22 @@ bool StageSelect::Start() {
 }
 
 void StageSelect::Update() {
-	if (Pad(0).IsTrigger(enButtonA)) {
+	if (Pad(0).IsTrigger(enButtonSelect)) {
 		Fade::fadeIn([&]() {
-			Game* game = NewGO<Game>(0, "Game");
-			game->SetSanSenkazu(sansenKazu);
-			game->setStage(selectNumber);
+			NewGO<SansenGamen>(1);
 			DeleteGO(this);
 		});
-		Sound(1);
+	}
+	if (Pad(0).IsTrigger(enButtonA)) {
+		if (selectNumber <= 2) {
+			Fade::fadeIn([&]() {
+				Game* game = NewGO<Game>(0, "Game");
+				game->SetSanSenkazu(sansenKazu);
+				game->setStage(selectNumber);
+				DeleteGO(this);
+			});
+			Sound(1);
+		}
 		return;
 	}
 	if (Pad(0).IsTrigger(enButtonRight)) {

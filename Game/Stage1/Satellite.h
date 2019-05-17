@@ -17,6 +17,10 @@ public:
 		m_pos = pos;
 	};
 
+	CVector3 getPosition() {
+		return m_pos;
+	}
+
 	const BoxCollider2D* getCollider() const{
 		return &collider;
 	}
@@ -39,6 +43,10 @@ private:
 
 	CVector3 m_move = { 0,0,500 };
 
+	float moveStar = 0.0f;
+
 	Satellite** arrayP = nullptr;
+
+	int lastBulletNum = -1;
 };
 

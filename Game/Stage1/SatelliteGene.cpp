@@ -18,12 +18,13 @@ void SatelliteGene::Update() {
 		CVector3 hako;
 		int tryCount = 3;//場所の提案に失敗しても指定回数分試行する
 		while(tryCount > 0){
+		LOOP_CONTINUE:
 			hako.x = Random().GetRandDouble() - 0.5f;
 			hako.z = Random().GetRandDouble() - 0.5f;
 
 			//ランダム生成する場所の制限。
-			const float PosLimitx = 30000.0f * 2;
-			const float PosLimitz = 20000.0f * 2;
+			const float PosLimitx = 20000.0f * 2;
+			const float PosLimitz = 10000.0f * 2;
 			hako.x *= PosLimitx;
 			hako.z *= PosLimitz;
 
@@ -31,10 +32,10 @@ void SatelliteGene::Update() {
 			//プレイヤーの上にポップしないように
 			for (int j = 0; j < game->GetSansenKazu(); j++) {
 				float kyori = (game->m_player[j]->GetPosition() - hako).LengthSq();
-				const float needKyori = 800.0f + 10000.0f;
+				const float needKyori = 15000.0f;
 				if (kyori < needKyori*needKyori) {
 					tryCount--;
-					continue;
+					goto LOOP_CONTINUE;
 				}
 			}
 			break;

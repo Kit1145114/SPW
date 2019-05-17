@@ -2,6 +2,7 @@
 #include "SansenGamen.h"
 #include "StageSelect.h"
 #include "Fade.h"
+#include "Title_2.h"
 
 SansenGamen::SansenGamen() {
 }
@@ -23,6 +24,12 @@ bool SansenGamen::Start() {
 
 
 void SansenGamen::Update() {
+	if(Pad(0).IsTrigger(enButtonSelect)) {
+		Fade::fadeIn([&]() {
+			NewGO<Title_2>(1);
+			DeleteGO(this);
+		});
+	}
 	if (GameStart == false) {
 		if (Pad(0).IsTrigger(enButtonUp)) {
 			if (Kazu < MaxKazu) {

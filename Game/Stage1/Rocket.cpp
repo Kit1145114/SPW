@@ -39,7 +39,7 @@ bool Rocket::Start() {
 
 void Rocket::Update() {
 	//エリア外判定
-	if (m_pos.x > 30000.0f || m_pos.x< -30000.0f || m_pos.z>20000.0f || m_pos.z < -20000.0f) {
+	if (m_pos.x > 35000.0f || m_pos.x< -35000.0f || m_pos.z>25000.0f || m_pos.z < -25000.0f) {
 		DeleteGO(this);
 		return;
 	}
@@ -53,8 +53,12 @@ void Rocket::Update() {
 				HitResult result = collider.hitTest(p->GetPosition(), p->GetRadius());
 				if (result.hit != NonHit) {
 					p->explosion();
-					DeleteGO(this);
-					return;
+					if (awaking) {
+						hp -= 2;
+					} else {
+						Explosion();
+						return;
+					}
 				}
 			}
 		}
@@ -66,9 +70,19 @@ void Rocket::Update() {
 				if (sate != nullptr) {
 					HitResult result = collider.hitTest(sate->getCollider());
 					if (result.hit != NonHit) {
-						DeleteGO(sateArray[i]);
-						DeleteGO(this);
-						return;
+						if (awaking) {
+							prefab::CEffect* effect;
+							effect = NewGO<prefab::CEffect>(0);
+							//エフェクトを再生。
+							effect->Play(L"effect/BigExplosion.efk");
+							effect->SetScale({ 2, 2, 2 });
+							effect->SetPosition(sateArray[i]->getPosition() + CVector3(0, 1000, 0));
+							DeleteGO(sateArray[i]);
+							hp -= 2;
+						} else {
+							Explosion();
+							return;
+						}
 					}
 				}
 			}
@@ -81,9 +95,17 @@ void Rocket::Update() {
 				if (rocket != nullptr && rocket != this) {
 					HitResult result = collider.hitTest(rocket->getCollider());
 					if (result.hit != NonHit) {
-						DeleteGO(rocketArray[i]);
-						DeleteGO(this);
-						return;
+						if (rocketArray[i]->isAwaking()) {
+							rocketArray[i]->damage();
+						} else {
+							rocketArray[i]->Explosion();
+						}
+						if (awaking) {
+							hp -= 2;
+						} else {
+							Explosion();
+							return;
+						}
 					}
 				}
 			}
@@ -95,7 +117,8 @@ void Rocket::Update() {
 				if (!p->GetDeathCount() && !p->GetMuteki()) {
 					HitResult result = collider.hitTest(p->GetPosition(), 800.0f);
 					if (result.hit != NonHit) {
-						DeleteGO(this);
+						Explosion();
+						p->SetLABulletNum(ownerNum);
 						p->AddHP(-100);
 						return;
 					}
@@ -111,23 +134,23 @@ void Rocket::Update() {
 				if (ownerNum != b->GetPB()) {
 					hp--;
 				}
-				if (hp == 0) {
-					if (!awaking) {
+				if (!awaking) {
+					if (hp == 0) {
 						awaking = true;
 						m_modelRender->Init(L"modelData/Rocket.cmo");
 						ownerNum = b->GetPB();
 						InitArrow(ownerNum);
 						hp = max_hp;
-					} else {
-						DeleteGO(this);
-						_return = true;
-						return false;
 					}
 				}
 			}
 			return true;
 		});
-		if (_return) { return; }
+
+		if (hp <= 0) {
+			Explosion();
+			return;
+		}
 	}
 
 	float delta = GameTime().GetFrameDeltaTime();
@@ -144,11 +167,15 @@ void Rocket::Update() {
 
 		ArrowUpdate(stick);
 
-		CVector3 normal = m_move;
+		/*CVector3 normal = m_move;
 		normal.Normalize();
-		m_move += normal * (controllPower / 3) * delta;
+		m_move += normal * (controllPower / 5) * delta;*/
 
 		m_move += stick * controllPower * delta;
+		if (m_move.LengthSq() > controllPower*controllPower) {
+			m_move.Normalize();
+			m_move *= controllPower;
+		}
 	}
 	
 	m_pos += m_move * delta;
@@ -163,6 +190,18 @@ void Rocket::Update() {
 	collider.Move(m_move*delta);
 
 	radianRot = radian;
+}
+
+void Rocket::Explosion() {
+	prefab::CEffect* effect;
+	effect = NewGO<prefab::CEffect>(0);
+	//エフェクトを再生。
+	effect->Play(L"effect/BigExplosion.efk");
+	//エフェクトに半径/（Ｍａｘと差）をかける
+	effect->SetScale({1, 1, 1});
+	effect->SetPosition(m_pos + CVector3(0,1000,0));
+
+	DeleteGO(this);
 }
 
 void Rocket::InitArrow(int ownerNum) {

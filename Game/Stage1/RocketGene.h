@@ -18,7 +18,7 @@ private:
 	static constexpr float interval = 2.0f;
 	float timer = 0.0f;
 
-	static constexpr int arrayNum = 5;
+	static constexpr int arrayNum = 3;
 	Rocket* rocketArray[arrayNum] = {};
 };
 
