@@ -238,7 +238,7 @@ void Game::Update()
 		PlStar_Life();
 		//当たり判定表示
 		//dbg::SetDrawPhysicsCollisionEnable();
-		if (Pad(0).IsPress(enButtonSelect) == true)
+		if (Pad(0).IsPress(enButtonB) == true)
 		{
 			Fade::fadeIn([&]() {
 				NewGO<Title_2>(0, "Title_2");

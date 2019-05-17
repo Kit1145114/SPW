@@ -42,7 +42,7 @@ bool StageSelect::Start() {
 }
 
 void StageSelect::Update() {
-	if (Pad(0).IsTrigger(enButtonSelect)) {
+	if (Pad(0).IsTrigger(enButtonB)) {
 		Fade::fadeIn([&]() {
 			NewGO<SansenGamen>(1);
 			DeleteGO(this);

@@ -139,7 +139,7 @@ void ResultGamen::Update()
 {
 
 	Result();
-	if (Pad(0).IsPress(enButtonStart) == true)
+	if (Pad(0).IsPress(enButtonA) == true)
 	{
 		Fade::fadeIn([&]() {
 			NewGO<Title_2>(0, "Title_2");

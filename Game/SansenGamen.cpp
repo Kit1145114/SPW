@@ -24,9 +24,9 @@ bool SansenGamen::Start() {
 
 
 void SansenGamen::Update() {
-	if(Pad(0).IsTrigger(enButtonSelect)) {
+	if(Pad(0).IsTrigger(enButtonB)) {
 		Fade::fadeIn([&]() {
-			NewGO<Title_2>(1);
+			NewGO<Title_2>(0, "Title_2");
 			DeleteGO(this);
 		});
 	}
@@ -59,10 +59,10 @@ void SansenGamen::Update() {
 	}
 	if (Pad(0).IsTrigger(enButtonA)) {
 		int l_kazu = Kazu;
+		m_push = NewGO<prefab::CSoundSource>(0);
+		m_push->Init(L"sound/tugihe.wav");
+		m_push->Play(false);
 		Fade::fadeIn([&,l_kazu]() {
-			m_push = NewGO<prefab::CSoundSource>(0);
-			m_push->Init(L"sound/tugihe.wav");
-			m_push->Play(false);
 			DeleteGO(this);
 			GameStart = true;
 			m_push->Play(false);
