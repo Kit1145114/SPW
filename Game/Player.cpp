@@ -509,27 +509,27 @@ void Player::B_Hantei()
 			{
 				PlHP -= Damage;
 				b->Death();
-				if (b->GetPB() == 0)
+				if (b->GetPB() == 0 && DeathCount == false)
 				{
-					HitBulletNum = 0;
+					LABulletNum = 0;
 				}
-				else if (b->GetPB() == 1)
+				else if (b->GetPB() == 1 && DeathCount == false)
 				{
-					HitBulletNum = 1;
+					LABulletNum = 1;
 				}
-				else if (b->GetPB() == 2)
+				else if (b->GetPB() == 2 && DeathCount == false)
 				{
-					HitBulletNum = 2;
+					LABulletNum = 2;
 				}
-				else if (b->GetPB() == 3)
+				else if (b->GetPB() == 3 && DeathCount == false)
 				{
-					HitBulletNum = 3;
+					LABulletNum = 3;
 				}
 			}
-				else if (b->GetPB() == PadNum)
-			{
+				else if (b->GetPB() == PadNum || DeathCount == true)
+				{
 
-			}
+				}
 			return true;
 		});		
 	}
@@ -577,46 +577,51 @@ void Player::HP()
 //プレイヤーの持つ☆を落とす。
 void Player::StarPop()
 {
-	if (HitBulletNum == 0)//1P
+	if (LABulletNum == 0)//1P
 	{
 		PopStar = StarCount / 2;
 		StarCount -= PopStar;
 		Plstar = NewGO<PlayerStar>(0, "PlayerStar");
-		Plstar->Pop(m_position, m_player[HitBulletNum]->GetPosition());//プレイヤーからプレイヤーへ。
-		m_player[HitBulletNum]->SetStarCount(PopStar);
+		Plstar->Pop(PadNum, LABulletNum);//プレイヤーからプレイヤーへ。
+		m_player[LABulletNum]->SetStarCount(PopStar);
 		Alive = true;
-		HitBulletNum = syoki;
+		LABulletNum = syoki;
 	}
-	else if (HitBulletNum == 1)//2P
+	else if (LABulletNum == 1)//2P
 	{
 		PopStar = StarCount / 2;
 		StarCount -= PopStar;
-		m_player[HitBulletNum]->SetStarCount(PopStar);
-		Plstar->Pop(m_position, m_player[HitBulletNum]->GetPosition());//プレイヤーからプレイヤーへ。
+		m_player[LABulletNum]->SetStarCount(PopStar);
+		Plstar = NewGO<PlayerStar>(0, "PlayerStar");
+		Plstar->Pop(PadNum, LABulletNum);//プレイヤーからプレイヤーへ。
 		Alive = true;
-		HitBulletNum = syoki;
+		LABulletNum = syoki;
 	}
-	else if (HitBulletNum == 2)//3P
+	else if (LABulletNum == 2)//3P
 	{
 		PopStar = StarCount / 2;
 		StarCount -= PopStar;
-		m_player[HitBulletNum]->SetStarCount(PopStar);
-		Plstar->Pop(m_position, m_player[HitBulletNum]->GetPosition());//プレイヤーからプレイヤーへ。
+		m_player[LABulletNum]->SetStarCount(PopStar);
+		Plstar = NewGO<PlayerStar>(0, "PlayerStar");
+		Plstar->Pop(PadNum, LABulletNum);//プレイヤーからプレイヤーへ。
 		Alive = true;
-		HitBulletNum = syoki;
+		LABulletNum = syoki;
 	}
-	else if (HitBulletNum == 3)//4P
+	else if (LABulletNum == 3)//4P
 	{
 		PopStar = StarCount / 2;
 		StarCount -= PopStar;
-		m_player[HitBulletNum]->SetStarCount(PopStar);
-		Plstar->Pop(m_position, m_player[HitBulletNum]->GetPosition());//プレイヤーからプレイヤーへ。
+		m_player[LABulletNum]->SetStarCount(PopStar);
+		Plstar = NewGO<PlayerStar>(0, "PlayerStar");
+		Plstar->Pop(PadNum, LABulletNum);//プレイヤーからプレイヤーへ。
 		Alive = true;
-		HitBulletNum = syoki;
+		LABulletNum = syoki;
 	}
 	else//それ以外
 	{
-		HitBulletNum = syoki;
+		PopStar = StarCount / 2;
+		StarCount -= PopStar;
+		LABulletNum = syoki;
 	}
 }
 //プレイヤーの番号を決める。

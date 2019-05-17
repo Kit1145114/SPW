@@ -230,6 +230,7 @@ void Planet::Death() {
 			if (kyori.Length() < radius
 				&& Game::GetInstance()->m_player[i]->GetDeathCount() == false) {
 				Game::GetInstance()->m_player[i]->AddHP(-100);
+				Game::GetInstance()->m_player[i]->SetLABulletNum(-1);
 				if (time > 2) { //‚o‚n‚o‚ÍŠ¨•Ù‚µ‚Ä‚â‚Á‚¼I
 					explosion();
 				}

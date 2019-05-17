@@ -2069,6 +2069,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\RocketArrow.png" />
     <ImageContentTask Include="Assets\sprite\tama_bule.png" />
     <ImageContentTask Include="Assets\sprite\tama_green.png" />
@@ -2078,7 +2079,6 @@
     <ImageContentTask Include="Assets\sprite\bullet.jpg" />
     <ImageContentTask Include="Assets\sprite\Star.png" />
     <ImageContentTask Include="Assets\sprite\Stage2.png" />
-    <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\Stage4.png" />
     <ImageContentTask Include="Assets\sprite\Stage5.png" />
     <ImageContentTask Include="Assets\sprite\Selector.png" />

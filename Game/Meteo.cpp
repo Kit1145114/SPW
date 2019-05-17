@@ -65,6 +65,7 @@ void Meteo::Hantei()
 			if (kyori.Length() < hantei
 				&& Game::GetInstance()->m_player[i]->GetDeathCount() == false) {
 				Game::GetInstance()->m_player[i]->AddHP(-100);
+				Game::GetInstance()->m_player[i]->SetLABulletNum(-1);
 					//Death();
 			}
 		}

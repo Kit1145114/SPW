@@ -61,9 +61,10 @@ void BlackHole::Move()
 					//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
 					Game::GetInstance()->m_player[i]->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
 					//対象との距離が中心に近くなったら。
-					if (kyori.Length() < radius * Searchment / 3) {
+					if (kyori.Length() < radius * Searchment / 5) {
 						//破壊。
 						Game::GetInstance()->m_player[i]->Death();
+						Game::GetInstance()->m_player[i]->SetLABulletNum(-1);
 					}
 				}
 		}
@@ -74,16 +75,19 @@ void BlackHole::Move()
 		if (Game::GetInstance()->memoryPP[i] != nullptr) {
 			//対象との距離を測定。
 			CVector3 kyori = Game::GetInstance()->memoryPP[i]->GetPosition() - m_position;
+			//対象との距離がほぼ中心では吸収をやめる。
+			if (radius * Searchment / 10 < kyori.Length() && kyori.Length() < radius * Searchment) {
 			//対象との距離が一定以下になったら。
-			if (kyori.Length() < radius * Searchment) {
-				//Ｇ中心に遠ければ弱く、近ければ強く。
-				float G = radius * Searchment - kyori.Length();
-				//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
-				Game::GetInstance()->memoryPP[i]->SetPosition(((kyori*G) / G_limitar)*-1);
-				//対象との距離が中心に近くなったら。
-				if (kyori.Length() < radius * Searchment / 3) {
-					//破壊。
-					Game::GetInstance()->memoryPP[i]->explosion();
+				if (kyori.Length() < radius * Searchment) {
+					//Ｇ中心に遠ければ弱く、近ければ強く。
+					float G = radius * Searchment - kyori.Length();
+					//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
+					Game::GetInstance()->memoryPP[i]->SetPosition(((kyori*G) / G_limitar)*-1);
+					//対象との距離が中心に近くなったら。
+					if (kyori.Length() < radius * Searchment / 5) {
+						//破壊。
+						Game::GetInstance()->memoryPP[i]->explosion();
+					}
 				}
 			}
 		}

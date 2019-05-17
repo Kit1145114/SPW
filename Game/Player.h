@@ -144,6 +144,10 @@ public:
 	{
 		return moveSpeedFrame = m_moveSpeed * 8.0f;
 	}
+	void SetLABulletNum(int num)
+	{
+		LABulletNum = num;
+	}
 private:
 	Player * m_player[4] = { nullptr };
 	Draw_Player * draw_Pl = nullptr;
@@ -163,7 +167,7 @@ private:
 	CVector3 m_scale = { 1.0f,1.0f,1.0f };
 	CVector3 Tyuou = CVector3::Zero;
 	CQuaternion m_rotation = CQuaternion::Identity;
-	CVector3 b_position = CVector3::Zero;
+	//CVector3 b_position = CVector3::Zero;
 	CVector3 moveSpeedFrame = m_moveSpeed * 12.0f;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 	prefab::CSoundSource* SoundSource = nullptr;//BGM用のサウンドソース。
@@ -190,7 +194,7 @@ private:
 	int MaxSeiseiVer_1 = 30;
 	int MaxSeiseiVer_2 = 50;
 	int MaxSeiseiVer_3 = 99;
-	int HitBulletNum = 5;
+	int LABulletNum = 5;
 	int syoki = 5;
 	float HoukouX = 0.0f;
 	float HoukouZ = 0.0f;
