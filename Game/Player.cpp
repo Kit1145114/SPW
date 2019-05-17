@@ -61,17 +61,18 @@ void Player::Update()
 	Rotation();
 	Respawn();
 	S_Hantei();
-	PlS_Hantei();
+	//PlS_Hantei();
 	B_Hantei();
 	Houdai();
 	MutekiTimes();
 	HP();
 	StarPos();
 	//
-StarPop();
+	StarPop();
 	//Playerwarp();
 	memory_position = m_position;
 	r_ring->SetPosition(m_position);
+	draw_S->SetKazu(StarCount);
 	draw_S->SetBulletKazu(m_Short);
 }
 //プレイヤーの操作
@@ -381,21 +382,22 @@ void Player::Respawn()
 				Muteki = true;
 				CountExplosion = false;
 				PlHP = MaxHP;
-				if (StarCount > 1 && Alive == false)
-				{
-					PopStar = StarCount / 2;
-					StarCount -= PopStar;
-					draw_S->SetKazu(StarCount);
-					Plstar = NewGO<PlayerStar>(0, "PlayerStar");
-					Plstar->SetPosition(Tyuou);
-					Plstar->SetStarCount(PopStar);
-					Game::GetInstance()->AddPlStarCount(1);
+				/*if (StarCount > 1 && Alive == false)
+				{*/
+					//PopStar = StarCount / 2;
+					//StarCount -= PopStar;
+					//draw_S->SetKazu(StarCount);
+					//Plstar = NewGO<PlayerStar>(0, "PlayerStar");
+					//Plstar->SetPosition(Tyuou);
+					//Plstar->SetStarCount(PopStar);
+					//Game::GetInstance()->AddPlStarCount(1);
+					/*Sound(3);
 					Alive = true;
 				}
 				else if(StarCount < 1 && Alive == false)
 				{
 					Alive = true;
-				}
+				}*/
 			}
 			else if (Ver == 1)
 			{
@@ -415,6 +417,7 @@ void Player::Respawn()
 					Plstar->SetPosition(Tyuou);
 					Plstar->SetStarCount(PopStar);
 					Game::GetInstance()->AddPlStarCount(1);
+					Sound(3);
 					Alive = true;
 				}
 				else if (StarCount < 1 && Alive == false)
@@ -440,6 +443,7 @@ void Player::Respawn()
 					Plstar->SetPosition(Tyuou);
 					Plstar->SetStarCount(PopStar);
 					Game::GetInstance()->AddPlStarCount(1);
+					Sound(3);
 					Alive = true;
 				}
 				else if (StarCount < 1 && Alive == false)
@@ -496,7 +500,7 @@ void Player::S_Hantei()
 		CVector3 Kyori = star->GetPosition() - m_position;
 		if (Kyori.Length() < StarHantei) {
 			StarCount++;
-			draw_S->AddKazu(1);
+			//draw_S->AddKazu(1);
 			m_game->SetStarCount(-1);
 			star->Death();
 		}
@@ -504,33 +508,49 @@ void Player::S_Hantei()
 	});
 }
 //プレイヤーの落とした☆の当たり判定。
-void Player::PlS_Hantei()
-{
-	if (DeathCount == false) {
-			QueryGOs<PlayerStar>("PlayerStar", [&](PlayerStar* plstar)->bool {
-				CVector3 Len = plstar->GetPosition() - m_position;
-				if (Len.Length() < StarHantei)
-				{
-					StarCount += plstar->GetStarCount();
-					draw_S->SetKazu(StarCount);
-					Game::GetInstance()->AddPlStarCount(-1);
-					plstar->Death();
-				}
-				return true;
-			});
-		}
-}
+//void Player::PlS_Hantei()
+//{
+//	if (DeathCount == false) {
+//			QueryGOs<PlayerStar>("PlayerStar", [&](PlayerStar* plstar)->bool {
+//				CVector3 Len = plstar->GetPosition() - m_position;
+//				if (Len.Length() < StarHantei)
+//				{
+//					StarCount += plstar->GetStarCount();
+//					draw_S->SetKazu(StarCount);
+//					Game::GetInstance()->AddPlStarCount(-1);
+//					plstar->Death();
+//				}
+//				return true;
+//			});
+//		}
+//}
 //プレイヤー同士の球の判定
 void Player::B_Hantei()
 {
 	if (Muteki == false) {
 		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b) ->bool {
-		CVector3 kyori = b->GetPosition() - m_position;
+			CVector3 kyori = b->GetPosition() - m_position;
 			if (b->GetPB() != PadNum && kyori.Length() < BulletHantei)
 			{
-				b->Death();
 				PlHP -= Damage;
+				b->Death();
+				if (b->GetPB() == 0)
+				{
+					HitBulletNum = 0;
 				}
+				else if (b->GetPB() == 1)
+				{
+					HitBulletNum = 1;
+				}
+				else if (b->GetPB() == 2)
+				{
+					HitBulletNum = 2;
+				}
+				else if (b->GetPB() == 3)
+				{
+					HitBulletNum = 3;
+				}
+			}
 				else if (b->GetPB() == PadNum)
 			{
 
@@ -582,23 +602,49 @@ void Player::HP()
 //プレイヤーの持つ☆を落とす。
 void Player::StarPop()
 {
-	if (Alive == false && Plstar == nullptr)
+	if (Alive == false
+)
 	{
-		if (StarCount > 1) {
-			PopStar = StarCount / 2;
-			StarCount -= PopStar;
-			draw_S->SetKazu(StarCount);
-			Plstar = NewGO<PlayerStar>(0, "PlayerStar");
-			Plstar->SetPosition(Tyuou);
-			Plstar->SetStarCount(PopStar);
-			Game::GetInstance()->AddPlStarCount(1);
-			Alive = true;
-			Sound(3);
+		if (HitBulletNum == 0 && Alive == false)
+		{
+			if (StarCount > 1 && Alive == false) {
+				PopStar = StarCount / 2;
+				StarCount -= PopStar;
+				m_player[HitBulletNum]->SetStarCount(PopStar);
+				Alive = true;
+			}
 		}
-	}
-	else
-	{
-		PopStar = 0;
+		else if (HitBulletNum == 1 && Alive == false)
+		{
+			if (StarCount > 1 && Alive == false) {
+				PopStar = StarCount / 2;
+				StarCount -= PopStar;
+				m_player[HitBulletNum]->SetStarCount(PopStar);
+				Alive = true;
+			}
+		}
+		else if (HitBulletNum == 2 && Alive == false)
+		{
+			if (StarCount > 1 && Alive == false) {
+				PopStar = StarCount / 2;
+				StarCount -= PopStar;
+				m_player[HitBulletNum]->SetStarCount(PopStar);
+				Alive = true;
+			}
+		}
+		else if (HitBulletNum == 3 && Alive == false)
+		{
+			if (StarCount > 1 && Alive == false) {
+				PopStar = StarCount / 2;
+				StarCount -= PopStar;
+				m_player[HitBulletNum]->SetStarCount(PopStar);
+				Alive = true;
+			}
+		}
+		else
+		{
+
+		}
 	}
 }
 //プレイヤーの番号を決める。
