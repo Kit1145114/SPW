@@ -1,15 +1,15 @@
 #include "stdafx.h"
-#include "SatelliteGene.h"
-#include "Satellite.h"
+#include "RocketGene.h"
+#include "Rocket.h"
 #include "..\Game.h"
 
-void SatelliteGene::OnDestroy() {
-	for (Satellite* satP : satelliteArray) {
+void RocketGene::OnDestroy() {
+	for (Rocket* satP : RocketArray) {
 		DeleteGO(satP);
 	}
 }
 
-void SatelliteGene::Update() {
+void RocketGene::Update() {
 	timer += GameTime().GetFrameDeltaTime();
 	if (timer > interval) {
 		timer = 0;
@@ -17,7 +17,7 @@ void SatelliteGene::Update() {
 		//ランダムポップ。
 		CVector3 hako;
 		int tryCount = 3;//場所の提案に失敗しても指定回数分試行する
-		while(tryCount > 0){
+		while (tryCount > 0) {
 			hako.x = Random().GetRandDouble() - 0.5f;
 			hako.z = Random().GetRandDouble() - 0.5f;
 
@@ -42,9 +42,9 @@ void SatelliteGene::Update() {
 
 		//適当な場所が見つかっている場合、人工衛星を生成する。
 		if (tryCount > 0) {
-			for (Satellite*& satP : satelliteArray) {
+			for (Rocket*& satP : RocketArray) {
 				if (satP == nullptr) {
-					satP = NewGO<Satellite>(0, "Satellite");
+					satP = NewGO<Rocket>(0, "Rocket");
 					satP->setPosition(hako);
 					satP->setArrayPointer(&satP);
 					break;
@@ -53,3 +53,4 @@ void SatelliteGene::Update() {
 		}
 	}
 }
+

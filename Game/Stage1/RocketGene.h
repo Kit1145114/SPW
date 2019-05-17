@@ -1,8 +1,7 @@
 #pragma once
+class Rocket;
 
-class Satellite;
-
-class SatelliteGene : public IGameObject{
+class RocketGene : public IGameObject {
 public:
 	void OnDestroy() override;
 	void Update() override;
@@ -12,6 +11,7 @@ private:
 	float timer = 0.0f;
 
 	static constexpr int arrayNum = 3;
-	Satellite* satelliteArray[arrayNum] = {};
+	Rocket* RocketArray[arrayNum] = {};
 };
+
 

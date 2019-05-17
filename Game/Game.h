@@ -19,6 +19,7 @@ class Player_RType2;
 class Star;
 class Draw_Player;
 class SatelliteGene;
+class RocketGene;
 class MeteoGene;
 //class BigBlackHole;
 
@@ -106,6 +107,7 @@ private:
 	SatelliteGene* satelliteG = nullptr;
 	//BigBlackHole* BBH = nullptr;
 	MeteoGene* meteogene = nullptr;
+	RocketGene* rocketG = nullptr;
 	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。
 	
 	int GameMode = 0;
