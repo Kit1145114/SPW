@@ -43,13 +43,13 @@ private:
 	
 	Bullet* m_bullet = nullptr;
 	Planet* hoge = nullptr;
-	float radius = { 30.0f };  //基本惑星の半径
+	float radius = { 30.0f };  //基本惑星の半径。
 	float PosMaxLimitx = 37000.0f;
 	float PosMaxLimitz = 20000.0f;
 	bool movecount = false;
 	bool CountExplosion = false;
-	bool repopflag = false;    //ポップ時いきなり他と被るのを防ぐのに使うフラグ
-	int myPlanetnumber =0;     //自分のPlametナンバー保存用
-	int time = 0;              //plametが誕生してからの時間
+	bool repopflag = false;    //ポップ時いきなり他と被るのを防ぐのに使うフラグ。
+	int myPlanetnumber =0;     //自分のPlametナンバー保存用。
+	int time = 0;              //plametが誕生してからの時間。
 };
 

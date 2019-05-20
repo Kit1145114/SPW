@@ -3,7 +3,7 @@
 #include "Game.h"
 #include <string>
 
-
+//惑星生成時、他のオブジェクトに被った時の再リポップ用。
 class RepopPlanet : public IGameObject {
 	int numpla=0;
 public:
