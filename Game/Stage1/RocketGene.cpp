@@ -19,7 +19,6 @@ void RocketGene::Update() {
 		CVector3 hako;
 		int tryCount = 5;//場所の提案に失敗しても指定回数分試行する
 		while (tryCount > 0) {
-		LOOP_CONTINUE:
 			hako.x = Random().GetRandDouble() - 0.5f;
 			hako.z = Random().GetRandDouble() - 0.5f;
 
@@ -33,7 +32,7 @@ void RocketGene::Update() {
 			//プレイヤーの上にポップしないように
 			for (int j = 0; j < game->GetSansenKazu(); j++) {
 				float kyori = (game->m_player[j]->GetPosition() - hako).LengthSq();
-				const float needKyori = 20000.0f;
+				const float needKyori = 800.0f + 2500.0f + 1000.0f;//プレイヤー半径＋ロケット半径＋予備
 				if (kyori < needKyori*needKyori) {
 					tryCount--;
 					goto LOOP_CONTINUE;
@@ -64,6 +63,7 @@ void RocketGene::Update() {
 				}
 			}
 			break;
+		LOOP_CONTINUE:;
 		}
 
 		//適当な場所が見つかっている場合、人工衛星を生成する。
