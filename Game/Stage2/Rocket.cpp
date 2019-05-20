@@ -4,9 +4,8 @@
 #include "..\Planet.h"
 #include "..\Bullet.h"
 #include "..\Game.h"
-#include "SatelliteGene.h"
 #include "RocketGene.h"
-#include "Satellite.h"
+#include "..\Meteo.h"
 #include "..\\Network\NPad.h"
 
 const CVector2 Rocket::colliderSize = { 4989.508f, 1218.114f };
@@ -63,31 +62,6 @@ void Rocket::Update() {
 			}
 		}
 
-		{//人工衛星との衝突
-			Satellite* const* sateArray = game->getSatelliteGene()->getArray();
-			for (int i = 0; i < SatelliteGene::getArrayNum(); i++) {
-				Satellite* sate = sateArray[i];
-				if (sate != nullptr) {
-					HitResult result = collider.hitTest(sate->getCollider());
-					if (result.hit != NonHit) {
-						if (awaking) {
-							prefab::CEffect* effect;
-							effect = NewGO<prefab::CEffect>(0);
-							//エフェクトを再生。
-							effect->Play(L"effect/BigExplosion.efk");
-							effect->SetScale({ 2, 2, 2 });
-							effect->SetPosition(sateArray[i]->getPosition() + CVector3(0, 1000, 0));
-							DeleteGO(sateArray[i]);
-							hp -= 2;
-						} else {
-							Explosion();
-							return;
-						}
-					}
-				}
-			}
-		}
-
 		{//ロケット同士の衝突
 			Rocket* const* rocketArray = game->getRocketGene()->getArray();
 			for (int i = 0; i < RocketGene::getArrayNum(); i++) {
@@ -125,6 +99,21 @@ void Rocket::Update() {
 				}
 			}
 		}
+
+		//メテオとの衝突
+		QueryGOs<Meteo>("Meteo", [&](Meteo* meteo)->bool {
+			HitResult result = collider.hitTest(meteo->GetPosition(), meteo->getRadius());
+			if (result.hit != NonHit) {
+				if (awaking) {
+					hp--;
+					meteo->Death();
+				} else {
+					Explosion();
+				}
+			}
+			return true;
+		});
+
 		//弾との衝突
 		bool _return = false;
 		QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b)->bool {

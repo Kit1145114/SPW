@@ -24,6 +24,11 @@ public:
 	void SetMoveSpeed(CVector3 speed) {
 		randomspeed = speed;
 	}
+
+	float getRadius() {
+		return hantei;
+	}
+
 private:
 	Game* game = nullptr;
 	Planet* pla = nullptr;

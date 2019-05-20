@@ -96,11 +96,11 @@
     <ClCompile Include="Stage1\Satellite.cpp" />
     <ClCompile Include="Stage1\SatelliteGene.cpp" />
     <ClCompile Include="BigBlackHole.cpp" />
-    <ClCompile Include="Stage1\Rocket.cpp" />
-    <ClCompile Include="Stage1\BoxCollider2D.cpp" />
-    <ClCompile Include="Stage1\RocketGene.cpp" />
     <ClCompile Include="MeteoGene.cpp" />
-    <ClCompile Include="ExtendSprite\CircleGaugeSp.cpp" />
+    <ClCompile Include="Stage2\Rocket.cpp" />
+    <ClCompile Include="Stage2\RocketGene.cpp" />
+    <ClCompile Include="Utility\CircleGaugeSp.cpp" />
+    <ClCompile Include="Utility\BoxCollider2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -561,17 +561,17 @@
     <ClInclude Include="Fade.h" />
     <ClInclude Include="Meteo.h" />
     <ClInclude Include="Stage1\Satellite.h" />
-    <ClInclude Include="Stage1\CVector2.h" />
     <ClInclude Include="Stage1\SatelliteGene.h" />
     <ClInclude Include="BigBlackHole.h" />
-    <ClInclude Include="Stage1\Rocket.h" />
-    <ClInclude Include="Stage1\BoxCollider2D.h" />
-    <ClInclude Include="Stage1\RocketGene.h" />
     <ClInclude Include="MeteoGene.h" />
     <ClInclude Include="Sinka_Bar.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="ExtendSprite\CircleGaugeSp.h" />
+    <ClInclude Include="Stage2\Rocket.h" />
+    <ClInclude Include="Stage2\RocketGene.h" />
+    <ClInclude Include="Utility\CircleGaugeSp.h" />
+    <ClInclude Include="Utility\CVector2.h" />
+    <ClInclude Include="Utility\BoxCollider2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">

@@ -9,7 +9,7 @@
 #include"ResultGamen.h";
 //#include"Sinka_Bar.h"
 #include "Stage1/SatelliteGene.h"
-#include "Stage1/RocketGene.h"
+#include "Stage2/RocketGene.h"
 
 Game* Game::m_instance = nullptr;
 
@@ -110,20 +110,19 @@ void Game::CreateStage1() {
 		m_player[0]->SetPositionZ(P_pos * 5);
 	}
 	satelliteG = NewGO<SatelliteGene>(0, "SatelliteGene");
-	rocketG = NewGO<RocketGene>(0, "RocketGene");
 	m_field = NewGO<field>(0);
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
 	bgmSoundSource->Init(L"sound/kaisen.wav");
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
-	BHflag = true;//ブラックホールをOFFにする
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 }
 //隕石。
 void Game::CreateStage2() {
 
 	meteogene = NewGO<MeteoGene>(0, "MeteoGene");
+	rocketG = NewGO<RocketGene>(0, "RocketGene");
 	switch (SansenKazu) {
 	case 4:
 		m_player[3] = NewGO<Player>(0, "Player3");
@@ -152,6 +151,7 @@ void Game::CreateStage2() {
 	bgmSoundSource->Init(L"sound/kaisen.wav");
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(0.1f);
+	BHflag = true;//ブラックホールをOFFにする
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 }
 //ビックブラックホール。
