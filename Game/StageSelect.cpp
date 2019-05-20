@@ -49,7 +49,7 @@ void StageSelect::Update() {
 		});
 	}
 	if (Pad(0).IsTrigger(enButtonA)) {
-		if (selectNumber <= 2) {
+		if (selectNumber <= 3) {
 			Fade::fadeIn([&]() {
 				Game* game = NewGO<Game>(0, "Game");
 				game->SetSanSenkazu(sansenKazu);

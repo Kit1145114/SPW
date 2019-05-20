@@ -101,7 +101,6 @@ void BlackHole::Move()
 		} 
 		return true;
 	});
-
 	//Bulletサーチ。
 	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b) ->bool {
 		//対象との距離を測定。
