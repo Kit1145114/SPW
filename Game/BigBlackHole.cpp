@@ -31,7 +31,7 @@ void BigBlackHole::Generate(CVector3 position, float magnification, float Search
 	BigBlackHole* bh = NewGO<BigBlackHole>(0, "BigBlackHole");
 	//保存。
 	bh->position = position;
-	bh->radius *= magnification / 500;
+	bh->radius *= magnification;
 	bh->Searchment = Search;//	BHの重力範囲の調整。
 	bh->G_limitar = Limit;//   BHの重力（Ｇ）調整。
 }

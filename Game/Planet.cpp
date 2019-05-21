@@ -67,7 +67,7 @@ bool Planet::Generate(int Reload, int Planetnum) {
 			hako.z *= PosMaxLimitz;
 
 			//˜f¯‚Ì‘å‚«‚³ƒ‰ƒ“ƒ_ƒ€B
-			float v = 10.0f;//Å’áŒÀ‚Ì‘å‚«‚³‚ğ—\‚ß“ü‚ê‚Ä‚¨‚­B
+			float v = 30.0f;//Å’áŒÀ‚Ì‘å‚«‚³‚ğ—\‚ß“ü‚ê‚Ä‚¨‚­B
 			v += 50.0f * Random().GetRandDouble();
 			float radius = { 30.0f };//	Šî–{˜f¯‚Ì”¼Œa
 			radius *= v;
