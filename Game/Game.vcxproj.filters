@@ -755,6 +755,11 @@
     <ImageContentTask Include="Assets\sprite\RocketArrow.png" />
     <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\GaugeIn.png" />
+    <ImageContentTask Include="Assets\sprite\Setumei1.png" />
+    <ImageContentTask Include="Assets\sprite\Setumei2.jpg">
+      <Filter>Resource Files</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Setumei3.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
