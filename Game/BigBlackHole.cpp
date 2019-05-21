@@ -21,7 +21,7 @@ bool BigBlackHole::Start()
 	effect = NewGO<prefab::CEffect>(0);
 	//エフェクトを再生。
 	effect->Play(L"effect/BH.efk");
-	effect->SetScale(BBHscale*BBHradius);
+	effect->SetScale(scale*radius);
 	effect->SetPosition(BBHposition);
 	return true;
 }
@@ -48,8 +48,8 @@ void BigBlackHole::Gravity()
 			if (radius * Searchment / 10 < kyori.Length() && kyori.Length() < radius * Searchment) {
 				//Ｇ中心に遠ければ弱く、近ければ強く。
 				float G = radius * Searchment - kyori.Length();
-				//対象に渡す重力。kyoriにGをかけて反転（-1）すれば重力となる。
-				Game::GetInstance()->m_player[i]->SetMoveSpeed((kyori*G)*-1);
+				//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
+				Game::GetInstance()->m_player[i]->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
 				//対象との距離が中心に近くなったら。
 				if (kyori.Length() < radius * Searchment / 5) {
 					//破壊。

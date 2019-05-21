@@ -181,9 +181,9 @@ void Game::CreateStage3()
 	}
 	BBH = NewGO<BigBlackHole>(0, "bigblackhole");
 	CVector3 position = { 0.0f, 0.0f,  0.0f };
-	float BHsize = { 5000.0f };       //	基本惑星の半径。
-	float Search = { 1200.0f };       //	BHの重力範囲の調整。
-	float Limit  = { 5000000.0f };       //   BHの重力（Ｇ）調整。
+	float BHsize = { 3000.0f };       //	基本惑星の半径。
+	float Search = { 1500.0f };       //	BHの重力範囲の調整。
+	float Limit  = { 50000.0f };       //   BHの重力（Ｇ）調整。
 	BigBlackHole::Generate(position, BHsize, Search, Limit);
 	m_field = NewGO<field>(0);
 	//BGM
