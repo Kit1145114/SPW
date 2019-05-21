@@ -72,9 +72,9 @@ void BigBlackHole::Gravity()
 					//Ｇ中心に遠ければ弱く、近ければ強く。
 					float G = radius * Searchment - kyori.Length();
 					//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
-					Game::GetInstance()->memoryPP[i]->SetPosition(((kyori*G) / G_limitar)*-1);
+					Game::GetInstance()->memoryPP[i]->SetPosition(((kyori*G) / G_limitar*10)*-1);
 					//対象との距離が中心に近くなったら。
-					if (kyori.Length() < radius * Searchment / 5) {
+					if (kyori.Length() < radius * Searchment / 10) {
 						//破壊。
 						Game::GetInstance()->memoryPP[i]->explosion();
 					}
