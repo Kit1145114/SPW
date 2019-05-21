@@ -113,30 +113,24 @@ void CircleGaugeSp::setFillAmount(float amount) {
 
 	}
 
-	//
-	radian *= -1;
-
 	CVector4 pos(m_size.x / 2, m_size.y / 2, 0.0f, 1.0f);
 	CVector2 tex;
 
 	//回転のスタートがy軸上からなのでy座標はcosで、x座標はsinで求める。
-	//上記の理由からサインコサインの空間を左に90度回転させる感じになるのでsinからx座標を出すときマイナスをかける。
-	//テクスチャ座標では上が０で下が１なのでサインコサインの計算にマイナスをかけ0.5を足すことで反転させる。
-
-	//結果テクスチャの計算はどっちもマイナスがついて、頂点の計算はxの計算にだけマイナスをかけることになる。
+	//テクスチャ座標では上が０で下が１なのでコサインの計算にマイナスをかけることで反転させる。
 	if (moveVCount % 2 == 0) {
 		//moveVCountが偶数の場合、頂点は縦方向の辺上にあるのでx座標は右か左かだけ考えればよい。
-		pos.x *= -getSign( sinf(radian) );
+		pos.x *= getSign( sinf(radian) );
 		pos.y *= xORy * getSign(cosf(radian));
 
-		tex.x = -getSign(sinf(radian)) * 0.5f + 0.5f;
+		tex.x = getSign(sinf(radian)) * 0.5f + 0.5f;
 		tex.y = xORy* -getSign(cosf(radian)) * 0.5f + 0.5f;
 	} else {
 		//moveVCountが奇数の場合、頂点は横方向の辺上にあるのでy座標は上か下かだけ考えればよい。
-		pos.x *= xORy * -getSign(sinf(radian));
+		pos.x *= xORy * getSign(sinf(radian));
 		pos.y *= getSign( cosf(radian) );
 
-		tex.x = xORy * -getSign(sinf(radian)) *0.5f + 0.5f;
+		tex.x = xORy * getSign(sinf(radian)) *0.5f + 0.5f;
 		tex.y = -getSign(cosf(radian)) * 0.5f + 0.5f;
 	}
 
