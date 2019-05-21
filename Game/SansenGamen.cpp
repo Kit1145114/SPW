@@ -74,14 +74,22 @@ void SansenGamen::Update() {
 
 void SansenGamen::PostRender(CRenderContext& rc) {
 	if (Death == false) {
-		wchar_t text[2506];
-
-		swprintf_s(text, L"player %d\n", Kazu);
+		wchar_t num[2];
+		swprintf_s(num, L"%d", Kazu);
 		m_font.Begin(rc);
 
 		m_font.Draw(
-			text,
-			{ 0.0f, -250.0f },
+			L"player",
+			{ -190.0f, -250.0f },
+			{ 0.0f, 0.0f, 1.0f, 1.0f },
+			0.0f,
+			1.5f,
+			{ 0.0f ,0.5f }
+		);
+
+		m_font.Draw(
+			num,
+			{ 150.0f, -250.0f },
 			{ 0.0f, 0.0f, 1.0f, 1.0f },
 			0.0f,
 			1.5f

@@ -15,7 +15,7 @@ bool StageSelect::Start() {
 	selectTexture.CreateFromDDSTextureFromFile(L"sprite/Selector.dds");
 	selectSprite.Init(selectTexture, 270, 200);
 
-	CVector3 pos = { -400, 100, 0 };
+	CVector3 pos = { -400, 30, 0 };
 	for (int i = 0; i < iconNum; i++) {
 		wchar_t path[20];
 		swprintf(path, L"sprite/Stage%d.dds", i + 1);
@@ -23,7 +23,7 @@ bool StageSelect::Start() {
 		pos.x += 400;
 		if (pos.x > 500) {
 			pos.x = -400;
-			pos.y -= 300;
+			pos.y -= 250;
 		}
 	}
 	/*iconArray[0].setStageFunc([&]() {
