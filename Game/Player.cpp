@@ -802,7 +802,7 @@ float Player::getBulletPercentage() {
 	float parce = ((float)m_Short + (m_timer / addSpeed)) / max;
 	return parce;
 }
-}
+
 //最終進化後、☆を一定個数取ると強化。
 void Player::Upper()
 {
