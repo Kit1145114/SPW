@@ -1,5 +1,5 @@
 #pragma once
-#include "BoxCollider2D.h"
+#include "..\Utility\BoxCollider2D.h"
 
 class Rocket : public IGameObject{
 public:
@@ -42,7 +42,7 @@ private:
 
 	BoxCollider2D collider;
 
-	static constexpr int max_hp = 8;
+	static constexpr int max_hp = 16;
 	int hp = max_hp;
 	bool awaking = false;
 	int ownerNum = -1;

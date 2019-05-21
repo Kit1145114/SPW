@@ -74,14 +74,14 @@ void Camera::Move()
 		if (player == nullptr) {
 			continue;
 		}
-		float Max = fabs(player->GetPosition().x - Tyuou.x) + 10000;
+		float Max = fabs(player->GetPosition().x - Tyuou.x) + 4000;
 		if (Saityou < Max)
 		{
 			Saityou = Max;
 		}
 	}
 	t = max( t, Saityou / max(0.1f, tan(yokoAngle )) );
-	cameraUp = max(5000.0f, t );
+	cameraUp = max(2500.0f, t );
 }
 
 void Camera::Update() {
@@ -94,7 +94,6 @@ void Camera::Update() {
 	CVector3 pos;
 	if (Game::GetInstance()->GetSansenKazu() == 1) {
 		pos = m_player->GetPosition();
-		//cameraUp = up;
 	} else {
 		int count = 0;
 		for (Player* player : Game::GetInstance()->m_player) {
@@ -104,15 +103,6 @@ void Camera::Update() {
 			}
 		}
 		pos /= count;
-		/*for (Player* player : Game::GetInstance()->m_player) {
-			if (player != nullptr) {
-				float f = (pos - player->GetPosition()).Length();
-				if (cameraUp < f) {
-					cameraUp = f;
-				}
-			}
-		}
-		cameraUp *= 1.9f;*/
 	}
 #endif
 

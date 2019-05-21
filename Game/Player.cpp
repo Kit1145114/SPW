@@ -11,7 +11,7 @@ Player::Player()
 	bar = NewGO<Sinka_Bar>(0);
 }
 
-Player::~Player()
+void Player::OnDestroy()
 {
 	DeleteGO(m_skinModelRender);
 	DeleteGO(draw_Pl);
@@ -23,7 +23,7 @@ bool Player::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Senkan.cmo");
-	m_scale = { 8.0f,8.0f,8.0f };
+	m_scale = { 9.6f,9.6f,9.6f };
 	m_skinModelRender->SetScale(m_scale);
 	m_CharaCon.Init(800.0f, 300.0f, m_position);
 	m_game = Game::GetInstance();
@@ -54,6 +54,7 @@ bool Player::Start()
 
 void Player::Update()
 {
+	Upper();
 	Move();			//プレイヤーの操作
 	PBullet();		//プレイヤーの射撃操作
 	PBullet2();
@@ -69,10 +70,8 @@ void Player::Update()
 	MutekiTimes();
 	HP();
 	StarPos();
-	//
 	//Playerwarp();
 	memory_position = m_position;
-	r_ring->SetPosition(m_position);
 	draw_S->SetKazu(StarCount);
 	draw_S->SetBulletKazu(m_Short);
 	bar->AddStarCount(StarCount);
@@ -90,14 +89,14 @@ void Player::Move()
 			}
 			else if (Ver == 1)
 			{
-				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +SyokiSpped-0.75f;
-				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +SyokiSpped-0.75f;
+				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +(SyokiSpped-0.75f);
+				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +(SyokiSpped - 0.75f);
 				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 				m_skinModelRender->SetPosition(m_position);
 			}
 			else if (Ver == 2) {
-				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* SyokiSpped-1.5f;
-				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* SyokiSpped-1.5f;
+				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* (SyokiSpped - 1.5f);
+				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* (SyokiSpped - 1.5f);
 				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 				m_skinModelRender->SetPosition(m_position);
 			}
@@ -481,6 +480,10 @@ void Player::S_Hantei()
 			//draw_S->AddKazu(1);
 			m_game->SetStarCount(-1);
 			star->Death();
+			if (StarCount > 20)
+			{
+				MaxSeiseiVer_3++;
+			}
 		}
 		return true;
 	});
@@ -639,7 +642,7 @@ void Player::SetPadNum(int num)
 	switch (PadNum)
 	{
 	case 0:
-		r_ring->SetPlayerRadar(L"modelData/Ring1P.cmo",PadNum);
+		r_ring->SetPlayerRadar(L"modelData/Ring1P.cmo",this);
 		draw_Pl->SetPlayerPicture(L"sprite/1P.dds");
 		draw_Pl->SetPosition(-450.0f, -330.0f);
 		//プレイヤーの☆の場所
@@ -656,7 +659,7 @@ void Player::SetPadNum(int num)
 		//bar->SetgeziPosition(0.0f, 0.0f);
 		break;
 	case 1:
-		r_ring->SetPlayerRadar(L"modelData/Ring2P.cmo", PadNum);
+		r_ring->SetPlayerRadar(L"modelData/Ring2P.cmo", this);
 		draw_Pl->SetPlayerPicture(L"sprite/2P.dds");
 		draw_Pl->SetPosition(-150.0f, -330.0f);
 		//プレイヤーの☆の場所
@@ -670,7 +673,7 @@ void Player::SetPadNum(int num)
 		draw_S->SetColor(0.0f, 0.0f, 1.0f, 1.0f);
 		break;
 	case 2:
-		r_ring->SetPlayerRadar(L"modelData/Ring3P.cmo", PadNum);
+		r_ring->SetPlayerRadar(L"modelData/Ring3P.cmo", this);
 		draw_Pl->SetPlayerPicture(L"sprite/3P.dds");
 		draw_Pl->SetPosition(150.0f, -330.0f);
 		//プレイヤーの☆の場所
@@ -684,7 +687,7 @@ void Player::SetPadNum(int num)
 		draw_S->SetColor(0.1f, 1.0f, 0.0f, 1.0f);
 		break;
 	case 3:
-		r_ring->SetPlayerRadar(L"modelData/Ring4P.cmo", PadNum);
+		r_ring->SetPlayerRadar(L"modelData/Ring4P.cmo", this);
 		draw_Pl->SetPlayerPicture(L"sprite/4P.dds");
 		draw_Pl->SetPosition(450.0f, -330.0f);
 		//プレイヤーの☆の場所
@@ -748,7 +751,7 @@ void Player::StarPos()
 		break;
 	}
 }
-
+//プレイヤーをワープさせる()未使用。
 void Player::Playerwarp()
 {
 	if (m_position.x > 35000.0f)
@@ -774,5 +777,41 @@ void Player::Playerwarp()
 		m_position.z = 15000.0f;
 		m_CharaCon.SetPosition(m_position);
 		m_skinModelRender->SetPosition(m_position);
+	}
+}
+
+float Player::getBulletPercentage() {
+	int max;
+	float addSpeed;
+	switch (Ver) {
+	case 0:
+		max = MaxSeiseiVer_1;
+		addSpeed = SeiseiVer_1;
+		break;
+	case 1:
+		max = MaxSeiseiVer_2;
+		addSpeed = SeiseiVer_2;
+		break;
+	case 2:
+		max = MaxSeiseiVer_3;
+		addSpeed = SeiseiVer_3;
+	}
+	if (m_Short == 0) {
+		return 0;
+	}
+	float parce = ((float)m_Short + (m_timer / addSpeed)) / max;
+	return parce;
+}
+
+//最終進化後、☆を一定個数取ると強化。
+void Player::Upper()
+{
+	if (StarCount >= Star30)
+	{
+		SyokiSpped = 13.0f;
+	}
+	else if (StarCount >= Star50)
+	{
+		SyokiSpped = 15.0f;
 	}
 }

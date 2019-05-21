@@ -96,12 +96,13 @@
     <ClCompile Include="Stage1\Satellite.cpp" />
     <ClCompile Include="Stage1\SatelliteGene.cpp" />
     <ClCompile Include="BigBlackHole.cpp" />
-    <ClCompile Include="Stage1\Rocket.cpp" />
-    <ClCompile Include="Stage1\BoxCollider2D.cpp" />
-    <ClCompile Include="Stage1\RocketGene.cpp" />
     <ClCompile Include="MeteoGene.cpp" />
     <ClCompile Include="TerepotHole.cpp" />
     <ClCompile Include="TerepotHole2.cpp" />
+    <ClCompile Include="Stage2\Rocket.cpp" />
+    <ClCompile Include="Stage2\RocketGene.cpp" />
+    <ClCompile Include="Utility\CircleGaugeSp.cpp" />
+    <ClCompile Include="Utility\BoxCollider2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -562,18 +563,19 @@
     <ClInclude Include="Fade.h" />
     <ClInclude Include="Meteo.h" />
     <ClInclude Include="Stage1\Satellite.h" />
-    <ClInclude Include="Stage1\CVector2.h" />
     <ClInclude Include="Stage1\SatelliteGene.h" />
     <ClInclude Include="BigBlackHole.h" />
-    <ClInclude Include="Stage1\Rocket.h" />
-    <ClInclude Include="Stage1\BoxCollider2D.h" />
-    <ClInclude Include="Stage1\RocketGene.h" />
     <ClInclude Include="MeteoGene.h" />
     <ClInclude Include="Sinka_Bar.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="TerepotHole.h" />
     <ClInclude Include="TerepotHole2.h" />
+    <ClInclude Include="Stage2\Rocket.h" />
+    <ClInclude Include="Stage2\RocketGene.h" />
+    <ClInclude Include="Utility\CircleGaugeSp.h" />
+    <ClInclude Include="Utility\CVector2.h" />
+    <ClInclude Include="Utility\BoxCollider2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -693,7 +695,6 @@
       <Filter>Resource Files</Filter>
     </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\Gekitui.png" />
-    <ImageContentTask Include="Assets\sprite\Icon.png" />
     <ImageContentTask Include="Assets\sprite\Reslut.png" />
     <ImageContentTask Include="Assets\sprite\Title_A.bmp">
       <Filter>Resource Files</Filter>
@@ -760,10 +761,19 @@
     <ImageContentTask Include="Assets\sprite\tama_yellow.png" />
     <ImageContentTask Include="Assets\sprite\RocketArrow.png" />
     <ImageContentTask Include="Assets\sprite\Stage3.png" />
+    <ImageContentTask Include="Assets\sprite\GaugeIn.png" />
+    <ImageContentTask Include="Assets\sprite\Setumei1.png" />
+    <ImageContentTask Include="Assets\sprite\Setumei2.jpg">
+      <Filter>Resource Files</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Setumei3.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\sprite\p.png">
+      <Filter>Assets\sprite</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

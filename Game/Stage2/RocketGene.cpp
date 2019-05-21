@@ -66,7 +66,7 @@ void RocketGene::Update() {
 		LOOP_CONTINUE:;
 		}
 
-		//適当な場所が見つかっている場合、人工衛星を生成する。
+		//適当な場所が見つかっている場合、ロケットを生成する。
 		if (tryCount > 0) {
 			for (Rocket*& satP : rocketArray) {
 				if (satP == nullptr) {

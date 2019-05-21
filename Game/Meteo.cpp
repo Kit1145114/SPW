@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Meteo.h"
-
+#include "Star.h"
 
 Meteo::Meteo()
 {
@@ -53,6 +53,29 @@ void Meteo::Move()
 //死ぬ
 void Meteo::Death()
 {
+	prefab::CEffect* effect;
+	effect = NewGO<prefab::CEffect>(0);
+	//エフェクトを再生。
+	effect->Play(L"effect/BigExplosion.efk");
+	//エフェクトに半径/（Ｍａｘと差）をかける
+	effect->SetScale({ 1, 1, 1 });
+	effect->SetPosition(m_position + CVector3(0, 1000, 0));
+	
+	CVector3 pos = m_position;
+	pos.z += 500;
+	for (int i = 0; i < 3; i++) {
+		Star* star = NewGO<Star>(0, "Star");
+		//hanteiはたぶん半径のことだと思っています。
+		star->Pop(pos, { 50,50,50 });
+
+		if (i == 0) {
+			pos.z -= 1500.0f;
+			pos.x += 1000.0f;
+		} else if (i == 1) {
+			pos.x -= 2000.0f;
+		}
+	}
+
 	DeleteGO(this);
 }
 //いろんな判定。
@@ -97,6 +120,6 @@ void Meteo::Hantei()
 	//});
 	if (m_position.x > PosMaxLimitx || m_position.x< -PosMaxLimitx
 		|| m_position.z>PosMaxLimitz || m_position.z < -PosMaxLimitz) {
-		Death();
+		DeleteGO(this);
 	}
 }

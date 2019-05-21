@@ -1,7 +1,7 @@
 #pragma once
 #include"BlackHole.h"
 #include"GamenTimer.h"
-//#include"BigBlackHole.h"
+#include"BigBlackHole.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
@@ -11,7 +11,7 @@ class field;
 class Camera;
 class Player;
 class GamenTimer;
-//class Enemy;
+class Enemy;
 class Title_2;
 class ResultGamen;
 class Planet;
@@ -21,7 +21,7 @@ class Draw_Player;
 class SatelliteGene;
 class RocketGene;
 class MeteoGene;
-//class BigBlackHole;
+class BigBlackHole;
 
 class TerepotHole;
 class TerepotHole2;
@@ -109,15 +109,15 @@ private:
 public:
 	Planet* memoryPP[Planetnumber_Num] = {};
 	Player* m_player[PlKazu] = {nullptr};
-	//Enemy* m_enemy = nullptr;
 	Star* m_star = nullptr;
 private:
 	static Game* m_instance;
+	Enemy* enemy = nullptr;
 	Camera* m_camera = nullptr;
 	field* m_field = nullptr;
 	GamenTimer* m_G_Timer = nullptr;
 	SatelliteGene* satelliteG = nullptr;
-	//BigBlackHole* BBH = nullptr;
+	BigBlackHole* BBH = nullptr;
 	MeteoGene* meteogene = nullptr;
 	RocketGene* rocketG = nullptr;
 	TerepotHole * tere = nullptr;

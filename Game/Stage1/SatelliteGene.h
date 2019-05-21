@@ -16,10 +16,10 @@ public:
 	}
 
 private:
-	static constexpr float interval = 5.0f;
+	static constexpr float interval = 3.0f;
 	float timer = 0.0f;
 
-	static constexpr int arrayNum = 2;
+	static constexpr int arrayNum = 4;
 	Satellite* satelliteArray[arrayNum] = {};
 };
 
