@@ -74,14 +74,14 @@ void Camera::Move()
 		if (player == nullptr) {
 			continue;
 		}
-		float Max = fabs(player->GetPosition().x - Tyuou.x) + 10000;
+		float Max = fabs(player->GetPosition().x - Tyuou.x) + 4000;
 		if (Saityou < Max)
 		{
 			Saityou = Max;
 		}
 	}
 	t = max( t, Saityou / max(0.1f, tan(yokoAngle )) );
-	cameraUp = max(5000.0f, t );
+	cameraUp = max(2500.0f, t );
 }
 
 void Camera::Update() {

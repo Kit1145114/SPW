@@ -5,7 +5,7 @@
 #include"field.h"
 #include"Player.h"
 #include"MeteoGene.h"
-//#include"Enemy.h"
+#include"Enemy.h"
 #include"ResultGamen.h";
 //#include"Sinka_Bar.h"
 #include "Stage1/SatelliteGene.h"
@@ -34,9 +34,9 @@ Game::~Game()
 	if (m_camera != nullptr) {
 		DeleteGO(m_camera);
 	}
-	//if (m_enemy != nullptr) {
-	//	DeleteGO(m_enemy);
-	//}
+	if (enemy != nullptr) {
+		DeleteGO(enemy);
+	}
 	if (m_star != nullptr) {
 		DeleteGO(m_star);
 	}
@@ -256,7 +256,7 @@ bool Game::Start()
 	}
 	m_camera = NewGO<Camera>(0, "Camera");
 	m_G_Timer = NewGO<GamenTimer>(0, "GamenTimer");
-
+	//enemy = NewGO<Enemy>(0, "Enemy");
 	Fade::fadeOut();
 	return true;
 }

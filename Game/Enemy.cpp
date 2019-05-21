@@ -4,7 +4,7 @@
 
 Enemy::Enemy()
 {
-	m_position.z = 300.0f;
+	m_position.x = 2000.0f;
 }
 
 
@@ -17,7 +17,10 @@ bool Enemy::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Enemy.cmo");
-	m_CharaCon.Init(100.0f, 15.0f, m_position);
+	//m_CharaCon.Init(100.0f, 15.0f, m_position);
+	scale = { 9.0f,9.0f,9.0f };
+	m_skinModelRender->SetScale(scale);
+	m_skinModelRender->SetPosition(m_position);
 	m_game = Game::GetInstance();
 	switch (m_game->GetSansenKazu())
 	{
@@ -46,26 +49,24 @@ bool Enemy::Start()
 void Enemy::Update()
 {
 	m_player[0] = FindGO<Player>("Player");
-	m_game = FindGO<Game>("Game");
-//	Pl_Hantei();
+	Pl_BulletHantei();
 	Move();
+	Rotation();
 	m_skinModelRender->SetPosition(m_position);
 }
-//エネミーの死亡判定。
-//void Enemy::Pl_Hantei()
-//{
-//	for(int i = 0; i < PadKazu; i++)
-//	if (m_player[i]->GetVer() == 0) {
-//		m_bullet = FindGO<Bullet>("PlayerBullet");
-//		CVector3 diff = m_bullet->GetPosition() - m_position;
-//		if (diff.Length() < 200.0f)
-//		{
-//			m_game->m_enemy = nullptr;
-//			Death();
-//		}
-//	}
-//}
-
+//プレイヤーの球との判定。
+void Enemy::Pl_BulletHantei()
+{
+	float BulletHantei = 1200.0f;
+	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b) ->bool {
+		CVector3 kyori = b->GetPosition() - m_position;
+		if (kyori.Length() < BulletHantei)
+		{
+			Death();
+		}
+		return true;
+	});
+}
 //エネミーの削除。
 void Enemy::Death()
 {
@@ -74,12 +75,38 @@ void Enemy::Death()
 //エネミーの挙動。
 void Enemy::Move()
 {
+	if (m_position.x < m_player[0]->GetPosition().x)
+	{
+		m_moveSpeed.x += 50;
+	}
+	else 
+	{
+		m_moveSpeed.x -= 50;
+	}
+	if (m_position.z < m_player[0]->GetPosition().z)
+	{
+		m_moveSpeed.z += 50;
+	}
+	else
+	{
+		m_moveSpeed.z -= 50;
+	}
+	m_position = m_moveSpeed;
+	m_skinModelRender->SetPosition(m_position);
 }
 //エネミーの回転処理。
 void Enemy::Rotation()
 {
 	float Rot = atan2(m_moveSpeed.x, m_moveSpeed.z);
 	CQuaternion qRot;
-	qRot.SetRotation(CVector3::AxisY, Rot);
+	qRot.SetRotation(CVector3::AxisY, Rot*100);
 	m_skinModelRender->SetRotation(qRot);
+	if (m_moveSpeed.x != 0.0f || m_moveSpeed.z != 0.0f)
+	{
+		m_rotation = qRot;
+	}
+	else if (m_moveSpeed.x == 0.0f && m_moveSpeed.z == 0.0f)
+	{
+		m_skinModelRender->SetRotation(m_rotation);
+	}
 }
