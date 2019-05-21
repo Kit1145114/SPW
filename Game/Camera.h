@@ -30,6 +30,10 @@ public:
 	{
 		return MinCamera;
 	}
+
+	float getUpLength() {
+		return cameraUp;
+	}
 private:
 	Player* m_player = nullptr;
 	Game* game = nullptr;

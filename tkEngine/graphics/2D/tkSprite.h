@@ -61,7 +61,7 @@ namespace tkEngine{
 		*/
 		void Draw(CRenderContext& renderContext, const CMatrix& viewMatrix, const CMatrix& projMatrix);
 		
-	private:
+	protected:
 		struct SSpriteCB {
 			CMatrix WVP;		//ワールドビュープロジェクション行列。
 			CVector4 mulColor;	//乗算カラー。

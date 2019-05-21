@@ -1784,6 +1784,7 @@
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Utility\CircleGaugeSp.cpp" />
     <ClCompile Include="Draw_Player.cpp" />
     <ClCompile Include="Draw_Skazu.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -1805,9 +1806,9 @@
     <ClCompile Include="RadarRing.cpp" />
     <ClCompile Include="ResultDraw.cpp" />
     <ClCompile Include="ResultGamen.cpp" />
-    <ClCompile Include="Stage1\RocketGene.cpp" />
-    <ClCompile Include="Stage1\BoxCollider2D.cpp" />
-    <ClCompile Include="Stage1\Rocket.cpp" />
+    <ClCompile Include="Stage2\RocketGene.cpp" />
+    <ClCompile Include="Utility\BoxCollider2D.cpp" />
+    <ClCompile Include="Stage2\Rocket.cpp" />
     <ClCompile Include="SansenGamen.cpp" />
     <ClCompile Include="Senkan_Rtype_2.cpp" />
     <ClCompile Include="SetumeiGamen.cpp" />
@@ -1844,6 +1845,7 @@
     <ClInclude Include="BlackHole.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Utility\CircleGaugeSp.h" />
     <ClInclude Include="Draw_Player.h" />
     <ClInclude Include="Draw_Skazu.h" />
     <ClInclude Include="Enemy.h" />
@@ -2007,12 +2009,12 @@
     <ClInclude Include="ResultDraw.h" />
     <ClInclude Include="ResultGamen.h" />
     <ClInclude Include="Network\PadRingBuffer.h" />
-    <ClInclude Include="Stage1\RocketGene.h" />
-    <ClInclude Include="Stage1\BoxCollider2D.h" />
-    <ClInclude Include="Stage1\Rocket.h" />
+    <ClInclude Include="Stage2\RocketGene.h" />
+    <ClInclude Include="Utility\BoxCollider2D.h" />
+    <ClInclude Include="Stage2\Rocket.h" />
     <ClInclude Include="SansenGamen.h" />
     <ClInclude Include="Stage1\SatelliteGene.h" />
-    <ClInclude Include="Stage1\CVector2.h" />
+    <ClInclude Include="Utility\CVector2.h" />
     <ClInclude Include="Stage1\Satellite.h" />
     <ClInclude Include="Senkan_Rtype_2.h" />
     <ClInclude Include="SetumeiGamen.h" />
@@ -2069,6 +2071,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <ImageContentTask Include="Assets\sprite\GaugeIn.png" />
     <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\RocketArrow.png" />
     <ImageContentTask Include="Assets\sprite\tama_bule.png" />
@@ -2086,7 +2089,6 @@
     <ImageContentTask Include="Assets\sprite\StageSelect.png" />
     <ImageContentTask Include="Assets\sprite\SankaMulti.png" />
     <ImageContentTask Include="Assets\sprite\Title_A.bmp" />
-    <ImageContentTask Include="Assets\sprite\Icon.png" />
     <ImageContentTask Include="Assets\sprite\1Player.png" />
     <ImageContentTask Include="Assets\sprite\2Player.png" />
     <ImageContentTask Include="Assets\sprite\3Player.png" />

@@ -1,5 +1,5 @@
 #pragma once
-#include "BoxCollider2D.h"
+#include "..\Utility\BoxCollider2D.h"
 
 class Satellite : public IGameObject{
 public:
@@ -43,7 +43,8 @@ private:
 
 	CVector3 m_move = { 0,0,500 };
 
-	float moveStar = 0.0f;
+	static constexpr float moveStarMax = 10000.0f;
+	float moveStar = moveStarMax/2;
 
 	Satellite** arrayP = nullptr;
 

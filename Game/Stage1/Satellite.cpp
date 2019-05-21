@@ -4,7 +4,7 @@
 #include "..\Player.h"
 #include "..\Planet.h"
 #include "..\Game.h"
-#include "CVector2.h"
+//#include "CVector2.h"
 #include "..\Star.h"
 
 const CVector2 Satellite::colliderSize = { 15797.811f, 2046.581f };
@@ -115,7 +115,8 @@ void Satellite::Update() {
 		collider.Move(m_move * delta);
 		m_modelRender->SetPosition(m_pos);
 		moveStar += m_move.Length() * delta;
-		if (moveStar > 5000.0f) {
+		//ƒXƒ^[¶¬
+		if (moveStar > moveStarMax) {
 			NewGO<Star>(0, "Star")->Pop(m_pos, {25,25,25});
 			moveStar = 0.0f;
 		}

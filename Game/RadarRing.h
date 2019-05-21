@@ -1,24 +1,34 @@
 #pragma once
+#include "Utility/CircleGaugeSp.h"
+
+class Player;
+class Camera;
+
 class RadarRing : public IGameObject
 {
 public:
 	RadarRing();
 	~RadarRing();
-	bool Start();
-	void Update();
-	void SetPlayerRadar(const wchar_t* player, int num);
-	void SetPosition(CVector3 position)
-	{
-		m_position = position;
-	}
+	bool Start() override;
+	void Update() override;
+	void PostRender(CRenderContext& rc) override;
+	void SetPlayerRadar(const wchar_t* path, Player* player);
 private:
-	prefab::CSkinModelRender* m_skinModelRender = nullptr;
-	prefab::CSpriteRender* arrowSprite = nullptr;
-	const wchar_t* draw_P = nullptr;
-	CVector3 m_position = CVector3::Zero;
-	CVector3 scale = CVector3::Zero;
+	Camera* camera = nullptr;
 
-	int pNum = 0;
-	CVector4 color = {};
+	prefab::CSkinModelRender* m_skinModelRender = nullptr;//自機下の円
+
+	prefab::CSpriteRender* arrowSprite = nullptr;//右スティックの矢印
+
+	//残弾数ゲージとそのテクスチャ
+	CShaderResourceView tex;
+	CircleGaugeSp gaugeIn;
+
+	const wchar_t* draw_P = nullptr;//自機下の円のモデルパス
+	Player* player = nullptr;
+
+	CVector4 color = {};//プレイヤーの色
+
+	static constexpr float cameraScaleDev = 12000.0f;//カメラの遠近法の計算結果がでかすぎるのでこれで割る
 };
 
