@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "RadarRing.h"
-
+#include "Player.h"
+#include "Camera.h"
 
 RadarRing::RadarRing()
 {
@@ -13,10 +14,10 @@ RadarRing::~RadarRing()
 	DeleteGO(arrowSprite);
 }
 
-void RadarRing::SetPlayerRadar(const wchar_t * player, int num) {
-	draw_P = player;
-	pNum = num;
-	switch (num) {
+void RadarRing::SetPlayerRadar(const wchar_t * path, Player* player_) {
+	draw_P = path;
+	player = player_;
+	switch (player_->GetPadNum()) {
 	case 0:
 		color = { 1.0f, 0.0f, 0.0f, 1.0f };
 		break;
@@ -34,42 +35,76 @@ void RadarRing::SetPlayerRadar(const wchar_t * player, int num) {
 
 bool RadarRing::Start()
 {
+	camera = FindGO<Camera>("Camera");
+
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(draw_P);
-	scale = { 12.0f,12.0f,12.0f };
-	m_skinModelRender->SetScale(scale);
+	m_skinModelRender->SetScale({ 12.0f,12.0f,12.0f });
 
-	arrowSprite = NewGO<prefab::CSpriteRender>(0);
+	arrowSprite = NewGO<prefab::CSpriteRender>(1);
 	arrowSprite->Init(L"sprite/arrow.dds", 400 * 0.1f, 150*0.1f);
 	arrowSprite->SetPivot({ 0.0f, 0.5f });
 	arrowSprite->SetMulColor(color);
+
+	tex.CreateFromDDSTextureFromFile(L"sprite/GaugeIn.dds");
+	gaugeIn.Init(tex, 200, 200,true);
+	color.a = 0.5f;
+	gaugeIn.SetMulColor(color);
 	return true;
 }
 
 void RadarRing::Update()
 {
-	m_skinModelRender->SetPosition(m_position);
+	m_skinModelRender->SetPosition(player->GetPosition());
 
-	//パッド取得
-	float x = Pad(pNum).GetRStickXF();
-	float y = Pad(pNum).GetRStickYF();
+	//プレイヤーの2D座標を取得
+	CVector3 pPos;
+	{
+		CVector2 pos;
+		MainCamera().CalcScreenPositionFromWorldPosition(pos, player->GetPosition());
+		pPos = { pos.x, pos.y, 0 };
+	}
 
-	//大きさ調整
-	float length = sqrt(x * x + y * y);
-	arrowSprite->setScale({length ,1,1 });
+	//カメラが遠くなるにつれて小さくしたりするための数値
+	float cameraScale;
+	{
+		float angleSin = sinf(MainCamera().GetViewAngle() / 2) * 2;
+		cameraScale = camera->getUpLength()*angleSin / cameraScaleDev;
+	}
 
-	//回転させる
-	CQuaternion rot;
-	rot.SetRotation(CVector3::AxisZ, atan2f(y, x));
-	arrowSprite->SetRotation(rot);
+	{//スティック方向アロー
+		int pNum = player->GetPadNum();
 
-	//表示位置を調整する
-	CVector3 arrowVec = { 40, 0, 0 };
-	rot.Multiply(arrowVec);
-	CVector2 pos;
-	MainCamera().CalcScreenPositionFromWorldPosition(pos, m_position);
-	pos.x += arrowVec.x;
-	pos.y += arrowVec.y;
-	arrowSprite->SetPosition(CVector3(pos.x, pos.y, 0));
+		//パッド取得
+		float x = Pad(pNum).GetRStickXF();
+		float y = Pad(pNum).GetRStickYF();
+
+		//大きさ調整
+		float length = sqrt(x * x + y * y);
+		arrowSprite->setScale({ length ,1,1 });
+
+		//回転させる
+		CQuaternion rot;
+		rot.SetRotation(CVector3::AxisZ, atan2f(y, x));
+		arrowSprite->SetRotation(rot);
+
+		//表示位置を調整する
+		CVector3 arrowVec = { 80, 0, 0 };
+		arrowVec /= cameraScale;
+		rot.Multiply(arrowVec);
+		arrowSprite->SetPosition(pPos + arrowVec);
+	}
+
+	{//残弾数ゲージ
+		float scale = 1 / cameraScale;
+		gaugeIn.Update(pPos, CQuaternion::Identity, { scale,scale,scale });
+
+		gaugeIn.setFillAmount(player->getBulletPercentage());
+	}
+}
+
+void RadarRing::PostRender(CRenderContext & rc) {
+	CCamera& camera = MainCamera2D();
+	gaugeIn.Draw(rc, camera.GetViewMatrix(), camera.GetProjectionMatrix());
 }
 

@@ -9,7 +9,7 @@
 #include"ResultGamen.h";
 //#include"Sinka_Bar.h"
 #include "Stage1/SatelliteGene.h"
-#include "Stage1/RocketGene.h"
+#include "Stage2/RocketGene.h"
 
 Game* Game::m_instance = nullptr;
 
@@ -110,20 +110,19 @@ void Game::CreateStage1() {
 		m_player[0]->SetPositionZ(P_pos * 5);
 	}
 	satelliteG = NewGO<SatelliteGene>(0, "SatelliteGene");
-	rocketG = NewGO<RocketGene>(0, "RocketGene");
 	m_field = NewGO<field>(0);
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
 	bgmSoundSource->Init(L"sound/kaisen.wav");
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
-	BHflag = true;//ブラックホールをOFFにする
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 }
 //隕石。
 void Game::CreateStage2() {
 
 	meteogene = NewGO<MeteoGene>(0, "MeteoGene");
+	rocketG = NewGO<RocketGene>(0, "RocketGene");
 	switch (SansenKazu) {
 	case 4:
 		m_player[3] = NewGO<Player>(0, "Player3");
@@ -152,6 +151,7 @@ void Game::CreateStage2() {
 	bgmSoundSource->Init(L"sound/kaisen.wav");
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(0.1f);
+	BHflag = true;//ブラックホールをOFFにする
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 }
 //ビックブラックホール。
@@ -179,12 +179,12 @@ void Game::CreateStage3()
 		m_player[0]->SetPositionX(P_pos *-10);
 		m_player[0]->SetPositionZ(P_pos * 5);
 	}
-	//BBH = NewGO<BigBlackHole>(0, "bigblackhole");
-	CVector3 position = { 10.0f, 10.0f,  10.0f };
-	float BHsize = { 5000.0f };       //	基本惑星の半径。
-	float Search = { 1200.0f };       //	BHの重力範囲の調整。
-	float Limit  = { 5000000.0f };       //   BHの重力（Ｇ）調整。
-	BlackHole::Generate2(position, BHsize, Search, Limit);
+	BBH = NewGO<BigBlackHole>(0, "bigblackhole");
+	CVector3 position = { 0.0f, 0.0f,  0.0f };
+	float BHsize = { 3000.0f };       //	基本惑星の半径。
+	float Search = { 1500.0f };       //	BHの重力範囲の調整。
+	float Limit  = { 50000.0f };       //   BHの重力（Ｇ）調整。
+	BigBlackHole::Generate(position, BHsize, Search, Limit);
 	m_field = NewGO<field>(0);
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
@@ -196,8 +196,37 @@ void Game::CreateStage3()
 //ワープ。
 void Game::CreateStage4()
 {
+	switch (SansenKazu) {
+	case 4:
+		m_player[3] = NewGO<Player>(0, "Player3");
+		m_player[3]->SetPadNum(3);
+		m_player[3]->SetPositionX(P_pos * 10);
+		m_player[3]->SetPositionZ(P_pos *-5);
+	case 3:
+		m_player[2] = NewGO<Player>(0, "Player2");
+		m_player[2]->SetPadNum(2);
+		m_player[2]->SetPositionX(P_pos *-10);
+		m_player[2]->SetPositionZ(P_pos *-5);
+	case 2:
+		m_player[1] = NewGO<Player>(0, "Player1");
+		m_player[1]->SetPadNum(1);
+		m_player[1]->SetPositionX(P_pos * 10);
+		m_player[1]->SetPositionZ(P_pos * 5);
+	case 1:
+		m_player[0] = NewGO<Player>(0, "Player");
+		m_player[0]->SetPadNum(0);
+		m_player[0]->SetPositionX(P_pos *-10);
+		m_player[0]->SetPositionZ(P_pos * 5);
+	}
+	m_field = NewGO<field>(0);
+	//BGM
+	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
+	bgmSoundSource->Init(L"sound/kaisen.wav");
+	bgmSoundSource->Play(true);
+	bgmSoundSource->SetVolume(1.0f);
+	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 }
-//太陽系。
+//ランダム。
 void Game::CreateStage5()
 {
 }
@@ -219,9 +248,9 @@ bool Game::Start()
 	case 2:
 		CreateStage2();
 		break;
-	/*case 3:
+	case 3:
 		CreateStage3();
-		break;*/
+		break;
 	default:
 		CreateStage0();
 	}

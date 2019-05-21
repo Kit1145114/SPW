@@ -1,7 +1,7 @@
 #pragma once
 #include"BlackHole.h"
 #include"GamenTimer.h"
-//#include"BigBlackHole.h"
+#include"BigBlackHole.h"
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
@@ -21,7 +21,7 @@ class Draw_Player;
 class SatelliteGene;
 class RocketGene;
 class MeteoGene;
-//class BigBlackHole;
+class BigBlackHole;
 
 enum Planetnumber {
 	Planetnumber_00,
@@ -114,7 +114,7 @@ private:
 	field* m_field = nullptr;
 	GamenTimer* m_G_Timer = nullptr;
 	SatelliteGene* satelliteG = nullptr;
-	//BigBlackHole* BBH = nullptr;
+	BigBlackHole* BBH = nullptr;
 	MeteoGene* meteogene = nullptr;
 	RocketGene* rocketG = nullptr;
 	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。

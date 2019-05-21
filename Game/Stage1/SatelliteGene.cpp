@@ -16,9 +16,8 @@ void SatelliteGene::Update() {
 
 		//ランダムポップ。
 		CVector3 hako;
-		int tryCount = 3;//場所の提案に失敗しても指定回数分試行する
+		int tryCount = 6;//場所の提案に失敗しても指定回数分試行する
 		while(tryCount > 0){
-		LOOP_CONTINUE:
 			hako.x = Random().GetRandDouble() - 0.5f;
 			hako.z = Random().GetRandDouble() - 0.5f;
 
@@ -38,7 +37,20 @@ void SatelliteGene::Update() {
 					goto LOOP_CONTINUE;
 				}
 			}
+
+			for (Satellite* sate : satelliteArray) {
+				if (sate != nullptr) {
+					float kyori = (sate->getPosition() - hako).LengthSq();
+					const float needKyori = 7000.0f;
+					if (kyori < needKyori*needKyori) {
+						tryCount--;
+						goto LOOP_CONTINUE;
+					}
+				}
+			}
+
 			break;
+		LOOP_CONTINUE:;
 		}
 
 		//適当な場所が見つかっている場合、人工衛星を生成する。
