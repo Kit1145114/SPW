@@ -10,6 +10,8 @@
 //#include"Sinka_Bar.h"
 #include "Stage1/SatelliteGene.h"
 #include "Stage1/RocketGene.h"
+#include "TerepotHole.h"
+#include "TerepotHole2.h"
 
 Game* Game::m_instance = nullptr;
 
@@ -78,6 +80,7 @@ void Game::CreateStage0() {
 		m_player[0]->SetPositionZ(P_pos * 5);
 	}
 	m_field = NewGO<field>(0);
+	
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
 	bgmSoundSource->Init(L"sound/kaisen.wav");
@@ -154,7 +157,7 @@ void Game::CreateStage2() {
 	bgmSoundSource->SetVolume(0.1f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 }
-//ビックブラックホール。
+//ビックブラックホール。 
 void Game::CreateStage3()
 {
 	switch (SansenKazu) {
@@ -193,9 +196,13 @@ void Game::CreateStage3()
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 }
+
 //ワープ。
 void Game::CreateStage4()
 {
+	m_field = NewGO<field>(0);
+	tere = NewGO<TerepotHole>(0, "テレポート");
+	tere2 = NewGO<TerepotHole2>(0, "テレポート");
 }
 //太陽系。
 void Game::CreateStage5()
@@ -222,6 +229,9 @@ bool Game::Start()
 	/*case 3:
 		CreateStage3();
 		break;*/
+	case 4:
+		CreateStage4();
+		break;
 	default:
 		CreateStage0();
 	}

@@ -100,6 +100,8 @@
     <ClCompile Include="Stage1\BoxCollider2D.cpp" />
     <ClCompile Include="Stage1\RocketGene.cpp" />
     <ClCompile Include="MeteoGene.cpp" />
+    <ClCompile Include="TerepotHole.cpp" />
+    <ClCompile Include="TerepotHole2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -570,6 +572,8 @@
     <ClInclude Include="Sinka_Bar.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="TerepotHole.h" />
+    <ClInclude Include="TerepotHole2.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -672,6 +676,9 @@
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\SenkanType2.FBX">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\modelData\terepot.fbx">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
   </ItemGroup>

@@ -23,6 +23,9 @@ class RocketGene;
 class MeteoGene;
 //class BigBlackHole;
 
+class TerepotHole;
+class TerepotHole2;
+
 enum Planetnumber {
 	Planetnumber_00,
 	Planetnumber_01,
@@ -117,6 +120,8 @@ private:
 	//BigBlackHole* BBH = nullptr;
 	MeteoGene* meteogene = nullptr;
 	RocketGene* rocketG = nullptr;
+	TerepotHole * tere = nullptr;
+	TerepotHole2* tere2 = nullptr;
 	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。
 	
 	int GameMode = 0;
@@ -132,5 +137,7 @@ private:
 	bool BHflag = false;     //ブラックホールのフラグ、trueだと発生しなくなる。
    	//CVector3 BHpos1 = { 0.0f , 0.0f, 5000.0f };
 	//CVector3 BHsca1 = { 1000.0f,0.0f,5.0f };
+
+	
 };
 
