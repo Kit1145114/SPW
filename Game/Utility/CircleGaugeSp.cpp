@@ -16,7 +16,7 @@ int getSign(float num) {
 	}
 }
 
-void CircleGaugeSp::Init(CShaderResourceView & tex, float w, float h) {
+void CircleGaugeSp::Init(CShaderResourceView & tex, float w, float h, bool clockwise_) {
 	//シェーダーロード。
 	m_ps.Load("shader/sprite.fx", "PSMain", CShader::EnType::PS);
 	m_vs.Load("shader/sprite.fx", "VSMain", CShader::EnType::VS);
@@ -25,8 +25,10 @@ void CircleGaugeSp::Init(CShaderResourceView & tex, float w, float h) {
 	float halfW = w * 0.5f;
 	float halfH = h * 0.5f;
 
+	clockwise = clockwise_;
+
 	//頂点バッファのソースデータ。
-	vertices[0] = {//一番最初に動く頂点。
+	vertices[0] = {//反時計回りのとき一番最初に動く頂点。(そうでなければ動かない)
 			CVector4(0.0f , halfH, 0.0f, 1.0f),
 			CVector2(0.5f, 0.0f)
 	};
@@ -46,7 +48,7 @@ void CircleGaugeSp::Init(CShaderResourceView & tex, float w, float h) {
 			CVector4(-halfW, halfH, 0.0f, 1.0f),
 			CVector2(0.0f, 0.0f)
 	};
-	vertices[5] = {//上側真ん中で待機する頂点(動かない)
+	vertices[5] = {//時計回りのとき一番最初に動く頂点。(そうでなければ動かない)
 			CVector4(0.0f , halfH, 0.0f, 1.0f),
 			CVector2(0.5f, 0.0f)
 	};
@@ -116,28 +118,35 @@ void CircleGaugeSp::setFillAmount(float amount) {
 	CVector4 pos(m_size.x / 2, m_size.y / 2, 0.0f, 1.0f);
 	CVector2 tex;
 
+	int clockSign = clockwise ? -1 : 1;
+
 	//回転のスタートがy軸上からなのでy座標はcosで、x座標はsinで求める。
 	//テクスチャ座標では上が０で下が１なのでコサインの計算にマイナスをかけることで反転させる。
 	if (moveVCount % 2 == 0) {
 		//moveVCountが偶数の場合、頂点は縦方向の辺上にあるのでx座標は右か左かだけ考えればよい。
-		pos.x *= getSign( sinf(radian) );
+		pos.x *= getSign( sinf(radian) ) * clockSign;
 		pos.y *= xORy * getSign(cosf(radian));
 
-		tex.x = getSign(sinf(radian)) * 0.5f + 0.5f;
+		tex.x = getSign(sinf(radian)) * 0.5f * clockSign + 0.5f;
 		tex.y = xORy* -getSign(cosf(radian)) * 0.5f + 0.5f;
 	} else {
 		//moveVCountが奇数の場合、頂点は横方向の辺上にあるのでy座標は上か下かだけ考えればよい。
-		pos.x *= xORy * getSign(sinf(radian));
+		pos.x *= xORy * getSign(sinf(radian)) * clockSign;
 		pos.y *= getSign( cosf(radian) );
 
-		tex.x = xORy * getSign(sinf(radian)) *0.5f + 0.5f;
+		tex.x = xORy * getSign(sinf(radian)) *0.5f * clockSign + 0.5f;
 		tex.y = -getSign(cosf(radian)) * 0.5f + 0.5f;
 	}
 
 	//動かす頂点には計算した頂点を、それ以外は元の頂点を入れる
 	SSimpleVertex movedVer[vNum];
-	for (int i = 0; i < vNum; i++) {
-		if (i < moveVCount) {
+	for (int roopi = 0; roopi < vNum; roopi++) {
+		int i = roopi;
+		if (clockwise && i < 6) {
+			i = 5 - i;
+		}
+
+		if (roopi < moveVCount) {
 			movedVer[i] = {pos, tex};
 		} else {
 			movedVer[i] = vertices[i];

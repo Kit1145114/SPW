@@ -11,7 +11,7 @@ Player::Player()
 	bar = NewGO<Sinka_Bar>(0);
 }
 
-Player::~Player()
+void Player::OnDestroy()
 {
 	DeleteGO(m_skinModelRender);
 	DeleteGO(draw_Pl);
@@ -72,7 +72,6 @@ void Player::Update()
 	//
 	//Playerwarp();
 	memory_position = m_position;
-	r_ring->SetPosition(m_position);
 	draw_S->SetKazu(StarCount);
 	draw_S->SetBulletKazu(m_Short);
 	bar->AddStarCount(StarCount);
@@ -639,7 +638,7 @@ void Player::SetPadNum(int num)
 	switch (PadNum)
 	{
 	case 0:
-		r_ring->SetPlayerRadar(L"modelData/Ring1P.cmo",PadNum);
+		r_ring->SetPlayerRadar(L"modelData/Ring1P.cmo",this);
 		draw_Pl->SetPlayerPicture(L"sprite/1P.dds");
 		draw_Pl->SetPosition(-450.0f, -330.0f);
 		//プレイヤーの☆の場所
@@ -656,7 +655,7 @@ void Player::SetPadNum(int num)
 		//bar->SetgeziPosition(0.0f, 0.0f);
 		break;
 	case 1:
-		r_ring->SetPlayerRadar(L"modelData/Ring2P.cmo", PadNum);
+		r_ring->SetPlayerRadar(L"modelData/Ring2P.cmo", this);
 		draw_Pl->SetPlayerPicture(L"sprite/2P.dds");
 		draw_Pl->SetPosition(-150.0f, -330.0f);
 		//プレイヤーの☆の場所
@@ -670,7 +669,7 @@ void Player::SetPadNum(int num)
 		draw_S->SetColor(0.0f, 0.0f, 1.0f, 1.0f);
 		break;
 	case 2:
-		r_ring->SetPlayerRadar(L"modelData/Ring3P.cmo", PadNum);
+		r_ring->SetPlayerRadar(L"modelData/Ring3P.cmo", this);
 		draw_Pl->SetPlayerPicture(L"sprite/3P.dds");
 		draw_Pl->SetPosition(150.0f, -330.0f);
 		//プレイヤーの☆の場所
@@ -684,7 +683,7 @@ void Player::SetPadNum(int num)
 		draw_S->SetColor(0.1f, 1.0f, 0.0f, 1.0f);
 		break;
 	case 3:
-		r_ring->SetPlayerRadar(L"modelData/Ring4P.cmo", PadNum);
+		r_ring->SetPlayerRadar(L"modelData/Ring4P.cmo", this);
 		draw_Pl->SetPlayerPicture(L"sprite/4P.dds");
 		draw_Pl->SetPosition(450.0f, -330.0f);
 		//プレイヤーの☆の場所
@@ -775,4 +774,27 @@ void Player::Playerwarp()
 		m_CharaCon.SetPosition(m_position);
 		m_skinModelRender->SetPosition(m_position);
 	}
+}
+
+float Player::getBulletPercentage() {
+	int max;
+	float addSpeed;
+	switch (Ver) {
+	case 0:
+		max = MaxSeiseiVer_1;
+		addSpeed = SeiseiVer_1;
+		break;
+	case 1:
+		max = MaxSeiseiVer_2;
+		addSpeed = SeiseiVer_2;
+		break;
+	case 2:
+		max = MaxSeiseiVer_3;
+		addSpeed = SeiseiVer_3;
+	}
+	if (m_Short == 0) {
+		return 0;
+	}
+	float parce = ((float)m_Short + (m_timer / addSpeed)) / max;
+	return parce;
 }

@@ -53,7 +53,7 @@ void Rocket::Update() {
 				if (result.hit != NonHit) {
 					p->explosion();
 					if (awaking) {
-						hp -= 2;
+						hp -= 4;
 					} else {
 						Explosion();
 						return;
@@ -75,7 +75,7 @@ void Rocket::Update() {
 							rocketArray[i]->Explosion();
 						}
 						if (awaking) {
-							hp -= 2;
+							hp -= 4;
 						} else {
 							Explosion();
 							return;
@@ -105,7 +105,7 @@ void Rocket::Update() {
 			HitResult result = collider.hitTest(meteo->GetPosition(), meteo->getRadius());
 			if (result.hit != NonHit) {
 				if (awaking) {
-					hp--;
+					hp -= 8;
 					meteo->Death();
 				} else {
 					Explosion();
@@ -155,10 +155,6 @@ void Rocket::Update() {
 		stick.Normalize();
 
 		ArrowUpdate(stick);
-
-		/*CVector3 normal = m_move;
-		normal.Normalize();
-		m_move += normal * (controllPower / 5) * delta;*/
 
 		m_move += stick * controllPower * delta;
 		if (m_move.LengthSq() > controllPower*controllPower) {
