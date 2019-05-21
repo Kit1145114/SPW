@@ -53,6 +53,7 @@ public:
 	void Sound(int SoundNum);
 	void StarPos();
 	void Playerwarp();
+	void Upper();
 	CVector3 GetPosition() {
 		return m_position;
 	}
@@ -184,18 +185,20 @@ private:
 	int MutekiTime = 0;
 	int Ver = 0;		//デバックで強制進化させる。
 	int StarCount = 0;
+	int Star30 = 30;
+	int Star50 = 50;
 	int PopStar = 0;
 	int PadNum = 0;
 	int PadMaxKazu = 0;
 	int PlHP = 100;
 	int MaxHP = 100;
 	int Damage = 20;
-	int SeiseiVer_1 = 25;
-	int SeiseiVer_2 = 12;
+	int SeiseiVer_1 = 10;
+	int SeiseiVer_2 = 8;
 	int SeiseiVer_3 = 6;
 	int MaxSeiseiVer_1 = 99;
 	int MaxSeiseiVer_2 = 70;
-	int MaxSeiseiVer_3 = 40;
+	int MaxSeiseiVer_3 = 30;
 	int LABulletNum = 5;
 	int syoki = 5;
 	int SyokiSpped = 10.5f;

@@ -11,7 +11,7 @@ class field;
 class Camera;
 class Player;
 class GamenTimer;
-//class Enemy;
+class Enemy;
 class Title_2;
 class ResultGamen;
 class Planet;
@@ -106,10 +106,10 @@ private:
 public:
 	Planet* memoryPP[Planetnumber_Num] = {};
 	Player* m_player[PlKazu] = {nullptr};
-	//Enemy* m_enemy = nullptr;
 	Star* m_star = nullptr;
 private:
 	static Game* m_instance;
+	Enemy* enemy = nullptr;
 	Camera* m_camera = nullptr;
 	field* m_field = nullptr;
 	GamenTimer* m_G_Timer = nullptr;

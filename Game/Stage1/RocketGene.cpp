@@ -18,8 +18,9 @@ void RocketGene::Update() {
 		//ランダムポップ。
 		CVector3 hako;
 		int tryCount = 5;//場所の提案に失敗しても指定回数分試行する
+	LOOP_CONTINUE:
 		while (tryCount > 0) {
-		LOOP_CONTINUE:
+		
 			hako.x = Random().GetRandDouble() - 0.5f;
 			hako.z = Random().GetRandDouble() - 0.5f;
 
