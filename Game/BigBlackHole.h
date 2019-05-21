@@ -8,7 +8,6 @@ public:
 	BigBlackHole();
 	~BigBlackHole();
 	bool Start();
-	//ŠÔ§ŒÀ‚È‚µ‚ÌŒÅ’è‚Ì‚a‚g(BBH);
 	static void Generate(CVector3 position, float magnification, float Search, float Limit);
 	void Gravity();
 	void Update();

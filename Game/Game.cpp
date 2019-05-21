@@ -5,7 +5,7 @@
 #include"field.h"
 #include"Player.h"
 #include"MeteoGene.h"
-//#include"Enemy.h"
+#include"Enemy.h"
 #include"ResultGamen.h";
 //#include"Sinka_Bar.h"
 #include "Stage1/SatelliteGene.h"
@@ -34,9 +34,9 @@ Game::~Game()
 	if (m_camera != nullptr) {
 		DeleteGO(m_camera);
 	}
-	//if (m_enemy != nullptr) {
-	//	DeleteGO(m_enemy);
-	//}
+	if (enemy != nullptr) {
+		DeleteGO(enemy);
+	}
 	if (m_star != nullptr) {
 		DeleteGO(m_star);
 	}
@@ -181,7 +181,7 @@ void Game::CreateStage3()
 	}
 	BBH = NewGO<BigBlackHole>(0, "bigblackhole");
 	CVector3 position = { 0.0f, 0.0f,  0.0f };
-	float BHsize = { 3000.0f };       //	基本惑星の半径。
+	float BHsize = { 3.0f };       //	基本惑星の半径。
 	float Search = { 1500.0f };       //	BHの重力範囲の調整。
 	float Limit  = { 50000.0f };       //   BHの重力（Ｇ）調整。
 	BigBlackHole::Generate(position, BHsize, Search, Limit);
@@ -256,7 +256,7 @@ bool Game::Start()
 	}
 	m_camera = NewGO<Camera>(0, "Camera");
 	m_G_Timer = NewGO<GamenTimer>(0, "GamenTimer");
-
+	//enemy = NewGO<Enemy>(0, "Enemy");
 	Fade::fadeOut();
 	return true;
 }
