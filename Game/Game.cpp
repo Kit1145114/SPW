@@ -51,7 +51,6 @@ Game::~Game()
 	DeleteGOs("PlayerBullet");//Bulletクラス
 	DeleteGOs("Star");//Starクラス
 	DeleteGOs("Meteo");
-	DeleteGO("そら");
 }
 //シンプル。
 void Game::CreateStage0() {
@@ -181,7 +180,7 @@ void Game::CreateStage3()
 	}
 	BBH = NewGO<BigBlackHole>(0, "bigblackhole");
 	CVector3 position = { 0.0f, 0.0f,  0.0f };
-	float BHsize = { 3000.0f };       //	基本惑星の半径。
+	float BHsize = { 3.0f };       //	基本惑星の半径。
 	float Search = { 1500.0f };       //	BHの重力範囲の調整。
 	float Limit  = { 50000.0f };       //   BHの重力（Ｇ）調整。
 	BigBlackHole::Generate(position, BHsize, Search, Limit);
@@ -226,16 +225,9 @@ void Game::CreateStage4()
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 }
-//ランダム。
-void Game::CreateStage5()
-{
-}
 
 bool Game::Start()
 {
-	auto sky = NewGO<prefab::CSky>(0, "そら");
-	sky->SetScale({ 50000.0f, 50000.0f, 50000.0f });
-	sky->SetEmissionColor({ 0.1484f, 0.1484f, 0.398f });
 	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f });
 	//ステージ振り分け。
 	switch (Stage) {

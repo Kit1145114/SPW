@@ -121,6 +121,20 @@ void Player::Move()
 			m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 			m_skinModelRender->SetPosition(m_position);
 		}
+		//これを変更したら、Assets/shader/model.fxのPSMainBGも変更する。
+		const float xLimit = 45302.23f;
+		const float zLimit = 25041.139f;
+		if (m_position.x > xLimit) {
+			m_position.x = xLimit;
+		} else if (m_position.x < -xLimit) {
+			m_position.x = -xLimit;
+		}
+		if (m_position.z > zLimit) {
+			m_position.z = zLimit;
+		} else if (m_position.z < -zLimit) {
+			m_position.z = -zLimit;
+		}
+		m_CharaCon.SetPosition(m_position);
 	}
 }
 //プレイヤーの球(第一形態）
@@ -814,6 +828,7 @@ float Player::getBulletPercentage() {
 	float parce = ((float)m_Short + (m_timer / addSpeed)) / max;
 	return parce;
 }
+
 //最終進化後、☆を一定個数取ると強化。
 void Player::Upper()
 {

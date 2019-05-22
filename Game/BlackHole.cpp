@@ -24,6 +24,8 @@ bool BlackHole::Start()
 	effect->Play(L"effect/BH.efk");
 	effect->SetScale(scale*radius);
 	effect->SetPosition(m_position);
+	//BHカウントしておく。
+	Game::GetInstance()->SetBHCount(1);
 	return true;
 }
 
@@ -76,20 +78,20 @@ void BlackHole::Move()
 			//対象との距離を測定。
 			CVector3 kyori = Game::GetInstance()->memoryPP[i]->GetPosition() - m_position;
 			//対象との距離がほぼ中心では吸収をやめる。
-			if (radius * Searchment / 10 < kyori.Length() && kyori.Length() < radius * Searchment) {
+			//if (radius * Searchment / 10 < kyori.Length() && kyori.Length() < radius * Searchment) {
 			//対象との距離が一定以下になったら。
 				if (kyori.Length() < radius * Searchment) {
 					//Ｇ中心に遠ければ弱く、近ければ強く。
 					float G = radius * Searchment - kyori.Length();
 					//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
-					Game::GetInstance()->memoryPP[i]->SetPosition(((kyori*G) / G_limitar)*-1);
+					Game::GetInstance()->memoryPP[i]->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
 					//対象との距離が中心に近くなったら。
 					if (kyori.Length() < radius * Searchment / 5) {
 						//破壊。
 						Game::GetInstance()->memoryPP[i]->explosion();
 					}
 				}
-			}
+			//}
 		}
 	}
 	//Starサーチ。
@@ -151,7 +153,7 @@ void BlackHole::Count()
 void BlackHole::Death()
 {
 	DeleteGO(this);
-	//effect = nullptr;
+	Game::GetInstance()->SetBHCount(-1);
 }
 
 void BlackHole::Update()

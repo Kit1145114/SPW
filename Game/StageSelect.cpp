@@ -15,17 +15,18 @@ bool StageSelect::Start() {
 	selectTexture.CreateFromDDSTextureFromFile(L"sprite/Selector.dds");
 	selectSprite.Init(selectTexture, 270, 200);
 
-	CVector3 pos = { -400, 100, 0 };
-	for (int i = 0; i < iconNum; i++) {
+	CVector3 pos = { -400, 30, 0 };
+	for (int i = 0; i < iconNum-1; i++) {
 		wchar_t path[20];
 		swprintf(path, L"sprite/Stage%d.dds", i + 1);
 		iconArray[i].Init(path, pos);
 		pos.x += 400;
 		if (pos.x > 500) {
 			pos.x = -400;
-			pos.y -= 300;
+			pos.y -= 250;
 		}
 	}
+	iconArray[iconNum-1].Init(L"sprite/RandomStage.dds", pos);
 	/*iconArray[0].setStageFunc([&]() {
 	});
 	iconArray[1].setStageFunc([&]() {
@@ -49,15 +50,17 @@ void StageSelect::Update() {
 		});
 	}
 	if (Pad(0).IsTrigger(enButtonA)) {
-		if (selectNumber <= 3) {
-			Fade::fadeIn([&]() {
-				Game* game = NewGO<Game>(0, "Game");
-				game->SetSanSenkazu(sansenKazu);
+		Fade::fadeIn([&]() {
+			Game* game = NewGO<Game>(0, "Game");
+			game->SetSanSenkazu(sansenKazu);
+			if (selectNumber < iconNum - 1) {
 				game->setStage(selectNumber);
-				DeleteGO(this);
-			});
-			Sound(1);
-		}
+			} else {
+				game->setStage(Random().GetRandInt() % iconNum - 1);
+			}
+			DeleteGO(this);
+		});
+		Sound(1);
 		return;
 	}
 	if (Pad(0).IsTrigger(enButtonRight)) {
