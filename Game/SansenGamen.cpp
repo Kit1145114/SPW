@@ -3,18 +3,32 @@
 #include "StageSelect.h"
 #include "Fade.h"
 #include "Title_2.h"
+#include "Utility/CVector2.h"
 
 SansenGamen::SansenGamen() {
 }
 
 
 SansenGamen::~SansenGamen() {
-	DeleteGO(m_spriteRender);
+	DeleteGO(sprite_back);
+	DeleteGO(sprite_player);
+	DeleteGO(sprite_num);
 }
 
 bool SansenGamen::Start() {
-	m_spriteRender = NewGO<prefab::CSpriteRender>(0);
-	m_spriteRender->Init(L"sprite/Sanka.dds", 1280.0f, 720.0f);
+	sprite_back = NewGO<prefab::CSpriteRender>(0);
+	sprite_back->Init(L"sprite/BackTile.dds", 1280.0f, 720.0f);
+
+	sprite_player = NewGO<MoveSprite>(0);
+	sprite_player->Init(L"sprite/Sansen_Player.dds", 1280.0f, 241.2f);
+	sprite_player->setNowPos({ 0.0f, 500.0f ,0.0f});
+	sprite_player->setTargetPos({ 0.0f, 200.0f ,0.0f });
+
+	sprite_num = NewGO<MoveSprite>(0);
+	sprite_num->Init(L"sprite/Sansen_Number.dds", 1280.0f, 110.4f);
+	sprite_num->setNowPos({ 0.0f, -500, 0.0f});
+	sprite_num->setTargetPos({ 0.0f, -280, 0.0f });
+
 	m_push = NewGO<prefab::CSoundSource>(0);
 	m_push->Init(L"sound/Kettei.wav");
 
@@ -25,6 +39,8 @@ bool SansenGamen::Start() {
 
 void SansenGamen::Update() {
 	if(Pad(0).IsTrigger(enButtonB)) {
+		sprite_player->setTargetPos({ 0.0f, 500.0f ,0.0f });
+		sprite_num->setTargetPos({ 0,-500,0 });
 		Fade::fadeIn([&]() {
 			NewGO<Title_2>(0, "Title_2");
 			DeleteGO(this);
@@ -58,6 +74,8 @@ void SansenGamen::Update() {
 		}
 	}
 	if (Pad(0).IsTrigger(enButtonA)) {
+		sprite_player->setTargetPos({ 0.0f, 500.0f ,0.0f });
+		sprite_num->setTargetPos({ 0,-500,0 });
 		int l_kazu = Kazu;
 		m_push = NewGO<prefab::CSoundSource>(0);
 		m_push->Init(L"sound/tugihe.wav");
@@ -78,9 +96,13 @@ void SansenGamen::PostRender(CRenderContext& rc) {
 		swprintf_s(num, L"%d", Kazu);
 		m_font.Begin(rc);
 
+		CVector2 pos;
+		pos.x = sprite_num->getNowPos().x;
+		pos.y = sprite_num->getNowPos().y;
+
 		m_font.Draw(
 			L"player",
-			{ -190.0f, -250.0f },
+			pos + CVector2(-190, 30),
 			{ 0.0f, 0.0f, 1.0f, 1.0f },
 			0.0f,
 			1.5f,
@@ -89,7 +111,7 @@ void SansenGamen::PostRender(CRenderContext& rc) {
 
 		m_font.Draw(
 			num,
-			{ 150.0f, -250.0f },
+			pos + CVector2(160, 30),
 			{ 0.0f, 0.0f, 1.0f, 1.0f },
 			0.0f,
 			1.5f

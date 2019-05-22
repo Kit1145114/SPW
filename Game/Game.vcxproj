@@ -1784,6 +1784,7 @@
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Utility\MoveSprite.cpp" />
     <ClCompile Include="Utility\CircleGaugeSp.cpp" />
     <ClCompile Include="Draw_Player.cpp" />
     <ClCompile Include="Draw_Skazu.cpp" />
@@ -1845,6 +1846,7 @@
     <ClInclude Include="BlackHole.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Utility\MoveSprite.h" />
     <ClInclude Include="Utility\CircleGaugeSp.h" />
     <ClInclude Include="Draw_Player.h" />
     <ClInclude Include="Draw_Skazu.h" />
@@ -2071,6 +2073,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <ImageContentTask Include="Assets\sprite\Sansen_Number.png" />
+    <ImageContentTask Include="Assets\sprite\Sansen_player.png" />
+    <ImageContentTask Include="Assets\sprite\BackTile.png" />
     <ImageContentTask Include="Assets\sprite\RandomStage.png" />
     <ImageContentTask Include="Assets\sprite\Setumei1.png" />
     <ImageContentTask Include="Assets\sprite\Setumei2.jpg" />
@@ -2103,7 +2108,6 @@
     <ImageContentTask Include="Assets\sprite\2P.png" />
     <ImageContentTask Include="Assets\sprite\3P.png" />
     <ImageContentTask Include="Assets\sprite\4P.png" />
-    <ImageContentTask Include="Assets\sprite\Sanka.png" />
     <ImageContentTask Include="Assets\sprite\Midori.jpg" />
     <ImageContentTask Include="Assets\sprite\Sinka_Bar.png" />
   </ItemGroup>

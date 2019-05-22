@@ -1,5 +1,6 @@
 #pragma once
 #include"Game.h"
+#include "Utility/MoveSprite.h"
 
 class SansenGamen : public IGameObject
 {
@@ -12,7 +13,9 @@ public:
 
 private:
 	CFont m_font;
-	prefab::CSpriteRender* m_spriteRender = nullptr;
+	prefab::CSpriteRender* sprite_back = nullptr;
+	MoveSprite* sprite_player = nullptr;
+	MoveSprite* sprite_num = nullptr;
 	prefab::CSoundSource* m_push = nullptr;
 	int Kazu = 1;
 	int MaxKazu = 4;
