@@ -760,6 +760,7 @@
       <Filter>Resource Files</Filter>
     </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\Setumei3.png" />
+    <ImageContentTask Include="Assets\sprite\RandomStage.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">

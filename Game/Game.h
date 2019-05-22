@@ -107,7 +107,6 @@ private:
 	void CreateStage2();
 	void CreateStage3();
 	void CreateStage4();
-	void CreateStage5();
 public:
 	Planet* memoryPP[Planetnumber_Num] = {};
 	Player* m_player[PlKazu] = {nullptr};
