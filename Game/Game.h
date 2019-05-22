@@ -87,7 +87,12 @@ public:
 	bool GetBHflag() {
 		return BHflag;
 	}
-
+	int GetBHCount() {
+		return BHCount;
+	}
+	void SetBHCount(int kazu) {
+		BHCount += kazu;
+	}
 	SatelliteGene* getSatelliteGene() {
 		return satelliteG;
 	}
@@ -129,6 +134,7 @@ private:
 	int timer = 0;
 	bool PlS_Init = false;
 	bool BHflag = false;     //ブラックホールのフラグ、trueだと発生しなくなる。
+	int BHCount = 0;		 //ブラックホールをカウントする。
    	//CVector3 BHpos1 = { 0.0f , 0.0f, 5000.0f };
 	//CVector3 BHsca1 = { 1000.0f,0.0f,5.0f };
 };

@@ -2077,6 +2077,7 @@
     <ImageContentTask Include="Assets\sprite\Sansen_player.png" />
     <ImageContentTask Include="Assets\sprite\BackTile.png" />
     <ImageContentTask Include="Assets\sprite\RandomStage.png" />
+    <ImageContentTask Include="Assets\sprite\Gate.png" />
     <ImageContentTask Include="Assets\sprite\Setumei1.png" />
     <ImageContentTask Include="Assets\sprite\Setumei2.jpg" />
     <ImageContentTask Include="Assets\sprite\Setumei3.png" />

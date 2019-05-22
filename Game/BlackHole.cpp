@@ -24,6 +24,8 @@ bool BlackHole::Start()
 	effect->Play(L"effect/BH.efk");
 	effect->SetScale(scale*radius);
 	effect->SetPosition(m_position);
+	//BHカウントしておく。
+	Game::GetInstance()->SetBHCount(1);
 	return true;
 }
 
@@ -84,7 +86,7 @@ void BlackHole::Move()
 					//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
 					Game::GetInstance()->memoryPP[i]->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
 					//対象との距離が中心に近くなったら。
-					if (kyori.Length() < radius * Searchment / 7) {
+					if (kyori.Length() < radius * Searchment / 5) {
 						//破壊。
 						Game::GetInstance()->memoryPP[i]->explosion();
 					}
@@ -151,7 +153,7 @@ void BlackHole::Count()
 void BlackHole::Death()
 {
 	DeleteGO(this);
-	//effect = nullptr;
+	Game::GetInstance()->SetBHCount(-1);
 }
 
 void BlackHole::Update()
