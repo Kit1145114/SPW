@@ -28,8 +28,7 @@ public:
 		p_position = plpos;
 	}
 	void SetMoveSpeed(CVector3 Speed) {
-		p_moveSpeed += Speed;
-		p_skinModelRender->SetPosition(p_position + p_moveSpeed);
+		p_position+= Speed;
 	}
 	float GetRadius() {
 		return radius;
@@ -37,7 +36,6 @@ public:
 private:
 	CCharacterController p_CharaCon;
 	CVector3 p_position = CVector3::Zero;
-	CVector3 p_moveSpeed = CVector3::Zero;
 	CVector3 scale = { 1.0f,1.0f,1.0f };
 	CQuaternion p_rotation = CQuaternion::Identity;
 	CVector3 randomspeed = CVector3::Zero;
@@ -54,5 +52,6 @@ private:
 	bool repopflag = false;    //ポップ時いきなり他と被るのを防ぐのに使うフラグ。
 	int myPlanetnumber =0;     //自分のPlametナンバー保存用。
 	int time = 0;              //plametが誕生してからの時間。
+	int MaxBHCount = 12;
 };
 

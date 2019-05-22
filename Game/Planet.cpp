@@ -82,17 +82,18 @@ bool Planet::Generate(int Reload, int Planetnum) {
 					}
 			}
 			//ポップ時に惑星とぶつからないように。
-			//for (int j = 0; j < Planetnumber_Num; j++) {
-			//	if (j != myplanetnum) {       //自分でなければ。
-			//		if (Reload == Planetnumber_Num && j <= myplanetnum //初期ポップの時まだ生成されていない惑星と比較しないように。
-			//			|| Reload != Planetnumber_Num) {               //リポップはＯＫ。
-			//			CVector3 kyori = Game::GetInstance()->memoryPP[j]->p_position - hako;
-			//			if (kyori.Length() < radius + 5000.0f) {
-			//				isCreatePlanet = false;
-			//			}
-			//		}
-			//	}
-			//}
+			for (int j = 0; j < Planetnumber_Num; j++) {
+				if (j != myplanetnum) {       //自分でなければ。
+					Planet* planet = Game::GetInstance()->memoryPP[j];
+					if (planet !=nullptr//初期ポップの時まだ生成されていない惑星と比較しないように。
+						) {               //リポップはＯＫ。
+						CVector3 kyori = planet -> p_position - hako;
+						if (kyori.Length() < radius + 500.0f) {
+							isCreatePlanet = false;
+						}
+					}
+				}
+			}
 
 			if (isCreatePlanet) {
 			//プラネットを生成できるなら作成する。
@@ -260,7 +261,8 @@ void Planet::Death() {
 			//距離が半径以下なら。
 			if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
 				explosion();
-				if (Game::GetInstance()->GetBHflag() == false) {
+				if (Game::GetInstance()->GetBHflag() == false
+					&& Game::GetInstance()->GetBHCount() < MaxBHCount) {
 					BlackHole::Generate(p_position, radius);
 				}
 			}
