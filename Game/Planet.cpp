@@ -12,8 +12,10 @@ public:
 	}
 	void Update()
 	{
-		if (Planet::Generate(1, numpla) == true) {
-			DeleteGO(this);
+		if (Game::GetInstance()!=false) {
+			if (Planet::Generate(1, numpla) == true) {
+				DeleteGO(this);
+			}
 		}
 	}
 };
@@ -69,7 +71,7 @@ bool Planet::Generate(int Reload, int Planetnum) {
 			//惑星の大きさランダム。
 			float v = 30.0f;//最低限の大きさを予め入れておく。
 			v += 50.0f * Random().GetRandDouble();
-			float radius = { 10.0f };//	基本惑星の半径
+			float radius = { 30.0f };//	基本惑星の半径
 			radius *= v;
 			bool isCreatePlanet = true;//フラグ
 			////ポップ時にプレイヤーとぶつからないように。

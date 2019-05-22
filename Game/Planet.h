@@ -27,7 +27,10 @@ public:
 	{
 		p_position = plpos;
 	}
-
+	void SetMoveSpeed(CVector3 Speed) {
+		p_moveSpeed += Speed;
+		p_skinModelRender->SetPosition(p_position + p_moveSpeed);
+	}
 	float GetRadius() {
 		return radius;
 	}
