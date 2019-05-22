@@ -52,6 +52,5 @@ private:
 	bool repopflag = false;    //ポップ時いきなり他と被るのを防ぐのに使うフラグ。
 	int myPlanetnumber =0;     //自分のPlametナンバー保存用。
 	int time = 0;              //plametが誕生してからの時間。
-	int MaxBHCount = 12;
 };
 

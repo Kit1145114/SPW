@@ -169,6 +169,7 @@ void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender,f
 	CVector3 hoge = { 1.0f,1.0f,1.0f };
 	hoge.x *= scale;
 	hoge.z *= scale;
+	hoge.y *= scale;
 	radius *= scale;
 	
 	p_skinModelRender = skinModelRender;
@@ -261,6 +262,7 @@ void Planet::Death() {
 			//‹——£‚ª”¼ŒaˆÈ‰º‚È‚çB
 			if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
 				explosion();
+				int MaxBHCount = 8;
 				if (Game::GetInstance()->GetBHflag() == false
 					&& Game::GetInstance()->GetBHCount() < MaxBHCount) {
 					BlackHole::Generate(p_position, radius);
