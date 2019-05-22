@@ -51,7 +51,6 @@ Game::~Game()
 	DeleteGOs("PlayerBullet");//Bulletクラス
 	DeleteGOs("Star");//Starクラス
 	DeleteGOs("Meteo");
-	DeleteGO("そら");
 }
 //シンプル。
 void Game::CreateStage0() {
@@ -233,9 +232,6 @@ void Game::CreateStage5()
 
 bool Game::Start()
 {
-	auto sky = NewGO<prefab::CSky>(0, "そら");
-	sky->SetScale({ 50000.0f, 50000.0f, 50000.0f });
-	sky->SetEmissionColor({ 0.1484f, 0.1484f, 0.398f });
 	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f });
 	//ステージ振り分け。
 	switch (Stage) {
