@@ -531,6 +531,10 @@ void Player::B_Hantei()
 				{
 					LABulletNum = 3;
 				}
+				//else if (b->GetPB() == PadNum && DeathCount == false)
+				//{
+				//	LABulletNum = 10;
+				//}
 			}
 				else if (b->GetPB() == PadNum || DeathCount == true)
 				{
@@ -583,7 +587,15 @@ void Player::HP()
 //プレイヤーの持つ☆を落とす。
 void Player::StarPop()
 {
-	if (LABulletNum == 0)//1P
+	if (LABulletNum == PadNum)
+	{
+	PopStar = StarCount / 2;
+	StarCount -= PopStar;
+	Alive = true;
+	Sound(3);
+	LABulletNum = syoki;
+	}
+	else if (LABulletNum == 0)//1P
 	{
 		PopStar = StarCount / 2;
 		StarCount -= PopStar;
@@ -801,7 +813,6 @@ float Player::getBulletPercentage() {
 	}
 	float parce = ((float)m_Short + (m_timer / addSpeed)) / max;
 	return parce;
-}
 }
 //最終進化後、☆を一定個数取ると強化。
 void Player::Upper()
