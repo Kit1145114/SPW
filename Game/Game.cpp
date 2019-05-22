@@ -225,10 +225,6 @@ void Game::CreateStage4()
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 }
-//ランダム。
-void Game::CreateStage5()
-{
-}
 
 bool Game::Start()
 {

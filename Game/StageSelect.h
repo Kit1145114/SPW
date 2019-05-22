@@ -55,7 +55,7 @@ private:
 	int sansenKazu = 0;
 
 	int selectNumber = 0;
-	static constexpr int iconNum = 5;
+	static constexpr int iconNum = 6;
 	StageIcon iconArray[iconNum];
 
 	CShaderResourceView backTexture;
