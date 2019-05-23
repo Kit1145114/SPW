@@ -11,6 +11,10 @@ public:
 	void Update();
 	void PostRender(CRenderContext& rc) override;
 
+	void setBackGround(prefab::CSpriteRender* back) {
+		sprite_back = back;
+	}
+
 private:
 	CFont m_font;
 	prefab::CSpriteRender* sprite_back = nullptr;
@@ -22,5 +26,7 @@ private:
 	int MinKazu = 1;
 	bool GameStart = false;
 	bool Death = false;
+
+	float waitStageSelect = -1.0f;
 };
 

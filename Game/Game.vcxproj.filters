@@ -102,6 +102,7 @@
     <ClCompile Include="Utility\CircleGaugeSp.cpp" />
     <ClCompile Include="Utility\BoxCollider2D.cpp" />
     <ClCompile Include="Utility\MoveSprite.cpp" />
+    <ClCompile Include="Utility\MovePositon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -574,6 +575,7 @@
     <ClInclude Include="Utility\CVector2.h" />
     <ClInclude Include="Utility\BoxCollider2D.h" />
     <ClInclude Include="Utility\MoveSprite.h" />
+    <ClInclude Include="Utility\MovePosition.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
