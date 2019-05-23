@@ -55,7 +55,7 @@ void TrepotHole::Update()
 					tere2->m_trepot2->Init(L"modelData/terepot_false.cmo");
 					//ƒ[ƒv‚·‚é
 					Game::GetInstance()->m_player[j]->SetPosition(tere2->GetPosition2());
-					Game::GetInstance()->m_player[j]->SetMoveSpeed(tere2->GetPosition2());
+					Game::GetInstance()->m_player[j]->SetCharaCon(tere2->GetPosition2());
 					m_trepot_flag = false;
 					return true;
 				});

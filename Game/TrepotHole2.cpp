@@ -53,7 +53,7 @@ void TrepotHole2::Update()
 					QueryGOs<TrepotHole>("テレポート", [&](TrepotHole* tere)->bool {
 						tere->m_trepot->Init(L"modelData/terepot_false.cmo");
 						Game::GetInstance()->m_player[j]->SetPosition(tere->GetPosition());
-						Game::GetInstance()->m_player[j]->SetMoveSpeed(tere->GetPosition()); //キャラコンにも教える
+						Game::GetInstance()->m_player[j]->SetCharaCon(tere->GetPosition()); //キャラコンにも教える
 						tere->SetTrepotFlag(false);
 						return true;
 					});

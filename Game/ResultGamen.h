@@ -44,6 +44,7 @@ private:
 	CVector3 N4position = { 210.0f,-258.0f,0.0f };
 	//ÉQÅ[ÉgÅB
 	int junban = 0;
+	int Limit = 100;
 	float change = 1500.0f;
 	prefab::CSpriteRender* G_spriteRender[4] = { nullptr };
 	float GateSizeX = 300.0f;
