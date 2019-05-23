@@ -23,7 +23,6 @@
     <ImageContentTask Include="Assets\sprite\Stage1.png" />
     <ImageContentTask Include="Assets\sprite\StageSelect.png" />
     <ImageContentTask Include="Assets\sprite\SankaMulti.png" />
-    <ImageContentTask Include="Assets\sprite\Title_A.bmp" />
     <ImageContentTask Include="Assets\sprite\1Player.png" />
     <ImageContentTask Include="Assets\sprite\2Player.png" />
     <ImageContentTask Include="Assets\sprite\3Player.png" />
@@ -34,9 +33,9 @@
     <ImageContentTask Include="Assets\sprite\2P.png" />
     <ImageContentTask Include="Assets\sprite\3P.png" />
     <ImageContentTask Include="Assets\sprite\4P.png" />
-    <ImageContentTask Include="Assets\sprite\Sanka.png" />
     <ImageContentTask Include="Assets\sprite\Midori.jpg" />
     <ImageContentTask Include="Assets\sprite\Sinka_Bar.png" />
+    <ImageContentTask Include="Assets\sprite\Sansen_arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BigBlackHole.cpp" />
@@ -325,11 +324,7 @@
     <ClInclude Include="Utility\MovePosition.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Game.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
@@ -438,7 +433,8 @@
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\sprite\Sansen_arrow.png" />
+    <Image Include="Assets\sprite\Title_A.png" />
+    <Image Include="Assets\sprite\Title_Line.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\BH.efk" />

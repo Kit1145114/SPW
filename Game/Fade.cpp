@@ -32,7 +32,7 @@ void Fade::Update() {
 			m_state = enIdle;
 		}
 	}
-	sprite.SetMulColor({ 1,1,1,alpha });
+	sprite.SetMulColor({ 0,0,0,alpha });
 }
 
 void Fade::PostRender(CRenderContext & rc) {
