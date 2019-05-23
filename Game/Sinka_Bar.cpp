@@ -47,10 +47,10 @@ bool Sinka_Bar::Start()
 
 void Sinka_Bar::Update()
 {
-	gezi = StarCount * gezi;
+	/*gezi = StarCount * gezi;
 	sinka_bar->Init(L"sprite/midori.dds", gezi, 25.0f);
 	sinka_bar->SetPosition(bar_position);
-	sinka_gezi->SetPosition(gezi_position);
+	sinka_gezi->SetPosition(gezi_position);*/
 }
 //void Sinka_Bar::PostRender(CRenderContext & renderContext)
 //{

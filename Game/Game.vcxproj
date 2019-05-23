@@ -1784,6 +1784,7 @@
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Utility\MovePositon.cpp" />
     <ClCompile Include="Utility\MoveSprite.cpp" />
     <ClCompile Include="Utility\CircleGaugeSp.cpp" />
     <ClCompile Include="Draw_Player.cpp" />
@@ -1846,6 +1847,7 @@
     <ClInclude Include="BlackHole.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Utility\MovePosition.h" />
     <ClInclude Include="Utility\MoveSprite.h" />
     <ClInclude Include="Utility\CircleGaugeSp.h" />
     <ClInclude Include="Draw_Player.h" />
@@ -2073,6 +2075,10 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <ImageContentTask Include="Assets\sprite\Reslut2.png" />
+    <ImageContentTask Include="Assets\sprite\Reslut3.png" />
+    <ImageContentTask Include="Assets\sprite\title1.png" />
+    <ImageContentTask Include="Assets\sprite\Reslut1.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_Number.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_player.png" />
     <ImageContentTask Include="Assets\sprite\BackTile.png" />

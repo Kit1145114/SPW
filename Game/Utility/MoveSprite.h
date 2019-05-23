@@ -1,8 +1,10 @@
 #pragma once
+#include "MovePosition.h"
+
 class MoveSprite : public IGameObject{
 public:
-	MoveSprite();
-	~MoveSprite();
+	MoveSprite() = default;
+	~MoveSprite() = default;
 
 	void Init(const wchar_t* texFilePath, float w, float h) {
 		tex.CreateFromDDSTextureFromFile(texFilePath);
@@ -10,22 +12,27 @@ public:
 	}
 
 	void setNowPos(const CVector3& pos) {
-		nowPos = pos;
-		state = speedSave;
+		movePos.setNowPos(pos);
 	}
 
 	CVector3 getNowPos() {
-		return nowPos;
+		return movePos.getNowPos();
 	}
 
 	void setTargetPos(const CVector3& pos) {
-		targetPos = pos;
-		state = speedSave;
+		movePos.setTargetPos(pos);
+	}
+
+	CVector3 getTargetPos() {
+		return movePos.getTargetPos();
 	}
 
 	void setSpeed(float go, float back) {
-		goSpeed = go;
-		backSpeed = back;
+		movePos.setSpeed(go, back);
+	}
+
+	void setWaitTime(float sec) {
+		movePos.setWaitTime(sec);
 	}
 
 	void Update() override;
@@ -33,24 +40,7 @@ public:
 	void PostRender(CRenderContext& rc) override;
 
 private:
-	enum State{
-		speedSave,
-		goTarget,
-		spring,
-		moveEnd
-	};
-
-	State state = speedSave;
-
-	float goSpeed = 4.0f;
-	float backSpeed = 8.0f;
-
-	CVector3 springPower;
-	CVector3 speed;
-
-	CVector3 nowPos;
-	CVector3 targetPos;
-
+	MovePosition movePos;
 	CShaderResourceView tex;
 	CSprite sprite;
 };

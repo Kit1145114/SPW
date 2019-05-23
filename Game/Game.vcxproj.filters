@@ -102,6 +102,7 @@
     <ClCompile Include="Utility\CircleGaugeSp.cpp" />
     <ClCompile Include="Utility\BoxCollider2D.cpp" />
     <ClCompile Include="Utility\MoveSprite.cpp" />
+    <ClCompile Include="Utility\MovePositon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -574,6 +575,7 @@
     <ClInclude Include="Utility\CVector2.h" />
     <ClInclude Include="Utility\BoxCollider2D.h" />
     <ClInclude Include="Utility\MoveSprite.h" />
+    <ClInclude Include="Utility\MovePosition.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -763,14 +765,16 @@
     <ImageContentTask Include="Assets\sprite\BackTile.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_Number.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_player.png" />
+    <ImageContentTask Include="Assets\sprite\Gate.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\sprite\Gate.png">
-      <Filter>Assets\sprite</Filter>
-    </Image>
+    <Image Include="Assets\sprite\Reslut1.png" />
+    <Image Include="Assets\sprite\title1.png" />
+    <Image Include="Assets\sprite\Reslut3.png" />
+    <Image Include="Assets\sprite\Reslut2.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\explosion1.efk" />

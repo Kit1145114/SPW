@@ -118,6 +118,7 @@ private:
 	field* m_field = nullptr;
 	GamenTimer* m_G_Timer = nullptr;
 	SatelliteGene* satelliteG = nullptr;
+	ResultGamen* result = nullptr;
 	BigBlackHole* BBH = nullptr;
 	MeteoGene* meteogene = nullptr;
 	RocketGene* rocketG = nullptr;
