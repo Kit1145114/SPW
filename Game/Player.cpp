@@ -8,7 +8,7 @@ Player::Player()
 	draw_Pl = NewGO<Draw_Player>(0);
 	draw_S = NewGO<Draw_Skazu>(0);
 	r_ring = NewGO<RadarRing>(0);
-	bar = NewGO<Sinka_Bar>(0);
+	//bar = NewGO<Sinka_Bar>(0);
 }
 
 void Player::OnDestroy()
@@ -74,7 +74,7 @@ void Player::Update()
 	memory_position = m_position;
 	draw_S->SetKazu(StarCount);
 	draw_S->SetBulletKazu(m_Short);
-	bar->AddStarCount(StarCount);
+	//bar->AddStarCount(StarCount);
 }
 //プレイヤーの操作
 void Player::Move()
@@ -121,6 +121,20 @@ void Player::Move()
 			m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
 			m_skinModelRender->SetPosition(m_position);
 		}
+		//これを変更したら、Assets/shader/model.fxのPSMainBGも変更する。
+		const float xLimit = 45302.23f;
+		const float zLimit = 25041.139f;
+		if (m_position.x > xLimit) {
+			m_position.x = xLimit;
+		} else if (m_position.x < -xLimit) {
+			m_position.x = -xLimit;
+		}
+		if (m_position.z > zLimit) {
+			m_position.z = zLimit;
+		} else if (m_position.z < -zLimit) {
+			m_position.z = -zLimit;
+		}
+		m_CharaCon.SetPosition(m_position);
 	}
 }
 //プレイヤーの球(第一形態）
@@ -531,6 +545,10 @@ void Player::B_Hantei()
 				{
 					LABulletNum = 3;
 				}
+				//else if (b->GetPB() == PadNum && DeathCount == false)
+				//{
+				//	LABulletNum = 10;
+				//}
 			}
 				else if (b->GetPB() == PadNum || DeathCount == true)
 				{
@@ -583,7 +601,15 @@ void Player::HP()
 //プレイヤーの持つ☆を落とす。
 void Player::StarPop()
 {
-	if (LABulletNum == 0)//1P
+	if (LABulletNum == PadNum)
+	{
+	PopStar = StarCount / 2;
+	StarCount -= PopStar;
+	Alive = true;
+	Sound(3);
+	LABulletNum = syoki;
+	}
+	else if (LABulletNum == 0)//1P
 	{
 		PopStar = StarCount / 2;
 		StarCount -= PopStar;

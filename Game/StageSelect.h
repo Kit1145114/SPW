@@ -1,38 +1,38 @@
 #pragma once
+#include "Utility\MoveSprite.h"
 
 class StageIcon {
 public:
 	StageIcon() = default;
 
-	void Init(const wchar_t* image, CVector3 position) {
-		texture.CreateFromDDSTextureFromFile(image);
-		sprite.Init(texture, 250, 150);
-		m_pos = position;
-		sprite.Update(m_pos, CQuaternion::Identity, CVector3::One);
-		m_pos.y += 15;//セレクターを合わせるための調整
-	};
+	void Init(const wchar_t* image, CVector3 position, float wait);
 
 	void draw(CRenderContext& rc) {
 		sprite.Draw(rc, MainCamera2D().GetViewMatrix(), MainCamera2D().GetProjectionMatrix());
 	}
 
-	CVector3 getPos() {
-		return m_pos;
+	CVector3 getTargetPos() {
+		return movePos.getTargetPos() + CVector3(0, 15, 0);//セレクターを合わせるための調整
 	}
 
-	/*void goStage() {
-		newStageFunc();
+	CVector3 getNowPos() {
+		return movePos.getNowPos() + CVector3(0, 15, 0);//セレクターを合わせるための調整
 	}
 
-	void setStageFunc(std::function<void()> func) {
-		newStageFunc = func;
-	}*/
+	void finishAnim(float wait) {
+		movePos.setWaitTime(wait);
+		movePos.setTargetPos(movePos.getNowPos() + CVector3(0, -500, 0));
+	}
+
+	void Update() {
+		movePos.Update();
+		sprite.Update(movePos.getNowPos(), CQuaternion::Identity, CVector3::One);
+	}
 
 private:
-	/*std::function<void()> newStageFunc;*/
+	MovePosition movePos;
 	CShaderResourceView texture;
 	CSprite sprite;
-	CVector3 m_pos;
 	int sansenKazu;
 };
 
@@ -41,6 +41,10 @@ class StageSelect : public IGameObject{
 public:
 	StageSelect() = default;
 	~StageSelect();
+
+	void setBackGround(prefab::CSpriteRender* back) {
+		backSprite = back;
+	}
 
 	void setSansenKazu(int kazu) {
 		sansenKazu = kazu;
@@ -52,18 +56,22 @@ public:
 	void Sound(int SoundNum);
 
 private:
+	void finishAnim();
+
 	int sansenKazu = 0;
 
 	int selectNumber = 0;
-	static constexpr int iconNum = 5;
+	static constexpr int iconNum = 6;
 	StageIcon iconArray[iconNum];
 
-	CShaderResourceView backTexture;
-	CSprite backSprite;
+	prefab::CSpriteRender* backSprite = nullptr;
 
-	CShaderResourceView selectTexture;
-	CSprite selectSprite;
+	MoveSprite* titleSprite = nullptr;
+
+	MoveSprite* selectSprite = nullptr;
 
 	prefab::CSoundSource* m_push = nullptr;//BGM用のサウンドソース。
+
+	float waitSansen = -1.0f;
 };
 

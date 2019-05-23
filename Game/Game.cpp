@@ -56,6 +56,7 @@ Game::~Game()
 	DeleteGO("そら");
 	DeleteGOs("テレポート");
 	DeleteGOs("テレポート2");
+	DeleteGOs("BBH");//Bigblackholeクラス
 }
 //シンプル。
 void Game::CreateStage0() {
@@ -195,11 +196,9 @@ void Game::CreateStage3()
 		m_player[0]->SetPositionZ(P_pos * 5);
 	}
 	BBH = NewGO<BigBlackHole>(0, "bigblackhole");
-	CVector3 position = { 0.0f, 0.0f,  0.0f };
-	float BHsize = { 8.0f };       //	基本惑星の半径。
-	float Search = { 1500.0f };       //	BHの重力範囲の調整。
-	float Limit  = { 500000.0f };       //   BHの重力（Ｇ）調整。
-	BigBlackHole::Generate(position, BHsize, Search, Limit);
+	
+	BigBlackHole::Generate();
+	BHflag = true;
 	m_field = NewGO<field>(0);
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
@@ -241,16 +240,9 @@ void Game::CreateStage4()
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 }
-//ランダム。
-void Game::CreateStage5()
-{
-}
 
 bool Game::Start()
 {
-	auto sky = NewGO<prefab::CSky>(0, "そら");
-	sky->SetScale({ 50000.0f, 50000.0f, 50000.0f });
-	sky->SetEmissionColor({ 0.1484f, 0.1484f, 0.398f });
 	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f });
 	//ステージ振り分け。
 	switch (Stage) {
@@ -294,7 +286,9 @@ void Game::Update()
 	{
 		Fade::fadeIn([&]() {
 			GameMode = 0;
-			NewGO<ResultGamen>(0, "ResultGamen")->SetSansenKazu(SansenKazu);
+			result = NewGO<ResultGamen>(0, "ResultGamen");
+			result->SetSansenKazu(SansenKazu);
+			result->SetStage(Stage);
 			DeleteGO(this);
 		});
 	}

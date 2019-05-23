@@ -26,24 +26,30 @@ bool BigBlackHole::Start()
 	return true;
 }
 
-void BigBlackHole::Generate(CVector3 position, float magnification, float Search, float Limit)
+void BigBlackHole::Generate()
 {
 	BigBlackHole* bh = NewGO<BigBlackHole>(0, "BigBlackHole");
-	//保存。
-	bh->position = position;
-	bh->radius *= magnification;
-	bh->Searchment = Search;//	BHの重力範囲の調整。
-	bh->G_limitar = Limit;//   BHの重力（Ｇ）調整。
 }
 
 void BigBlackHole::Gravity()
 {
+	
 	//Playerサーチ。
 	for (int i = 0; i < Game::GetInstance()->GetSansenKazu(); i++) {
 		//プレイヤーが無敵なら吸収をやめる。
 		if (Game::GetInstance()->m_player[i]->GetMuteki() == false) {
 			//対象との距離を測定。
 			CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - position;
+			//BBH特別Ｇ 5倍の距離をサーチする。
+			if (kyori.Length() > radius * Searchment*0.95) {
+				if (kyori.Length() <= radius * Searchment*0.95 * BBHSearchment) {
+					//Ｇ中心に遠ければ弱く、近ければ強く。
+					float BigG = radius * Searchment * BBHSearchment - kyori.Length();
+					//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
+					BBHG_limitar = { 600.0f };//   BBHの重力（Ｇ）調整。
+					Game::GetInstance()->m_player[i]->SetMoveSpeed(((kyori*BigG) / G_limitar / BBHG_limitar)*-1);
+				}
+			}
 			//対象との距離がほぼ中心では吸収をやめる。
 			if (radius * Searchment / 10 < kyori.Length() && kyori.Length() < radius * Searchment) {
 				//Ｇ中心に遠ければ弱く、近ければ強く。
@@ -53,10 +59,11 @@ void BigBlackHole::Gravity()
 				//対象との距離が中心に近くなったら。
 				if (kyori.Length() < radius * Searchment / 5) {
 					//破壊。
-					Game::GetInstance()->m_player[i]->Death();
+					Game::GetInstance()->m_player[i]->Death(); 
 					Game::GetInstance()->m_player[i]->SetLABulletNum(-1);
 				}
 			}
+			
 		}
 	}
 	//Plametサーチ。
@@ -65,21 +72,31 @@ void BigBlackHole::Gravity()
 		if (Game::GetInstance()->memoryPP[i] != nullptr) {
 			//対象との距離を測定。
 			CVector3 kyori = Game::GetInstance()->memoryPP[i]->GetPosition() - position;
-			//対象との距離がほぼ中心では吸収をやめる。
-			if (radius * Searchment / 10 < kyori.Length() && kyori.Length() < radius * Searchment) {
-				//対象との距離が一定以下になったら。
-				if (kyori.Length() < radius * Searchment) {
+			//BBH特別Ｇ 5倍の距離をサーチする。
+			if (kyori.Length() > radius * Searchment) {
+				if (kyori.Length() <= radius * Searchment * BBHSearchment) {
 					//Ｇ中心に遠ければ弱く、近ければ強く。
-					float G = radius * Searchment - kyori.Length();
+					float BigG = radius * Searchment * BBHSearchment - kyori.Length();
 					//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
-					Game::GetInstance()->memoryPP[i]->SetPosition(((kyori*G) / G_limitar*10)*-1);
-					//対象との距離が中心に近くなったら。
-					if (kyori.Length() < radius * Searchment / 10) {
-						//破壊。
-						Game::GetInstance()->memoryPP[i]->explosion();
-					}
+					BBHG_limitar = { 550.0f };//   BBHの重力（Ｇ）調整。
+					Game::GetInstance()->memoryPP[i]->SetMoveSpeed(((kyori*BigG) / G_limitar / BBHG_limitar)*-1);
 				}
 			}
+			//対象との距離がほぼ中心では吸収をやめる。
+			//if (radius * Searchment / 10 < kyori.Length() && kyori.Length() < radius * Searchment) {
+			//対象との距離が一定以下になったら。
+			if (kyori.Length() < radius * Searchment) {
+				//Ｇ中心に遠ければ弱く、近ければ強く。
+				float G = radius * Searchment - kyori.Length();
+				//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
+				Game::GetInstance()->memoryPP[i]->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
+				//対象との距離が中心に近くなったら。
+				if (kyori.Length() < radius * Searchment / 5) {
+					//破壊。
+					Game::GetInstance()->memoryPP[i]->explosion();
+				}
+			}
+			//}
 		}
 	}
 	//Starサーチ。
@@ -95,6 +112,16 @@ void BigBlackHole::Gravity()
 	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b) ->bool {
 		//対象との距離を測定。
 		CVector3 kyori = b->GetPosition() - position;
+		//BBH特別Ｇ 5倍の距離をサーチする。
+		if (kyori.Length() > radius * Searchment) {
+			if (kyori.Length() <= radius * Searchment * BBHSearchment) {
+				//Ｇ中心に遠ければ弱く、近ければ強く。
+				float BigG = radius * Searchment * BBHSearchment - kyori.Length();
+				//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
+				BBHG_limitar = { 6000.0f };//   BBHの重力（Ｇ）調整。
+				b->SetMoveSpeed(((kyori*BigG) / G_limitar / BBHG_limitar)*-1);
+			}
+		}
 		//対象との距離が一定以下になったら。
 		if (kyori.Length() < radius * Searchment) {
 			//Ｇ中心に遠ければ弱く、近ければ強く。

@@ -81,6 +81,8 @@
     <ClCompile Include="Title_2.cpp" />
     <ClCompile Include="TrepotHole.cpp" />
     <ClCompile Include="TrepotHole2.cpp" />
+    <ClCompile Include="Utility\MoveSprite.cpp" />
+    <ClCompile Include="Utility\MovePositon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\Back.FBX" />
@@ -305,6 +307,27 @@
     <ClInclude Include="Title_2.h" />
     <ClInclude Include="TrepotHole.h" />
     <ClInclude Include="TrepotHole2.h" />
+    <ClInclude Include="Fade.h" />
+    <ClInclude Include="Meteo.h" />
+    <ClInclude Include="Stage1\Satellite.h" />
+    <ClInclude Include="Stage1\SatelliteGene.h" />
+    <ClInclude Include="BigBlackHole.h" />
+    <ClInclude Include="MeteoGene.h" />
+    <ClInclude Include="Sinka_Bar.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage2\Rocket.h" />
+    <ClInclude Include="Stage2\RocketGene.h" />
+    <ClInclude Include="Utility\CircleGaugeSp.h" />
+    <ClInclude Include="Utility\CVector2.h" />
+    <ClInclude Include="Utility\BoxCollider2D.h" />
+    <ClInclude Include="Utility\MoveSprite.h" />
+    <ClInclude Include="Utility\MovePosition.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc" />
@@ -321,9 +344,100 @@
     <Media Include="Assets\sound\power-up1.wav" />
     <Media Include="Assets\sound\shot1.wav" />
     <Media Include="Assets\sound\tugihe.wav" />
+    <ImageContentTask Include="Assets\sprite\dummy.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Title1.jpg">
+      <Filter>Resource Files</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Midori.jpg">
+      <Filter>Resource Files</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Gekitui.png" />
+    <ImageContentTask Include="Assets\sprite\Reslut.png" />
+    <ImageContentTask Include="Assets\sprite\Title_A.bmp">
+      <Filter>Resource Files</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\StageSelect.png" />
+    <ImageContentTask Include="Assets\sprite\bullet.jpg">
+      <Filter>Resource Files</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\1P.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\1Player.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\2P.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\2Player.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\3P.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\3Player.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\4P.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\4Player.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\SankaMulti.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Selector.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Star.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Sinka_Bar.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Stage1.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Stage2.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Stage4.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Stage5.png">
+      <Filter>Assets\sprite</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Arrow.png" />
+    <ImageContentTask Include="Assets\sprite\tama_bule.png" />
+    <ImageContentTask Include="Assets\sprite\tama_green.png" />
+    <ImageContentTask Include="Assets\sprite\tama_red.png" />
+    <ImageContentTask Include="Assets\sprite\tama_yellow.png" />
+    <ImageContentTask Include="Assets\sprite\RocketArrow.png" />
+    <ImageContentTask Include="Assets\sprite\Stage3.png" />
+    <ImageContentTask Include="Assets\sprite\GaugeIn.png" />
+    <ImageContentTask Include="Assets\sprite\Setumei1.png" />
+    <ImageContentTask Include="Assets\sprite\Setumei2.jpg">
+      <Filter>Resource Files</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\Setumei3.png" />
+    <ImageContentTask Include="Assets\sprite\RandomStage.png" />
+    <ImageContentTask Include="Assets\sprite\BackTile.png" />
+    <ImageContentTask Include="Assets\sprite\Sansen_Number.png" />
+    <ImageContentTask Include="Assets\sprite\Sansen_player.png" />
+    <ImageContentTask Include="Assets\sprite\Gate.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <Image Include="Assets\modelData\fire12.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\sprite\Reslut1.png" />
+    <Image Include="Assets\sprite\title1.png" />
+    <Image Include="Assets\sprite\Reslut3.png" />
+    <Image Include="Assets\sprite\Reslut2.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\BH.efk" />

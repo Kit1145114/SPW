@@ -50,8 +50,8 @@ namespace tkEngine {
 			mBase = mScale * mRot;
 			mBase = mBase * mTrans;
 			GraphicsEngine().GetEffectEngine().GetEffekseerManager().SetBaseMatrix(m_handle, mBase);
-			if (IsPlay() == false) {
-				//再生完了したら終わる。
+			if (Effectflag == false &&//終了したら消す。
+				IsPlay() == false) {	//再生完了したら終わる。
 				DeleteGO(this);
 			}
 		}

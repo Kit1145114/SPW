@@ -14,10 +14,14 @@ field::~field()
 }
 
 bool field::Start() {
+	psShader.Load("shader/model.fx", "PSMainBG", CShader::EnType::PS);
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Space_field.cmo");
-	m_skinModelRender->SetShadowReceiverFlag(true);
 	m_skinModelRender->SetScale(scale);
+	m_skinModelRender->SetForwardRenderFlag(true);
+	m_skinModelRender->FindMaterial([&](CModelEffect* mat) {
+		mat->SetRender3DModelPSShader(psShader);
+	});
 	//Haikei = NewGO<prefab::CSkinModelRender>(0);
 	//Haikei->Init(L"modelData/Back.cmo");
 	//Haikei->SetShadowReceiverFlag(true);
