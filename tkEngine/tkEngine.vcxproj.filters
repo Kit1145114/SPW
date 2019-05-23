@@ -735,5 +735,11 @@
     <MeshContentTask Include="Assets\modelData\preset\vector.FBX">
       <Filter>Assets\modelData\preset</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="..\Game\Assets\modelData\terepot.fbx">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="..\Game\Assets\modelData\terepot_false.fbx">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
   </ItemGroup>
 </Project>

@@ -13,7 +13,6 @@ public:
 	{
 		Death = a;
 	}
-
 	void SetPosition(int x, int y)
 	{
 		m_position.x = x;
@@ -24,7 +23,7 @@ public:
 		draw_P = player;
 	}
 private:
-	Game* m_game = nullptr;
+	//////Game* m_game = nullptr;
 	prefab::CSpriteRender* m_spriteRender = nullptr;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 m_scale = CVector3::Zero;

@@ -192,6 +192,20 @@ void Planet::Move() {
 	}
 	p_position += randomspeed;
 	p_skinModelRender->SetPosition(p_position);
+
+	//回転
+	//クォータニオンを単位クォータニオンで初期化する。
+	CQuaternion qRot = CQuaternion::Identity;
+	//Y軸周りに10度回す。
+	float angle = 0;
+	angle += 10.0f;
+	qRot.SetRotationDeg(CVector3::AxisY, angle);
+	//回転を加算する。
+	CQuaternion m_rotation = CQuaternion::Identity;	//回転。
+	m_rotation.Multiply(qRot);
+	//回転を設定。
+	p_skinModelRender->SetRotation(m_rotation);
+	
 }
 //ドカーン（爆発）きたねぇ、花火だぜ、、、。
 void Planet::explosion()
@@ -230,8 +244,10 @@ void Planet::Death() {
 	for (int i = 0;i < Game::GetInstance()->GetSansenKazu();i++) {
 		//プレイヤーが無敵なら攻撃をやめる。
 		if (Game::GetInstance()->m_player[i]->GetMuteki() == false) {
+			//2点間の距離を計算する。
 			CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - p_position;
-			if (kyori.Length() < radius
+			//互いの半径の合計が距離以下なら。
+			if (Game::GetInstance()->m_player[i]->Getradius()+ radius > kyori.Length()
 				&& Game::GetInstance()->m_player[i]->GetDeathCount() == false) {
 				Game::GetInstance()->m_player[i]->AddHP(-100);
 				Game::GetInstance()->m_player[i]->SetLABulletNum(-1);
@@ -259,7 +275,7 @@ void Planet::Death() {
 			&&Game::GetInstance()->memoryPP[i] != nullptr) {
 			//2点間の距離を計算する。
 			CVector3 diff = Game::GetInstance()->memoryPP[i]->p_position - p_position;
-			//距離が半径以下なら。
+			//互いの半径の合計が距離以下なら。
 			if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
 				explosion();
 				int MaxBHCount = 8;
