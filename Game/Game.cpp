@@ -62,13 +62,13 @@ void Game::CreateStage0() {
 	
 	tere[0] = NewGO<TrepotHole>(0, "テレポート");
 	tere[0]->SetPosition({-4000, 0, 0});
-	tere[1] = NewGO<TrepotHole>(0, "テレポート");
-	tere[1]->SetPosition({ -4000, 0, 4000 });
+	/*tere[1] = NewGO<TrepotHole>(0, "テレポート");
+	tere[1]->SetPosition({ -4000, 0, 4000 });*/
 
 	tere2[0] = NewGO<TrepotHole2>(0, "テレポート2");
 	tere2[0]->SetPosition2({ 4000, 0, 0 });
-	tere2[1] = NewGO<TrepotHole2>(0, "テレポート2");
-	tere2[1]->SetPosition2({ 4000, 0, 4000 });
+	/*tere2[1] = NewGO<TrepotHole2>(0, "テレポート2");
+	tere2[1]->SetPosition2({ 4000, 0, 4000 });*/
 
 	switch (SansenKazu) {
 	case 4:

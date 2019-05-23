@@ -125,8 +125,8 @@ private:
 	BigBlackHole* BBH = nullptr;
 	MeteoGene* meteogene = nullptr;
 	RocketGene* rocketG = nullptr;
-	TrepotHole * tere = nullptr;
-	TrepotHole2 * tere2 = nullptr;
+	
+
 	int trpotnumber = 0;
 	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。
 	

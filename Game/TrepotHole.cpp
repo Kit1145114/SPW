@@ -28,8 +28,7 @@ bool TrepotHole::Start()
 void TrepotHole::Update()
 {
 	for (int j = 0; j < Game::GetInstance()->GetSansenKazu(); j++) {
-		for (int i = 0; i < Game::tere2[i]->GetPosition2(); i++) {
-
+		
 			CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - m_position;
 
 			//クールタイム
