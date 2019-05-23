@@ -144,11 +144,12 @@ public:
 	{
 		LABulletNum = num;
 	}
-
 	int getBulletAmount() {
 		return m_Short;
 	}
-
+	float Getradius() {//ƒvƒŒƒCƒ„[‚Ì”¼Œa‚ğæ“¾;
+		return radius;
+	}
 	float getBulletPercentage();
 
 private:
@@ -213,6 +214,7 @@ private:
 	float memorySZ = 0.0f;
 	float BulletHantei = 1200.0f;
 	float StarHantei = 1500.0f;
+	float radius = { 800.0f };
 	CVector3 Res = CVector3::Zero;
 
 	bool DeathCount = false;
