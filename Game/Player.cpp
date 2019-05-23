@@ -8,7 +8,7 @@ Player::Player()
 	draw_Pl = NewGO<Draw_Player>(0);
 	draw_S = NewGO<Draw_Skazu>(0);
 	r_ring = NewGO<RadarRing>(0);
-	bar = NewGO<Sinka_Bar>(0);
+	//bar = NewGO<Sinka_Bar>(0);
 }
 
 void Player::OnDestroy()
@@ -74,7 +74,7 @@ void Player::Update()
 	memory_position = m_position;
 	draw_S->SetKazu(StarCount);
 	draw_S->SetBulletKazu(m_Short);
-	bar->AddStarCount(StarCount);
+	//bar->AddStarCount(StarCount);
 }
 //ƒvƒŒƒCƒ„[‚Ì‘€ì
 void Player::Move()
