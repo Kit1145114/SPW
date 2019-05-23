@@ -271,7 +271,9 @@ void Game::Update()
 	{
 		Fade::fadeIn([&]() {
 			GameMode = 0;
-			NewGO<ResultGamen>(0, "ResultGamen")->SetSansenKazu(SansenKazu);
+			result = NewGO<ResultGamen>(0, "ResultGamen");
+			result->SetSansenKazu(SansenKazu);
+			result->SetStage(Stage);
 			DeleteGO(this);
 		});
 	}

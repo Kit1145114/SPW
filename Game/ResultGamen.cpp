@@ -43,8 +43,25 @@ ResultGamen::~ResultGamen()
 
 bool ResultGamen::Start()
 {
-	r_spriteRender = NewGO<prefab::CSpriteRender>(0);
-	r_spriteRender->Init(L"sprite/Reslut.dds", 1280.0f, 720.0f);
+	switch (stage)
+	{
+	case 0:
+		r_spriteRender = NewGO<prefab::CSpriteRender>(0);
+		r_spriteRender->Init(L"sprite/Reslut1.dds", 1280.0f, 720.0f);
+		break;
+	case 1:
+		r_spriteRender = NewGO<prefab::CSpriteRender>(0);
+		r_spriteRender->Init(L"sprite/Reslut2.dds", 1280.0f, 720.0f);
+		break;
+	case 2:
+		r_spriteRender = NewGO<prefab::CSpriteRender>(0);
+		r_spriteRender->Init(L"sprite/Reslut3.dds", 1280.0f, 720.0f);
+		break;
+	default:
+		r_spriteRender = NewGO<prefab::CSpriteRender>(0);
+		r_spriteRender->Init(L"sprite/Reslut1.dds", 1280.0f, 720.0f);
+		break;
+	}
 	switch (PadKazu)
 	{
 	case 1:
@@ -195,7 +212,7 @@ void ResultGamen::Result()
 	for (int i = 0; i < PadKazu; i++) {
 		r_Draw[PNums[i]]->SetPlayer(i + 1);
 		r_Draw[PNums[i]]->SetJuni(i + 1);
-		P_spriteRender[i]->Init(draw_P[i], 300.0f, 110.0f);
+		P_spriteRender[i]->Init(draw_P[i], 300.0f, 135.0f);
 	}
 }
 

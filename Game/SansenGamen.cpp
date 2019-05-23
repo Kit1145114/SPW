@@ -29,8 +29,8 @@ bool SansenGamen::Start() {
 	sprite_num->setNowPos({ 0.0f, -500, 0.0f});
 	sprite_num->setTargetPos({ 0.0f, -280, 0.0f });
 
-	m_push = NewGO<prefab::CSoundSource>(0);
-	m_push->Init(L"sound/Kettei.wav");
+	/*m_push = NewGO<prefab::CSoundSource>(0);
+	m_push->Init(L"sound/Kettei.wav");*/
 
 	Fade::fadeOut();
 	return true;
