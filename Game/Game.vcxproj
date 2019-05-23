@@ -2075,9 +2075,6 @@
     <ImageContentTask Include="Assets\sprite\dummy.png" />
   </ItemGroup>
   <ItemGroup>
-    <ImageContentTask Include="Assets\sprite\Title1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
     <ImageContentTask Include="Assets\sprite\Reslut2.png" />
     <ImageContentTask Include="Assets\sprite\Reslut3.png" />

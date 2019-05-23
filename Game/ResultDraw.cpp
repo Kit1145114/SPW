@@ -32,10 +32,10 @@ void ResultDraw::PostRender(CRenderContext& rc)
 		m_font.Begin(rc);
 		m_font.Draw(
 			text,
-			{ -245.0f, 205.0f },
+			{ -300.0f, 195.0f },
 			{ 1.0f, 0.95f, 0.0f, 1.0f },
 			0.0f,
-			1.5f
+			1.675f
 		);
 	}
 	else if (P == 2)
@@ -44,10 +44,10 @@ void ResultDraw::PostRender(CRenderContext& rc)
 		m_font.Begin(rc);
 		m_font.Draw(
 		text,
-		{ -245.0f, 55.0f },
-		{ 0.8f, 0.8f, 0.8f, 1.0f },
+		{ -300.0f, 55.0f },
+		{ 0.9f, 0.9f, 0.9f, 1.0f },
 			0.0f,
-			1.5f
+			1.675f
 			);
 	}
 	else if (P == 3) {
@@ -55,10 +55,10 @@ void ResultDraw::PostRender(CRenderContext& rc)
 		m_font.Begin(rc);
 		m_font.Draw(
 			text,
-			{ -245.0f, -95.0f },
+			{ -300.0f, -95.0f },
 			{ 1.0f, 0.2f, 0.0f, 1.0f },
 			0.0f,
-			1.5f
+			1.675f
 		);
 	}
 	else if (P == 4) {
@@ -66,10 +66,10 @@ void ResultDraw::PostRender(CRenderContext& rc)
 		m_font.Begin(rc);
 		m_font.Draw(
 			text,
-			{ -245.0f, -245.0f },
-			{ 0.0f, 0.0f, 0.0f, 1.0f },
+			{ -300.0f, -245.0f },
+			{ 0.1f, 0.0f, 0.1f, 1.0f },
 			0.0f,
-			1.5f
+			1.675f
 		);
 	}
 	m_font.End(rc);
