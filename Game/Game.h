@@ -23,6 +23,9 @@ class RocketGene;
 class MeteoGene;
 class BigBlackHole;
 
+class TrepotHole;
+class TrepotHole2;
+
 enum Planetnumber {
 	Planetnumber_00,
 	Planetnumber_01,
@@ -100,7 +103,10 @@ public:
 	RocketGene* getRocketGene() {
 		return rocketG;
 	}
-
+	/*int GetTerepokazu()
+	{
+		return tere;
+	}*/
 private:
 	void CreateStage0();
 	void CreateStage1();
@@ -109,8 +115,10 @@ private:
 	void CreateStage4();
 public:
 	Planet* memoryPP[Planetnumber_Num] = {};
-	Player* m_player[PlKazu] = {nullptr};
+	Player* m_player[PlKazu] = { nullptr };
 	Star* m_star = nullptr;
+	TrepotHole * tere[3] = { nullptr };
+	TrepotHole2 * tere2[3] ={ nullptr };
 private:
 	static Game* m_instance;
 	Enemy* enemy = nullptr;
@@ -122,6 +130,9 @@ private:
 	BigBlackHole* BBH = nullptr;
 	MeteoGene* meteogene = nullptr;
 	RocketGene* rocketG = nullptr;
+	
+
+	int trpotnumber = 0;
 	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。
 	
 	int GameMode = 0;
@@ -138,5 +149,7 @@ private:
 	int BHCount = 0;		 //ブラックホールをカウントする。
    	//CVector3 BHpos1 = { 0.0f , 0.0f, 5000.0f };
 	//CVector3 BHsca1 = { 1000.0f,0.0f,5.0f };
+
+	
 };
 

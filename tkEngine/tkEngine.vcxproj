@@ -1040,6 +1040,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <MeshContentTask Include="..\Game\Assets\modelData\terepot.fbx" />
+    <MeshContentTask Include="..\Game\Assets\modelData\terepot_false.fbx" />
     <MeshContentTask Include="Assets\modelData\preset\vector.FBX">
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\Assets\modelData\preset\%(Filename).cmo</ContentOutput>
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug_Middle|x64'">$(SolutionDir)\Assets\modelData\preset\%(Filename).cmo</ContentOutput>

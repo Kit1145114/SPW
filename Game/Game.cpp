@@ -10,6 +10,8 @@
 //#include"Sinka_Bar.h"
 #include "Stage1/SatelliteGene.h"
 #include "Stage2/RocketGene.h"
+#include "TrepotHole.h"
+#include "TrepotHole2.h"
 
 Game* Game::m_instance = nullptr;
 
@@ -51,10 +53,24 @@ Game::~Game()
 	DeleteGOs("PlayerBullet");//Bulletクラス
 	DeleteGOs("Star");//Starクラス
 	DeleteGOs("Meteo");
+	DeleteGO("そら");
+	DeleteGOs("テレポート");
+	DeleteGOs("テレポート2");
 	DeleteGOs("BBH");//Bigblackholeクラス
 }
 //シンプル。
 void Game::CreateStage0() {
+	
+	tere[0] = NewGO<TrepotHole>(0, "テレポート");
+	tere[0]->SetPosition({-4000, 0, 0});
+	/*tere[1] = NewGO<TrepotHole>(0, "テレポート");
+	tere[1]->SetPosition({ -4000, 0, 4000 });*/
+
+	tere2[0] = NewGO<TrepotHole2>(0, "テレポート2");
+	tere2[0]->SetPosition2({ 4000, 0, 0 });
+	/*tere2[1] = NewGO<TrepotHole2>(0, "テレポート2");
+	tere2[1]->SetPosition2({ 4000, 0, 4000 });*/
+
 	switch (SansenKazu) {
 	case 4:
 		m_player[3] = NewGO<Player>(0, "Player3");
