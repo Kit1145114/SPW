@@ -244,8 +244,10 @@ void Planet::Death() {
 	for (int i = 0;i < Game::GetInstance()->GetSansenKazu();i++) {
 		//ƒvƒŒƒCƒ„[‚ª–³“G‚È‚çUŒ‚‚ð‚â‚ß‚éB
 		if (Game::GetInstance()->m_player[i]->GetMuteki() == false) {
+			//2“_ŠÔ‚Ì‹——£‚ðŒvŽZ‚·‚éB
 			CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - p_position;
-			if (kyori.Length() < radius
+			//ŒÝ‚¢‚Ì”¼Œa‚Ì‡Œv‚ª‹——£ˆÈ‰º‚È‚çB
+			if (Game::GetInstance()->m_player[i]->Getradius()+ radius > kyori.Length()
 				&& Game::GetInstance()->m_player[i]->GetDeathCount() == false) {
 				Game::GetInstance()->m_player[i]->AddHP(-100);
 				Game::GetInstance()->m_player[i]->SetLABulletNum(-1);
@@ -273,7 +275,7 @@ void Planet::Death() {
 			&&Game::GetInstance()->memoryPP[i] != nullptr) {
 			//2“_ŠÔ‚Ì‹——£‚ðŒvŽZ‚·‚éB
 			CVector3 diff = Game::GetInstance()->memoryPP[i]->p_position - p_position;
-			//‹——£‚ª”¼ŒaˆÈ‰º‚È‚çB
+			//ŒÝ‚¢‚Ì”¼Œa‚Ì‡Œv‚ª‹——£ˆÈ‰º‚È‚çB
 			if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
 				explosion();
 				int MaxBHCount = 8;
