@@ -48,13 +48,12 @@ void BigBlackHole::Gravity()
 						//Ｇ中心に遠ければ弱く、近ければ強く。
 						float BigG = radius * Searchment * BBHSearchment - kyori.Length();
 						//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
-						BBHG_limitar = { 600.0f };//   BBHの重力（Ｇ）調整。
+						BBHG_limitar = { 300.0f };//   BBHの重力（Ｇ）調整。
 						Game::GetInstance()->m_player[i]->SetMoveSpeed(((kyori*BigG) / G_limitar / BBHG_limitar)*-1);
 					}
 				//}
 			//}
-			//対象との距離がほぼ中心では吸収をやめる。
-			if (radius * Searchment / 10 < kyori.Length() && kyori.Length() < radius * Searchment) {
+			if (kyori.Length() < radius * Searchment) {
 				//Ｇ中心に遠ければ弱く、近ければ強く。
 				float G = radius * Searchment - kyori.Length();
 				//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
@@ -80,11 +79,10 @@ void BigBlackHole::Gravity()
 				//Ｇ中心に遠ければ弱く、近ければ強く。
 				float BigG = radius * Searchment * BBHSearchment - kyori.Length();
 				//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
-				BBHG_limitar = { 500.0f };//   BBHの重力（Ｇ）調整。
+				BBHG_limitar = { 250.0f };//   BBHの重力（Ｇ）調整。
 				Game::GetInstance()->memoryPP[i]->SetMoveSpeed(((kyori*BigG) / G_limitar / BBHG_limitar)*-1);
 			}
-			//対象との距離がほぼ中心では吸収をやめる。
-			//if (radius * Searchment / 10 < kyori.Length() && kyori.Length() < radius * Searchment) {
+			
 			//対象との距離が一定以下になったら。
 			if (kyori.Length() < radius * Searchment) {
 				//Ｇ中心に遠ければ弱く、近ければ強く。
@@ -97,7 +95,7 @@ void BigBlackHole::Gravity()
 					Game::GetInstance()->memoryPP[i]->explosion();
 				}
 			}
-			//}
+			
 		}
 	}
 	//Starサーチ。
