@@ -1784,6 +1784,8 @@
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="TrepotHole.cpp" />
+    <ClCompile Include="TrepotHole2.cpp" />
     <ClCompile Include="Utility\MovePositon.cpp" />
     <ClCompile Include="Utility\MoveSprite.cpp" />
     <ClCompile Include="Utility\CircleGaugeSp.cpp" />
@@ -1847,6 +1849,8 @@
     <ClInclude Include="BlackHole.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="TrepotHole.h" />
+    <ClInclude Include="TrepotHole2.h" />
     <ClInclude Include="Utility\MovePosition.h" />
     <ClInclude Include="Utility\MoveSprite.h" />
     <ClInclude Include="Utility\CircleGaugeSp.h" />

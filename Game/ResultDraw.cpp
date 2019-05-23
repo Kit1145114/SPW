@@ -28,19 +28,19 @@ void ResultDraw::PostRender(CRenderContext& rc)
 {
 	wchar_t text[10];
 	if (P == 1) {
-		swprintf_s(text, L"no.1\n");
+		swprintf_s(text, L"1th\n");
 		m_font.Begin(rc);
 		m_font.Draw(
 			text,
 			{ -245.0f, 205.0f },
-			{ 1.0f, 0.8f, 0.0f, 1.0f },
+			{ 1.0f, 0.95f, 0.0f, 1.0f },
 			0.0f,
 			1.5f
 		);
 	}
 	else if (P == 2)
 	{
-		swprintf_s(text, L"no.2\n");
+		swprintf_s(text, L"2th\n");
 		m_font.Begin(rc);
 		m_font.Draw(
 		text,
@@ -51,7 +51,7 @@ void ResultDraw::PostRender(CRenderContext& rc)
 			);
 	}
 	else if (P == 3) {
-		swprintf_s(text, L"no.3\n");
+		swprintf_s(text, L"3th\n");
 		m_font.Begin(rc);
 		m_font.Draw(
 			text,
@@ -62,12 +62,12 @@ void ResultDraw::PostRender(CRenderContext& rc)
 		);
 	}
 	else if (P == 4) {
-		swprintf_s(text, L"no.4\n");
+		swprintf_s(text, L"4th\n");
 		m_font.Begin(rc);
 		m_font.Draw(
 			text,
 			{ -245.0f, -245.0f },
-			{ 1.0f, 0.0f, 1.0f, 1.0f },
+			{ 0.0f, 0.0f, 0.0f, 1.0f },
 			0.0f,
 			1.5f
 		);

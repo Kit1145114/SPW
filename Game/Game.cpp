@@ -10,6 +10,8 @@
 //#include"Sinka_Bar.h"
 #include "Stage1/SatelliteGene.h"
 #include "Stage2/RocketGene.h"
+#include "TrepotHole.h"
+#include "TrepotHole2.h"
 
 Game* Game::m_instance = nullptr;
 
@@ -51,9 +53,24 @@ Game::~Game()
 	DeleteGOs("PlayerBullet");//Bulletクラス
 	DeleteGOs("Star");//Starクラス
 	DeleteGOs("Meteo");
+	
+	DeleteGOs("テレポート");
+	DeleteGOs("テレポート2");
+	DeleteGO("BBH");//Bigblackholeクラス
 }
 //シンプル。
 void Game::CreateStage0() {
+	
+	tere[0] = NewGO<TrepotHole>(0, "テレポート");
+	tere[0]->SetPosition({-13000, 0, 0});
+	/*tere[1] = NewGO<TrepotHole>(0, "テレポート");
+	tere[1]->SetPosition({ -13000, 0, 4000 });*/
+
+	tere2[0] = NewGO<TrepotHole2>(0, "テレポート2");
+	tere2[0]->SetPosition2({ 4000, 0, 0 });
+	/*tere2[1] = NewGO<TrepotHole2>(0, "テレポート2");
+	tere2[1]->SetPosition2({ 4000, 0, 4000 });*/
+
 	switch (SansenKazu) {
 	case 4:
 		m_player[3] = NewGO<Player>(0, "Player3");
@@ -178,12 +195,10 @@ void Game::CreateStage3()
 		m_player[0]->SetPositionX(P_pos *-10);
 		m_player[0]->SetPositionZ(P_pos * 5);
 	}
-	BBH = NewGO<BigBlackHole>(0, "bigblackhole");
-	CVector3 position = { 0.0f, 0.0f,  0.0f };
-	float BHsize = { 3.0f };       //	基本惑星の半径。
-	float Search = { 1500.0f };       //	BHの重力範囲の調整。
-	float Limit  = { 50000.0f };       //   BHの重力（Ｇ）調整。
-	BigBlackHole::Generate(position, BHsize, Search, Limit);
+	BBH = NewGO<BigBlackHole>(0, "BBH");
+	
+	//BigBlackHole::Generate();
+	BHflag = true;
 	m_field = NewGO<field>(0);
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);

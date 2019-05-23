@@ -1,565 +1,312 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns:atg="http://atg.xbox.com" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Assets">
-      <UniqueIdentifier>{ed0b04a6-fecd-4a2c-a462-59a8f4639f36}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{8e114980-c1a3-4ada-ad7c-83caadf5daeb}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
-    </Filter>
-    <Filter Include="Assets\modelData">
-      <UniqueIdentifier>{06086914-6aa4-4cad-9b07-6f9d357f04df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assets\sprite">
-      <UniqueIdentifier>{a6ce300a-b532-440d-b914-b4661d3015ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PhotonLib">
-      <UniqueIdentifier>{21191978-d180-4d57-bacc-0b29a6eb492b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PhotonLib\Common">
-      <UniqueIdentifier>{b82d8e42-6896-41bb-837b-1a8e9b79d6dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PhotonLib\Photon">
-      <UniqueIdentifier>{f83594e6-8782-4e04-a4db-f4811d204e0e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PhotonLib\LoadBalancing">
-      <UniqueIdentifier>{d8db8eff-f64a-4a41-9b2b-c3329f39d143}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PhotonLib\Common\Helpers">
-      <UniqueIdentifier>{e397b930-e603-41c0-b54f-c89aae2c8d29}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PhotonLib\Common\MemoryMannagement">
-      <UniqueIdentifier>{f2722a12-e2f3-4a66-96fc-85500fa6a23e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PhotonLib\Common\MemoryMannagement\Internal">
-      <UniqueIdentifier>{123763c3-36ea-4ce6-a268-c2ecfa9a00cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PhotonLib\Common\Helpers\SmartPointers">
-      <UniqueIdentifier>{8cec219d-8e0b-43df-869d-fb2dc80fab39}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PhotonLib\LoadBalancing\Internal">
-      <UniqueIdentifier>{0137a04a-1b73-4899-96fd-b5846774bffd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PhotonLib\LoadBalancing\Enums">
-      <UniqueIdentifier>{634787df-df7d-46bd-932c-8b2ff23e17cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PhotonLib\Common\Enums">
-      <UniqueIdentifier>{27bdb4f6-106b-4012-a1f5-7b251b1ca2c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PhotonLib\LoadBalancing\Internal\Enums">
-      <UniqueIdentifier>{81a4702a-189f-47c8-ad66-acdba2962c34}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PhotonLib\LoadBalancing\Internal\Enums\Properties">
-      <UniqueIdentifier>{231c370d-5546-4162-8bb0-97feddc8be49}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PhotonLib\Photon\Enums">
-      <UniqueIdentifier>{1049aa01-7fdb-4c6e-95ce-ecd2b9764c06}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PhotonLib\Photon\Punchthrough">
-      <UniqueIdentifier>{2f367c08-245d-4608-bc87-0b7785dfc3c5}</UniqueIdentifier>
-    </Filter>
+    <ImageContentTask Include="Assets\sprite\dummy.png" />
+    <ImageContentTask Include="Assets\sprite\Title1.jpg" />
+    <ImageContentTask Include="Assets\sprite\Setumei1.png" />
+    <ImageContentTask Include="Assets\sprite\Setumei2.jpg" />
+    <ImageContentTask Include="Assets\sprite\Setumei3.png" />
+    <ImageContentTask Include="Assets\sprite\GaugeIn.png" />
+    <ImageContentTask Include="Assets\sprite\Stage3.png" />
+    <ImageContentTask Include="Assets\sprite\RocketArrow.png" />
+    <ImageContentTask Include="Assets\sprite\tama_bule.png" />
+    <ImageContentTask Include="Assets\sprite\tama_green.png" />
+    <ImageContentTask Include="Assets\sprite\tama_red.png" />
+    <ImageContentTask Include="Assets\sprite\tama_yellow.png" />
+    <ImageContentTask Include="Assets\sprite\Arrow.png" />
+    <ImageContentTask Include="Assets\sprite\bullet.jpg" />
+    <ImageContentTask Include="Assets\sprite\Star.png" />
+    <ImageContentTask Include="Assets\sprite\Stage2.png" />
+    <ImageContentTask Include="Assets\sprite\Stage4.png" />
+    <ImageContentTask Include="Assets\sprite\Stage5.png" />
+    <ImageContentTask Include="Assets\sprite\Selector.png" />
+    <ImageContentTask Include="Assets\sprite\Stage1.png" />
+    <ImageContentTask Include="Assets\sprite\StageSelect.png" />
+    <ImageContentTask Include="Assets\sprite\SankaMulti.png" />
+    <ImageContentTask Include="Assets\sprite\Title_A.bmp" />
+    <ImageContentTask Include="Assets\sprite\1Player.png" />
+    <ImageContentTask Include="Assets\sprite\2Player.png" />
+    <ImageContentTask Include="Assets\sprite\3Player.png" />
+    <ImageContentTask Include="Assets\sprite\4Player.png" />
+    <ImageContentTask Include="Assets\sprite\Reslut.png" />
+    <ImageContentTask Include="Assets\sprite\Gekitui.png" />
+    <ImageContentTask Include="Assets\sprite\1P.png" />
+    <ImageContentTask Include="Assets\sprite\2P.png" />
+    <ImageContentTask Include="Assets\sprite\3P.png" />
+    <ImageContentTask Include="Assets\sprite\4P.png" />
+    <ImageContentTask Include="Assets\sprite\Sanka.png" />
+    <ImageContentTask Include="Assets\sprite\Midori.jpg" />
+    <ImageContentTask Include="Assets\sprite\Sinka_Bar.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="field.cpp" />
-    <ClCompile Include="Title_1.cpp" />
-    <ClCompile Include="Title_2.cpp" />
-    <ClCompile Include="GamenDraw.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="GamenTimer.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Planet.cpp" />
-    <ClCompile Include="Star.cpp" />
-    <ClCompile Include="Sinka_Bar.cpp" />
-    <ClCompile Include="Senkan_Rtype_2.cpp" />
-    <ClCompile Include="SansenGamen.cpp" />
-    <ClCompile Include="PlayerStar.cpp" />
-    <ClCompile Include="ResultGamen.cpp" />
-    <ClCompile Include="ResultDraw.cpp" />
-    <ClCompile Include="GameWait.cpp" />
-    <ClCompile Include="Network\NetPad.cpp" />
-    <ClCompile Include="Network\NetManager.cpp" />
-    <ClCompile Include="Network\PadRingBuffer.cpp" />
+    <ClCompile Include="BigBlackHole.cpp" />
     <ClCompile Include="BlackHole.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Utility\CircleGaugeSp.cpp" />
     <ClCompile Include="Draw_Player.cpp" />
-    <ClCompile Include="SetumeiGamen.cpp" />
     <ClCompile Include="Draw_Skazu.cpp" />
-    <ClCompile Include="RadarRing.cpp" />
-    <ClCompile Include="StageSelect.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Fade.cpp" />
+    <ClCompile Include="field.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GamenDraw.cpp" />
+    <ClCompile Include="GamenTimer.cpp" />
+    <ClCompile Include="GameWait.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Meteo.cpp" />
+    <ClCompile Include="MeteoGene.cpp" />
+    <ClCompile Include="Network\NetManager.cpp" />
+    <ClCompile Include="Network\NetPad.cpp" />
+    <ClCompile Include="Network\PadRingBuffer.cpp" />
+    <ClCompile Include="Planet.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerStar.cpp" />
+    <ClCompile Include="RadarRing.cpp" />
+    <ClCompile Include="ResultDraw.cpp" />
+    <ClCompile Include="ResultGamen.cpp" />
+    <ClCompile Include="Stage2\RocketGene.cpp" />
+    <ClCompile Include="Utility\BoxCollider2D.cpp" />
+    <ClCompile Include="Stage2\Rocket.cpp" />
+    <ClCompile Include="SansenGamen.cpp" />
+    <ClCompile Include="Senkan_Rtype_2.cpp" />
+    <ClCompile Include="SetumeiGamen.cpp" />
+    <ClCompile Include="Sinka_Bar.cpp" />
     <ClCompile Include="Stage1\Satellite.cpp" />
     <ClCompile Include="Stage1\SatelliteGene.cpp" />
-    <ClCompile Include="BigBlackHole.cpp" />
-    <ClCompile Include="MeteoGene.cpp" />
-    <ClCompile Include="Stage2\Rocket.cpp" />
-    <ClCompile Include="Stage2\RocketGene.cpp" />
-    <ClCompile Include="Utility\CircleGaugeSp.cpp" />
-    <ClCompile Include="Utility\BoxCollider2D.cpp" />
+    <ClCompile Include="StageSelect.cpp" />
+    <ClCompile Include="Star.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Title_1.cpp" />
+    <ClCompile Include="Title_2.cpp" />
+    <ClCompile Include="TrepotHole.cpp" />
+    <ClCompile Include="TrepotHole2.cpp" />
     <ClCompile Include="Utility\MoveSprite.cpp" />
     <ClCompile Include="Utility\MovePositon.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CLInclude Include="resource.h">
-      <Filter>Resource Files</Filter>
-    </CLInclude>
-    <ClInclude Include="stdafx.h" />
+    <MeshContentTask Include="Assets\modelData\Back.FBX" />
+    <MeshContentTask Include="Assets\modelData\Bulet.FBX" />
+    <MeshContentTask Include="Assets\modelData\Bullet2.FBX" />
+    <MeshContentTask Include="Assets\modelData\Bullet3.FBX" />
+    <MeshContentTask Include="Assets\modelData\Bullet4.FBX" />
+    <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
+    <MeshContentTask Include="Assets\modelData\Hako.FBX" />
+    <MeshContentTask Include="Assets\modelData\Inseki.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet01.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet02.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet03.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet04.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet05.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet06.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet07.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet08.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet09.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet0fire.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet11.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet_10.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet_aomura.FBX" />
+    <MeshContentTask Include="Assets\modelData\PlayerStar.FBX" />
+    <MeshContentTask Include="Assets\modelData\Ring1P.FBX" />
+    <MeshContentTask Include="Assets\modelData\Ring2P.FBX" />
+    <MeshContentTask Include="Assets\modelData\Ring3P.FBX" />
+    <MeshContentTask Include="Assets\modelData\Ring4P.FBX" />
+    <MeshContentTask Include="Assets\modelData\Rocket.FBX" />
+    <MeshContentTask Include="Assets\modelData\Satellite.FBX" />
+    <MeshContentTask Include="Assets\modelData\ScrapRocket.FBX" />
+    <MeshContentTask Include="Assets\modelData\Senkan.FBX" />
+    <MeshContentTask Include="Assets\modelData\SenkanType2.FBX" />
+    <MeshContentTask Include="Assets\modelData\SenkanType3.FBX" />
+    <MeshContentTask Include="Assets\modelData\Space_field.FBX" />
+    <MeshContentTask Include="Assets\modelData\star.FBX" />
+    <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BigBlackHole.h" />
+    <ClInclude Include="BlackHole.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Utility\CircleGaugeSp.h" />
+    <ClInclude Include="Draw_Player.h" />
+    <ClInclude Include="Draw_Skazu.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Fade.h" />
+    <ClInclude Include="field.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GamenDraw.h" />
+    <ClInclude Include="GamenTimer.h" />
+    <ClInclude Include="GameWait.h" />
+    <ClInclude Include="Meteo.h" />
+    <ClInclude Include="MeteoGene.h" />
+    <ClInclude Include="Network\NetManager.h" />
+    <ClInclude Include="Network\NetPad.h" />
+    <ClInclude Include="Network\NPad.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\ANSIString.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Base.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\BaseCharString.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\BaseListener.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Common.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\CustomType.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\CustomTypeBase.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\CustomTypeFactory.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\defines.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\DeSerializer.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Dictionary.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\DictionaryBase.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\EGTime.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Enums\DebugLevel.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Enums\TypeCode.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Hashtable.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ArrayLengthType.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\CompileTimeAssertTrue.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ConfirmAllowed.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ConfirmAllowedKey.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\CustomTypeCallbackWrapper.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\Data.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\debug_assert.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\DeSerializerImplementation.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ElementAccessor.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\EnableIf.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\EndianCorrectCast.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\EndianCorrectCastImplementation.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\IsDerivedFrom.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\IsPrimitiveType.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\IsSame.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\KeyToObject.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\Lockguard.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\MathHelper.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ObjectToStringConverter.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ObjectToStringConverterBase.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\PrimitiveToStringConverter.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\PrimitiveToStringConverterBase.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\RemoveConst.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\RemovePointer.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SerializerImplementation.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\SharedPointer.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\SharedPointerBase.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\SmartPointerBase.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\SmartPointerInterface.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\UniquePointer.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\UniquePointerBase.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\Spinlock.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\Thread.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ToStringImplementation.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\TypeName.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ValueToObject.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\JString.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\JVector.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\KeyObject.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\LogFormatOptions.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Logger.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Allocate.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\AllocatorInterface.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\DirectAllocator.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\Entry.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\Interface.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\MemoryPool.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\MemoryPoolManager.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\RawStorage.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Object.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\platformLayer.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\platform_definition.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\porting.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\Serializer.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\ToString.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\UTF8String.h" />
+    <ClInclude Include="Photon-Inc\Common-cpp\inc\ValueObject.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\AuthenticationValues.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Client.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\CustomAuthenticationType.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\DirectMode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\DisconnectCause.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\ErrorCode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\LobbyType.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\MatchmakingMode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\PeerStates.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\RegionSelectionMode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\ServerType.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\FriendInfo.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\AuthenticationValuesSecretSetter.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\EncryptionDataParameters.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\EncryptionMode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\EventCode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\JoinMode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\JoinType.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\OperationCode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\ParameterCode.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\Properties\Player.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\Properties\Room.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\MutablePlayerFactory.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\MutableRoomFactory.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PlayerFactory.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PlayerMovementInformant.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PlayerMutableRoomPointerSetter.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PlayerPropertiesCacher.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PlayerPropertiesUpdateInformant.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PuncherClient.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\RoomFactory.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\RoomPropertiesCacher.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Utils.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Listener.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\LobbyStatsRequest.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\LobbyStatsResponse.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\MutablePlayer.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\MutableRoom.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Peer.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Player.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\RaiseEventOptions.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Room.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\RoomOptions.h" />
+    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\WebFlags.h" />
+    <ClInclude Include="Photon-Inc\PEventListener.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\ConnectionProtocol.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\ErrorCode.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\EventCache.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\EventCode.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\EventKey.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\NetworkPort.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\OperationCode.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\ParameterCode.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\PeerState.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\ReceiverGroup.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\StatusCode.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\EventData.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\LitePeer.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\OperationRequest.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\OperationResponse.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\PhotonListener.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\PhotonPeer.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Punchthrough\Puncher.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Punchthrough\PunchListener.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Punchthrough\RelayClient.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\TrafficStats.h" />
+    <ClInclude Include="Photon-Inc\Photon-cpp\inc\TrafficStatsGameLevel.h" />
+    <ClInclude Include="Photon-Inc\PNetworkLogic.h" />
+    <ClInclude Include="Planet.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerStar.h" />
+    <ClInclude Include="RadarRing.h" />
+    <CLInclude Include="resource.h" />
+    <ClInclude Include="ResultDraw.h" />
+    <ClInclude Include="ResultGamen.h" />
+    <ClInclude Include="Network\PadRingBuffer.h" />
+    <ClInclude Include="Stage2\RocketGene.h" />
+    <ClInclude Include="Utility\BoxCollider2D.h" />
+    <ClInclude Include="Stage2\Rocket.h" />
+    <ClInclude Include="SansenGamen.h" />
+    <ClInclude Include="Stage1\SatelliteGene.h" />
+    <ClInclude Include="Utility\CVector2.h" />
+    <ClInclude Include="Stage1\Satellite.h" />
+    <ClInclude Include="Senkan_Rtype_2.h" />
+    <ClInclude Include="SetumeiGamen.h" />
+    <ClInclude Include="Sinka_Bar.h" />
+    <ClInclude Include="StageSelect.h" />
+    <ClInclude Include="Star.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="Title_1.h" />
     <ClInclude Include="Title_2.h" />
-    <ClInclude Include="GamenDraw.h" />
-    <ClInclude Include="field.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="GamenTimer.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Planet.h" />
-    <ClInclude Include="Star.h" />
-    <ClInclude Include="Senkan_Rtype_2.h" />
-    <ClInclude Include="SansenGamen.h" />
-    <ClInclude Include="Photon-Inc\PEventListener.h">
-      <Filter>PhotonLib</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\PNetworkLogic.h">
-      <Filter>PhotonLib</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Allocate.h">
-      <Filter>PhotonLib\Common\MemoryMannagement</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\AllocatorInterface.h">
-      <Filter>PhotonLib\Common\MemoryMannagement</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\DirectAllocator.h">
-      <Filter>PhotonLib\Common\MemoryMannagement\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\Entry.h">
-      <Filter>PhotonLib\Common\MemoryMannagement\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\Interface.h">
-      <Filter>PhotonLib\Common\MemoryMannagement\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\MemoryPool.h">
-      <Filter>PhotonLib\Common\MemoryMannagement\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\MemoryPoolManager.h">
-      <Filter>PhotonLib\Common\MemoryMannagement\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\MemoryManagement\Internal\RawStorage.h">
-      <Filter>PhotonLib\Common\MemoryMannagement\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\ANSIString.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Base.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\BaseCharString.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\BaseListener.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Common.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\CustomType.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\CustomTypeBase.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\CustomTypeFactory.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\defines.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\DeSerializer.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Dictionary.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\DictionaryBase.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\EGTime.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Hashtable.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\JString.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\JVector.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\KeyObject.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\LogFormatOptions.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Logger.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Object.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\platform_definition.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\platformLayer.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\porting.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Serializer.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\ToString.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\UTF8String.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\ValueObject.h">
-      <Filter>PhotonLib\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Enums\DebugLevel.h">
-      <Filter>PhotonLib\Common\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Enums\TypeCode.h">
-      <Filter>PhotonLib\Common\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\CompileTimeAssertTrue.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ConfirmAllowed.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ConfirmAllowedKey.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\CustomTypeCallbackWrapper.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\Data.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\debug_assert.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\DeSerializerImplementation.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ElementAccessor.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\EnableIf.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\EndianCorrectCast.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\EndianCorrectCastImplementation.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\IsDerivedFrom.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\IsPrimitiveType.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\IsSame.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\KeyToObject.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\Lockguard.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\MathHelper.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ObjectToStringConverter.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ObjectToStringConverterBase.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\PrimitiveToStringConverter.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\PrimitiveToStringConverterBase.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\RemoveConst.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\RemovePointer.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SerializerImplementation.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\Spinlock.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\Thread.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ToStringImplementation.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\TypeName.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ValueToObject.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\ArrayLengthType.h">
-      <Filter>PhotonLib\Common\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\SharedPointer.h">
-      <Filter>PhotonLib\Common\Helpers\SmartPointers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\SharedPointerBase.h">
-      <Filter>PhotonLib\Common\Helpers\SmartPointers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\SmartPointerBase.h">
-      <Filter>PhotonLib\Common\Helpers\SmartPointers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\SmartPointerInterface.h">
-      <Filter>PhotonLib\Common\Helpers\SmartPointers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\UniquePointer.h">
-      <Filter>PhotonLib\Common\Helpers\SmartPointers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Common-cpp\inc\Helpers\SmartPointers\UniquePointerBase.h">
-      <Filter>PhotonLib\Common\Helpers\SmartPointers</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\Properties\Player.h">
-      <Filter>PhotonLib\LoadBalancing\Internal\Enums\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\Properties\Room.h">
-      <Filter>PhotonLib\LoadBalancing\Internal\Enums\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\EncryptionDataParameters.h">
-      <Filter>PhotonLib\LoadBalancing\Internal\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\EncryptionMode.h">
-      <Filter>PhotonLib\LoadBalancing\Internal\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\EventCode.h">
-      <Filter>PhotonLib\LoadBalancing\Internal\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\JoinMode.h">
-      <Filter>PhotonLib\LoadBalancing\Internal\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\JoinType.h">
-      <Filter>PhotonLib\LoadBalancing\Internal\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\OperationCode.h">
-      <Filter>PhotonLib\LoadBalancing\Internal\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Enums\ParameterCode.h">
-      <Filter>PhotonLib\LoadBalancing\Internal\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\AuthenticationValuesSecretSetter.h">
-      <Filter>PhotonLib\LoadBalancing\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\MutablePlayerFactory.h">
-      <Filter>PhotonLib\LoadBalancing\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\MutableRoomFactory.h">
-      <Filter>PhotonLib\LoadBalancing\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PlayerFactory.h">
-      <Filter>PhotonLib\LoadBalancing\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PlayerMovementInformant.h">
-      <Filter>PhotonLib\LoadBalancing\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PlayerMutableRoomPointerSetter.h">
-      <Filter>PhotonLib\LoadBalancing\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PlayerPropertiesCacher.h">
-      <Filter>PhotonLib\LoadBalancing\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PlayerPropertiesUpdateInformant.h">
-      <Filter>PhotonLib\LoadBalancing\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\PuncherClient.h">
-      <Filter>PhotonLib\LoadBalancing\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\RoomFactory.h">
-      <Filter>PhotonLib\LoadBalancing\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\RoomPropertiesCacher.h">
-      <Filter>PhotonLib\LoadBalancing\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Internal\Utils.h">
-      <Filter>PhotonLib\LoadBalancing\Internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\AuthenticationValues.h">
-      <Filter>PhotonLib\LoadBalancing</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Client.h">
-      <Filter>PhotonLib\LoadBalancing</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\FriendInfo.h">
-      <Filter>PhotonLib\LoadBalancing</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Listener.h">
-      <Filter>PhotonLib\LoadBalancing</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\LobbyStatsRequest.h">
-      <Filter>PhotonLib\LoadBalancing</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\LobbyStatsResponse.h">
-      <Filter>PhotonLib\LoadBalancing</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\MutablePlayer.h">
-      <Filter>PhotonLib\LoadBalancing</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\MutableRoom.h">
-      <Filter>PhotonLib\LoadBalancing</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Peer.h">
-      <Filter>PhotonLib\LoadBalancing</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Player.h">
-      <Filter>PhotonLib\LoadBalancing</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\RaiseEventOptions.h">
-      <Filter>PhotonLib\LoadBalancing</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Room.h">
-      <Filter>PhotonLib\LoadBalancing</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\RoomOptions.h">
-      <Filter>PhotonLib\LoadBalancing</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\WebFlags.h">
-      <Filter>PhotonLib\LoadBalancing</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\CustomAuthenticationType.h">
-      <Filter>PhotonLib\LoadBalancing\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\DirectMode.h">
-      <Filter>PhotonLib\LoadBalancing\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\DisconnectCause.h">
-      <Filter>PhotonLib\LoadBalancing\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\ErrorCode.h">
-      <Filter>PhotonLib\LoadBalancing\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\LobbyType.h">
-      <Filter>PhotonLib\LoadBalancing\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\MatchmakingMode.h">
-      <Filter>PhotonLib\LoadBalancing\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\PeerStates.h">
-      <Filter>PhotonLib\LoadBalancing\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\RegionSelectionMode.h">
-      <Filter>PhotonLib\LoadBalancing\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\LoadBalancing-cpp\inc\Enums\ServerType.h">
-      <Filter>PhotonLib\LoadBalancing\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\EventData.h">
-      <Filter>PhotonLib\Photon</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\LitePeer.h">
-      <Filter>PhotonLib\Photon</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\OperationRequest.h">
-      <Filter>PhotonLib\Photon</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\OperationResponse.h">
-      <Filter>PhotonLib\Photon</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\PhotonListener.h">
-      <Filter>PhotonLib\Photon</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\PhotonPeer.h">
-      <Filter>PhotonLib\Photon</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\TrafficStats.h">
-      <Filter>PhotonLib\Photon</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\TrafficStatsGameLevel.h">
-      <Filter>PhotonLib\Photon</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\OperationCode.h">
-      <Filter>PhotonLib\Photon\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\ParameterCode.h">
-      <Filter>PhotonLib\Photon\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\PeerState.h">
-      <Filter>PhotonLib\Photon\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\ReceiverGroup.h">
-      <Filter>PhotonLib\Photon\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\StatusCode.h">
-      <Filter>PhotonLib\Photon\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\ConnectionProtocol.h">
-      <Filter>PhotonLib\Photon\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\ErrorCode.h">
-      <Filter>PhotonLib\Photon\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\EventCache.h">
-      <Filter>PhotonLib\Photon\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\EventCode.h">
-      <Filter>PhotonLib\Photon\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\EventKey.h">
-      <Filter>PhotonLib\Photon\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Enums\NetworkPort.h">
-      <Filter>PhotonLib\Photon\Enums</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Punchthrough\Puncher.h">
-      <Filter>PhotonLib\Photon\Punchthrough</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Punchthrough\PunchListener.h">
-      <Filter>PhotonLib\Photon\Punchthrough</Filter>
-    </ClInclude>
-    <ClInclude Include="Photon-Inc\Photon-cpp\inc\Punchthrough\RelayClient.h">
-      <Filter>PhotonLib\Photon\Punchthrough</Filter>
-    </ClInclude>
-    <ClInclude Include="GameWait.h" />
-    <ClInclude Include="Network\NetPad.h" />
-    <ClInclude Include="Network\NetManager.h" />
-    <ClInclude Include="Network\NPad.h" />
-    <ClInclude Include="Network\PadRingBuffer.h" />
-    <ClInclude Include="PlayerStar.h" />
-    <ClInclude Include="ResultGamen.h" />
-    <ClInclude Include="BlackHole.h" />
-    <ClInclude Include="ResultDraw.h" />
-    <ClInclude Include="Draw_Player.h" />
-    <ClInclude Include="SetumeiGamen.h" />
-    <ClInclude Include="Draw_Skazu.h" />
-    <ClInclude Include="RadarRing.h" />
-    <ClInclude Include="StageSelect.h" />
+    <ClInclude Include="TrepotHole.h" />
+    <ClInclude Include="TrepotHole2.h" />
     <ClInclude Include="Fade.h" />
     <ClInclude Include="Meteo.h" />
     <ClInclude Include="Stage1\Satellite.h" />
@@ -583,105 +330,20 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <MeshContentTask Include="Assets\modelData\unityChan.fbx">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\Space_field.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\Bulet.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\Enemy.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\Senkan.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\star.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\Back.FBX" />
-    <MeshContentTask Include="Assets\modelData\Bullet4.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\Bullet3.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\Bullet2.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\planet_10.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\planet0fire.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\planet_aomura.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\planet02.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\planet01.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\planet03.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\planet04.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\planet05.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\planet06.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\planet07.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\planet08.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\planet09.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\planet11.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\Hako.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\Inseki.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\PlayerStar.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\Ring1P.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\Ring3P.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\Ring4P.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\Ring2P.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\Satellite.FBX" />
-    <MeshContentTask Include="Assets\modelData\Rocket.FBX" />
-    <MeshContentTask Include="Assets\modelData\ScrapRocket.FBX" />
-    <MeshContentTask Include="Assets\modelData\SenkanType3.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\modelData\SenkanType2.FBX">
-      <Filter>Assets\modelData</Filter>
-    </MeshContentTask>
+    <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="Assets\sound\bakuhatu.wav" />
+    <Media Include="Assets\sound\bgm.wav" />
+    <Media Include="Assets\sound\coinGet.wav" />
+    <Media Include="Assets\sound\kaisen.wav" />
+    <Media Include="Assets\sound\Kettei.wav" />
+    <Media Include="Assets\sound\kira-nn.wav" />
+    <Media Include="Assets\sound\OP.wav" />
+    <Media Include="Assets\sound\piko.wav" />
+    <Media Include="Assets\sound\power-up1.wav" />
+    <Media Include="Assets\sound\shot1.wav" />
+    <Media Include="Assets\sound\tugihe.wav" />
     <ImageContentTask Include="Assets\sprite\dummy.png">
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
@@ -772,29 +434,16 @@
     <ImageContentTask Include="Assets\sprite\Reslut1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\modelData\fire12.jpg" />
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Assets\sprite\Sansen_arrow.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\effect\BH.efk" />
     <None Include="Assets\effect\explosion1.efk" />
     <None Include="Assets\effect\explosion2.efk" />
-    <None Include="Assets\effect\explosion1.efk" />
     <None Include="Assets\effect\kari_BH.efk" />
-    <None Include="Assets\effect\BH.efk" />
-  </ItemGroup>
-  <ItemGroup>
-    <Media Include="Assets\sound\OP.wav" />
-    <Media Include="Assets\sound\Kettei.wav" />
-    <Media Include="Assets\sound\kaisen.wav" />
-    <Media Include="Assets\sound\power-up1.wav" />
-    <Media Include="Assets\sound\tugihe.wav" />
-    <Media Include="Assets\sound\bakuhatu.wav" />
-    <Media Include="Assets\sound\piko.wav" />
-    <Media Include="Assets\sound\shot1.wav" />
-    <Media Include="Assets\sound\bgm.wav" />
-    <Media Include="Assets\sound\coinGet.wav" />
-    <Media Include="Assets\sound\kira-nn.wav" />
   </ItemGroup>
 </Project>

@@ -71,9 +71,9 @@ public:
 	{
 		return m_moveSpeed;
 	}
-	void SetMoveSpeedZ(float a)
+	void SetCharaCon(CVector3 move)
 	{
-		m_moveSpeed.z = a;
+		m_CharaCon.SetPosition(move);
 	}
 	void SetMoveSpeed(CVector3 a) {
 		m_moveSpeed += a;
@@ -144,11 +144,12 @@ public:
 	{
 		LABulletNum = num;
 	}
-
 	int getBulletAmount() {
 		return m_Short;
 	}
-
+	float Getradius() {//ƒvƒŒƒCƒ„[‚Ì”¼Œa‚ğæ“¾;
+		return radius;
+	}
 	float getBulletPercentage();
 
 private:
@@ -212,7 +213,8 @@ private:
 	float memorySX = 0.0f;
 	float memorySZ = 0.0f;
 	float BulletHantei = 1200.0f;
-	float StarHantei = 900.0f;
+	float StarHantei = 1500.0f;
+	float radius = { 800.0f };
 	CVector3 Res = CVector3::Zero;
 
 	bool DeathCount = false;
