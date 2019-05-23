@@ -13,6 +13,8 @@ SansenGamen::~SansenGamen() {
 	DeleteGO(sprite_back);
 	DeleteGO(sprite_player);
 	DeleteGO(sprite_num);
+	DeleteGO(num_arrow[0]);
+	DeleteGO(num_arrow[1]);
 }
 
 bool SansenGamen::Start() {
@@ -33,8 +35,20 @@ bool SansenGamen::Start() {
 	sprite_num->setTargetPos({ 0.0f, -280, 0.0f });
 	sprite_num->setSpeed(4.0f, 4.0f);
 
-	/*m_push = NewGO<prefab::CSoundSource>(0);
-	m_push->Init(L"sound/Kettei.wav");*/
+	for (int i = 0; i < 2; i++) {
+		num_arrow[i] = NewGO<ArrowRender>(3);
+		num_arrow[i]->Init(L"sprite/Sansen_arrow.dds", 40, 40);
+
+		CVector3 offset;
+		offset.x = 167.0f;
+		offset.y = 13.0f + 65.0f - i * 65.0f * 2;
+		num_arrow[i]->setOffsetPos(offset);
+
+		CQuaternion rot;
+		rot.SetRotation(CVector3::AxisZ, CMath::PI*i);
+
+		num_arrow[i]->setPR(sprite_num->getNowPos(), rot);
+	}
 
 	Fade::fadeOut();
 	return true;
@@ -68,27 +82,20 @@ void SansenGamen::Update() {
 		if (Pad(0).IsTrigger(enButtonUp)) {
 			if (Kazu < MaxKazu) {
 				Kazu++;
-				m_push = NewGO<prefab::CSoundSource>(0);
-				m_push->Init(L"sound/piko.wav");
-				m_push->Play(false);
-			} else if (Kazu > MaxKazu) {
-				Kazu = MaxKazu;
-				m_push = NewGO<prefab::CSoundSource>(0);
-				m_push->Init(L"sound/piko.wav");
-				m_push->Play(false);
 			}
+			m_push = NewGO<prefab::CSoundSource>(0);
+			m_push->Init(L"sound/piko.wav");
+			m_push->Play(false);
+			num_arrow[0]->push();
+
 		} else if (Pad(0).IsTrigger(enButtonDown)) {
 			if (Kazu > MinKazu) {
 				Kazu--;
-				m_push = NewGO<prefab::CSoundSource>(0);
-				m_push->Init(L"sound/piko.wav");
-				m_push->Play(false);
-			} else if (Kazu < MinKazu) {
-				Kazu = MinKazu;
-				m_push = NewGO<prefab::CSoundSource>(0);
-				m_push->Init(L"sound/piko.wav");
-				m_push->Play(false);
 			}
+			m_push = NewGO<prefab::CSoundSource>(0);
+			m_push->Init(L"sound/piko.wav");
+			m_push->Play(false);
+			num_arrow[1]->push();
 		}
 	}
 	if (Pad(0).IsTrigger(enButtonA)) {
@@ -101,7 +108,14 @@ void SansenGamen::Update() {
 	}
 }
 
+void SansenGamen::PostUpdate() {
+	num_arrow[0]->setPos(sprite_num->getNowPos());
+	num_arrow[1]->setPos(sprite_num->getNowPos());
+}
+
 void SansenGamen::PostRender(CRenderContext& rc) {
+
+
 	if (Death == false) {
 		wchar_t num[2];
 		swprintf_s(num, L"%d", Kazu);
@@ -123,10 +137,15 @@ void SansenGamen::PostRender(CRenderContext& rc) {
 		m_font.Draw(
 			num,
 			pos + CVector2(160, 30),
-			{ 0.0f, 0.0f, 1.0f, 1.0f },
+			{ 0.7f, 0.7f, 0.7f, 1.0f },
 			0.0f,
 			1.5f
 		);
 		m_font.End(rc);
 	}
+}
+
+void ArrowRender::PostRender(CRenderContext & rc) {
+	sprite.Draw(rc, MainCamera2D().GetViewMatrix(), MainCamera2D().GetProjectionMatrix());
+	int i = 0;
 }
