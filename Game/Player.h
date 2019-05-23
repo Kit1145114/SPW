@@ -71,9 +71,9 @@ public:
 	{
 		return m_moveSpeed;
 	}
-	void SetMoveSpeedZ(float a)
+	void SetCharaCon(CVector3 move)
 	{
-		m_moveSpeed.z = a;
+		m_CharaCon.SetPosition(move);
 	}
 	void SetMoveSpeed(CVector3 a) {
 		m_moveSpeed += a;

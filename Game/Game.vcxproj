@@ -1784,6 +1784,8 @@
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="TrepotHole.cpp" />
+    <ClCompile Include="TrepotHole2.cpp" />
     <ClCompile Include="Utility\CircleGaugeSp.cpp" />
     <ClCompile Include="Draw_Player.cpp" />
     <ClCompile Include="Draw_Skazu.cpp" />
@@ -1837,8 +1839,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Preview_Middle|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Preview_Low|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="TerepotHole.cpp" />
-    <ClCompile Include="TerepotHole2.cpp" />
     <ClCompile Include="Title_1.cpp" />
     <ClCompile Include="Title_2.cpp" />
   </ItemGroup>
@@ -1847,6 +1847,8 @@
     <ClInclude Include="BlackHole.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="TrepotHole.h" />
+    <ClInclude Include="TrepotHole2.h" />
     <ClInclude Include="Utility\CircleGaugeSp.h" />
     <ClInclude Include="Draw_Player.h" />
     <ClInclude Include="Draw_Skazu.h" />
@@ -2024,8 +2026,6 @@
     <ClInclude Include="StageSelect.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="TerepotHole.h" />
-    <ClInclude Include="TerepotHole2.h" />
     <ClInclude Include="Title_1.h" />
     <ClInclude Include="Title_2.h" />
     <ResourceCompile Include="Game.rc" />
@@ -2065,7 +2065,6 @@
     <MeshContentTask Include="Assets\modelData\SenkanType3.FBX" />
     <MeshContentTask Include="Assets\modelData\Space_field.FBX" />
     <MeshContentTask Include="Assets\modelData\star.FBX" />
-    <MeshContentTask Include="Assets\modelData\terepot.fbx" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
   </ItemGroup>
   <ItemGroup>
