@@ -2076,6 +2076,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <ImageContentTask Include="Assets\sprite\Title_Line.png" />
+    <ImageContentTask Include="Assets\sprite\Title_A.png" />
+    <ImageContentTask Include="Assets\sprite\Sansen_arrow.png" />
     <ImageContentTask Include="Assets\sprite\Reslut2.png" />
     <ImageContentTask Include="Assets\sprite\Reslut3.png" />
     <ImageContentTask Include="Assets\sprite\title1.png" />
@@ -2105,7 +2108,6 @@
     <ImageContentTask Include="Assets\sprite\Stage1.png" />
     <ImageContentTask Include="Assets\sprite\StageSelect.png" />
     <ImageContentTask Include="Assets\sprite\SankaMulti.png" />
-    <ImageContentTask Include="Assets\sprite\Title_A.bmp" />
     <ImageContentTask Include="Assets\sprite\1Player.png" />
     <ImageContentTask Include="Assets\sprite\2Player.png" />
     <ImageContentTask Include="Assets\sprite\3Player.png" />

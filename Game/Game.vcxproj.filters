@@ -22,7 +22,6 @@
     <ImageContentTask Include="Assets\sprite\Stage1.png" />
     <ImageContentTask Include="Assets\sprite\StageSelect.png" />
     <ImageContentTask Include="Assets\sprite\SankaMulti.png" />
-    <ImageContentTask Include="Assets\sprite\Title_A.bmp" />
     <ImageContentTask Include="Assets\sprite\1Player.png" />
     <ImageContentTask Include="Assets\sprite\2Player.png" />
     <ImageContentTask Include="Assets\sprite\3Player.png" />
@@ -39,6 +38,7 @@
     <ImageContentTask Include="Assets\sprite\Reslut3.png" />
     <ImageContentTask Include="Assets\sprite\title1.png" />
     <ImageContentTask Include="Assets\sprite\Reslut1.png" />
+    <ImageContentTask Include="Assets\sprite\Sansen_arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BigBlackHole.cpp" />
@@ -329,6 +329,7 @@
   <ItemGroup>
     <ResourceCompile Include="Game.rc" />
     <ResourceCompile Include="Game.rc" />
+    <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\sound\bakuhatu.wav" />
@@ -426,12 +427,18 @@
     <ImageContentTask Include="Assets\sprite\Sansen_Number.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_player.png" />
     <ImageContentTask Include="Assets\sprite\Gate.png" />
+    <ImageContentTask Include="Assets\sprite\Reslut2.png" />
+    <ImageContentTask Include="Assets\sprite\Reslut3.png" />
+    <ImageContentTask Include="Assets\sprite\title1.png" />
+    <ImageContentTask Include="Assets\sprite\Reslut1.png" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\sprite\Title_A.png" />
+    <Image Include="Assets\sprite\Title_Line.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\BH.efk" />

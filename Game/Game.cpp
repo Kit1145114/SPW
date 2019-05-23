@@ -56,7 +56,7 @@ Game::~Game()
 	
 	DeleteGOs("テレポート");
 	DeleteGOs("テレポート2");
-	DeleteGOs("BBH");//Bigblackholeクラス
+	DeleteGO("BBH");//Bigblackholeクラス
 }
 //シンプル。
 void Game::CreateStage0() {
@@ -195,9 +195,9 @@ void Game::CreateStage3()
 		m_player[0]->SetPositionX(P_pos *-10);
 		m_player[0]->SetPositionZ(P_pos * 5);
 	}
-	BBH = NewGO<BigBlackHole>(0, "bigblackhole");
+	BBH = NewGO<BigBlackHole>(0, "BBH");
 	
-	BigBlackHole::Generate();
+	//BigBlackHole::Generate();
 	BHflag = true;
 	m_field = NewGO<field>(0);
 	//BGM
