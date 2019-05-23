@@ -192,6 +192,20 @@ void Planet::Move() {
 	}
 	p_position += randomspeed;
 	p_skinModelRender->SetPosition(p_position);
+
+	//回転
+	//クォータニオンを単位クォータニオンで初期化する。
+	CQuaternion qRot = CQuaternion::Identity;
+	//Y軸周りに10度回す。
+	float angle = 0;
+	angle += 10.0f;
+	qRot.SetRotationDeg(CVector3::AxisY, angle);
+	//回転を加算する。
+	CQuaternion m_rotation = CQuaternion::Identity;	//回転。
+	m_rotation.Multiply(qRot);
+	//回転を設定。
+	p_skinModelRender->SetRotation(m_rotation);
+	
 }
 //ドカーン（爆発）きたねぇ、花火だぜ、、、。
 void Planet::explosion()

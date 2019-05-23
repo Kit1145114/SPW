@@ -26,6 +26,8 @@ bool BlackHole::Start()
 	effect->SetPosition(m_position);
 	//BHカウントしておく。
 	Game::GetInstance()->SetBHCount(1);
+	//
+	effect->SetEffectFlag(true);
 	return true;
 }
 

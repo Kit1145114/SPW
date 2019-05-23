@@ -50,6 +50,9 @@ namespace tkEngine{
 			{
 				return GraphicsEngine().GetEffectEngine().GetEffekseerManager().GetShown(m_handle);
 			}
+			void SetEffectFlag(bool flag) {
+				Effectflag = flag;
+			}
 			/*!
 			 *@brief	更新。
 			 */
@@ -60,6 +63,7 @@ namespace tkEngine{
 			CVector3 m_position = CVector3::Zero;			//!<座標。
 			CQuaternion m_rotation = CQuaternion::Identity;	//!<回転。
 			CVector3 m_scale = CVector3::One;				//!<拡大率。
+			bool Effectflag =false;							//!<終了フラグ
 		};
 	}
 }

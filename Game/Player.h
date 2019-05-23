@@ -212,7 +212,7 @@ private:
 	float memorySX = 0.0f;
 	float memorySZ = 0.0f;
 	float BulletHantei = 1200.0f;
-	float StarHantei = 900.0f;
+	float StarHantei = 1500.0f;
 	CVector3 Res = CVector3::Zero;
 
 	bool DeathCount = false;
