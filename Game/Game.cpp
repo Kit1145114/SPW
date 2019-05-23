@@ -42,6 +42,9 @@ Game::~Game()
 	if (m_star != nullptr) {
 		DeleteGO(m_star);
 	}
+	if (BBH != nullptr) {
+		DeleteGO("BBH");//Bigblackholeクラス
+	}
 	DeleteGO(m_field);
 	DeleteGO(m_G_Timer);
 	DeleteGO(satelliteG);
@@ -56,7 +59,7 @@ Game::~Game()
 	
 	DeleteGOs("テレポート");
 	DeleteGOs("テレポート2");
-	DeleteGO("BBH");//Bigblackholeクラス
+	
 }
 //シンプル。
 void Game::CreateStage0() {
