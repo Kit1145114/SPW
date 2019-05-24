@@ -42,8 +42,7 @@ bool Planet::Generate(int Reload, int Planetnum) {
 	game = FindGO<Game>("Game");
 	//Planetnumber_Num分の作成。
 	for (int i = 0, w = Planetnumber_00;i < Reload;i++, w++) {
-			prefab::CSkinModelRender* P_skinModelRender;
-			P_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
+			
 			int myplanetnum = 0;
 			if (Reload != Planetnumber_Num) { //リスポーンのため例外。
 				w = Planetnum;               //惑星の指定。
@@ -96,12 +95,11 @@ bool Planet::Generate(int Reload, int Planetnum) {
 					}
 				}
 			}
-
-			if (isCreatePlanet) {
 			//プラネットを生成できるなら作成する。
-
+			if (isCreatePlanet) {
 			//惑星のモデリング指定。
-				
+				prefab::CSkinModelRender* P_skinModelRender;
+				P_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 				switch (w) {
 				case Planetnumber_00:
 					P_skinModelRender->Init(L"modelData/planet0fire.cmo");
