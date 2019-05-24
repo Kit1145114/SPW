@@ -48,7 +48,6 @@ void TrepotHole2::Update()
 				//trueで当たったらワープする
 				if (kyori.Length() < 1200 && tere->GetTrepotFlag() == true) {
 
-
 					m_trepot2->Init(L"modelData/terepot_false.cmo");
 					QueryGOs<TrepotHole>("テレポート", [&](TrepotHole* tere)->bool {
 						tere->m_trepot->Init(L"modelData/terepot_false.cmo");
@@ -58,9 +57,8 @@ void TrepotHole2::Update()
 						return true;
 					});
 				}
-				//return true;
-			//});
-		
 	}
+
+	
 
 }
