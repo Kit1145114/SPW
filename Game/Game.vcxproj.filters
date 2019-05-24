@@ -431,6 +431,7 @@
     <ImageContentTask Include="Assets\sprite\Reslut3.png" />
     <ImageContentTask Include="Assets\sprite\title1.png" />
     <ImageContentTask Include="Assets\sprite\Reslut1.png" />
+    <Media Include="Assets\sound\bacteria.wav" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
