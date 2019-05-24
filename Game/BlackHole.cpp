@@ -22,6 +22,7 @@ bool BlackHole::Start()
 	effect = NewGO<prefab::CEffect>(0);
 	//エフェクトを再生。
 	effect->Play(L"effect/BH.efk");
+	//scale = 0.1f;
 	effect->SetScale(scale*radius);
 	effect->SetPosition(m_position);
 	//BHカウントしておく。
@@ -39,16 +40,6 @@ void BlackHole::Generate(CVector3 position, float magnification)
 	bh->radius *= magnification/500;
 }
 
-void BlackHole::Generate2(CVector3 position, float magnification, float Search, float Limit)
-{
-	BlackHole* bh = NewGO<BlackHole>(0, "BlackHole");
-	//保存。
-	bh->m_position = position;
-	bh->radius *= magnification / 500;
-	bh->Searchment = Search;//	BHの重力範囲の調整。
-	bh->G_limitar = Limit;//   BHの重力（Ｇ）調整。
-	bh->Countflg = true;  //trueにすることで自然消滅しなくなる。
-}
 
 void BlackHole::Move()
 {
@@ -72,7 +63,7 @@ void BlackHole::Move()
 					//対象との距離が中心に近くなったら。
 					if (kyori.Length() < radius * Searchment / 5) {
 						//破壊。
-						Game::GetInstance()->m_player[i]->Death();
+						Game::GetInstance()->m_player[i]->AddHP(-100);
 						Game::GetInstance()->m_player[i]->SetLABulletNum(-1);
 					}
 				}

@@ -22,7 +22,7 @@ public:
 
 Planet::Planet()
 {
-	//p_skinModelRender->SetEmissionColor({ 1.25, 1.25, 1.25 }); //物自体を光らせるコード。
+	
 }
 
 Planet::~Planet()
@@ -33,13 +33,14 @@ Planet::~Planet()
 
 bool Planet::Start() 
 {
+	p_skinModelRender->SetEmissionColor({ 0.25, 0.25, 0.25 }); //物自体を光らせるコード。
 	return true;
 }
 
 bool Planet::Generate(int Reload, int Planetnum) {
 	Game* game = nullptr;
 	game = FindGO<Game>("Game");
-	//Planetnumber_Num分の作成
+	//Planetnumber_Num分の作成。
 	for (int i = 0, w = Planetnumber_00;i < Reload;i++, w++) {
 			prefab::CSkinModelRender* P_skinModelRender;
 			P_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
@@ -141,6 +142,7 @@ bool Planet::Generate(int Reload, int Planetnum) {
 				default:w = Planetnumber_00;
 				}
 				Planet* planet = NewGO<Planet>(0, "planet");
+				
 				//初期リスポーンの場合。
 				if (Planetnum == Planetnumber_Num) {
 					game->memoryPP[i] = planet;

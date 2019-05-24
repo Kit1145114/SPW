@@ -13,10 +13,7 @@ public:
 	BlackHole();
 	~BlackHole();
 	bool Start();
-	//ŠÔ§ŒÀ‚ ‚è‚Ì•’Ê‚Ì‚a‚g;
 	static void Generate(CVector3 position, float magnification); 
-	//ŠÔ§ŒÀ‚È‚µ‚ÌŒÅ’è‚Ì‚a‚g(BBH);
-	static void Generate2(CVector3 position, float magnification, float Search, float Limit);
 	void Move();
 	void Gravity();
 	void Count();
@@ -31,7 +28,7 @@ public:
 		scale = sca;
 	}
 protected:
-	prefab::CEffect* effect;
+	prefab::CEffect* effect =nullptr;
 	Game* m_game = nullptr;
 	Draw_Player* Pl1 = nullptr;
 	CVector3 m_position = CVector3::Zero;
