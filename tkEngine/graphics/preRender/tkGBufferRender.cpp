@@ -210,7 +210,7 @@ namespace tkEngine{
 		rc.OMSetRenderTargets(enGBufferNum, renderTargets);
 		//Gバッファをクリア。
 		float clearColor[enGBufferNum][4] = { 
-			{ 0.0f, 0.0f, 0.0f, 1.0f }, //enGBufferAlbedo
+			{ 0.5f, 0.5f, 0.5f, 1.0f }, //enGBufferAlbedo
 			{ 0.0f, 1.0f, 0.0f, 1.0f }, //enGBufferNormal
 			{ 0.0f, 0.0f, 0.0f, 1.0f }, //enGBufferSpecular
 			{ 0.0f, 0.0f, 0.0f, 1.0f }, //enGBufferShadow
