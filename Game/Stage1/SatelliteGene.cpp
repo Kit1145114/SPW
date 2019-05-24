@@ -10,6 +10,7 @@ void SatelliteGene::OnDestroy() {
 }
 
 void SatelliteGene::Update() {
+	if (Game::GetInstance()->isWaitStart())return;
 	timer += GameTime().GetFrameDeltaTime();
 	if (timer > interval) {
 		timer = 0;

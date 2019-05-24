@@ -303,7 +303,7 @@ void Planet::Death() {
 }
 
 void Planet::Update() {
-	
+	if (Game::GetInstance()->isWaitStart())return;
 	Size();
 	Move();
 	Death();

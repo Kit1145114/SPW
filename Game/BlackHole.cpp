@@ -175,6 +175,7 @@ void BlackHole::Size()
 
 void BlackHole::Update()
 {
+	if (Game::GetInstance()->isWaitStart())return;
 	Size();
 	Move();
 	Count();
