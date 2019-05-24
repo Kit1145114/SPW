@@ -2,6 +2,7 @@
 #include"Game.h"
 #include"Draw_Player.h"
 #include"BlackHole.h"
+#include "tkEngine/light/tkPointLight.h"
 class Game;
 class Bullet;
 class Star;
@@ -19,7 +20,7 @@ public:
 	void Death();
 	void explosion();
 	static bool Generate(int Reload,int Planetnum);
-	void init(CVector3 position, prefab::CSkinModelRender* skinModelRender, float scale);
+	void init(CVector3 position, prefab::CSkinModelRender* skinModelRender, float scale, prefab::CPointLight* cpointlight);
 
 	CVector3 GetPosition() {
 		return p_position;
@@ -43,7 +44,7 @@ private:
 	CVector3 randomspeed = CVector3::Zero;
 	prefab::CSkinModelRender* p_skinModelRender = nullptr;
 	prefab::CSoundSource* SoundSource = nullptr;//BGM用のサウンドソース。
-	
+	prefab::CPointLight* p_Cpointlit = nullptr;//他を照らすライト。
 	Bullet* m_bullet = nullptr;
 	Planet* hoge = nullptr;
 	float radius = { 30.0f };  //基本惑星の半径。

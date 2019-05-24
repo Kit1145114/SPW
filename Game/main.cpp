@@ -103,7 +103,7 @@ namespace {
 		initParam.graphicsConfing.bloomConfig.isEnable = true;
 		//tonemap
 		initParam.graphicsConfing.tonemapConfig.isEnable = false;
-		initParam.graphicsConfing.tonemapConfig.luminance = 0.2f;
+		initParam.graphicsConfing.tonemapConfig.luminance = 0.05f;
 		//SSR
 		initParam.graphicsConfing.ssrConfig.isEnable = false;
 		//ÉfÉBÉU
