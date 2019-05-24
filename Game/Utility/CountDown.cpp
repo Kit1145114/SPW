@@ -90,10 +90,12 @@ void CountDown::PostRender(CRenderContext & rc) {
 		wchar_t text[4];
 		if (count == 0) {
 			swprintf(text, L"go!");
+			font.Draw(text, { -20,45 }, { 1*alpha,0,0,alpha }, 0, scale * 0.8f);
 		} else {
 			swprintf(text, L"%d", count);
+			float threeHosei = (count == 3) ? 10 : 0;
+			font.Draw(text, { -20+threeHosei,45 }, { 0,0,0,alpha }, 0, scale);
 		}
-		font.Draw(text, { -20,45 }, { 0,0,0,alpha }, 0, scale);
 		font.End(rc);
 	}
 }
