@@ -73,7 +73,7 @@ void CountDown::Update() {
 				se->Init(L"sound/Countdown1.wav");
 			}
 			se->Play(false);
-			//se->SetVolume(0.3f);
+			se->SetVolume(1.3f);
 		}
 	}
 }
