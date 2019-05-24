@@ -45,20 +45,18 @@ void SetumeiGamen::Kirikae()
 {
 	if (Pad(0).IsTrigger(enButtonLeft) == true)
 	{
-		if(mode < 3)
 		mode--;
-		else if (mode < -1)
+		if (mode < 0)
 		{
 			mode = 0;
 		}
 	}
 	if (Pad(0).IsTrigger(enButtonRight) == true)
 	{
-		if (mode > -1) {
-			mode++;
-		}
-		else if (mode < 3) {
-			mode = 3;
+		mode++;
+		if (mode > 2)
+		{
+			mode = 2;
 		}
 	}
 	if (Pad(0).IsTrigger(enButtonB) == true)

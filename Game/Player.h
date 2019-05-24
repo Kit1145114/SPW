@@ -223,5 +223,7 @@ private:
 	bool Muteki = false;
 	bool Alive = true;
 	bool CountExplosion = false;
+
+	int a = 1;
 };
 
