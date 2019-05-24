@@ -59,11 +59,16 @@ void BlackHole::Move()
 			//対象との距離を測定。
 			CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - m_position;
 			//対象との距離が一定以下になったら。
-				if (kyori.Length() < radius * Searchment) {
+				if (kyori.Length() < radius * Searchment*1.2) {
 					//Ｇ中心に遠ければ弱く、近ければ強く。
 					float G = radius * Searchment - kyori.Length();
-					//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
-					Game::GetInstance()->m_player[i]->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
+					//対象に渡す重力。反転（-1）すれば重力となる。
+					G_limitar = { 50.0f };//   BBHの重力（Ｇ）調整。
+					CVector3 Migawari = kyori;
+					Migawari.Normalize();
+					G = G * G / BBHnizyou;
+					Game::GetInstance()->m_player[i]->SetMoveSpeed(((Migawari * G) / G_limitar)*-1);
+					//Game::GetInstance()->m_player[i]->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
 					//対象との距離が中心に近くなったら。
 					if (kyori.Length() < radius * Searchment / 5) {
 						//破壊。
@@ -83,8 +88,13 @@ void BlackHole::Move()
 				if (kyori.Length() < radius * Searchment) {
 					//Ｇ中心に遠ければ弱く、近ければ強く。
 					float G = radius * Searchment - kyori.Length();
-					//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
-					Game::GetInstance()->memoryPP[i]->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
+					//対象に渡す重力。、反転（-1）すれば重力となる。
+					G_limitar = { 100.0f };//   BBHの重力（Ｇ）調整。
+					CVector3 Migawari = kyori;
+					Migawari.Normalize();
+					G = G * G / BBHnizyou;
+					Game::GetInstance()->memoryPP[i]->SetMoveSpeed(((Migawari * G) / G_limitar)*-1);
+					//Game::GetInstance()->memoryPP[i]->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
 					//対象との距離が中心に近くなったら。
 					if (kyori.Length() < radius * Searchment / 5) {
 						//破壊。
@@ -110,8 +120,13 @@ void BlackHole::Move()
 		if (kyori.Length() < radius * Searchment) {
 			//Ｇ中心に遠ければ弱く、近ければ強く。
 			float G = radius * Searchment - kyori.Length();
-			//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
-			b->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
+			//対象に渡す重力。すれば重力となる。
+			G_limitar = { 200.0f };//   BBHの重力（Ｇ）調整。
+			CVector3 Migawari = kyori;
+			Migawari.Normalize();
+			G = G * G / BBHnizyou;
+			b->SetMoveSpeed(((Migawari * G) / G_limitar)*-1);
+			//b->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
 		}
 		return true;
 	});
@@ -124,7 +139,11 @@ void BlackHole::Move()
 			//Ｇ中心に遠ければ弱く、近ければ強く。
 			float G = radius * Searchment - kyori.Length();
 			//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
-			m->SetMoveSpeed(((kyori*G) / G_limitar)*-1);
+			G_limitar = { 600.0f };//   BBHの重力（Ｇ）調整。
+			CVector3 Migawari = kyori;
+			Migawari.Normalize();
+			G = G * G / BBHnizyou;
+			m->SetMoveSpeed(((Migawari * G) / G_limitar)*-1);
 			if (kyori.Length() < radius * Searchment / 5) {
 				//破壊。
 				m->Death();

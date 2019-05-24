@@ -24,6 +24,10 @@ Title_2::~Title_2()
 
 bool Title_2::Start()
 {
+	m_background = NewGO<prefab::CSpriteRender>(0);
+	m_background->Init(L"sprite/dummy.dds", MainCamera2D().GetWidth(), MainCamera2D().GetHeight());
+	m_background->SetMulColor({ 0, 0, 0, 1 });
+
 	sprite_line = NewGO<prefab::CSpriteRender>(1);
 	sprite_line->Init(L"sprite/Title_Line.dds", 1280.0f, 60.0f);
 	sprite_line->SetPosition({ 0, 150, 0});
@@ -92,7 +96,7 @@ void Title_2::Update()
 
 void MoveCharacter::PostRender(CRenderContext & rc) {
 	pos.Update();
-
+	
 	m_font->Begin(rc);
 
 	CVector2 p;
@@ -111,8 +115,8 @@ void Flush::Update() {
 			alpha += delta*2;
 			if (alpha > 1.0f) {
 				in = false;
-				(*back) = NewGO<prefab::CSpriteRender>(0);
 				(*back)->Init(L"sprite/Title_A.dds", MainCamera2D().GetWidth(), MainCamera2D().GetHeight());
+				(*back)->SetMulColor(CVector4::White);
 			}
 		} else {
 			alpha -= delta;

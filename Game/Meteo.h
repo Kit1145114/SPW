@@ -13,6 +13,7 @@ public:
 	void Move();
 	void Hantei();
 	void Death();
+	void Rotation();
 	void SetPosition(CVector3 pos)
 	{
 		m_position = pos;
