@@ -49,14 +49,14 @@ bool ResultGamen::Start()
 		r_spriteRender = NewGO<prefab::CSpriteRender>(0);
 		r_spriteRender->Init(L"sprite/Reslut1.dds", 1280.0f, 720.0f);
 		break;
-	case 1:
-		r_spriteRender = NewGO<prefab::CSpriteRender>(0);
-		r_spriteRender->Init(L"sprite/Reslut2.dds", 1280.0f, 720.0f);
-		break;
-	case 2:
-		r_spriteRender = NewGO<prefab::CSpriteRender>(0);
-		r_spriteRender->Init(L"sprite/Reslut3.dds", 1280.0f, 720.0f);
-		break;
+	//case 1:
+	//	r_spriteRender = NewGO<prefab::CSpriteRender>(0);
+	//	r_spriteRender->Init(L"sprite/Reslut2.dds", 1280.0f, 720.0f);
+	//	break;
+	//case 2:
+	//	r_spriteRender = NewGO<prefab::CSpriteRender>(0);
+	//	r_spriteRender->Init(L"sprite/Reslut3.dds", 1280.0f, 720.0f);
+	//	break;
 	default:
 		r_spriteRender = NewGO<prefab::CSpriteRender>(0);
 		r_spriteRender->Init(L"sprite/Reslut1.dds", 1280.0f, 720.0f);
@@ -212,7 +212,7 @@ void ResultGamen::Result()
 	for (int i = 0; i < PadKazu; i++) {
 		r_Draw[PNums[i]]->SetPlayer(i + 1);
 		r_Draw[PNums[i]]->SetJuni(i + 1);
-		P_spriteRender[i]->Init(draw_P[i], 300.0f, 135.0f);
+		P_spriteRender[i]->Init(draw_P[i], 500.0f, 135.0f);
 	}
 }
 
@@ -222,7 +222,16 @@ void ResultGamen::GateDraw()
 	{
 	case 1:
 		timer++;
-		if (timer > 50) {
+		if (timer < Limit) {
+			G1position.x += 10.0;
+			G_spriteRender[0]->SetPosition(G1position);
+			if (G1position.x > 220)
+			{
+				G1position.x = 200.0;
+				G_spriteRender[0]->SetPosition(G1position);
+			}
+		}
+		if (timer > Limit) {
 			if (junban == 1) {
 				G1position.x += 10.0;
 				if (G1position.x > change) {
@@ -239,7 +248,7 @@ void ResultGamen::GateDraw()
 		}
 	case 2:
 		timer++;
-		if (timer > 50) {
+		if (timer > Limit) {
 			if (junban == 2) {
 				G2position.x += 10.0;
 				if (G2position.x > change) {
@@ -252,7 +261,7 @@ void ResultGamen::GateDraw()
 					G_spriteRender[1]->SetPosition(G2position);
 				}
 			}
-			if (timer > 50) {
+			if (timer > Limit) {
 				if (junban == 1) {
 					G1position.x += 10.0;
 					if (G1position.x > change) {
@@ -270,7 +279,7 @@ void ResultGamen::GateDraw()
 		break;
 	case 3:
 		timer++;
-		if (timer > 50) {
+		if (timer > Limit) {
 			if (junban == 3) {
 				G3position.x += 10.0;
 				if (G3position.x > change) {
@@ -283,7 +292,7 @@ void ResultGamen::GateDraw()
 					G_spriteRender[2]->SetPosition(G3position);
 				}
 			}
-			if (timer > 50) {
+			if (timer > Limit) {
 				if (junban == 2) {
 					G2position.x += 10.0;
 					if (G2position.x > change) {
@@ -297,7 +306,7 @@ void ResultGamen::GateDraw()
 					}
 				}
 			}
-			if (timer > 50) {
+			if (timer > Limit) {
 				if (junban == 1) {
 					G1position.x += 10.0;
 					if (G1position.x > change) {
@@ -315,7 +324,7 @@ void ResultGamen::GateDraw()
 		break;
 	case 4:
 		timer++;
-		if (timer > 50) {
+		if (timer > Limit) {
 			if (junban == 4) {
 				G4position.x += 10.0;
 				if (G4position.x > change) {
@@ -327,7 +336,7 @@ void ResultGamen::GateDraw()
 					G_spriteRender[3]->SetPosition(G4position);
 				}
 			}
-			if (timer > 50) {
+			if (timer > Limit) {
 				if (junban == 3) {
 					G3position.x += 10.0;
 					if (G3position.x > change) {
@@ -340,7 +349,7 @@ void ResultGamen::GateDraw()
 					}
 				}
 			}
-			if (timer > 50) {
+			if (timer > Limit) {
 				if (junban == 2) {
 					G2position.x += 10.0;
 					if (G2position.x > change) {
@@ -353,7 +362,7 @@ void ResultGamen::GateDraw()
 					}
 				}
 			}
-			if (timer > 50) {
+			if (timer > Limit) {
 				if (junban == 1) {
 					G1position.x += 10.0;
 					if (G1position.x > change) {

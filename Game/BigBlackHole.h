@@ -21,7 +21,7 @@ private:
 	float BBHradius = { 9.0f };      //	基本惑星の半径。
 	float BBHSearchment = { 5.0f };//	BigBBHの重力範囲の調整。
 	float BBHG_limitar = { 600.0f };//   BBHの重力（Ｇ）調整。
-
+	float BBHnizyou = { 32000.0f }; //   BBH（二乗調整。
 	CVector3 scale = { 1.0f,1.0f,1.0f };
 	int timer = 0;
 	float radius = { 9.0f };       //	基本惑星の半径。*9(Big

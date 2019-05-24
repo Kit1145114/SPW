@@ -38,20 +38,21 @@ private:
 	//プレイヤー
 	const wchar_t* draw_P[4] = { nullptr };
 	prefab::CSpriteRender* P_spriteRender[4] = { nullptr };
-	CVector3 N1position = { 210.0f,189.0f,0.0f };
-	CVector3 N2position = { 210.0f,39.0f,0.0f };
-	CVector3 N3position = { 210.0f,-108.0f,0.0f };
-	CVector3 N4position = { 210.0f,-258.0f,0.0f };
+	CVector3 N1position = { 180.0f,180.0f,0.0f };
+	CVector3 N2position = { 180.0f,39.0f,0.0f };
+	CVector3 N3position = { 180.0f,-110.0f,0.0f };
+	CVector3 N4position = { 180.0f,-260.0f,0.0f };
 	//ゲート。
 	int junban = 0;
-	float change = 1500.0f;
+	int Limit = 80;
+	float change = 900.0f;
 	prefab::CSpriteRender* G_spriteRender[4] = { nullptr };
-	float GateSizeX = 300.0f;
+	float GateSizeX = 500.0f;
 	float GateSizeY = 100.0f;
-	CVector3 G1position = { 210.0f,189.0f,0.0f };
-	CVector3 G2position = { 210.0f,39.0f,0.0f };
-	CVector3 G3position = { 210.0f,-108.0f,0.0f };
-	CVector3 G4position = { 210.0f,-258.0f,0.0f };
+	CVector3 G1position = { 180.0f,180.0f,0.0f };
+	CVector3 G2position = { 180.0f,39.0f,0.0f };
+	CVector3 G3position = { 180.0f,-110.0f,0.0f };
+	CVector3 G4position = { 180.0f,-260.0f,0.0f };
 	//prefab::CSpriteRender* G_spriteRender[8] = { nullptr };
 	//float GateSizeX = 205.0f;
 	//float GateSizeY = 100.0f;

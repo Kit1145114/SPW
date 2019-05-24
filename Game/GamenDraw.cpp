@@ -51,42 +51,36 @@ void GamenDraw::PostRender(CRenderContext& rc) {
 	swprintf_s(text, L"game play\n");
 	m_font.Begin(rc);
 
-	if (mode == 0) {
-		m_font.Draw(
-			text,
-			{ 0.0f, -105.0f },
-			{ 0.0f, 1.0f, 1.0f, 1.0f },
-			0.0f,
-			1.25f
-		);
+	{
+		CVector4 color = {0.0f, 0.0f, 0.0f, 1.0f};
+		CVector2 pos = { 0.0f, -105.0f };
+		for (int i = 0; i < 2; i++) {
+			m_font.Draw(text, pos, color, 0.0f, 1.25f);
+			pos.x -= 3.0f;
+			pos.y += 3.0f;
+			if (mode == 0) {
+				color = { 0.0f, 1.0f, 1.0f, 1.0f };
+			} else if (mode == 1) {
+				color = { 0.0f, 0.0f, 1.0f, 1.0f };
+			}
+		}
 	}
-	else if (mode == 1) {
-		m_font.Draw(
-			text,
-			{ 0.0f, -105.0f },
-			{ 0.0f, 0.0f, 1.0f, 1.0f },
-			0.0f,
-			1.25f
-		);
-	}
+
 	swprintf_s(text, L"manual\n");
-	if (mode == 0) {
-		m_font.Draw(
-			text,
-			{ 0.0f, -200.0f },
-			{ 0.0f, 0.0f, 1.0f, 1.0f },
-			0.0f,
-			1.25f
-		);
-	}
-	else if (mode == 1) {
-		m_font.Draw(
-			text,
-			{ 0.0f, -200.0f },
-			{ 0.0f, 1.0f, 1.0f, 1.0f },
-			0.0f,
-			1.25f
-		);
+
+	{
+		CVector4 color = { 0.0f, 0.0f, 0.0f, 1.0f };
+		CVector2 pos = { 0.0f, -200.0f };
+		for (int i = 0; i < 2; i++) {
+			m_font.Draw(text, pos, color, 0.0f, 1.25f);
+			pos.x -= 3.0f;
+			pos.y += 3.0f;
+			if (mode == 0) {
+				color = { 0.0f, 0.0f, 1.0f, 1.0f };
+			} else if (mode == 1) {
+				color = { 0.0f, 1.0f, 1.0f, 1.0f };
+			}
+		}
 	}
 	m_font.End(rc);
 }

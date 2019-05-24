@@ -25,7 +25,7 @@ bool Player::Start()
 	m_skinModelRender->Init(L"modelData/Senkan.cmo");
 	m_scale = { 9.6f,9.6f,9.6f };
 	m_skinModelRender->SetScale(m_scale);
-	m_CharaCon.Init(800.0f, 300.0f, m_position);
+	//m_CharaCon.Init(800.0f, 300.0f, m_position);
 	m_game = Game::GetInstance();
 	camera = FindGO<Camera>("Camera");
 	switch (m_game->GetSansenKazu())
@@ -84,20 +84,20 @@ void Player::Move()
 			if (Ver == 0) {
 				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +SyokiSpped;
 				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +SyokiSpped;
-				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
+				m_position += (m_moveSpeed*12.0f);
 				m_skinModelRender->SetPosition(m_position);
 			}
 			else if (Ver == 1)
 			{
 				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +(SyokiSpped-0.75f);
 				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +(SyokiSpped - 0.75f);
-				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
+				m_position += (m_moveSpeed*12.0f);
 				m_skinModelRender->SetPosition(m_position);
 			}
 			else if (Ver == 2) {
 				m_moveSpeed.x = NPad(PadNum).GetLStickXF()* (SyokiSpped - 1.5f);
 				m_moveSpeed.z = NPad(PadNum).GetLStickYF()* (SyokiSpped - 1.5f);
-				m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
+				m_position += (m_moveSpeed*12.0f);
 				m_skinModelRender->SetPosition(m_position);
 			}
 				if (m_moveSpeed.x != 0.0f || m_moveSpeed.z != 0.0f) {
@@ -118,7 +118,7 @@ void Player::Move()
 		{
 			m_moveSpeed.x = NPad(PadNum).GetLStickXF()* +13.0f;
 			m_moveSpeed.z = NPad(PadNum).GetLStickYF()* +13.0f;
-			m_position = m_CharaCon.Execute(/*5.0f,*/ m_moveSpeed, 12.0f);
+			m_position += (m_moveSpeed*12.0f);
 			m_skinModelRender->SetPosition(m_position);
 		}
 		//これを変更したら、Assets/shader/model.fxのPSMainBGも変更する。
@@ -361,11 +361,13 @@ void Player::Rotation()
 //プレイヤーの死亡処理。
 void Player::Death()
 {
-	m_skinModelRender->Init(L"modelData/Hako.cmo");
+	//m_skinModelRender->Init(L"modelData/PlayerStar.cmo");
+	m_skinModelRender->SetActiveFlag(false);
 	memory_position = m_position;
 	ShortCount = false;
 	DeathCount = true;
 	Alive = false;
+	Muteki = true;
 	draw_Pl->SetDeath(true);
 	if (CountExplosion == false) {
 		CountExplosion = true;
@@ -383,6 +385,7 @@ void Player::Death()
 //プレイヤーのリスポーン処理。
 void Player::Respawn()
 {
+	m_skinModelRender->SetActiveFlag(true);
 	if (DeathCount == true)
 	{
  		d_timer++;
@@ -394,7 +397,7 @@ void Player::Respawn()
 				m_CharaCon.SetPosition(m_position);
 				d_timer = 0;
 				DeathCount = false;
-				Muteki = true;
+				//Muteki = true;
 				CountExplosion = false;
 				PlHP = MaxHP;
 				if (StarCount > 1 && Alive == false)
@@ -413,7 +416,7 @@ void Player::Respawn()
 				m_CharaCon.SetPosition(m_position);
 				d_timer = 0;
 				DeathCount = false;
-				Muteki = true;
+				//Muteki = true;
 				PlHP = MaxHP;
 				if (StarCount > 1 && Alive == false)
 				{
@@ -431,7 +434,7 @@ void Player::Respawn()
 				m_CharaCon.SetPosition(m_position);
 				d_timer = 0;
 				DeathCount = false;
-				Muteki = true;
+				//Muteki = true;
 				PlHP = MaxHP;
 				if (StarCount > 1 && Alive == false)
 				{
@@ -486,7 +489,6 @@ void Player::Houdai()
 //☆の当たり判定。
 void Player::S_Hantei()
 {
-
 	QueryGOs<Star>("Star", [&](Star* star)->bool {
 		CVector3 Kyori = star->GetPosition() - m_position;
 		if (Kyori.Length() < StarHantei) {
@@ -569,19 +571,19 @@ void Player::MutekiTimes()
 	{
 		MutekiTime++;
 		
-		if (MutekiTime >= 0)
+		if (MutekiTime >= 180)
 		{
 			m_skinModelRender->SetActiveFlag(false);
 		}
-		if (MutekiTime >= 30 && MutekiTime <= 60)
+		if (MutekiTime >= 210 && MutekiTime <= 240)
 		{
 			m_skinModelRender->SetActiveFlag(true);
 		}
-		if (MutekiTime >= 61 && MutekiTime <= 90)
+		if (MutekiTime >= 241 && MutekiTime <= 270)
 		{
 			m_skinModelRender->SetActiveFlag(false);
 		}
-		if (MutekiTime >= 91 && MutekiTime <= 180)
+		if (MutekiTime >= 271 && MutekiTime <= 360)
 		{
 			m_skinModelRender->SetActiveFlag(true);
 			Muteki = false;
