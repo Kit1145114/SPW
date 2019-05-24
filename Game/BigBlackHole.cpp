@@ -63,7 +63,7 @@ void BigBlackHole::Gravity()
 				//	//‘ÎÛ‚Æ‚Ì‹——£‚ª’†S‚É‹ß‚­‚È‚Á‚½‚çB
 				if (kyori.Length() < radius * Searchment / 5) {
 					//”j‰óB
-					Game::GetInstance()->m_player[i]->Death();
+					Game::GetInstance()->m_player[i]->AddHP(-100);
 					Game::GetInstance()->m_player[i]->SetLABulletNum(-1);
 				}
 
@@ -140,5 +140,6 @@ void BigBlackHole::Gravity()
 
 void BigBlackHole::Update()
 {
+	if (Game::GetInstance()->isWaitStart())return;
 	Gravity();
 }

@@ -23,6 +23,7 @@ bool Player::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Senkan.cmo");
+	m_skinModelRender->SetPosition(m_position);
 	m_scale = { 9.6f,9.6f,9.6f };
 	m_skinModelRender->SetScale(m_scale);
 	//m_CharaCon.Init(800.0f, 300.0f, m_position);
@@ -54,6 +55,7 @@ bool Player::Start()
 
 void Player::Update()
 {
+	if (Game::GetInstance()->isWaitStart())return;
 	Upper();
 	Move();			//プレイヤーの操作
 	PBullet();		//プレイヤーの射撃操作
@@ -361,31 +363,36 @@ void Player::Rotation()
 //プレイヤーの死亡処理。
 void Player::Death()
 {
-	//m_skinModelRender->Init(L"modelData/PlayerStar.cmo");
-	m_skinModelRender->SetActiveFlag(false);
-	memory_position = m_position;
-	ShortCount = false;
-	DeathCount = true;
-	Alive = false;
-	Muteki = true;
-	draw_Pl->SetDeath(true);
-	if (CountExplosion == false) {
-		CountExplosion = true;
-		////エフェクトを作成。
-		//prefab::CEffect* effect;
-		//effect = NewGO<prefab::CEffect>(0);
-		////エフェクトを再生。
-		//effect->Play(L"effect/explosion2.efk");
-		//effect->SetPosition(this->m_position);
-		//効果音
-		Sound(0);
-	}
-
+		m_skinModelRender->SetActiveFlag(false);
+		memory_position = m_position;
+		ShortCount = false;
+		DeathCount = true;
+		Alive = false;
+		Muteki = true;
+		draw_Pl->SetDeath(true);
+		if (CountExplosion == false) {
+			CountExplosion = true;
+			////エフェクトを作成。
+			//prefab::CEffect* effect;
+			//effect = NewGO<prefab::CEffect>(0);
+			////エフェクトを再生。
+			//effect->Play(L"effect/explosion2.efk");
+			//effect->SetPosition(this->m_position);
+			//効果音
+			Sound(0);
+		}
+		//if (DeathCount == true)
+		//{
+		//	d_timer++;
+		//	if (d_timer == 180)
+		//	{
+		//		Respawn();
+		//	}
+		//}
 }
 //プレイヤーのリスポーン処理。
 void Player::Respawn()
 {
-	m_skinModelRender->SetActiveFlag(true);
 	if (DeathCount == true)
 	{
  		d_timer++;
@@ -622,8 +629,9 @@ void Player::HP()
 {
 	if (PlHP <= 0)
 	{
-		PlHP = 0;
-		Death();
+		PlHP = 0; {
+				Death();
+		}
 	}
 }
 //プレイヤーの持つ☆を落とす。

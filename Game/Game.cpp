@@ -12,6 +12,7 @@
 #include "Stage2/RocketGene.h"
 #include "TrepotHole.h"
 #include "TrepotHole2.h"
+#include "Utility/CountDown.h"
 
 Game* Game::m_instance = nullptr;
 
@@ -56,6 +57,8 @@ Game::~Game()
 	DeleteGOs("PlayerBullet");//Bulletクラス
 	DeleteGOs("Star");//Starクラス
 	DeleteGOs("Meteo");
+
+	DeleteGO(countdown);
 	
 	DeleteGOs("テレポート");
 	DeleteGOs("テレポート2");
@@ -272,6 +275,8 @@ bool Game::Start()
 	}
 	m_camera = NewGO<Camera>(0, "Camera");
 	m_G_Timer = NewGO<GamenTimer>(0, "GamenTimer");
+	countdown = NewGO<CountDown>(2);
+	countdown->setPP(&countdown);
 	//enemy = NewGO<Enemy>(0, "Enemy");
 	Fade::fadeOut();
 	return true;

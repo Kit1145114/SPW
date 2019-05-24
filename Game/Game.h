@@ -23,6 +23,8 @@ class RocketGene;
 class MeteoGene;
 class BigBlackHole;
 
+class CountDown;
+
 class TrepotHole;
 class TrepotHole2;
 
@@ -103,10 +105,11 @@ public:
 	RocketGene* getRocketGene() {
 		return rocketG;
 	}
-	/*int GetTerepokazu()
-	{
-		return tere;
-	}*/
+	
+	bool isWaitStart() {
+		return countdown != nullptr;
+	}
+
 private:
 	void CreateStage0();
 	void CreateStage1();
@@ -131,6 +134,7 @@ private:
 	MeteoGene* meteogene = nullptr;
 	RocketGene* rocketG = nullptr;
 	
+	CountDown* countdown = nullptr;;
 
 	int trpotnumber = 0;
 	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。

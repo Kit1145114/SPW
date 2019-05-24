@@ -41,6 +41,8 @@
     <ImageContentTask Include="Assets\sprite\Sansen_arrow.png" />
     <ImageContentTask Include="Assets\sprite\Title_Line.png" />
     <ImageContentTask Include="Assets\sprite\Title_A.png" />
+    <ImageContentTask Include="Assets\sprite\CountDown_back.png" />
+    <ImageContentTask Include="Assets\sprite\CountDown_front.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BigBlackHole.cpp" />
@@ -87,6 +89,7 @@
     <ClCompile Include="TrepotHole2.cpp" />
     <ClCompile Include="Utility\MoveSprite.cpp" />
     <ClCompile Include="Utility\MovePositon.cpp" />
+    <ClCompile Include="Utility\CountDown.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\Back.FBX" />
@@ -327,6 +330,7 @@
     <ClInclude Include="Utility\BoxCollider2D.h" />
     <ClInclude Include="Utility\MoveSprite.h" />
     <ClInclude Include="Utility\MovePosition.h" />
+    <ClInclude Include="Utility\CountDown.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc" />
