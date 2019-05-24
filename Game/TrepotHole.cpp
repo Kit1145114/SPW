@@ -27,9 +27,10 @@ bool TrepotHole::Start()
 }
 void TrepotHole::Update()
 {
+	//ワープのtere[0]
 	for (int j = 0; j < Game::GetInstance()->GetSansenKazu(); j++) {
-			CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - m_position;
-
+			CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - Game::GetInstance()->tere[0]->GetPosition();
+		
 			//クールタイム
 			if (m_trepot_flag == false) {
 				
@@ -40,24 +41,82 @@ void TrepotHole::Update()
 					timer = 0;
 
 					if (m_trepot_flag == true) {
-						m_trepot->Init(L"modelData/terepot.cmo");
-						tere2->m_trepot2->Init(L"modelData/terepot.cmo");
+						Game::GetInstance()->tere[0]->m_trepot->Init(L"modelData/terepot.cmo");
+						Game::GetInstance()->tere2[0]->m_trepot2->Init(L"modelData/terepot.cmo");
 					}
 				}
 			}
 			//trueで当たったらワープする
-			if (kyori.Length() < 1200 && m_trepot_flag == true) {
+			if (kyori.Length() < 1200 && m_trepot_flag == true && Game::GetInstance()->tere2[0]) {
 				//スキンモデルレンダラーをプライベ－トする
-
-				m_trepot->Init(L"modelData/terepot_false.cmo");
+			
+				Game::GetInstance()->tere[0]->m_trepot->Init(L"modelData/terepot_false.cmo");
+				
 				QueryGOs<TrepotHole2>("テレポート2", [&](TrepotHole2* tere2)->bool {
-					tere2->m_trepot2->Init(L"modelData/terepot_false.cmo");
+					Game::GetInstance()->tere2[0]->m_trepot2->Init(L"modelData/terepot_false.cmo");
 					//ワープする
-					Game::GetInstance()->m_player[j]->SetPosition(tere2->GetPosition2());
+					/*Game::GetInstance()->m_player[j]->SetPosition(tere2->GetPosition2());
 					Game::GetInstance()->m_player[j]->SetCharaCon(tere2->GetPosition2());
-					m_trepot_flag = false;
+
+					m_trepot_flag = false;*/
+
+					if (Game::GetInstance()->tere2[0]) {
+						
+						Game::GetInstance()->m_player[j]->SetPosition(Game::GetInstance()->tere2[0]->GetPosition2());
+						Game::GetInstance()->m_player[j]->SetCharaCon(Game::GetInstance()->tere2[0]->GetPosition2());
+
+						m_trepot_flag = false;
+					}
+
+					
 					return true;
 				});
 			}
+	}
+
+	//ワープのtere[1]
+	for (int j = 0; j < Game::GetInstance()->GetSansenKazu(); j++) {
+		CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - Game::GetInstance()->tere[1]->GetPosition();
+
+		//クールタイム
+		if (m_trepot_flag == false) {
+
+			timer++;
+			if (timer == 400) {
+				TrepotHole2* tere2 = FindGO<TrepotHole2>("テレポート2");
+				m_trepot_flag = true;
+				timer = 0;
+
+				if (m_trepot_flag == true) {
+					Game::GetInstance()->tere[1]->m_trepot->Init(L"modelData/terepot.cmo");
+					Game::GetInstance()->tere2[1]->m_trepot2->Init(L"modelData/terepot.cmo");
+				}
+			}
+		}
+		//trueで当たったらワープする
+		if (kyori.Length() < 1200 && m_trepot_flag == true && Game::GetInstance()->tere2[1]) {
+			//スキンモデルレンダラーをプライベ－トする
+
+			Game::GetInstance()->tere[1]->m_trepot->Init(L"modelData/terepot_false.cmo");
+
+			QueryGOs<TrepotHole2>("テレポート2", [&](TrepotHole2* tere2)->bool {
+				Game::GetInstance()->tere2[1]->m_trepot2->Init(L"modelData/terepot_false.cmo");
+				//ワープする
+				/*Game::GetInstance()->m_player[j]->SetPosition(tere2->GetPosition2());
+				Game::GetInstance()->m_player[j]->SetCharaCon(tere2->GetPosition2());
+				m_trepot_flag = false;*/
+
+				if (Game::GetInstance()->tere2[1]) {
+
+					Game::GetInstance()->m_player[j]->SetPosition(Game::GetInstance()->tere2[1]->GetPosition2());
+					Game::GetInstance()->m_player[j]->SetCharaCon(Game::GetInstance()->tere2[1]->GetPosition2());
+
+					m_trepot_flag = false;
+				}
+
+
+				return true;
+			});
+		}
 	}
 }
