@@ -25,14 +25,10 @@ bool Meteo::Start()
 void Meteo::Update()
 {
 	Move();
-	Hantei();
-	//timer++;
-	//if (timer == 2500)
-	//{
-	//	Death();
-	//}
+	Rotation();
+	//Hantei();
 }
-//“®‚­
+//“®‚­A“®‚­(we go walk...)
 void Meteo::Move()
 {
 
@@ -122,4 +118,16 @@ void Meteo::Hantei()
 		|| m_position.z>PosMaxLimitz || m_position.z < -PosMaxLimitz) {
 		DeleteGO(this);
 	}
+}
+
+void Meteo::Rotation()
+{
+	float angleY = 0.0f;
+	angleY += randomspeed.y;
+	m_rotation.SetRotationDeg(CVector3::AxisY, angleY);
+	m_skinModelRender->SetRotation(m_rotation);
+	float angleX = 0.0f;
+	angleX += randomspeed.x;
+	m_rotation.SetRotationDeg(CVector3::AxisX, angleX);
+	m_skinModelRender->SetRotation(m_rotation);
 }
