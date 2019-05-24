@@ -17,7 +17,7 @@ bool Meteo::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Inseki.cmo");
-	scale = { 50.0f,5.0f,50.0f };
+	scale = { 50.0f,50.0f,50.0f };
 	m_skinModelRender->SetScale(scale);
 	return true;
 }
@@ -26,7 +26,7 @@ void Meteo::Update()
 {
 	Move();
 	Rotation();
-	//Hantei();
+	Hantei();
 }
 //ìÆÇ≠ÅAìÆÇ≠(we go walk...)
 void Meteo::Move()
