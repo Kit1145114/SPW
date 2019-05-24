@@ -40,6 +40,7 @@ protected:
 	float radius = { 1.0f };       //	基本惑星の半径。
 	float Searchment = { 1500.0f };//	BHの重力範囲の調整。
 	float G_limitar = { 50000.0f };//   BHの重力（Ｇ）調整。
+	float BBHnizyou = { 1000.0f }; //   BBH（二乗調整。
 	bool Countflg = false;         //   自然消滅するかのフラグ。
 };
 

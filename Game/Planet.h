@@ -47,6 +47,7 @@ private:
 	float radius = { 30.0f };  //基本惑星の半径。
 	float PosMaxLimitx = 37000.0f;
 	float PosMaxLimitz = 20000.0f;
+	float angle = 0;           //回転。
 	bool movecount = false;
 	bool CountExplosion = false;
 	bool repopflag = false;    //ポップ時いきなり他と被るのを防ぐのに使うフラグ。
