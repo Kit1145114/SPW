@@ -39,7 +39,7 @@ bool RadarRing::Start()
 
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(draw_P);
-	m_skinModelRender->SetScale({ 12.0f,12.0f,12.0f });
+	m_skinModelRender->SetScale({ 15.0f,15.0f,18.0f });
 
 	arrowSprite = NewGO<prefab::CSpriteRender>(1);
 	arrowSprite->Init(L"sprite/arrow.dds", 400 * 0.1f, 150*0.1f);
