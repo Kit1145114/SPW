@@ -1784,6 +1784,7 @@
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Utility\CountDown.cpp" />
     <ClCompile Include="TrepotHole.cpp" />
     <ClCompile Include="TrepotHole2.cpp" />
     <ClCompile Include="Utility\MovePositon.cpp" />
@@ -1849,6 +1850,7 @@
     <ClInclude Include="BlackHole.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Utility\CountDown.h" />
     <ClInclude Include="TrepotHole.h" />
     <ClInclude Include="TrepotHole2.h" />
     <ClInclude Include="Utility\MovePosition.h" />
@@ -2076,6 +2078,8 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <ImageContentTask Include="Assets\sprite\CountDown_back.png" />
+    <ImageContentTask Include="Assets\sprite\CountDown_front.png" />
     <ImageContentTask Include="Assets\sprite\Title_Line.png" />
     <ImageContentTask Include="Assets\sprite\Title_A.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_arrow.png" />

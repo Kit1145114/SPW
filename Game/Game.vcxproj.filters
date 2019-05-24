@@ -39,6 +39,10 @@
     <ImageContentTask Include="Assets\sprite\title1.png" />
     <ImageContentTask Include="Assets\sprite\Reslut1.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_arrow.png" />
+    <ImageContentTask Include="Assets\sprite\Title_Line.png" />
+    <ImageContentTask Include="Assets\sprite\Title_A.png" />
+    <ImageContentTask Include="Assets\sprite\CountDown_back.png" />
+    <ImageContentTask Include="Assets\sprite\CountDown_front.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BigBlackHole.cpp" />
@@ -85,6 +89,7 @@
     <ClCompile Include="TrepotHole2.cpp" />
     <ClCompile Include="Utility\MoveSprite.cpp" />
     <ClCompile Include="Utility\MovePositon.cpp" />
+    <ClCompile Include="Utility\CountDown.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\Back.FBX" />
@@ -325,6 +330,7 @@
     <ClInclude Include="Utility\BoxCollider2D.h" />
     <ClInclude Include="Utility\MoveSprite.h" />
     <ClInclude Include="Utility\MovePosition.h" />
+    <ClInclude Include="Utility\CountDown.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc" />
@@ -346,17 +352,11 @@
     <ImageContentTask Include="Assets\sprite\dummy.png">
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
-    <ImageContentTask Include="Assets\sprite\Title1.jpg">
-      <Filter>Resource Files</Filter>
-    </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\Midori.jpg">
       <Filter>Resource Files</Filter>
     </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\Gekitui.png" />
     <ImageContentTask Include="Assets\sprite\Reslut.png" />
-    <ImageContentTask Include="Assets\sprite\Title_A.bmp">
-      <Filter>Resource Files</Filter>
-    </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\StageSelect.png" />
     <ImageContentTask Include="Assets\sprite\bullet.jpg">
       <Filter>Resource Files</Filter>
@@ -437,8 +437,6 @@
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\sprite\Title_A.png" />
-    <Image Include="Assets\sprite\Title_Line.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\BH.efk" />

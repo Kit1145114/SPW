@@ -23,6 +23,7 @@ bool Player::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Senkan.cmo");
+	m_skinModelRender->SetPosition(m_position);
 	m_scale = { 9.6f,9.6f,9.6f };
 	m_skinModelRender->SetScale(m_scale);
 	//m_CharaCon.Init(800.0f, 300.0f, m_position);
@@ -54,6 +55,7 @@ bool Player::Start()
 
 void Player::Update()
 {
+	if (Game::GetInstance()->isWaitStart())return;
 	Upper();
 	Move();			//プレイヤーの操作
 	PBullet();		//プレイヤーの射撃操作
