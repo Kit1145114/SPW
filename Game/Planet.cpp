@@ -33,7 +33,7 @@ Planet::~Planet()
 
 bool Planet::Start() 
 {
-	p_skinModelRender->SetEmissionColor({ 0.25, 0.25, 0.25 }); //物自体を光らせるコード。
+	p_skinModelRender->SetEmissionColor({ 0.50, 0.50, 0.50 }); //物自体を光らせるコード。
 	return true;
 }
 
@@ -198,7 +198,7 @@ void Planet::Move() {
 	CQuaternion qRot = CQuaternion::Identity;
 	//Y軸周りに0.5度回す。
 	angle += 0.5f;
-	qRot.SetRotationDeg(CVector3::AxisZ, angle);
+	qRot.SetRotationDeg(CVector3::AxisY, angle);
 	//回転を加算する。
 	CQuaternion m_rotation = CQuaternion::Identity;	//回転。
 	m_rotation.Multiply(qRot);

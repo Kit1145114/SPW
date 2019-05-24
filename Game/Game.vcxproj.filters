@@ -39,6 +39,8 @@
     <ImageContentTask Include="Assets\sprite\title1.png" />
     <ImageContentTask Include="Assets\sprite\Reslut1.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_arrow.png" />
+    <ImageContentTask Include="Assets\sprite\Title_Line.png" />
+    <ImageContentTask Include="Assets\sprite\Title_A.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BigBlackHole.cpp" />
@@ -346,17 +348,11 @@
     <ImageContentTask Include="Assets\sprite\dummy.png">
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
-    <ImageContentTask Include="Assets\sprite\Title1.jpg">
-      <Filter>Resource Files</Filter>
-    </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\Midori.jpg">
       <Filter>Resource Files</Filter>
     </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\Gekitui.png" />
     <ImageContentTask Include="Assets\sprite\Reslut.png" />
-    <ImageContentTask Include="Assets\sprite\Title_A.bmp">
-      <Filter>Resource Files</Filter>
-    </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\StageSelect.png" />
     <ImageContentTask Include="Assets\sprite\bullet.jpg">
       <Filter>Resource Files</Filter>
@@ -431,14 +427,13 @@
     <ImageContentTask Include="Assets\sprite\Reslut3.png" />
     <ImageContentTask Include="Assets\sprite\title1.png" />
     <ImageContentTask Include="Assets\sprite\Reslut1.png" />
+    <Media Include="Assets\sound\bacteria.wav" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\sprite\Title_A.png" />
-    <Image Include="Assets\sprite\Title_Line.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\BH.efk" />
