@@ -40,6 +40,8 @@ private:
 	CQuaternion m_rotation = CQuaternion::Identity;
 	CVector3 scale = CVector3::Zero;
 	int Plkazu = 12;
+	float angleY = 0.0f;	
+	float angleX = 0.0f;
 	float hantei = 2500.0f;
 	float Plhantei = 2500.0f;
 	float Metehantei = 5000.0f;
