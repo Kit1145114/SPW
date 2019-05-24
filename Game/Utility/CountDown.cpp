@@ -45,6 +45,7 @@ void CountDown::Update() {
 	front.SetMulColor({ 1,1,1,alpha });
 
 	front.Update(CVector3::Zero, CQuaternion::Identity, { scale ,scale, scale });
+
 	if (count == 0) {
 		back.setFillAmount(0);
 	} else {
@@ -59,9 +60,20 @@ void CountDown::Update() {
 		count--;
 		sec = c_interval;
 		scale = c_scale;
+
 		if (count < 0) {
 			DeleteGO(this);
 			*pp_me = nullptr;
+		} else {
+			prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
+
+			if (count == 0) {
+				se->Init(L"sound/Countdown2.wav");
+			} else {
+				se->Init(L"sound/Countdown1.wav");
+			}
+			se->Play(false);
+			//se->SetVolume(0.3f);
 		}
 	}
 }

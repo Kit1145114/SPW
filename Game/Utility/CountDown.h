@@ -25,9 +25,9 @@ private:
 	float startWait = 0.5f;
 	bool isStart = false;
 
-	char count = 3;
+	char count = 4;
 	static constexpr float c_interval = 1.4f;
-	float sec = c_interval;
+	float sec = 0;
 
 	static constexpr float c_scale = 1.7f;
 	float scale = c_scale;
