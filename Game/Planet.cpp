@@ -169,14 +169,13 @@ void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender,f
 	p_position = position;
 
 	//保存
-	CVector3 hoge = { 1.0f,1.0f,1.0f };
-	hoge.x *= scale;
-	hoge.z *= scale;
-	hoge.y *= scale;
+	p_Size.x *= scale;
+	p_Size.z *= scale;
+	p_Size.y *= scale;
 	radius *= scale;
 	
 	p_skinModelRender = skinModelRender;
-	p_skinModelRender->SetScale(hoge);
+	p_skinModelRender->SetScale(p_Size*sizecount);
 	p_skinModelRender->SetPosition(position);
 }
 //ランダム移動。
@@ -208,6 +207,14 @@ void Planet::Move() {
 	//回転を設定。
 	p_skinModelRender->SetRotation(m_rotation);
 	
+}
+//pop時少しづつ拡大する。
+void Planet::Size()
+{
+	if (sizecount <= 1.0f) {
+		sizecount += 0.01f;
+		p_skinModelRender->SetScale(p_Size*sizecount);
+	}
 }
 //ドカーン（爆発）きたねぇ、花火だぜ、、、。
 void Planet::explosion()
@@ -299,7 +306,7 @@ void Planet::Death() {
 
 void Planet::Update() {
 	
-	
+	Size();
 	Move();
 	Death();
 }
