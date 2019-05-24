@@ -27,7 +27,6 @@ public:
 	{
 		m_position.x = x;
 	}
-
 	CVector3 GetMoveSpeed()
 	{
 		return m_moveSpeed;
@@ -37,7 +36,6 @@ public:
 		m_moveSpeed.x = a;
 		m_moveSpeed.z = b;
 	}
-
 	void SetMoveSpeed(CVector3 mspos)
 	{
 		m_moveSpeed += mspos;
@@ -54,7 +52,6 @@ public:
 	{
 		PB = a;
 	}
-
 	int GetPB() const {
 		return PB;
 	}
@@ -69,6 +66,7 @@ private:
 	int PB = 0;
 	int Limit = 100;
 	float BulletHantei = 500.0f;
+	float BulletYpos = 300.0f;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;
 	CVector3 m_scale = { 1.0f,1.0f,1.0f };
