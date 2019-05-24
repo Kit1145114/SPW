@@ -22,7 +22,7 @@ bool BlackHole::Start()
 	effect = NewGO<prefab::CEffect>(0);
 	//エフェクトを再生。
 	effect->Play(L"effect/BH.efk");
-	//scale = 0.1f;
+	scale = { 0.1f,0.1f,0.1f };
 	effect->SetScale(scale*radius);
 	effect->SetPosition(m_position);
 	//BHカウントしておく。
@@ -165,8 +165,17 @@ void BlackHole::Death()
 	Game::GetInstance()->SetBHCount(-1);
 }
 
+void BlackHole::Size()
+{
+	if (scale.x <=1.0f) {
+		scale += { 0.01f,0.01f,0.01f };
+		effect->SetScale(scale*radius);
+	}
+}
+
 void BlackHole::Update()
 {
+	Size();
 	Move();
 	Count();
 }

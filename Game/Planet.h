@@ -15,6 +15,7 @@ public:
 	bool Start();
 	void Update();
 	void Move();
+	void Size();
 	void Death();
 	void explosion();
 	static bool Generate(int Reload,int Planetnum);
@@ -37,6 +38,7 @@ private:
 	CCharacterController p_CharaCon;
 	CVector3 p_position = CVector3::Zero;
 	CVector3 scale = { 1.0f,1.0f,1.0f };
+	CVector3 p_Size = { 1.0f,1.0f,1.0f };           //pop時の少しづつ大きくなるSizeで使う。
 	CQuaternion p_rotation = CQuaternion::Identity;
 	CVector3 randomspeed = CVector3::Zero;
 	prefab::CSkinModelRender* p_skinModelRender = nullptr;
@@ -48,6 +50,7 @@ private:
 	float PosMaxLimitx = 37000.0f;
 	float PosMaxLimitz = 20000.0f;
 	float angle = 0;           //回転。
+	float sizecount = 0.01f;    //pop時の少しづつ大きくなるSizeで使う。
 	bool movecount = false;
 	bool CountExplosion = false;
 	bool repopflag = false;    //ポップ時いきなり他と被るのを防ぐのに使うフラグ。
