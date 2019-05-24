@@ -119,15 +119,15 @@ void Meteo::Hantei()
 		DeleteGO(this);
 	}
 }
-
+//‰ñ“]‚³‚¹‚é‚æ[
 void Meteo::Rotation()
 {
-	float angleY = 0.0f;
-	angleY += randomspeed.y;
-	m_rotation.SetRotationDeg(CVector3::AxisY, angleY);
-	m_skinModelRender->SetRotation(m_rotation);
-	float angleX = 0.0f;
-	angleX += randomspeed.x;
-	m_rotation.SetRotationDeg(CVector3::AxisX, angleX);
+	angleY += (randomspeed.x + randomspeed.z) /12.5f;
+	m_rotation.SetRotationDeg(CVector3::AxisZ, angleY);
+	//CQuaternion qRot = CQuaternion::Identity;
+	//qRot.Multiply(m_rotation);
+	//m_skinModelRender->SetRotation(m_rotation);
+	//angleX += randomspeed.x /**10.0f*/;
+	//m_rotation.SetRotationDeg(CVector3::AxisX, angleX);
 	m_skinModelRender->SetRotation(m_rotation);
 }

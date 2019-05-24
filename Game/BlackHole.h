@@ -18,6 +18,7 @@ public:
 	void Gravity();
 	void Count();
 	void Death();
+	void Size();
 	void Update();
 	void SetPosition(CVector3 pos)
 	{
