@@ -40,7 +40,7 @@ bool Bullet::Start()
 void Bullet::Update()
 {
 	m_position += m_moveSpeed;
-	m_position.y = 100.0f;
+	m_position.y = BulletYpos;
 	m_skinModelRender->SetPosition(m_position);
 
 	m_timer++;
@@ -73,7 +73,6 @@ int Bullet::GetPB()
 void Bullet::Death()
 {
 	DeleteGO(this);
-	m_game->SetKazu(-1);
 }
 
 void Bullet::BulletDeath()
