@@ -49,6 +49,7 @@ private:
 
 	static constexpr float controllPower = 10000.0f;
 
+	float firstScale = 0.0f;
 	CVector3 m_pos = {};
 	CVector3 m_move = {400.0f, 0.0f, 0.0f};
 	float radianRot = 0.0f;

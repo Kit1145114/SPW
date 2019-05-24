@@ -21,6 +21,7 @@ bool Rocket::Start() {
 	m_modelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_modelRender->Init(L"modelData/ScrapRocket.cmo");
 	m_modelRender->SetPosition(m_pos);
+	m_modelRender->SetScale({ firstScale,firstScale, firstScale });
 
 	//ƒRƒ‰ƒCƒ_
 	collider.Init(m_pos, colliderPosition, colliderSize);
@@ -43,6 +44,15 @@ void Rocket::Update() {
 		return;
 	}
 
+	//¶¬‘å‚«‚­‚È‚è‚È‚ª‚ç“oê
+	if (firstScale < 1.0f) {
+		firstScale += GameTime().GetFrameDeltaTime();
+		if (firstScale > 1.0f) {
+			firstScale = 1.0f;
+		}
+		m_modelRender->SetScale({ firstScale, firstScale, firstScale });
+
+	}else
 	//Õ“Ë”»’è
 	{
 		Game* game = Game::GetInstance();

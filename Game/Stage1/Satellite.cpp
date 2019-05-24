@@ -24,6 +24,7 @@ bool Satellite::Start() {
 	//モデルとコライダの初期化
 	m_modelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_modelRender->Init(L"modelData/Satellite.cmo");
+	m_modelRender->SetScale({ firstScale,firstScale, firstScale });
 	collider.Init(m_pos, colliderPosition ,colliderSize);
 
 	//動きの設定(ランダム)
@@ -47,6 +48,15 @@ void Satellite::Update() {
 		return;
 	}
 
+	//生成時大きくなりながら登場
+	if (firstScale < 1.0f) {
+		firstScale += GameTime().GetFrameDeltaTime();
+		if (firstScale > 1.0f) {
+			firstScale = 1.0f;
+		}
+		m_modelRender->SetScale({ firstScale, firstScale, firstScale });
+
+	} else
 	//衝突判定
 	{
 		Game* game = Game::GetInstance();
