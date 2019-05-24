@@ -28,12 +28,12 @@ Planet::Planet()
 Planet::~Planet()
 {
 	DeleteGO(p_skinModelRender);
-	
+	DeleteGO(p_Cpointlit);
 }
 
 bool Planet::Start() 
 {
-	p_skinModelRender->SetEmissionColor({ 0.50, 0.50, 0.50 }); //物自体を光らせるコード。
+
 	return true;
 }
 
@@ -99,25 +99,33 @@ bool Planet::Generate(int Reload, int Planetnum) {
 			if (isCreatePlanet) {
 			//惑星のモデリング指定。
 				prefab::CSkinModelRender* P_skinModelRender;
+				prefab::CPointLight* p_Cpointlit =nullptr;
 				P_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 				switch (w) {
 				case Planetnumber_00:
 					P_skinModelRender->Init(L"modelData/planet0fire.cmo");
+					P_skinModelRender->SetEmissionColor({ 6.0f,6.0f,6.0f });
+					p_Cpointlit = NewGO < prefab::CPointLight > (0);
+					p_Cpointlit->SetAttn({ 25000, 1, 0});
+					p_Cpointlit->SetColor({ 500.0f, 0.0f, 0.0f });
 					break;
-				case Planetnumber_01:
+				case Planetnumber_01://マグマ
 					P_skinModelRender->Init(L"modelData/planet01.cmo");
 					break;
 				case Planetnumber_02:
 					P_skinModelRender->Init(L"modelData/planet02.cmo");
 					break;
-				case Planetnumber_03:
+				case Planetnumber_03://地球
 					P_skinModelRender->Init(L"modelData/planet03.cmo");
+					P_skinModelRender->SetEmissionColor({ -0.5f,-0.5f,20.0f });
 					break;
-				case Planetnumber_04:
+				case Planetnumber_04://灰青
 					P_skinModelRender->Init(L"modelData/planet04.cmo");
+					P_skinModelRender->SetEmissionColor({ -0.5f,-0.5f,20.0f });
 					break;
-				case Planetnumber_05:
+				case Planetnumber_05://赤月
 					P_skinModelRender->Init(L"modelData/planet05.cmo");
+					P_skinModelRender->SetEmissionColor({ 6.0f,-0.5f,-0.5f });
 					break;
 				case Planetnumber_06:
 					P_skinModelRender->Init(L"modelData/planet06.cmo");
@@ -128,7 +136,7 @@ bool Planet::Generate(int Reload, int Planetnum) {
 				case Planetnumber_08:
 					P_skinModelRender->Init(L"modelData/planet08.cmo");
 					break;
-				case Planetnumber_09:
+				case Planetnumber_09://ブルー
 					P_skinModelRender->Init(L"modelData/planet09.cmo");
 					break;
 				case Planetnumber_10:
@@ -152,7 +160,7 @@ bool Planet::Generate(int Reload, int Planetnum) {
 					planet->myPlanetnumber = w;    //自分のPlametナンバー保存。
 				}
 				planet->p_position = hako;
-				planet->init(planet->p_position, P_skinModelRender,v);
+				planet->init(planet->p_position, P_skinModelRender,v, p_Cpointlit);
 			}
 			else {
 				NewGO<RepopPlanet>(0)->Set(myplanetnum);
@@ -161,7 +169,7 @@ bool Planet::Generate(int Reload, int Planetnum) {
 	return true;
 }
 //星の生成。
-void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender,float scale)
+void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender,float scale,prefab::CPointLight* cpointlight)
 {
 	//星のポジション保存。
 	p_position = position;
@@ -173,6 +181,7 @@ void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender,f
 	radius *= scale;
 	
 	p_skinModelRender = skinModelRender;
+	p_Cpointlit = cpointlight;
 	p_skinModelRender->SetScale(p_Size*sizecount);
 	p_skinModelRender->SetPosition(position);
 }
@@ -241,7 +250,7 @@ void Planet::explosion()
 		SoundSource = NewGO<prefab::CSoundSource>(0);
 		SoundSource->Init(L"sound/bakuhatu.wav");
 		SoundSource->Play(false);                     //ワンショット再生。
-		SoundSource->SetVolume(0.1f);                 //音量調節。
+		SoundSource->SetVolume(0.5f);                 //音量調節。
 	}
 }
 //惑星死亡判定。
@@ -307,4 +316,9 @@ void Planet::Update() {
 	Size();
 	Move();
 	Death();
+	if (p_Cpointlit !=nullptr) {
+		//p_position.y += 700.0f;
+		p_Cpointlit->SetPosition(p_position);
+		//p_position.y -= 700.0f;
+	}
 }
