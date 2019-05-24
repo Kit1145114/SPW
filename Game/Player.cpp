@@ -571,7 +571,33 @@ void Player::MutekiTimes()
 	{
 		MutekiTime++;
 		
-		if (MutekiTime >= 180)
+		const int blinkInterval = 3;//点滅の間隔
+		/*blinkIntervalが2の場合
+
+		MutekiTime  　　　　　0  1  2  3  4  5  6  7  8  9  10 11 12 13
+		MutekiTime / 2  　　　0  0  1  1  2  2  3  3  4  4  5  5  6  6
+		(MutekiTime / 2) % 2  0  0  1  1  0  0  1  1  0  0  1  1  0  0
+
+		3の場合
+
+		MutekiTime  　　　　　0  1  2  3  4  5  6  7  8  9  10 11 12 13
+		MutekiTime / 3  　　　0  0  0  1  1  1  2  2  2  3  3  3  4  4
+		(MutekiTime / 3) % 2  0  0  0  1  1  1  0  0  0  1  1  1  0  0
+		*/
+
+		if ((MutekiTime / blinkInterval) % 2 == 0) {
+			m_skinModelRender->SetActiveFlag(false);
+		} else {
+			m_skinModelRender->SetActiveFlag(true);
+		}
+
+		if (MutekiTime >= 360) {
+			m_skinModelRender->SetActiveFlag(true);
+			Muteki = false;
+			MutekiTime = 0;
+		}
+
+		/*if (MutekiTime >= 180)
 		{
 			m_skinModelRender->SetActiveFlag(false);
 		}
@@ -588,7 +614,7 @@ void Player::MutekiTimes()
 			m_skinModelRender->SetActiveFlag(true);
 			Muteki = false;
 			MutekiTime = 0;
-		}
+		}*/
 	}
 }
 //死んだ後のHP調整等。
