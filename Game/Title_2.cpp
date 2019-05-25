@@ -42,7 +42,7 @@ bool Title_2::Start()
 	dxFont = std::make_unique<DirectX::SpriteFont>(device, L"font/bigfont.spritefont");
 	m_font.SetFont(dxFont.get());
 
-	CVector3 pos = {-490, 205, 0};
+	CVector3 pos = {-450, 205, 0};
 	for (int i = 0; i < sentenceNum; i++) {
 		sentence[i] = NewGO<MoveCharacter>(2);
 		sentence[i]->Init(titleName[i], &m_font);
