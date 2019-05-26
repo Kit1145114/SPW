@@ -64,6 +64,20 @@ Game::~Game()
 //シンプル。
 void Game::CreateStage0() {
 	
+	tere[0] = NewGO<TrepotHole>(0, "テレポート");
+	tere[0]->SetPosition({ -22000, 0, 0 });
+	tere[1] = NewGO<TrepotHole>(0, "テレポート");
+	tere[1]->SetPosition({ -22000, 0, 4000 });
+	tere[2] = NewGO<TrepotHole>(0, "テレポート");
+	tere[2]->SetPosition({ -22000, 0, 8000 });
+
+	tere2[0] = NewGO<TrepotHole2>(0, "テレポート2");
+	tere2[0]->SetPosition2({ -3000, 0, 0 });
+	tere2[1] = NewGO<TrepotHole2>(0, "テレポート2");
+	tere2[1]->SetPosition2({ -3000,0, 5000 });
+	tere2[2] = NewGO<TrepotHole2>(0, "テレポート2");
+	tere2[2]->SetPosition2({ -3000,0, 9000 });
+
 	switch (SansenKazu) {
 	case 4:
 		m_player[3] = NewGO<Player>(0, "Player3");
@@ -204,20 +218,18 @@ void Game::CreateStage3()
 void Game::CreateStage4()
 {
 	tere[0] = NewGO<TrepotHole>(0, "テレポート");
-	tere[0]->SetPosition({ -13000, 0, 0 });
+	tere[0]->SetPosition({ -22000, 0, 0 });
 	tere[1] = NewGO<TrepotHole>(0, "テレポート");
-	tere[1]->SetPosition({ -13000, 0, 4000 });
-	
-	//tere[2] = NewGO<TrepotHole>(0, "テレポート");
-	//tere[2]->SetPosition({ -13000, 0, 8000 });
+	tere[1]->SetPosition({ -22000, 0, 4000 });
+	tere[2] = NewGO<TrepotHole>(0, "テレポート");
+	tere[2]->SetPosition({ -22000, 0, 8000 });
 
 	tere2[0] = NewGO<TrepotHole2>(0, "テレポート2");
-	tere2[0]->SetPosition2({ 4000, 0, 0 });
+	tere2[0]->SetPosition2({ -3000, 0, 0 });
 	tere2[1] = NewGO<TrepotHole2>(0, "テレポート2");
-	tere2[1]->SetPosition2({ 4000, 0, 4000 });
-
-	//tere2[2] = NewGO<TrepotHole2>(0, "テレポート2");
-	//tere2[2]->SetPosition2({ 4000, 0, 8000 });
+	tere2[1]->SetPosition2({ -3000,0, 5000 });
+	tere2[2] = NewGO<TrepotHole2>(0, "テレポート2");
+	tere2[2]->SetPosition2({ -3000,0, 9000 });
 
 	switch (SansenKazu) {
 	case 4:
