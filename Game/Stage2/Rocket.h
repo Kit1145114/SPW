@@ -57,6 +57,9 @@ private:
 
 	prefab::CSpriteRender* arrowSprite = nullptr;
 
+	static constexpr float c_smokeTime = 0.05f;
+	float smokeTime = 0.0f;
+
 	void InitArrow(int ownerNum);
 	void ArrowUpdate(const CVector3& stick);
 };
