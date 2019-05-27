@@ -29,7 +29,10 @@ public:
 	float getRadius() {
 		return hantei;
 	}
-
+	void SetRadius(float rad)
+	{
+		radius = rad;
+	}
 private:
 	Game* game = nullptr;
 	Planet* pla = nullptr;
@@ -46,8 +49,9 @@ private:
 	float Plhantei = 2500.0f;
 	float Metehantei = 5000.0f;
 	float Speed = 5000.0f;
-	float PosMaxLimitx = 35000.0f;
-	float PosMaxLimitz = 20000.0f;
+	float PosMaxLimitx = 40000.0f;
+	float PosMaxLimitz = 30000.0f;
+	float radius = 0.0f;
 	bool repopflag = false;
 	bool movecount = false;
 	const wchar_t* mete[12] = { nullptr };
