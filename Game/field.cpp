@@ -22,6 +22,7 @@ bool field::Start() {
 	m_skinModelRender->FindMaterial([&](CModelEffect* mat) {
 		mat->SetRender3DModelPSShader(psShader);
 	});
+	m_skinModelRender->SetEmissionColor({ -20.1f,-20.1f,-20.1f });
 	//Haikei = NewGO<prefab::CSkinModelRender>(0);
 	//Haikei->Init(L"modelData/Back.cmo");
 	//Haikei->SetShadowReceiverFlag(true);

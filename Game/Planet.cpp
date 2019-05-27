@@ -108,7 +108,7 @@ bool Planet::Generate(int Reload, int Planetnum) {
 					p_Cpointlit->SetAttn({ 20000, 2.0, 0});
 					p_Cpointlit->SetColor({ 500.0f, 0.0f, 0.0f });
 					break;
-				case Planetnumber_01:
+				case Planetnumber_01://砂利。
 					P_skinModelRender->Init(L"modelData/planet01.cmo");
 					P_skinModelRender->SetEmissionColor({ -5.0f,-5.0f,-5.0f });
 					break;
@@ -117,15 +117,30 @@ bool Planet::Generate(int Reload, int Planetnum) {
 					break;
 				case Planetnumber_03://地球
 					P_skinModelRender->Init(L"modelData/planet03.cmo");
-					P_skinModelRender->SetEmissionColor({ -0.5f,-0.5f,20.0f });
+					if (Game::GetInstance()->GetSunflag() == false) {//もし通常ステージなら。
+						P_skinModelRender->SetEmissionColor({ -0.5f,-0.5f,20.0f });
+					}
+					else {											 //太陽ステージなら。
+						P_skinModelRender->SetEmissionColor({ -0.25f,-0.25f,2.0f });
+					}
 					break;
 				case Planetnumber_04://灰青
 					P_skinModelRender->Init(L"modelData/planet04.cmo");
-					P_skinModelRender->SetEmissionColor({ -0.5f,-0.5f,20.0f });
+					if (Game::GetInstance()->GetSunflag() == false) {//もし通常ステージなら。
+						P_skinModelRender->SetEmissionColor({ -0.5f,-0.5f,20.0f });
+					}
+					else {											 //太陽ステージなら。
+						P_skinModelRender->SetEmissionColor({ -0.1f,-0.1f,3.0f });
+					}
 					break;
 				case Planetnumber_05://赤月
 					P_skinModelRender->Init(L"modelData/planet05.cmo");
-					P_skinModelRender->SetEmissionColor({ 6.0f,-0.5f,-0.5f });
+					if (Game::GetInstance()->GetSunflag() == false) {//もし通常ステージなら。
+						P_skinModelRender->SetEmissionColor({ 6.0f,-0.5f,-0.5f });
+					}
+					else {											 //太陽ステージなら。
+						P_skinModelRender->SetEmissionColor({ 1.2f,-0.1f,-0.1f });
+					}
 					break;
 				case Planetnumber_06:
 					P_skinModelRender->Init(L"modelData/planet06.cmo");
@@ -142,7 +157,12 @@ bool Planet::Generate(int Reload, int Planetnum) {
 					break;
 				case Planetnumber_10://青紫。
 					P_skinModelRender->Init(L"modelData/planet_10.cmo");
-					P_skinModelRender->SetEmissionColor({ -0.5f,-0.5f,20.0f });
+					if (Game::GetInstance()->GetSunflag() == false) {//もし通常ステージなら。
+						P_skinModelRender->SetEmissionColor({ -0.5f,-0.5f,20.0f });
+					}
+					else {											 //太陽ステージなら。
+						P_skinModelRender->SetEmissionColor({ -0.1f,-0.1f,4.0f });
+					}
 					break;
 				case Planetnumber_11:
 					P_skinModelRender->Init(L"modelData/planet11.cmo");

@@ -97,6 +97,9 @@ public:
 	void SetBHCount(int kazu) {
 		BHCount += kazu;
 	}
+	bool GetSunflag() {
+		return Sunflag;
+	}
 	SatelliteGene* getSatelliteGene() {
 		return satelliteG;
 	}
@@ -152,9 +155,7 @@ private:
 	bool PlS_Init = false;
 	bool BHflag = false;     //ブラックホールのフラグ、trueだと発生しなくなる。
 	int BHCount = 0;		 //ブラックホールをカウントする。
-   	//CVector3 BHpos1 = { 0.0f , 0.0f, 5000.0f };
-	//CVector3 BHsca1 = { 1000.0f,0.0f,5.0f };
-
+	bool Sunflag = false;    //太陽のフラグ、trueでプラネットの光方の調整など（太陽ステージだよ知らせるフラグ）。
 	
 };
 
