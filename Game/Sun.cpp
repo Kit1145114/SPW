@@ -20,7 +20,7 @@ bool Sun::Start()
 	//ライト系。
 	p_Cpointlit = NewGO < prefab::CPointLight >(0);
 	p_Cpointlit->SetAttn({ 35000, 1, 0 });
-	p_Cpointlit->SetColor({ 400.0f, 200.0f, 100.0f });
+	p_Cpointlit->SetColor({ 100.0f, 50.0f, 25.0f });
 	p_skinModelRender->SetEmissionColor({ 6.0f,6.0f,-0.5f });
 	//スケール系。	
 	CVector3 scale = { 1.0f,1.0f,1.0f };
