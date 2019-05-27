@@ -1784,6 +1784,7 @@
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Sun.cpp" />
     <ClCompile Include="Utility\CountDown.cpp" />
     <ClCompile Include="TrepotHole.cpp" />
     <ClCompile Include="TrepotHole2.cpp" />
@@ -1850,6 +1851,7 @@
     <ClInclude Include="BlackHole.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Sun.h" />
     <ClInclude Include="Utility\CountDown.h" />
     <ClInclude Include="TrepotHole.h" />
     <ClInclude Include="TrepotHole2.h" />
@@ -2052,7 +2054,9 @@
     <MeshContentTask Include="Assets\modelData\planet05.FBX" />
     <MeshContentTask Include="Assets\modelData\planet06.FBX" />
     <MeshContentTask Include="Assets\modelData\planet07.FBX" />
-    <MeshContentTask Include="Assets\modelData\planet08.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet08.FBX">
+      <FileType>Document</FileType>
+    </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\planet09.FBX" />
     <MeshContentTask Include="Assets\modelData\planet0fire.FBX" />
     <MeshContentTask Include="Assets\modelData\planet11.FBX" />

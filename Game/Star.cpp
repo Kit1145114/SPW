@@ -5,6 +5,9 @@
 Star::Star()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
+	p_Cpointlit = NewGO < prefab::CPointLight >(0);
+	p_Cpointlit->SetAttn({ 5000, 1, 0 });
+	p_Cpointlit->SetColor({ 70.0f, 70.0f, 70.0f });
 	m_skinModelRender->Init(L"modelData/star.cmo");
 	m_scale = { 8.0f, 8.0, 8.0f };
 	m_skinModelRender->SetScale(m_scale);
@@ -16,6 +19,7 @@ Star::Star()
 Star::~Star()
 {
 	DeleteGO(m_skinModelRender);
+	DeleteGO(p_Cpointlit);
 }
 
 
@@ -29,6 +33,9 @@ void Star::Update()
 	{
 		m_timer = time0;		//ŠÔ‚ÅíœB
 		Death();
+	}
+	if (p_Cpointlit != nullptr) {
+		p_Cpointlit->SetPosition(m_position);
 	}
 }
 //˜f¯‚Ì‘å‚«‚³‚É‡‚í‚¹‚Ä™‚Ì‘å‚«‚³‚ğŒˆ‚ß‚éB

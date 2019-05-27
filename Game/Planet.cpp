@@ -28,18 +28,17 @@ Planet::Planet()
 Planet::~Planet()
 {
 	DeleteGO(p_skinModelRender);
-	
+	DeleteGO(p_Cpointlit);
 }
 
 bool Planet::Start() 
 {
-	p_skinModelRender->SetEmissionColor({ 0.50, 0.50, 0.50 }); //物自体を光らせるコード。
+
 	return true;
 }
 
 bool Planet::Generate(int Reload, int Planetnum) {
-	Game* game = nullptr;
-	game = FindGO<Game>("Game");
+	
 	//Planetnumber_Num分の作成。
 	for (int i = 0, w = Planetnumber_00;i < Reload;i++, w++) {
 			
@@ -99,25 +98,34 @@ bool Planet::Generate(int Reload, int Planetnum) {
 			if (isCreatePlanet) {
 			//惑星のモデリング指定。
 				prefab::CSkinModelRender* P_skinModelRender;
+				prefab::CPointLight* p_Cpointlit =nullptr;
 				P_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 				switch (w) {
-				case Planetnumber_00:
+				case Planetnumber_00://マグマ
 					P_skinModelRender->Init(L"modelData/planet0fire.cmo");
+					P_skinModelRender->SetEmissionColor({ 6.0f,6.0f,6.0f });
+					p_Cpointlit = NewGO < prefab::CPointLight > (0);
+					p_Cpointlit->SetAttn({ 20000, 2.0, 0});
+					p_Cpointlit->SetColor({ 500.0f, 0.0f, 0.0f });
 					break;
 				case Planetnumber_01:
 					P_skinModelRender->Init(L"modelData/planet01.cmo");
+					P_skinModelRender->SetEmissionColor({ -5.0f,-5.0f,-5.0f });
 					break;
 				case Planetnumber_02:
 					P_skinModelRender->Init(L"modelData/planet02.cmo");
 					break;
-				case Planetnumber_03:
+				case Planetnumber_03://地球
 					P_skinModelRender->Init(L"modelData/planet03.cmo");
+					P_skinModelRender->SetEmissionColor({ -0.5f,-0.5f,20.0f });
 					break;
-				case Planetnumber_04:
+				case Planetnumber_04://灰青
 					P_skinModelRender->Init(L"modelData/planet04.cmo");
+					P_skinModelRender->SetEmissionColor({ -0.5f,-0.5f,20.0f });
 					break;
-				case Planetnumber_05:
+				case Planetnumber_05://赤月
 					P_skinModelRender->Init(L"modelData/planet05.cmo");
+					P_skinModelRender->SetEmissionColor({ 6.0f,-0.5f,-0.5f });
 					break;
 				case Planetnumber_06:
 					P_skinModelRender->Init(L"modelData/planet06.cmo");
@@ -125,14 +133,16 @@ bool Planet::Generate(int Reload, int Planetnum) {
 				case Planetnumber_07:
 					P_skinModelRender->Init(L"modelData/planet07.cmo");
 					break;
-				case Planetnumber_08:
+				case Planetnumber_08://イエロー。
 					P_skinModelRender->Init(L"modelData/planet08.cmo");
+					P_skinModelRender->SetEmissionColor({ 1.0f,1.0f,-0.25f });
 					break;
-				case Planetnumber_09:
+				case Planetnumber_09://ブルー。
 					P_skinModelRender->Init(L"modelData/planet09.cmo");
 					break;
-				case Planetnumber_10:
+				case Planetnumber_10://青紫。
 					P_skinModelRender->Init(L"modelData/planet_10.cmo");
+					P_skinModelRender->SetEmissionColor({ -0.5f,-0.5f,20.0f });
 					break;
 				case Planetnumber_11:
 					P_skinModelRender->Init(L"modelData/planet11.cmo");
@@ -143,16 +153,16 @@ bool Planet::Generate(int Reload, int Planetnum) {
 				
 				//初期リスポーンの場合。
 				if (Planetnum == Planetnumber_Num) {
-					game->memoryPP[i] = planet;
+					Game::GetInstance()->memoryPP[i] = planet;
 					planet->myPlanetnumber = i;    //自分のPlametナンバー保存。
 				}
 				//リポップ。
 				else if (Planetnum != Planetnumber_Num) {
-					game->memoryPP[w] = planet;
+					Game::GetInstance()->memoryPP[w] = planet;
 					planet->myPlanetnumber = w;    //自分のPlametナンバー保存。
 				}
 				planet->p_position = hako;
-				planet->init(planet->p_position, P_skinModelRender,v);
+				planet->init(planet->p_position, P_skinModelRender,v, p_Cpointlit);
 			}
 			else {
 				NewGO<RepopPlanet>(0)->Set(myplanetnum);
@@ -161,7 +171,7 @@ bool Planet::Generate(int Reload, int Planetnum) {
 	return true;
 }
 //星の生成。
-void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender,float scale)
+void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender,float scale,prefab::CPointLight* cpointlight)
 {
 	//星のポジション保存。
 	p_position = position;
@@ -173,8 +183,15 @@ void Planet::init(CVector3 position, prefab::CSkinModelRender* skinModelRender,f
 	radius *= scale;
 	
 	p_skinModelRender = skinModelRender;
+	p_Cpointlit = cpointlight;
 	p_skinModelRender->SetScale(p_Size*sizecount);
 	p_skinModelRender->SetPosition(position);
+}
+void Planet::Light()
+{
+	if (p_Cpointlit != nullptr) {
+		p_Cpointlit->SetPosition(p_position);
+	}
 }
 //ランダム移動。
 void Planet::Move() {
@@ -285,7 +302,7 @@ void Planet::Death() {
 			//互いの半径の合計が距離以下なら。
 			if (Game::GetInstance()->memoryPP[i]->radius + radius > diff.Length()) {
 				explosion();
-				int MaxBHCount = 8;
+				int MaxBHCount = 8;//MAxBH発生制限;
 				if (Game::GetInstance()->GetBHflag() == false
 					&& Game::GetInstance()->GetBHCount() < MaxBHCount) {
 					BlackHole::Generate(p_position, radius);
@@ -307,4 +324,5 @@ void Planet::Update() {
 	Size();
 	Move();
 	Death();
+	Light();
 }

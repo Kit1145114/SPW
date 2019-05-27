@@ -30,6 +30,7 @@ private:
 	CVector3 m_scale = { 1.0f,1.0f,1.0f };
 	CQuaternion m_rotation = CQuaternion::Identity;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
+	prefab::CPointLight* p_Cpointlit = nullptr;//‘¼‚ğÆ‚ç‚·ƒ‰ƒCƒgB
 	int m_timer = 0;
 	int time0 = 0;
 	int Limit = 300;

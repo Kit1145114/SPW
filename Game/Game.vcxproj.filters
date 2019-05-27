@@ -90,6 +90,7 @@
     <ClCompile Include="Utility\MoveSprite.cpp" />
     <ClCompile Include="Utility\MovePositon.cpp" />
     <ClCompile Include="Utility\CountDown.cpp" />
+    <ClCompile Include="Sun.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\Back.FBX" />
@@ -331,6 +332,7 @@
     <ClInclude Include="Utility\MoveSprite.h" />
     <ClInclude Include="Utility\MovePosition.h" />
     <ClInclude Include="Utility\CountDown.h" />
+    <ClInclude Include="Sun.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc" />
