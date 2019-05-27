@@ -42,6 +42,7 @@ bool Satellite::Start() {
 }
 
 void Satellite::Update() {
+	if (Game::GetInstance()->isWait())return;
 	//ƒGƒŠƒAŠO”»’è
 	if (m_pos.x > 35000.0f || m_pos.x< -35000.0f|| m_pos.z>25000.0f || m_pos.z < -25000.0f) {
 		DeleteGO(this);

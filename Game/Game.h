@@ -107,9 +107,17 @@ public:
 	RocketGene* getRocketGene() {
 		return rocketG;
 	}
+
+	bool isWait() {
+		return isWaitStart() || isWaitEnd();
+	}
 	
 	bool isWaitStart() {
 		return countdown != nullptr;
+	}
+
+	bool isWaitEnd() {
+		return waitEnd;
 	}
 
 private:
@@ -129,7 +137,7 @@ public:
 private:
 	static Game* m_instance;
 	Enemy* enemy = nullptr;
-	Camera* m_camera = nullptr;
+	IGameObject* m_camera = nullptr;
 	field* m_field = nullptr;
 	GamenTimer* m_G_Timer = nullptr;
 	SatelliteGene* satelliteG = nullptr;
@@ -138,7 +146,8 @@ private:
 	MeteoGene* meteogene = nullptr;
 	RocketGene* rocketG = nullptr;
 	Sun* m_sun = nullptr;
-	CountDown* countdown = nullptr;;
+	CountDown* countdown = nullptr;
+	float waitEnd = 0.0f;
 
 	int trpotnumber = 0;
 	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。

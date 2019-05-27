@@ -140,6 +140,6 @@ void BigBlackHole::Gravity()
 
 void BigBlackHole::Update()
 {
-	if (Game::GetInstance()->isWaitStart())return;
+	if (Game::GetInstance()->isWait())return;
 	Gravity();
 }
