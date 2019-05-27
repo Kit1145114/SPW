@@ -20,7 +20,7 @@ bool Sun::Start()
 	//ライト系。
 	p_Cpointlit = NewGO < prefab::CPointLight >(0);
 	p_Cpointlit->SetAttn({ 35000, 1, 0 });
-	p_Cpointlit->SetColor({ 500.0f, 0.0f, 0.0f });
+	p_Cpointlit->SetColor({ 400.0f, 200.0f, 100.0f });
 	p_skinModelRender->SetEmissionColor({ 6.0f,6.0f,-0.5f });
 	//スケール系。	
 	CVector3 scale = { 1.0f,1.0f,1.0f };
@@ -74,7 +74,7 @@ void Sun::Reflection()
 			//Ｇ中心に遠ければ弱く、近ければ強く。
 			float G = radius * 1.25f - kyori.Length();
 			//対象に渡す重力。すれば重力となる。
-			G_limitar = { 150.0f };//   BBHの重力（Ｇ）調整。
+			G_limitar = { 10.0f };//   BBHの重力（Ｇ）調整。
 			CVector3 Migawari = kyori;
 			Migawari.Normalize();
 			G = G * G / nizyou;

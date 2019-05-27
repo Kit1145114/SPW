@@ -278,6 +278,7 @@ void Game::CreateStage5() {
 	}
 	m_field = NewGO<field>(0);
 	m_sun = NewGO<Sun>(0, "BigSun");
+	Sunflag = true;
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
 	bgmSoundSource->Init(L"sound/kaisen.wav");
@@ -301,6 +302,13 @@ bool Game::Start()
 		break;
 	case 3:
 		CreateStage3();
+		break;
+	case 4:
+		CreateStage4();
+		break;
+	case 5:
+		LightManager().SetAmbientLight({ 0.0f, 0.0f, 0.0f });
+		CreateStage5();
 		break;
 	default:
 		CreateStage0();
