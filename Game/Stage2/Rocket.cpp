@@ -192,7 +192,23 @@ void Rocket::Update() {
 	float radian = atan2f(-m_move.z, m_move.x);
 	rot.SetRotation(CVector3::AxisY, radian);
 	m_modelRender->SetRotation(rot);
-	
+
+	//煙エフェクト
+	if (awaking) {
+		if (smokeTime <= 0.0f) {
+			smokeTime = c_smokeTime;
+			CVector3 vec = m_move;
+			vec.Normalize();
+			prefab::CEffect* smoke = NewGO<prefab::CEffect>(0);
+			smoke->SetPosition(m_pos - vec * 2000);
+			smoke->SetRotation(rot);
+			smoke->Play(L"effect/Smoke.efk");
+		} else {
+			smokeTime -= delta;
+		}
+	}
+
+	//当たり判定の回転
 	rot.SetRotation(CVector3::AxisY, radian - radianRot);
 	collider.Rotate(rot);
 	collider.Move(m_move*delta);
