@@ -21,7 +21,7 @@ public:
 	void explosion();
 	static bool Generate(int Reload,int Planetnum);
 	void init(CVector3 position, prefab::CSkinModelRender* skinModelRender, float scale, prefab::CPointLight* cpointlight);
-
+	void Light();
 	CVector3 GetPosition() {
 		return p_position;
 	} 
@@ -35,7 +35,7 @@ public:
 	float GetRadius() {
 		return radius;
 	}
-private:
+protected:
 	CCharacterController p_CharaCon;
 	CVector3 p_position = CVector3::Zero;
 	CVector3 scale = { 1.0f,1.0f,1.0f };
