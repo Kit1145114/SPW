@@ -241,7 +241,7 @@ void Planet::explosion()
 		SoundSource = NewGO<prefab::CSoundSource>(0);
 		SoundSource->Init(L"sound/bakuhatu.wav");
 		SoundSource->Play(false);                     //ワンショット再生。
-		SoundSource->SetVolume(0.1f);                 //音量調節。
+		SoundSource->SetVolume(0.3f);                 //音量調節。
 	}
 }
 //惑星死亡判定。

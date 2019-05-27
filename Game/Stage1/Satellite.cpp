@@ -96,10 +96,18 @@ void Satellite::Update() {
 			if (result.hit == Side) {
 				rotPower += result.rotSign * hitRotPower;
 				b->Death();
+				prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
+				se->Init(L"sound/satellite.wav");
+				se->SetVolume(0.3f);
+				se->Play(false);
 			} else if(result.hit == Center){
 				m_move += b->GetMoveSpeed()*8;
 				lastBulletNum = b->GetPB();
 				b->Death();
+				prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
+				se->Init(L"sound/satellite.wav");
+				se->SetVolume(0.3f);
+				se->Play(false);
 			}
 			return true;
 		});

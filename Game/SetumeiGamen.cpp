@@ -18,7 +18,7 @@ bool SetumeiGamen::Start()
 	m_spriteRender->Init(L"sprite/Setumei1.dds", 1280.0f, 720.0f);
 	m_push = NewGO<prefab::CSoundSource>(0);
 	m_push->Init(L"sound/Kettei.wav");
-	m_push->SetVolume(0.5f);
+	m_push->SetVolume(1.0f);
 
 	Fade::fadeOut();
 	return true;

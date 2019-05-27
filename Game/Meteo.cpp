@@ -56,6 +56,11 @@ void Meteo::Death()
 	//エフェクトに半径/（Ｍａｘと差）をかける
 	effect->SetScale({ 1, 1, 1 });
 	effect->SetPosition(m_position + CVector3(0, 1000, 0));
+
+	prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
+	se->Init(L"sound/bakuhatu.wav");
+	se->Play(false);                     //ワンショット再生。
+	se->SetVolume(0.3f);
 	
 	CVector3 pos = m_position;
 	pos.z += 500;
