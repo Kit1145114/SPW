@@ -78,6 +78,9 @@ void StageSelect::Update() {
 	if (Pad(0).IsTrigger(enButtonB)) {
 		finishAnim();
 		waitSansen = 0.3f;
+		prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
+		se->Init(L"sound/Kettei.wav");
+		se->Play(false);
 	}
 
 	//選んだステージでゲーム開始

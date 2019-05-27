@@ -132,6 +132,14 @@ void Rocket::Update() {
 				b->Death();
 				if (ownerNum != b->GetPB()) {
 					hp--;
+					prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
+					if (awaking) {
+						se->Init(L"sound/satellite.wav");
+					} else {
+						se->Init(L"sound/rocket1.wav");
+					}
+					se->SetVolume(0.2f);
+					se->Play(false);
 				}
 				if (!awaking) {
 					if (hp == 0) {
@@ -140,6 +148,11 @@ void Rocket::Update() {
 						ownerNum = b->GetPB();
 						InitArrow(ownerNum);
 						hp = max_hp;
+
+						prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
+						se->Init(L"sound/rocket2.wav");
+						se->SetVolume(0.5f);
+						se->Play(false);
 					}
 				}
 			}

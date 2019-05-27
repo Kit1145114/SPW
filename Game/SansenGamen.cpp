@@ -73,6 +73,9 @@ void SansenGamen::Update() {
 	if(Pad(0).IsTrigger(enButtonB)) {
 		sprite_player->setTargetPos({ 0.0f, 500.0f ,0.0f });
 		sprite_num->setTargetPos({ 0,-500,0 });
+		prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
+		se->Init(L"sound/Kettei.wav");
+		se->Play(false);
 		Fade::fadeIn([&]() {
 			NewGO<Title_2>(0, "Title_2");
 			DeleteGO(this);

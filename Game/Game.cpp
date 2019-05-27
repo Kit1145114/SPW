@@ -46,6 +46,9 @@ Game::~Game()
 	if (BBH != nullptr) {
 		DeleteGO("BBH");//Bigblackholeクラス
 	}
+	if (m_sun != nullptr) {
+		DeleteGO("BigSun");
+	}
 	DeleteGO(m_field);
 	DeleteGO(m_G_Timer);
 	DeleteGO(satelliteG);
@@ -57,12 +60,9 @@ Game::~Game()
 	DeleteGOs("PlayerBullet");//Bulletクラス
 	DeleteGOs("Star");//Starクラス
 	DeleteGOs("Meteo");
-
 	DeleteGO(countdown);
-	
 	DeleteGOs("テレポート");
 	DeleteGOs("テレポート2");
-	
 }
 //シンプル。
 void Game::CreateStage0() {
@@ -162,7 +162,7 @@ void Game::CreateStage2() {
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
 	bgmSoundSource->Init(L"sound/kaisen.wav");
 	bgmSoundSource->Play(true);
-	bgmSoundSource->SetVolume(0.1f);
+	bgmSoundSource->SetVolume(1.0f);
 	BHflag = true;//ブラックホールをOFFにする
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 }
@@ -252,7 +252,39 @@ void Game::CreateStage4()
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 }
-
+//太陽系。
+void Game::CreateStage5() {
+	switch (SansenKazu) {
+	case 4:
+		m_player[3] = NewGO<Player>(0, "Player3");
+		m_player[3]->SetPadNum(3);
+		m_player[3]->SetPositionX(P_pos * 10);
+		m_player[3]->SetPositionZ(P_pos *-5);
+	case 3:
+		m_player[2] = NewGO<Player>(0, "Player2");
+		m_player[2]->SetPadNum(2);
+		m_player[2]->SetPositionX(P_pos *-10);
+		m_player[2]->SetPositionZ(P_pos *-5);
+	case 2:
+		m_player[1] = NewGO<Player>(0, "Player1");
+		m_player[1]->SetPadNum(1);
+		m_player[1]->SetPositionX(P_pos * 10);
+		m_player[1]->SetPositionZ(P_pos * 5);
+	case 1:
+		m_player[0] = NewGO<Player>(0, "Player");
+		m_player[0]->SetPadNum(0);
+		m_player[0]->SetPositionX(P_pos *-10);
+		m_player[0]->SetPositionZ(P_pos * 5);
+	}
+	m_field = NewGO<field>(0);
+	m_sun = NewGO<Sun>(0, "BigSun");
+	//BGM
+	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
+	bgmSoundSource->Init(L"sound/kaisen.wav");
+	bgmSoundSource->Play(true);
+	bgmSoundSource->SetVolume(1.0f);
+	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+}
 bool Game::Start()
 {
 	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f });

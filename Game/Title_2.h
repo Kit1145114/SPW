@@ -69,13 +69,13 @@ private:
 	prefab::CSpriteRender* sprite_line = nullptr;
 
 	Flush* flush = nullptr;
-	float flushWait = 2.5f;
+	float flushWait = 2.2f;
 
 	prefab::CSpriteRender* m_background = nullptr;
 	prefab::CSoundSource* m_bgm = nullptr;
 
-	static constexpr wchar_t* titleName = L"spaceworld";
-	static constexpr int sentenceNum = 10;
+	static constexpr wchar_t* titleName = L"spacewars";
+	static constexpr int sentenceNum = 9;
 	MoveCharacter* sentence[sentenceNum];
 
 	std::unique_ptr<DirectX::SpriteFont> dxFont;
