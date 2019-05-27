@@ -151,7 +151,7 @@ void Rocket::Update() {
 
 						prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
 						se->Init(L"sound/rocket2.wav");
-						se->SetVolume(0.4f);
+						se->SetVolume(0.5f);
 						se->Play(false);
 					}
 				}
