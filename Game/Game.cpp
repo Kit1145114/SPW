@@ -339,22 +339,49 @@ void Game::Update()
 	}
 	else if (GameMode == 1)
 	{
-		Player* player = nullptr;
+		Player* topPlayer[4] = {};
+		int topNum = 1;//1位のプレイヤー数
+		int star = -1;
+		//1位を選別する。同点1位を考慮する。
 		for (Player* p : m_player) {
-			if (player == nullptr ||(p && p->GetStarCount() > player->GetStarCount())) {
-				player = p;
+			if (p) {
+				if (p->GetStarCount() > star) {//今までのどのプレイヤーより星が多い場合
+					topPlayer[0] = p;
+					for (int i = 1; i < 4; i++) {
+						topPlayer[i] = nullptr;//過去の同点1位はすべて抹消する
+					}
+					star = p->GetStarCount();
+					topNum = 1;
+				}else if(p->GetStarCount() == star) {//今までの星の最大数と同じ星数だった場合
+					for (int i = 1; i < 4; i++) {
+						if (topPlayer[i] == nullptr) {
+							topPlayer[i] = p;//配列の頭からたどった時の最初のnullptrに追加する
+							break;
+						}
+					}
+					topNum++;
+				}
 			}
 		}
-		player->setCanMoveGameEnd(true);
+		{//1位に勝者と設定するのと、同点1位の場合のワープを行う
+			CVector3 pos = topPlayer[0]->GetPosition();
+				for (int i = 0; i < topNum; i++) {
+					topPlayer[i]->setWinner();
+					if (i >= 1) {
+						pos.x += 3000;
+						topPlayer[i]->doTiesMove(pos);
+					}
+				}
+		}
 		ResultCamera* camera = NewGO<ResultCamera>(0);
-		camera->Init(player,MainCamera().GetPosition(), MainCamera().GetTarget());
+		camera->Init((const Player**)topPlayer, topNum,MainCamera().GetPosition(), MainCamera().GetTarget());
 		DeleteGO(m_camera);
 		m_camera = camera;
-		waitEnd = 5.0f;
+		waitEnd = 6.0f;
 		GameMode = 2;
 	} else if (GameMode == 2) {
 		waitEnd -= GameTime().GetFrameDeltaTime();
-		if (waitEnd <= 0) {
+		if (waitEnd <= 0 || Pad(0).IsTrigger(enButtonA)) {
 			Fade::fadeIn([&]() {
 				GameMode = 0;
 				result = NewGO<ResultGamen>(0, "ResultGamen");

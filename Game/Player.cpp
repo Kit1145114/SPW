@@ -57,16 +57,36 @@ bool Player::Start()
 
 void Player::Update()
 {
-	if (!canMoveGameEnd) {
+	//ゲーム終了後の勝利演出。勝者の場合、移動とローテーションだけ許可する。
+	if (!isWinner) {
 		if (Game::GetInstance()->isWait()) {
 			return;
 		}
 	} else {
+		//同点1位の場合のワープ
+		if (tiesMove > 0) {
+			float delta = GameTime().GetFrameDeltaTime();
+			if (tiesMove > c_tiseMove / 2) {
+				m_position.y -= delta * 5000;
+				tiesMove -= delta;
+				if (tiesMove <= c_tiseMove / 2) {
+					m_position.x = tiesMovePos.x;
+					m_position.z = tiesMovePos.z;
+				}
+			} else {
+				m_position.y += delta * 5000;
+				tiesMove -= delta;
+			}
+		}
+
+		Muteki = false;
+		DeathCount = false;
+		m_skinModelRender->SetActiveFlag(true);
 		crown->setPosition(m_position);
 	}
 	Move();			//プレイヤーの操作
 	Rotation();
-	if (Game::GetInstance()->isWaitEnd())return;
+	if (Game::GetInstance()->isWaitEnd())return;//勝者でもここから下は許可しない
 	Upper();
 	PBullet();		//プレイヤーの射撃操作
 	PBullet2();
@@ -874,8 +894,8 @@ float Player::getBulletPercentage() {
 	return parce;
 }
 
-void Player::setCanMoveGameEnd(bool canMove) {
-	canMoveGameEnd = canMove;
+void Player::setWinner() {
+	isWinner = true;
 	crown = NewGO<Crown>(0);
 	crown->setPosition(m_position);
 }
