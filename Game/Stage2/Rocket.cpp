@@ -38,6 +38,12 @@ bool Rocket::Start() {
 }
 
 void Rocket::Update() {
+	if (Game::GetInstance()->isWait()) {
+		if(arrowSprite)
+			arrowSprite->setScale({ 0,0,0 });
+		return;
+	}
+
 	//ƒGƒŠƒAŠO”»’è
 	if (m_pos.x > 35000.0f || m_pos.x< -35000.0f || m_pos.z>25000.0f || m_pos.z < -25000.0f) {
 		DeleteGO(this);

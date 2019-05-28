@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Network/NPad.h"
 #include "Sinka_Bar.h"
+#include "Crown.h"
 
 Player::Player()
 {
@@ -17,6 +18,7 @@ void Player::OnDestroy()
 	DeleteGO(draw_Pl);
 	DeleteGO(draw_S);
 	DeleteGO(r_ring);
+	DeleteGO(crown);
 }
 
 bool Player::Start()
@@ -55,15 +57,22 @@ bool Player::Start()
 
 void Player::Update()
 {
-	if (Game::GetInstance()->isWaitStart())return;
-	Upper();
+	if (!canMoveGameEnd) {
+		if (Game::GetInstance()->isWait()) {
+			return;
+		}
+	} else {
+		crown->setPosition(m_position);
+	}
 	Move();			//プレイヤーの操作
+	Rotation();
+	if (Game::GetInstance()->isWaitEnd())return;
+	Upper();
 	PBullet();		//プレイヤーの射撃操作
 	PBullet2();
 	PBullet3();
 	Pevolution();	//プレイヤーの形態
 	//Hantei();
-	Rotation();
 	Respawn();
 	S_Hantei();
 	//PlS_Hantei();
@@ -863,6 +872,12 @@ float Player::getBulletPercentage() {
 	}
 	float parce = ((float)m_Short + (m_timer / addSpeed)) / max;
 	return parce;
+}
+
+void Player::setCanMoveGameEnd(bool canMove) {
+	canMoveGameEnd = canMove;
+	crown = NewGO<Crown>(0);
+	crown->setPosition(m_position);
 }
 
 //最終進化後、☆を一定個数取ると強化。

@@ -11,7 +11,7 @@ void RocketGene::OnDestroy() {
 }
 
 void RocketGene::Update() {
-	if (Game::GetInstance()->isWaitStart())return;
+	if (Game::GetInstance()->isWait())return;
 	timer += GameTime().GetFrameDeltaTime();
 	if (timer > interval) {
 		timer = 0;

@@ -18,6 +18,7 @@ class Draw_Player;
 class Draw_Skazu;
 class RadarRing;
 class Sinka_Bar;
+class Crown;
 
 class Player: public IGameObject
 {
@@ -48,7 +49,7 @@ public:
 	void StarPos();
 	void Playerwarp();
 	void Upper();
-	CVector3 GetPosition() {
+	CVector3 GetPosition() const {
 		return m_position;
 	}
 	void SetPosition(CVector3 plpos)
@@ -152,6 +153,8 @@ public:
 	}
 	float getBulletPercentage();
 
+	void setCanMoveGameEnd(bool canMove);
+
 private:
 	Player * m_player[4] = { nullptr };
 	Draw_Player * draw_Pl = nullptr;
@@ -224,6 +227,7 @@ private:
 	bool Alive = true;
 	bool CountExplosion = false;
 
-	int a = 1;
+	bool canMoveGameEnd = false;
+	Crown* crown = nullptr;
 };
 

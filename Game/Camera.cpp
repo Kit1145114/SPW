@@ -15,8 +15,8 @@ Camera::~Camera()
 bool Camera::Start() {
 	//カメラのニアクリップ
 	MainCamera().SetUp(CVector3::AxisZ);
-	MainCamera().SetNear(1.0f);
-	MainCamera().SetFar(100000.0f);
+	MainCamera().SetNear(10000.0f);
+	MainCamera().SetFar(85000.0f);
 
 	//自分のプレイヤー番号を取得。
 	int myNum
@@ -111,6 +111,9 @@ void Camera::Update() {
 	MainCamera().SetTarget(pos);
 	pos.y += cameraUp;
 	MainCamera().SetPosition(pos);
+
+	MainCamera().SetNear(cameraUp-10000.0f);
+	MainCamera().SetFar(cameraUp+1200.0f);
 	//カメラの更新。
 	MainCamera().Update();
 	

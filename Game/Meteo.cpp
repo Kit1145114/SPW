@@ -27,6 +27,7 @@ bool Meteo::Start()
 
 void Meteo::Update()
 {
+	if (Game::GetInstance()->isWait())return;
 	Move();
 	//Rotation();
 	Hantei();

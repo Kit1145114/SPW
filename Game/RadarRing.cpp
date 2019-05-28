@@ -57,6 +57,11 @@ void RadarRing::Update()
 {
 	m_skinModelRender->SetPosition(player->GetPosition());
 
+	if (Game::GetInstance()->isWaitEnd()) {
+		arrowSprite->setScale({ 0,0,0 });
+		return;
+	}
+
 	//プレイヤーの2D座標を取得
 	CVector3 pPos;
 	{
@@ -104,6 +109,7 @@ void RadarRing::Update()
 }
 
 void RadarRing::PostRender(CRenderContext & rc) {
+	if (Game::GetInstance()->isWaitEnd())return;
 	CCamera& camera = MainCamera2D();
 	gaugeIn.Draw(rc, camera.GetViewMatrix(), camera.GetProjectionMatrix());
 }

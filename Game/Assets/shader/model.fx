@@ -328,6 +328,29 @@ float4 PSMainBG(PSInput In) : SV_Target0
 	return float4(texCol, 1.0f);
 }
 
+float4 PSMainBGSun(PSInput In) : SV_Target0
+{
+	float3 texCol = albedoTexture.Sample(Sampler, In.TexCoord).xyz;
+
+	float xLimit = 45302.23f;
+	float zLimit = 25041.139f;
+	if (abs(In.Pos.x) > xLimit
+		|| abs(In.Pos.z) > zLimit) {
+		float Y = 0.29900 * texCol.r + 0.58700 * texCol.b + 0.11400 * texCol.b;
+		float3 shirokuroColor;
+		shirokuroColor.r = Y * 2.5f;
+		shirokuroColor.g = Y * 0.5f;
+		shirokuroColor.b = Y * 0.5f;
+
+
+
+		float t = max(0.0f, abs(In.Pos.x) - xLimit);
+		t = max(t, max(0.0f, abs(In.Pos.z) - zLimit));
+		t = min(1.0f, t / 4000.0f);
+		texCol = lerp(texCol, shirokuroColor,pow(t, 0.9));
+	}
+	return float4(texCol * 0.1f, 1.0f);
+}
 //--------------------------------------------------------------------------------------
 // ピクセルシェーダーのエントリ関数。
 //--------------------------------------------------------------------------------------

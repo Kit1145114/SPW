@@ -13,7 +13,7 @@ GamenTimer::~GamenTimer()
 
 void GamenTimer::Update()
 {
-	if (Game::GetInstance()->isWaitStart())return;
+	if (Game::GetInstance()->isWait())return;
 	if (MaxTimer == 0)
 	{
 		m_game = FindGO<Game>("Game");

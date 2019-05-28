@@ -10,7 +10,7 @@ MeteoGene::~MeteoGene()
 
 void MeteoGene::Update()
 {
-	if (Game::GetInstance()->isWaitStart())return;
+	if (Game::GetInstance()->isWait())return;
 
 	timer += GameTime().GetFrameDeltaTime();
 	if (timer > Inittime)
