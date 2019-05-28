@@ -170,7 +170,8 @@ bool Planet::Generate(int Reload, int Planetnum) {
 				default:w = Planetnumber_00;
 				}
 				Planet* planet = NewGO<Planet>(0, "planet");
-				
+				planet->p_skinModelRender = P_skinModelRender;
+
 				//初期リスポーンの場合。
 				if (Planetnum == Planetnumber_Num) {
 					Game::GetInstance()->memoryPP[i] = planet;
@@ -212,6 +213,20 @@ void Planet::Light()
 	if (p_Cpointlit != nullptr) {
 		p_Cpointlit->SetPosition(p_position);
 	}
+	if (Game::GetInstance()->GetSunflag() == true//もし太陽ステージなら。
+		&& myPlanetnumber != 0 ) {				 //恒星のマグマ惑星以外なら。
+		if (Game::GetInstance()->m_sun->GetSize() < 0.2f) {//太陽サイズが20％以下なら。
+			auto game = Game::GetInstance();
+			auto planet = game->memoryPP[myPlanetnumber];
+			if (planet != nullptr) {
+				auto skinModelRender = planet->p_skinModelRender;
+				skinModelRender->SetEmissionColor({ -0.5f,-0.5f,-0.5f });
+			}
+
+		}
+	}
+
+
 }
 //ランダム移動。
 void Planet::Move() {

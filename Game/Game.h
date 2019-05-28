@@ -133,8 +133,8 @@ private:
 public:
 	Planet* memoryPP[Planetnumber_Num] = {};
 	Player* m_player[PlKazu] = { nullptr };
-	
 	Star* m_star = nullptr;
+	Sun* m_sun = nullptr;
 	TrepotHole * tere[3] = { nullptr };
 	TrepotHole2 * tere2[3] ={ nullptr };
 private:
@@ -148,7 +148,6 @@ private:
 	BigBlackHole* BBH = nullptr;
 	MeteoGene* meteogene = nullptr;
 	RocketGene* rocketG = nullptr;
-	Sun* m_sun = nullptr;
 	CountDown* countdown = nullptr;
 
 	//èüóòé“ââèoóp
