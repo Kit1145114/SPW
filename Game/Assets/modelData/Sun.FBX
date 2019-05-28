@@ -8,11 +8,11 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2019
 		Month: 5
-		Day: 25
-		Hour: 19
-		Minute: 40
-		Second: 8
-		Millisecond: 802
+		Day: 27
+		Hour: 21
+		Minute: 3
+		Second: 42
+		Millisecond: 156
 	}
 	Creator: "FBX SDK/FBX Plugins version 2018.1"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -34,13 +34,13 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "3ds Max"
 			P: "Original|ApplicationVersion", "KString", "", "", "2018"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "25/05/2019 10:40:08.767"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "27/05/2019 12:03:42.154"
 			P: "Original|FileName", "KString", "", "", "C:\Users\GC1816\Desktop\Tiemgame\SPW\Game\Assets\modelData\Sun.FBX"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "3ds Max"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "2018"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "25/05/2019 10:40:08.767"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "27/05/2019 12:03:42.154"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "C:\Users\GC1816\Documents\3dsMax"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "C:\Users\GC1816\Documents\3dsMax\scenes\planet_r30.max"
 		}
@@ -77,7 +77,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 1743879426880, "", "Scene" {
+	Document: 2510350814960, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", ""
@@ -305,7 +305,7 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 1743908030256, "Geometry::", "Mesh" {
+	Geometry: 2510260842608, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.690196078431373,0.101960784313725,0.101960784313725
 		}
@@ -671,7 +671,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 1743873549520, "Model::Sphere001", "Mesh" {
+	Model: 2510349343600, "Model::Sphere001", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "InheritType", "enum", "", "",1
@@ -683,30 +683,29 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 1743917996032, "Material::08 - Default", "" {
+	Material: 2508306133424, "Material::Material #6", "" {
 		Version: 102
 		ShadingModel: "phong"
 		MultiLayer: 0
 		Properties70:  {
 			P: "ShadingModel", "KString", "", "", "phong"
 			P: "EmissiveFactor", "Number", "", "A",0
-			P: "AmbientColor", "Color", "", "A",0.588235318660736,0.588235318660736,0.588235318660736
-			P: "DiffuseColor", "Color", "", "A",0.588235318660736,0.588235318660736,0.588235318660736
+			P: "AmbientColor", "Color", "", "A",0.587999999523163,0.587999999523163,0.587999999523163
+			P: "DiffuseColor", "Color", "", "A",0.587999999523163,0.587999999523163,0.587999999523163
 			P: "TransparentColor", "Color", "", "A",1,1,1
 			P: "SpecularColor", "Color", "", "A",0.899999976158142,0.899999976158142,0.899999976158142
 			P: "SpecularFactor", "Number", "", "A",0
-			P: "ShininessExponent", "Number", "", "A",1.99999988079071
-			P: "有効", "Bool", "", "AU",0
+			P: "ShininessExponent", "Number", "", "A",2
 			P: "Emissive", "Vector3D", "Vector", "",0,0,0
-			P: "Ambient", "Vector3D", "Vector", "",0.588235318660736,0.588235318660736,0.588235318660736
-			P: "Diffuse", "Vector3D", "Vector", "",0.588235318660736,0.588235318660736,0.588235318660736
+			P: "Ambient", "Vector3D", "Vector", "",0.587999999523163,0.587999999523163,0.587999999523163
+			P: "Diffuse", "Vector3D", "Vector", "",0.587999999523163,0.587999999523163,0.587999999523163
 			P: "Specular", "Vector3D", "Vector", "",0,0,0
-			P: "Shininess", "double", "Number", "",1.99999988079071
+			P: "Shininess", "double", "Number", "",2
 			P: "Opacity", "double", "Number", "",1
 			P: "Reflectivity", "double", "Number", "",0
 		}
 	}
-	Video: 1744024014560, "Video::マップ #2", "Clip" {
+	Video: 2508306135344, "Video::マップ #10", "Clip" {
 		Type: "Clip"
 		Properties70:  {
 			P: "Path", "KString", "XRefUrl", "", "C:\Users\GC1816\Desktop\Tiemgame\SPW\Game\Assets\modelData\sun.png"
@@ -716,29 +715,29 @@ Objects:  {
 		Filename: "C:\Users\GC1816\Desktop\Tiemgame\SPW\Game\Assets\modelData\sun.png"
 		RelativeFilename: "sun.png"
 	}
-	Texture: 1744024015040, "Texture::マップ #2", "" {
+	Texture: 2508306133904, "Texture::マップ #10", "" {
 		Type: "TextureVideoClip"
 		Version: 202
-		TextureName: "Texture::マップ #2"
+		TextureName: "Texture::マップ #10"
 		Properties70:  {
 			P: "UVSet", "KString", "", "", "UVChannel_1"
 			P: "UseMaterial", "bool", "", "",1
 		}
-		Media: "Video::マップ #2"
+		Media: "Video::マップ #10"
 		FileName: "C:\Users\GC1816\Desktop\Tiemgame\SPW\Game\Assets\modelData\sun.png"
 		RelativeFilename: "sun.png"
 		ModelUVTranslation: 0,0
 		ModelUVScaling: 1,1
-		Texture_Alpha_Source: "None"
+		Texture_Alpha_Source: "Alpha_Black"
 		Cropping: 0,0,0,0
 	}
-	AnimationStack: 1744024043184, "AnimStack::Take 001", "" {
+	AnimationStack: 2508306139632, "AnimStack::Take 001", "" {
 		Properties70:  {
 			P: "LocalStop", "KTime", "Time", "",153953860000
 			P: "ReferenceStop", "KTime", "Time", "",153953860000
 		}
 	}
-	AnimationLayer: 1743917181472, "AnimLayer::BaseLayer", "" {
+	AnimationLayer: 2508307668784, "AnimLayer::BaseLayer", "" {
 	}
 }
 
@@ -748,22 +747,22 @@ Objects:  {
 Connections:  {
 	
 	;Model::Sphere001, Model::RootNode
-	C: "OO",1743873549520,0
+	C: "OO",2510349343600,0
 	
 	;AnimLayer::BaseLayer, AnimStack::Take 001
-	C: "OO",1743917181472,1744024043184
+	C: "OO",2508307668784,2508306139632
 	
-	;Material::08 - Default, Model::Sphere001
-	C: "OO",1743917996032,1743873549520
+	;Material::Material #6, Model::Sphere001
+	C: "OO",2508306133424,2510349343600
 	
 	;Geometry::, Model::Sphere001
-	C: "OO",1743908030256,1743873549520
+	C: "OO",2510260842608,2510349343600
 	
-	;Texture::マップ #2, Material::08 - Default
-	C: "OP",1744024015040,1743917996032, "SpecularColor"
+	;Texture::マップ #10, Material::Material #6
+	C: "OP",2508306133904,2508306133424, "DiffuseColor"
 	
-	;Video::マップ #2, Texture::マップ #2
-	C: "OO",1744024014560,1744024015040
+	;Video::マップ #10, Texture::マップ #10
+	C: "OO",2508306135344,2508306133904
 }
 ;Takes section
 ;----------------------------------------------------

@@ -15,13 +15,18 @@ Sun::~Sun()
 bool Sun::Start()
 {
 	p_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-	p_skinModelRender->Init(L"modelData/planet0fire.cmo");
+	p_skinModelRender->Init(L"modelData/Sun.cmo");
 	p_skinModelRender->SetPosition(p_position);
 	//ライト系。
 	p_Cpointlit = NewGO < prefab::CPointLight >(0);
-	p_Cpointlit->SetAttn({ 35000, 1, 0 });
-	p_Cpointlit->SetColor({ 100.0f, 50.0f, 25.0f });
-	p_skinModelRender->SetEmissionColor({ 6.0f,6.0f,-0.5f });
+	p_Cpointlit->SetAttn({ 100000, 5, 0 });
+	emissionColorLow = { 2.3f,2.3f,-0.5f };
+	emissionColorHigh = emissionColorLow * 2.0f;
+	p_Cpointlit->SetColor(emissionPointLigColorLow);
+
+	emissionPointLigColorLow = { 100.0f, 50.0f, 25.0f };
+	emissionPointLigColorHigh = emissionPointLigColorLow * 5.0f;
+	p_skinModelRender->SetEmissionColor(emissionColorLow);
 	//スケール系。	
 	CVector3 scale = { 1.0f,1.0f,1.0f };
 	p_skinModelRender->SetScale(scale*SunSize);
@@ -74,7 +79,7 @@ void Sun::Reflection()
 			//Ｇ中心に遠ければ弱く、近ければ強く。
 			float G = radius * 1.25f - kyori.Length();
 			//対象に渡す重力。すれば重力となる。
-			G_limitar = { 10.0f };//   BBHの重力（Ｇ）調整。
+			G_limitar = { 1.0f };//   BBHの重力（Ｇ）調整。
 			CVector3 Migawari = kyori;
 			Migawari.Normalize();
 			G = G * G / nizyou;
@@ -113,4 +118,58 @@ void Sun::Update()
 	Move();
 	Light();
 	Rotation();
+	
+	switch (m_state) {
+	case eState_Low: {
+		const float emissionEndTime = 1.0f;
+
+		m_timer += GameTime().GetFrameDeltaTime();
+		m_timer = min(emissionEndTime, m_timer);
+		m_emissionTimer += GameTime().GetFrameDeltaTime();
+		if (m_emissionTimer > 1.0f) {
+			m_emissionTimer = 0.0f;
+			//1秒ごとに10%の確率で太陽フレア発生。
+			if (Random().GetRandDouble() < 0.1f) {
+				m_timer = 0.0f;
+				m_state = eState_High;
+				break;
+			}
+			
+		}
+		CVector3 emissionColor;
+		emissionColor.Lerp(m_timer / emissionEndTime, emissionColorHigh, emissionColorLow);
+		p_skinModelRender->SetEmissionColor(emissionColor);
+		CVector3 ptLigColor;
+		ptLigColor.Lerp(m_timer / emissionEndTime, emissionPointLigColorHigh, emissionPointLigColorLow);
+		p_Cpointlit->SetColor(ptLigColor);
+
+	}break;
+	case eState_High: {
+
+		const float emissionEndTime = 0.5f;
+		m_timer += GameTime().GetFrameDeltaTime();
+		m_timer = min(emissionEndTime, m_timer);
+		
+		m_emissionTimer += GameTime().GetFrameDeltaTime();
+		if (m_emissionTimer > 1.0f) {
+			m_emissionTimer = 0.0f;
+			//1秒ごとに50%の確率で太陽フレア終了。
+			if (Random().GetRandDouble() < 0.5f) {
+				m_timer = 0.0f;
+				m_state = eState_Low;
+				break;
+			}
+			
+		}
+
+		CVector3 emissionColor;
+		emissionColor.Lerp(m_timer / emissionEndTime, emissionColorLow, emissionColorHigh );
+		p_skinModelRender->SetEmissionColor(emissionColor);
+
+		CVector3 ptLigColor;
+		ptLigColor.Lerp(m_timer / emissionEndTime, emissionPointLigColorLow, emissionPointLigColorHigh);
+		p_Cpointlit->SetColor(ptLigColor);
+
+	}break;
+	}
 }
