@@ -195,10 +195,11 @@ void ResultGamen::Result()
 		PNums[i] = i;
 	}
 
-	for (int i = 0; i < 3; i++) {
-		for (int j = 3; j > i; j--) {
+	for (int i = 0; i < (PadKazu-1); i++) {
+		for (int j = (PadKazu-1); j > i; j--) {
 			if (PS[PNums[j - 1]] == PS[PNums[j]]) {
-				PNums[j] = PNums[j-1];
+				PNums[j] = PNums[j - 1];
+
 			}
 			else if (PS[PNums[j-1]] < PS[PNums[j]]) {
 				int n = PNums[j];
