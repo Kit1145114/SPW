@@ -741,5 +741,11 @@
     <MeshContentTask Include="..\Game\Assets\modelData\terepot_false.fbx">
       <Filter>Assets\modelData</Filter>
     </MeshContentTask>
+    <MeshContentTask Include="..\Game\Assets\modelData\terepot2.fbx">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="..\Game\Assets\modelData\terepot3.fbx">
+      <Filter>Assets\modelData</Filter>
+    </MeshContentTask>
   </ItemGroup>
 </Project>

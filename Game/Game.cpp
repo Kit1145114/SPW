@@ -10,6 +10,7 @@
 //#include"Sinka_Bar.h"
 #include "Stage1/SatelliteGene.h"
 #include "Stage2/RocketGene.h"
+#include "TerepotHole.h"
 #include "TrepotHole.h"
 #include "TrepotHole2.h"
 #include "Utility/CountDown.h"
@@ -67,11 +68,12 @@ Game::~Game()
 	DeleteGO(winnerSprite);
 	DeleteGO(winnerWord);
 	DeleteGOs("テレポート");
-	DeleteGOs("テレポート2");
+	
+	
 }
 //シンプル。
 void Game::CreateStage0() {
-	
+
 	switch (SansenKazu) {
 	case 4:
 		m_player[3] = NewGO<Player>(0, "Player3");
@@ -215,21 +217,33 @@ void Game::CreateStage3()
 //ワープ。
 void Game::CreateStage4()
 {
-	tere[0] = NewGO<TrepotHole>(0, "テレポート");
-	tere[0]->SetPosition({ -13000, 0, 0 });
-	tere[1] = NewGO<TrepotHole>(0, "テレポート");
-	tere[1]->SetPosition({ -13000, 0, 4000 });
-	
-	//tere[2] = NewGO<TrepotHole>(0, "テレポート");
-	//tere[2]->SetPosition({ -13000, 0, 8000 });
+	tere[0] = NewGO<TerepotHole>(0, "テレポート");
+	tere[0]->SetPosi({ -19000,0,0 });
+	tere[0]->SetFilePath(L"modelData/terepot.cmo");//緑
+	tere[1] = NewGO<TerepotHole>(0, "テレポート");
+	tere[1]->SetPosi({ -19000,0,4000 });
+	tere[1]->SetFilePath(L"modelData/terepot2.cmo");//青
+	tere[2] = NewGO<TerepotHole>(0, "テレポート");
+	tere[2]->SetPosi({ -22000,0,9000 });
+	tere[2]->SetFilePath(L"modelData/terepot3.cmo");//黄
 
-	tere2[0] = NewGO<TrepotHole2>(0, "テレポート2");
-	tere2[0]->SetPosition2({ 4000, 0, 0 });
-	tere2[1] = NewGO<TrepotHole2>(0, "テレポート2");
-	tere2[1]->SetPosition2({ 4000, 0, 4000 });
+	tere[3] = NewGO<TerepotHole>(0, "テレポート");
+	tere[3]->SetPosi({ -10000,0,0 });
+	tere[3]->SetFilePath(L"modelData/terepot.cmo");
+	tere[4] = NewGO<TerepotHole>(0, "テレポート");
+	tere[4]->SetPosi({ -10000,0,4000 });
+	tere[4]->SetFilePath(L"modelData/terepot2.cmo");
+	tere[5] = NewGO<TerepotHole>(0, "テレポート");
+	tere[5]->SetPosi({ -10000,0,9000 });
+	tere[5]->SetFilePath(L"modelData/terepot3.cmo");
 
-	//tere2[2] = NewGO<TrepotHole2>(0, "テレポート2");
-	//tere2[2]->SetPosition2({ 4000, 0, 8000 });
+	tere[0]->SetLinkTerepotHole(tere[3]);
+	tere[1]->SetLinkTerepotHole(tere[4]);
+	tere[2]->SetLinkTerepotHole(tere[5]);
+
+	tere[3]->SetLinkTerepotHole(tere[0]);
+	tere[4]->SetLinkTerepotHole(tere[1]);
+	tere[5]->SetLinkTerepotHole(tere[2]);
 
 	switch (SansenKazu) {
 	case 4:

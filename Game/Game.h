@@ -30,6 +30,8 @@ class Sun;
 class MoveSprite;
 class WordRender;
 
+class TerepotHole;
+
 enum Planetnumber {
 	Planetnumber_00,
 	Planetnumber_01,
@@ -137,6 +139,8 @@ public:
 	Sun* m_sun = nullptr;
 	TrepotHole * tere[3] = { nullptr };
 	TrepotHole2 * tere2[3] ={ nullptr };
+	TerepotHole* tere[6]  = { nullptr };
+
 private:
 	static Game* m_instance;
 	Enemy* enemy = nullptr;
