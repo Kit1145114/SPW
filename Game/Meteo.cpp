@@ -17,13 +17,14 @@ bool Meteo::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Inseki.cmo");
-	scale = { 50.0f,50.0f,50.0f };
+	scale = { 40.0f,40.0f,40.0f };
 	m_skinModelRender->SetScale(scale);
 	return true;
 }
 
 void Meteo::Update()
 {
+	if (Game::GetInstance()->isWait())return;
 	Move();
 	Rotation();
 	Hantei();
@@ -86,7 +87,7 @@ void Meteo::Hantei()
 		//ƒvƒŒƒCƒ„[‚ª–³“G‚È‚çUŒ‚‚ð‚â‚ß‚éB
 		if (Game::GetInstance()->m_player[i]->GetMuteki() == false) {
 			CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - m_position;
-			if (kyori.Length() < hantei
+			if (kyori.Length() < Game::GetInstance()->m_player[i]->Getradius() + (radius*1.5)
 				&& Game::GetInstance()->m_player[i]->GetDeathCount() == false) {
 				Game::GetInstance()->m_player[i]->AddHP(-100);
 				Game::GetInstance()->m_player[i]->SetLABulletNum(-1);
@@ -127,8 +128,8 @@ void Meteo::Hantei()
 //‰ñ“]‚³‚¹‚é‚æ[
 void Meteo::Rotation()
 {
-	angleY += (randomspeed.x + randomspeed.z) /12.5f;
-	m_rotation.SetRotationDeg(CVector3::AxisZ, angleY);
+	angleY += (randomspeed.x /*+ randomspeed.z*/) /20.0f;
+	m_rotation.SetRotationDeg(CVector3::AxisY, angleY);
 	//CQuaternion qRot = CQuaternion::Identity;
 	//qRot.Multiply(m_rotation);
 	//m_skinModelRender->SetRotation(m_rotation);

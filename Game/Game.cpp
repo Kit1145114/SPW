@@ -13,6 +13,7 @@
 #include "TrepotHole.h"
 #include "TrepotHole2.h"
 #include "Utility/CountDown.h"
+#include "ResultCamera.h"
 
 Game* Game::m_instance = nullptr;
 
@@ -338,13 +339,30 @@ void Game::Update()
 	}
 	else if (GameMode == 1)
 	{
-		Fade::fadeIn([&]() {
-			GameMode = 0;
-			result = NewGO<ResultGamen>(0, "ResultGamen");
-			result->SetSansenKazu(SansenKazu);
-			result->SetStage(Stage);
-			DeleteGO(this);
-		});
+		Player* player = nullptr;
+		for (Player* p : m_player) {
+			if (player == nullptr ||(p && p->GetStarCount() > player->GetStarCount())) {
+				player = p;
+			}
+		}
+		player->setCanMoveGameEnd(true);
+		ResultCamera* camera = NewGO<ResultCamera>(0);
+		camera->Init(player,MainCamera().GetPosition(), MainCamera().GetTarget());
+		DeleteGO(m_camera);
+		m_camera = camera;
+		waitEnd = 5.0f;
+		GameMode = 2;
+	} else if (GameMode == 2) {
+		waitEnd -= GameTime().GetFrameDeltaTime();
+		if (waitEnd <= 0) {
+			Fade::fadeIn([&]() {
+				GameMode = 0;
+				result = NewGO<ResultGamen>(0, "ResultGamen");
+				result->SetSansenKazu(SansenKazu);
+				result->SetStage(Stage);
+				DeleteGO(this);
+			});
+		}
 	}
 }
 

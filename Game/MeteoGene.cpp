@@ -10,7 +10,7 @@ MeteoGene::~MeteoGene()
 
 void MeteoGene::Update()
 {
-	if (Game::GetInstance()->isWaitStart())return;
+	if (Game::GetInstance()->isWait())return;
 
 	timer += GameTime().GetFrameDeltaTime();
 	if (timer > Inittime)
@@ -43,7 +43,7 @@ void MeteoGene::Update()
 		}
 		if (isCreatePlanet) {
 			Meteo* meteo = NewGO<Meteo>(0, "Meteo");
-
+			meteo->SetRadius(radius);
 			meteo->SetPosition(hako);
 			//meteo->init(planet->p_position, P_skinModelRender, v);
 		}
