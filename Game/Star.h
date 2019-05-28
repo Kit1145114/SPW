@@ -12,6 +12,7 @@ public:
 	void Rotation();
 	void Death();
 	void Pop(CVector3 position, CVector3 scale);
+	void SunPop(CVector3 position, CVector3 scale);
 	CVector3 GetPosition()
 	{
 		return m_position;
