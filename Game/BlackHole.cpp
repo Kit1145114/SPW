@@ -40,7 +40,6 @@ void BlackHole::Generate(CVector3 position, float magnification)
 	bh->radius *= magnification/500;
 }
 
-
 void BlackHole::Move()
 {
 	//Playerサーチ。

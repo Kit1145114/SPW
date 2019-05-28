@@ -153,7 +153,12 @@ public:
 	}
 	float getBulletPercentage();
 
-	void setCanMoveGameEnd(bool canMove);
+	//勝利演出関連
+	void setWinner();
+	void doTiesMove(const CVector3& pos) {
+		tiesMovePos = pos;
+		tiesMove = c_tiseMove;
+	}
 
 private:
 	Player * m_player[4] = { nullptr };
@@ -226,8 +231,13 @@ private:
 	bool Muteki = false;
 	bool Alive = true;
 	bool CountExplosion = false;
-
-	bool canMoveGameEnd = false;
-	Crown* crown = nullptr;
+	
+	//ゲーム終了後の勝利演出関連
+	bool isWinner = false;       //勝者
+	Crown* crown = nullptr;      //王冠
+	float tiesMove = 0.0f;       //同点1位の場合、一人の元にワープする
+	CVector3 tiesMovePos;        //同点1位ワープのポジション
+public:
+	static constexpr float c_tiseMove = 1.0f; //同点1位ワープにかける時間
 };
 
