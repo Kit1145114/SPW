@@ -387,7 +387,7 @@ void Game::Update()
 		camera->Init((const Player**)topPlayer, topNum,MainCamera().GetPosition(), MainCamera().GetTarget());
 		DeleteGO(m_camera);
 		m_camera = camera;
-		waitEnd = 6.0f;
+		waitEnd = 5.5f;
 
 		winnerSprite = NewGO<MoveSprite>(2);
 		winnerSprite->Init(L"sprite/winner.dds", 1300, 166);
@@ -411,6 +411,17 @@ void Game::Update()
 		GameMode = 2;
 	} else if (GameMode == 2) {
 		waitEnd -= GameTime().GetFrameDeltaTime();
+		if (waitEnd > 4.5f) {
+			bgmSoundSource->SetVolume((waitEnd - 4.5f));
+		} else if (bgmSoundSource) {
+			bgmSoundSource->Stop();
+			DeleteGO(bgmSoundSource);
+			bgmSoundSource = nullptr;
+			prefab::CSoundSource* single = NewGO<prefab::CSoundSource>(0);
+			single->Init(L"sound/GameEnd.wav");
+			single->Play(false);
+		}
+
 		if (waitEnd <= 0 || Pad(0).IsTrigger(enButtonA)) {
 			Fade::fadeIn([&]() {
 				GameMode = 0;
