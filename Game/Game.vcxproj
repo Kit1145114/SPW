@@ -2093,7 +2093,6 @@
     <Image Include="Assets\modelData\sun.png" />
     <ImageContentTask Include="Assets\sprite\Setumei1.png" />
     <ImageContentTask Include="Assets\sprite\Winner.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei2.png" />
     <ImageContentTask Include="Assets\sprite\CountDown_back.png" />
     <ImageContentTask Include="Assets\sprite\CountDown_front.png" />
     <ImageContentTask Include="Assets\sprite\Title_Line.png" />

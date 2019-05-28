@@ -40,7 +40,6 @@
     <ImageContentTask Include="Assets\sprite\Title_A.png" />
     <ImageContentTask Include="Assets\sprite\CountDown_back.png" />
     <ImageContentTask Include="Assets\sprite\CountDown_front.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei2.png" />
     <ImageContentTask Include="Assets\sprite\Winner.png" />
   </ItemGroup>
   <ItemGroup>
@@ -427,7 +426,6 @@
     <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\GaugeIn.png" />
     <ImageContentTask Include="Assets\sprite\Setumei1.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei3.png" />
     <ImageContentTask Include="Assets\sprite\RandomStage.png" />
     <ImageContentTask Include="Assets\sprite\BackTile.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_Number.png" />
@@ -445,7 +443,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Assets\modelData\sun.png" />
-    <Image Include="Assets\sprite\Setumei1.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\BH.efk" />
