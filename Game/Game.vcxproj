@@ -1847,6 +1847,7 @@
     </ClCompile>
     <ClCompile Include="Title_1.cpp" />
     <ClCompile Include="Title_2.cpp" />
+    <ClCompile Include="Utility\WordRender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BigBlackHole.h" />
@@ -2040,6 +2041,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Title_1.h" />
     <ClInclude Include="Title_2.h" />
+    <ClInclude Include="Utility\WordRender.h" />
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
@@ -2089,7 +2091,8 @@
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
     <Image Include="Assets\modelData\sun.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei2.png" />
+    <ImageContentTask Include="Assets\sprite\Setumei1.png" />
+    <ImageContentTask Include="Assets\sprite\Winner.png" />
     <ImageContentTask Include="Assets\sprite\CountDown_back.png" />
     <ImageContentTask Include="Assets\sprite\CountDown_front.png" />
     <ImageContentTask Include="Assets\sprite\Title_Line.png" />
@@ -2104,8 +2107,6 @@
     <ImageContentTask Include="Assets\sprite\BackTile.png" />
     <ImageContentTask Include="Assets\sprite\RandomStage.png" />
     <ImageContentTask Include="Assets\sprite\Gate.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei1.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei3.png" />
     <ImageContentTask Include="Assets\sprite\GaugeIn.png" />
     <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\RocketArrow.png" />

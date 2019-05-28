@@ -25,8 +25,8 @@ void ResultCamera::Update() {
 	}
 
 	CVector3 goCameraPos = goLookPos;
-	goCameraPos.y += 5000;
-	goCameraPos.z -= 5000;
+	goCameraPos.y += 7000;
+	goCameraPos.z -= 7000;
 
 	CVector3 lookSpeed = (goLookPos - lookPos);
 	lookPos += lookSpeed * delta * 2;

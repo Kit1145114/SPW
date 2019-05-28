@@ -75,7 +75,7 @@ void Title_2::Update()
 #else
 		NewGO<SansenGamen>(1);
 #endif
-		});
+		}, m_bgm);
 	}
 	else if (mode == 1&& Pad(0).IsTrigger(enButtonA) == true)
 	{

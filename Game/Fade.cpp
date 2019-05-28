@@ -16,6 +16,9 @@ void Fade::Update() {
 	float delta = GameTime().GetFrameDeltaTime() * 3;
 	if (m_state == enFadeIn && alpha < 1.0f) {
 		alpha += delta;
+		if (bgm) {
+			bgm->SetVolume((1.0f - alpha)*volum);
+		}
 		if (alpha >= 1.0f) {
 			alpha = 1.0f;
 			m_state = enIdle;

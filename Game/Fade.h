@@ -10,10 +10,12 @@ public:
 		enFadeOut
 	};
 
-	static void fadeIn(const std::function<void()>& function = nullptr) {
+	static void fadeIn(const std::function<void()>& function = nullptr, prefab::CSoundSource* bgm = nullptr) {
 		if (st_fade->m_state != enFadeIn && st_fade->alpha != 1.0f) {
 			st_fade->m_state = enFadeIn;
 			st_fade->func = function;
+			st_fade->bgm = bgm;
+			st_fade->volum = bgm ? bgm->GetVolume() : 0;
 		}
 	}
 
@@ -44,6 +46,9 @@ private:
 
 	CShaderResourceView texture;
 	CSprite sprite;
+
+	prefab::CSoundSource* bgm = nullptr;
+	float volum = 0.0f;
 
 	std::function<void()> func;
 	FadeState m_state = enFadeOut;

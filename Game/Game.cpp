@@ -14,6 +14,8 @@
 #include "TrepotHole2.h"
 #include "Utility/CountDown.h"
 #include "ResultCamera.h"
+#include "Utility/MoveSprite.h"
+#include "Utility/WordRender.h"
 
 Game* Game::m_instance = nullptr;
 
@@ -62,6 +64,8 @@ Game::~Game()
 	DeleteGOs("Star");//Starクラス
 	DeleteGOs("Meteo");
 	DeleteGO(countdown);
+	DeleteGO(winnerSprite);
+	DeleteGO(winnerWord);
 	DeleteGOs("テレポート");
 	DeleteGOs("テレポート2");
 }
@@ -371,16 +375,53 @@ void Game::Update()
 						pos.x += 3000;
 						topPlayer[i]->doTiesMove(pos);
 					}
+					prefab::CEffect* effect;
+					effect = NewGO<prefab::CEffect>(0);
+					//エフェクトを再生。
+					effect->Play(L"effect/Paper.efk");
+					effect->SetScale({ 1, 1, 1 });
+					effect->SetPosition(pos);
 				}
 		}
 		ResultCamera* camera = NewGO<ResultCamera>(0);
 		camera->Init((const Player**)topPlayer, topNum,MainCamera().GetPosition(), MainCamera().GetTarget());
 		DeleteGO(m_camera);
 		m_camera = camera;
-		waitEnd = 6.0f;
+		waitEnd = 5.5f;
+
+		winnerSprite = NewGO<MoveSprite>(2);
+		winnerSprite->Init(L"sprite/winner.dds", 1300, 166);
+		winnerSprite->setNowPos({ -1000, -230, 0 });
+		winnerSprite->setTargetPos({ -400, -230, 0 });
+		winnerSprite->setSpeed(3, 3);
+		winnerWord = NewGO<WordRender>(3);
+		CVector4 color;
+		for (int i = 0; i < topNum; i++) {
+			CVector4 pColor = topPlayer[i]->getColor();
+			color.x += pColor.x;
+			color.y += pColor.y;
+			color.z += pColor.z;
+			color.w += pColor.w;
+		}
+		color.x /= topNum;
+		color.y /= topNum;
+		color.z /= topNum;
+		color.w /= topNum;
+		winnerWord->Init(L"winner", winnerSprite, { 180,30,0 }, color, 3);
 		GameMode = 2;
 	} else if (GameMode == 2) {
 		waitEnd -= GameTime().GetFrameDeltaTime();
+		if (waitEnd > 4.5f) {
+			bgmSoundSource->SetVolume((waitEnd - 4.5f));
+		} else if (bgmSoundSource) {
+			bgmSoundSource->Stop();
+			DeleteGO(bgmSoundSource);
+			bgmSoundSource = nullptr;
+			prefab::CSoundSource* single = NewGO<prefab::CSoundSource>(0);
+			single->Init(L"sound/GameEnd.wav");
+			single->Play(false);
+		}
+
 		if (waitEnd <= 0 || Pad(0).IsTrigger(enButtonA)) {
 			Fade::fadeIn([&]() {
 				GameMode = 0;
