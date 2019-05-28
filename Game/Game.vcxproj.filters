@@ -43,6 +43,7 @@
     <ImageContentTask Include="Assets\sprite\CountDown_back.png" />
     <ImageContentTask Include="Assets\sprite\CountDown_front.png" />
     <ImageContentTask Include="Assets\sprite\Setumei2.png" />
+    <ImageContentTask Include="Assets\sprite\Winner.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BigBlackHole.cpp" />
@@ -93,6 +94,7 @@
     <ClCompile Include="Sun.cpp" />
     <ClCompile Include="ResultCamera.cpp" />
     <ClCompile Include="Crown.cpp" />
+    <ClCompile Include="Utility\WordRender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\Back.FBX" />
@@ -339,6 +341,7 @@
     <ClInclude Include="Sun.h" />
     <ClInclude Include="ResultCamera.h" />
     <ClInclude Include="Crown.h" />
+    <ClInclude Include="Utility\WordRender.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc" />
@@ -451,5 +454,6 @@
     <None Include="Assets\effect\explosion2.efk" />
     <None Include="Assets\effect\kari_BH.efk" />
     <None Include="Assets\effect\Fire.efk" />
+    <None Include="Assets\effect\RedBH.efk" />
   </ItemGroup>
 </Project>

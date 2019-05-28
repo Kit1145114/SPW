@@ -900,6 +900,24 @@ void Player::setWinner() {
 	crown->setPosition(m_position);
 }
 
+CVector4 Player::getColor() {
+	switch (PadNum) {
+	case 0:
+		return CVector4(1.0f, 0.0f, 0.0f, 1.0f);
+		break;
+	case 1:
+		return CVector4(0.0f, 0.0f, 1.0f, 1.0f);
+		break;
+	case 2:
+		return CVector4(0.1f, 1.0f, 0.0f, 1.0f);
+		break;
+	case 3:
+		return CVector4(1.0f, 0.7f, 0.0f, 1.0f);
+		break;
+	}
+	return CVector4::White;
+}
+
 //最終進化後、☆を一定個数取ると強化。
 void Player::Upper()
 {

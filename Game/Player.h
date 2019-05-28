@@ -159,6 +159,7 @@ public:
 		tiesMovePos = pos;
 		tiesMove = c_tiseMove;
 	}
+	CVector4 getColor();
 
 private:
 	Player * m_player[4] = { nullptr };

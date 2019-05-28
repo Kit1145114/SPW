@@ -27,6 +27,9 @@ class CountDown;
 class TrepotHole;
 class TrepotHole2;
 class Sun;
+class MoveSprite;
+class WordRender;
+
 enum Planetnumber {
 	Planetnumber_00,
 	Planetnumber_01,
@@ -147,7 +150,11 @@ private:
 	RocketGene* rocketG = nullptr;
 	Sun* m_sun = nullptr;
 	CountDown* countdown = nullptr;
+
+	//勝利者演出用
 	float waitEnd = 0.0f;
+	MoveSprite* winnerSprite = nullptr;
+	WordRender* winnerWord = nullptr;
 
 	int trpotnumber = 0;
 	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。
