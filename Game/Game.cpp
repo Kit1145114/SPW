@@ -11,8 +11,6 @@
 #include "Stage1/SatelliteGene.h"
 #include "Stage2/RocketGene.h"
 #include "TerepotHole.h"
-#include "TrepotHole.h"
-#include "TrepotHole2.h"
 #include "Utility/CountDown.h"
 #include "ResultCamera.h"
 #include "Utility/MoveSprite.h"

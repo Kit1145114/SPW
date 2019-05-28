@@ -137,8 +137,6 @@ public:
 	Player* m_player[PlKazu] = { nullptr };
 	Star* m_star = nullptr;
 	Sun* m_sun = nullptr;
-	TrepotHole * tere[3] = { nullptr };
-	TrepotHole2 * tere2[3] ={ nullptr };
 	TerepotHole* tere[6]  = { nullptr };
 
 private:
