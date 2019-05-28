@@ -308,7 +308,7 @@ bool Game::Start()
 		CreateStage4();
 		break;
 	case 5:
-		LightManager().SetAmbientLight({ 0.0f, 0.0f, 0.0f });
+		LightManager().SetAmbientLight({ 0.8f, 0.8f, 0.8f });
 		CreateStage5();
 		break;
 	default:

@@ -2080,6 +2080,7 @@
     <MeshContentTask Include="Assets\modelData\SenkanType3.FBX" />
     <MeshContentTask Include="Assets\modelData\Space_field.FBX" />
     <MeshContentTask Include="Assets\modelData\star.FBX" />
+    <MeshContentTask Include="Assets\modelData\Sun.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
   </ItemGroup>
   <ItemGroup>
@@ -2087,6 +2088,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <Image Include="Assets\modelData\sun.png" />
     <ImageContentTask Include="Assets\sprite\Setumei2.png" />
     <ImageContentTask Include="Assets\sprite\CountDown_back.png" />
     <ImageContentTask Include="Assets\sprite\CountDown_front.png" />
@@ -2138,7 +2140,9 @@
     <None Include="Assets\effect\BH.efk" />
     <None Include="Assets\effect\explosion1.efk" />
     <None Include="Assets\effect\explosion2.efk" />
+    <None Include="Assets\effect\Fire.efk" />
     <None Include="Assets\effect\kari_BH.efk" />
+    <None Include="Assets\effect\RedBH.efk" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\sound\bacteria.wav" />
