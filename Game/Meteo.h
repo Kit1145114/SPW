@@ -37,7 +37,9 @@ private:
 	Game* game = nullptr;
 	Planet* pla = nullptr;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
+	prefab::CEffect * effect = nullptr;
 	CVector3 m_position = CVector3::Zero;
+	CVector3 e_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;
 	CVector3 randomspeed = CVector3::Zero;
 	CQuaternion m_rotation = CQuaternion::Identity;
@@ -48,7 +50,7 @@ private:
 	float hantei = 2500.0f;
 	float Plhantei = 2500.0f;
 	float Metehantei = 5000.0f;
-	float Speed = 5000.0f;
+	float Speed = 7500.0f;
 	float PosMaxLimitx = 40000.0f;
 	float PosMaxLimitz = 30000.0f;
 	float radius = 0.0f;

@@ -7,10 +7,10 @@ Meteo::Meteo()
 	game = Game::GetInstance();
 }
 
-
 Meteo::~Meteo()
 {
 	DeleteGO(m_skinModelRender);
+	DeleteGO(effect);
 }
 
 bool Meteo::Start()
@@ -18,6 +18,9 @@ bool Meteo::Start()
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Inseki.cmo");
 	scale = { 40.0f,40.0f,40.0f };
+	//effect = NewGO<prefab::CEffect>(0);
+	///*effect->Play(L"effect/Fire.efk");
+	//effect->SetPosition(e_position);*/
 	m_skinModelRender->SetScale(scale);
 	return true;
 }
@@ -25,8 +28,9 @@ bool Meteo::Start()
 void Meteo::Update()
 {
 	Move();
-	Rotation();
+	//Rotation();
 	Hantei();
+	//effect->SetPosition(e_position);
 }
 //“®‚­A“®‚­(we go walk...)
 void Meteo::Move()
@@ -44,6 +48,8 @@ void Meteo::Move()
 		movecount = true;
 	}
 	m_position += randomspeed;
+	e_position = m_position;
+	e_position.y = 2000.0f;
 	m_skinModelRender->SetPosition(m_position);
 }
 //Ž€‚Ê
@@ -127,12 +133,7 @@ void Meteo::Hantei()
 //‰ñ“]‚³‚¹‚é‚æ[
 void Meteo::Rotation()
 {
-	angleY += (randomspeed.x /*+ randomspeed.z*/) /20.0f;
+	angleY += randomspeed.x /20.0f;
 	m_rotation.SetRotationDeg(CVector3::AxisY, angleY);
-	//CQuaternion qRot = CQuaternion::Identity;
-	//qRot.Multiply(m_rotation);
-	//m_skinModelRender->SetRotation(m_rotation);
-	//angleX += randomspeed.x /**10.0f*/;
-	//m_rotation.SetRotationDeg(CVector3::AxisX, angleX);
 	m_skinModelRender->SetRotation(m_rotation);
 }
