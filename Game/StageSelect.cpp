@@ -22,6 +22,7 @@ StageSelect::~StageSelect() {
 	DeleteGO(selectSprite);
 	DeleteGO(backSprite);
 	DeleteGO(titleSprite);
+	DeleteGO(m_bgm);
 }
 
 bool StageSelect::Start() {
@@ -57,6 +58,13 @@ bool StageSelect::Start() {
 	selectSprite->setTargetPos(iconArray[0].getTargetPos());
 	selectSprite->setSpeed(8.0f, 40.0f);
 
+	if (m_bgm == nullptr) {
+		m_bgm = NewGO<prefab::CSoundSource>(0);
+		m_bgm->Init(L"sound/bacteria.wav");
+		m_bgm->Play(true);
+		m_bgm->SetVolume(0.7f);
+	}
+
 	Fade::fadeOut();
 	return true;
 }
@@ -66,8 +74,11 @@ void StageSelect::Update() {
 	if (waitSansen > 0.0f) {
 		waitSansen -= GameTime().GetFrameDeltaTime();
 		if (waitSansen <= 0.0f) {
-			NewGO<SansenGamen>(1)->setBackGround(backSprite);
+			SansenGamen* sgamen = NewGO<SansenGamen>(1);
+			sgamen->setBackGround(backSprite);
 			backSprite = nullptr;
+			sgamen->setBGM(m_bgm);
+			m_bgm = nullptr;
 			DeleteGO(this);
 		}
 		return;
@@ -95,7 +106,7 @@ void StageSelect::Update() {
 				//game->setStage(Random().GetRandInt() % iconNum - 1);
 			//}
 			DeleteGO(this);
-		});
+		}, m_bgm);
 		Sound(1);
 		return;
 	}

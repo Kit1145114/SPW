@@ -46,6 +46,10 @@ public:
 		backSprite = back;
 	}
 
+	void setBGM(prefab::CSoundSource* bgm) {
+		m_bgm = bgm;
+	}
+
 	void setSansenKazu(int kazu) {
 		sansenKazu = kazu;
 	}
@@ -71,6 +75,8 @@ private:
 	MoveSprite* selectSprite = nullptr;
 
 	prefab::CSoundSource* m_push = nullptr;//BGM用のサウンドソース。
+
+	prefab::CSoundSource* m_bgm = nullptr;
 
 	float waitSansen = -1.0f;
 };
