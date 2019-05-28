@@ -2091,6 +2091,7 @@
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
     <Image Include="Assets\modelData\sun.png" />
+    <ImageContentTask Include="Assets\sprite\Setumei1.png" />
     <ImageContentTask Include="Assets\sprite\Winner.png" />
     <ImageContentTask Include="Assets\sprite\Setumei2.png" />
     <ImageContentTask Include="Assets\sprite\CountDown_back.png" />
@@ -2107,8 +2108,6 @@
     <ImageContentTask Include="Assets\sprite\BackTile.png" />
     <ImageContentTask Include="Assets\sprite\RandomStage.png" />
     <ImageContentTask Include="Assets\sprite\Gate.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei1.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei3.png" />
     <ImageContentTask Include="Assets\sprite\GaugeIn.png" />
     <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\RocketArrow.png" />

@@ -6,7 +6,7 @@ Star::Star()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	p_Cpointlit = NewGO < prefab::CPointLight >(0);
-	p_Cpointlit->SetAttn({ 5000, 1, 0 });
+	p_Cpointlit->SetAttn({ 8000, 1, 0 });
 	p_Cpointlit->SetColor({ 70.0f, 70.0f, 70.0f });
 	m_skinModelRender->Init(L"modelData/star.cmo");
 	m_scale = { 8.0f, 8.0, 8.0f };
@@ -46,6 +46,16 @@ void Star::Pop(CVector3 position,CVector3 scale)
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetScale(m_scale);
 };
+//‘¾—z‚Ì‘å‚«‚³‚É‡‚í‚¹‚Ä™‚Ì‘å‚«‚³‚ðŒˆ‚ß‚éB
+void Star::SunPop(CVector3 position, CVector3 scale)
+{
+	m_position = position;
+	m_scale = scale;
+	Limit = 1000;
+	m_skinModelRender->Init(L"modelData/PlayerStar.cmo");
+	m_skinModelRender->SetPosition(m_position);
+	m_skinModelRender->SetScale(m_scale);
+};
 //™‚ðoŒ»‚³‚¹‚éêŠ‚ÌÝ’èB
 void Star::Push()
 {
@@ -54,7 +64,7 @@ void Star::Push()
 //™‚Ì‰ñ“]
 void Star::Rotation()
 {
-	float SpeedY = 3.0f;
+	float SpeedY = 2.0f;
 	angle += SpeedY;
 	m_rotation.SetRotationDeg(CVector3::AxisY, angle);
 	m_skinModelRender->SetRotation(m_rotation);
