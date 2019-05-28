@@ -23,8 +23,7 @@ class RocketGene;
 class MeteoGene;
 class BigBlackHole;
 
-class TrepotHole;
-class TrepotHole2;
+class TerepotHole;
 
 enum Planetnumber {
 	Planetnumber_00,
@@ -103,10 +102,8 @@ public:
 	RocketGene* getRocketGene() {
 		return rocketG;
 	}
-	/*int GetTerepokazu()
-	{
-		return tere;
-	}*/
+	
+	
 private:
 	void CreateStage0();
 	void CreateStage1();
@@ -117,8 +114,8 @@ public:
 	Planet* memoryPP[Planetnumber_Num] = {};
 	Player* m_player[PlKazu] = { nullptr };
 	Star* m_star = nullptr;
-	TrepotHole * tere[3] = { nullptr };
-	TrepotHole2 * tere2[3] ={ nullptr };
+	TerepotHole* tere[6]  = { nullptr };
+
 private:
 	static Game* m_instance;
 	Enemy* enemy = nullptr;
@@ -131,8 +128,6 @@ private:
 	MeteoGene* meteogene = nullptr;
 	RocketGene* rocketG = nullptr;
 	
-
-	int trpotnumber = 0;
 	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。
 	
 	int GameMode = 0;
