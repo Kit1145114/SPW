@@ -27,38 +27,38 @@ bool SetumeiGamen::Start()
 void SetumeiGamen::Update()
 {
 	Kirikae();
-	switch (mode)
-	{
-	case 0:
-		m_spriteRender->Init(L"sprite/Setumei1.dds", 1280.0f, 720.0f);
-		break;
-	case 1:
-		m_spriteRender->Init(L"sprite/Setumei2.dds", 1280.0f, 720.0f);
-		break;
-	case 2:
-		m_spriteRender->Init(L"sprite/Setumei3.dds", 1280.0f, 720.0f);
-		break;
-	}
+	//switch (mode)
+	//{
+	//case 0:
+	//	m_spriteRender->Init(L"sprite/Setumei1.dds", 1280.0f, 720.0f);
+	//	break;
+	//case 1:
+	//	m_spriteRender->Init(L"sprite/Setumei2.dds", 1280.0f, 720.0f);
+	//	break;
+	//case 2:
+	//	m_spriteRender->Init(L"sprite/Setumei3.dds", 1280.0f, 720.0f);
+	//	break;
+	//}
 }
 
 void SetumeiGamen::Kirikae()
 {
-	if (Pad(0).IsTrigger(enButtonLeft) == true)
-	{
-		mode--;
-		if (mode < 0)
-		{
-			mode = 0;
-		}
-	}
-	if (Pad(0).IsTrigger(enButtonRight) == true)
-	{
-		mode++;
-		if (mode > 2)
-		{
-			mode = 2;
-		}
-	}
+	//if (Pad(0).IsTrigger(enButtonLeft) == true)
+	//{
+	//	mode--;
+	//	if (mode < 0)
+	//	{
+	//		mode = 0;
+	//	}
+	//}
+	//if (Pad(0).IsTrigger(enButtonRight) == true)
+	//{
+	//	mode++;
+	//	if (mode > 2)
+	//	{
+	//		mode = 2;
+	//	}
+	//}
 	if (Pad(0).IsTrigger(enButtonB) == true)
 	{
 		m_push->Play(false);

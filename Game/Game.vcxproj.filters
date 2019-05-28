@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei1.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei3.png" />
     <ImageContentTask Include="Assets\sprite\GaugeIn.png" />
     <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\RocketArrow.png" />
@@ -42,7 +40,6 @@
     <ImageContentTask Include="Assets\sprite\Title_A.png" />
     <ImageContentTask Include="Assets\sprite\CountDown_back.png" />
     <ImageContentTask Include="Assets\sprite\CountDown_front.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei2.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BigBlackHole.cpp" />
@@ -444,6 +441,7 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Assets\modelData\sun.png" />
+    <Image Include="Assets\sprite\Setumei1.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\BH.efk" />
@@ -451,5 +449,6 @@
     <None Include="Assets\effect\explosion2.efk" />
     <None Include="Assets\effect\kari_BH.efk" />
     <None Include="Assets\effect\Fire.efk" />
+    <None Include="Assets\effect\RedBH.efk" />
   </ItemGroup>
 </Project>
