@@ -7,26 +7,31 @@ Meteo::Meteo()
 	game = Game::GetInstance();
 }
 
-
 Meteo::~Meteo()
 {
 	DeleteGO(m_skinModelRender);
+	DeleteGO(effect);
 }
 
 bool Meteo::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Inseki.cmo");
-	scale = { 50.0f,5.0f,50.0f };
+	scale = { 40.0f,40.0f,40.0f };
+	//effect = NewGO<prefab::CEffect>(0);
+	///*effect->Play(L"effect/Fire.efk");
+	//effect->SetPosition(e_position);*/
 	m_skinModelRender->SetScale(scale);
 	return true;
 }
 
 void Meteo::Update()
 {
+	if (Game::GetInstance()->isWait())return;
 	Move();
-	Rotation();
-	//Hantei();
+	//Rotation();
+	Hantei();
+	//effect->SetPosition(e_position);
 }
 //動く、動く(we go walk...)
 void Meteo::Move()
@@ -44,6 +49,8 @@ void Meteo::Move()
 		movecount = true;
 	}
 	m_position += randomspeed;
+	e_position = m_position;
+	e_position.y = 2000.0f;
 	m_skinModelRender->SetPosition(m_position);
 }
 //死ぬ
@@ -56,6 +63,11 @@ void Meteo::Death()
 	//エフェクトに半径/（Ｍａｘと差）をかける
 	effect->SetScale({ 1, 1, 1 });
 	effect->SetPosition(m_position + CVector3(0, 1000, 0));
+
+	prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
+	se->Init(L"sound/bakuhatu.wav");
+	se->Play(false);                     //ワンショット再生。
+	se->SetVolume(0.3f);
 	
 	CVector3 pos = m_position;
 	pos.z += 500;
@@ -81,7 +93,7 @@ void Meteo::Hantei()
 		//プレイヤーが無敵なら攻撃をやめる。
 		if (Game::GetInstance()->m_player[i]->GetMuteki() == false) {
 			CVector3 kyori = Game::GetInstance()->m_player[i]->GetPosition() - m_position;
-			if (kyori.Length() < hantei
+			if (kyori.Length() < Game::GetInstance()->m_player[i]->Getradius() + (radius*1.5)
 				&& Game::GetInstance()->m_player[i]->GetDeathCount() == false) {
 				Game::GetInstance()->m_player[i]->AddHP(-100);
 				Game::GetInstance()->m_player[i]->SetLABulletNum(-1);
@@ -119,15 +131,10 @@ void Meteo::Hantei()
 		DeleteGO(this);
 	}
 }
-
+//回転させるよー
 void Meteo::Rotation()
 {
-	float angleY = 0.0f;
-	angleY += randomspeed.y;
+	angleY += randomspeed.x /20.0f;
 	m_rotation.SetRotationDeg(CVector3::AxisY, angleY);
-	m_skinModelRender->SetRotation(m_rotation);
-	float angleX = 0.0f;
-	angleX += randomspeed.x;
-	m_rotation.SetRotationDeg(CVector3::AxisX, angleX);
 	m_skinModelRender->SetRotation(m_rotation);
 }

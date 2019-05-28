@@ -24,6 +24,7 @@ bool Satellite::Start() {
 	//モデルとコライダの初期化
 	m_modelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_modelRender->Init(L"modelData/Satellite.cmo");
+	m_modelRender->SetScale({ firstScale,firstScale, firstScale });
 	collider.Init(m_pos, colliderPosition ,colliderSize);
 
 	//動きの設定(ランダム)
@@ -41,12 +42,22 @@ bool Satellite::Start() {
 }
 
 void Satellite::Update() {
+	if (Game::GetInstance()->isWait())return;
 	//エリア外判定
 	if (m_pos.x > 35000.0f || m_pos.x< -35000.0f|| m_pos.z>25000.0f || m_pos.z < -25000.0f) {
 		DeleteGO(this);
 		return;
 	}
 
+	//生成時大きくなりながら登場
+	if (firstScale < 1.0f) {
+		firstScale += GameTime().GetFrameDeltaTime();
+		if (firstScale > 1.0f) {
+			firstScale = 1.0f;
+		}
+		m_modelRender->SetScale({ firstScale, firstScale, firstScale });
+
+	} else
 	//衝突判定
 	{
 		Game* game = Game::GetInstance();
@@ -86,10 +97,18 @@ void Satellite::Update() {
 			if (result.hit == Side) {
 				rotPower += result.rotSign * hitRotPower;
 				b->Death();
+				prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
+				se->Init(L"sound/satellite.wav");
+				se->SetVolume(0.2f);
+				se->Play(false);
 			} else if(result.hit == Center){
 				m_move += b->GetMoveSpeed()*8;
 				lastBulletNum = b->GetPB();
 				b->Death();
+				prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
+				se->Init(L"sound/satellite.wav");
+				se->SetVolume(0.2f);
+				se->Play(false);
 			}
 			return true;
 		});

@@ -10,6 +10,7 @@ MeteoGene::~MeteoGene()
 
 void MeteoGene::Update()
 {
+	if (Game::GetInstance()->isWait())return;
 
 	timer += GameTime().GetFrameDeltaTime();
 	if (timer > Inittime)
@@ -36,13 +37,13 @@ void MeteoGene::Update()
 
 		for (int j = 0; j < Game::GetInstance()->GetSansenKazu(); j++) {
 			CVector3 kyori = Game::GetInstance()->m_player[j]->GetPosition() - hako;
-			if (kyori.Length() < radius + 5000.0f) {
+			if (kyori.Length() < radius + 4000.0f) {
 				isCreatePlanet = false;
 			}
 		}
 		if (isCreatePlanet) {
 			Meteo* meteo = NewGO<Meteo>(0, "Meteo");
-
+			meteo->SetRadius(radius);
 			meteo->SetPosition(hako);
 			//meteo->init(planet->p_position, P_skinModelRender, v);
 		}

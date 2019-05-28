@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Network/NPad.h"
 #include "Sinka_Bar.h"
+#include "Crown.h"
 
 Player::Player()
 {
@@ -17,12 +18,14 @@ void Player::OnDestroy()
 	DeleteGO(draw_Pl);
 	DeleteGO(draw_S);
 	DeleteGO(r_ring);
+	DeleteGO(crown);
 }
 
 bool Player::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Senkan.cmo");
+	m_skinModelRender->SetPosition(m_position);
 	m_scale = { 9.6f,9.6f,9.6f };
 	m_skinModelRender->SetScale(m_scale);
 	//m_CharaCon.Init(800.0f, 300.0f, m_position);
@@ -54,14 +57,42 @@ bool Player::Start()
 
 void Player::Update()
 {
-	Upper();
+	//ゲーム終了後の勝利演出。勝者の場合、移動とローテーションだけ許可する。
+	if (!isWinner) {
+		if (Game::GetInstance()->isWait()) {
+			return;
+		}
+	} else {
+		//同点1位の場合のワープ
+		if (tiesMove > 0) {
+			float delta = GameTime().GetFrameDeltaTime();
+			if (tiesMove > c_tiseMove / 2) {
+				m_position.y -= delta * 5000;
+				tiesMove -= delta;
+				if (tiesMove <= c_tiseMove / 2) {
+					m_position.x = tiesMovePos.x;
+					m_position.z = tiesMovePos.z;
+				}
+			} else {
+				m_position.y += delta * 5000;
+				tiesMove -= delta;
+			}
+		}
+
+		Muteki = false;
+		DeathCount = false;
+		m_skinModelRender->SetActiveFlag(true);
+		crown->setPosition(m_position);
+	}
 	Move();			//プレイヤーの操作
+	Rotation();
+	if (Game::GetInstance()->isWaitEnd())return;//勝者でもここから下は許可しない
+	Upper();
 	PBullet();		//プレイヤーの射撃操作
 	PBullet2();
 	PBullet3();
 	Pevolution();	//プレイヤーの形態
 	//Hantei();
-	Rotation();
 	Respawn();
 	S_Hantei();
 	//PlS_Hantei();
@@ -361,31 +392,36 @@ void Player::Rotation()
 //プレイヤーの死亡処理。
 void Player::Death()
 {
-	//m_skinModelRender->Init(L"modelData/PlayerStar.cmo");
-	m_skinModelRender->SetActiveFlag(false);
-	memory_position = m_position;
-	ShortCount = false;
-	DeathCount = true;
-	Alive = false;
-	Muteki = true;
-	draw_Pl->SetDeath(true);
-	if (CountExplosion == false) {
-		CountExplosion = true;
-		////エフェクトを作成。
-		//prefab::CEffect* effect;
-		//effect = NewGO<prefab::CEffect>(0);
-		////エフェクトを再生。
-		//effect->Play(L"effect/explosion2.efk");
-		//effect->SetPosition(this->m_position);
-		//効果音
-		Sound(0);
-	}
-
+		m_skinModelRender->SetActiveFlag(false);
+		memory_position = m_position;
+		ShortCount = false;
+		DeathCount = true;
+		Alive = false;
+		Muteki = true;
+		draw_Pl->SetDeath(true);
+		if (CountExplosion == false) {
+			CountExplosion = true;
+			////エフェクトを作成。
+			//prefab::CEffect* effect;
+			//effect = NewGO<prefab::CEffect>(0);
+			////エフェクトを再生。
+			//effect->Play(L"effect/explosion2.efk");
+			//effect->SetPosition(this->m_position);
+			//効果音
+			Sound(0);
+		}
+		//if (DeathCount == true)
+		//{
+		//	d_timer++;
+		//	if (d_timer == 180)
+		//	{
+		//		Respawn();
+		//	}
+		//}
 }
 //プレイヤーのリスポーン処理。
 void Player::Respawn()
 {
-	m_skinModelRender->SetActiveFlag(true);
 	if (DeathCount == true)
 	{
  		d_timer++;
@@ -622,8 +658,9 @@ void Player::HP()
 {
 	if (PlHP <= 0)
 	{
-		PlHP = 0;
-		Death();
+		PlHP = 0; {
+				Death();
+		}
 	}
 }
 //プレイヤーの持つ☆を落とす。
@@ -704,9 +741,9 @@ void Player::SetPadNum(int num)
 		draw_S->SetStar(L"sprite/Star.dds");
 		draw_S->SetS_position(-480.0f, -279.0f);
 		//プレイヤーの弾の場所。
-		draw_S->SetBullet(L"sprite/tama_red.dds");
-		draw_S->SetB_kazuPosition(-370.0f,-325.0f);
-		draw_S->SetBulletposition(-365.0f,-285.0f);
+		//draw_S->SetBullet(L"sprite/tama_red.dds");
+		//draw_S->SetB_kazuPosition(-370.0f,-325.0f);
+		//draw_S->SetBulletposition(-365.0f,-285.0f);
 		draw_S->SetColor(1.0f, 0.0f, 0.0f, 1.0f);
 		//プレイヤーの進化ゲージの場所。
 		//bar->SetbarPosition(300.0f, 0.0f);
@@ -721,9 +758,9 @@ void Player::SetPadNum(int num)
 		draw_S->SetStar(L"sprite/Star.dds");
 		draw_S->SetS_position(-180.0f, -279.0f);
 		//プレイヤーの弾の場所。
-		draw_S->SetBullet(L"sprite/tama_bule.dds");
-		draw_S->SetB_kazuPosition(-70.0f, -325.0f);
-		draw_S->SetBulletposition(-65.0f, -285.0f);
+		//draw_S->SetBullet(L"sprite/tama_bule.dds");
+		//draw_S->SetB_kazuPosition(-70.0f, -325.0f);
+		//draw_S->SetBulletposition(-65.0f, -285.0f);
 		draw_S->SetColor(0.0f, 0.0f, 1.0f, 1.0f);
 		break;
 	case 2:
@@ -735,9 +772,9 @@ void Player::SetPadNum(int num)
 		draw_S->SetStar(L"sprite/Star.dds");
 		draw_S->SetS_position(120.0f, -279.f);
 		//プレイヤーの弾の場所。
-		draw_S->SetBullet(L"sprite/tama_green.dds");
-		draw_S->SetB_kazuPosition(230.0f, -325.0f);
-		draw_S->SetBulletposition(235.0f, -285.0f);
+		//draw_S->SetBullet(L"sprite/tama_green.dds");
+		//draw_S->SetB_kazuPosition(230.0f, -325.0f);
+		//draw_S->SetBulletposition(235.0f, -285.0f);
 		draw_S->SetColor(0.1f, 1.0f, 0.0f, 1.0f);
 		break;
 	case 3:
@@ -749,9 +786,9 @@ void Player::SetPadNum(int num)
 		draw_S->SetStar(L"sprite/Star.dds");
 		draw_S->SetS_position(420.0f, -279.0f);
 		//プレイヤーの弾の場所。
-		draw_S->SetBullet(L"sprite/tama_yellow.dds");
-		draw_S->SetB_kazuPosition(530.0f, -325.0f);
-		draw_S->SetBulletposition(535.0f, -285.0f);
+		//draw_S->SetBullet(L"sprite/tama_yellow.dds");
+		//draw_S->SetB_kazuPosition(530.0f, -325.0f);
+		//draw_S->SetBulletposition(535.0f, -285.0f);
 		draw_S->SetColor(1.0f, 0.7f, 0.0f, 1.0f);
 		break;
 	}
@@ -855,6 +892,30 @@ float Player::getBulletPercentage() {
 	}
 	float parce = ((float)m_Short + (m_timer / addSpeed)) / max;
 	return parce;
+}
+
+void Player::setWinner() {
+	isWinner = true;
+	crown = NewGO<Crown>(0);
+	crown->setPosition(m_position);
+}
+
+CVector4 Player::getColor() {
+	switch (PadNum) {
+	case 0:
+		return CVector4(1.0f, 0.0f, 0.0f, 1.0f);
+		break;
+	case 1:
+		return CVector4(0.0f, 0.0f, 1.0f, 1.0f);
+		break;
+	case 2:
+		return CVector4(0.1f, 1.0f, 0.0f, 1.0f);
+		break;
+	case 3:
+		return CVector4(1.0f, 0.7f, 0.0f, 1.0f);
+		break;
+	}
+	return CVector4::White;
 }
 
 //最終進化後、☆を一定個数取ると強化。

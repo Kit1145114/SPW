@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei1.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei2.jpg" />
-    <ImageContentTask Include="Assets\sprite\Setumei3.png" />
     <ImageContentTask Include="Assets\sprite\GaugeIn.png" />
     <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\RocketArrow.png" />
@@ -41,6 +38,9 @@
     <ImageContentTask Include="Assets\sprite\Sansen_arrow.png" />
     <ImageContentTask Include="Assets\sprite\Title_Line.png" />
     <ImageContentTask Include="Assets\sprite\Title_A.png" />
+    <ImageContentTask Include="Assets\sprite\CountDown_back.png" />
+    <ImageContentTask Include="Assets\sprite\CountDown_front.png" />
+    <ImageContentTask Include="Assets\sprite\Winner.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BigBlackHole.cpp" />
@@ -85,6 +85,11 @@
     <ClCompile Include="Title_2.cpp" />
     <ClCompile Include="Utility\MoveSprite.cpp" />
     <ClCompile Include="Utility\MovePositon.cpp" />
+    <ClCompile Include="Utility\CountDown.cpp" />
+    <ClCompile Include="Sun.cpp" />
+    <ClCompile Include="ResultCamera.cpp" />
+    <ClCompile Include="Crown.cpp" />
+    <ClCompile Include="Utility\WordRender.cpp" />
     <ClCompile Include="TerepotHole.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +128,8 @@
     <MeshContentTask Include="Assets\modelData\Space_field.FBX" />
     <MeshContentTask Include="Assets\modelData\star.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
+    <MeshContentTask Include="Assets\modelData\Sun.FBX" />
+    <MeshContentTask Include="Assets\modelData\Crown.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BigBlackHole.h" />
@@ -324,6 +331,11 @@
     <ClInclude Include="Utility\BoxCollider2D.h" />
     <ClInclude Include="Utility\MoveSprite.h" />
     <ClInclude Include="Utility\MovePosition.h" />
+    <ClInclude Include="Utility\CountDown.h" />
+    <ClInclude Include="Sun.h" />
+    <ClInclude Include="ResultCamera.h" />
+    <ClInclude Include="Crown.h" />
+    <ClInclude Include="Utility\WordRender.h" />
     <ClInclude Include="TerepotHole.h" />
   </ItemGroup>
   <ItemGroup>
@@ -412,10 +424,6 @@
     <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\GaugeIn.png" />
     <ImageContentTask Include="Assets\sprite\Setumei1.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei2.jpg">
-      <Filter>Resource Files</Filter>
-    </ImageContentTask>
-    <ImageContentTask Include="Assets\sprite\Setumei3.png" />
     <ImageContentTask Include="Assets\sprite\RandomStage.png" />
     <ImageContentTask Include="Assets\sprite\BackTile.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_Number.png" />
@@ -425,17 +433,21 @@
     <ImageContentTask Include="Assets\sprite\Reslut3.png" />
     <ImageContentTask Include="Assets\sprite\title1.png" />
     <ImageContentTask Include="Assets\sprite\Reslut1.png" />
+    <Media Include="Assets\sound\bacteria.wav" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
     <Image Include="Assets\modelData\fire12.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\modelData\sun.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\BH.efk" />
     <None Include="Assets\effect\explosion1.efk" />
     <None Include="Assets\effect\explosion2.efk" />
     <None Include="Assets\effect\kari_BH.efk" />
+    <None Include="Assets\effect\Fire.efk" />
+    <None Include="Assets\effect\RedBH.efk" />
   </ItemGroup>
 </Project>

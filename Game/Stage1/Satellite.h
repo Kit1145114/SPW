@@ -40,6 +40,7 @@ private:
 	float rotPower = 0.0f;
 	CQuaternion m_rot = CQuaternion::Identity;
 	CVector3 m_pos = {0,1000,000};
+	float firstScale = 0.0f;
 
 	CVector3 m_move = { 0,0,500 };
 

@@ -5,6 +5,7 @@
 #include "tkEngine/graphics/effect/tkEffect.h"
 #include "tkEngine/physics/tkPhysicsGhostObject.h"
 #include "tkEngine/character/tkCharacterController.h"
+#include "Sun.h"
 
 class BlackHole;
 class field;
@@ -22,6 +23,12 @@ class SatelliteGene;
 class RocketGene;
 class MeteoGene;
 class BigBlackHole;
+class CountDown;
+class TrepotHole;
+class TrepotHole2;
+class Sun;
+class MoveSprite;
+class WordRender;
 
 class TerepotHole;
 
@@ -95,6 +102,9 @@ public:
 	void SetBHCount(int kazu) {
 		BHCount += kazu;
 	}
+	bool GetSunflag() {
+		return Sunflag;
+	}
 	SatelliteGene* getSatelliteGene() {
 		return satelliteG;
 	}
@@ -102,24 +112,37 @@ public:
 	RocketGene* getRocketGene() {
 		return rocketG;
 	}
+
+	bool isWait() {
+		return isWaitStart() || isWaitEnd();
+	}
 	
-	
+	bool isWaitStart() {
+		return countdown != nullptr;
+	}
+
+	bool isWaitEnd() {
+		return waitEnd;
+	}
+
 private:
 	void CreateStage0();
 	void CreateStage1();
 	void CreateStage2();
 	void CreateStage3();
 	void CreateStage4();
+	void CreateStage5();
 public:
 	Planet* memoryPP[Planetnumber_Num] = {};
 	Player* m_player[PlKazu] = { nullptr };
+	
 	Star* m_star = nullptr;
 	TerepotHole* tere[6]  = { nullptr };
 
 private:
 	static Game* m_instance;
 	Enemy* enemy = nullptr;
-	Camera* m_camera = nullptr;
+	IGameObject* m_camera = nullptr;
 	field* m_field = nullptr;
 	GamenTimer* m_G_Timer = nullptr;
 	SatelliteGene* satelliteG = nullptr;
@@ -127,7 +150,15 @@ private:
 	BigBlackHole* BBH = nullptr;
 	MeteoGene* meteogene = nullptr;
 	RocketGene* rocketG = nullptr;
-	
+	Sun* m_sun = nullptr;
+	CountDown* countdown = nullptr;
+
+	//勝利者演出用
+	float waitEnd = 0.0f;
+	MoveSprite* winnerSprite = nullptr;
+	WordRender* winnerWord = nullptr;
+
+	int trpotnumber = 0;
 	prefab::CSoundSource* bgmSoundSource = nullptr;//BGM用のサウンドソース。
 	
 	int GameMode = 0;
@@ -142,9 +173,7 @@ private:
 	bool PlS_Init = false;
 	bool BHflag = false;     //ブラックホールのフラグ、trueだと発生しなくなる。
 	int BHCount = 0;		 //ブラックホールをカウントする。
-   	//CVector3 BHpos1 = { 0.0f , 0.0f, 5000.0f };
-	//CVector3 BHsca1 = { 1000.0f,0.0f,5.0f };
-
+	bool Sunflag = false;    //太陽のフラグ、trueでプラネットの光方の調整など（太陽ステージだよ知らせるフラグ）。
 	
 };
 

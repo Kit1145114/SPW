@@ -12,7 +12,7 @@ public:
 	void Gravity();
 	void Update();
 private:
-	prefab::CEffect* effect;
+	prefab::CEffect* effect = nullptr;
 	Game* m_game = nullptr;
 
 	CVector3 BBHposition = { 0.0f,  0.0f,  0.0f };

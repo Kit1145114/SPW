@@ -60,6 +60,10 @@ public:
 		sprite_back = back;
 	}
 
+	void setBGM(prefab::CSoundSource* bgm) {
+		m_bgm = bgm;
+	}
+
 private:
 	CFont m_font;
 	prefab::CSpriteRender* sprite_back = nullptr;
@@ -74,6 +78,8 @@ private:
 	int MinKazu = 1;
 	bool GameStart = false;
 	bool Death = false;
+
+	prefab::CSoundSource* m_bgm = nullptr;
 
 	float waitStageSelect = -1.0f;
 };

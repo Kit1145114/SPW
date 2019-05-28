@@ -18,6 +18,7 @@ class Draw_Player;
 class Draw_Skazu;
 class RadarRing;
 class Sinka_Bar;
+class Crown;
 
 class Player: public IGameObject
 {
@@ -48,7 +49,7 @@ public:
 	void StarPos();
 	void Playerwarp();
 	void Upper();
-	CVector3 GetPosition() {
+	CVector3 GetPosition() const {
 		return m_position;
 	}
 	void SetPosition(CVector3 plpos)
@@ -152,6 +153,14 @@ public:
 	}
 	float getBulletPercentage();
 
+	//勝利演出関連
+	void setWinner();
+	void doTiesMove(const CVector3& pos) {
+		tiesMovePos = pos;
+		tiesMove = c_tiseMove;
+	}
+	CVector4 getColor();
+
 private:
 	Player * m_player[4] = { nullptr };
 	Draw_Player * draw_Pl = nullptr;
@@ -223,5 +232,13 @@ private:
 	bool Muteki = false;
 	bool Alive = true;
 	bool CountExplosion = false;
+	
+	//ゲーム終了後の勝利演出関連
+	bool isWinner = false;       //勝者
+	Crown* crown = nullptr;      //王冠
+	float tiesMove = 0.0f;       //同点1位の場合、一人の元にワープする
+	CVector3 tiesMovePos;        //同点1位ワープのポジション
+public:
+	static constexpr float c_tiseMove = 1.0f; //同点1位ワープにかける時間
 };
 

@@ -21,6 +21,7 @@ bool Rocket::Start() {
 	m_modelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_modelRender->Init(L"modelData/ScrapRocket.cmo");
 	m_modelRender->SetPosition(m_pos);
+	m_modelRender->SetScale({ firstScale,firstScale, firstScale });
 
 	//コライダ
 	collider.Init(m_pos, colliderPosition, colliderSize);
@@ -37,12 +38,27 @@ bool Rocket::Start() {
 }
 
 void Rocket::Update() {
+	if (Game::GetInstance()->isWait()) {
+		if(arrowSprite)
+			arrowSprite->setScale({ 0,0,0 });
+		return;
+	}
+
 	//エリア外判定
 	if (m_pos.x > 35000.0f || m_pos.x< -35000.0f || m_pos.z>25000.0f || m_pos.z < -25000.0f) {
 		DeleteGO(this);
 		return;
 	}
 
+	//生成時大きくなりながら登場
+	if (firstScale < 1.0f) {
+		firstScale += GameTime().GetFrameDeltaTime();
+		if (firstScale > 1.0f) {
+			firstScale = 1.0f;
+		}
+		m_modelRender->SetScale({ firstScale, firstScale, firstScale });
+
+	}else
 	//衝突判定
 	{
 		Game* game = Game::GetInstance();
@@ -122,6 +138,14 @@ void Rocket::Update() {
 				b->Death();
 				if (ownerNum != b->GetPB()) {
 					hp--;
+					prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
+					if (awaking) {
+						se->Init(L"sound/satellite.wav");
+					} else {
+						se->Init(L"sound/rocket1.wav");
+					}
+					se->SetVolume(0.2f);
+					se->Play(false);
 				}
 				if (!awaking) {
 					if (hp == 0) {
@@ -130,6 +154,11 @@ void Rocket::Update() {
 						ownerNum = b->GetPB();
 						InitArrow(ownerNum);
 						hp = max_hp;
+
+						prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
+						se->Init(L"sound/rocket2.wav");
+						se->SetVolume(0.5f);
+						se->Play(false);
 					}
 				}
 			}
@@ -169,7 +198,23 @@ void Rocket::Update() {
 	float radian = atan2f(-m_move.z, m_move.x);
 	rot.SetRotation(CVector3::AxisY, radian);
 	m_modelRender->SetRotation(rot);
-	
+
+	//煙エフェクト
+	if (awaking) {
+		if (smokeTime <= 0.0f) {
+			smokeTime = c_smokeTime;
+			CVector3 vec = m_move;
+			vec.Normalize();
+			prefab::CEffect* smoke = NewGO<prefab::CEffect>(0);
+			smoke->SetPosition(m_pos - vec * 2000);
+			smoke->SetRotation(rot);
+			smoke->Play(L"effect/Smoke.efk");
+		} else {
+			smokeTime -= delta;
+		}
+	}
+
+	//当たり判定の回転
 	rot.SetRotation(CVector3::AxisY, radian - radianRot);
 	collider.Rotate(rot);
 	collider.Move(m_move*delta);

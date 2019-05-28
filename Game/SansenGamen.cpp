@@ -15,6 +15,7 @@ SansenGamen::~SansenGamen() {
 	DeleteGO(sprite_num);
 	DeleteGO(num_arrow[0]);
 	DeleteGO(num_arrow[1]);
+	DeleteGO(m_bgm);
 }
 
 bool SansenGamen::Start() {
@@ -50,6 +51,13 @@ bool SansenGamen::Start() {
 		num_arrow[i]->setPR(sprite_num->getNowPos(), rot);
 	}
 
+	if (m_bgm == nullptr) {
+		m_bgm = NewGO<prefab::CSoundSource>(0);
+		m_bgm->Init(L"sound/bacteria.wav");
+		m_bgm->Play(true);
+		m_bgm->SetVolume(0.7f);
+	}
+
 	Fade::fadeOut();
 	return true;
 }
@@ -66,6 +74,8 @@ void SansenGamen::Update() {
 			stSel->setSansenKazu(Kazu);
 			stSel->setBackGround(sprite_back);
 			sprite_back = nullptr;
+			stSel->setBGM(m_bgm);
+			m_bgm = nullptr;
 		}
 		return;
 	}
@@ -73,10 +83,13 @@ void SansenGamen::Update() {
 	if(Pad(0).IsTrigger(enButtonB)) {
 		sprite_player->setTargetPos({ 0.0f, 500.0f ,0.0f });
 		sprite_num->setTargetPos({ 0,-500,0 });
+		prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
+		se->Init(L"sound/Kettei.wav");
+		se->Play(false);
 		Fade::fadeIn([&]() {
 			NewGO<Title_2>(0, "Title_2");
 			DeleteGO(this);
-		});
+		},m_bgm);
 	}
 	if (GameStart == false) {
 		if (Pad(0).IsTrigger(enButtonUp)) {

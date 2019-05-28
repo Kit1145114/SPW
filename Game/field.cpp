@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "field.h"
-
+#include"Game.h"
 
 field::field()
 {
@@ -14,7 +14,13 @@ field::~field()
 }
 
 bool field::Start() {
-	psShader.Load("shader/model.fx", "PSMainBG", CShader::EnType::PS);
+	if (Game::GetInstance()->GetSunflag() == false) {//もし通常ステージなら。
+		psShader.Load("shader/model.fx", "PSMainBG", CShader::EnType::PS);
+	}
+	else {											 //太陽ステージなら。
+		psShader.Load("shader/model.fx", "PSMainBGSun", CShader::EnType::PS);
+	}
+	//psShader.Load("shader/model.fx", "PSMainBG", CShader::EnType::PS);
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/Space_field.cmo");
 	m_skinModelRender->SetScale(scale);

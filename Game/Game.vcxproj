@@ -1784,6 +1784,12 @@
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Crown.cpp" />
+    <ClCompile Include="ResultCamera.cpp" />
+    <ClCompile Include="Sun.cpp" />
+    <ClCompile Include="Utility\CountDown.cpp" />
+    <ClCompile Include="TrepotHole.cpp" />
+    <ClCompile Include="TrepotHole2.cpp" />
     <ClCompile Include="TerepotHole.cpp" />
     <ClCompile Include="Utility\MovePositon.cpp" />
     <ClCompile Include="Utility\MoveSprite.cpp" />
@@ -1842,12 +1848,19 @@
     </ClCompile>
     <ClCompile Include="Title_1.cpp" />
     <ClCompile Include="Title_2.cpp" />
+    <ClCompile Include="Utility\WordRender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BigBlackHole.h" />
     <ClInclude Include="BlackHole.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Crown.h" />
+    <ClInclude Include="ResultCamera.h" />
+    <ClInclude Include="Sun.h" />
+    <ClInclude Include="Utility\CountDown.h" />
+    <ClInclude Include="TrepotHole.h" />
+    <ClInclude Include="TrepotHole2.h" />
     <ClInclude Include="TerepotHole.h" />
     <ClInclude Include="Utility\MovePosition.h" />
     <ClInclude Include="Utility\MoveSprite.h" />
@@ -2030,6 +2043,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Title_1.h" />
     <ClInclude Include="Title_2.h" />
+    <ClInclude Include="Utility\WordRender.h" />
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
@@ -2038,6 +2052,7 @@
     <MeshContentTask Include="Assets\modelData\Bullet2.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet3.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet4.FBX" />
+    <MeshContentTask Include="Assets\modelData\Crown.FBX" />
     <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
     <MeshContentTask Include="Assets\modelData\Hako.FBX" />
     <MeshContentTask Include="Assets\modelData\Inseki.FBX" />
@@ -2048,7 +2063,9 @@
     <MeshContentTask Include="Assets\modelData\planet05.FBX" />
     <MeshContentTask Include="Assets\modelData\planet06.FBX" />
     <MeshContentTask Include="Assets\modelData\planet07.FBX" />
-    <MeshContentTask Include="Assets\modelData\planet08.FBX" />
+    <MeshContentTask Include="Assets\modelData\planet08.FBX">
+      <FileType>Document</FileType>
+    </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\planet09.FBX" />
     <MeshContentTask Include="Assets\modelData\planet0fire.FBX" />
     <MeshContentTask Include="Assets\modelData\planet11.FBX" />
@@ -2067,6 +2084,7 @@
     <MeshContentTask Include="Assets\modelData\SenkanType3.FBX" />
     <MeshContentTask Include="Assets\modelData\Space_field.FBX" />
     <MeshContentTask Include="Assets\modelData\star.FBX" />
+    <MeshContentTask Include="Assets\modelData\Sun.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
   </ItemGroup>
   <ItemGroup>
@@ -2074,6 +2092,11 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />
+    <Image Include="Assets\modelData\sun.png" />
+    <ImageContentTask Include="Assets\sprite\Setumei1.png" />
+    <ImageContentTask Include="Assets\sprite\Winner.png" />
+    <ImageContentTask Include="Assets\sprite\CountDown_back.png" />
+    <ImageContentTask Include="Assets\sprite\CountDown_front.png" />
     <ImageContentTask Include="Assets\sprite\Title_Line.png" />
     <ImageContentTask Include="Assets\sprite\Title_A.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_arrow.png" />
@@ -2086,9 +2109,6 @@
     <ImageContentTask Include="Assets\sprite\BackTile.png" />
     <ImageContentTask Include="Assets\sprite\RandomStage.png" />
     <ImageContentTask Include="Assets\sprite\Gate.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei1.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei2.jpg" />
-    <ImageContentTask Include="Assets\sprite\Setumei3.png" />
     <ImageContentTask Include="Assets\sprite\GaugeIn.png" />
     <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\RocketArrow.png" />
@@ -2123,9 +2143,12 @@
     <None Include="Assets\effect\BH.efk" />
     <None Include="Assets\effect\explosion1.efk" />
     <None Include="Assets\effect\explosion2.efk" />
+    <None Include="Assets\effect\Fire.efk" />
     <None Include="Assets\effect\kari_BH.efk" />
+    <None Include="Assets\effect\RedBH.efk" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="Assets\sound\bacteria.wav" />
     <Media Include="Assets\sound\bakuhatu.wav" />
     <Media Include="Assets\sound\bgm.wav" />
     <Media Include="Assets\sound\coinGet.wav" />

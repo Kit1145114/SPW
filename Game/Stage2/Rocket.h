@@ -49,12 +49,16 @@ private:
 
 	static constexpr float controllPower = 10000.0f;
 
+	float firstScale = 0.0f;
 	CVector3 m_pos = {};
 	CVector3 m_move = {400.0f, 0.0f, 0.0f};
 	float radianRot = 0.0f;
 	Rocket** arrayP = nullptr;
 
 	prefab::CSpriteRender* arrowSprite = nullptr;
+
+	static constexpr float c_smokeTime = 0.05f;
+	float smokeTime = 0.0f;
 
 	void InitArrow(int ownerNum);
 	void ArrowUpdate(const CVector3& stick);
