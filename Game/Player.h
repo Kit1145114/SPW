@@ -211,8 +211,7 @@ private:
 	int MaxSeiseiVer_3 = 30;
 	int LABulletNum = 5;
 	int syoki = 5;
-	int SyokiSpped = 10.5f;
-
+	float SyokiSpped = 10.5f;
 	float HoukouX = 0.0f;
 	float HoukouZ = 0.0f;
 	float memoryHX = 0.0f;
