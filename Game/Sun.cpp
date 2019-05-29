@@ -10,6 +10,9 @@ Sun::Sun()
 Sun::~Sun()
 {
 	DeleteGO(p_skinModelRender);
+	DeleteGO(p_Cpointlit);
+	DeleteGO(SoundSource2);
+	DeleteGO(sunFlareSS);
 }
 
 bool Sun::Start()
@@ -108,9 +111,9 @@ void Sun::Light()
 //太陽フレア発生。
 void Sun::Flare()
 {
-	if (SunRevivalFlag == false) {
-		switch (m_state) {
-		case eState_Low: {
+	
+	switch (m_state) {
+	case eState_Low: {
 			const float emissionEndTime = 1.0f;
 
 			m_timer += GameTime().GetFrameDeltaTime();
@@ -122,6 +125,11 @@ void Sun::Flare()
 				if (Random().GetRandDouble() < 0.1f) {
 					m_timer = 0.0f;
 					m_state = eState_High;
+					//効果音（磁気嵐）;
+					sunFlareSS = NewGO<prefab::CSoundSource>(0);
+					sunFlareSS->Init(L"sound/atmosphere4.wav");
+					sunFlareSS->Play(true);
+					sunFlareSS->SetVolume(1.0f);
 					break;
 				}
 
@@ -134,7 +142,7 @@ void Sun::Flare()
 			p_Cpointlit->SetColor(ptLigColor);
 
 		}break;
-		case eState_High: {
+	case eState_High: {
 
 			const float emissionEndTime = 0.5f;
 			m_timer += GameTime().GetFrameDeltaTime();
@@ -147,6 +155,7 @@ void Sun::Flare()
 				if (Random().GetRandDouble() < 0.5f) {
 					m_timer = 0.0f;
 					m_state = eState_Low;
+					DeleteGO(sunFlareSS);
 					break;
 				}
 
@@ -161,28 +170,72 @@ void Sun::Flare()
 			p_Cpointlit->SetColor(ptLigColor);
 
 		}break;
-		}
-	}
-	else {
+	case eState_death: {
 
+		
+		if (Sountziki == false) {
+			//効果音（磁気嵐）;
+			SoundSource = NewGO<prefab::CSoundSource>(0);
+			SoundSource->Init(L"sound/atmosphere4.wav");
+			SoundSource->Play(false, 0.8f);                //ワンショット再生。
+			SoundSource->SetVolume(1.0f);                 //音量調節。
+			Sountziki = true;
+		}
+			const float emissionEndTime = 2.5f;
+			m_timer += GameTime().GetFrameDeltaTime();
+			m_timer = min(emissionEndTime, m_timer);
+
+
+			
+			CVector3 emissionColor;
+			emissionColor.Lerp(m_timer / emissionEndTime, emissionColorHigh*2.5, emissionColorLow * 0.1f);
+			p_skinModelRender->SetEmissionColor(emissionColor);
+
+			CVector3 ptLigColor;
+			ptLigColor.Lerp(m_timer / emissionEndTime, emissionPointLigColorHigh*3.5, emissionPointLigColorLow * 0.5f);
+			p_Cpointlit->SetColor(ptLigColor);
+		}break;
 	}
+		
 }
 
 void Sun::HPCount(){
 
 	//死亡処理。
 	if (SunHP < 0) {
-		Size -=  0.005f;
-		float minsize =  0.001f;
+		/*Size -=  0.005f;
+		float minsize =  0.005f;*/
 
-		if (Size <= minsize) {
+		//死亡してからカウント開始。
+		m_Deathtimer += GameTime().GetFrameDeltaTime();
+		//太陽色死亡。
+		m_state = eState_death; 
+
+		//2秒で爆発する。
+		if (m_Deathtimer >= 2.0f) {
+			Size = 0.0f;
 			//スターポップ。
 			Star* m_star = NewGO<Star>(0, "Star");
 			CVector3 iti = { 1.0f,1.0f,1.0f };
 			float tyousei = 30.0f; //惑星と星のモデルの大きさの差を調整↓。
 			m_star->Pop(this->p_position, iti*this->Maxradius / tyousei);
 			Game::GetInstance()->SetStarCount(1);
+			
+			//エフェクトを作成。
+			prefab::CEffect* effect;
+			effect = NewGO<prefab::CEffect>(0);
+			effect->Play(L"effect/BigExplosion.efk");//エフェクトを再生。
+			effect->SetScale(CVector3(Maxradius / 200, 1.0f, Maxradius / 200) * 0.1f);//エフェクトに半径/（Ｍａｘと差）をかける
+			effect->SetPosition(this->p_position);
 
+			
+			//効果音（爆発）;
+			SoundSource2 = NewGO<prefab::CSoundSource>(0);
+			SoundSource2->Init(L"sound/bakuhatu.wav");
+			SoundSource2->Play(false);                     //ワンショット再生。
+			SoundSource2->SetVolume(1.0f);                 //音量調節。
+
+			
 			SunHP = 50;            //死亡処理終了。
 			SunRevivalFlag = true; //太陽死亡。
 			camera->shake(100000, 200, 0.3f);
@@ -190,18 +243,18 @@ void Sun::HPCount(){
 		//反映と更新。
 		radius = Maxradius * Size;
 		p_Cpointlit->SetAttn({ 40000* Size, 5, 0 });
-		p_Cpointlit->SetColor(emissionColorLow * 0.1f);//死んだ色。
+		//p_Cpointlit->SetColor(emissionColorLow * 0.1f);//死んだ色。
 		p_skinModelRender->SetScale(scale*(radius / 30.0f));
 	}
 	//復活処理。
 	if (SunRevivalFlag == true) {
+		//死亡してからカウント開始。
+		m_Deathtimer += GameTime().GetFrameDeltaTime();
 		Revival();
 	}
 }
 void Sun::Revival() {
 
-		//死亡してからカウント開始。
-		m_Deathtimer += GameTime().GetFrameDeltaTime();
 		//復活させる。
 		if (m_Deathtimer >= m_Revivaltimer) {
 			Size += 0.01f;
@@ -209,6 +262,9 @@ void Sun::Revival() {
 			if (Size >= 1.0f) {
 				m_Deathtimer = 0.0f;//リセット。
 				SunHP = 5;			//フル回復。
+				m_state = eState_Low;
+				Sountziki = false;
+				m_timer = 0.0f;
 				SunRevivalFlag = false;
 			}
 		}

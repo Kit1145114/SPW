@@ -83,8 +83,6 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Title_1.cpp" />
     <ClCompile Include="Title_2.cpp" />
-    <ClCompile Include="TrepotHole.cpp" />
-    <ClCompile Include="TrepotHole2.cpp" />
     <ClCompile Include="Utility\MoveSprite.cpp" />
     <ClCompile Include="Utility\MovePositon.cpp" />
     <ClCompile Include="Utility\CountDown.cpp" />
@@ -92,6 +90,7 @@
     <ClCompile Include="ResultCamera.cpp" />
     <ClCompile Include="Crown.cpp" />
     <ClCompile Include="Utility\WordRender.cpp" />
+    <ClCompile Include="TerepotHole.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\Back.FBX" />
@@ -316,8 +315,6 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Title_1.h" />
     <ClInclude Include="Title_2.h" />
-    <ClInclude Include="TrepotHole.h" />
-    <ClInclude Include="TrepotHole2.h" />
     <ClInclude Include="Fade.h" />
     <ClInclude Include="Meteo.h" />
     <ClInclude Include="Stage1\Satellite.h" />
@@ -339,6 +336,7 @@
     <ClInclude Include="ResultCamera.h" />
     <ClInclude Include="Crown.h" />
     <ClInclude Include="Utility\WordRender.h" />
+    <ClInclude Include="TerepotHole.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc" />

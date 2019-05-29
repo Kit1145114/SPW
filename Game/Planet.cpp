@@ -106,11 +106,11 @@ bool Planet::Generate(int Reload, int Planetnum) {
 					P_skinModelRender->SetEmissionColor({ 6.0f,6.0f,6.0f });
 					p_Cpointlit = NewGO < prefab::CPointLight > (0);
 					p_Cpointlit->SetAttn({ 20000, 2.0, 0});
-					p_Cpointlit->SetColor({ 500.0f, 0.0f, 0.0f });
+					p_Cpointlit->SetColor({ 400.0f, 0.0f, 0.0f });
 					break;
 				case Planetnumber_01://砂利。
 					P_skinModelRender->Init(L"modelData/planet01.cmo");
-					P_skinModelRender->SetEmissionColor({ -1.8f,-1.8f,-1.8f });
+					P_skinModelRender->SetEmissionColor({ -1.5f,-1.5f,-1.5f });
 					break;
 				case Planetnumber_02:
 					P_skinModelRender->Init(L"modelData/planet02.cmo");
@@ -121,7 +121,7 @@ bool Planet::Generate(int Reload, int Planetnum) {
 						P_skinModelRender->SetEmissionColor({ -0.5f,-0.5f,20.0f });
 					}
 					else {											 //太陽ステージなら。
-						P_skinModelRender->SetEmissionColor({ -0.2f,-0.2f,2.0f });
+						P_skinModelRender->SetEmissionColor({ -0.1f,-0.1f,1.0f });
 					}
 					break;
 				case Planetnumber_04://灰青
@@ -170,7 +170,8 @@ bool Planet::Generate(int Reload, int Planetnum) {
 				default:w = Planetnumber_00;
 				}
 				Planet* planet = NewGO<Planet>(0, "planet");
-				
+				planet->p_skinModelRender = P_skinModelRender;
+
 				//初期リスポーンの場合。
 				if (Planetnum == Planetnumber_Num) {
 					Game::GetInstance()->memoryPP[i] = planet;
@@ -212,6 +213,20 @@ void Planet::Light()
 	if (p_Cpointlit != nullptr) {
 		p_Cpointlit->SetPosition(p_position);
 	}
+	if (Game::GetInstance()->GetSunflag() == true//もし太陽ステージなら。
+		&& myPlanetnumber != 0 ) {				 //恒星のマグマ惑星以外なら。
+		if (Game::GetInstance()->m_sun->GetSize() < 0.2f) {//太陽サイズが20％以下なら。
+			auto game = Game::GetInstance();
+			auto planet = game->memoryPP[myPlanetnumber];
+			if (planet != nullptr) {
+				auto skinModelRender = planet->p_skinModelRender;
+				skinModelRender->SetEmissionColor({ -0.5f,-0.5f,-0.5f });
+			}
+
+		}
+	}
+
+
 }
 //ランダム移動。
 void Planet::Move() {

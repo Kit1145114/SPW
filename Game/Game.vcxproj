@@ -1788,8 +1788,7 @@
     <ClCompile Include="ResultCamera.cpp" />
     <ClCompile Include="Sun.cpp" />
     <ClCompile Include="Utility\CountDown.cpp" />
-    <ClCompile Include="TrepotHole.cpp" />
-    <ClCompile Include="TrepotHole2.cpp" />
+    <ClCompile Include="TerepotHole.cpp" />
     <ClCompile Include="Utility\MovePositon.cpp" />
     <ClCompile Include="Utility\MoveSprite.cpp" />
     <ClCompile Include="Utility\CircleGaugeSp.cpp" />
@@ -1858,8 +1857,7 @@
     <ClInclude Include="ResultCamera.h" />
     <ClInclude Include="Sun.h" />
     <ClInclude Include="Utility\CountDown.h" />
-    <ClInclude Include="TrepotHole.h" />
-    <ClInclude Include="TrepotHole2.h" />
+    <ClInclude Include="TerepotHole.h" />
     <ClInclude Include="Utility\MovePosition.h" />
     <ClInclude Include="Utility\MoveSprite.h" />
     <ClInclude Include="Utility\CircleGaugeSp.h" />

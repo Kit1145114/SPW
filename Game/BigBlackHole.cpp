@@ -12,6 +12,9 @@ BigBlackHole::~BigBlackHole()
 	if (effect != nullptr) {
 		DeleteGO(effect);
 	}
+	if (effect != nullptr) {
+		DeleteGO(SoundSource);
+	}
 }
 
 bool BigBlackHole::Start()
@@ -138,8 +141,22 @@ void BigBlackHole::Gravity()
 	});
 }
 
+void BigBlackHole::Sound()
+{
+	if (SoundSource ==nullptr) {
+		//å¯â âπÅié•ãCóíÅj;
+		SoundSource = NewGO<prefab::CSoundSource>(0);
+		SoundSource->Init(L"sound/atmosphere4.wav");
+		SoundSource->Play(true);
+		SoundSource->SetVolume(1.0f);
+	}
+
+}
+
 void BigBlackHole::Update()
 {
-	if (Game::GetInstance()->isWait())return;
-	Gravity();
+	Sound();
+	if (Game::GetInstance()->isWait()) return;
+		Gravity();
+
 }

@@ -18,10 +18,15 @@ public:
 	void HPCount();
 	void Revival();
 	void Update();
+	float GetSize()
+	{
+		return Size;
+	}
 private:
 	enum EState {
 		eState_Low,		//光が弱い。
 		eState_High,	//光が強い。
+		eState_death,
 	};
 	prefab::CSkinModelRender* p_skinModelRender = nullptr;
 	prefab::CPointLight* p_Cpointlit = nullptr;
@@ -42,10 +47,15 @@ private:
 	CVector3 emissionPointLigColorHigh;		//光が強い時のポイントライトのカラー。
 	CVector3 emissionColorLow;				//光が弱い時のエミッションカラー。
 	CVector3 emissionColorHigh;				//光が強い時のエミッションカラー。
+	prefab::CSoundSource* SoundSource = nullptr;//BGM用のサウンドソース。
+	prefab::CSoundSource* SoundSource2 = nullptr;//BGM用のサウンドソース。
+	prefab::CSoundSource* sunFlareSS = nullptr;	//太陽フレアの時のサウンド。
 	int SunHP = 5;
 	float Size = 1.0f;
 	bool SunRevivalFlag = false;
 
 	Camera* camera = nullptr;
+	bool Sountziki = false;
+	
 };
 

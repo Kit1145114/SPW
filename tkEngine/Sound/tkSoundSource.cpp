@@ -152,12 +152,13 @@ namespace tkEngine{
 			m_waveFile->ReadAsync(&readStartBuff[m_readStartPos], m_streamingBufferSize, &m_currentBufferingSize);
 			m_streamingState = enStreamingBuffering;
 		}
-		void CSoundSource::Play(bool isLoop)
+		void CSoundSource::Play(bool isLoop, float life)
 		{
 			if (m_isAvailable == false) {
 				
 				return;
 			}
+			m_life = life;
 			if (m_isPlaying) {
 				//Ä¶’†‚Ì‚à‚Ì‚ğÄŠJ‚·‚éB
 				m_sourceVoice->Start(0);
@@ -233,6 +234,13 @@ namespace tkEngine{
 		{
 			if (!m_isPlaying) {
 				return;
+			}
+			m_timer += GameTime().GetFrameDeltaTime();
+			if(m_life > 0.0f
+				&& m_timer >= m_life
+				){
+				DeleteGO(this);
+				Remove3DSound();
 			}
 			XAUDIO2_VOICE_STATE state;
 			m_sourceVoice->GetState(&state);
