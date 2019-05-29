@@ -18,10 +18,6 @@ bool ResultDraw::Start()
 
 void ResultDraw::Update()
 {
-	//if (Juni == 1)
-	//{
-
-	//}
 }
 
 void ResultDraw::PostRender(CRenderContext& rc)
@@ -71,6 +67,10 @@ void ResultDraw::PostRender(CRenderContext& rc)
 			0.0f,
 			1.675f
 		);
+	}
+	else
+	{
+
 	}
 	m_font.End(rc);
 }
