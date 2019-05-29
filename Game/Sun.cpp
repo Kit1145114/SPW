@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Sun.h"
-
+#include "Camera.h"
 
 Sun::Sun()
 {
@@ -14,6 +14,8 @@ Sun::~Sun()
 
 bool Sun::Start()
 {
+	camera = FindGO<Camera>("Camera");
+
 	p_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	p_skinModelRender->Init(L"modelData/Sun.cmo");
 	p_skinModelRender->SetPosition(p_position);
@@ -183,6 +185,7 @@ void Sun::HPCount(){
 
 			SunHP = 50;            //€–Sˆ—I—¹B
 			SunRevivalFlag = true; //‘¾—z€–SB
+			camera->shake(100000, 200, 0.3f);
 		}
 		//”½‰f‚ÆXVB
 		radius = Maxradius * Size;

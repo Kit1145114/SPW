@@ -339,7 +339,8 @@ void Player::Pevolution()
 		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
 		m_scale = { 9.0f,9.0f,9.0f };
 		m_skinModelRender->SetScale(m_scale);
-		camera->SetPos(7000.0f);
+		//カメラの引きを進化によって決めるのはローカルでは使用しない。ネットワークがどうなるかは未定。
+		//camera->SetPos(7000.0f);
 		prefab::CEffect* effect = NewGO<prefab::CEffect>(0);
 		effect->Play(L"effect/explosion1.efk");
 		effect->SetPosition(m_position);
@@ -353,7 +354,7 @@ void Player::Pevolution()
 		m_skinModelRender->Init(L"modelData/SenkanType3.cmo");
 		m_scale = { 10.0f,10.0f,10.0f };
 		m_skinModelRender->SetScale(m_scale);
-		camera->SetPos(9000.0f);
+		//camera->SetPos(9000.0f);
 		Ver = 2;
 		m_Short = 0;
 		m_mode = 2;
