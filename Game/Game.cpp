@@ -212,9 +212,48 @@ void Game::CreateStage3()
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f }); //ステージの明るさ。
 }
-//ワープ。
+//太陽系。
 void Game::CreateStage4()
 {
+	switch (SansenKazu) {
+	case 4:
+		m_player[3] = NewGO<Player>(0, "Player3");
+		m_player[3]->SetPadNum(3);
+		m_player[3]->SetPositionX(P_pos * 10);
+		m_player[3]->SetPositionZ(P_pos *-5);
+	case 3:
+		m_player[2] = NewGO<Player>(0, "Player2");
+		m_player[2]->SetPadNum(2);
+		m_player[2]->SetPositionX(P_pos *-10);
+		m_player[2]->SetPositionZ(P_pos *-5);
+	case 2:
+		m_player[1] = NewGO<Player>(0, "Player1");
+		m_player[1]->SetPadNum(1);
+		m_player[1]->SetPositionX(P_pos * 10);
+		m_player[1]->SetPositionZ(P_pos * 5);
+	case 1:
+		m_player[0] = NewGO<Player>(0, "Player");
+		m_player[0]->SetPadNum(0);
+		m_player[0]->SetPositionX(P_pos *-10);
+		m_player[0]->SetPositionZ(P_pos * 5);
+	}
+	m_field = NewGO<field>(0);
+	m_sun = NewGO<Sun>(0, "BigSun");
+	Sunflag = true;
+	//BGM
+	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
+	bgmSoundSource->Init(L"sound/kaisen.wav");
+	bgmSoundSource->Play(true);
+	bgmSoundSource->SetVolume(1.0f);
+	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+
+	LightManager().SetAmbientLight({ 0.8f, 0.8f, 0.8f });   //ステージの明るさ。
+	//
+	
+}
+//ワープ。
+void Game::CreateStage5() {
+	
 	tere[0] = NewGO<TerepotHole>(0, "テレポート");
 	tere[0]->SetPosi({ -19000,0,0 });
 	tere[0]->SetFilePath(L"modelData/terepot.cmo");//緑
@@ -273,42 +312,6 @@ void Game::CreateStage4()
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f }); //ステージの明るさ。
-}
-//太陽系。
-void Game::CreateStage5() {
-	switch (SansenKazu) {
-	case 4:
-		m_player[3] = NewGO<Player>(0, "Player3");
-		m_player[3]->SetPadNum(3);
-		m_player[3]->SetPositionX(P_pos * 10);
-		m_player[3]->SetPositionZ(P_pos *-5);
-	case 3:
-		m_player[2] = NewGO<Player>(0, "Player2");
-		m_player[2]->SetPadNum(2);
-		m_player[2]->SetPositionX(P_pos *-10);
-		m_player[2]->SetPositionZ(P_pos *-5);
-	case 2:
-		m_player[1] = NewGO<Player>(0, "Player1");
-		m_player[1]->SetPadNum(1);
-		m_player[1]->SetPositionX(P_pos * 10);
-		m_player[1]->SetPositionZ(P_pos * 5);
-	case 1:
-		m_player[0] = NewGO<Player>(0, "Player");
-		m_player[0]->SetPadNum(0);
-		m_player[0]->SetPositionX(P_pos *-10);
-		m_player[0]->SetPositionZ(P_pos * 5);
-	}
-	m_field = NewGO<field>(0);
-	m_sun = NewGO<Sun>(0, "BigSun");
-	Sunflag = true;
-	//BGM
-	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
-	bgmSoundSource->Init(L"sound/kaisen.wav");
-	bgmSoundSource->Play(true);
-	bgmSoundSource->SetVolume(1.0f);
-	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
-
-	LightManager().SetAmbientLight({ 0.8f, 0.8f, 0.8f });   //ステージの明るさ。
 }
 bool Game::Start()
 {
