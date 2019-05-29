@@ -213,7 +213,7 @@ void ResultGamen::Result()
 		}
 	}
 	for (int i = 0; i < PadKazu; i++) {
-		r_Draw[i]->SetPlayer(PNums[i]+1);
+		r_Draw[i]->SetPlayer(PNums[i]);
 		r_Draw[PNums[i]]->SetJuni(i + 1);
 		P_spriteRender[i]->Init(draw_P[i], 500.0f, 135.0f);
 	}

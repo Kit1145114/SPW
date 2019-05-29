@@ -425,7 +425,6 @@
     <ImageContentTask Include="Assets\sprite\RocketArrow.png" />
     <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\GaugeIn.png" />
-    <ImageContentTask Include="Assets\sprite\Setumei1.png" />
     <ImageContentTask Include="Assets\sprite\RandomStage.png" />
     <ImageContentTask Include="Assets\sprite\BackTile.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_Number.png" />
@@ -443,6 +442,7 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Assets\modelData\sun.png" />
+    <Image Include="Assets\sprite\Setumei1.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\BH.efk" />
