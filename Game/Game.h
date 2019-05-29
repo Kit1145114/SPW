@@ -24,8 +24,6 @@ class RocketGene;
 class MeteoGene;
 class BigBlackHole;
 class CountDown;
-class TrepotHole;
-class TrepotHole2;
 class Sun;
 class MoveSprite;
 class WordRender;

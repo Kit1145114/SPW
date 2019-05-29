@@ -11,8 +11,6 @@
 #include "Stage1/SatelliteGene.h"
 #include "Stage2/RocketGene.h"
 #include "TerepotHole.h"
-#include "TrepotHole.h"
-#include "TrepotHole2.h"
 #include "Utility/CountDown.h"
 #include "ResultCamera.h"
 #include "Utility/MoveSprite.h"
@@ -225,13 +223,13 @@ void Game::CreateStage4()
 
 	tere[3] = NewGO<TerepotHole>(0, "テレポート");
 	tere[3]->SetPosi({ -10000,0,0 });
-	tere[3]->SetFilePath(L"modelData/terepot.cmo");
+	tere[3]->SetFilePath(L"modelData/terepot.cmo");//緑
 	tere[4] = NewGO<TerepotHole>(0, "テレポート");
 	tere[4]->SetPosi({ -10000,0,4000 });
-	tere[4]->SetFilePath(L"modelData/terepot2.cmo");
+	tere[4]->SetFilePath(L"modelData/terepot2.cmo");//青
 	tere[5] = NewGO<TerepotHole>(0, "テレポート");
 	tere[5]->SetPosi({ -10000,0,9000 });
-	tere[5]->SetFilePath(L"modelData/terepot3.cmo");
+	tere[5]->SetFilePath(L"modelData/terepot3.cmo");//黄
 
 	tere[0]->SetLinkTerepotHole(tere[3]);
 	tere[1]->SetLinkTerepotHole(tere[4]);
