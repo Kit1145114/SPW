@@ -3,8 +3,6 @@
 
 GamenDraw::GamenDraw()
 {
-	//m_push = NewGO<prefab::CSoundSource>(0);
-	//m_push->Init(L"sound/tugihe.wav");
 	tl2 = FindGO<Title_2>("Title_2");
 }
 
@@ -35,13 +33,10 @@ void GamenDraw::Update()
 	}
 
 	if (mode == 0 && Pad(0).IsPress(enButtonA) == true){
-		//DeleteGO(this);
 		GemenDrawSound(1);
 	}
 	if (mode == 1 && Pad(0).IsPress(enButtonA) == true) {
-		//DeleteGO(this);
 		GemenDrawSound(1);
-		//NewGO<SetumeiGamen>(0, "SetumeiGamen");
 	}
 
 	//‘I‘ðŽˆ‚Ì‘å‚«‚³

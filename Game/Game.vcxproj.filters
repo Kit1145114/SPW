@@ -37,6 +37,7 @@
     <ImageContentTask Include="Assets\sprite\CountDown_back.png" />
     <ImageContentTask Include="Assets\sprite\CountDown_front.png" />
     <ImageContentTask Include="Assets\sprite\Winner.png" />
+    <ImageContentTask Include="Assets\sprite\rogo4.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BigBlackHole.cpp" />
@@ -46,7 +47,6 @@
     <ClCompile Include="Utility\CircleGaugeSp.cpp" />
     <ClCompile Include="Draw_Player.cpp" />
     <ClCompile Include="Draw_Skazu.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Fade.cpp" />
     <ClCompile Include="field.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -93,7 +93,6 @@
     <MeshContentTask Include="Assets\modelData\Bullet2.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet3.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet4.FBX" />
-    <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
     <MeshContentTask Include="Assets\modelData\Hako.FBX" />
     <MeshContentTask Include="Assets\modelData\Inseki.FBX" />
     <MeshContentTask Include="Assets\modelData\planet01.FBX" />
@@ -122,7 +121,6 @@
     <MeshContentTask Include="Assets\modelData\SenkanType3.FBX" />
     <MeshContentTask Include="Assets\modelData\Space_field.FBX" />
     <MeshContentTask Include="Assets\modelData\star.FBX" />
-    <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
     <MeshContentTask Include="Assets\modelData\Sun.FBX" />
     <MeshContentTask Include="Assets\modelData\Crown.FBX" />
   </ItemGroup>
@@ -134,7 +132,6 @@
     <ClInclude Include="Utility\CircleGaugeSp.h" />
     <ClInclude Include="Draw_Player.h" />
     <ClInclude Include="Draw_Skazu.h" />
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Fade.h" />
     <ClInclude Include="field.h" />
     <ClInclude Include="Game.h" />
@@ -411,10 +408,6 @@
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\Arrow.png" />
-    <ImageContentTask Include="Assets\sprite\tama_bule.png" />
-    <ImageContentTask Include="Assets\sprite\tama_green.png" />
-    <ImageContentTask Include="Assets\sprite\tama_red.png" />
-    <ImageContentTask Include="Assets\sprite\tama_yellow.png" />
     <ImageContentTask Include="Assets\sprite\RocketArrow.png" />
     <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\GaugeIn.png" />
@@ -435,7 +428,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Assets\modelData\sun.png" />
-    <Image Include="Assets\sprite\rogo4.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\effect\BH.efk" />

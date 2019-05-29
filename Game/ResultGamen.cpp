@@ -188,7 +188,7 @@ void ResultGamen::Result()
 	}
 
 	for (int i = 0; i < PadKazu; i++) {
-		for (int j = PadKazu; j > i; j--) {
+		for (int j = (PadKazu-1); j > i; j--) {
 			if (PS[PNums[j - 1]] == PS[PNums[j]])
 			{
 				PNums[j] = PNums[j - 1];

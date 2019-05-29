@@ -17,17 +17,14 @@ bool Draw_Skazu::Start()
 {
 	Star = NewGO<prefab::CSpriteRender>(0);
 	Star->Init(draw_S, 40.0f, 38.0f);
-	/*Bullet = NewGO<prefab::CSpriteRender>(0);
-	Bullet->Init(draw_B, 50.0f, 38.0f);*/
 	return true;
 }
 
 void Draw_Skazu::Update()
 {
 	Star->SetPosition(Starposition);
-	//Bullet->SetPosition(BulletPosition);
 }
-
+//ÅôÇÃêîÇï`é ÅB
 void Draw_Skazu::PostRender(CRenderContext& rc)
 {
 	wchar_t text[256];
@@ -43,13 +40,5 @@ void Draw_Skazu::PostRender(CRenderContext& rc)
 		1.0f
 	);
 
-	//swprintf_s(text, L"%d", bullet);
-	//m_font.Draw(
-	//	text,
-	//	{ B_kazuposition },
-	//	{ Color },
-	//	0.0f,
-	//	1.0f
-	//	);
 	m_font.End(rc);
 }

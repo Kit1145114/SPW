@@ -5,7 +5,6 @@
 #include"field.h"
 #include"Player.h"
 #include"MeteoGene.h"
-#include"Enemy.h"
 #include"ResultGamen.h";
 //#include"Sinka_Bar.h"
 #include "Stage1/SatelliteGene.h"
@@ -38,9 +37,6 @@ Game::~Game()
 	}
 	if (m_camera != nullptr) {
 		DeleteGO(m_camera);
-	}
-	if (enemy != nullptr) {
-		DeleteGO(enemy);
 	}
 	if (m_star != nullptr) {
 		DeleteGO(m_star);

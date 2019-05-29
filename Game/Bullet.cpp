@@ -16,6 +16,7 @@ Bullet::~Bullet()
 bool Bullet::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
+	//プレイヤーから受け取った番号で色を変える。
 	if (PB == 0)
 	{
 		m_skinModelRender->Init(L"modelData/Bulet.cmo");
@@ -42,15 +43,14 @@ void Bullet::Update()
 	m_position += m_moveSpeed;
 	m_position.y = BulletYpos;
 	m_skinModelRender->SetPosition(m_position);
-
-	m_timer++;
-	if (m_timer == Limit)
+	timer += GameTime().GetFrameDeltaTime();
+	if (timer > Limit)
 	{
 		Death();
 	}
 	BulletDeath();
 }
-
+//どのプレイヤーが撃ったか判定。
 int Bullet::GetPB()
 {
 	switch (PB)
@@ -69,12 +69,12 @@ int Bullet::GetPB()
 			break;
 	}
 }
-
+//突然の死
 void Bullet::Death()
 {
 	DeleteGO(this);
 }
-
+//プレイヤーの球同士で殺しあう。
 void Bullet::BulletDeath()
 {
 	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b)->bool{
