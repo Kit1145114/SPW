@@ -700,15 +700,8 @@ void Player::SetPadNum(int num)
 		//プレイヤーの☆の場所
 		draw_S->SetS_kazuPosition(-468.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
-		draw_S->SetS_position(-480.0f, -279.0f);
-		//プレイヤーの弾の場所。
-		//draw_S->SetBullet(L"sprite/tama_red.dds");
-		//draw_S->SetB_kazuPosition(-370.0f,-325.0f);
-		//draw_S->SetBulletposition(-365.0f,-285.0f);
+		draw_S->SetS_position(-500.0f, -279.0f);
 		draw_S->SetColor(1.0f, 0.0f, 0.0f, 1.0f);
-		//プレイヤーの進化ゲージの場所。
-		//bar->SetbarPosition(300.0f, 0.0f);
-		//bar->SetgeziPosition(0.0f, 0.0f);
 		break;
 	case 1:
 		r_ring->SetPlayerRadar(L"modelData/Ring2P.cmo", this);
@@ -717,11 +710,7 @@ void Player::SetPadNum(int num)
 		//プレイヤーの☆の場所
 		draw_S->SetS_kazuPosition(-168.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
-		draw_S->SetS_position(-180.0f, -279.0f);
-		//プレイヤーの弾の場所。
-		//draw_S->SetBullet(L"sprite/tama_bule.dds");
-		//draw_S->SetB_kazuPosition(-70.0f, -325.0f);
-		//draw_S->SetBulletposition(-65.0f, -285.0f);
+		draw_S->SetS_position(-200.0f, -279.0f);
 		draw_S->SetColor(0.0f, 0.0f, 1.0f, 1.0f);
 		break;
 	case 2:
@@ -731,11 +720,7 @@ void Player::SetPadNum(int num)
 		//プレイヤーの☆の場所
 		draw_S->SetS_kazuPosition(135.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
-		draw_S->SetS_position(120.0f, -279.f);
-		//プレイヤーの弾の場所。
-		//draw_S->SetBullet(L"sprite/tama_green.dds");
-		//draw_S->SetB_kazuPosition(230.0f, -325.0f);
-		//draw_S->SetBulletposition(235.0f, -285.0f);
+		draw_S->SetS_position(100.0f, -279.f);
 		draw_S->SetColor(0.1f, 1.0f, 0.0f, 1.0f);
 		break;
 	case 3:
@@ -745,11 +730,7 @@ void Player::SetPadNum(int num)
 		//プレイヤーの☆の場所
 		draw_S->SetS_kazuPosition(428.0f, -269.0f);
 		draw_S->SetStar(L"sprite/Star.dds");
-		draw_S->SetS_position(420.0f, -279.0f);
-		//プレイヤーの弾の場所。
-		//draw_S->SetBullet(L"sprite/tama_yellow.dds");
-		//draw_S->SetB_kazuPosition(530.0f, -325.0f);
-		//draw_S->SetBulletposition(535.0f, -285.0f);
+		draw_S->SetS_position(400.0f, -279.0f);
 		draw_S->SetColor(1.0f, 0.7f, 0.0f, 1.0f);
 		break;
 	}
@@ -882,11 +863,11 @@ CVector4 Player::getColor() {
 //最終進化後、☆を一定個数取ると強化。
 void Player::Upper()
 {
-	if (StarCount >= Star30)
+	if (StarCount >= Star40)
 	{
 		SyokiSpped = 13.0f;
 	}
-	else if (StarCount >= Star50)
+	else if (StarCount >= Star60)
 	{
 		SyokiSpped = 15.0f;
 	}

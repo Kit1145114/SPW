@@ -192,9 +192,9 @@ private:
 	int MutekiTime = 0;
 	int Ver = 0;		//デバックで強制進化させる。
 	int StarCount = 0;
-	int MaxStarCount = 99;
-	int Star30 = 30;
-	int Star50 = 50;
+	int MaxStarCount = 999;
+	int Star40 = 40;
+	int Star60 = 60;
 	int PopStar = 0;
 	int PadNum = 0;
 	int PadMaxKazu = 0;
