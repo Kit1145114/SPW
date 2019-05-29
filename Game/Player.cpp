@@ -332,7 +332,7 @@ void Player::PBullet3()
 //プレイヤーの進化用
 void Player::Pevolution()
 {
-	if (StarCount >= 10 && m_mode == 0 && StarCount <= 19 && m_mode == 0)
+	if (StarCount >= 10 && m_mode == 0 && StarCount <= 24 && m_mode == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
 		m_scale = { 9.0f,9.0f,9.0f };
@@ -344,7 +344,7 @@ void Player::Pevolution()
 		m_mode = 1;
 		Sound(2);//効果音
 	}
-	if (StarCount >= 20 && m_mode == 1|| StarCount >= 20 && Ver == 0)
+	if (StarCount >= 25 && m_mode == 1|| StarCount >= 25 && Ver == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType3.cmo");
 		m_scale = { 10.0f,10.0f,10.0f };
