@@ -151,9 +151,9 @@ void BlackHole::Gravity()
 void BlackHole::Count()
 {
 	if (Countflg == false) {
-		timer++;
-		if (timer > 720) {
-			Death();
+		timer+= GameTime().GetFrameDeltaTime();
+		if (timer > 8.0f) {
+			DeathSize();
 		}
 	}
 }
@@ -164,18 +164,30 @@ void BlackHole::Death()
 	Game::GetInstance()->SetBHCount(-1);
 }
 
-void BlackHole::Size()
+void BlackHole::PopSize()
 {
-	if (scale.x <=1.0f) {
+	if (scale.x <=1.0f
+		&&timer < 8.0f) {
 		scale += { 0.01f,0.01f,0.01f };
 		effect->SetScale(scale*radius);
 	}
+}
+void BlackHole::DeathSize() {
+
+	if (scale.x >= 0.2f) {
+		scale -= { 0.01f, 0.01f, 0.01f };
+		effect->SetScale(scale*radius);
+	}
+	else{
+		Death();
+	}
+
 }
 
 void BlackHole::Update()
 {
 	if (Game::GetInstance()->isWait())return;
-	Size();
+	PopSize();
 	Move();
 	Count();
 }
