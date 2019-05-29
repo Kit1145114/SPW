@@ -98,6 +98,7 @@ void Satellite::Update() {
 				rotPower += result.rotSign * hitRotPower;
 				b->Death();
 				prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
+				lastBulletNum = b->GetPB();
 				se->Init(L"sound/satellite.wav");
 				se->SetVolume(0.2f);
 				se->Play(false);
