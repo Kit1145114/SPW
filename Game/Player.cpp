@@ -101,8 +101,6 @@ void Player::Update()
 	//Playerwarp();
 	memory_position = m_position;
 	draw_S->SetKazu(StarCount);
-	draw_S->SetBulletKazu(m_Short);
-	//bar->AddStarCount(StarCount);
 }
 //ƒvƒŒƒCƒ„[‚Ì‘€ì
 void Player::Move()

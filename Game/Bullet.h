@@ -62,9 +62,9 @@ public:
 	int GetPB();
 private:
 	Game * m_game = nullptr;
-	int m_timer = 0;
 	int PB = 0;
-	int Limit = 100;
+	int Limit = 1.5f;
+	float timer = 0.0f;
 	float BulletHantei = 500.0f;
 	float BulletYpos = 300.0f;
 	CVector3 m_position = CVector3::Zero;

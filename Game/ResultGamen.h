@@ -25,13 +25,13 @@ public:
 		stage = sta;
 	}
 private:
-	ResultDraw* r_Draw[4] = { nullptr };
-	Player* m_player[4] = { nullptr };
-	int PS[4] = { -1, -1, -1, -1 };
+	std::array<ResultDraw*, 4> r_Draw = { nullptr };
+	std::array<Player*, 4> m_player = { nullptr };
+	std::array<int, 4> PS = { -1, -1, -1, -1 };
 	int Max = 3;
 	int m_timer = 0;
 	int PadKazu = 0;
-	int PNums[4];
+	std::array<int, 4> PNums;
 	int timer = 0;
 	int stage = 0;
 	prefab::CSpriteRender* r_spriteRender = nullptr;

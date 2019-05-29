@@ -26,18 +26,20 @@ void Draw_Player::Update()
 	{
 		State = false;
 	}
+	//死んでいる間だけ呼び続ける。
 	if (Death == true &&State == false)
 	{
 		m_spriteRender->Init(L"sprite/Gekitui.dds", yoko, tate);
-		timer++;
+		timer += GameTime().GetFrameDeltaTime();
 		State = true;
-		if (timer == Limit)
+		if (timer > Limit)
 		{
 			Death = false;
 			State = false;
-			timer = 0;
+			timer = 0.0f;
 		}
 	}
+	//時間でプレイヤーの画像を差し替える。
 	else if (Death == false && State == false)
 	{
 		m_spriteRender->Init(draw_P, yoko, tate);
