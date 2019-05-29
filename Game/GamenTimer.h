@@ -17,6 +17,6 @@ private:
 	Game* m_game = nullptr;
 	Player* m_player = nullptr;
 	CVector2 m_position = CVector2::Zero;
-	float MaxTimer = 150.0f;
+	float MaxTimer = 20.0f;
 };
 
