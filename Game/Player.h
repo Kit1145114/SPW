@@ -186,13 +186,13 @@ private:
 	float m_timer = 0.0f;
 	float p_timer = 0.0f;
 	float d_timer = 0.0f;
-	int a_timer = 0;
 	float Timer0 = 0.0f;
 	int m_Short = 0;
 	int m_mode = 0;
 	int MutekiTime = 0;
 	int Ver = 0;		//デバックで強制進化させる。
 	int StarCount = 0;
+	int MaxStarCount = 99;
 	int Star30 = 30;
 	int Star50 = 50;
 	int PopStar = 0;

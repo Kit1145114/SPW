@@ -11,6 +11,7 @@ Player::Player()
 	r_ring = NewGO<RadarRing>(0);
 }
 
+
 void Player::OnDestroy()
 {
 	DeleteGO(m_skinModelRender);
@@ -81,6 +82,10 @@ void Player::Update()
 		DeathCount = false;
 		m_skinModelRender->SetActiveFlag(true);
 		crown->setPosition(m_position);
+	}
+	if (StarCount == MaxStarCount)
+	{
+		StarCount = MaxStarCount;
 	}
 	Move();			//ƒvƒŒƒCƒ„[‚Ì‘€ì
 	Rotation();
