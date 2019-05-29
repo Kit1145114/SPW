@@ -255,13 +255,13 @@ void Game::CreateStage4()
 void Game::CreateStage5() {
 	
 	tere[0] = NewGO<TerepotHole>(0, "テレポート");
-	tere[0]->SetPosi({ -39000,0,-12000 });
+	tere[0]->SetPosi({ -30000,0,-12000 });
 	tere[0]->SetFilePath(L"modelData/terepot.cmo");//緑
 	tere[1] = NewGO<TerepotHole>(0, "テレポート");
-	tere[1]->SetPosi({ -39000,0,4000 });
+	tere[1]->SetPosi({ -30000,0,4000 });
 	tere[1]->SetFilePath(L"modelData/terepot2.cmo");//青
 	tere[2] = NewGO<TerepotHole>(0, "テレポート");
-	tere[2]->SetPosi({ -39000,0,18000 });
+	tere[2]->SetPosi({ -30000,0,18000 });
 	tere[2]->SetFilePath(L"modelData/terepot3.cmo");//黄
 
 	tere[3] = NewGO<TerepotHole>(0, "テレポート");
