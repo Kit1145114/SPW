@@ -131,7 +131,7 @@ void Game::CreateStage1() {
 	m_field = NewGO<field>(0);
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
-	bgmSoundSource->Init(L"sound/kaisen.wav");
+	bgmSoundSource->Init(L"sound/ryunomai.wav");
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
@@ -167,7 +167,7 @@ void Game::CreateStage2() {
 	m_field = NewGO<field>(0);
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
-	bgmSoundSource->Init(L"sound/kaisen.wav");
+	bgmSoundSource->Init(L"sound/squall.wav");
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
 	BHflag = true;//ブラックホールをOFFにする
@@ -206,7 +206,7 @@ void Game::CreateStage3()
 	m_field = NewGO<field>(0);
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
-	bgmSoundSource->Init(L"sound/kaisen.wav");
+	bgmSoundSource->Init(L"sound/boss.wav");
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
@@ -242,7 +242,7 @@ void Game::CreateStage4()
 	Sunflag = true;
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
-	bgmSoundSource->Init(L"sound/kaisen.wav");
+	bgmSoundSource->Init(L"sound/maounoshiro.wav");
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
@@ -307,7 +307,7 @@ void Game::CreateStage5() {
 	m_field = NewGO<field>(0);
 	//BGM
 	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
-	bgmSoundSource->Init(L"sound/kaisen.wav");
+	bgmSoundSource->Init(L"sound/bakumatsubukyoku_ikusa.wav");
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);

@@ -43,6 +43,19 @@ void GamenDraw::Update()
 		GemenDrawSound(1);
 		//NewGO<SetumeiGamen>(0, "SetumeiGamen");
 	}
+
+	//選択肢の大きさ
+	for (int i = 0; i < 2; i++) {
+		int sign = (mode == i) ? 1 : -1;//モードが自分と同じなら(自分が選択されていたら)増やす。逆は減らす。
+
+		wordScale[i] += GameTime().GetFrameDeltaTime()*sign;
+
+		if (wordScale[i] < wordMinScale) {
+			wordScale[i] = wordMinScale;
+		}else if (wordScale[i] > wordMaxScale) {
+			wordScale[i] = wordMaxScale;
+		}
+	}
 }
 //画面に描写。
 void GamenDraw::PostRender(CRenderContext& rc) {
@@ -56,7 +69,7 @@ void GamenDraw::PostRender(CRenderContext& rc) {
 		CVector2 pos = { 0.0f, -105.0f };
 		//フォントの影のために2回drawする
 		for (int i = 0; i < 2; i++) {
-			m_font.Draw(text, pos, color, 0.0f, 1.25f);
+			m_font.Draw(text, pos, color, 0.0f, wordScale[0]);
 			pos.x -= 3.0f;
 			pos.y += 3.0f;
 			//選択状態(mode == 0)では色が変わる
@@ -75,7 +88,7 @@ void GamenDraw::PostRender(CRenderContext& rc) {
 		CVector2 pos = { 0.0f, -200.0f };
 		//フォントの影のために2回drawする
 		for (int i = 0; i < 2; i++) {
-			m_font.Draw(text, pos, color, 0.0f, 1.25f);
+			m_font.Draw(text, pos, color, 0.0f, wordScale[1]);
 			pos.x -= 3.0f;
 			pos.y += 3.0f;
 			//選択状態(mode == 1)では色が変わる

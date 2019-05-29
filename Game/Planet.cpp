@@ -106,7 +106,7 @@ bool Planet::Generate(int Reload, int Planetnum) {
 					P_skinModelRender->SetEmissionColor({ 6.0f,6.0f,6.0f });
 					p_Cpointlit = NewGO < prefab::CPointLight > (0);
 					p_Cpointlit->SetAttn({ 20000, 2.0, 0});
-					p_Cpointlit->SetColor({ 400.0f, 0.0f, 0.0f });
+					p_Cpointlit->SetColor({ 400.0f, 30.0f, 0.0f });
 					break;
 				case Planetnumber_01://砂利。
 					P_skinModelRender->Init(L"modelData/planet01.cmo");
@@ -272,7 +272,7 @@ void Planet::explosion()
 	if (this->CountExplosion == false) {
 		CountExplosion = true;
 		Star* m_star = NewGO<Star>(0, "Star");
-		float tyousei = 30.0f; //惑星と星のモデルの大きさの差を調整↓。
+		float tyousei = 20.0f; //惑星と星のモデルの大きさの差を調整↓。
 		m_star->Pop(this->p_position, this->scale*this->radius/ tyousei);
 		Game::GetInstance()->SetStarCount(1);
 		Game::GetInstance()->memoryPP[this->myPlanetnumber] = nullptr;

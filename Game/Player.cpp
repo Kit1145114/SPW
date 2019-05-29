@@ -331,22 +331,19 @@ void Player::PBullet3()
 //プレイヤーの進化用
 void Player::Pevolution()
 {
-	if (StarCount >= 5 && m_mode == 0 && StarCount <= 9 && m_mode == 0)
+	if (StarCount >= 10 && m_mode == 0 && StarCount <= 19 && m_mode == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
 		m_scale = { 9.0f,9.0f,9.0f };
 		m_skinModelRender->SetScale(m_scale);
 		//カメラの引きを進化によって決めるのはローカルでは使用しない。ネットワークがどうなるかは未定。
 		//camera->SetPos(7000.0f);
-		prefab::CEffect* effect = NewGO<prefab::CEffect>(0);
-		effect->Play(L"effect/explosion1.efk");
-		effect->SetPosition(m_position);
 		Ver = 1;
 		m_Short = 0;
 		m_mode = 1;
 		Sound(2);//効果音
 	}
-	if (StarCount >= 10 && m_mode == 1|| StarCount >= 10 && Ver == 0)
+	if (StarCount >= 20 && m_mode == 1|| StarCount >= 20 && Ver == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType3.cmo");
 		m_scale = { 10.0f,10.0f,10.0f };
@@ -506,9 +503,9 @@ void Player::S_Hantei()
 	QueryGOs<Star>("Star", [&](Star* star)->bool {
 		CVector3 Kyori = star->GetPosition() - m_position;
 		if (Kyori.Length() < StarHantei) {
-			StarCount++;
-			//draw_S->AddKazu(1);
-			m_game->SetStarCount(-1);
+			
+			StarCount+= star->GetPoint();
+			
 			star->Death();
 			if (StarCount > 20)
 			{
