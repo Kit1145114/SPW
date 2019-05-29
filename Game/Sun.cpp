@@ -11,8 +11,8 @@ Sun::~Sun()
 {
 	DeleteGO(p_skinModelRender);
 	DeleteGO(p_Cpointlit);
-	DeleteGO(SoundSource2);
-	DeleteGO(sunFlareSS);
+	//DeleteGO(SoundSource2);
+	//DeleteGO(sunFlareSS);
 }
 
 bool Sun::Start()
@@ -126,7 +126,7 @@ void Sun::Flare()
 					//å¯â âπÅié•ãCóíÅj;
 					sunFlareSS = NewGO<prefab::CSoundSource>(0);
 					sunFlareSS->Init(L"sound/atmosphere4.wav");
-					sunFlareSS->Play(true);
+					sunFlareSS->Play(false);
 					sunFlareSS->SetVolume(1.0f);
 					break;
 				}
@@ -153,7 +153,7 @@ void Sun::Flare()
 				if (Random().GetRandDouble() < 0.5f) {
 					m_timer = 0.0f;
 					m_state = eState_Low;
-					DeleteGO(sunFlareSS);
+					//DeleteGO(sunFlareSS);
 					break;
 				}
 
