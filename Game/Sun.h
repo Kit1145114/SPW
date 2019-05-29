@@ -46,9 +46,12 @@ private:
 	CVector3 emissionColorLow;				//光が弱い時のエミッションカラー。
 	CVector3 emissionColorHigh;				//光が強い時のエミッションカラー。
 	prefab::CSoundSource* SoundSource = nullptr;//BGM用のサウンドソース。
+	prefab::CSoundSource* SoundSource2 = nullptr;//BGM用のサウンドソース。
+	prefab::CSoundSource* sunFlareSS = nullptr;	//太陽フレアの時のサウンド。
 	int SunHP = 5;
 	float Size = 1.0f;
 	bool SunRevivalFlag = false;
-
+	bool Sountziki = false;
+	
 };
 

@@ -93,7 +93,7 @@ namespace tkEngine{
 			* インスタンスにアクセスしてしまう可能性があるので、保持しないことをお勧めします。
 			* 再生の完了を検出したい場合などはイベントリスナーを使用してください。
 			*/
-			void Play(bool isLoop);
+			void Play(bool isLoop, float life = -1.0f);
 			/*!
 			* @brief	停止。
 			*/
@@ -224,6 +224,8 @@ namespace tkEngine{
 				enStreamingBuffering,	//バッファリング中。
 				enStreamingQueueing,	//キューイング中。
 			};
+			float						m_life = -1.0f;
+			float						m_timer = 0.0f;
 			std::shared_ptr<CWaveFile>	m_waveFile;					//!<波形データ。
 			IXAudio2SourceVoice*		m_sourceVoice = nullptr;	//!<ソースボイス。
 			bool						m_isLoop = false;			//!<ループフラグ。

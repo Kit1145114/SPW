@@ -11,6 +11,8 @@ Sun::~Sun()
 {
 	DeleteGO(p_skinModelRender);
 	DeleteGO(p_Cpointlit);
+	DeleteGO(SoundSource2);
+	DeleteGO(sunFlareSS);
 }
 
 bool Sun::Start()
@@ -121,6 +123,11 @@ void Sun::Flare()
 				if (Random().GetRandDouble() < 0.1f) {
 					m_timer = 0.0f;
 					m_state = eState_High;
+					//効果音（磁気嵐）;
+					sunFlareSS = NewGO<prefab::CSoundSource>(0);
+					sunFlareSS->Init(L"sound/atmosphere4.wav");
+					sunFlareSS->Play(true);
+					sunFlareSS->SetVolume(1.0f);
 					break;
 				}
 
@@ -146,6 +153,7 @@ void Sun::Flare()
 				if (Random().GetRandDouble() < 0.5f) {
 					m_timer = 0.0f;
 					m_state = eState_Low;
+					DeleteGO(sunFlareSS);
 					break;
 				}
 
@@ -162,9 +170,19 @@ void Sun::Flare()
 		}break;
 	case eState_death: {
 
+		
+		if (Sountziki == false) {
+			//効果音（磁気嵐）;
+			SoundSource = NewGO<prefab::CSoundSource>(0);
+			SoundSource->Init(L"sound/atmosphere4.wav");
+			SoundSource->Play(false, 0.8f);                //ワンショット再生。
+			SoundSource->SetVolume(1.0f);                 //音量調節。
+			Sountziki = true;
+		}
 			const float emissionEndTime = 2.5f;
 			m_timer += GameTime().GetFrameDeltaTime();
 			m_timer = min(emissionEndTime, m_timer);
+
 
 			
 			CVector3 emissionColor;
@@ -208,12 +226,14 @@ void Sun::HPCount(){
 			effect->SetScale(CVector3(Maxradius / 200, 1.0f, Maxradius / 200) * 0.1f);//エフェクトに半径/（Ｍａｘと差）をかける
 			effect->SetPosition(this->p_position);
 
+			
 			//効果音（爆発）;
-			SoundSource = NewGO<prefab::CSoundSource>(0);
-			SoundSource->Init(L"sound/bakuhatu.wav");
-			SoundSource->Play(false);                     //ワンショット再生。
-			SoundSource->SetVolume(4.0f);                 //音量調節。
+			SoundSource2 = NewGO<prefab::CSoundSource>(0);
+			SoundSource2->Init(L"sound/bakuhatu.wav");
+			SoundSource2->Play(false);                     //ワンショット再生。
+			SoundSource2->SetVolume(1.0f);                 //音量調節。
 
+			
 			SunHP = 50;            //死亡処理終了。
 			SunRevivalFlag = true; //太陽死亡。
 		}
@@ -240,6 +260,7 @@ void Sun::Revival() {
 				m_Deathtimer = 0.0f;//リセット。
 				SunHP = 5;			//フル回復。
 				m_state = eState_Low;
+				Sountziki = false;
 				m_timer = 0.0f;
 				SunRevivalFlag = false;
 			}

@@ -106,11 +106,11 @@ bool Planet::Generate(int Reload, int Planetnum) {
 					P_skinModelRender->SetEmissionColor({ 6.0f,6.0f,6.0f });
 					p_Cpointlit = NewGO < prefab::CPointLight > (0);
 					p_Cpointlit->SetAttn({ 20000, 2.0, 0});
-					p_Cpointlit->SetColor({ 500.0f, 0.0f, 0.0f });
+					p_Cpointlit->SetColor({ 400.0f, 0.0f, 0.0f });
 					break;
 				case Planetnumber_01://砂利。
 					P_skinModelRender->Init(L"modelData/planet01.cmo");
-					P_skinModelRender->SetEmissionColor({ -1.8f,-1.8f,-1.8f });
+					P_skinModelRender->SetEmissionColor({ -1.5f,-1.5f,-1.5f });
 					break;
 				case Planetnumber_02:
 					P_skinModelRender->Init(L"modelData/planet02.cmo");
@@ -121,7 +121,7 @@ bool Planet::Generate(int Reload, int Planetnum) {
 						P_skinModelRender->SetEmissionColor({ -0.5f,-0.5f,20.0f });
 					}
 					else {											 //太陽ステージなら。
-						P_skinModelRender->SetEmissionColor({ -0.2f,-0.2f,2.0f });
+						P_skinModelRender->SetEmissionColor({ -0.1f,-0.1f,1.0f });
 					}
 					break;
 				case Planetnumber_04://灰青
