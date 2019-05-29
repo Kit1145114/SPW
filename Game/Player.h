@@ -33,7 +33,6 @@ public:
 	void PBullet2();
 	void PBullet3();
 	void Pevolution();
-	//void Hantei();
 	void Rotation();
 	void Death();
 	void Respawn();
@@ -43,7 +42,6 @@ public:
 	void MutekiTimes();
 	void HP();
 	void StarPop();
-	//void PlS_Hantei();
 	void SetPadNum(int num);
 	void Sound(int SoundNum);
 	void StarPos();

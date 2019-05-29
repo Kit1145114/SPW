@@ -93,7 +93,6 @@ void Player::Update()
 	//Hantei();
 	Respawn();
 	S_Hantei();
-	//PlS_Hantei();
 	B_Hantei();
 	Houdai();
 	MutekiTimes();
@@ -359,19 +358,6 @@ void Player::Pevolution()
 		Sound(2);//効果音
 	}
 }
-//プレイヤーのモブ判定
-//void Player::Hantei()
-//{
-//	if (Muteki == false) {
-//		if (Game::GetInstance()->m_enemy != nullptr) {
-//			CVector3 diff = Game::GetInstance()->GetPosition() - m_position;
-//			if (diff.Length() < 250.0f) {
-//				Death();
-//				draw_Pl->SetDeath(true);
-//			}
-//		}
-//	}
-//}
 //プレイヤーの回転処理。
 void Player::Rotation()
 {
@@ -532,23 +518,6 @@ void Player::S_Hantei()
 		return true;
 	});
 }
-//プレイヤーの落とした☆の当たり判定。
-//void Player::PlS_Hantei()
-//{
-//	if (DeathCount == false) {
-//			QueryGOs<PlayerStar>("PlayerStar", [&](PlayerStar* plstar)->bool {
-//				CVector3 Len = plstar->GetPosition() - m_position;
-//				if (Len.Length() < StarHantei)
-//				{
-//					StarCount += plstar->GetStarCount();
-//					draw_S->SetKazu(StarCount);
-//					Game::GetInstance()->AddPlStarCount(-1);
-//					plstar->Death();
-//				}
-//				return true;
-//			});
-//		}
-//}
 //プレイヤー同士の球の判定
 void Player::B_Hantei()
 {
