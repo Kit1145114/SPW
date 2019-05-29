@@ -53,16 +53,5 @@ private:
 	CVector3 G2position = { 180.0f,39.0f,0.0f };
 	CVector3 G3position = { 180.0f,-110.0f,0.0f };
 	CVector3 G4position = { 180.0f,-260.0f,0.0f };
-	//prefab::CSpriteRender* G_spriteRender[8] = { nullptr };
-	//float GateSizeX = 205.0f;
-	//float GateSizeY = 100.0f;
-	//CVector3 G1position = { 50.0f,189.0f,0.0f };
-	//CVector3 G2position = { 250.0f,189.0f,0.0f };
-	//CVector3 G3position = { 50.0f,39.0f,0.0f };
-	//CVector3 G4position = { 250.0f,39.0f,0.0f };
-	//CVector3 G5position = { 50.0f,-121.0f,0.0f };
-	//CVector3 G6position = { 250.0f,-121.0f,0.0f };
-	//CVector3 G7position = { 50.0f,-271.0f,0.0f };
-	//CVector3 G8position = { 250.0f,-271.0f,0.0f };
 };
 

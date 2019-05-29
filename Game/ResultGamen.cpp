@@ -49,14 +49,6 @@ bool ResultGamen::Start()
 		r_spriteRender = NewGO<prefab::CSpriteRender>(0);
 		r_spriteRender->Init(L"sprite/Reslut1.dds", 1280.0f, 720.0f);
 		break;
-	//case 1:
-	//	r_spriteRender = NewGO<prefab::CSpriteRender>(0);
-	//	r_spriteRender->Init(L"sprite/Reslut2.dds", 1280.0f, 720.0f);
-	//	break;
-	//case 2:
-	//	r_spriteRender = NewGO<prefab::CSpriteRender>(0);
-	//	r_spriteRender->Init(L"sprite/Reslut3.dds", 1280.0f, 720.0f);
-	//	break;
 	default:
 		r_spriteRender = NewGO<prefab::CSpriteRender>(0);
 		r_spriteRender->Init(L"sprite/Reslut1.dds", 1280.0f, 720.0f);
@@ -195,12 +187,13 @@ void ResultGamen::Result()
 		PNums[i] = i;
 	}
 
-	for (int i = 0; i < (PadKazu-1); i++) {
-		for (int j = (PadKazu-1); j > i; j--) {
-			if (PS[PNums[j - 1]] == PS[PNums[j]]) {
+	for (int i = 0; i < PadKazu; i++) {
+		for (int j = PadKazu; j > i; j--) {
+			if (PS[PNums[j - 1]] == PS[PNums[j]])
+			{
 				PNums[j] = PNums[j - 1];
 			}
-			else if (PS[PNums[j-1]] < PS[PNums[j]]) {
+			 if (PS[PNums[j-1]] < PS[PNums[j]]) {
 				int n = PNums[j];
 				PNums[j]= PNums[j - 1];
 				PNums[j - 1] = n;
@@ -211,9 +204,17 @@ void ResultGamen::Result()
 			}
 		}
 	}
+
+	//for (int i = 0; i < PadKazu; i++)
+	//{
+	//	if (PS[PNums[i]] == PS[PNums[i + 1]])
+	//	{
+	//		PS[i] = PS[i + 1];
+	//	}
+	//}
+
 	for (int i = 0; i < PadKazu; i++) {
-		r_Draw[i]->SetPlayer(PNums[i + 1]);
-		r_Draw[PNums[i]]->SetJuni(i + 1);
+		r_Draw[i]->SetPlayer(PNums[i]+1);
 		P_spriteRender[i]->Init(draw_P[i], 500.0f, 135.0f);
 	}
 }
@@ -380,15 +381,3 @@ void ResultGamen::GateDraw()
 		}
 	}
 }
-	//timer++;
-	//if (timer == 50)
-	//{
-	//	//float reduce = GateSizeX[0];
-	//	//reduce -= 1.0f;
-	//	GateSizeX -= 1.0f;
-	//	G_spriteRender[0]->Init(L"sprite/Gate.dds", GateSizeX, GateSizeY);
-	//	if (GateSizeX == 0.0f)
-	//	{
-	//		timer = 51;
-	//	}
-	//}
