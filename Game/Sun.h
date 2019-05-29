@@ -16,6 +16,10 @@ public:
 	void HPCount();
 	void Revival();
 	void Update();
+	float GetSize()
+	{
+		return Size;
+	}
 private:
 	enum EState {
 		eState_Low,		//Œõ‚ªã‚¢B
@@ -45,5 +49,6 @@ private:
 	int SunHP = 5;
 	float Size = 1.0f;
 	bool SunRevivalFlag = false;
+
 };
 

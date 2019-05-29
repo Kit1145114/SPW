@@ -101,6 +101,7 @@ void Game::CreateStage0() {
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f }); //ステージの明るさ。
 }
 //衛星。
 void Game::CreateStage1() {
@@ -134,6 +135,7 @@ void Game::CreateStage1() {
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f }); //ステージの明るさ。
 }
 //隕石。
 void Game::CreateStage2() {
@@ -170,6 +172,7 @@ void Game::CreateStage2() {
 	bgmSoundSource->SetVolume(1.0f);
 	BHflag = true;//ブラックホールをOFFにする
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f }); //ステージの明るさ。
 }
 //ビックブラックホール。
 void Game::CreateStage3()
@@ -207,6 +210,7 @@ void Game::CreateStage3()
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f }); //ステージの明るさ。
 }
 //ワープ。
 void Game::CreateStage4()
@@ -268,6 +272,7 @@ void Game::CreateStage4()
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f }); //ステージの明るさ。
 }
 //太陽系。
 void Game::CreateStage5() {
@@ -302,10 +307,11 @@ void Game::CreateStage5() {
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+
+	LightManager().SetAmbientLight({ 0.8f, 0.8f, 0.8f });   //ステージの明るさ。
 }
 bool Game::Start()
 {
-	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f });
 	//ステージ振り分け。
 	switch (Stage) {
 	case 0:
@@ -324,7 +330,6 @@ bool Game::Start()
 		CreateStage4();
 		break;
 	case 5:
-		LightManager().SetAmbientLight({ 0.8f, 0.8f, 0.8f });
 		CreateStage5();
 		break;
 	default:

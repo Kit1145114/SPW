@@ -10,6 +10,7 @@ Sun::Sun()
 Sun::~Sun()
 {
 	DeleteGO(p_skinModelRender);
+	DeleteGO(p_Cpointlit);
 }
 
 bool Sun::Start()
@@ -231,7 +232,6 @@ void Sun::HPCount(){
 }
 void Sun::Revival() {
 
-		
 		//•œŠˆ‚³‚¹‚éB
 		if (m_Deathtimer >= m_Revivaltimer) {
 			Size += 0.01f;
