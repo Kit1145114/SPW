@@ -23,5 +23,9 @@ private:
 	Title_2* tl2 = nullptr;
 	prefab::CSoundSource * m_push = nullptr;
 	int mode = 0;
+
+	static constexpr float wordMaxScale = 1.3f;
+	static constexpr float wordMinScale = 1.25f;
+	float wordScale[2] = { wordMinScale ,wordMinScale };
 };
 
