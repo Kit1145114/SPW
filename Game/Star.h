@@ -25,6 +25,9 @@ public:
 	{
 		m_scale = sca;
 	}
+	int GetPoint() {
+		return StarPoint;
+	}
 private:
 	Game* m_game = nullptr;					//ƒQ[ƒ€class‚Ìƒ|ƒCƒ“ƒ^OO
 	CVector3 m_position = CVector3::Zero;
@@ -35,6 +38,7 @@ private:
 	int m_timer = 0;
 	int time0 = 0;
 	int Limit = 300;
+	int StarPoint = 1;
 	float angle = 0.0f;
 };
 

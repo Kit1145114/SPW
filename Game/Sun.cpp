@@ -261,7 +261,7 @@ void Sun::Revival() {
 			//元の大きさに戻ったら完全復活。
 			if (Size >= 1.0f) {
 				m_Deathtimer = 0.0f;//リセット。
-				SunHP = 5;			//フル回復。
+				SunHP = 200;			//フル回復。
 				m_state = eState_Low;
 				Sountziki = false;
 				m_timer = 0.0f;
