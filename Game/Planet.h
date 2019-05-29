@@ -36,7 +36,6 @@ public:
 		return radius;
 	}
 protected:
-	CCharacterController p_CharaCon;
 	CVector3 p_position = CVector3::Zero;
 	CVector3 scale = { 1.0f,1.0f,1.0f };
 	CVector3 p_Size = { 1.0f,1.0f,1.0f };           //pop‚Ì­‚µ‚Ã‚Â‘å‚«‚­‚È‚éSize‚Åg‚¤B

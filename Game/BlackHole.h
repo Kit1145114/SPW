@@ -18,7 +18,8 @@ public:
 	void Gravity();
 	void Count();
 	void Death();
-	void Size();
+	void PopSize();
+	void DeathSize();
 	void Update();
 	void SetPosition(CVector3 pos)
 	{
@@ -34,7 +35,7 @@ protected:
 	Draw_Player* Pl1 = nullptr;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 scale = { 1.0f,1.0f,1.0f };
-	int timer = 0;
+	float timer = 0.0f;
 	float radius = { 1.0f };       //	基本惑星の半径。
 	float Searchment = { 1500.0f };//	BHの重力範囲の調整。
 	float G_limitar = { 50000.0f };//   BHの重力（Ｇ）調整。

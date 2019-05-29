@@ -10,8 +10,7 @@
 //#include"Sinka_Bar.h"
 #include "Stage1/SatelliteGene.h"
 #include "Stage2/RocketGene.h"
-#include "TrepotHole.h"
-#include "TrepotHole2.h"
+#include "TerepotHole.h"
 #include "Utility/CountDown.h"
 #include "ResultCamera.h"
 #include "Utility/MoveSprite.h"
@@ -67,11 +66,12 @@ Game::~Game()
 	DeleteGO(winnerSprite);
 	DeleteGO(winnerWord);
 	DeleteGOs("テレポート");
-	DeleteGOs("テレポート2");
+	
+	
 }
 //シンプル。
 void Game::CreateStage0() {
-	
+
 	switch (SansenKazu) {
 	case 4:
 		m_player[3] = NewGO<Player>(0, "Player3");
@@ -101,6 +101,7 @@ void Game::CreateStage0() {
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f }); //ステージの明るさ。
 }
 //衛星。
 void Game::CreateStage1() {
@@ -134,6 +135,7 @@ void Game::CreateStage1() {
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f }); //ステージの明るさ。
 }
 //隕石。
 void Game::CreateStage2() {
@@ -170,6 +172,7 @@ void Game::CreateStage2() {
 	bgmSoundSource->SetVolume(1.0f);
 	BHflag = true;//ブラックホールをOFFにする
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f }); //ステージの明るさ。
 }
 //ビックブラックホール。
 void Game::CreateStage3()
@@ -207,58 +210,11 @@ void Game::CreateStage3()
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
-}
-//ワープ。
-void Game::CreateStage4()
-{
-	tere[0] = NewGO<TrepotHole>(0, "テレポート");
-	tere[0]->SetPosition({ -13000, 0, 0 });
-	tere[1] = NewGO<TrepotHole>(0, "テレポート");
-	tere[1]->SetPosition({ -13000, 0, 4000 });
-	
-	//tere[2] = NewGO<TrepotHole>(0, "テレポート");
-	//tere[2]->SetPosition({ -13000, 0, 8000 });
-
-	tere2[0] = NewGO<TrepotHole2>(0, "テレポート2");
-	tere2[0]->SetPosition2({ 4000, 0, 0 });
-	tere2[1] = NewGO<TrepotHole2>(0, "テレポート2");
-	tere2[1]->SetPosition2({ 4000, 0, 4000 });
-
-	//tere2[2] = NewGO<TrepotHole2>(0, "テレポート2");
-	//tere2[2]->SetPosition2({ 4000, 0, 8000 });
-
-	switch (SansenKazu) {
-	case 4:
-		m_player[3] = NewGO<Player>(0, "Player3");
-		m_player[3]->SetPadNum(3);
-		m_player[3]->SetPositionX(P_pos * 10);
-		m_player[3]->SetPositionZ(P_pos *-5);
-	case 3:
-		m_player[2] = NewGO<Player>(0, "Player2");
-		m_player[2]->SetPadNum(2);
-		m_player[2]->SetPositionX(P_pos *-10);
-		m_player[2]->SetPositionZ(P_pos *-5);
-	case 2:
-		m_player[1] = NewGO<Player>(0, "Player1");
-		m_player[1]->SetPadNum(1);
-		m_player[1]->SetPositionX(P_pos * 10);
-		m_player[1]->SetPositionZ(P_pos * 5);
-	case 1:
-		m_player[0] = NewGO<Player>(0, "Player");
-		m_player[0]->SetPadNum(0);
-		m_player[0]->SetPositionX(P_pos *-10);
-		m_player[0]->SetPositionZ(P_pos * 5);
-	}
-	m_field = NewGO<field>(0);
-	//BGM
-	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
-	bgmSoundSource->Init(L"sound/kaisen.wav");
-	bgmSoundSource->Play(true);
-	bgmSoundSource->SetVolume(1.0f);
-	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f }); //ステージの明るさ。
 }
 //太陽系。
-void Game::CreateStage5() {
+void Game::CreateStage4()
+{
 	switch (SansenKazu) {
 	case 4:
 		m_player[3] = NewGO<Player>(0, "Player3");
@@ -290,10 +246,75 @@ void Game::CreateStage5() {
 	bgmSoundSource->Play(true);
 	bgmSoundSource->SetVolume(1.0f);
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+
+	LightManager().SetAmbientLight({ 0.8f, 0.8f, 0.8f });   //ステージの明るさ。
+	//
+	
+}
+//ワープ。
+void Game::CreateStage5() {
+	
+	tere[0] = NewGO<TerepotHole>(0, "テレポート");
+	tere[0]->SetPosi({ -39000,0,-12000 });
+	tere[0]->SetFilePath(L"modelData/terepot.cmo");//緑
+	tere[1] = NewGO<TerepotHole>(0, "テレポート");
+	tere[1]->SetPosi({ -39000,0,4000 });
+	tere[1]->SetFilePath(L"modelData/terepot2.cmo");//青
+	tere[2] = NewGO<TerepotHole>(0, "テレポート");
+	tere[2]->SetPosi({ -39000,0,18000 });
+	tere[2]->SetFilePath(L"modelData/terepot3.cmo");//黄
+
+	tere[3] = NewGO<TerepotHole>(0, "テレポート");
+	tere[3]->SetPosi({ 30000,0,-12000 });
+	tere[3]->SetFilePath(L"modelData/terepot.cmo");//緑
+	tere[4] = NewGO<TerepotHole>(0, "テレポート");
+	tere[4]->SetPosi({ 30000,0,4000 });
+	tere[4]->SetFilePath(L"modelData/terepot2.cmo");//青
+	tere[5] = NewGO<TerepotHole>(0, "テレポート");
+	tere[5]->SetPosi({ 30000,0,18000 });
+	tere[5]->SetFilePath(L"modelData/terepot3.cmo");//黄
+
+	tere[0]->SetLinkTerepotHole(tere[3]);
+	tere[1]->SetLinkTerepotHole(tere[4]);
+	tere[2]->SetLinkTerepotHole(tere[5]);
+
+	tere[3]->SetLinkTerepotHole(tere[0]);
+	tere[4]->SetLinkTerepotHole(tere[1]);
+	tere[5]->SetLinkTerepotHole(tere[2]);
+
+	switch (SansenKazu) {
+	case 4:
+		m_player[3] = NewGO<Player>(0, "Player3");
+		m_player[3]->SetPadNum(3);
+		m_player[3]->SetPositionX(P_pos * 10);
+		m_player[3]->SetPositionZ(P_pos *-5);
+	case 3:
+		m_player[2] = NewGO<Player>(0, "Player2");
+		m_player[2]->SetPadNum(2);
+		m_player[2]->SetPositionX(P_pos *-10);
+		m_player[2]->SetPositionZ(P_pos *-5);
+	case 2:
+		m_player[1] = NewGO<Player>(0, "Player1");
+		m_player[1]->SetPadNum(1);
+		m_player[1]->SetPositionX(P_pos * 10);
+		m_player[1]->SetPositionZ(P_pos * 5);
+	case 1:
+		m_player[0] = NewGO<Player>(0, "Player");
+		m_player[0]->SetPadNum(0);
+		m_player[0]->SetPositionX(P_pos *-10);
+		m_player[0]->SetPositionZ(P_pos * 5);
+	}
+	m_field = NewGO<field>(0);
+	//BGM
+	bgmSoundSource = NewGO<prefab::CSoundSource>(0);
+	bgmSoundSource->Init(L"sound/kaisen.wav");
+	bgmSoundSource->Play(true);
+	bgmSoundSource->SetVolume(1.0f);
+	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
+	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f }); //ステージの明るさ。
 }
 bool Game::Start()
 {
-	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f });
 	//ステージ振り分け。
 	switch (Stage) {
 	case 0:
@@ -312,7 +333,6 @@ bool Game::Start()
 		CreateStage4();
 		break;
 	case 5:
-		LightManager().SetAmbientLight({ 0.8f, 0.8f, 0.8f });
 		CreateStage5();
 		break;
 	default:

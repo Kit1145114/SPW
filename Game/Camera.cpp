@@ -13,10 +13,8 @@ Camera::~Camera()
 }
 
 bool Camera::Start() {
-	//カメラのニアクリップ
+	//カメラの上方向をZ軸に指定(真上から見下ろすため)
 	MainCamera().SetUp(CVector3::AxisZ);
-	MainCamera().SetNear(10000.0f);
-	MainCamera().SetFar(85000.0f);
 
 	//自分のプレイヤー番号を取得。
 	int myNum
@@ -30,33 +28,78 @@ bool Camera::Start() {
 	return true;
 }
 
-void Camera::TOP() {
-	//カメラ
+void Camera::shake(float power, float spring, float decay) {
+	beforeDot = 1;
+	shakeSpring = spring;
+	shakeDecay = decay;
+	shakeSpeed = { power, 0, 0 };
+	CQuaternion rot;
+	rot.SetRotation(CVector3::AxisY, Random().GetRandDouble() * CMath::PI2);
+	rot.Apply(shakeSpeed);
+}
+
+CVector3 Camera::shakeProcess() {
+	const float delta = GameTime().GetFrameDeltaTime();
+	shakePos += shakeSpeed * delta;
+
+	CVector3 oppositeVec = shakePos * -1;
+
+	shakeSpeed += oppositeVec * delta * shakeSpring;
+
+	float dot = shakeSpeed.Dot(shakePos);
+	if (shakeSpeed.Dot(shakePos) * beforeDot <= 0) {
+		float ran = Random().GetRandDouble() * 20 * 2 - 20;
+		CQuaternion rot;
+		rot.SetRotationDeg(CVector3::AxisY, ran);
+		rot.Apply(shakeSpeed);
+		shakeSpeed *= (1-shakeDecay);
+	}
+	beforeDot = dot;
+
+	return shakePos;
+}
+
+void Camera::UpDownZoom() {
+	//キー入力でズームを指定する
 	if (Pad(0).IsPress(enButtonUp)) {
-		up += -100.0f;
+		cameraUp += -100.0f;
 	}else
 	if (Pad(0).IsPress(enButtonDown)) {
-		up += 100.0f;
+		cameraUp += 100.0f;
 	}
 
-	if (up > MaxCamera) {
-		up = MaxCamera;
-	} else if (MinCamera > up) {
-		up = MinCamera;
+	if (cameraUp > MaxCamera) {
+		cameraUp = MaxCamera;
+	} else if (MinCamera > cameraUp) {
+		cameraUp = MinCamera;
 	}
 }
 
-void Camera::Move() 
+CVector3 Camera::calcCenter() {
+	CVector3 center;
+	//参加者の座標の平均を求めて、中央の座標とする
+	int count = 0;
+	for (Player* player : Game::GetInstance()->m_player) {
+		if (player != nullptr) {
+			center += player->GetPosition();
+			count++;
+		}
+	}
+	center /= count;
+	return center;
+}
+
+void Camera::AutoZoom(const CVector3& center)
 {
 	//ズーム＆アウト
-	Saityou = -1;
+	float Saityou = -1;
 	//縦
 	for (Player* player : Game::GetInstance()->m_player)
 	{
 		if (player == nullptr) {
 			continue;
 		}
-		float Max = fabs(player->GetPosition().z - Tyuou.z) + 10000;
+		float Max = fabs(player->GetPosition().z - center.z) + 10000;
 		if (Saityou < Max)
 		{
 			Saityou = Max;
@@ -74,7 +117,7 @@ void Camera::Move()
 		if (player == nullptr) {
 			continue;
 		}
-		float Max = fabs(player->GetPosition().x - Tyuou.x) + 4000;
+		float Max = fabs(player->GetPosition().x - center.x) + 4000;
 		if (Saityou < Max)
 		{
 			Saityou = Max;
@@ -85,32 +128,21 @@ void Camera::Move()
 }
 
 void Camera::Update() {
-	TOP();
-	//メインカメラに注視点と視点を設定する。
+	CVector3 targetPos;
+
 #ifdef UseNetwork
-	CVector3 pos = m_player->GetPosition();
-	cameraUp = up;
+	targetPos = m_player->GetPosition();
+	UpDownZoom();
 #else
-	CVector3 pos;
-	if (Game::GetInstance()->GetSansenKazu() == 1) {
-		pos = m_player->GetPosition();
-	} else {
-		int count = 0;
-		for (Player* player : Game::GetInstance()->m_player) {
-			if (player != nullptr) {
-				pos += player->GetPosition();
-				count++;
-			}
-		}
-		pos /= count;
-	}
+	targetPos = calcCenter();
+	AutoZoom(targetPos);
 #endif
 
-	Tyuou = pos;
-	Move();
-	MainCamera().SetTarget(pos);
-	pos.y += cameraUp;
-	MainCamera().SetPosition(pos);
+	targetPos += shakeProcess();
+
+	MainCamera().SetTarget(targetPos);
+	targetPos.y += cameraUp;
+	MainCamera().SetPosition(targetPos);
 
 	MainCamera().SetNear(cameraUp-10000.0f);
 	MainCamera().SetFar(cameraUp+1200.0f);

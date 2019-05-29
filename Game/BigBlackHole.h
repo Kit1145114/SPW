@@ -10,6 +10,7 @@ public:
 	bool Start();
 	static void Generate();
 	void Gravity();
+	void Sound();
 	void Update();
 private:
 	prefab::CEffect* effect = nullptr;
@@ -27,5 +28,6 @@ private:
 	float radius = { 9.0f };       //	基本惑星の半径。*9(Big
 	float Searchment = { 1000.0f };//	BHの重力範囲の調整。
 	float G_limitar = { 50000.0f };//   BHの重力（Ｇ）調整。
+	prefab::CSoundSource* SoundSource = nullptr;//BGM用のサウンドソース。
 };
 
