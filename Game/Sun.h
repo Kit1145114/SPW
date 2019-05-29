@@ -2,6 +2,8 @@
 //#include "Game.h"
 #include"Planet.h"
 
+class Camera;
+
 class Sun : public IGameObject
 {
 public:
@@ -51,6 +53,8 @@ private:
 	int SunHP = 5;
 	float Size = 1.0f;
 	bool SunRevivalFlag = false;
+
+	Camera* camera = nullptr;
 	bool Sountziki = false;
 	
 };
