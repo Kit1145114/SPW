@@ -44,8 +44,10 @@ void Rocket::Update() {
 		return;
 	}
 
+	const float xLimit = 45302.23f;
+	const float zLimit = 25041.139f;
 	//ƒGƒŠƒAŠO”»’è
-	if (m_pos.x > 35000.0f || m_pos.x< -35000.0f || m_pos.z>25000.0f || m_pos.z < -25000.0f) {
+	if (m_pos.x > xLimit || m_pos.x< -xLimit || m_pos.z>zLimit || m_pos.z < -zLimit) {
 		DeleteGO(this);
 		return;
 	}

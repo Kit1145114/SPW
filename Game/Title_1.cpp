@@ -34,7 +34,6 @@ void Title_1::Update()
 			} else {
 				isSecondSprite = true;
 				m_timer = 0;
-				Limit = 60;
 				m_spriteRender->Init(L"sprite/rogo4.dds", 1280.0f, 720.0f);
 				Fade::fadeOut();
 			}
