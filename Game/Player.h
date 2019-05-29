@@ -203,7 +203,7 @@ private:
 	int Damage = 20;
 	float SeiseiVer_1 = 0.4f;
 	float SeiseiVer_2 = 0.3f;
-	float SeiseiVer_3 = 0.2f;
+	float SeiseiVer_3 = 0.125f;
 	int MaxSeiseiVer_1 = 99;
 	int MaxSeiseiVer_2 = 70;
 	int MaxSeiseiVer_3 = 30;

@@ -32,10 +32,10 @@ void GamenDraw::Update()
 		tl2->Setmode(mode);
 	}
 
-	if (mode == 0 && Pad(0).IsPress(enButtonA) == true){
+	if (mode == 0 && Pad(0).IsTrigger(enButtonA) == true){
 		GemenDrawSound(1);
 	}
-	if (mode == 1 && Pad(0).IsPress(enButtonA) == true) {
+	if (mode == 1 && Pad(0).IsTrigger(enButtonA) == true) {
 		GemenDrawSound(1);
 	}
 
