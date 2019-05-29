@@ -30,7 +30,7 @@ void TerepotHole::Update()
 		//ワープ
 		if (terepot_flag == false) {
 			timer++;
-			if (timer == 200) {  //タイム200　大体3秒
+			if (timer == 400) {   //タイム200約2秒　400約3秒 600約5秒
 				timer = 0;
 				terepot_flag = true;
 					//Gameクラスで教えたワープオブジェクトファイルパス(trueの時)
@@ -50,7 +50,7 @@ void TerepotHole::Update()
 		//ワープ先
 		if (linkTerepotHole->terepot_flag == false) {
 			timer++;
-			if (timer == 200) {  //タイム200　大体3秒
+			if (timer == 400) {   //タイム200約2秒　400約3秒 600約5秒
 				timer = 0;
 				linkTerepotHole->terepot_flag = true;
 				//Gameクラスで教えたワープオブジェクトファイルパス(trueの時)
