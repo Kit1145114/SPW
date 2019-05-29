@@ -40,7 +40,7 @@ private:
 	float nizyou = { 1000.0f };				//二乗調整。
 	float m_timer = 0.0f;
 	float m_Deathtimer = 0.0f;				//死亡時間。
-	float m_Revivaltimer = 8.0f;			//復活時間。
+	float m_Revivaltimer = 10.0f;			//復活時間。
 	float m_emissionTimer = 0.0f;
 	EState m_state = eState_Low;
 	CVector3 emissionPointLigColorLow;		//光が弱い時のポイントライトのカラー。
@@ -50,7 +50,7 @@ private:
 	prefab::CSoundSource* SoundSource = nullptr;//BGM用のサウンドソース。
 	prefab::CSoundSource* SoundSource2 = nullptr;//BGM用のサウンドソース。
 	prefab::CSoundSource* sunFlareSS = nullptr;	//太陽フレアの時のサウンド。
-	int SunHP = 5;
+	int SunHP = 200;
 	float Size = 1.0f;
 	bool SunRevivalFlag = false;
 

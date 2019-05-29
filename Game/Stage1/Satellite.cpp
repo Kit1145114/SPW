@@ -136,7 +136,7 @@ void Satellite::Update() {
 		moveStar += m_move.Length() * delta;
 		//ƒXƒ^[¶¬
 		if (moveStar > moveStarMax) {
-			NewGO<Star>(0, "Star")->Pop(m_pos, {25,25,25});
+			NewGO<Star>(0, "Star")->Pop(m_pos, {50,50,50});
 			moveStar = 0.0f;
 		}
 

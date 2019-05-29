@@ -43,6 +43,19 @@ void Star::Pop(CVector3 position,CVector3 scale)
 {
 	m_position = position;
 	m_scale = scale;
+	m_scale *= 1.2;
+	//☆の大きさによってポイントを変える。
+	if (m_scale.x<65.0f) {
+		StarPoint = 1;
+	}
+	else if (m_scale.x < 125.0f) {
+		StarPoint = 2;
+	}
+	else  {
+		StarPoint = 3;
+	}
+
+	m_position.y += 30.0f;
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetScale(m_scale);
 };
@@ -50,6 +63,7 @@ void Star::Pop(CVector3 position,CVector3 scale)
 void Star::SunPop(CVector3 position, CVector3 scale)
 {
 	m_position = position;
+	m_position.y += 30.0f;
 	m_scale = scale;
 	Limit = 1000;
 	m_skinModelRender->Init(L"modelData/PlayerStar.cmo");

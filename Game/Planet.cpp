@@ -272,7 +272,7 @@ void Planet::explosion()
 	if (this->CountExplosion == false) {
 		CountExplosion = true;
 		Star* m_star = NewGO<Star>(0, "Star");
-		float tyousei = 30.0f; //˜f¯‚Æ¯‚Ìƒ‚ƒfƒ‹‚Ì‘å‚«‚³‚Ì·‚ð’²®«B
+		float tyousei = 20.0f; //˜f¯‚Æ¯‚Ìƒ‚ƒfƒ‹‚Ì‘å‚«‚³‚Ì·‚ð’²®«B
 		m_star->Pop(this->p_position, this->scale*this->radius/ tyousei);
 		Game::GetInstance()->SetStarCount(1);
 		Game::GetInstance()->memoryPP[this->myPlanetnumber] = nullptr;
