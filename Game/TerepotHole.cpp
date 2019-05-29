@@ -15,7 +15,7 @@ bool TerepotHole::Start()
 {
 	m_terepot = NewGO<prefab::CSkinModelRender>(0);
 	m_terepot->Init(modelFilePath.c_str());
-	scale = { 45, 45, 45 };
+	scale = { 45, 0, 45 };
 
 	m_terepot->SetPosition(m_position);
 	m_terepot->SetScale(scale);
@@ -30,7 +30,7 @@ void TerepotHole::Update()
 		//ワープ
 		if (terepot_flag == false) {
 			timer++;
-			if (timer == 400) {   //タイム200約2秒　400約3秒 600約5秒
+			if (timer == 400) {   //タイム
 				timer = 0;
 				terepot_flag = true;
 					//Gameクラスで教えたワープオブジェクトファイルパス(trueの時)
@@ -50,7 +50,7 @@ void TerepotHole::Update()
 		//ワープ先
 		if (linkTerepotHole->terepot_flag == false) {
 			timer++;
-			if (timer == 400) {   //タイム200約2秒　400約3秒 600約5秒
+			if (timer == 400) {   //タイム
 				timer = 0;
 				linkTerepotHole->terepot_flag = true;
 				//Gameクラスで教えたワープオブジェクトファイルパス(trueの時)

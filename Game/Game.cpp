@@ -255,23 +255,23 @@ void Game::CreateStage4()
 void Game::CreateStage5() {
 	
 	tere[0] = NewGO<TerepotHole>(0, "テレポート");
-	tere[0]->SetPosi({ -19000,0,0 });
+	tere[0]->SetPosi({ -30000,0,-12000 });
 	tere[0]->SetFilePath(L"modelData/terepot.cmo");//緑
 	tere[1] = NewGO<TerepotHole>(0, "テレポート");
-	tere[1]->SetPosi({ -19000,0,4000 });
+	tere[1]->SetPosi({ -30000,0,4000 });
 	tere[1]->SetFilePath(L"modelData/terepot2.cmo");//青
 	tere[2] = NewGO<TerepotHole>(0, "テレポート");
-	tere[2]->SetPosi({ -22000,0,9000 });
+	tere[2]->SetPosi({ -30000,0,18000 });
 	tere[2]->SetFilePath(L"modelData/terepot3.cmo");//黄
 
 	tere[3] = NewGO<TerepotHole>(0, "テレポート");
-	tere[3]->SetPosi({ -10000,0,0 });
+	tere[3]->SetPosi({ 30000,0,-12000 });
 	tere[3]->SetFilePath(L"modelData/terepot.cmo");//緑
 	tere[4] = NewGO<TerepotHole>(0, "テレポート");
-	tere[4]->SetPosi({ -10000,0,4000 });
+	tere[4]->SetPosi({ 30000,0,4000 });
 	tere[4]->SetFilePath(L"modelData/terepot2.cmo");//青
 	tere[5] = NewGO<TerepotHole>(0, "テレポート");
-	tere[5]->SetPosi({ -10000,0,9000 });
+	tere[5]->SetPosi({ 30000,0,18000 });
 	tere[5]->SetFilePath(L"modelData/terepot3.cmo");//黄
 
 	tere[0]->SetLinkTerepotHole(tere[3]);

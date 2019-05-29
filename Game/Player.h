@@ -185,11 +185,11 @@ private:
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 	prefab::CSoundSource* SoundSource = nullptr;//BGM用のサウンドソース。
 	
-	int m_timer = 0;
-	int p_timer = 0;
-	int d_timer = 0;
+	float m_timer = 0.0f;
+	float p_timer = 0.0f;
+	float d_timer = 0.0f;
 	int a_timer = 0;
-	int Timer0 = 0;
+	float Timer0 = 0.0f;
 	int m_Short = 0;
 	int m_mode = 0;
 	int MutekiTime = 0;
@@ -203,16 +203,15 @@ private:
 	int PlHP = 100;
 	int MaxHP = 100;
 	int Damage = 20;
-	int SeiseiVer_1 = 10;
-	int SeiseiVer_2 = 8;
-	int SeiseiVer_3 = 6;
+	float SeiseiVer_1 = 0.4f;
+	float SeiseiVer_2 = 0.3f;
+	float SeiseiVer_3 = 0.2f;
 	int MaxSeiseiVer_1 = 99;
 	int MaxSeiseiVer_2 = 70;
 	int MaxSeiseiVer_3 = 30;
 	int LABulletNum = 5;
 	int syoki = 5;
-	int SyokiSpped = 10.5f;
-
+	float SyokiSpped = 10.5f;
 	float HoukouX = 0.0f;
 	float HoukouZ = 0.0f;
 	float memoryHX = 0.0f;

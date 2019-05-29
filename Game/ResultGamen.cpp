@@ -199,7 +199,6 @@ void ResultGamen::Result()
 		for (int j = (PadKazu-1); j > i; j--) {
 			if (PS[PNums[j - 1]] == PS[PNums[j]]) {
 				PNums[j] = PNums[j - 1];
-
 			}
 			else if (PS[PNums[j-1]] < PS[PNums[j]]) {
 				int n = PNums[j];
@@ -213,7 +212,7 @@ void ResultGamen::Result()
 		}
 	}
 	for (int i = 0; i < PadKazu; i++) {
-		r_Draw[i]->SetPlayer(PNums[i]+1);
+		r_Draw[i]->SetPlayer(PNums[i + 1]);
 		r_Draw[PNums[i]]->SetJuni(i + 1);
 		P_spriteRender[i]->Init(draw_P[i], 500.0f, 135.0f);
 	}

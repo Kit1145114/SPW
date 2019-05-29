@@ -9,7 +9,6 @@ Player::Player()
 	draw_Pl = NewGO<Draw_Player>(0);
 	draw_S = NewGO<Draw_Skazu>(0);
 	r_ring = NewGO<RadarRing>(0);
-	//bar = NewGO<Sinka_Bar>(0);
 }
 
 void Player::OnDestroy()
@@ -28,7 +27,6 @@ bool Player::Start()
 	m_skinModelRender->SetPosition(m_position);
 	m_scale = { 9.6f,9.6f,9.6f };
 	m_skinModelRender->SetScale(m_scale);
-	//m_CharaCon.Init(800.0f, 300.0f, m_position);
 	m_game = Game::GetInstance();
 	camera = FindGO<Camera>("Camera");
 	switch (m_game->GetSansenKazu())
@@ -172,9 +170,9 @@ void Player::Move()
 void Player::PBullet()
 {
 	if (Ver == 0) {
-		m_timer++;  // =GameTime().GetFrameDeltaTime;
-		p_timer++;
-		if (m_timer > SeiseiVer_1) {
+		m_timer += GameTime().GetFrameDeltaTime();  
+		p_timer += GameTime().GetFrameDeltaTime();
+		if (m_timer >= SeiseiVer_1) {
 			if (m_Short < MaxSeiseiVer_1) {
 				m_Short++;
 				m_timer = Timer0;
@@ -202,7 +200,7 @@ void Player::PBullet()
 						p_timer = Timer0;
 					}
 					else {
-						if (p_timer == 98)
+						if (p_timer == 98.0f)
 						{
 							ShortCount = false;
 							p_timer = Timer0;
@@ -218,8 +216,8 @@ void Player::PBullet2()
 {
 	if (Ver == 1)
 	{
-		m_timer++;  // =GameTime().GetFrameDeltaTime;
-		p_timer++;
+		m_timer += GameTime().GetFrameDeltaTime();
+		p_timer += GameTime().GetFrameDeltaTime();
 		if (m_timer > SeiseiVer_2) {
 			if (m_Short < MaxSeiseiVer_2) {
 				m_Short++;
@@ -276,8 +274,8 @@ void Player::PBullet3()
 {
 	if (Ver == 2)
 	{
-		m_timer++;  // =GameTime().GetFrameDeltaTime;
-		p_timer++;
+		m_timer += GameTime().GetFrameDeltaTime();
+		p_timer += GameTime().GetFrameDeltaTime();
 		if (m_timer > SeiseiVer_3) {
 			if (m_Short < MaxSeiseiVer_3) {
 				m_Short++;
@@ -411,28 +409,21 @@ void Player::Death()
 			//効果音
 			Sound(0);
 		}
-		//if (DeathCount == true)
-		//{
-		//	d_timer++;
-		//	if (d_timer == 180)
-		//	{
-		//		Respawn();
-		//	}
-		//}
 }
 //プレイヤーのリスポーン処理。
 void Player::Respawn()
 {
 	if (DeathCount == true)
 	{
- 		d_timer++;
-		if (d_timer == 180)
+		float Respown = 3.0f;
+ 		d_timer += GameTime().GetFrameDeltaTime();
+		if (d_timer > Respown)
 		{
 			if (Ver == 0) {
 				m_skinModelRender->Init(L"modelData/Senkan.cmo");
 				m_skinModelRender->SetPosition(m_position);
 				m_CharaCon.SetPosition(m_position);
-				d_timer = 0;
+				d_timer = Timer0;
 				DeathCount = false;
 				//Muteki = true;
 				CountExplosion = false;
