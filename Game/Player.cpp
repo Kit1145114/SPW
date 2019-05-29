@@ -413,11 +413,11 @@ void Player::Death()
 //プレイヤーのリスポーン処理。
 void Player::Respawn()
 {
-	float Respown = 3.0f;
 	if (DeathCount == true)
 	{
- 		d_timer = GameTime().GetFrameDeltaTime();
-		if (d_timer >= Respown)
+		float Respown = 3.0f;
+ 		d_timer += GameTime().GetFrameDeltaTime();
+		if (d_timer > Respown)
 		{
 			if (Ver == 0) {
 				m_skinModelRender->Init(L"modelData/Senkan.cmo");
