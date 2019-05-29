@@ -339,9 +339,6 @@ void Player::Pevolution()
 		m_skinModelRender->SetScale(m_scale);
 		//カメラの引きを進化によって決めるのはローカルでは使用しない。ネットワークがどうなるかは未定。
 		//camera->SetPos(7000.0f);
-		prefab::CEffect* effect = NewGO<prefab::CEffect>(0);
-		effect->Play(L"effect/explosion1.efk");
-		effect->SetPosition(m_position);
 		Ver = 1;
 		m_Short = 0;
 		m_mode = 1;

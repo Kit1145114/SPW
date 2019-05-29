@@ -2043,7 +2043,6 @@
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
-    <MeshContentTask Include="Assets\modelData\Back.FBX" />
     <MeshContentTask Include="Assets\modelData\Bulet.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet2.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet3.FBX" />
@@ -2103,15 +2102,10 @@
     <ImageContentTask Include="Assets\sprite\Sansen_Number.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_player.png" />
     <ImageContentTask Include="Assets\sprite\BackTile.png" />
-    <ImageContentTask Include="Assets\sprite\RandomStage.png" />
     <ImageContentTask Include="Assets\sprite\Gate.png" />
     <ImageContentTask Include="Assets\sprite\GaugeIn.png" />
     <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\RocketArrow.png" />
-    <ImageContentTask Include="Assets\sprite\tama_bule.png" />
-    <ImageContentTask Include="Assets\sprite\tama_green.png" />
-    <ImageContentTask Include="Assets\sprite\tama_red.png" />
-    <ImageContentTask Include="Assets\sprite\tama_yellow.png" />
     <ImageContentTask Include="Assets\sprite\Arrow.png" />
     <ImageContentTask Include="Assets\sprite\bullet.jpg" />
     <ImageContentTask Include="Assets\sprite\Star.png" />
