@@ -93,7 +93,6 @@
     <MeshContentTask Include="Assets\modelData\Bullet2.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet3.FBX" />
     <MeshContentTask Include="Assets\modelData\Bullet4.FBX" />
-    <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
     <MeshContentTask Include="Assets\modelData\Hako.FBX" />
     <MeshContentTask Include="Assets\modelData\Inseki.FBX" />
     <MeshContentTask Include="Assets\modelData\planet01.FBX" />
@@ -122,7 +121,6 @@
     <MeshContentTask Include="Assets\modelData\SenkanType3.FBX" />
     <MeshContentTask Include="Assets\modelData\Space_field.FBX" />
     <MeshContentTask Include="Assets\modelData\star.FBX" />
-    <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
     <MeshContentTask Include="Assets\modelData\Sun.FBX" />
     <MeshContentTask Include="Assets\modelData\Crown.FBX" />
   </ItemGroup>
