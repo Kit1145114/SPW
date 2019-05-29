@@ -33,9 +33,9 @@ bool Title_2::Start()
 	sprite_line->SetPosition({ 0, 150, 0});
 
 	m_bgm = NewGO<prefab::CSoundSource>(0);
-	m_bgm->Init(L"sound/OP.wav");
+	m_bgm->Init(L"sound/Title.wav");
 	m_bgm->Play(true);
-	m_bgm->SetVolume(0.3f);
+	m_bgm->SetVolume(0.5f);
 	m_Draw = NewGO<GamenDraw>(3, "GamenDraw");
 
 	ID3D11Device* device = Engine().GetGraphicsEngine().GetD3DDevice();
