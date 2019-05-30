@@ -99,11 +99,11 @@ void StageSelect::Update() {
 		Fade::fadeIn([&]() {
 			Game* game = NewGO<Game>(0, "Game");
 			game->SetSanSenkazu(sansenKazu);
-			//if (selectNumber < iconNum - 1) {
+			if (selectNumber < iconNum - 1) {
 				game->setStage(selectNumber);
-			//} else {
-				//game->setStage(Random().GetRandInt() % iconNum - 1);
-			//}
+			} else {
+				game->setStage(Random().GetRandInt() % iconNum - 1);
+			}
 			DeleteGO(this);
 		}, m_bgm);
 		Sound(1);
