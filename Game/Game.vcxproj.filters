@@ -38,6 +38,7 @@
     <ImageContentTask Include="Assets\sprite\CountDown_front.png" />
     <ImageContentTask Include="Assets\sprite\Winner.png" />
     <ImageContentTask Include="Assets\sprite\rogo4.png" />
+    <ImageContentTask Include="Assets\sprite\Stage6.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BigBlackHole.cpp" />
