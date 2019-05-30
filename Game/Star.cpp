@@ -25,7 +25,7 @@ void Star::Update()
 {
 	Rotation();
 	Push();
-	time = GameTime().GetFrameDeltaTime();
+	time += GameTime().GetFrameDeltaTime();
 	if (time > Limit)
 	{
 		time = time0;		//ŠÔ‚ÅíœB
