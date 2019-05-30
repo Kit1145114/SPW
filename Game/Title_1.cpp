@@ -33,7 +33,7 @@ void Title_1::Update()
 				NewGO<Title_2>(0, "Title_2");
 			} else {
 				isSecondSprite = true;
-				m_timer = 0;
+				m_timer = -80;
 				m_spriteRender->Init(L"sprite/rogo4.dds", 1280.0f, 720.0f);
 				Fade::fadeOut();
 			}

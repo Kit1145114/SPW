@@ -186,15 +186,15 @@ private:
 	float m_timer = 0.0f;
 	float p_timer = 0.0f;
 	float d_timer = 0.0f;
-	int a_timer = 0;
 	float Timer0 = 0.0f;
 	int m_Short = 0;
 	int m_mode = 0;
 	int MutekiTime = 0;
 	int Ver = 0;		//デバックで強制進化させる。
 	int StarCount = 0;
-	int Star30 = 30;
-	int Star50 = 50;
+	int MaxStarCount = 999;
+	int Star40 = 40;
+	int Star60 = 60;
 	int PopStar = 0;
 	int PadNum = 0;
 	int PadMaxKazu = 0;
@@ -203,7 +203,7 @@ private:
 	int Damage = 20;
 	float SeiseiVer_1 = 0.4f;
 	float SeiseiVer_2 = 0.3f;
-	float SeiseiVer_3 = 0.2f;
+	float SeiseiVer_3 = 0.125f;
 	int MaxSeiseiVer_1 = 99;
 	int MaxSeiseiVer_2 = 70;
 	int MaxSeiseiVer_3 = 30;
