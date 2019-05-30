@@ -40,7 +40,7 @@ bool StageSelect::Start() {
 	titleSprite->setSpeed(4.0f, 16.0f);
 
 	CVector3 pos = { -400, 30, 0 };
-	for (int i = 0; i < iconNum-1; i++) {
+	for (int i = 0; i < iconNum; i++) {
 		wchar_t path[20];
 		swprintf(path, L"sprite/Stage%d.dds", i + 1);
 		iconArray[i].Init(path, pos, i * 0.1f);
@@ -50,7 +50,6 @@ bool StageSelect::Start() {
 			pos.y -= 250;
 		}
 	}
-	iconArray[iconNum-1].Init(L"sprite/RandomStage.dds", pos, (iconNum-1)*0.1f);
 
 	selectSprite = NewGO<MoveSprite>(1);
 	selectSprite->Init(L"sprite/Selector.dds", 270, 200);
