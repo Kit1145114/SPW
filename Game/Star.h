@@ -35,10 +35,11 @@ private:
 	CQuaternion m_rotation = CQuaternion::Identity;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 	prefab::CPointLight* p_Cpointlit = nullptr;//‘¼‚ğÆ‚ç‚·ƒ‰ƒCƒgB
-	int m_timer = 0;
-	int time0 = 0;
-	int Limit = 300;
 	int StarPoint = 1;
+	float time = 0.0f;
+	float time0 = 0.0f;
+	float Limit = 5.0f;
+	float StarScale = 125.0f;
 	float angle = 0.0f;
 };
 

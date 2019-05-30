@@ -15,23 +15,20 @@ Star::Star()
 	m_game = Game::GetInstance();
 }
 
-
 Star::~Star()
 {
 	DeleteGO(m_skinModelRender);
 	DeleteGO(p_Cpointlit);
 }
 
-
-
 void Star::Update()
 {
 	Rotation();
 	Push();
-	m_timer++;
-	if (m_timer == Limit)
+	time = GameTime().GetFrameDeltaTime();
+	if (time > Limit)
 	{
-		m_timer = time0;		//時間で削除。
+		time = time0;		//時間で削除。
 		Death();
 	}
 	if (p_Cpointlit != nullptr) {
@@ -45,10 +42,10 @@ void Star::Pop(CVector3 position,CVector3 scale)
 	m_scale = scale;
 	m_scale *= 1.2;
 	//☆の大きさによってポイントを変える。
-	if (m_scale.x<65.0f) {
+	if (m_scale.x< StarScale/2) {
 		StarPoint = 1;
 	}
-	else if (m_scale.x < 125.0f) {
+	else if (m_scale.x < StarScale) {
 		StarPoint = 2;
 	}
 	else  {
@@ -65,7 +62,7 @@ void Star::SunPop(CVector3 position, CVector3 scale)
 	m_position = position;
 	m_position.y += 30.0f;
 	m_scale = scale;
-	Limit = 1000;
+	Limit = 15.0f;
 	m_skinModelRender->Init(L"modelData/PlayerStar.cmo");
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetScale(m_scale);

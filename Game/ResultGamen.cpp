@@ -72,7 +72,7 @@ bool ResultGamen::Start()
 		//ÉQÅ[Ég
 		for (int i = 0; i < PadKazu; i++)
 		{
-			G_spriteRender[i] = NewGO<prefab::CSpriteRender>(0);
+			G_spriteRender[i] = NewGO<prefab::CSpriteRender>(2);
 			G_spriteRender[i]->Init(L"sprite/Gate.dds", GateSizeX,GateSizeY);
 		}
 		G_spriteRender[0]->SetPosition(G1position);
@@ -95,7 +95,7 @@ bool ResultGamen::Start()
 		//ÉQÅ[Ég
 		for (int i = 0; i < PadKazu; i++)
 		{
-			G_spriteRender[i] = NewGO<prefab::CSpriteRender>(0);
+			G_spriteRender[i] = NewGO<prefab::CSpriteRender>(2);
 			G_spriteRender[i]->Init(L"sprite/Gate.dds", GateSizeX, GateSizeY);
 		}
 		G_spriteRender[0]->SetPosition(G1position);
@@ -122,7 +122,7 @@ break;
 		//ÉQÅ[Ég
 		for (int i = 0; i < PadKazu; i++)
 		{
-			G_spriteRender[i] = NewGO<prefab::CSpriteRender>(0);
+			G_spriteRender[i] = NewGO<prefab::CSpriteRender>(2);
 			G_spriteRender[i]->Init(L"sprite/Gate.dds", GateSizeX, GateSizeY);
 		}
 		G_spriteRender[0]->SetPosition(G1position);
@@ -153,7 +153,7 @@ break;
 		//ÉQÅ[Ég
 		for (int i = 0; i < PadKazu; i++)
 		{
-			G_spriteRender[i] = NewGO<prefab::CSpriteRender>(0);
+			G_spriteRender[i] = NewGO<prefab::CSpriteRender>(2);
 			G_spriteRender[i]->Init(L"sprite/Gate.dds", GateSizeX, GateSizeY);
 		}
 		G_spriteRender[0]->SetPosition(G1position);
@@ -205,17 +205,120 @@ void ResultGamen::Result()
 		}
 	}
 
-	//for (int i = 0; i < PadKazu; i++)
-	//{
-	//	if (PS[PNums[i]] == PS[PNums[i + 1]])
-	//	{
-	//		PS[i] = PS[i + 1];
-	//	}
-	//}
-
 	for (int i = 0; i < PadKazu; i++) {
 		r_Draw[i]->SetPlayer(PNums[i]+1);
+		StarCount[i] = PS[PNums[i]];
 		P_spriteRender[i]->Init(draw_P[i], 500.0f, 135.0f);
+	}
+}
+
+void ResultGamen::PostRender(CRenderContext& rc)
+{
+	wchar_t text[20];
+	switch (PadKazu)
+	{
+	case 1:
+		swprintf_s(text, L"%d", StarCount[0]);
+		m_font.Begin(rc);
+		m_font.Draw(
+			text,
+			{ 420.0f, 195.0f },
+			{ 1.0f, 0.95f, 0.0f, 1.0f },
+			0.0f,
+			1.675f
+		);
+		m_font.End(rc);
+		break;
+	case 2:
+		swprintf_s(text, L"%d", StarCount[0]);
+		m_font.Begin(rc);
+		m_font.Draw(
+			text,
+			{ 420.0f, 195.0f },
+			{ 1.0f, 0.95f, 0.0f, 1.0f },
+			0.0f,
+			1.675f
+		);
+
+		swprintf_s(text, L"%d", StarCount[1]);
+		m_font.Draw(
+			text,
+			{ 420.0f, 55.0f },
+			{ 1.0f, 0.95f, 0.0f, 1.0f },
+			0.0f,
+			1.675f
+		);
+		m_font.End(rc);
+		break;
+	case 3:
+		swprintf_s(text, L"%d", StarCount[0]);
+		m_font.Begin(rc);
+		m_font.Draw(
+			text,
+			{ 420.0f, 195.0f },
+			{ 1.0f, 0.95f, 0.0f, 1.0f },
+			0.0f,
+			1.675f
+		);
+
+		swprintf_s(text, L"%d", StarCount[1]);
+		m_font.Draw(
+			text,
+			{ 420.0f, 55.0f },
+			{ 1.0f, 0.95f, 0.0f, 1.0f },
+			0.0f,
+			1.675f
+		);
+
+		swprintf_s(text, L"%d", StarCount[2]);
+		m_font.Draw(
+			text,
+			{ 420.0f, -95.0f },
+			{ 1.0f, 0.95f, 0.0f, 1.0f },
+			0.0f,
+			1.675f
+		);
+		m_font.End(rc);
+		break;
+	case 4:
+		swprintf_s(text, L"%d", StarCount[0]);
+		m_font.Begin(rc);
+		m_font.Draw(
+			text,
+			{ 420.0f, 195.0f },
+			{ 1.0f, 0.95f, 0.0f, 1.0f },
+			0.0f,
+			1.675f
+		);
+
+		swprintf_s(text, L"%d", StarCount[1]);
+		m_font.Draw(
+			text,
+			{ 420.0f, 55.0f },
+			{ 1.0f, 0.95f, 0.0f, 1.0f },
+			0.0f,
+			1.675f
+		);
+
+		swprintf_s(text, L"%d", StarCount[2]);
+		m_font.Draw(
+			text,
+			{ 420.0f, -95.0f },
+			{ 1.0f, 0.95f, 0.0f, 1.0f },
+			0.0f,
+			1.675f
+		);
+
+		swprintf_s(text, L"%d", StarCount[3]);
+		m_font.Draw(
+			text,
+			{ 420.0f, -245.0f },
+			{ 1.0f, 0.95f, 0.0f, 1.0f },
+			0.0f,
+			1.675f
+		);
+		m_font.End(rc);
+		break;
 	}
 }
 

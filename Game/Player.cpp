@@ -622,9 +622,8 @@ void Player::HP()
 {
 	if (PlHP <= 0)
 	{
-		PlHP = 0; {
-				Death();
-		}
+		PlHP = 0; 
+		Death();
 	}
 }
 //プレイヤーの持つ☆を落とす。

@@ -440,7 +440,7 @@ void Game::Update()
 		if (waitEnd <= 0 || Pad(0).IsTrigger(enButtonA)) {
 			Fade::fadeIn([&]() {
 				GameMode = 0;
-				result = NewGO<ResultGamen>(0, "ResultGamen");
+				result = NewGO<ResultGamen>(1, "ResultGamen");
 				result->SetSansenKazu(SansenKazu);
 				result->SetStage(Stage);
 				DeleteGO(this);

@@ -16,6 +16,7 @@ void GamenTimer::Update()
 	if (Game::GetInstance()->isWait())return;
 	if (MaxTimer <= 0)
 	{
+		MaxTimer = 0.0f;
 		m_game = FindGO<Game>("Game");
 		m_game->SetGameMode(1);
 	}

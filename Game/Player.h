@@ -177,9 +177,9 @@ private:
 	CVector3 b_moveSpeed = CVector3::Zero;
 	CVector3 m_scale = { 1.0f,1.0f,1.0f };
 	CVector3 Tyuou = CVector3::Zero;
-	CQuaternion m_rotation = CQuaternion::Identity;
-	//CVector3 b_position = CVector3::Zero;
+	CVector3 Res = CVector3::Zero;
 	CVector3 moveSpeedFrame = m_moveSpeed * 12.0f;
+	CQuaternion m_rotation = CQuaternion::Identity;
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 	prefab::CSoundSource* SoundSource = nullptr;//BGM用のサウンドソース。
 	
@@ -202,13 +202,13 @@ private:
 	int MaxHP = 100;
 	int Damage = 20;
 	float SeiseiVer_1 = 0.4f;
-	float SeiseiVer_2 = 0.3f;
+	float SeiseiVer_2 = 0.3f;		//球の生成時間
 	float SeiseiVer_3 = 0.125f;
 	int MaxSeiseiVer_1 = 99;
-	int MaxSeiseiVer_2 = 70;
+	int MaxSeiseiVer_2 = 70;		//弾の生成上限
 	int MaxSeiseiVer_3 = 30;
 	int LABulletNum = 5;
-	int syoki = 5;
+	int syoki = 5;					//プレイヤーの球の番号
 	float SyokiSpped = 10.5f;
 	float HoukouX = 0.0f;
 	float HoukouZ = 0.0f;
@@ -221,7 +221,6 @@ private:
 	float BulletHantei = 1200.0f;
 	float StarHantei = 1500.0f;
 	float radius = { 800.0f };
-	CVector3 Res = CVector3::Zero;
 
 	bool DeathCount = false;
 	bool ShortCount = false;

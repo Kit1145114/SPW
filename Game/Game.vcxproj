@@ -1816,7 +1816,6 @@
     <ClCompile Include="Utility\BoxCollider2D.cpp" />
     <ClCompile Include="Stage2\Rocket.cpp" />
     <ClCompile Include="SansenGamen.cpp" />
-    <ClCompile Include="Senkan_Rtype_2.cpp" />
     <ClCompile Include="SetumeiGamen.cpp" />
     <ClCompile Include="Sinka_Bar.cpp" />
     <ClCompile Include="Stage1\Satellite.cpp" />
@@ -2029,7 +2028,6 @@
     <ClInclude Include="Stage1\SatelliteGene.h" />
     <ClInclude Include="Utility\CVector2.h" />
     <ClInclude Include="Stage1\Satellite.h" />
-    <ClInclude Include="Senkan_Rtype_2.h" />
     <ClInclude Include="SetumeiGamen.h" />
     <ClInclude Include="Sinka_Bar.h" />
     <ClInclude Include="StageSelect.h" />
@@ -2093,8 +2091,6 @@
     <ImageContentTask Include="Assets\sprite\Title_Line.png" />
     <ImageContentTask Include="Assets\sprite\Title_A.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_arrow.png" />
-    <ImageContentTask Include="Assets\sprite\Reslut2.png" />
-    <ImageContentTask Include="Assets\sprite\Reslut3.png" />
     <ImageContentTask Include="Assets\sprite\title1.png" />
     <ImageContentTask Include="Assets\sprite\Reslut1.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_Number.png" />
@@ -2105,7 +2101,6 @@
     <ImageContentTask Include="Assets\sprite\Stage3.png" />
     <ImageContentTask Include="Assets\sprite\RocketArrow.png" />
     <ImageContentTask Include="Assets\sprite\Arrow.png" />
-    <ImageContentTask Include="Assets\sprite\bullet.jpg" />
     <ImageContentTask Include="Assets\sprite\Star.png" />
     <ImageContentTask Include="Assets\sprite\Stage2.png" />
     <ImageContentTask Include="Assets\sprite\Stage4.png" />
