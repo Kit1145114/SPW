@@ -111,7 +111,7 @@ void BlackHole::Move()
 			//Ｇ中心に遠ければ弱く、近ければ強く。
 			float G = radius * Searchment - kyori.Length();
 			//対象に渡す重力。すれば重力となる。
-			G_limitar = { 200.0f };//   BBHの重力（Ｇ）調整。
+			G_limitar = { 100.0f };//   BBHの重力（Ｇ）調整。
 			CVector3 Migawari = kyori;
 			Migawari.Normalize();
 			G = G * G / BBHnizyou;
