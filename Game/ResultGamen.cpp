@@ -191,7 +191,7 @@ void ResultGamen::Result()
 		for (int j = (PadKazu-1); j > i; j--) {
 			if (PS[PNums[j - 1]] == PS[PNums[j]])
 			{
-				PNums[j] = PNums[j - 1];
+				PNums[j] = PNums[j-1];
 			}
 			 if (PS[PNums[j-1]] < PS[PNums[j]]) {
 				int n = PNums[j];

@@ -51,7 +51,7 @@ void PlayerStar::Update()
 	CVector3 kyori = Game::GetInstance()->m_player[Getplayer]->GetPosition() - m_position;
 	float minkyori = 1600.0f;
 	if (kyori.Length() > minkyori) {
-		m_position += kyori / 12;
+		m_position += kyori / 11;
 	}
 	else {
 		Death();
