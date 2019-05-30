@@ -352,9 +352,6 @@
     <ImageContentTask Include="Assets\sprite\Gekitui.png" />
     <ImageContentTask Include="Assets\sprite\Reslut.png" />
     <ImageContentTask Include="Assets\sprite\StageSelect.png" />
-    <ImageContentTask Include="Assets\sprite\bullet.jpg">
-      <Filter>Resource Files</Filter>
-    </ImageContentTask>
     <ImageContentTask Include="Assets\sprite\1P.png">
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
@@ -412,11 +409,11 @@
     <ImageContentTask Include="Assets\sprite\Sansen_Number.png" />
     <ImageContentTask Include="Assets\sprite\Sansen_player.png" />
     <ImageContentTask Include="Assets\sprite\Gate.png" />
-    <ImageContentTask Include="Assets\sprite\Reslut2.png" />
-    <ImageContentTask Include="Assets\sprite\Reslut3.png" />
     <ImageContentTask Include="Assets\sprite\title1.png" />
     <ImageContentTask Include="Assets\sprite\Reslut1.png" />
     <Media Include="Assets\sound\bacteria.wav" />
+    <Media Include="..\..\..\Result.wav" />
+    <Media Include="Assets\sound\Result.wav" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\modelData\fire12.jpg" />

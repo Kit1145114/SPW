@@ -39,10 +39,15 @@ ResultGamen::~ResultGamen()
 	{
 		DeleteGO(r_Draw[3]);
 	}
+	DeleteGO(resultSound);
 }
 
 bool ResultGamen::Start()
 {
+	resultSound = NewGO<prefab::CSoundSource>(0);
+	resultSound->Init(L"sound/Result.wav");
+	resultSound->Play(true);
+	resultSound->SetVolume(0.5f);
 	switch (stage)
 	{
 	case 0:
@@ -174,7 +179,7 @@ void ResultGamen::Update()
 		Fade::fadeIn([&]() {
 			NewGO<Title_2>(0, "Title_2");
 			DeleteGO(this);
-		});
+		},resultSound);
 	}
 	GateDraw();
 }

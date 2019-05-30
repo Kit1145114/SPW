@@ -2131,6 +2131,7 @@
     <None Include="Assets\effect\RedBH.efk" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="..\..\..\Result.wav" />
     <Media Include="Assets\sound\bacteria.wav" />
     <Media Include="Assets\sound\bakuhatu.wav" />
     <Media Include="Assets\sound\bgm.wav" />
@@ -2141,6 +2142,7 @@
     <Media Include="Assets\sound\OP.wav" />
     <Media Include="Assets\sound\piko.wav" />
     <Media Include="Assets\sound\power-up1.wav" />
+    <Media Include="Assets\sound\Result.wav" />
     <Media Include="Assets\sound\shot1.wav" />
     <Media Include="Assets\sound\tugihe.wav" />
   </ItemGroup>

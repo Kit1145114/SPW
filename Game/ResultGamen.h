@@ -50,6 +50,7 @@ private:
 	int StarCount[4] = { 0 };
 	float change = 1000.0f;
 	prefab::CSpriteRender* G_spriteRender[4] = { nullptr };
+	prefab::CSoundSource* resultSound = nullptr;
 	float GateSizeX = 700.0f;
 	float GateSizeY = 100.0f;
 	CVector3 G1position = { 180.0f,180.0f,0.0f };
