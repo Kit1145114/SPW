@@ -244,8 +244,6 @@ void Game::CreateStage4()
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 
 	LightManager().SetAmbientLight({ 0.8f, 0.8f, 0.8f });   //ステージの明るさ。
-	//
-	
 }
 //ワープ。
 void Game::CreateStage5() {
@@ -309,6 +307,7 @@ void Game::CreateStage5() {
 	Planet::Generate(Planetnumber_Num, Planetnumber_Num);
 	LightManager().SetAmbientLight({ 10.0f, 10.0f, 10.0f }); //ステージの明るさ。
 }
+
 bool Game::Start()
 {
 	//ステージ振り分け。

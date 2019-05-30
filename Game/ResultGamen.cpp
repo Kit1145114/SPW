@@ -225,15 +225,15 @@ void ResultGamen::GateDraw()
 	{
 	case 1:
 		timer++;
-		if (timer < Limit) {
-			G1position.x += 10.0;
-			G_spriteRender[0]->SetPosition(G1position);
-			if (G1position.x > 220)
-			{
-				G1position.x = 200.0;
-				G_spriteRender[0]->SetPosition(G1position);
-			}
-		}
+		//if (timer < Limit) {
+		//	G1position.x += 10.0;
+		//	G_spriteRender[0]->SetPosition(G1position);
+		//	if (G1position.x > 220)
+		//	{
+		//		G1position.x = 200.0;
+		//		G_spriteRender[0]->SetPosition(G1position);
+		//	}
+		//}
 		if (timer > Limit) {
 			if (junban == 1) {
 				G1position.x += 10.0;
