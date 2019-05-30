@@ -188,7 +188,8 @@ void Player::PBullet()
 		if (Ver == 0) {
 			if (DeathCount == false) {
 				if (m_Short > 0) {
-					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
+					if (NPad(PadNum).IsPress(enButtonRB1) == true
+						|| NPad(PadNum).IsPress(enButtonRB2) == true) {
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPosition(m_position);
@@ -234,7 +235,8 @@ void Player::PBullet2()
 			if (DeathCount == false)
 				if (m_Short > 0)
 				{
-					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
+						if (NPad(PadNum).IsPress(enButtonRB1) == true
+						|| NPad(PadNum).IsPress(enButtonRB2) == true) {
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPosition(m_position);
@@ -293,7 +295,8 @@ void Player::PBullet3()
 			if (DeathCount == false)
 				if (m_Short > 0)
 				{
-					if (NPad(PadNum).IsPress(enButtonRB2) == true) {
+						if (NPad(PadNum).IsPress(enButtonRB1) == true
+						|| NPad(PadNum).IsPress(enButtonRB2) == true) {
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPosition(m_position);
