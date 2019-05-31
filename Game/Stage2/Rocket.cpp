@@ -188,9 +188,9 @@ void Rocket::Update() {
 		ArrowUpdate(stick);
 
 		m_move += stick * controllPower * delta;
-		if (m_move.LengthSq() > controllPower*controllPower) {
+		if (m_move.LengthSq() > maxSpeed*maxSpeed) {
 			m_move.Normalize();
-			m_move *= controllPower;
+			m_move *= maxSpeed;
 		}
 	}
 	

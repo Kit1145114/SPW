@@ -124,7 +124,7 @@ void BigBlackHole::Gravity()
 			//Ｇ中心に遠ければ弱く、近ければ強く。
 			float BigG = radius * Searchment * BBHSearchment - kyori.Length();
 			//対象に渡す重力。kyoriにGをかけてG_limitarで制限調整して、反転（-1）すれば重力となる。
-			BBHG_limitar = { 2000.0f };//   BBHの重力（Ｇ）調整。
+			BBHG_limitar = { 10000.0f };//   BBHの重力（Ｇ）調整。
 			CVector3 Migawari = kyori;
 			Migawari.Normalize();
 			BigG = BigG * BigG / BBHnizyou;

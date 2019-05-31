@@ -47,7 +47,8 @@ private:
 	bool awaking = false;
 	int ownerNum = -1;
 
-	static constexpr float controllPower = 10000.0f;
+	static constexpr float controllPower = 15000.0f;
+	static constexpr float maxSpeed = 12000.0f;
 
 	float firstScale = 0.0f;
 	CVector3 m_pos = {};
