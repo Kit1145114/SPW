@@ -43,7 +43,7 @@ private:
 	BoxCollider2D collider;
 
 	static constexpr int max_hp = 16;
-	int hp = max_hp;
+	int hp = 5;
 	bool awaking = false;
 	int ownerNum = -1;
 

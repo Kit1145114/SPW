@@ -135,7 +135,7 @@ public:
 		Res.y = y;
 		Res.z = z;
 	}
-	CVector3 GetmoveSpeedFrame()
+	CVector3 GetmoveSpeedFrame() //Šµ«
 	{
 		return moveSpeedFrame = m_moveSpeed * 8.0f;
 	}
@@ -202,11 +202,11 @@ private:
 	int MaxHP = 100;
 	int Damage = 20;
 	float SeiseiVer_1 = 0.4f;
-	float SeiseiVer_2 = 0.3f;		//‹…‚Ì¶¬ŠÔ
-	float SeiseiVer_3 = 0.125f;
-	int MaxSeiseiVer_1 = 99;
-	int MaxSeiseiVer_2 = 70;		//’e‚Ì¶¬ãŒÀ
-	int MaxSeiseiVer_3 = 30;
+	float SeiseiVer_2 = 0.25f;		//‹…‚Ì¶¬ŠÔ
+	float SeiseiVer_3 = 0.10f;
+	int MaxSeiseiVer_1 = 60;
+	int MaxSeiseiVer_2 = 60;		//’e‚Ì¶¬ãŒÀ
+	int MaxSeiseiVer_3 = 60;
 	int LABulletNum = 5;
 	int syoki = 5;					//ƒvƒŒƒCƒ„[‚Ì‹…‚Ì”Ô†
 	float SyokiSpped = 10.5f;

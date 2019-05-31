@@ -6,7 +6,6 @@
 #include"Player.h"
 #include"MeteoGene.h"
 #include"ResultGamen.h";
-//#include"Sinka_Bar.h"
 #include "Stage1/SatelliteGene.h"
 #include "Stage2/RocketGene.h"
 #include "TerepotHole.h"
@@ -464,6 +463,11 @@ void Game::PlStar_Life()
 void Game::Stage2()
 {
 
+
+}
+
+void Game::PlayerPevolution()
+{
 
 }
 

@@ -56,6 +56,7 @@ public:
 	void Update();
 	void PlStar_Life();
 	void Stage2();
+	void PlayerPevolution();
 	static Game* GetInstance();
 
 	void SetGameMode(int a)
