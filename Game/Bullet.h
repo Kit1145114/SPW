@@ -55,7 +55,10 @@ public:
 	int GetPB() const {
 		return PB;
 	}
-
+	void AddLimit(float time)
+	{
+		Limit = Limit*time;
+	}
 	void Update();
 	void Death();
 	void BulletDeath();
@@ -63,7 +66,7 @@ public:
 private:
 	Game * m_game = nullptr;
 	int PB = 0;
-	int Limit = 1.95f;
+	int Limit = 1.97f;
 	float timer = 0.0f;
 	float BulletHantei = 500.0f;
 	float BulletYpos = 300.0f;

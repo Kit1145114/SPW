@@ -194,6 +194,7 @@ void Player::PBullet()
 						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						m_bullet->AddLimit(1.05f);
 						//プレイヤーの速度の単位をm/frameに変更する。
 						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 						m_Short--;
@@ -241,6 +242,7 @@ void Player::PBullet2()
 						m_bullet->SetPBnum(PadNum);
 						m_bullet->SetPosition(m_position);
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+						m_bullet->AddLimit(1.02f);
 						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
@@ -248,6 +250,7 @@ void Player::PBullet2()
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetPositionX(50.0f);
 						m_bullet->SetPosition(m_position);
+						m_bullet->AddLimit(1.02f);
 						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 
 						m_bullet = NewGO<Bullet>(0, "PlayerBullet");
@@ -255,6 +258,7 @@ void Player::PBullet2()
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetPositionX(-100.0f);
 						m_bullet->SetPosition(m_position);
+						m_bullet->AddLimit(1.02f);
 						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 						m_Short--;
 						Sound(1);//効果音
