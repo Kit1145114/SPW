@@ -40,7 +40,7 @@ bool Bullet::Start()
 
 void Bullet::Update()
 {
-	m_position += m_moveSpeed;
+	m_position += m_moveSpeed * GameTime().GetFrameDeltaTime() * 60;
 	m_position.y = BulletYpos;
 	m_skinModelRender->SetPosition(m_position);
 	timer += GameTime().GetFrameDeltaTime();

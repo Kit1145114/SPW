@@ -236,7 +236,7 @@ void Sun::HPCount(){
 			SoundSource2->SetVolume(1.0f);                 //音量調節。
 
 			
-			SunHP = 50;            //死亡処理終了。
+			SunHP = 270;            //死亡処理終了。
 			SunRevivalFlag = true; //太陽死亡。
 			camera->shake(100000, 200, 0.3f);
 		}
@@ -261,7 +261,6 @@ void Sun::Revival() {
 			//元の大きさに戻ったら完全復活。
 			if (Size >= 1.0f) {
 				m_Deathtimer = 0.0f;//リセット。
-				SunHP = 200;			//フル回復。
 				m_state = eState_Low;
 				Sountziki = false;
 				m_timer = 0.0f;

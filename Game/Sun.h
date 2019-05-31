@@ -50,7 +50,7 @@ private:
 	prefab::CSoundSource* SoundSource = nullptr;//BGM用のサウンドソース。
 	prefab::CSoundSource* SoundSource2 = nullptr;//BGM用のサウンドソース。
 	prefab::CSoundSource* sunFlareSS = nullptr;	//太陽フレアの時のサウンド。
-	int SunHP = 200;
+	int SunHP = 270;
 	float Size = 1.0f;
 	bool SunRevivalFlag = false;
 

@@ -14,13 +14,13 @@ GamenTimer::~GamenTimer()
 void GamenTimer::Update()
 {
 	if (Game::GetInstance()->isWait())return;
+	MaxTimer -= GameTime().GetFrameDeltaTime();
 	if (MaxTimer <= 0)
 	{
 		MaxTimer = 0.0f;
 		m_game = FindGO<Game>("Game");
 		m_game->SetGameMode(1);
 	}
-		MaxTimer -= GameTime().GetFrameDeltaTime();
 }
 //‰æ–Ê‚É•`ŽÊ
 void GamenTimer::PostRender(CRenderContext& rc)
