@@ -442,7 +442,7 @@ void Game::Update()
 				GameMode = 0;
 				result = NewGO<ResultGamen>(1, "ResultGamen");
 				result->SetSansenKazu(SansenKazu);
-				result->SetStage(Stage);
+				//result->SetStage(Stage);
 				DeleteGO(this);
 			});
 		}

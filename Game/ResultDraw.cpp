@@ -1,29 +1,14 @@
 #include "stdafx.h"
 #include "ResultDraw.h"
 
-
-ResultDraw::ResultDraw()
-{
-}
-
-
-ResultDraw::~ResultDraw()
-{
-}
-
-bool ResultDraw::Start()
-{
-	return true;
-}
-
-void ResultDraw::Update()
-{
-}
-
 void ResultDraw::PostRender(CRenderContext& rc)
 {
+	if (!active) {
+		return;
+	}
+
 	wchar_t text[20];
-	if (P == 1) {
+	if (Juni == 1) {
 		swprintf_s(text, L"1th\n");
 		m_font.Begin(rc);
 		m_font.Draw(
@@ -34,7 +19,7 @@ void ResultDraw::PostRender(CRenderContext& rc)
 			1.675f
 		);
 	}
-	else if (P == 2)
+	else if (Juni == 2)
 	{
 		swprintf_s(text, L"2th\n");
 		m_font.Begin(rc);
@@ -46,7 +31,7 @@ void ResultDraw::PostRender(CRenderContext& rc)
 			1.675f
 			);
 	}
-	else if (P == 3) {
+	else if (Juni == 3) {
 		swprintf_s(text, L"3th\n");
 		m_font.Begin(rc);
 		m_font.Draw(
@@ -57,7 +42,7 @@ void ResultDraw::PostRender(CRenderContext& rc)
 			1.675f
 		);
 	}
-	else if (P == 4) {
+	else if (Juni == 4) {
 		swprintf_s(text, L"4th\n");
 		m_font.Begin(rc);
 		m_font.Draw(
@@ -67,10 +52,6 @@ void ResultDraw::PostRender(CRenderContext& rc)
 			0.0f,
 			1.675f
 		);
-	}
-	else
-	{
-
 	}
 	m_font.End(rc);
 }
