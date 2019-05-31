@@ -55,7 +55,10 @@ public:
 	int GetPB() const {
 		return PB;
 	}
-
+	void SetLimit(float time)
+	{
+		Limit = time;
+	}
 	void Update();
 	void Death();
 	void BulletDeath();
