@@ -20,7 +20,7 @@ Star::~Star()
 	DeleteGO(m_skinModelRender);
 	DeleteGO(p_Cpointlit);
 }
-
+//í‚És‚¤ˆ—B
 void Star::Update()
 {
 	Rotation();

@@ -14,8 +14,8 @@ public:
 	void Update();
 
 private:
-	int m_timer = 0;
-	int Limit = 120;
+	float timer = 0.0f;
+	float Limit = 3.0f;
 	prefab::CSpriteRender* m_spriteRender = nullptr;
 
 	bool isSecondSprite = false;

@@ -24,8 +24,6 @@ bool SetumeiGamen::Start()
 	m_bgm = NewGO<prefab::CSoundSource>(0);
 	m_bgm->Init(L"sound/sousa_setsumei.wav");
 	m_bgm->Play(true);
-
-	Fade::fadeOut();
 	return true;
 }
 
@@ -37,6 +35,6 @@ void SetumeiGamen::Update()
 		Fade::fadeIn([&]() {
 			NewGO<Title_2>(0, "Title_2");
 			DeleteGO(this);
-		}, m_bgm);
+		},m_bgm);
 	}
 }

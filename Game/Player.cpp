@@ -91,11 +91,10 @@ void Player::Update()
 	Rotation();
 	if (Game::GetInstance()->isWaitEnd())return;//勝者でもここから下は許可しない
 	Upper();
-	PBullet();		//プレイヤーの射撃操作
-	PBullet2();
-	PBullet3();
+	PBullet();		//プレイヤーの球（第一形態）
+	PBullet2();		//プレイヤーの球（第二形態）
+	PBullet3();		//プレイヤーの球（第三形態）
 	Pevolution();	//プレイヤーの形態
-	//Hantei();
 	Respawn();
 	S_Hantei();
 	B_Hantei();
@@ -370,12 +369,6 @@ void Player::Death()
 		draw_Pl->SetDeath(true);
 		if (CountExplosion == false) {
 			CountExplosion = true;
-			////エフェクトを作成。
-			//prefab::CEffect* effect;
-			//effect = NewGO<prefab::CEffect>(0);
-			////エフェクトを再生。
-			//effect->Play(L"effect/explosion2.efk");
-			//effect->SetPosition(this->m_position);
 			//効果音
 			Sound(0);
 		}
@@ -566,25 +559,6 @@ void Player::MutekiTimes()
 			Muteki = false;
 			MutekiTime = 0;
 		}
-
-		/*if (MutekiTime >= 180)
-		{
-			m_skinModelRender->SetActiveFlag(false);
-		}
-		if (MutekiTime >= 210 && MutekiTime <= 240)
-		{
-			m_skinModelRender->SetActiveFlag(true);
-		}
-		if (MutekiTime >= 241 && MutekiTime <= 270)
-		{
-			m_skinModelRender->SetActiveFlag(false);
-		}
-		if (MutekiTime >= 271 && MutekiTime <= 360)
-		{
-			m_skinModelRender->SetActiveFlag(true);
-			Muteki = false;
-			MutekiTime = 0;
-		}*/
 	}
 }
 //死んだ後のHP調整等。
@@ -813,7 +787,7 @@ void Player::setWinner() {
 	crown = NewGO<Crown>(0);
 	crown->setPosition(m_position);
 }
-
+//プレイヤーのカラー。
 CVector4 Player::getColor() {
 	switch (PadNum) {
 	case 0:
@@ -831,7 +805,6 @@ CVector4 Player::getColor() {
 	}
 	return CVector4::White;
 }
-
 //最終進化後、☆を一定個数取ると強化。
 void Player::Upper()
 {

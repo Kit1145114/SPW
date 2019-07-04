@@ -47,7 +47,6 @@ bool PlayerStar::Start()
 void PlayerStar::Update()
 {
 	Rotation();
-
 	CVector3 kyori = Game::GetInstance()->m_player[Getplayer]->GetPosition() - m_position;
 	float minkyori = 1600.0f;
 	if (kyori.Length() > minkyori) {
@@ -70,14 +69,10 @@ void PlayerStar::Rotation()
 void PlayerStar::Death()
 {
 	DeleteGO(this);
-	//m_player->SetPLST(nullptr);
 }
 
-//void PlayerStar::Pop(CVector3 Despos, CVector3 Getpos){
 void PlayerStar::Pop(int Death, int Get) {
-	//Deathplayer = Death;
 	Getplayer = Get;
 	m_position = Game::GetInstance()->m_player[Deathplayer = Death]->GetPosition();
 	m_skinModelRender->SetPosition(m_position);
-	//NewGO<PlayerStar>(0, "playerStat");
 }
