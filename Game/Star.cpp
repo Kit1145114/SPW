@@ -5,9 +5,9 @@
 Star::Star()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-	p_Cpointlit = NewGO < prefab::CPointLight >(0);
+	/*p_Cpointlit = NewGO < prefab::CPointLight >(0);
 	p_Cpointlit->SetAttn({ 8000, 1, 0 });
-	p_Cpointlit->SetColor({ 70.0f, 70.0f, 70.0f });
+	p_Cpointlit->SetColor({ 70.0f, 70.0f, 70.0f });*/
 	m_skinModelRender->Init(L"modelData/star.cmo");
 	m_scale = { 8.0f, 8.0, 8.0f };
 	m_skinModelRender->SetScale(m_scale);
