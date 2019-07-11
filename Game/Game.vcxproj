@@ -1783,6 +1783,7 @@
     <ClCompile Include="BigBlackHole.cpp" />
     <ClCompile Include="BlackHole.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Bullet2.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Crown.cpp" />
     <ClCompile Include="ResultCamera.cpp" />
@@ -1850,6 +1851,7 @@
     <ClInclude Include="BigBlackHole.h" />
     <ClInclude Include="BlackHole.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Bullet2.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Crown.h" />
     <ClInclude Include="ResultCamera.h" />

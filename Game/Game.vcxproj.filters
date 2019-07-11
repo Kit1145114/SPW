@@ -84,6 +84,7 @@
     <ClCompile Include="Crown.cpp" />
     <ClCompile Include="Utility\WordRender.cpp" />
     <ClCompile Include="TerepotHole.cpp" />
+    <ClCompile Include="Bullet2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\Bulet.FBX" />
@@ -325,6 +326,7 @@
     <ClInclude Include="Crown.h" />
     <ClInclude Include="Utility\WordRender.h" />
     <ClInclude Include="TerepotHole.h" />
+    <ClInclude Include="Bullet2.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc" />

@@ -119,7 +119,11 @@ void CircleGaugeSp::setFillAmount(float amount) {
 	CVector2 tex;
 
 	int clockSign = clockwise ? -1 : 1;
-
+	/*if (clockwise)
+		clockSign= -1;
+	if (!clockwise)
+		clockSign= 1;
+*/
 	//回転のスタートがy軸上からなのでy座標はcosで、x座標はsinで求める。
 	//テクスチャ座標では上が０で下が１なのでコサインの計算にマイナスをかけることで反転させる。
 	if (moveVCount % 2 == 0) {

@@ -94,6 +94,7 @@ void Player::Update()
 	PBullet();		//プレイヤーの球（第一形態）
 	PBullet2();		//プレイヤーの球（第二形態）
 	PBullet3();		//プレイヤーの球（第三形態）
+	SpecialBullet();
 	Pevolution();	//プレイヤーの形態
 	Respawn();
 	S_Hantei();
@@ -314,10 +315,36 @@ void Player::PBullet3()
 		}
 	}
 }
+//プレイヤーの特殊球
+void Player::SpecialBullet()
+{
+	if (m_Short >= 30)
+	{
+		if (NPad(PadNum).IsPress(enButtonLB1)==true || NPad(PadNum).IsPress(enButtonLB2)== true)
+		{
+			float Btime = 1.00f;
+			float B_Hantei = 2500.0f;
+			CVector3 BScale = { 50.0f,50.0f,50.0f };
+			m_bullet = NewGO<Bullet>(0, "PlayerBullet");
+			m_bullet->SetPBnum(PadNum);
+			m_bullet->SetPosition(m_position);
+			m_bullet->SetPositionXZ(HoukouX, HoukouZ);
+			m_bullet->AddLimit(Btime);
+			m_bullet->SetScale(BScale);
+			m_bullet->SetHantei(B_Hantei);
+			//プレイヤーの速度の単位をm/frameに変更する。
+			m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
+			m_Short -= 30;
+			Sound(1);//効果音
+			ShortCount = true;
+			p_timer = Timer0;
+		}
+	}
+}
 //プレイヤーの進化用
 void Player::Pevolution()
 {
-	if (StarCount >= 10 && m_mode == 0 && StarCount <= 24 && m_mode == 0)
+	if (StarCount >= 5 && m_mode == 0 && StarCount <= 14 && m_mode == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType2.cmo");
 		m_scale = { 9.0f,9.0f,9.0f };
@@ -329,7 +356,7 @@ void Player::Pevolution()
 		m_mode = 1;
 		Sound(2);//効果音
 	}
-	if (StarCount >= 25 && m_mode == 1|| StarCount >= 25 && Ver == 0)
+	if (StarCount >= 15 && m_mode == 1|| StarCount >= 15 && Ver == 0)
 	{
 		m_skinModelRender->Init(L"modelData/SenkanType3.cmo");
 		m_scale = { 10.0f,10.0f,10.0f };
@@ -554,7 +581,7 @@ void Player::MutekiTimes()
 			m_skinModelRender->SetActiveFlag(true);
 		}
 
-		if (MutekiTime >= 360) {
+		if (MutekiTime >= 240) {
 			m_skinModelRender->SetActiveFlag(true);
 			Muteki = false;
 			MutekiTime = 0;

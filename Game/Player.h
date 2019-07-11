@@ -32,6 +32,7 @@ public:
 	void PBullet();
 	void PBullet2();
 	void PBullet3();
+	void SpecialBullet();
 	void Pevolution();
 	void Rotation();
 	void Death();

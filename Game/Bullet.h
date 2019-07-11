@@ -10,7 +10,9 @@ public:
 	Bullet();
 	~Bullet();
 
-	bool Start();
+	virtual bool Start();
+	virtual void Update();
+
 	CVector3 GetPosition() {
 		return m_position;
 	}
@@ -59,7 +61,14 @@ public:
 	{
 		Limit = Limit*time;
 	}
-	void Update();
+	void SetScale(CVector3 scale)
+	{
+		m_scale = scale;
+	}
+	void SetHantei(float Hantei)
+	{
+		BulletHantei = Hantei;
+	}
 	void Death();
 	void BulletDeath();
 	int GetPB();
@@ -72,7 +81,7 @@ private:
 	float BulletYpos = 300.0f;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;
-	CVector3 m_scale = { 1.0f,1.0f,1.0f };
+	CVector3 m_scale = { 10.0f,10.0f,10.0f };
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 	bool Kill = false;
 };
