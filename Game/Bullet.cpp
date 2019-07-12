@@ -33,7 +33,7 @@ bool Bullet::Start()
 	{
 		m_skinModelRender->Init(L"modelData/Bullet4.cmo");
 	}
-	m_scale = { 10.0f,10.0f,10.0f };
+	//m_scale = { 10.0f,10.0f,10.0f };
 	m_skinModelRender->SetScale(m_scale);
 	return true;
 }
@@ -77,17 +77,19 @@ void Bullet::Death()
 //プレイヤーの球同士で殺しあう。
 void Bullet::BulletDeath()
 {
-	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b)->bool{
+	QueryGOs<Bullet>("PlayerBullet", [&](Bullet* b)->bool {
 		CVector3 kyori = b->GetPosition() - m_position;
 		if (b->GetPB() != PB && kyori.Length() < BulletHantei)
 		{
 			b->Death();
-			Death();
+			if (Muteki == false) {
+				Death();
+			}
 		}
-		else
-		{
-			
-		}
-		return true;
-	});
+			else
+			{
+
+			}
+			return true;
+		});
 }

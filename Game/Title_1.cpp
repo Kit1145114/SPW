@@ -22,7 +22,7 @@ bool Title_1::Start()
 void Title_1::Update()
 {
 	timer += GameTime().GetFrameDeltaTime();		
-	if (Pad(0).IsTrigger(enButtonA)) {
+	if (timer >= Limit) {
 		timer = Limit;
 	}
 	if (timer == Limit)

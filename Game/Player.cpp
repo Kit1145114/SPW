@@ -296,7 +296,7 @@ void Player::PBullet3()
 						m_bullet->SetPositionXZ(HoukouX, HoukouZ);
 						m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
 						m_bullet->AddLimit(Btime);
-
+						//m_bullet->SetScale(BScale);
 						
 						m_Short--;
 						Sound(1);//効果音
@@ -318,23 +318,24 @@ void Player::PBullet3()
 //プレイヤーの特殊球
 void Player::SpecialBullet()
 {
-	if (m_Short >= 30)
+	int Short = 15;
+	if (m_Short >= Short)
 	{
 		if (NPad(PadNum).IsPress(enButtonLB1)==true || NPad(PadNum).IsPress(enButtonLB2)== true)
 		{
-			float Btime = 1.00f;
 			float B_Hantei = 2500.0f;
-			CVector3 BScale = { 50.0f,50.0f,50.0f };
+			int BDamage = 100;
 			m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 			m_bullet->SetPBnum(PadNum);
 			m_bullet->SetPosition(m_position);
 			m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-			m_bullet->AddLimit(Btime);
 			m_bullet->SetScale(BScale);
 			m_bullet->SetHantei(B_Hantei);
+			m_bullet->SetDamage(BDamage);
+			m_bullet->SetMuteki(true);
 			//プレイヤーの速度の単位をm/frameに変更する。
-			m_bullet->SetMoveSpeedZ(SpeedX + GetmoveSpeedFrame().x, SpeedZ + GetmoveSpeedFrame().z);
-			m_Short -= 30;
+			m_bullet->SetMoveSpeedZ((SpeedX + GetmoveSpeedFrame().x)*5, (SpeedZ + GetmoveSpeedFrame().z)*5);
+			m_Short -= Short;
 			Sound(1);//効果音
 			ShortCount = true;
 			p_timer = Timer0;
@@ -519,7 +520,7 @@ void Player::B_Hantei()
 			CVector3 kyori = b->GetPosition() - m_position;
 			if (b->GetPB() != PadNum && kyori.Length() < BulletHantei)
 			{
-				PlHP -= Damage;
+				PlHP -= b->GetDamage();
 				b->Death();
 				if (b->GetPB() == 0 && DeathCount == false)
 				{

@@ -181,6 +181,7 @@ private:
 	CVector3 Res = CVector3::Zero;
 	CVector3 moveSpeedFrame = m_moveSpeed * 12.0f;
 	CQuaternion m_rotation = CQuaternion::Identity;
+	CVector3 BScale = { 50.0f,50.0f,50.0f };
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 	prefab::CSoundSource* SoundSource = nullptr;//BGM用のサウンドソース。
 	

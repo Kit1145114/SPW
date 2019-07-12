@@ -69,6 +69,22 @@ public:
 	{
 		BulletHantei = Hantei;
 	}
+	void SetDamage(int P)
+	{
+		Damage = P;
+	}
+	int GetDamage()
+	{
+		return Damage;
+	}
+	void SetMuteki(bool state)
+	{
+		Muteki = state;
+	}
+	bool SetMuteki()
+	{
+		return Muteki;
+	}
 	void Death();
 	void BulletDeath();
 	int GetPB();
@@ -79,10 +95,12 @@ private:
 	float timer = 0.0f;
 	float BulletHantei = 500.0f;
 	float BulletYpos = 300.0f;
+	int Damage = 20;
 	CVector3 m_position = CVector3::Zero;
 	CVector3 m_moveSpeed = CVector3::Zero;
 	CVector3 m_scale = { 10.0f,10.0f,10.0f };
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 	bool Kill = false;
+	bool Muteki = false;
 };
 
