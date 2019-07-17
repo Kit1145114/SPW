@@ -33,6 +33,7 @@ public:
 	void PBullet2();
 	void PBullet3();
 	void SpecialBullet();
+	void dollars();
 	void Pevolution();
 	void Rotation();
 	void Death();

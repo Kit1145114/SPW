@@ -95,6 +95,7 @@ void Player::Update()
 	PBullet2();		//プレイヤーの球（第二形態）
 	PBullet3();		//プレイヤーの球（第三形態）
 	SpecialBullet();
+	dollars();
 	Pevolution();	//プレイヤーの形態
 	Respawn();
 	S_Hantei();
@@ -315,30 +316,46 @@ void Player::PBullet3()
 		}
 	}
 }
-//プレイヤーの特殊球
+//プレイヤーの特殊球(早いのはここです。）
 void Player::SpecialBullet()
 {
-	int Short = 15;
+	int Short = 15;				//球の消費をいじるときはこ↑こ↓
+	int BDamage = 100;			//確殺です。
+	int S_Double = 5;			//スピードを倍々チャンスしております。
+	float B_Hantei = 2500.0f;	//判定の大きさをいじるときはこ↑こ↓
 	if (m_Short >= Short)
 	{
 		if (NPad(PadNum).IsPress(enButtonLB1)==true || NPad(PadNum).IsPress(enButtonLB2)== true)
 		{
-			float B_Hantei = 2500.0f;
-			int BDamage = 100;
 			m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 			m_bullet->SetPBnum(PadNum);
 			m_bullet->SetPosition(m_position);
 			m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-			m_bullet->SetScale(BScale);
-			m_bullet->SetHantei(B_Hantei);
-			m_bullet->SetDamage(BDamage);
-			m_bullet->SetMuteki(true);
+			m_bullet->SetScale(BScale);			//大きさ
+			m_bullet->SetHantei(B_Hantei);		//判定の大きさ。
+			m_bullet->SetDamage(BDamage);		//DAMAGE100
+			m_bullet->SetMuteki(true);			//この球を無敵に
 			//プレイヤーの速度の単位をm/frameに変更する。
-			m_bullet->SetMoveSpeedZ((SpeedX + GetmoveSpeedFrame().x)*5, (SpeedZ + GetmoveSpeedFrame().z)*5);
-			m_Short -= Short;
+			m_bullet->SetMoveSpeedZ(
+			(SpeedX + GetmoveSpeedFrame().x)*S_Double,	//倍々
+			(SpeedZ + GetmoveSpeedFrame().z)*S_Double	//倍々
+			);
+			m_Short -= Short;					//球の消費１５発分。
 			Sound(1);//効果音
 			ShortCount = true;
 			p_timer = Timer0;
+		}
+	}
+}
+//プレイヤーの二ドル球
+void Player::dollars()
+{
+	int Consumption = 10;
+	if (m_Short > Consumption)
+	{
+		if (NPad(PadNum).IsPress(enButtonB))
+		{
+			m_Short -= Consumption;
 		}
 	}
 }
