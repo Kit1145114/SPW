@@ -328,8 +328,8 @@ void Player::SpecialBullet()
 	int BDamage = 100;			//確殺です。
 	int S_Double = 3;			//スピードを倍々チャンスしております。
 	float Limit = 2.0;			//リミット。
-	float B_Hantei = 2500.0f;	//判定の大きさをいじるときはこ↑こ↓
-	CVector3 BScale = { 50.0f,50.0f,50.0f };	//球大きさ。
+	float B_Hantei = 3000.0f;	//判定の大きさをいじるときはこ↑こ↓
+	CVector3 BScale = { 75.0f,75.0f,75.0f };	//球大きさ。
 	CVector3 EScale = { 3.0f,3.0f,3.0f };		//エフェクトの大きさ。
 	if (m_Short >= Short && charge  == false)
 	{
