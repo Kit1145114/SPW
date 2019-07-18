@@ -432,5 +432,6 @@
     <None Include="Assets\effect\kari_BH.efk" />
     <None Include="Assets\effect\Fire.efk" />
     <None Include="Assets\effect\RedBH.efk" />
+    <None Include="Assets\effect\o-ra.efk" />
   </ItemGroup>
 </Project>

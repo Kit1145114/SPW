@@ -2131,6 +2131,7 @@
     <None Include="Assets\effect\explosion2.efk" />
     <None Include="Assets\effect\Fire.efk" />
     <None Include="Assets\effect\kari_BH.efk" />
+    <None Include="Assets\effect\o-ra.efk" />
     <None Include="Assets\effect\RedBH.efk" />
   </ItemGroup>
   <ItemGroup>
