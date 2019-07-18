@@ -338,12 +338,12 @@ void Player::SpecialBullet()
 			charge = true;
 			effect = NewGO<prefab::CEffect>(0);
 			effect->Play(L"effect/o-ra.efk");
+			effect->SetEffectFlag(true);
 			m_Short -= Short;					//‹…‚ÌÁ”ï20”­•ªB
 		}
 	}
 	if (charge == true)
 	{
-		effect->SetEffectFlag(true);
 		effect->SetPosition(m_position);
 		effect->SetScale(EScale);
 		timer += GameTime().GetFrameDeltaTime();
@@ -352,6 +352,7 @@ void Player::SpecialBullet()
 			charge = false;
 			timer = Timer0;
 			DeleteGO(effect);
+			effect = nullptr;
 			m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 			m_bullet->SetPBnum(PadNum);
 			m_bullet->SetPosition(m_position);
@@ -373,6 +374,7 @@ void Player::SpecialBullet()
 			charge = false;
 			timer = Timer0;
 			DeleteGO(effect);
+			effect = nullptr;
 		}
 	}
 }
