@@ -1,6 +1,14 @@
 #pragma once
 #include "..\Utility\BoxCollider2D.h"
 
+class Player;
+
+struct NumArray {
+	int num[2] = { -1, -1 };
+	void playerLastBullet(Player* p);
+	void pushBulletNum(int n);
+};
+
 class Satellite : public IGameObject{
 public:
 	Satellite();
@@ -49,6 +57,6 @@ private:
 
 	Satellite** arrayP = nullptr;
 
-	int lastBulletNum = -1;
+	NumArray lastBulletNum;
 };
 

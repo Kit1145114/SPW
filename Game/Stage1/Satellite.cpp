@@ -80,11 +80,11 @@ void Satellite::Update() {
 					if (result.hit == Side) {
 						rotPower += result.rotSign * hitRotPower;
 						p->AddHP(-100);
-						p->SetLABulletNum(lastBulletNum);
+						lastBulletNum.playerLastBullet(p);
 					} else if(result.hit == Center){
 						m_move += p->GetMoveSpeed()*5;
 						p->AddHP(-100);
-						p->SetLABulletNum(lastBulletNum);
+						lastBulletNum.playerLastBullet(p);
 					}
 				}
 			}
@@ -98,13 +98,13 @@ void Satellite::Update() {
 				rotPower += result.rotSign * hitRotPower;
 				b->Death();
 				prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
-				lastBulletNum = b->GetPB();
+				lastBulletNum.pushBulletNum(b->GetPB());
 				se->Init(L"sound/satellite.wav");
 				se->SetVolume(0.2f);
 				se->Play(false);
 			} else if(result.hit == Center){
 				m_move += b->GetMoveSpeed()*8;
-				lastBulletNum = b->GetPB();
+				lastBulletNum.pushBulletNum(b->GetPB());
 				b->Death();
 				prefab::CSoundSource* se = NewGO<prefab::CSoundSource>(0);
 				se->Init(L"sound/satellite.wav");
@@ -147,5 +147,20 @@ void Satellite::Update() {
 		if (rotPower * sign <= 0) {//•„†‚ªŒ¸Š‘O‚Æ”½“]‚µ‚½‚ç‰ñ“]—Í‚ð0‚É‚·‚éB
 			rotPower = 0;
 		}
+	}
+}
+
+void NumArray::playerLastBullet(Player * p) {
+	if (p->GetPadNum() != num[0]) {
+		p->SetLABulletNum(num[0]);
+	} else {
+		p->SetLABulletNum(num[1]);
+	}
+}
+
+void NumArray::pushBulletNum(int n) {
+	if (n != num[0]) {
+		num[1] = num[0];
+		num[0] = n;
 	}
 }
