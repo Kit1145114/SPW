@@ -41,7 +41,7 @@ bool Planet::Generate(int Reload, int Planetnum) {
 	
 	//Planetnumber_Num分の作成。
 	for (int i = 0, w = Planetnumber_00;i < Reload;i++, w++) {
-			
+			//リスポーン用処理。
 			int myplanetnum = 0;
 			if (Reload != Planetnumber_Num) { //リスポーンのため例外。
 				w = Planetnum;               //惑星の指定。
@@ -232,7 +232,7 @@ void Planet::Light()
 void Planet::Move() {
 	
 	if (movecount == false) {
-		
+		//ランダム指定。
 		randomspeed.x = Random().GetRandDouble() * 1000 * GameTime().GetFrameDeltaTime();
 		randomspeed.z = Random().GetRandDouble() * 1000 * GameTime().GetFrameDeltaTime();
 		if (Random().GetRandDouble() <= 0.5f)
@@ -269,8 +269,10 @@ void Planet::Size()
 //ドカーン（爆発）きたねぇ、花火だぜ、、、。
 void Planet::explosion()
 {
+	//爆発フラグオンならば、自分で爆発する。
 	if (this->CountExplosion == false) {
 		CountExplosion = true;
+		//残す☆を作っておく。
 		Star* m_star = NewGO<Star>(0, "Star");
 		float tyousei = 20.0f; //惑星と星のモデルの大きさの差を調整↓。
 		m_star->Pop(this->p_position, this->scale*this->radius/ tyousei);
@@ -346,7 +348,7 @@ void Planet::Death() {
 		}
 	}
 	//ほーっほぉほぉほぉお素晴らしい！ホラ、見てご覧なさい！ザーボンさんドドリアさん、エリア外にでて爆発する綺麗な花火ですよぉ。
-
+	//指定の範囲外ならば。
 	if (p_position.x> PosMaxLimitx || p_position.x< -PosMaxLimitx
 			||p_position.z>PosMaxLimitz || p_position.z < -PosMaxLimitz) {
 			explosion();

@@ -11,14 +11,13 @@ Sun::~Sun()
 {
 	DeleteGO(p_skinModelRender);
 	DeleteGO(p_Cpointlit);
-	//DeleteGO(SoundSource2);
-	//DeleteGO(sunFlareSS);
 }
 
 bool Sun::Start()
 {
+	//カメラを探す。
 	camera = FindGO<Camera>("Camera");
-
+	//skinModelRender更新。
 	p_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	p_skinModelRender->Init(L"modelData/Sun.cmo");
 	p_skinModelRender->SetPosition(p_position);
@@ -60,8 +59,7 @@ void Sun::Move()
 
 		//惑星個数分回す。
 		for (int i = 0;i < Planetnumber_Num;i++) {
-			//QueryGOs<Planet>("planet", [&](Planet* planet)->bool{
-				//ちっ、、、癇に障る野郎だぜ、追いついたと思ったらすぐ爆破して来やがる(惑星同士の距離判定。
+			//ちっ、、、癇に障る野郎だぜ、追いついたと思ったらすぐ爆破して来やがる(惑星同士の距離判定。
 			if (Game::GetInstance()->memoryPP[i] != nullptr) {
 				//2点間の距離を計算する。
 				CVector3 diff = Game::GetInstance()->memoryPP[i]->GetPosition() - p_position;
@@ -111,7 +109,7 @@ void Sun::Light()
 //太陽フレア発生。
 void Sun::Flare()
 {
-	
+	//太陽フレアLowとhighで表現の差を付ける。
 	switch (m_state) {
 	case eState_Low: {
 			const float emissionEndTime = 1.0f;
@@ -172,20 +170,19 @@ void Sun::Flare()
 		}break;
 	case eState_death: {
 
-		
+		//磁気嵐発生。
 		if (Sountziki == false) {
-			//効果音（磁気嵐）;
+			//効果音（磁気嵐）。
 			SoundSource = NewGO<prefab::CSoundSource>(0);
 			SoundSource->Init(L"sound/atmosphere4.wav");
 			SoundSource->Play(false, 0.8f);                //ワンショット再生。
 			SoundSource->SetVolume(1.0f);                 //音量調節。
 			Sountziki = true;
 		}
+		//磁気嵐中のライト調整。
 			const float emissionEndTime = 2.5f;
 			m_timer += GameTime().GetFrameDeltaTime();
 			m_timer = min(emissionEndTime, m_timer);
-
-
 			
 			CVector3 emissionColor;
 			emissionColor.Lerp(m_timer / emissionEndTime, emissionColorHigh*2.5, emissionColorLow * 0.1f);
@@ -194,6 +191,7 @@ void Sun::Flare()
 			CVector3 ptLigColor;
 			ptLigColor.Lerp(m_timer / emissionEndTime, emissionPointLigColorHigh*3.5, emissionPointLigColorLow * 0.5f);
 			p_Cpointlit->SetColor(ptLigColor);
+
 		}break;
 	}
 		
@@ -203,9 +201,6 @@ void Sun::HPCount(){
 
 	//死亡処理。
 	if (SunHP < 0) {
-		/*Size -=  0.005f;
-		float minsize =  0.005f;*/
-
 		//死亡してからカウント開始。
 		m_Deathtimer += GameTime().GetFrameDeltaTime();
 		//太陽色死亡。
