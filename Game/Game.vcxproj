@@ -2075,6 +2075,7 @@
     <MeshContentTask Include="Assets\modelData\SenkanType2.FBX" />
     <MeshContentTask Include="Assets\modelData\SenkanType3.FBX" />
     <MeshContentTask Include="Assets\modelData\Space_field.FBX" />
+    <MeshContentTask Include="Assets\modelData\Special Bullet.FBX" />
     <MeshContentTask Include="Assets\modelData\star.FBX" />
     <MeshContentTask Include="Assets\modelData\Sun.FBX" />
   </ItemGroup>
@@ -2130,6 +2131,7 @@
     <None Include="Assets\effect\explosion2.efk" />
     <None Include="Assets\effect\Fire.efk" />
     <None Include="Assets\effect\kari_BH.efk" />
+    <None Include="Assets\effect\o-ra.efk" />
     <None Include="Assets\effect\RedBH.efk" />
   </ItemGroup>
   <ItemGroup>

@@ -24,6 +24,8 @@ bool SetumeiGamen::Start()
 	m_bgm = NewGO<prefab::CSoundSource>(0);
 	m_bgm->Init(L"sound/sousa_setsumei.wav");
 	m_bgm->Play(true);
+
+	Fade::fadeOut();
 	return true;
 }
 

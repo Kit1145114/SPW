@@ -11,7 +11,6 @@ Player::Player()
 	r_ring = NewGO<RadarRing>(0);
 }
 
-
 void Player::OnDestroy()
 {
 	DeleteGO(m_skinModelRender);
@@ -19,6 +18,9 @@ void Player::OnDestroy()
 	DeleteGO(draw_S);
 	DeleteGO(r_ring);
 	DeleteGO(crown);
+	if (effect != nullptr) {
+		DeleteGO(effect);
+	}
 }
 
 bool Player::Start()
@@ -30,6 +32,7 @@ bool Player::Start()
 	m_skinModelRender->SetScale(m_scale);
 	m_game = Game::GetInstance();
 	camera = FindGO<Camera>("Camera");
+
 	switch (m_game->GetSansenKazu())
 	{
 	case 1:
@@ -91,10 +94,13 @@ void Player::Update()
 	Rotation();
 	if (Game::GetInstance()->isWaitEnd())return;//勝者でもここから下は許可しない
 	Upper();
-	PBullet();		//プレイヤーの球（第一形態）
-	PBullet2();		//プレイヤーの球（第二形態）
-	PBullet3();		//プレイヤーの球（第三形態）
+	if (charge == false) {
+		PBullet();		//プレイヤーの球（第一形態）
+		PBullet2();		//プレイヤーの球（第二形態）
+		PBullet3();		//プレイヤーの球（第三形態）
+	}
 	SpecialBullet();
+	//dollars();
 	Pevolution();	//プレイヤーの形態
 	Respawn();
 	S_Hantei();
@@ -315,30 +321,72 @@ void Player::PBullet3()
 		}
 	}
 }
-//プレイヤーの特殊球
+//プレイヤーの特殊球(早いのはここです。）
 void Player::SpecialBullet()
 {
-	int Short = 15;
-	if (m_Short >= Short)
+	int Short = 20;				//球の消費をいじるときはこ↑こ↓
+	int BDamage = 100;			//確殺です。
+	int S_Double = 3;			//スピードを倍々チャンスしております。
+	float Limit = 2.0;			//リミット。
+	float B_Hantei = 3000.0f;	//判定の大きさをいじるときはこ↑こ↓
+	CVector3 BScale = { 75.0f,75.0f,75.0f };	//球大きさ。
+	CVector3 EScale = { 3.0f,3.0f,3.0f };		//エフェクトの大きさ。
+	if (m_Short >= Short && charge  == false)
 	{
 		if (NPad(PadNum).IsPress(enButtonLB1)==true || NPad(PadNum).IsPress(enButtonLB2)== true)
 		{
-			float B_Hantei = 2500.0f;
-			int BDamage = 100;
+			charge = true;
+			effect = NewGO<prefab::CEffect>(0);
+			effect->Play(L"effect/o-ra.efk");
+			effect->SetEffectFlag(true);
+			m_Short -= Short;					//球の消費20発分。
+		}
+	}
+	if (charge == true)
+	{
+		effect->SetPosition(m_position);
+		effect->SetScale(EScale);
+		timer += GameTime().GetFrameDeltaTime();
+		if (timer >= Limit && DeathCount == false)
+		{
+			charge = false;
+			timer = Timer0;
+			DeleteGO(effect);
+			effect = nullptr;
 			m_bullet = NewGO<Bullet>(0, "PlayerBullet");
 			m_bullet->SetPBnum(PadNum);
 			m_bullet->SetPosition(m_position);
 			m_bullet->SetPositionXZ(HoukouX, HoukouZ);
-			m_bullet->SetScale(BScale);
-			m_bullet->SetHantei(B_Hantei);
-			m_bullet->SetDamage(BDamage);
-			m_bullet->SetMuteki(true);
+			m_bullet->SetScale(BScale);			//大きさ
+			m_bullet->SetHantei(B_Hantei);		//判定の大きさ。
+			m_bullet->SetDamage(BDamage);		//DAMAGE100
+			m_bullet->SetMuteki(true);			//この球を無敵に
 			//プレイヤーの速度の単位をm/frameに変更する。
-			m_bullet->SetMoveSpeedZ((SpeedX + GetmoveSpeedFrame().x)*5, (SpeedZ + GetmoveSpeedFrame().z)*5);
-			m_Short -= Short;
+			m_bullet->SetMoveSpeedZ(
+			(SpeedX + GetmoveSpeedFrame().x)*S_Double,	//倍々
+			(SpeedZ + GetmoveSpeedFrame().z)*S_Double	//倍々
+			);
 			Sound(1);//効果音
 			ShortCount = true;
-			p_timer = Timer0;
+		}
+		if (charge == true && DeathCount == true)
+		{
+			charge = false;
+			timer = Timer0;
+			DeleteGO(effect);
+			effect = nullptr;
+		}
+	}
+}
+//プレイヤーの二ドル球
+void Player::dollars()
+{
+	int Consumption = 10;
+	if (m_Short > Consumption)
+	{
+		if (NPad(PadNum).IsPress(enButtonB))
+		{
+			m_Short -= Consumption;
 		}
 	}
 }

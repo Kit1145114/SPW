@@ -33,6 +33,7 @@ public:
 	void PBullet2();
 	void PBullet3();
 	void SpecialBullet();
+	void dollars();
 	void Pevolution();
 	void Rotation();
 	void Death();
@@ -181,10 +182,11 @@ private:
 	CVector3 Res = CVector3::Zero;
 	CVector3 moveSpeedFrame = m_moveSpeed * 12.0f;
 	CQuaternion m_rotation = CQuaternion::Identity;
-	CVector3 BScale = { 50.0f,50.0f,50.0f };
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 	prefab::CSoundSource* SoundSource = nullptr;//BGM用のサウンドソース。
-	
+	prefab::CEffect* effect = nullptr;
+
+	float timer = 0.0f;			//発射タイマー。
 	float m_timer = 0.0f;
 	float p_timer = 0.0f;
 	float d_timer = 0.0f;
@@ -230,7 +232,9 @@ private:
 	bool Muteki = false;
 	bool Alive = true;
 	bool CountExplosion = false;
-	
+	bool charge = false;
+
+
 	//ゲーム終了後の勝利演出関連
 	bool isWinner = false;       //勝者
 	Crown* crown = nullptr;      //王冠

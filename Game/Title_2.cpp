@@ -81,7 +81,7 @@ void Title_2::Update()
 	{
 		Fade::fadeIn([&]() {
 			DeleteGO(this);
-			NewGO<SetumeiGamen>(0, "SetumeiGamen");
+			NewGO<SetumeiGamen		>(0, "SetumeiGamen");
 		});
 	}
 
